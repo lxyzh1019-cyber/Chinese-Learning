@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>读故事 · 姐妹花</title>
+<title>Read Stories · Sisters</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600;700&family=ZCOOL+XiaoWei&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -152,6 +152,33 @@ header{text-align:center;padding:3rem 1rem 1.8rem;position:relative;}
 .lpy{font-size:.72rem;color:var(--red);font-weight:700;}
 .lhz{font-family:'Noto Serif SC',serif;font-size:1.4rem;color:var(--jade);}
 .lmn{font-size:.58rem;color:var(--muted);margin-top:.1rem;}
+.lib-tools{display:flex;flex-wrap:wrap;gap:.45rem;margin:.5rem 0 .6rem;align-items:center;}
+body.hide-pinyin .lchar .lpy{opacity:0!important;min-height:1em;}
+body.hide-hint .lchar .lmn{opacity:0!important;}
+.lang-bar{display:flex;justify-content:flex-end;margin-bottom:.5rem;}
+.lang-toggle{
+  padding:.35rem .85rem;border-radius:999px;border:1px solid var(--gold-dim);
+  background:rgba(0,0,0,.25);color:var(--gold);font-size:.78rem;cursor:pointer;
+}
+.parent-preview{
+  background:var(--panel);border:1px solid rgba(232,197,71,.25);border-radius:18px;
+  padding:1rem 1.15rem;margin-bottom:1.2rem;text-align:left;
+}
+.parent-preview h3{font-family:'Ma Shan Zheng',cursive;font-size:1.05rem;color:var(--gold);margin-bottom:.5rem;}
+.parent-preview p{font-size:.78rem;color:var(--muted);line-height:1.55;}
+.sentence-test-panel{
+  display:none;margin-top:1rem;padding:1rem;border-radius:16px;border:1px solid rgba(232,197,71,.35);
+  background:rgba(0,0,0,.2);
+}
+.sentence-test-panel.show{display:block;}
+.sentence-test-panel textarea,.sentence-test-panel input[type="text"]{
+  width:100%;max-width:100%;padding:.55rem .65rem;border-radius:10px;border:1px solid var(--gold-dim);
+  background:var(--night);color:var(--ink);font-size:1.15rem;font-family:'Noto Serif SC',serif;margin-top:.5rem;
+}
+.py-round-hdr{font-size:.8rem;color:var(--muted);margin-bottom:.5rem;}
+.py-round-progress{font-size:.85rem;color:var(--gold);margin:.35rem 0;}
+.map-story{font-size:.84rem;color:var(--ink);line-height:1.65;margin:.6rem 0;padding:.75rem;background:rgba(0,0,0,.15);border-radius:12px;border-left:3px solid var(--gold);}
+.streak-badge{display:inline-block;font-size:.72rem;padding:.2rem .5rem;border-radius:8px;background:rgba(92,191,138,.2);color:var(--jade);margin-left:.35rem;}
 
 /* READER */
 #reader{display:none;}
@@ -451,46 +478,60 @@ body.hide-hint .mtip{opacity:0!important;visibility:hidden!important;}
 
 <div id="app">
   <div id="profile-screen">
+    <div class="lang-bar">
+      <button type="button" class="lang-toggle" id="lang-btn-profile" onclick="toggleUiLang()">中文界面</button>
+    </div>
     <header>
       <div class="hglow"></div>
-      <div class="app-title">读故事</div>
-      <div class="app-sub">姐妹花的中文书 · Stories for Two Sisters</div>
+      <div class="app-title" data-i18n="titleMain">Read Stories</div>
+      <div class="app-sub" data-i18n="subtitle">Chinese stories · Two sisters</div>
       <div class="hdiv"></div>
     </header>
-    <p style="text-align:center;font-size:.85rem;color:var(--muted);margin-top:.5rem;">选择学习者 · Choose a learner</p>
+    <div class="parent-preview" id="parent-preview-on-profile">
+      <h3 data-i18n="parentSumTitle">Parent summary</h3>
+      <p id="parent-preview-body">—</p>
+    </div>
+    <p style="text-align:center;font-size:.85rem;color:var(--muted);margin-top:.5rem;" data-i18n="pickLearner">Choose a learner</p>
     <div class="prof-grid" id="profile-picker"></div>
   </div>
 
   <div id="dashboard-screen">
+    <div class="lang-bar">
+      <button type="button" class="lang-toggle" id="lang-btn-dash" onclick="toggleUiLang()">中文界面</button>
+    </div>
     <div class="dash-top">
-      <div class="dash-brand" id="dash-title">读故事</div>
+      <div class="dash-brand" id="dash-title">Read Stories</div>
       <div class="timer-row">
         <div class="clock-box" id="clock">--:--</div>
-        <button type="button" class="btn-ghost" onclick="openProfilePicker()">切换档案</button>
+        <button type="button" class="btn-ghost" id="btn-switch-profile" onclick="openProfilePicker()">Switch profile</button>
       </div>
     </div>
     <div class="timer-row" style="margin-bottom:.25rem">
-      <span style="font-size:.74rem;color:var(--muted)">学习计时</span>
-      <button type="button" class="btn-sm" id="timer-btn" onclick="toggleSessionTimer()">开始</button>
+      <span style="font-size:.74rem;color:var(--muted)" data-i18n="studyTimer">Study timer</span>
+      <button type="button" class="btn-sm" id="timer-btn" onclick="toggleSessionTimer()">Start</button>
       <span class="timer-box" id="session-timer">00:00</span>
-      <span style="font-size:.74rem;color:var(--muted)">倒数 (分)</span>
+      <span style="font-size:.74rem;color:var(--muted)" data-i18n="countdownMin">Countdown (min)</span>
       <input type="number" id="countdown-m" min="1" max="120" value="15" title="Minutes">
-      <button type="button" class="btn-sm" id="cd-btn" onclick="toggleCountdown()">开始</button>
+      <button type="button" class="btn-sm" id="cd-btn" onclick="toggleCountdown()">Start</button>
       <span class="timer-box" id="countdown-disp">--:--</span>
     </div>
     <div class="nav-row">
-      <button type="button" class="nav-tab active" data-panel="stories" onclick="showPanel('stories')">故事 Stories</button>
-      <button type="button" class="nav-tab" data-panel="map" onclick="showPanel('map')">朝代地图 Map</button>
-      <button type="button" class="nav-tab" data-panel="parent" onclick="showPanel('parent')">家长 Parent</button>
+      <button type="button" class="nav-tab active" data-panel="stories" data-i18n="navStories" onclick="showPanel('stories')">Stories</button>
+      <button type="button" class="nav-tab" data-panel="map" data-i18n="navMap" onclick="showPanel('map')">Dynasty map</button>
+      <button type="button" class="nav-tab" data-panel="parent" data-i18n="navParent" onclick="showPanel('parent')">Parent</button>
     </div>
 
     <div id="panel-stories" class="dash-panel show">
       <div class="level-bar" id="level-bar"></div>
       <div id="story-list"></div>
       <div id="lib-section" style="display:none">
+        <div class="lib-tools">
+          <button type="button" class="toggle-btn" id="lib-btn-hide-py" onclick="toggleLibFlag('py')">Hide pinyin</button>
+          <button type="button" class="toggle-btn" id="lib-btn-hide-en" onclick="toggleLibFlag('en')">Hide English</button>
+        </div>
         <div class="sec-hdr">
           <div class="sec-line"></div>
-          <div class="sec-ttl">📚 我们的字库 · Our Library</div>
+          <div class="sec-ttl" data-i18n="libraryTitle">📚 Word library</div>
           <div class="sec-line r"></div>
         </div>
         <div class="char-grid" id="char-grid"></div>
@@ -500,37 +541,33 @@ body.hide-hint .mtip{opacity:0!important;visibility:hidden!important;}
     <div id="panel-map" class="dash-panel">
       <div class="map-wrap">
         <div class="map-svg-wrap" id="map-svg-wrap"></div>
-        <p class="map-legend">点击地图上的门钉按时间顺序解锁。完成测验以开启下一朝代。Tap a gate to read and quiz. Gates unlock in order.</p>
+        <p class="map-legend" data-i18n="mapLegend">Tap a numbered gate in order. Each capital has a short story. Pass a 15-question pinyin round to open the next gate (2 rounds per day).</p>
         <div class="gate-detail" id="gate-detail" style="display:none">
-          <h4 id="gate-dyn">朝代</h4>
+          <h4 id="gate-dyn">Dynasty</h4>
           <div class="cap" id="gate-cap"></div>
           <p class="desc" id="gate-desc"></p>
-          <div class="quiz-box" id="gate-quiz">
-            <label id="gate-quiz-lbl">测验</label>
-            <input type="text" id="gate-quiz-in" autocomplete="off" inputmode="text" placeholder="Type pinyin (with tone marks optional)">
-            <div class="quiz-msg" id="gate-quiz-msg"></div>
-            <button type="button" class="btn-sm" style="margin-top:.5rem" onclick="submitGateQuiz()">提交答案</button>
+          <div class="map-story" id="gate-story"></div>
+          <div id="py-round-ui">
+            <div class="py-round-hdr" id="py-round-hdr"></div>
+            <div class="py-round-progress" id="py-round-progress"></div>
+            <div class="py-q" id="py-round-char">字</div>
+            <div class="py-hint" id="py-round-qtext"></div>
+            <input type="text" id="py-round-input" autocomplete="off" inputmode="text" placeholder="Pinyin" style="width:100%;max-width:360px;padding:.55rem .65rem;border-radius:10px;border:1px solid var(--gold-dim);background:var(--night);color:var(--ink);font-size:1rem;margin-top:.5rem;">
+            <div class="quiz-msg" id="py-round-msg"></div>
+            <button type="button" class="btn-sm" style="margin-top:.45rem" id="py-round-submit" onclick="submitPinyinRoundAnswer()">Check</button>
+            <button type="button" class="btn-ghost" style="margin-left:.35rem" id="py-round-start-btn" onclick="startPinyinRoundForGate()">Start 15-question round</button>
           </div>
         </div>
-      </div>
-      <div class="pinyin-prac" id="pinyin-prac">
-        <div style="font-size:.78rem;color:var(--muted)">拼音输入练习 · Pinyin typing (phone keyboard)</div>
-        <div class="py-q" id="py-prac-char">字</div>
-        <div class="py-hint" id="py-prac-hint"></div>
-        <input type="text" id="py-prac-input" autocomplete="off" inputmode="text" placeholder="Type pinyin, e.g. zao3 or zǎo" style="width:100%;max-width:360px;padding:.55rem .65rem;border-radius:10px;border:1px solid var(--gold-dim);background:var(--night);color:var(--ink);font-size:1rem;margin-top:.5rem;">
-        <div class="quiz-msg" id="py-prac-msg"></div>
-        <button type="button" class="btn-sm" style="margin-top:.45rem" onclick="checkPinyinPractice()">检查</button>
-        <button type="button" class="btn-ghost" style="margin-left:.35rem" onclick="nextPinyinPractice()">下一题</button>
       </div>
     </div>
 
     <div id="panel-parent" class="dash-panel">
       <div class="parent-card">
-        <h3>家长总览 · Parent summary</h3>
+        <h3 data-i18n="parentCardTitle">Parent summary</h3>
         <p id="parent-summary-body">Loading…</p>
       </div>
       <div class="parent-card">
-        <h3>本周学习 · Weekly summary</h3>
+        <h3 data-i18n="weeklyTitle">This week</h3>
         <ul id="weekly-list"></ul>
       </div>
     </div>
@@ -538,12 +575,12 @@ body.hide-hint .mtip{opacity:0!important;visibility:hidden!important;}
 
   <div id="reader">
     <div class="rhdr">
-      <button type="button" class="back-btn" onclick="goHome()">← 返回</button>
+      <button type="button" class="back-btn" onclick="goHome()" data-i18n="back">← Back</button>
       <div class="rttl" id="rttl"></div>
     </div>
     <div class="reader-tools">
-      <button type="button" class="toggle-btn" id="btn-hide-py" onclick="toggleReaderFlag('py')">显示拼音 Pinyin</button>
-      <button type="button" class="toggle-btn" id="btn-hide-en" onclick="toggleReaderFlag('en')">显示英文提示 English</button>
+      <button type="button" class="toggle-btn" id="btn-hide-py" onclick="toggleReaderFlag('py')">Hide pinyin</button>
+      <button type="button" class="toggle-btn" id="btn-hide-en" onclick="toggleReaderFlag('en')">Hide English hints</button>
     </div>
     <div class="prog-wrap">
       <div class="prog-track"><div class="prog-fill" id="pfill" style="width:0%"></div></div>
@@ -551,13 +588,19 @@ body.hide-hint .mtip{opacity:0!important;visibility:hidden!important;}
     </div>
     <div id="scontent"></div>
     <div class="practice-block" id="practice-block">
-      <h5>无拼音练习 · Read characters only</h5>
+      <h5 data-i18n="readCharsOnly">Characters only (no pinyin row)</h5>
       <div class="practice-sent" id="practice-sent"></div>
     </div>
-    <button type="button" class="unlock-btn" id="ubtn" onclick="completeStory()" disabled>
-      故事读完了 · Story complete
-    </button>
-    <div class="hint-txt" id="htxt">请点开所有生字 · Tap all new characters</div>
+    <div class="sentence-test-panel" id="sentence-test-panel">
+      <h5 style="color:var(--gold);font-size:.88rem;margin-bottom:.35rem;" data-i18n="sentenceTestTitle">Sentence typing test</h5>
+      <p style="font-size:.78rem;color:var(--muted);" data-i18n="sentenceTestInstr">Type the pinyin for this line (tones optional). Spaces OK.</p>
+      <div class="practice-sent" id="sentence-test-hanzi" style="margin:.5rem 0;"></div>
+      <input type="text" id="sentence-test-input" autocomplete="off" inputmode="text" placeholder="pinyin">
+      <div class="quiz-msg" id="sentence-test-msg"></div>
+      <button type="button" class="btn-sm" style="margin-top:.5rem" onclick="verifySentenceTest()" data-i18n="checkSentence">Check sentence</button>
+    </div>
+    <button type="button" class="unlock-btn" id="ubtn" onclick="completeStory()" disabled data-i18n="storyCompleteBtn">Story complete</button>
+    <div class="hint-txt" id="htxt" data-i18n="tapNewHint">Tap every new character first</div>
   </div>
 </div>
 
@@ -662,37 +705,40 @@ const STORIES=[
   ]},
 ];
 
-// 22 dynasties: simplified school list, English blurbs; capitals approximate for map pins
+// Simplified China outline (approximate) — illustrative only
+const CHINA_MAP_PATH='M18 48 L22 38 L32 32 L48 28 L58 26 L72 28 L82 34 L88 42 L90 52 L88 62 L82 70 L72 76 L58 80 L44 78 L32 72 L24 62 Z M38 52 Q48 50 58 54 Q52 58 44 56 Z';
+
+// 22 dynasties: capitals placed approximately on reference map; storyEn = kid-friendly English story per gate
 const DYNASTIES=[
-  {id:1,nameEn:'Xia',capitalEn:'Erlitou region (early Xia)',lat:34.22,lng:112.68,blurb:'Tradition says the Xia was China’s first dynasty. Bronze work and early cities grew along the Yellow River.',quiz:{q:'What is the pinyin for 早 (early)?',answer:'zao',alt:['zǎo','zao3']}},
-  {id:2,nameEn:'Shang',capitalEn:'Yin (near Anyang)',lat:36.10,lng:114.33,blurb:'The Shang left oracle-bone writing and powerful bronze ritual vessels. Kings asked spirits for guidance.',quiz:{q:'What is the pinyin for 商 (commerce / Shang)?',answer:'shang',alt:['shāng','shang1']}},
-  {id:3,nameEn:'Western Zhou',capitalEn:'Haojing / Feng-Hao (Chang\'an area)',lat:34.26,lng:108.90,blurb:'The Zhou overthrew the Shang and ruled through feudal lords. Rites and music shaped elite culture.',quiz:{q:'What is the pinyin for 周 (Zhou)?',answer:'zhou',alt:['zhōu','zhou1']}},
-  {id:4,nameEn:'Eastern Zhou',capitalEn:'Luoyi (Luoyang)',lat:34.62,lng:112.45,blurb:'The capital moved east; later centuries saw Spring and Autumn rivalries and bold thinkers.',quiz:{q:'What is the pinyin for 东 (east)?',answer:'dong',alt:['dōng','dong1']}},
-  {id:5,nameEn:'Qin',capitalEn:'Xianyang',lat:34.33,lng:108.71,blurb:'The Qin unified writing, roads, and weights. The First Emperor linked walls and standardized the realm.',quiz:{q:'What is the pinyin for 秦 (Qin)?',answer:'qin',alt:['qín','qin2']}},
-  {id:6,nameEn:'Western Han',capitalEn:'Chang\'an (Xi\'an area)',lat:34.27,lng:108.95,blurb:'The Han reopened Silk Roads, promoted Confucian exams, and built a long-lasting imperial model.',quiz:{q:'What is the pinyin for 汉 (Han)?',answer:'han',alt:['hàn','han4']}},
-  {id:7,nameEn:'Xin (Wang Mang)',capitalEn:'Chang\'an',lat:34.27,lng:108.95,blurb:'Wang Mang briefly seized the throne and tried radical reforms before the Han returned.',quiz:{q:'What is the pinyin for 新 (new)?',answer:'xin',alt:['xīn','xin1']}},
-  {id:8,nameEn:'Eastern Han',capitalEn:'Luoyang',lat:34.62,lng:112.45,blurb:'Buddhism spread; paper and the seismoscope show Han ingenuity.',quiz:{q:'What is the pinyin for 洛 (Luo, as in Luoyang)?',answer:'luo',alt:['luò','luo4']}},
-  {id:9,nameEn:'Three Kingdoms',capitalEn:'Luoyang (Wei)',lat:34.62,lng:112.45,blurb:'Wei, Shu, and Wu split China; Romance tales still celebrate heroes of this age.',quiz:{q:'What is the pinyin for 魏 (Wei)?',answer:'wei',alt:['wèi','wei4']}},
-  {id:10,nameEn:'Western Jin',capitalEn:'Luoyang',lat:34.62,lng:112.45,blurb:'The Jin briefly reunified China before internal strife and northern pressure.',quiz:{q:'What is the pinyin for 晋 (Jin)?',answer:'jin',alt:['jìn','jin4']}},
-  {id:11,nameEn:'Eastern Jin',capitalEn:'Jiankang (Nanjing)',lat:32.05,lng:118.78,blurb:'Court and gentry moved south; art and poetry flourished along the Yangzi.',quiz:{q:'What is the pinyin for 南 (south)?',answer:'nan',alt:['nán','nan2']}},
-  {id:12,nameEn:'Northern & Southern',capitalEn:'Pingcheng / Jiankang (era of division)',lat:35.29,lng:113.30,blurb:'North and south had rival dynasties; Buddhism deepened and ethnic cultures mixed.',quiz:{q:'What is the pinyin for 北 (north)?',answer:'bei',alt:['běi','bei3']}},
-  {id:13,nameEn:'Sui',capitalEn:'Chang\'an / Luoyang',lat:34.62,lng:112.45,blurb:'The Sui reunited China and began the Grand Canal to link north and south.',quiz:{q:'What is the pinyin for 隋 (Sui)?',answer:'sui',alt:['suí','sui2']}},
-  {id:14,nameEn:'Tang',capitalEn:'Chang\'an',lat:34.27,lng:108.95,blurb:'Cosmopolitan Chang\'an welcomed traders; poetry and law reached a golden height.',quiz:{q:'What is the pinyin for 唐 (Tang)?',answer:'tang',alt:['táng','tang2']}},
-  {id:15,nameEn:'Five Dynasties',capitalEn:'Kaifeng (Later Zhou center)',lat:34.80,lng:114.30,blurb:'Short northern regimes bridged Tang and Song; printing spread.',quiz:{q:'What is the pinyin for 五 (five)?',answer:'wu',alt:['wǔ','wu3']}},
-  {id:16,nameEn:'Northern Song',capitalEn:'Kaifeng',lat:34.80,lng:114.30,blurb:'Commerce boomed; movable type and city life transformed culture.',quiz:{q:'What is the pinyin for 宋 (Song)?',answer:'song',alt:['sòng','song4']}},
-  {id:17,nameEn:'Liao',capitalEn:'Shangjing (near Barin Left Banner)',lat:43.92,lng:119.35,blurb:'Khitan rulers controlled the north and adopted Chinese-style administration.',quiz:{q:'What is the pinyin for 辽 (Liao)?',answer:'liao',alt:['liáo','liao2']}},
-  {id:18,nameEn:'Western Xia',capitalEn:'Xingqing (Yinchuan area)',lat:38.49,lng:106.23,blurb:'Tangut state with its own script stood between Song and steppe powers.',quiz:{q:'What is the pinyin for 夏 (Xia / summer)?',answer:'xia',alt:['xià','xia4']}},
-  {id:19,nameEn:'Jin (Jurchen)',capitalEn:'Zhongdu (Beijing area)',lat:39.90,lng:116.40,blurb:'Jurchen Jin ruled the north; conflict with Song reshaped borders.',quiz:{q:'What is the pinyin for 金 (gold / Jin)?',answer:'jin',alt:['jīn','jin1']}},
-  {id:20,nameEn:'Yuan',capitalEn:'Khanbaliq (Dadu / Beijing)',lat:39.90,lng:116.40,blurb:'Mongol rule linked Eurasia; Beijing rose as an imperial capital.',quiz:{q:'What is the pinyin for 元 (Yuan / origin)?',answer:'yuan',alt:['yuán','yuan2']}},
-  {id:21,nameEn:'Ming',capitalEn:'Beijing (Yongle era)',lat:39.90,lng:116.40,blurb:'The Ming rebuilt the Great Wall, sent treasure fleets, and refined porcelain.',quiz:{q:'What is the pinyin for 明 (bright / Ming)?',answer:'ming',alt:['míng','ming2']}},
-  {id:22,nameEn:'Qing',capitalEn:'Beijing',lat:39.90,lng:116.40,blurb:'China’s last imperial dynasty expanded borders; reform came too late for the old order.',quiz:{q:'What is the pinyin for 清 (clear / Qing)?',answer:'qing',alt:['qīng','qing1']}},
+  {id:1,nameEn:'Xia',capitalEn:'Erlitou region (early Xia)',lat:34.22,lng:112.68,blurb:'Tradition says the Xia was China’s first dynasty. Bronze work and early cities grew along the Yellow River.',storyEn:'Long ago, people in the central plains learned to cast bronze bells and tripods. At Erlitou, archaeologists found palace foundations—like discovering a sandcastle that was once a real castle.',quizChar:'早',quiz:{q:'Type the pinyin for 早 (early).',answer:'zao',alt:['zǎo','zao3']}},
+  {id:2,nameEn:'Shang',capitalEn:'Yin (near Anyang)',lat:36.10,lng:114.33,blurb:'The Shang left oracle-bone writing and powerful bronze ritual vessels. Kings asked spirits for guidance.',storyEn:'Kings carved questions on turtle shells: “Will the rain help the harvest?” When the shell cracked, priests read the answer—like the world’s oldest multiple-choice test.',quizChar:'商',quiz:{q:'Type the pinyin for 商 (Shang / commerce).',answer:'shang',alt:['shāng','shang1']}},
+  {id:3,nameEn:'Western Zhou',capitalEn:'Haojing / Feng-Hao (Chang\'an area)',lat:34.26,lng:108.90,blurb:'The Zhou overthrew the Shang and ruled through feudal lords. Rites and music shaped elite culture.',storyEn:'The Zhou king gave bronze bells to loyal lords. Nobles learned strict ceremonies—imagine a school where every bow and every song had a rule.',quizChar:'周',quiz:{q:'Type the pinyin for 周 (Zhou).',answer:'zhou',alt:['zhōu','zhou1']}},
+  {id:4,nameEn:'Eastern Zhou',capitalEn:'Luoyi (Luoyang)',lat:34.62,lng:112.45,blurb:'The capital moved east; later centuries saw Spring and Autumn rivalries and bold thinkers.',storyEn:'When the capital moved east, many small states competed. Travelers carried ideas from city to city—like swapping game strategies across playgrounds.',quizChar:'东',quiz:{q:'Type the pinyin for 东 (east).',answer:'dong',alt:['dōng','dong1']}},
+  {id:5,nameEn:'Qin',capitalEn:'Xianyang',lat:34.33,lng:108.71,blurb:'The Qin unified writing, roads, and weights. The First Emperor linked walls and standardized the realm.',storyEn:'The First Emperor made everyone use the same small-seal script. Messengers could finally read every official letter—like switching every classroom to one alphabet overnight.',quizChar:'秦',quiz:{q:'Type the pinyin for 秦 (Qin).',answer:'qin',alt:['qín','qin2']}},
+  {id:6,nameEn:'Western Han',capitalEn:'Chang\'an (Xi\'an area)',lat:34.27,lng:108.95,blurb:'The Han reopened Silk Roads, promoted Confucian exams, and built a long-lasting imperial model.',storyEn:'From Chang\'an, caravans carried silk westward. In return, grapes, music, and stories traveled back—like the longest show-and-tell route on Earth.',quizChar:'汉',quiz:{q:'Type the pinyin for 汉 (Han).',answer:'han',alt:['hàn','han4']}},
+  {id:7,nameEn:'Xin (Wang Mang)',capitalEn:'Chang\'an',lat:34.27,lng:108.95,blurb:'Wang Mang briefly seized the throne and tried radical reforms before the Han returned.',storyEn:'Wang Mang tried to remake coins and land rules in one rush. The empire wobbled—like changing all the house rules on the same day.',quizChar:'新',quiz:{q:'Type the pinyin for 新 (new).',answer:'xin',alt:['xīn','xin1']}},
+  {id:8,nameEn:'Eastern Han',capitalEn:'Luoyang',lat:34.62,lng:112.45,blurb:'Buddhism spread; paper and the seismoscope show Han ingenuity.',storyEn:'In Luoyang’s markets, monks told new stories while inventors tested a bronze “dragon” that dropped balls when the earth shook—a ancient alarm system.',quizChar:'洛',quiz:{q:'Type the pinyin for 洛 (Luo).',answer:'luo',alt:['luò','luo4']}},
+  {id:9,nameEn:'Three Kingdoms',capitalEn:'Luoyang (Wei)',lat:34.62,lng:112.45,blurb:'Wei, Shu, and Wu split China; Romance tales still celebrate heroes of this age.',storyEn:'Three rivals drew lines on the map. Generals became legends—like a three-team championship where the stories outlast the scoreboard.',quizChar:'魏',quiz:{q:'Type the pinyin for 魏 (Wei).',answer:'wei',alt:['wèi','wei4']}},
+  {id:10,nameEn:'Western Jin',capitalEn:'Luoyang',lat:34.62,lng:112.45,blurb:'The Jin briefly reunified China before internal strife and northern pressure.',storyEn:'For a short sunny moment, one court claimed the whole realm again. Then storms of war returned—like fixing a puzzle that keeps breaking apart.',quizChar:'晋',quiz:{q:'Type the pinyin for 晋 (Jin).',answer:'jin',alt:['jìn','jin4']}},
+  {id:11,nameEn:'Eastern Jin',capitalEn:'Jiankang (Nanjing)',lat:32.05,lng:118.78,blurb:'Court and gentry moved south; art and poetry flourished along the Yangzi.',storyEn:'Refugee families crossed the river to Nanjing. They painted misty mountains and wrote gentle poems—turning worry into art.',quizChar:'南',quiz:{q:'Type the pinyin for 南 (south).',answer:'nan',alt:['nán','nan2']}},
+  {id:12,nameEn:'Northern & Southern',capitalEn:'Pingcheng / Jiankang (era of division)',lat:35.29,lng:113.30,blurb:'North and south had rival dynasties; Buddhism deepened and ethnic cultures mixed.',storyEn:'North and south each boasted a “true” emperor. Monks and merchants still crossed borders—like two treehouses connected by a rope bridge.',quizChar:'北',quiz:{q:'Type the pinyin for 北 (north).',answer:'bei',alt:['běi','bei3']}},
+  {id:13,nameEn:'Sui',capitalEn:'Chang\'an / Luoyang',lat:34.62,lng:112.45,blurb:'The Sui reunited China and began the Grand Canal to link north and south.',storyEn:'Workers dug a water highway from north to south. Grain boats could sail instead of bumping overland—like turning a long hike into a lazy river ride.',quizChar:'隋',quiz:{q:'Type the pinyin for 隋 (Sui).',answer:'sui',alt:['suí','sui2']}},
+  {id:14,nameEn:'Tang',capitalEn:'Chang\'an',lat:34.27,lng:108.95,blurb:'Cosmopolitan Chang\'an welcomed traders; poetry and law reached a golden height.',storyEn:'Chang\'an’s avenues were grid-straight. Poets drank wine and wrote lines people still memorize—like hit songs that never leave the radio.',quizChar:'唐',quiz:{q:'Type the pinyin for 唐 (Tang).',answer:'tang',alt:['táng','tang2']}},
+  {id:15,nameEn:'Five Dynasties',capitalEn:'Kaifeng (Later Zhou center)',lat:34.80,lng:114.30,blurb:'Short northern regimes bridged Tang and Song; printing spread.',storyEn:'Generals took turns on the throne so fast that histories call it “five dynasties.” Printers copied books faster—knowledge spread like copied class notes.',quizChar:'五',quiz:{q:'Type the pinyin for 五 (five).',answer:'wu',alt:['wǔ','wu3']}},
+  {id:16,nameEn:'Northern Song',capitalEn:'Kaifeng',lat:34.80,lng:114.30,blurb:'Commerce boomed; movable type and city life transformed culture.',storyEn:'Kaifeng’s night markets glowed with lanterns. Shops sold tea, toys, and hot soup—like a festival that never packed up.',quizChar:'宋',quiz:{q:'Type the pinyin for 宋 (Song).',answer:'song',alt:['sòng','song4']}},
+  {id:17,nameEn:'Liao',capitalEn:'Shangjing (near Barin Left Banner)',lat:43.92,lng:119.35,blurb:'Khitan rulers controlled the north and adopted Chinese-style administration.',storyEn:'Khitan riders ruled the northern grass and borrowed court dress from the south—two worlds sharing one roof.',quizChar:'辽',quiz:{q:'Type the pinyin for 辽 (Liao).',answer:'liao',alt:['liáo','liao2']}},
+  {id:18,nameEn:'Western Xia',capitalEn:'Xingqing (Yinchuan area)',lat:38.49,lng:106.23,blurb:'Tangut state with its own script stood between Song and steppe powers.',storyEn:'The Tangut invented their own chunky characters. They farmed by the Yellow River and kept neighbors guessing—like a secret clubhouse code.',quizChar:'夏',quiz:{q:'Type the pinyin for 夏 (Xia / summer).',answer:'xia',alt:['xià','xia4']}},
+  {id:19,nameEn:'Jin (Jurchen)',capitalEn:'Zhongdu (Beijing area)',lat:39.90,lng:116.40,blurb:'Jurchen Jin ruled the north; conflict with Song reshaped borders.',storyEn:'Jurchen archers built bright palaces in the north. Gold glittered on roofs while diplomats argued at the river—high stakes hide-and-seek.',quizChar:'金',quiz:{q:'Type the pinyin for 金 (gold).',answer:'jin',alt:['jīn','jin1']}},
+  {id:20,nameEn:'Yuan',capitalEn:'Khanbaliq (Dadu / Beijing)',lat:39.90,lng:116.40,blurb:'Mongol rule linked Eurasia; Beijing rose as an imperial capital.',storyEn:'Mongol horses tied Asia together. Dadu’s avenues fit processions of color—like a parade that circled half the world.',quizChar:'元',quiz:{q:'Type the pinyin for 元 (Yuan).',answer:'yuan',alt:['yuán','yuan2']}},
+  {id:21,nameEn:'Ming',capitalEn:'Beijing (Yongle era)',lat:39.90,lng:116.40,blurb:'The Ming rebuilt the Great Wall, sent treasure fleets, and refined porcelain.',storyEn:'Yongle’s fleet carried porcelain and giraffe stories home. Stone bricks climbed hills into a long dragon wall.',quizChar:'明',quiz:{q:'Type the pinyin for 明 (bright).',answer:'ming',alt:['míng','ming2']}},
+  {id:22,nameEn:'Qing',capitalEn:'Beijing',lat:39.90,lng:116.40,blurb:'China’s last imperial dynasty expanded borders; reform came too late for the old order.',storyEn:'In the Forbidden City, child emperors played behind vermilion walls while the world outside changed fast—like a museum that had to learn new rules overnight.',quizChar:'清',quiz:{q:'Type the pinyin for 清 (clear).',answer:'qing',alt:['qīng','qing1']}},
 ];
 
 // ── BORDER COLORS PER SENTENCE ───────────────────────────────────────────────
 const SENT_BORDERS=['#c41e1e','#e8c547','#5cbf8e','#e07070','#c8a078','#88a0c8'];
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
-const SK='sisters_zh_v4';
+const SK='sisters_zh_v5';
 const LEGACY_SK='sisters_zh_v3';
 
 function emptyProfile(){
@@ -703,20 +749,43 @@ function emptyProfile(){
     weekly:{},
     sessionMs:0,
     pinyinScore:0,
+    pinyinRoundDay:'',
+    pinyinRoundsUsed:0,
+    sentenceTestsPassed:{},
+    streak:0,
+    lastActiveDay:'',
   };
 }
 function migrateLegacy(raw){
   if(raw&&raw.profiles){
     if(!raw.lastScreen)raw.lastScreen='profiles';
+    if(!raw.uiLang)raw.uiLang='en';
+    ['jenn','jess'].forEach(pid=>{
+      const p=raw.profiles[pid];
+      if(!p.pinyinRoundDay)p.pinyinRoundDay='';
+      if(p.pinyinRoundsUsed==null)p.pinyinRoundsUsed=0;
+      if(!p.sentenceTestsPassed)p.sentenceTestsPassed={};
+      if(p.streak==null)p.streak=0;
+      if(!p.lastActiveDay)p.lastActiveDay='';
+    });
     return raw;
   }
-  const base={profiles:{jenn:emptyProfile(),jess:emptyProfile()},active:'jenn',lastScreen:'profiles'};
+  let fromV4=null;
+  try{const v4=localStorage.getItem('sisters_zh_v4');if(v4)fromV4=JSON.parse(v4);}catch(e){}
+  const base={profiles:{jenn:emptyProfile(),jess:emptyProfile()},active:'jenn',lastScreen:'profiles',uiLang:'en'};
+  if(fromV4&&fromV4.profiles){
+    base.profiles=fromV4.profiles;
+    base.active=fromV4.active||'jenn';
+    base.lastScreen=fromV4.lastScreen||'profiles';
+    base.uiLang=fromV4.uiLang||'en';
+    return migrateLegacy(base);
+  }
   if(raw&&typeof raw==='object'){
     base.profiles.jenn={...emptyProfile(),completed:raw.completed||[],library:raw.library||{}};
   }
   return base;
 }
-function load(){try{const r=localStorage.getItem(SK);if(r)return migrateLegacy(JSON.parse(r));const old=localStorage.getItem(LEGACY_SK);if(old)return migrateLegacy(JSON.parse(old));}catch(e){}return migrateLegacy(null);}
+function load(){try{const r=localStorage.getItem(SK);if(r)return migrateLegacy(JSON.parse(r));const v4=localStorage.getItem('sisters_zh_v4');if(v4)return migrateLegacy(JSON.parse(v4));const old=localStorage.getItem(LEGACY_SK);if(old)return migrateLegacy(JSON.parse(old));}catch(e){}return migrateLegacy(null);}
 function save(root){try{localStorage.setItem(SK,JSON.stringify(root));}catch(e){}}
 let rootState=load();
 function prof(){return rootState.profiles[rootState.active];}
@@ -724,20 +793,104 @@ function saveProf(){save(rootState);}
 
 let cur=null,tapped=new Set(),newChars=new Set(),totalNew=0;
 let selectedGateId=null;
-let sessionTimerId=null,sessionStartedAt=null,countdownId=null,countdownEnd=null;
-let pyPracIdx=0;
-const LEVELS=[
-  {id:0,label:'全部 All'},
-  {id:1,label:'入门 L1'},
-  {id:2,label:'进阶 L2'},
-  {id:3,label:'挑战 L3'},
-];
+const LEVELS=[{id:0,k:'levelAll'},{id:1,k:'level1'},{id:2,k:'level2'},{id:3,k:'level3'}];
 let activeLevel=0;
 let readerHidePy=false,readerHideEn=false;
+let libHidePy=false,libHideEn=false;
+let pyRoundQueue=[],pyRoundIdx=0,pyRoundCorrect=0;
+let sentencePass=false;
 
 let state;
 function syncState(){ state = rootState.profiles[rootState.active]; }
 syncState();
+
+// ── I18N (English default, optional Chinese UI) ───────────────────────────────
+const I18N={
+  en:{
+    titleMain:'Read Stories',subtitle:'Chinese stories · Two sisters',    pickLearner:'Choose a learner',
+    jennSub:'Older sister',jessSub:'Younger sister',
+    parentSumTitle:'Parent summary',parentPreviewHint:'Progress for both learners:',
+    navStories:'Stories',navMap:'Dynasty map',navParent:'Parent',libraryTitle:'📚 Word library',
+    mapLegend:'Tap numbered gates in order. Each capital has a short story. Pass a 15-question pinyin round to unlock the next gate (max 2 rounds per day).',
+    parentCardTitle:'Parent summary',weeklyTitle:'This week',studyTimer:'Study timer',countdownMin:'Countdown (min)',
+    switchProfile:'Switch profile',langBtnToZh:'中文界面',langBtnToEn:'English UI',
+    back:'← Back',readCharsOnly:'Characters only (no pinyin row)',
+    sentenceTestTitle:'Sentence typing test',sentenceTestInstr:'Type the pinyin for the line below (tones optional).',
+    checkSentence:'Check sentence',storyCompleteBtn:'Story complete',tapNewHint:'Tap every new character first',
+    timerStart:'Start',timerStop:'Stop',cdStart:'Start',cdStop:'Stop',
+    levelAll:'All',level1:'Beginner L1',level2:'Intermediate L2',level3:'Advanced L3',
+    hidePy:'Hide pinyin',showPy:'Show pinyin',hideEn:'Hide English hints',showEn:'Show English hints',
+    libHidePy:'Hide pinyin',libShowPy:'Show pinyin',libHideEn:'Hide English',libShowEn:'Show English',
+    pyRoundStart:'Start 15-question round',pyRoundCheck:'Check',
+    pyRoundLimit:'Daily limit: 2 rounds (15 questions each). Come back tomorrow!',
+    pyRoundPass:'You passed! Gate unlocked.',pyRoundFail:'Keep practicing—try another round later.',
+    gateLocked:'Complete the previous gate first.',alreadyCleared:'Gate already cleared.',
+  },
+  zh:{
+    titleMain:'读故事',subtitle:'姐妹花 · 中文阅读',    pickLearner:'选择学习者',
+    jennSub:'姐姐',jessSub:'妹妹',
+    parentSumTitle:'家长总览',parentPreviewHint:'两位学习者进度：',
+    navStories:'故事',navMap:'朝代地图',navParent:'家长',libraryTitle:'📚 字库',
+    mapLegend:'按顺序点击门钉。每座都城有小故事。完成15题拼音回合开启下一关（每日最多2回合）。',
+    parentCardTitle:'家长总览',weeklyTitle:'本周',studyTimer:'学习计时',countdownMin:'倒数（分钟）',
+    switchProfile:'切换档案',langBtnToZh:'中文界面',langBtnToEn:'English 界面',
+    back:'← 返回',readCharsOnly:'无拼音练习（只看汉字）',
+    sentenceTestTitle:'句子拼音测验',sentenceTestInstr:'输入下面一行的拼音（声调可选）。',
+    checkSentence:'检查句子',storyCompleteBtn:'故事完成',tapNewHint:'请先点开所有生字',
+    timerStart:'开始',timerStop:'停止',cdStart:'开始',cdStop:'停止',
+    levelAll:'全部',level1:'入门 L1',level2:'进阶 L2',level3:'挑战 L3',
+    hidePy:'隐藏拼音',showPy:'显示拼音',hideEn:'隐藏英文提示',showEn:'显示英文提示',
+    libHidePy:'隐藏拼音',libShowPy:'显示拼音',libHideEn:'隐藏英文',libShowEn:'显示英文',
+    pyRoundStart:'开始15题回合',pyRoundCheck:'检查',
+    pyRoundLimit:'每日限2回合（每回合15题）。明天再来！',
+    pyRoundPass:'通过！门关已开。',pyRoundFail:'再练练—稍后再试。',
+    gateLocked:'请先完成上一关。',alreadyCleared:'已完成本关。',
+  },
+};
+function t(k){const lang=rootState.uiLang==='zh'?'zh':'en';return I18N[lang][k]||I18N.en[k]||k;}
+function toggleUiLang(){
+  rootState.uiLang=rootState.uiLang==='zh'?'en':'zh';
+  saveProf();
+  applyI18n();
+}
+function applyI18n(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.dataset.i18n;
+    if(I18N.en[k])el.textContent=t(k);
+  });
+  const lp=document.getElementById('lang-btn-profile');
+  const ld=document.getElementById('lang-btn-dash');
+  const lab=rootState.uiLang==='zh'?t('langBtnToEn'):t('langBtnToZh');
+  if(lp)lp.textContent=lab;
+  if(ld)ld.textContent=lab;
+  const sp=document.getElementById('btn-switch-profile');
+  if(sp)sp.textContent=t('switchProfile');
+  renderLevelBar();
+  updateReaderToggleLabels();
+  updateLibToggleLabels();
+  const tb=document.getElementById('timer-btn');
+  if(tb&&sessInterval)tb.textContent=t('timerStop');else if(tb&&!sessInterval)tb.textContent=t('timerStart');
+  const cb=document.getElementById('cd-btn');
+  if(cb&&cdTimer)cb.textContent=t('cdStop');else if(cb&&!cdTimer)cb.textContent=t('cdStart');
+}
+
+function todayKey(){
+  const d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function updateStreak(){
+  const today=todayKey();
+  if(state.lastActiveDay===today)return;
+  if(state.lastActiveDay){
+    const prev=new Date(state.lastActiveDay+'T12:00:00');
+    const cur=new Date(today+'T12:00:00');
+    const diff=Math.round((cur-prev)/864e5);
+    if(diff===1)state.streak=(state.streak||0)+1;
+    else if(diff>1)state.streak=1;
+  }else state.streak=1;
+  state.lastActiveDay=today;
+  saveProf();
+}
 
 // ── TTS ───────────────────────────────────────────────────────────────────────
 function speak(ch){
@@ -756,9 +909,23 @@ if(window.speechSynthesis){
 }
 
 // ── PROFILES & DASHBOARD ─────────────────────────────────────────────────────
-const PROFILE_META={jenn:{name:'Jenn',sub:'姐姐 · Older sister'},jess:{name:'Jess',sub:'妹妹 · Younger sister'}};
+const PROFILE_META={jenn:{name:'Jenn'},jess:{name:'Jess'}};
+
+function renderParentPreviewOnProfile(){
+  const el=document.getElementById('parent-preview-body');
+  if(!el)return;
+  let html=t('parentPreviewHint')+'<br>';
+  ['jenn','jess'].forEach(pid=>{
+    const p=rootState.profiles[pid];
+    const streak=p.streak?` <span class="streak-badge">🔥 ${p.streak}d</span>`:'';
+    html+=`<strong>${PROFILE_META[pid].name}</strong>: ${p.completed.length}/${STORIES.length} stories, ${p.gatesCleared.length}/${DYNASTIES.length} gates, ${Object.keys(p.library).length} words${streak}<br>`;
+  });
+  el.innerHTML=html;
+}
 
 function renderProfilePicker(){
+  applyI18n();
+  renderParentPreviewOnProfile();
   const wrap=document.getElementById('profile-picker');
   wrap.innerHTML='';
   ['jenn','jess'].forEach(pid=>{
@@ -770,11 +937,12 @@ function renderProfilePicker(){
     const card=document.createElement('button');
     card.type='button';
     card.className='prof-card';
+    const sub=pid==='jenn'?t('jennSub'):t('jessSub');
     card.innerHTML=`
       <div class="p-ico" aria-hidden="true">🌸</div>
       <div class="p-name">${meta.name}</div>
-      <div class="p-sub">${meta.sub}</div>
-      <div class="p-stat">故事 ${storiesDone}/${STORIES.length} · 朝代门 ${gates}/${DYNASTIES.length} · 字 ${chars}</div>
+      <div class="p-sub">${sub}</div>
+      <div class="p-stat">${storiesDone}/${STORIES.length} stories · ${gates}/${DYNASTIES.length} gates · ${chars} words</div>
     `;
     card.onclick=()=>chooseProfile(pid);
     wrap.appendChild(card);
@@ -788,13 +956,14 @@ function chooseProfile(id){
   saveProf();
   document.getElementById('profile-screen').style.display='none';
   document.getElementById('dashboard-screen').style.display='block';
-  document.getElementById('dash-title').textContent='读故事 · '+PROFILE_META[id].name;
+  document.getElementById('dash-title').textContent=t('titleMain')+' · '+PROFILE_META[id].name;
+  updateStreak();
+  applyI18n();
   renderLevelBar();
   renderHome();
   renderMap();
   renderParent();
   startClocks();
-  initPinyinPractice();
 }
 
 function openProfilePicker(){
@@ -814,7 +983,7 @@ function renderLevelBar(){
     const b=document.createElement('button');
     b.type='button';
     b.className='lvl-btn'+(activeLevel===L.id?' on':'');
-    b.textContent=L.label;
+    b.textContent=t(L.k);
     b.onclick=()=>{activeLevel=L.id;renderLevelBar();renderHome();};
     bar.appendChild(b);
   });
@@ -829,11 +998,6 @@ function showPanel(name){
   if(el)el.classList.add('show');
   if(name==='parent')renderParent();
   if(name==='map')renderMap();
-}
-
-function todayKey(){
-  const d=new Date();
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
 
 function startClocks(){
@@ -855,12 +1019,12 @@ function toggleSessionTimer(){
     clearInterval(sessInterval);
     sessInterval=null;
     sessionSecs=0;
-    btn.textContent='开始';
+    btn.textContent=t('timerStart');
     disp.textContent='00:00';
     return;
   }
   sessionSecs=0;
-  btn.textContent='停止';
+  btn.textContent=t('timerStop');
   sessInterval=setInterval(()=>{
     const k=todayKey();
     state.weekly[k]=(state.weekly[k]||0)+1;
@@ -878,13 +1042,13 @@ function toggleCountdown(){
   if(cdTimer){
     clearInterval(cdTimer);
     cdTimer=null;
-    btn.textContent='开始';
+    btn.textContent=t('cdStart');
     disp.textContent='--:--';
     return;
   }
   let sec=parseInt(document.getElementById('countdown-m').value,10)||15;
   sec=Math.min(120,Math.max(1,sec))*60;
-  btn.textContent='停止';
+  btn.textContent=t('cdStop');
   cdTimer=setInterval(()=>{
     sec--;
     const m=Math.floor(sec/60),s=sec%60;
@@ -892,7 +1056,7 @@ function toggleCountdown(){
     if(sec<=0){
       clearInterval(cdTimer);
       cdTimer=null;
-      btn.textContent='开始';
+      btn.textContent=t('cdStart');
       disp.textContent='00:00';
       try{new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQQAAAAAAA==').play();}catch(e){}
     }
@@ -919,7 +1083,8 @@ function renderParent(){
   ['jenn','jess'].forEach(pid=>{
     const p=rootState.profiles[pid];
     const n=PROFILE_META[pid].name;
-    html+=`<strong>${n}</strong>: stories ${p.completed.length}/${STORIES.length}; dynasty gates ${p.gatesCleared.length}/${DYNASTIES.length}; library ${Object.keys(p.library).length} characters; pinyin score ${p.pinyinScore||0}.<br><br>`;
+    const streak=p.streak?` 🔥${p.streak}d streak`:'';
+    html+=`<strong>${n}</strong>: ${p.completed.length}/${STORIES.length} stories; ${p.gatesCleared.length}/${DYNASTIES.length} gates; ${Object.keys(p.library).length} words; pinyin score ${p.pinyinScore||0}${streak}<br><br>`;
   });
   body.innerHTML=html;
   ul.innerHTML='';
@@ -929,6 +1094,7 @@ function renderParent(){
     li.textContent=row.label+': '+row.min+' min';
     ul.appendChild(li);
   });
+  renderParentPreviewOnProfile();
 }
 
 // ── MAP ───────────────────────────────────────────────────────────────────────
@@ -939,8 +1105,8 @@ function renderMap(){
   const holder=document.getElementById('map-svg-wrap');
   if(!holder)return;
   const pts=DYNASTIES.map(d=>({...d,x:lngToX(d.lng),y:latToY(d.lat)}));
-  let pathD='M '+pts.map(p=>p.x.toFixed(2)+' '+p.y.toFixed(2)).join(' L ');
-  let pins=pts.map((p,i)=>{
+  const pathD='M '+pts.map(p=>p.x.toFixed(2)+' '+p.y.toFixed(2)).join(' L ');
+  const pins=pts.map(p=>{
     const id=p.id;
     const prevOk=id===1||state.gatesCleared.includes(id-1);
     const done=state.gatesCleared.includes(id);
@@ -950,8 +1116,9 @@ function renderMap(){
   }).join('');
   holder.innerHTML=`
     <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-      <rect class="map-water" x="0" y="0" width="100" height="100"/>
-      <path class="map-land" d="M12 42 Q30 28 52 32 T88 38 Q92 55 78 68 T35 78 Q18 70 12 55 Z"/>
+      <defs><linearGradient id="seaG" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a3550"/><stop offset="100%" stop-color="#0d1f30"/></linearGradient></defs>
+      <rect fill="url(#seaG)" x="0" y="0" width="100" height="100"/>
+      <path class="map-land" d="${CHINA_MAP_PATH}"/>
       <path class="map-route" d="${pathD}"/>
       ${pins}
     </svg>
@@ -961,23 +1128,28 @@ function renderMap(){
     const det=document.getElementById('gate-detail');
     if(det)det.style.display='none';
   }else selectGate(keep);
+  updatePinyinRoundUI();
 }
 
 function selectGate(id){
   const prevOk=id===1||state.gatesCleared.includes(id-1);
   const done=state.gatesCleared.includes(id);
-  if(!prevOk&&!done)return;
+  if(!prevOk&&!done){
+    const m=document.getElementById('py-round-msg');
+    if(m)m.textContent=t('gateLocked');
+    return;
+  }
   selectedGateId=id;
   const d=DYNASTIES[id-1];
   document.getElementById('gate-detail').style.display='block';
   document.getElementById('gate-dyn').textContent=id+'. '+d.nameEn;
-  document.getElementById('gate-cap').textContent='Capital (guide): '+d.capitalEn;
+  document.getElementById('gate-cap').textContent='Capital (approx.): '+d.capitalEn;
   document.getElementById('gate-desc').textContent=d.blurb;
-  document.getElementById('gate-quiz-lbl').textContent=d.quiz.q;
-  document.getElementById('gate-quiz-in').value='';
-  document.getElementById('gate-quiz-msg').textContent=done?'Already cleared.':'';
-  const qz=document.getElementById('gate-quiz');
-  qz.style.display=done?'none':'block';
+  document.getElementById('gate-story').textContent=d.storyEn||'';
+  pyRoundQueue=[];pyRoundIdx=0;pyRoundCorrect=0;
+  document.getElementById('py-round-input').value='';
+  document.getElementById('py-round-msg').textContent=done?t('alreadyCleared'):'';
+  updatePinyinRoundUI();
 }
 
 function normPy(s){
@@ -990,6 +1162,10 @@ function normPy(s){
   return t;
 }
 
+function normSentence(s){
+  return normPy(s.replace(/\s+/g,' '));
+}
+
 function answerMatches(input,q){
   const n=normPy(input);
   if(!n)return false;
@@ -997,61 +1173,131 @@ function answerMatches(input,q){
   return(q.alt||[]).some(a=>n===normPy(a));
 }
 
-function submitGateQuiz(){
-  if(!selectedGateId)return;
-  const d=DYNASTIES[selectedGateId-1];
-  const input=document.getElementById('gate-quiz-in').value;
-  const msg=document.getElementById('gate-quiz-msg');
-  if(state.gatesCleared.includes(selectedGateId)){msg.textContent='Already cleared.';return;}
-  if(answerMatches(input,d.quiz)){
-    if(!state.gatesCleared.includes(selectedGateId))state.gatesCleared.push(selectedGateId);
-    state.gatesCleared.sort((a,b)=>a-b);
-    saveProf();
-    msg.textContent='Correct! Gate opened.';
-    renderMap();
-    selectGate(selectedGateId);
-    renderParent();
-  }else{
-    msg.textContent='Try again — check pinyin (tones optional).';
+function buildPinyinQuestionPool(){
+  const pool=[];
+  DYNASTIES.forEach(d=>{
+    pool.push({ch:d.quizChar||'一',q:d.quiz.q,answer:d.quiz.answer,alt:d.quiz.alt||[]});
+  });
+  STORIES.forEach(st=>{
+    st.sentences.forEach(sent=>{
+      sent.forEach(tok=>{
+        if(tok.type==='char'&&tok.pinyin)pool.push({ch:tok.char,q:'Type the pinyin for '+tok.char+'.',answer:normPy(tok.pinyin),alt:[tok.pinyin]});
+      });
+    });
+  });
+  return pool;
+}
+const PINYIN_QUESTION_POOL=buildPinyinQuestionPool();
+
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
   }
+  return a;
 }
 
-const PINYIN_BANK=[
-  {ch:'早',hint:'early / morning',ok:['zao','zǎo']},
-  {ch:'好',hint:'good',ok:['hao','hǎo']},
-  {ch:'姐',hint:'older sister',ok:['jie','jiě']},
-  {ch:'妹',hint:'younger sister',ok:['mei','mèi']},
-  {ch:'雨',hint:'rain',ok:['yu','yǔ']},
-  {ch:'爱',hint:'love',ok:['ai','ài']},
-];
-
-function initPinyinPractice(){
-  pyPracIdx=Math.floor(Math.random()*PINYIN_BANK.length);
-  const row=PINYIN_BANK[pyPracIdx];
-  document.getElementById('py-prac-char').textContent=row.ch;
-  document.getElementById('py-prac-hint').textContent=row.hint;
-  document.getElementById('py-prac-input').value='';
-  document.getElementById('py-prac-msg').textContent='';
+function pinyinRoundsUsedToday(){
+  const day=todayKey();
+  if(state.pinyinRoundDay!==day){state.pinyinRoundDay=day;state.pinyinRoundsUsed=0;saveProf();}
+  return state.pinyinRoundsUsed||0;
 }
 
-function nextPinyinPractice(){initPinyinPractice();}
+function startPinyinRoundForGate(){
+  if(!selectedGateId)return;
+  if(state.gatesCleared.includes(selectedGateId)){
+    document.getElementById('py-round-msg').textContent=t('alreadyCleared');
+    return;
+  }
+  if(pinyinRoundsUsedToday()>=2){
+    document.getElementById('py-round-msg').textContent=t('pyRoundLimit');
+    return;
+  }
+  pyRoundQueue=shuffle(PINYIN_QUESTION_POOL).slice(0,15);
+  pyRoundIdx=0;pyRoundCorrect=0;
+  document.getElementById('py-round-input').value='';
+  document.getElementById('py-round-msg').textContent='';
+  showPinyinRoundQuestion();
+}
 
-function checkPinyinPractice(){
-  const row=PINYIN_BANK[pyPracIdx];
-  const input=document.getElementById('py-prac-input').value;
-  const ok=row.ok.some(a=>answerMatches(input,{answer:a}));
-  const msg=document.getElementById('py-prac-msg');
-  if(ok){
-    msg.textContent='Nice!';
+function showPinyinRoundQuestion(){
+  const hdr=document.getElementById('py-round-hdr');
+  const prog=document.getElementById('py-round-progress');
+  const ch=document.getElementById('py-round-char');
+  const qt=document.getElementById('py-round-qtext');
+  if(!pyRoundQueue.length||pyRoundIdx>=pyRoundQueue.length){
+    if(ch)ch.textContent='—';
+    if(qt)qt.textContent='';
+    if(hdr)hdr.textContent='';
+    if(prog)prog.textContent='';
+    return;
+  }
+  const Q=pyRoundQueue[pyRoundIdx];
+  if(hdr)hdr.textContent=(rootState.uiLang==='zh'?'回合':'Round')+' '+(pinyinRoundsUsedToday()+1)+' · '+(rootState.uiLang==='zh'?'题':'Q')+' '+(pyRoundIdx+1)+'/15';
+  if(prog)prog.textContent=(rootState.uiLang==='zh'?'今日回合':'Rounds today')+': '+pinyinRoundsUsedToday()+'/2';
+  if(ch)ch.textContent=Q.ch;
+  if(qt)qt.textContent=Q.q;
+}
+
+function updatePinyinRoundUI(){
+  const sub=document.getElementById('py-round-submit');
+  if(sub){
+    sub.textContent=t('pyRoundCheck');
+    sub.onclick=submitPinyinRoundAnswer;
+  }
+  const rs=document.getElementById('py-round-start-btn');
+  if(rs)rs.textContent=t('pyRoundStart');
+  const hdr=document.getElementById('py-round-hdr');
+  if(hdr&&!pyRoundQueue.length)hdr.textContent='';
+}
+
+function submitPinyinRoundAnswer(){
+  if(!pyRoundQueue.length||pyRoundIdx>=pyRoundQueue.length)return;
+  const Q=pyRoundQueue[pyRoundIdx];
+  const input=document.getElementById('py-round-input').value;
+  const msg=document.getElementById('py-round-msg');
+  if(answerMatches(input,Q)){
+    pyRoundCorrect++;
     state.pinyinScore=(state.pinyinScore||0)+1;
     saveProf();
-  }else{
-    msg.textContent='Try: '+row.ok[0]+' (tones optional)';
   }
+  pyRoundIdx++;
+  document.getElementById('py-round-input').value='';
+  if(pyRoundIdx>=15){
+    const pass=pyRoundCorrect>=12;
+    const day=todayKey();
+    if(state.pinyinRoundDay!==day){state.pinyinRoundDay=day;state.pinyinRoundsUsed=0;}
+    state.pinyinRoundsUsed=(state.pinyinRoundsUsed||0)+1;
+    saveProf();
+    pyRoundQueue=[];
+    if(pass&&selectedGateId&&!state.gatesCleared.includes(selectedGateId)){
+      state.gatesCleared.push(selectedGateId);
+      state.gatesCleared.sort((a,b)=>a-b);
+      saveProf();
+      msg.textContent=t('pyRoundPass')+' ('+pyRoundCorrect+'/15)';
+      launchConfetti();
+    }else{
+      msg.textContent=(rootState.uiLang==='zh'?'得分 ':'Score ')+pyRoundCorrect+'/15 — '+(pass?t('pyRoundPass'):t('pyRoundFail'));
+    }
+    renderMap();
+    renderParent();
+    showPinyinRoundQuestion();
+    return;
+  }
+  showPinyinRoundQuestion();
+}
+
+function collectCharsFromSentence(sent){
+  return sent.filter(t=>t.type==='char'&&t.pinyin);
+}
+function buildSentenceTestKey(story){
+  return collectCharsFromSentence(story.sentences[0]).map(t=>normPy(t.pinyin)).join(' ');
 }
 
 // ── HOME (stories) ───────────────────────────────────────────────────────────
 function renderHome(){
+  applyI18n();
   document.getElementById('reader').style.display='none';
   document.getElementById('dashboard-screen').style.display='block';
   document.getElementById('profile-screen').style.display='none';
@@ -1105,8 +1351,15 @@ function sentenceCharsOnly(story){
 // ── OPEN STORY ────────────────────────────────────────────────────────────────
 function openStory(story){
   cur=story;tapped=new Set();newChars=new Set();totalNew=0;
+  sentencePass=false;
   readerHidePy=false;readerHideEn=false;
   applyReaderClasses();
+  const stp=document.getElementById('sentence-test-panel');
+  if(stp){stp.classList.remove('show');}
+  const sti=document.getElementById('sentence-test-input');
+  if(sti){sti.value='';}
+  const stm=document.getElementById('sentence-test-msg');
+  if(stm){stm.textContent='';}
   document.getElementById('story-list').style.display='none';
   document.getElementById('lib-section').style.display='none';
   document.getElementById('dashboard-screen').style.display='none';
@@ -1166,18 +1419,58 @@ function toggleReaderFlag(which){
   applyReaderClasses();
 }
 
+function updateReaderToggleLabels(){
+  const bp=document.getElementById('btn-hide-py');
+  const be=document.getElementById('btn-hide-en');
+  if(bp){bp.classList.toggle('off',readerHidePy);bp.textContent=readerHidePy?t('showPy'):t('hidePy');}
+  if(be){be.classList.toggle('off',readerHideEn);be.textContent=readerHideEn?t('showEn'):t('hideEn');}
+}
+
 function applyReaderClasses(){
   document.body.classList.toggle('hide-pinyin',readerHidePy);
   document.body.classList.toggle('hide-hint',readerHideEn);
-  const bp=document.getElementById('btn-hide-py');
-  const be=document.getElementById('btn-hide-en');
-  if(bp){
-    bp.classList.toggle('off',readerHidePy);
-    bp.textContent=readerHidePy?'显示拼音 Show pinyin':'隐藏拼音 Hide pinyin';
+  updateReaderToggleLabels();
+}
+
+function toggleLibFlag(which){
+  if(which==='py')libHidePy=!libHidePy;
+  if(which==='en')libHideEn=!libHideEn;
+  applyLibClasses();
+}
+function updateLibToggleLabels(){
+  const bp=document.getElementById('lib-btn-hide-py');
+  const be=document.getElementById('lib-btn-hide-en');
+  if(bp){bp.classList.toggle('off',libHidePy);bp.textContent=libHidePy?t('libShowPy'):t('libHidePy');}
+  if(be){be.classList.toggle('off',libHideEn);be.textContent=libHideEn?t('libShowEn'):t('libHideEn');}
+}
+function applyLibClasses(){
+  const wrap=document.getElementById('lib-section');
+  if(wrap){
+    wrap.classList.toggle('hide-pinyin',libHidePy);
+    wrap.classList.toggle('hide-hint',libHideEn);
   }
-  if(be){
-    be.classList.toggle('off',readerHideEn);
-    be.textContent=readerHideEn?'显示英文提示 Show English':'隐藏英文提示 Hide English';
+  updateLibToggleLabels();
+}
+
+function setupSentenceTest(){
+  if(!cur)return;
+  const han=document.getElementById('sentence-test-hanzi');
+  if(han)han.textContent=sentenceCharsOnly(cur);
+}
+
+function verifySentenceTest(){
+  if(!cur)return;
+  const input=document.getElementById('sentence-test-input').value;
+  const key=buildSentenceTestKey(cur);
+  const ok=normSentence(input)===normSentence(key);
+  const msg=document.getElementById('sentence-test-msg');
+  if(ok){
+    sentencePass=true;
+    if(msg)msg.textContent=rootState.uiLang==='zh'?'对了！':'Great!';
+    checkUnlock();
+  }else{
+    sentencePass=false;
+    if(msg)msg.textContent=rootState.uiLang==='zh'?'再试一次':'Try again';
   }
 }
 
@@ -1204,26 +1497,40 @@ function updateProg(){
 function checkUnlock(){
   const n=[...tapped].filter(c=>newChars.has(c)).length;
   const all=n>=newChars.size;
-  document.getElementById('ubtn').disabled=!all;
+  const stp=document.getElementById('sentence-test-panel');
+  if(all&&stp){
+    stp.classList.add('show');
+    setupSentenceTest();
+  }
+  document.getElementById('ubtn').disabled=!all||!sentencePass;
   const h=document.getElementById('htxt');
-  if(all){h.textContent='✨ 所有生字都认识了！All new characters explored!';}
-  else{const r=newChars.size-n;h.textContent=`还有 ${r} 个生字 · ${r} character${r>1?'s':''} left to tap`;}
+  if(all&&sentencePass){h.textContent=rootState.uiLang==='zh'?'可以完成故事了':'You can finish the story!';}
+  else if(all&&!sentencePass){h.textContent=rootState.uiLang==='zh'?'完成句子测验':'Pass the sentence test below';}
+  else{const r=newChars.size-n;h.textContent=(rootState.uiLang==='zh'?`还剩 ${r} 个生字`:`${r} character(s) left to tap`);}
 }
 
 // ── COMPLETE ──────────────────────────────────────────────────────────────────
 function completeStory(){
+  if(!sentencePass)return;
   newChars.forEach(ch=>{
     outer:for(const s of STORIES)for(const sent of s.sentences)for(const t of sent)
       if(t.type==='char'&&t.char===ch&&t.pinyin){state.library[ch]={pinyin:t.pinyin,meaning:t.meaning};break outer;}
   });
   if(!state.completed.includes(cur.id))state.completed.push(cur.id);
+  if(!state.sentenceTestsPassed)state.sentenceTestsPassed={};
+  state.sentenceTestsPassed['s'+cur.id]=true;
   saveProf();
   const last=cur.id===STORIES.length;
   document.getElementById('ovemoji').textContent=last?'🏆':'⭐';
-  document.getElementById('ovttl').textContent=last?'全部读完！':'太棒了！';
+  document.getElementById('ovttl').textContent=last?(rootState.uiLang==='zh'?'全部读完！':'All stories read!'):(rootState.uiLang==='zh'?'太棒了！':'Great job!');
+  const libN=Object.keys(state.library).length;
   document.getElementById('ovmsg').textContent=last
-    ?`五个故事全都读完了！\n字库里现在有 ${Object.keys(state.library).length} 个字！\n\nAll five stories finished!\nYour library has ${Object.keys(state.library).length} characters!`
-    :`《${cur.title}》读完了！\n新认识了 ${newChars.size} 个字。\n\n"${cur.titleEn}" complete!\n${newChars.size} new characters added to the library.`;
+    ?(rootState.uiLang==='zh'
+      ?`五个故事完成！字库 ${libN} 字。`
+      :`You finished all five stories!\nWord library: ${libN} characters.`)
+    :(rootState.uiLang==='zh'
+      ?`《${cur.title}》完成！新字 ${newChars.size} 个。`
+      :`"${cur.titleEn}" complete.\n${newChars.size} new characters added to your library.`);
   document.getElementById('overlay').classList.add('show');
   launchConfetti();
 }
@@ -1231,6 +1538,9 @@ function closeComplete(){document.getElementById('overlay').classList.remove('sh
 function goHome(){
   document.getElementById('reader').style.display='none';
   document.body.classList.remove('hide-pinyin','hide-hint');
+  const stp=document.getElementById('sentence-test-panel');
+  if(stp)stp.classList.remove('show');
+  sentencePass=false;
   document.getElementById('dashboard-screen').style.display='block';
   document.getElementById('story-list').style.display='block';
   renderHome();
@@ -1245,6 +1555,7 @@ function renderLib(){
     div.onclick=()=>speak(ch);
     g.appendChild(div);
   });
+  applyLibClasses();
 }
 
 // ── CONFETTI ──────────────────────────────────────────────────────────────────
@@ -1281,18 +1592,18 @@ if(rootState.lastScreen==='dash'){
   syncState();
   document.getElementById('profile-screen').style.display='none';
   document.getElementById('dashboard-screen').style.display='block';
-  document.getElementById('dash-title').textContent='读故事 · '+PROFILE_META[rootState.active].name;
+  document.getElementById('dash-title').textContent=t('titleMain')+' · '+PROFILE_META[rootState.active].name;
+  applyI18n();
   renderLevelBar();
   renderHome();
   renderMap();
   renderParent();
   startClocks();
-  initPinyinPractice();
 }else{
   renderProfilePicker();
 }
-document.getElementById('gate-quiz-in')?.addEventListener('keydown',e=>{if(e.key==='Enter')submitGateQuiz();});
-document.getElementById('py-prac-input')?.addEventListener('keydown',e=>{if(e.key==='Enter')checkPinyinPractice();});
+document.getElementById('py-round-input')?.addEventListener('keydown',e=>{if(e.key==='Enter')submitPinyinRoundAnswer();});
+document.getElementById('sentence-test-input')?.addEventListener('keydown',e=>{if(e.key==='Enter')verifySentenceTest();});
 </script>
 </body>
 </html>
