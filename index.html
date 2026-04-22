@@ -2292,15 +2292,6 @@ function weekStartForDateKey(dk){
   return dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate());
 }
 
-function weekStarsForDateKey(p,dk){
-  ensureState(p);
-  const s=state[p];
-  const wk=weekStartForDateKey(dk);
-  if(wk===weekStart())return s.weekStars||0;
-  const h=s.weeklyHistory||[];
-  const e=h.find(x=>x.weekStart===wk);
-  return e&&e.stars?e.stars:0;
-}
 
 function shuffleArr(a){const arr=[...a];for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
 
@@ -4126,14 +4117,6 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
   }
 }
 
-function pyCell(x){
-  // x has: s (romanized), zh (Chinese character), py (pinyin), en (English), desc (how to make the sound)
-  const tip=`${x.py} · ${x.en} — ${x.desc}`.replace(/"/g,'&quot;');
-  return`<button type="button" class="py-cell" onclick="playPinyinFromMarked('${x.py}','${x.zh}')" title="${tip}">
-    <span class="py-cell-s">${x.s}</span>
-    <span class="py-cell-zh">${x.zh}</span>
-    <span class="py-cell-py">${x.py}</span></button>`;
-}
 function toneSvg(toneNum){
   let p='M4 16 L60 16',c='#D4A017';
   if(toneNum===2){p='M4 27 L60 5';c='#7FFFD4';}
@@ -4141,22 +4124,6 @@ function toneSvg(toneNum){
   else if(toneNum===4){p='M4 6 L60 28';c='#FF8B6A';}
   else if(toneNum===0){p='M18 24 L46 24';c='#B6BEC9';}
   return`<svg class="tone-svg" viewBox="0 0 64 34" role="img" aria-hidden="true"><path d="${p}" style="stroke:${c}"></path></svg>`;
-}
-function renderToneTable(){
-  return`<div class="tone-warning">Note: some robotic or auto-generated pronunciation may sound inaccurate. Use teacher/classroom reference as the primary standard.</div>
-  <div class="tone-table-wrap">`+TONE_TABLE_SECTIONS.map(sec=>`<div class="tone-table-sec">
-    <div class="tone-table-title">${sec.title}</div>
-    <table class="tone-table">
-      <thead><tr><th>Base</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th></tr></thead>
-      <tbody>
-        ${sec.rows.map(r=>`<tr><td class="tone-base">${r.base}</td>
-          <td><button type="button" class="tone-cell-btn" onclick="playPinyinFromMarked('${r.t1}','${r.t1}')">${r.t1}</button></td>
-          <td><button type="button" class="tone-cell-btn" onclick="playPinyinFromMarked('${r.t2}','${r.t2}')">${r.t2}</button></td>
-          <td><button type="button" class="tone-cell-btn" onclick="playPinyinFromMarked('${r.t3}','${r.t3}')">${r.t3}</button></td>
-          <td><button type="button" class="tone-cell-btn" onclick="playPinyinFromMarked('${r.t4}','${r.t4}')">${r.t4}</button></td></tr>`).join('')}
-      </tbody>
-    </table>
-  </div>`).join('')+`</div>`;
 }
 function renderToneMiniGrid(){
   return`<div class="py-grid">`+TONE_DEMO.map(t=>`<button type="button" class="py-cell" onclick="playPinyinClip('${t.clip}','${t.zh}')">
@@ -4246,12 +4213,6 @@ function showPinyinChart(){
 }
 function closePinyinChart(){document.getElementById('overlay-pinyin').classList.remove('show');}
 let lessonStep=0;
-function startPinyinLesson(force){
-  if(!force&&curP&&state[curP].pinyinIntroDone)return;
-  lessonStep=0;
-  document.getElementById('overlay-pinyin-lesson').classList.add('show');
-  renderPinyinLessonStep();
-}
 function closePinyinLesson(markDone){
   document.getElementById('overlay-pinyin-lesson').classList.remove('show');
   if(markDone&&curP){
