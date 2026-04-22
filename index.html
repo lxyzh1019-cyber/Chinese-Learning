@@ -640,6 +640,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3/dist/hanzi-writer.min.js"></script>
 </head>
 <body>
 <canvas id="ccanvas"></canvas>
@@ -707,6 +708,9 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     </div>
     <div class="badge-strip" id="badge-strip"></div>
     <button class="sidebar-btn" onclick="showPinyinChart()">📖 拼音表</button>
+    <button class="sidebar-btn" onclick="showMyDay()">🌟 My Day · 今日</button>
+    <button class="sidebar-btn" onclick="openFlashPicker()">🎴 Flash Cards</button>
+    <button class="sidebar-btn" onclick="openGamesHub()">🎮 Games · 游戏</button>
     <div class="practice-box" id="practice-box"></div>
     <button class="sidebar-btn muted-btn" onclick="goToSelect()">← Back to Profiles</button>
   </div>
@@ -805,6 +809,30 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
   <div class="mini-quiz-card">
     <div class="mq-title">Daily Challenge · 每日一字</div>
     <div id="daily-word-body"></div>
+  </div>
+</div>
+
+<!-- ═══ KID DAILY SUMMARY OVERLAY ═══ -->
+<div class="mini-quiz-overlay" id="myday-overlay">
+  <div class="mini-quiz-card">
+    <div class="mq-title">🌟 My Day · 今日进度</div>
+    <div id="myday-body"></div>
+  </div>
+</div>
+
+<!-- ═══ FLASH CARD OVERLAY ═══ -->
+<div class="mini-quiz-overlay" id="flash-overlay">
+  <div class="mini-quiz-card">
+    <div class="mq-title">🎴 Flash Cards · 词卡</div>
+    <div id="flash-body"></div>
+  </div>
+</div>
+
+<!-- ═══ GAMES OVERLAY ═══ -->
+<div class="mini-quiz-overlay" id="games-overlay">
+  <div class="mini-quiz-card">
+    <div class="mq-title">🎮 Games · 游戏</div>
+    <div id="games-body"></div>
   </div>
 </div>
 
@@ -1961,12 +1989,15 @@ const SESSION_MINS=20;
 const SENT_COLORS=['#C0392B','#D4A017','#27AE60','#E8445A','#3B82F6','#A78BFA'];
 
 function defPlayer(){
-  return{totalStars:0,weekStars:0,streak:0,lastPlayed:null,lastSaved:0,
+  return{totalStars:0,weekStars:0,lastPlayed:null,lastSaved:0,
     gatesCompleted:[],storiesCompleted:[],gateStars:{},
     library:{},failedWords:{},
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
     weekStart:weekStart(),
-    badges:[],dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false};
+    badges:[],dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
+    pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null},
+    traceStars:{},
+    libraryCountAtDayStart:{}};
 }
 
 let state={jenn:null,jess:null};
@@ -2112,7 +2143,7 @@ function finishDailyWord(correct,correctAns,btn){
   const s=state[curP];
   if(correct){
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ +5 ⭐';
-    s.totalStars+=5;s.weekStars+=5;getTS(curP).stars+=5;
+    s.totalStars+=5;s.weekStars+=5;const ts=getTS(curP);ts.stars+=5;ts.correct=(ts.correct||0)+1;
     s.dailyWordSolved=todayKey();s.dailyWordTotal=(s.dailyWordTotal||0)+1;
     checkBadges(curP);saveState();showToast('+5 stars!');
   }else{
@@ -2162,6 +2193,7 @@ function saveState(){
         db.collection('chinese-adventure').doc(pid).set(state[pid]).catch(()=>{});
       });
     }
+    refreshOpenSummaries();
   }catch(e){}
 }
 
@@ -2176,6 +2208,9 @@ function ensureState(p){
   if(s.dailyWordTotal===undefined)s.dailyWordTotal=0;
   if(s.pinyinIntroDone===undefined)s.pinyinIntroDone=false;
   if(s.lastSaved===undefined)s.lastSaved=0;
+  if(!s.pendingSessions)s.pendingSessions={gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null};
+  if(!s.traceStars)s.traceStars={};
+  if(!s.libraryCountAtDayStart)s.libraryCountAtDayStart={};
   // Week reset
   if(!isSameWeek(s.weekStart)){
     const nws=weekStart();
@@ -2187,7 +2222,679 @@ function ensureState(p){
   }
 }
 
-function getTS(p){const s=state[p];const k=todayKey();if(!s.todayStats[k])s.todayStats[k]={stars:0,correct:0,wrong:0,stories:0,gates:0};return s.todayStats[k];}
+function getTS(p){
+  const s=state[p];
+  const k=todayKey();
+  if(!s.todayStats[k])s.todayStats[k]={stars:0,correct:0,wrong:0,stories:0,gates:0,champions:0};
+  if(s.todayStats[k].champions===undefined)s.todayStats[k].champions=0;
+  if(s.libraryCountAtDayStart&&s.libraryCountAtDayStart[k]===undefined){
+    s.libraryCountAtDayStart[k]=Object.keys(s.library||{}).length;
+  }
+  return s.todayStats[k];
+}
+
+function formatMs(ms){
+  ms=Math.max(0,ms||0);
+  const mins=Math.floor(ms/60000);
+  const secs=Math.floor((ms%60000)/1000);
+  return `${mins}m ${secs}s`;
+}
+
+function refreshOpenSummaries(){
+  const parent=document.getElementById('overlay-parent');
+  if(parent&&parent.classList.contains('show'))renderParentSummary();
+  const myday=document.getElementById('myday-overlay');
+  if(myday&&myday.classList.contains('show'))renderMyDay();
+}
+
+function showMyDay(){
+  if(!curP)return;
+  renderMyDay();
+  document.getElementById('myday-overlay').classList.add('show');
+}
+
+function closeMyDay(){
+  document.getElementById('myday-overlay').classList.remove('show');
+}
+
+function renderMyDay(){
+  if(!curP)return;
+  ensureState(curP);
+  const s=state[curP];
+  const dk=todayKey();
+  const ts=getTS(curP);
+  const rawMs=(s.dailyTimeMs&&s.dailyTimeMs[dk])||0;
+  const base=(s.libraryCountAtDayStart&&s.libraryCountAtDayStart[dk]!==undefined)?s.libraryCountAtDayStart[dk]:Object.keys(s.library||{}).length;
+  const learned=Math.max(0,Object.keys(s.library||{}).length-base);
+  const body=document.getElementById('myday-body');
+  if(!body)return;
+  body.innerHTML=`
+    <div class="today-stats" style="margin-bottom:.8rem;">
+      <div class="ts-row"><span>☀️ Stars today</span><span>${ts.stars||0}</span></div>
+      <div class="ts-row"><span>✅ Answers correct</span><span>${ts.correct||0}</span></div>
+      <div class="ts-row"><span>🏯 Gates cleared today</span><span>${ts.gates||0}</span></div>
+      <div class="ts-row"><span>📖 Stories finished today</span><span>${ts.stories||0}</span></div>
+      <div class="ts-row"><span>📝 Characters learned today</span><span>${learned}</span></div>
+      <div class="ts-row"><span>⏱ Time played today</span><span>${formatMs(rawMs)}</span></div>
+      <div class="ts-row"><span>💪 Practice words left</span><span>${Object.keys(s.failedWords||{}).length}</span></div>
+      <div class="ts-row"><span>🔥 Day streak</span><span>${getConsecutivePlayDays(curP)} days</span></div>
+    </div>
+    <div style="text-align:center;"><button class="btn-g" onclick="closeMyDay()">Keep going →</button></div>`;
+}
+
+
+function weekStartForDateKey(dk){
+  const parts=(dk||'').split('-');
+  if(parts.length!==3)return weekStart();
+  const y=parseInt(parts[0],10),m=parseInt(parts[1],10)-1,d=parseInt(parts[2],10);
+  const dt=new Date(y,m,d);dt.setHours(0,0,0,0);
+  dt.setDate(dt.getDate()-((dt.getDay()+6)%7));
+  return dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate());
+}
+
+function weekStarsForDateKey(p,dk){
+  ensureState(p);
+  const s=state[p];
+  const wk=weekStartForDateKey(dk);
+  if(wk===weekStart())return s.weekStars||0;
+  const h=s.weeklyHistory||[];
+  const e=h.find(x=>x.weekStart===wk);
+  return e&&e.stars?e.stars:0;
+}
+
+function shuffleArr(a){const arr=[...a];for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+
+// ── Flash cards (dynasty story vocab) ──
+let flashSt={did:null,mode:null,sub:'review',deck:[],i:0,flipped:false};
+
+function buildFlashDeckForDynasty(did){
+  const d=DYNASTIES.find(x=>x.id===did);if(!d)return[];
+  const seen=new Set();const rows=[];
+  [d.story,d.story2].forEach(sid=>{
+    const st=sid&&STORIES_MAP[sid];
+    if(!st)return;
+    extractStoryVocab(st).forEach(w=>{
+      if(w&&w.zh&&!seen.has(w.zh)){seen.add(w.zh);rows.push({zh:w.zh,py:w.py||'',en:w.en||''});}
+    });
+  });
+  const fails=state[curP]&&state[curP].failedWords||{};
+  const buckets={};
+  rows.forEach(w=>{
+    const n=(fails[w.zh]&&fails[w.zh].failCount)||0;
+    if(!buckets[n])buckets[n]=[];
+    buckets[n].push(w);
+  });
+  const out=[];
+  Object.keys(buckets).map(x=>parseInt(x,10)).sort((a,b)=>b-a).forEach(k=>{
+    out.push(...shuffleArr(buckets[k]));
+  });
+  return out;
+}
+
+function persistFlashSession(){
+  if(!curP||!state[curP]||!state[curP].pendingSessions)return;
+  if(!flashSt.deck||!flashSt.deck.length){state[curP].pendingSessions.flash=null;return;}
+  state[curP].pendingSessions.flash={
+    did:flashSt.did,mode:flashSt.mode,sub:flashSt.sub,i:flashSt.i||0,flipped:!!flashSt.flipped,
+    deck:flashSt.deck.map(w=>({zh:w.zh,py:w.py,en:w.en}))
+  };
+}
+
+function clearFlashSession(){if(curP&&state[curP]&&state[curP].pendingSessions)state[curP].pendingSessions.flash=null;}
+
+function closeFlashOverlay(){
+  document.getElementById('flash-overlay').classList.remove('show');
+  persistFlashSession();saveState();
+}
+
+function openFlashPicker(){
+  if(!curP)return;
+  ensureState(curP);
+  const s=state[curP];
+  const body=document.getElementById('flash-body');if(!body)return;
+  const ps=s.pendingSessions&&s.pendingSessions.flash;
+  const rows=DYNASTIES.map(d=>{
+    const unlocked=d.id===1||s.gatesCompleted.includes(d.id-1);
+    return `<button class="btn-s" style="opacity:${unlocked?1:.45}" ${unlocked?`onclick="openFlashCards(${d.id})"`:'disabled'}>${d.id}. ${d.zh}</button>`;
+  }).join('');
+  body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.6rem;">Pick a dynasty · 选择朝代</div>
+    ${ps&&ps.did?`<button class="btn-p" style="width:100%;margin-bottom:.55rem;" onclick="resumeSession('flash')">▶ Continue flash cards</button>`:''}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;max-height:48vh;overflow-y:auto;">${rows}</div>
+    <div style="text-align:center;margin-top:.75rem;"><button class="btn-s" onclick="closeFlashOverlay()">Close</button></div>`;
+  document.getElementById('flash-overlay').classList.add('show');
+}
+
+function openFlashCards(did){
+  if(!curP)return;
+  ensureState(curP);
+  const s=state[curP];
+  const unlocked=did===1||s.gatesCompleted.includes(did-1);
+  if(!unlocked){showToast('🔒 Complete the previous gate first!');return;}
+  const deck=buildFlashDeckForDynasty(did);
+  if(!deck.length){showToast('No words yet — read a story first.');return;}
+  flashSt={did,mode:null,sub:'review',deck,i:0,flipped:false};
+  persistFlashSession();saveState();
+  renderFlashModePicker();
+  document.getElementById('flash-overlay').classList.add('show');
+}
+
+function renderFlashModePicker(){
+  const body=document.getElementById('flash-body');if(!body)return;
+  const d=DYNASTIES.find(x=>x.id===flashSt.did);
+  body.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.55rem;">
+      <span style="font-size:.78rem;color:var(--muted);">${d?d.zh+' · Gate '+d.id:''} · ${flashSt.deck.length} cards</span>
+      <button class="btn-s" onclick="closeFlashOverlay()">✕</button></div>
+    <div class="mq-question" style="margin-bottom:.45rem;">Mode · 模式</div>
+    <div style="display:grid;gap:.4rem;">
+      <button class="btn-s" onclick="setFlashMode('en2zh')">🔤 EN → 中文</button>
+      <button class="btn-s" onclick="setFlashMode('zh2en')">🀄 中文 → EN</button>
+      <button class="btn-s" onclick="setFlashMode('py2zh')">🔊 Pinyin → 字</button>
+    </div>
+    <div style="display:flex;gap:.5rem;margin-top:.65rem;">
+      <button class="btn-p" style="flex:1;" onclick="setFlashSub('review')">Review</button>
+      <button class="btn-g" style="flex:1;" onclick="setFlashSub('quiz')">Quiz me</button>
+    </div>`;
+}
+
+function setFlashMode(m){flashSt.mode=m;persistFlashSession();saveState();if(flashSt.mode)renderFlashCurrent();else renderFlashModePicker();}
+function setFlashSub(sub){flashSt.sub=sub==='quiz'?'quiz':'review';flashSt.i=0;flashSt.flipped=false;persistFlashSession();saveState();renderFlashCurrent();}
+
+function renderFlashCurrent(){
+  if(!flashSt.mode){renderFlashModePicker();return;}
+  if(flashSt.i>=flashSt.deck.length){clearFlashSession();saveState();
+    const b=document.getElementById('flash-body');if(b)b.innerHTML='<div class="mq-title" style="text-align:center;">Done! 🎉</div><div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="closeFlashOverlay()">Close</button></div>';
+    return;
+  }
+  if(flashSt.sub==='quiz')renderFlashQuiz();else renderFlashReview();
+}
+
+function flashPromptParts(w){
+  if(flashSt.mode==='en2zh')return{front:`<div class="q-prompt-en">${w.en}</div>`,back:`<div class="mq-hz">${w.zh}</div><div class="mq-py">${w.py}</div>`,speak:w.zh};
+  if(flashSt.mode==='zh2en')return{front:`<div class="mq-hz">${w.zh}</div><button class="q-speak" onclick="event.stopPropagation();speak('${w.zh.replace(/'/g,"\\'")}')">🔊</button>`,back:`<div class="mq-py">${w.py}</div><div class="mq-question">${w.en}</div>`,speak:w.zh};
+  return{front:`<div class="mq-py">${w.py}</div><button class="q-speak" onclick="event.stopPropagation();speak('${w.zh.replace(/'/g,"\\'")}')">🔊</button>`,back:`<div class="mq-hz">${w.zh}</div><div class="mq-question">${w.en}</div>`,speak:w.zh};
+}
+
+function renderFlashReview(){
+  const w=flashSt.deck[flashSt.i];
+  const p=flashPromptParts(w);
+  const body=document.getElementById('flash-body');if(!body)return;
+  body.innerHTML=`<div class="mq-progress">${flashSt.i+1} / ${flashSt.deck.length} · Review</div>
+    <div class="quiz-card" style="text-align:center;cursor:pointer;" onclick="toggleFlashFlip()">
+      ${flashSt.flipped?p.back:p.front}
+      <div class="q-text" style="margin-top:.5rem;">${flashSt.flipped?'':'Tap to flip'}</div>
+    </div>
+    <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.65rem;">
+      <button class="btn-s" type="button" onclick="event.stopPropagation();flashAgain()">Again</button>
+      <button class="btn-g" type="button" onclick="event.stopPropagation();flashGotIt()">Got it</button>
+    </div>
+    <div style="text-align:center;margin-top:.55rem;"><button class="btn-s" type="button" onclick="renderFlashModePicker()">Change mode</button></div>`;
+  if(flashSt.mode==='py2zh'&&!flashSt.flipped)speak(p.speak);
+}
+
+function toggleFlashFlip(){flashSt.flipped=!flashSt.flipped;persistFlashSession();saveState();renderFlashReview();}
+function flashAgain(){
+  const w=flashSt.deck[flashSt.i];
+  flashSt.deck.push({...w});flashSt.i++;flashSt.flipped=false;
+  logWrong(curP,w.zh,w.py,w.en);persistFlashSession();saveState();renderFlashCurrent();
+}
+function flashGotIt(){flashSt.i++;flashSt.flipped=false;persistFlashSession();saveState();renderFlashCurrent();}
+
+function renderFlashQuiz(){
+  const w=flashSt.deck[flashSt.i];
+  const pool=flashSt.deck.filter(x=>x.zh!==w.zh);
+  const wrong=shuffleArr(pool).slice(0,3);
+  let answer='',opts=[];
+  if(flashSt.mode==='en2zh'){answer=w.zh;opts=shuffleArr([w.zh,...wrong.map(x=>x.zh)]);}
+  else if(flashSt.mode==='zh2en'){answer=w.en;opts=shuffleArr([w.en,...wrong.map(x=>x.en)]);}
+  else{answer=w.zh;opts=shuffleArr([w.zh,...wrong.map(x=>x.zh)]);}
+  const body=document.getElementById('flash-body');if(!body)return;
+  body.innerHTML=`<div class="mq-progress">${flashSt.i+1} / ${flashSt.deck.length} · Quiz</div>
+    ${flashSt.mode==='zh2en'?`<div class="mq-hz" style="text-align:center;">${w.zh}</div><div class="mq-py" style="text-align:center;">${w.py}</div>`:''}
+    ${flashSt.mode==='en2zh'?`<div class="q-prompt-en">${w.en}</div>`:''}
+    ${flashSt.mode==='py2zh'?`<div class="mq-py" style="text-align:center;">${w.py}</div><div style="text-align:center;"><button class="q-speak" onclick="speak('${w.zh.replace(/'/g,"\\'")}')">🔊</button></div>`:''}
+    <div class="mq-opts" id="flash-opts"></div><div class="mq-fb" id="flash-fb"></div>
+    <div style="text-align:center;margin-top:.55rem;"><button class="btn-s" onclick="renderFlashModePicker()">Change mode</button></div>`;
+  const grid=document.getElementById('flash-opts');
+  opts.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='mcq-opt'+(flashSt.mode!=='zh2en'?' zh-opt':'');
+    b.textContent=o;
+    b.onclick=()=>checkFlashAnswer(b,o===answer,answer,w);
+    grid.appendChild(b);
+  });
+}
+
+function checkFlashAnswer(btn,ok,answer,w){
+  const grid=document.getElementById('flash-opts');
+  const fb=document.getElementById('flash-fb');
+  grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;if(b.textContent===answer)b.classList.add('correct');});
+  if(ok){
+    btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅';
+    getTS(curP).correct=(getTS(curP).correct||0)+1;
+  }else{
+    btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+answer;
+    logWrong(curP,w.zh,w.py,w.en);
+  }
+  flashSt.i++;persistFlashSession();saveState();
+  setTimeout(renderFlashCurrent,850);
+}
+
+function restoreFlashSession(){
+  if(!curP||!state[curP].pendingSessions||!state[curP].pendingSessions.flash)return false;
+  const ps=state[curP].pendingSessions.flash;
+  if(!ps||!ps.deck||!ps.deck.length)return false;
+  flashSt={did:ps.did,mode:ps.mode,sub:ps.sub||'review',deck:ps.deck.map(w=>({...w})),i:ps.i||0,flipped:!!ps.flipped};
+  document.getElementById('flash-overlay').classList.add('show');
+  if(!flashSt.mode)renderFlashModePicker();else renderFlashCurrent();
+  return true;
+}
+
+// ── Games hub ──
+let matchSt={cards:[],openIdxs:[],matched:0,moves:0,start:0,pairCount:8};
+let rainSt={pool:[],target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0};
+let listenSt={questions:[],qi:0,streak:0,score:0};
+let traceSt={chars:[],i:0,writer:null,targetId:''};
+
+function closeGamesOverlay(){document.getElementById('games-overlay').classList.remove('show');}
+
+function openGamesHub(){
+  const body=document.getElementById('games-body');if(!body)return;
+  body.innerHTML=`<div style="display:flex;justify-content:space-between;margin-bottom:.55rem;">
+      <span style="font-size:.78rem;color:var(--muted);">Pick a game</span>
+      <button class="btn-s" onclick="closeGamesOverlay()">✕</button></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
+      <button class="btn-s" onclick="pickGameScope('trace')">✍️ Trace</button>
+      <button class="btn-s" onclick="pickGameScope('match')">🧠 Match</button>
+      <button class="btn-s" onclick="pickGameScope('rain')">🌧️ Rain</button>
+      <button class="btn-s" onclick="pickGameScope('listen')">👂 Listen</button>
+    </div>
+    <div id="game-scope" style="margin-top:.65rem;"></div>`;
+  document.getElementById('games-overlay').classList.add('show');
+}
+
+function pickGameScope(game){
+  const el=document.getElementById('game-scope');if(!el)return;
+  el.innerHTML=`<div class="mq-question" style="margin-bottom:.35rem;">Word set · 词库</div>
+    <button class="btn-s" style="width:100%;margin-bottom:.35rem;" onclick="startGame('${game}','dynasty')">Selected dynasty (road)</button>
+    <button class="btn-s" style="width:100%;margin-bottom:.35rem;" onclick="startGame('${game}','hsk')">HSK ${curHSK||1} pool</button>
+    <button class="btn-s" style="width:100%;" onclick="startGame('${game}','failed')">Failed words only</button>`;
+}
+
+function currentDynastyIdForGames(){
+  if(selectedGateId)return selectedGateId;
+  const s=state[curP];
+  for(const d of DYNASTIES){
+    if((d.id===1||s.gatesCompleted.includes(d.id-1))&&!s.gatesCompleted.includes(d.id))return d.id;
+  }
+  return 22;
+}
+
+function wordsForScope(kind){
+  const s=state[curP];
+  if(kind==='failed'){
+    return Object.values(s.failedWords||{}).map(w=>({zh:w.zh,py:w.py,en:w.en}));
+  }
+  if(kind==='hsk'){
+    const lv=curHSK||getCurrentHSK(s);
+    return (HSK_VOCAB[lv]||[]).map(w=>({...w}));
+  }
+  const did=currentDynastyIdForGames();
+  let w=buildFlashDeckForDynasty(did);
+  if(!w.length)w=(GATE_VOCAB[did]||[]).map(x=>({...x}));
+  return w;
+}
+
+function startGame(game,scope){
+  const words=wordsForScope(scope);
+  if(!words.length){showToast('Not enough words in this set yet.');return;}
+  if(game==='match')startMemoryMatch(words);
+  else if(game==='rain')startRain(words);
+  else if(game==='listen')startListen(words);
+  else if(game==='trace')startTrace(words);
+}
+
+function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount};}
+function clearMatch(){if(curP)state[curP].pendingSessions.match=null;}
+
+function startMemoryMatch(words){
+  const pick=shuffleArr(words).slice(0,8);
+  const cards=[];
+  pick.forEach((w,i)=>{
+    cards.push({id:'a'+i,pair:i,side:'zh',text:w.zh,w:{...w},matched:false});
+    cards.push({id:'b'+i,pair:i,side:'en',text:w.en,w:{...w},matched:false});
+  });
+  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount:8};
+  persistMatch();saveState();renderMemoryMatch();
+}
+
+function renderMemoryMatch(){
+  const body=document.getElementById('games-body');if(!body)return;
+  if(matchSt.matched>=matchSt.pairCount){
+    clearMatch();saveState();
+    const sec=Math.max(1,Math.round((Date.now()-matchSt.start)/1000));
+    const stars=matchSt.moves<=matchSt.pairCount*2?3:matchSt.moves<=matchSt.pairCount*3?2:1;
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Done!</div>
+      <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${sec}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+    return;
+  }
+  body.innerHTML=`<div class="mq-progress">Matched ${matchSt.matched}/${matchSt.pairCount} · Moves ${matchSt.moves}</div>
+    <div id="match-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem;"></div>
+    <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="openGamesHub()">Back</button>`;
+  const grid=document.getElementById('match-grid');
+  matchSt.cards.forEach((c,idx)=>{
+    const b=document.createElement('button');
+    b.className='mcq-opt'+(c.matched||matchSt.openIdxs.includes(idx)?' revealed':'');
+    if(c.matched)b.classList.add('correct');
+    b.style.minHeight='58px';
+    b.textContent=(c.matched||matchSt.openIdxs.includes(idx))?c.text:'?';
+    b.onclick=()=>tapMatch(idx);
+    grid.appendChild(b);
+  });
+}
+
+function tapMatch(idx){
+  const c=matchSt.cards[idx];
+  if(c.matched||matchSt.openIdxs.includes(idx)||matchSt.openIdxs.length>=2)return;
+  matchSt.openIdxs.push(idx);
+  if(matchSt.openIdxs.length===2){
+    matchSt.moves++;
+    const [i1,i2]=matchSt.openIdxs;
+    const a=matchSt.cards[i1],b=matchSt.cards[i2];
+    if(a.pair===b.pair){
+      a.matched=b.matched=true;matchSt.matched++;
+      matchSt.openIdxs=[];
+      getTS(curP).correct=(getTS(curP).correct||0)+1;
+      persistMatch();saveState();renderMemoryMatch();
+    }else{
+      logWrong(curP,a.w.zh,a.w.py,a.w.en);
+      logWrong(curP,b.w.zh,b.w.py,b.w.en);
+      persistMatch();saveState();renderMemoryMatch();
+      setTimeout(()=>{matchSt.openIdxs=[];persistMatch();saveState();renderMemoryMatch();},650);
+    }
+  }else{persistMatch();saveState();renderMemoryMatch();}
+}
+
+function persistRain(){
+  if(!curP)return;
+  state[curP].pendingSessions.rain={pool:rainSt.pool.map(w=>({...w})),target:rainSt.target?{...rainSt.target}:null,
+    score:rainSt.score,combo:rainSt.combo,bestCombo:rainSt.bestCombo,timeLeft:rainSt.timeLeft};
+}
+function clearRainTimers(){if(rainSt.spawnIv)clearInterval(rainSt.spawnIv);if(rainSt.tickIv)clearInterval(rainSt.tickIv);rainSt.spawnIv=rainSt.tickIv=null;}
+function clearRainSession(){clearRainTimers();if(curP)state[curP].pendingSessions.rain=null;}
+
+function startRain(words){
+  clearRainSession();
+  rainSt={pool:words.filter(w=>w.zh),target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0};
+  if(rainSt.pool.length<2){showToast('Need more characters for rain.');return;}
+  pickRainTarget();persistRain();saveState();renderRain();runRain();
+}
+
+function pickRainTarget(){rainSt.target=rainSt.pool[Math.floor(Math.random()*rainSt.pool.length)];}
+
+function renderRain(){
+  const body=document.getElementById('games-body');if(!body||!rainSt.target)return;
+  body.innerHTML=`<div class="mq-progress">⏱ ${rainSt.timeLeft}s · ⭐ ${rainSt.score} · combo ${rainSt.combo}</div>
+    <div class="mq-question" id="rain-hint" style="text-align:center;">Tap: ${rainSt.target.en}</div>
+    <div id="rain-zone" style="position:relative;height:260px;border:1px solid rgba(212,160,23,.25);border-radius:10px;overflow:hidden;background:rgba(0,0,0,.18);"></div>
+    <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="endRain(true)">Stop</button>`;
+}
+
+function runRain(){
+  clearRainTimers();
+  rainSt.spawnIv=setInterval(spawnRainDrop,900);
+  rainSt.tickIv=setInterval(()=>{
+    rainSt.timeLeft--;
+    if(rainSt.timeLeft<=0){endRain(false);return;}
+    persistRain();saveState();
+  },1000);
+}
+
+function spawnRainDrop(){
+  const zone=document.getElementById('rain-zone');if(!zone||!rainSt.target)return;
+  let opts=shuffleArr([...rainSt.pool]).slice(0,5);
+  if(!opts.find(x=>x.zh===rainSt.target.zh))opts[0]=rainSt.target;
+  const w=opts[Math.floor(Math.random()*opts.length)];
+  const id=++rainSt.dropId;
+  const btn=document.createElement('button');
+  btn.type='button';btn.className='mcq-opt zh-opt';btn.textContent=w.zh;
+  btn.style.position='absolute';btn.style.left=(8+Math.random()*72)+'%';btn.style.top='-8px';btn.style.transition='top 4.8s linear';
+  btn.dataset.id=String(id);
+  btn.onclick=()=>{
+    if(w.zh===rainSt.target.zh){
+      rainSt.combo++;rainSt.bestCombo=Math.max(rainSt.bestCombo,rainSt.combo);
+      const add=Math.round(10*(1+Math.min(0.5,rainSt.combo*0.04)));
+      rainSt.score+=add;getTS(curP).correct=(getTS(curP).correct||0)+1;pickRainTarget();
+    }else{rainSt.combo=0;logWrong(curP,w.zh,w.py,w.en);}
+    btn.remove();persistRain();saveState();
+  };
+  zone.appendChild(btn);
+  requestAnimationFrame(()=>{btn.style.top='240px';});
+  setTimeout(()=>{
+    if(btn.parentNode){
+      if(w.zh===rainSt.target.zh){rainSt.combo=0;logWrong(curP,w.zh,w.py,w.en);persistRain();saveState();}
+      btn.remove();
+    }
+  },4900);
+}
+
+function endRain(fromUser){
+  clearRainSession();
+  const body=document.getElementById('games-body');if(!body)return;
+  const stars=rainSt.score>=200?3:rainSt.score>=100?2:1;
+  body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ ${fromUser?'Stopped':'Time up'}</div>
+    <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · best combo ${rainSt.bestCombo} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+    <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+  saveState();
+}
+
+function restoreRain(){
+  const ps=state[curP].pendingSessions.rain;if(!ps||!ps.pool||!ps.pool.length)return false;
+  clearRainSession();
+  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||60,spawnIv:null,tickIv:null,dropId:0};
+  document.getElementById('games-overlay').classList.add('show');
+  renderRain();runRain();return true;
+}
+
+function startListen(words){
+  const pool=shuffleArr(words).filter(w=>w.zh);
+  const qs=shuffleArr(pool).slice(0,10).map(w=>{
+    const wrong=shuffleArr(pool.filter(x=>x.zh!==w.zh)).slice(0,3);
+    return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
+  });
+  listenSt={questions:qs,qi:0,streak:0,score:0};
+  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0};
+  saveState();renderListen();
+}
+
+function renderListen(){
+  const body=document.getElementById('games-body');if(!body)return;
+  const q=listenSt.questions[listenSt.qi];
+  if(!q){
+    if(curP)state[curP].pendingSessions.listen=null;
+    const stars=listenSt.score>=24?3:listenSt.score>=14?2:1;
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Done</div>
+      <div class="mq-question" style="text-align:center;">Score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+    saveState();return;
+  }
+  body.innerHTML=`<div class="mq-progress">${listenSt.qi+1}/${listenSt.questions.length} · score ${listenSt.score}</div>
+    <div class="mq-question" style="text-align:center;">Listen · tap the character</div>
+    <div style="text-align:center;margin:.45rem 0;"><button class="q-speak" onclick="speak('${q.w.zh.replace(/'/g,"\\'")}')">🔊</button></div>
+    <div class="mq-opts" id="listen-opts"></div><div class="mq-fb" id="listen-fb"></div>`;
+  speak(q.w.zh);
+  const grid=document.getElementById('listen-opts');
+  q.opts.forEach(o=>{
+    const b=document.createElement('button');b.className='mcq-opt zh-opt';b.textContent=o;
+    b.onclick=()=>checkListen(b,o===q.w.zh,q);
+    grid.appendChild(b);
+  });
+}
+
+function checkListen(btn,ok,q){
+  const grid=document.getElementById('listen-opts');const fb=document.getElementById('listen-fb');
+  grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;if(b.textContent===q.w.zh)b.classList.add('correct');});
+  if(ok){
+    listenSt.streak++;
+    const bonus=listenSt.streak>=3?3:2;
+    listenSt.score+=bonus;btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ +'+bonus;
+    getTS(curP).correct=(getTS(curP).correct||0)+1;
+  }else{
+    listenSt.streak=0;btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+q.w.zh;
+    logWrong(curP,q.w.zh,q.w.py,q.w.en);
+  }
+  listenSt.qi++;
+  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score};
+  saveState();
+  setTimeout(renderListen,800);
+}
+
+function uniqueChars(words){
+  const m={};
+  words.forEach(w=>{
+    [...(w.zh||'')].forEach(ch=>{
+      if(/[\u4e00-\u9fff]/.test(ch)&&!m[ch])m[ch]={zh:ch,py:w.py||'',en:w.en||''};
+    });
+  });
+  return Object.values(m);
+}
+
+function startTrace(words){
+  const chars=uniqueChars(words);
+  if(!chars.length){showToast('No characters to trace.');return;}
+  traceSt={chars,i:0,writer:null,targetId:''};
+  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0};
+  saveState();renderTrace();
+}
+
+function renderTrace(){
+  const body=document.getElementById('games-body');if(!body)return;
+  const c=traceSt.chars[traceSt.i];
+  if(!c){
+    if(curP)state[curP].pendingSessions.trace=null;
+    body.innerHTML='<div class="mq-title" style="text-align:center;">✍️ Trace done</div><div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>';
+    saveState();return;
+  }
+  traceSt.targetId='trace-'+Date.now();
+  body.innerHTML=`<div class="mq-progress">${traceSt.i+1}/${traceSt.chars.length}</div>
+    <div id="${traceSt.targetId}" style="width:260px;height:260px;margin:0 auto;border-radius:12px;background:rgba(255,255,255,.04);"></div>
+    <div class="mq-question" style="text-align:center;margin-top:.45rem;">${c.zh} · ${c.py}</div>
+    <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.55rem;">
+      <button class="btn-s" onclick="traceAnimate()">Stroke order</button>
+      <button class="btn-g" onclick="traceNext()">Next</button>
+    </div>`;
+  if(window.HanziWriter){
+    traceSt.writer=HanziWriter.create(traceSt.targetId,c.zh,{width:260,height:260,padding:5,showOutline:true,strokeAnimationSpeed:1,delayBetweenStrokes:120});
+    let mistakes=0;
+    traceSt.writer.quiz({
+      onMistake:()=>{mistakes++;logWrong(curP,c.zh,c.py,c.en);},
+      onComplete:()=>{
+        const stars=mistakes===0?3:(mistakes<=2?2:1);
+        const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
+        getTS(curP).correct=(getTS(curP).correct||0)+1;
+        showToast(c.zh+' '+('★'.repeat(stars)+'☆'.repeat(3-stars)));
+        saveState();
+      }
+    });
+  }else{
+    body.innerHTML+='<div class="mq-fb err">Tracing library failed to load</div>';
+  }
+}
+
+function traceAnimate(){if(traceSt.writer)traceSt.writer.animateCharacter();}
+function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i};saveState();renderTrace();}
+
+function restoreTrace(){
+  const ps=state[curP].pendingSessions.trace;if(!ps||!ps.chars)return false;
+  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:''};
+  document.getElementById('games-overlay').classList.add('show');
+  renderTrace();return true;
+}
+
+function restoreMatch(){
+  const ps=state[curP].pendingSessions.match;if(!ps||!ps.cards)return false;
+  matchSt={cards:ps.cards.map(c=>({...c})),openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount:ps.pairCount||8};
+  document.getElementById('games-overlay').classList.add('show');
+  renderMemoryMatch();return true;
+}
+
+function restoreListen(){
+  const ps=state[curP].pendingSessions.listen;if(!ps||!ps.questions)return false;
+  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0};
+  document.getElementById('games-overlay').classList.add('show');
+  renderListen();return true;
+}
+
+// ── Gate quiz resume ──
+function persistGateQuizState(){
+  if(!curP||!quizSt||!state[curP].pendingSessions)return;
+  const key=quizSt.isChampion?'champion':'gate';
+  state[curP].pendingSessions[key]={
+    did:quizSt.did,phase:quizSt.phase,score:quizSt.score,phaseScores:[...(quizSt.phaseScores||[0,0,0])],
+    vocab:(quizSt.vocab||[]).map(v=>({...v})),
+    questions:(quizSt.questions||[]).map(q=>({...q})),
+    pyQ:(quizSt.pyQ||[]).map(q=>({...q})),
+    sbPack:(quizSt.sbPack||[]).map(s=>[...s]),
+    sbRound:quizSt.sbRound||0,isChampion:!!quizSt.isChampion,champGroup:quizSt.champGroup||null,
+    mcqN:quizSt.mcqN,pyN:quizSt.pyN,sbN:quizSt.sbN,maxScore:quizSt.maxScore,noMcqAssistance:!!quizSt.noMcqAssistance,
+    mcqAnswered:typeof mcqAnswered==='number'?mcqAnswered:0,pyAnswered:typeof pyAnswered==='number'?pyAnswered:0,
+    sbBuilt:[...(typeof sbBuilt!=='undefined'?sbBuilt:[])],speakUsed:!!speakUsed,pyHintUsed:!!pyHintUsed,pyPeekUsed:!!pyPeekUsed
+  };
+}
+
+function clearGateQuizPending(){
+  if(!curP||!state[curP].pendingSessions)return;
+  state[curP].pendingSessions.gate=null;
+  state[curP].pendingSessions.champion=null;
+}
+
+function restoreGateQuizSession(){
+  if(!curP||!state[curP].pendingSessions)return false;
+  const ps=state[curP].pendingSessions.gate||state[curP].pendingSessions.champion;
+  if(!ps||!ps.did)return false;
+  const d=DYNASTIES.find(x=>x.id===ps.did);if(!d)return false;
+  curDynasty=d;
+  quizSt={
+    did:ps.did,phase:ps.phase||0,score:ps.score||0,phaseScores:[...(ps.phaseScores||[0,0,0])],
+    vocab:(ps.vocab||[]).map(v=>({...v})),
+    questions:(ps.questions||[]).map(q=>({...q})),
+    pyQ:(ps.pyQ||[]).map(q=>({...q})),
+    sbPack:(ps.sbPack||[]).map(s=>[...s]),
+    sbRound:ps.sbRound||0,isDaddy:false,isChampion:!!ps.isChampion,champGroup:ps.champGroup||null,
+    mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:!!ps.noMcqAssistance
+  };
+  mcqAnswered=ps.mcqAnswered||0;pyAnswered=ps.pyAnswered||0;sbBuilt=[...(ps.sbBuilt||[])];
+  speakUsed=!!ps.speakUsed;pyHintUsed=!!ps.pyHintUsed;pyPeekUsed=!!ps.pyPeekUsed;
+  document.getElementById('quiz-title').textContent=quizSt.isChampion?('👑 CHAMPION · Group '+quizSt.champGroup):('Gate '+ps.did+': '+d.zh+' Boss · 关卡挑战');
+  showScreen('quiz');renderQuizPhase();
+  return true;
+}
+
+function resumeSession(type){
+  if(!curP)return false;
+  ensureState(curP);
+  if(type==='story')return restoreStoryMiniQuiz();
+  if(type==='gate')return restoreGateQuizSession();
+  if(type==='flash')return restoreFlashSession();
+  if(type==='match')return restoreMatch();
+  if(type==='rain')return restoreRain();
+  if(type==='listen')return restoreListen();
+  if(type==='trace')return restoreTrace();
+  return false;
+}
+
+function resumeLastSession(){
+  if(!curP)return;
+  const ps=state[curP].pendingSessions||{};
+  if(ps.story&&resumeSession('story'))return;
+  if((ps.gate||ps.champion)&&resumeSession('gate'))return;
+  if(ps.flash&&resumeSession('flash'))return;
+  if(ps.match&&resumeSession('match'))return;
+  if(ps.rain&&resumeSession('rain'))return;
+  if(ps.listen&&resumeSession('listen'))return;
+  if(ps.trace&&resumeSession('trace'))return;
+  showToast('Nothing to resume right now.');
+}
 
 /** Reading story for dynasty `did` unlocks after the previous dynasty's gate (id did−1) is cleared. */
 function isStoryUnlockedForDynasty(did,s){
@@ -2491,12 +3198,15 @@ function renderHub(){
   if(practiceBox){
     const failWords=Object.values(s.failedWords||{})
       .sort((a,b)=>b.failCount-a.failCount).slice(0,8);
+    const ps=s.pendingSessions||{};
+    const resumeBtn=(ps.story||ps.gate||ps.champion||ps.flash||ps.match||ps.rain||ps.listen||ps.trace)
+      ?'<button class="drill-btn" style="margin-top:.45rem;" onclick="resumeLastSession()">▶ Resume last activity</button>':'';
     if(failWords.length){
       practiceBox.innerHTML='<div class="practice-box-title">💪 Practice</div>'+
         failWords.map(w=>`<div class="pw-row"><span class="pw-zh" onclick="speak('${w.zh}')">${w.zh}</span><span class="pw-py">${w.py}</span><span class="pw-cnt">✗${w.failCount}</span></div>`).join('')+
-        `<button class="drill-btn" onclick="startDrill()">⚡ Drill All · +2⭐ per correct</button>`;
+        `<button class="drill-btn" onclick="startDrill()">⚡ Drill All · +2⭐ per correct</button>`+resumeBtn;
     }else{
-      practiceBox.innerHTML='<div class="practice-box-title">💪 Practice</div><div class="pw-empty">✅ All clear!</div>';
+      practiceBox.innerHTML='<div class="practice-box-title">💪 Practice</div><div class="pw-empty">✅ All clear!</div>'+resumeBtn;
     }
   }
   // HSK tabs
@@ -2675,8 +3385,12 @@ function renderDynastyDetail(d,s){
     ${DIM[d.id]?`<div class="dd-icon-meaning">${DIM[d.id]}</div>`:''}
     <div class="dd-desc">${d.desc}</div>
     <div class="dd-actions">
+      ${(s.pendingSessions&&s.pendingSessions.story&&s.pendingSessions.story.storyId&&((story&&s.pendingSessions.story.storyId===story.id)||(story2&&s.pendingSessions.story.storyId===story2.id)))?'<button class="btn-p" onclick="resumeSession(\'story\')">▶ Continue story quiz</button>':''}
+      ${(s.pendingSessions&&((s.pendingSessions.gate&&s.pendingSessions.gate.did===d.id)||(s.pendingSessions.champion&&s.pendingSessions.champion.did===d.id)))?'<button class="btn-p" onclick="resumeSession(\'gate\')">▶ Continue gate quiz</button>':''}
+      ${(s.pendingSessions&&s.pendingSessions.flash&&s.pendingSessions.flash.did===d.id)?'<button class="btn-p" onclick="resumeSession(\'flash\')">▶ Continue flash cards</button>':''}
       ${storyBtn(story,storyDone)}
       ${storyBtn(story2,story2Done)}
+      <button class="btn-s" onclick="openFlashCards(${d.id})">🎴 Flash Cards</button>
       <button class="btn-g" onclick="startGateQuiz(${d.id})">${done?'⚔️ Retry Boss':'⚔️ Boss Fight'}</button>
     </div>
   </div>`;
@@ -2769,10 +3483,9 @@ function completeStory(){
         if(t.t==='c'&&t.ch===ch&&t.py){state[curP].library[ch]={py:t.py,mn:t.mn};break outer;}
   });
   const s=state[curP];
-  if(!s.storiesCompleted.includes(curStory.id))s.storiesCompleted.push(curStory.id);
   const pts=newChars.size*5+20;
   s.totalStars+=pts;s.weekStars+=pts;
-  const ts=getTS(curP);ts.stars+=pts;ts.stories=(ts.stories||0)+1;
+  const ts=getTS(curP);ts.stars+=pts;
   saveState();
   checkBadges(curP);saveState();
   launchConfetti();
@@ -2786,11 +3499,46 @@ function closeComplete(){
 }
 
 // ── STORY MINI-QUIZ ──
-let miniQ={questions:[],qi:0,score:0};
+let miniQ={questions:[],qi:0,score:0,wrongQueue:[],phase:'main',attemptedStoryId:null,attemptedDynastyId:null,storyCompletedNow:false};
+
+function clearStoryPending(){if(curP&&state[curP].pendingSessions)state[curP].pendingSessions.story=null;}
+
+function persistMiniQuizState(){
+  if(!curP||!state[curP].pendingSessions)return;
+  if(!miniQ.questions||!miniQ.questions.length){clearStoryPending();return;}
+  state[curP].pendingSessions.story={
+    storyId:miniQ.attemptedStoryId||(curStory&&curStory.id)||null,
+    dynastyId:miniQ.attemptedDynastyId||(curDynasty&&curDynasty.id)||null,
+    questions:miniQ.questions.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),
+    qi:miniQ.qi,score:miniQ.score,phase:miniQ.phase,
+    wrongQueue:miniQ.wrongQueue.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]}))
+  };
+}
+
+function restoreStoryMiniQuiz(){
+  if(!curP||!state[curP].pendingSessions||!state[curP].pendingSessions.story)return false;
+  const ps=state[curP].pendingSessions.story;
+  if(!ps||!ps.storyId)return false;
+  const st=STORIES_MAP[ps.storyId];if(!st)return false;
+  curStory=st;
+  const dyn=DYNASTIES.find(d=>d.id===ps.dynastyId)||DYNASTIES.find(d=>d.story===ps.storyId||d.story2===ps.storyId);
+  if(dyn)curDynasty=dyn;
+  miniQ={
+    questions:(ps.questions||[]).map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),
+    qi:ps.qi||0,score:ps.score||0,
+    wrongQueue:(ps.wrongQueue||[]).map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),
+    phase:ps.phase||'main',
+    attemptedStoryId:ps.storyId,attemptedDynastyId:ps.dynastyId||(dyn&&dyn.id)||null,
+    storyCompletedNow:false
+  };
+  if(!miniQ.questions.length)return false;
+  document.getElementById('mini-quiz-overlay').classList.add('show');
+  if(miniQ.phase==='retry'&&miniQ.qi>=miniQ.questions.length)showMiniRetryIntro();
+  else renderMiniQuestion();
+  return true;
+}
 
 function buildMiniQuizQuestions(){
-  // Use HSK vocab from the dynasty's level — same pool as the gate quiz
-  // This guarantees clean English meanings and enough distractors
   const dynForStory=curDynasty||DYNASTIES.find(d=>d.story===curStory.id||d.story2===curStory.id)||DYNASTIES[0];
   const pool=buildQuizVocab(dynForStory).sort(()=>Math.random()-.5);
   const qs=[];
@@ -2805,9 +3553,12 @@ function buildMiniQuizQuestions(){
 }
 
 function startMiniQuiz(){
-  // Always show overlay FIRST to avoid the UI appearing frozen
   document.getElementById('mini-quiz-overlay').classList.add('show');
-  miniQ={questions:buildMiniQuizQuestions(),qi:0,score:0};
+  miniQ={
+    questions:buildMiniQuizQuestions(),qi:0,score:0,wrongQueue:[],phase:'main',
+    attemptedStoryId:curStory&&curStory.id||null,attemptedDynastyId:curDynasty&&curDynasty.id||null,storyCompletedNow:false
+  };
+  persistMiniQuizState();
   if(!miniQ.questions.length){showMiniQuizResult();return;}
   renderMiniQuestion();
 }
@@ -2840,38 +3591,84 @@ function checkMiniQ(btn,isCorrect,correctAns,opts){
   const q=miniQ.questions[miniQ.qi];
   const goNext=()=>{
     miniQ.qi++;
-    if(miniQ.qi<miniQ.questions.length)renderMiniQuestion();
-    else showMiniQuizResult();
+    if(miniQ.qi<miniQ.questions.length){persistMiniQuizState();renderMiniQuestion();}
+    else finishMiniPass();
   };
   if(isCorrect){
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ Correct!';miniQ.score++;
+    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    persistMiniQuizState();saveState();
     setTimeout(goNext,900);
   }else{
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
     opts.querySelectorAll('.mcq-opt').forEach(b=>{if(b.textContent===correctAns)b.classList.add('correct');});
+    miniQ.wrongQueue.push({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]});
+    persistMiniQuizState();saveState();
     showCorrectRevealCard({zh:q.zh,py:q.py,en:correctAns,isSentence:(q.zh||'').length>1,onDone:goNext});
   }
 }
 
+function finishMiniPass(){
+  if(miniQ.phase==='main'&&miniQ.wrongQueue.length){
+    miniQ.phase='retry';
+    miniQ.questions=miniQ.wrongQueue.map(q=>({...q}));
+    miniQ.wrongQueue=[];
+    miniQ.qi=0;
+    persistMiniQuizState();saveState();
+    showMiniRetryIntro();
+    return;
+  }
+  if(miniQ.phase==='retry'&&miniQ.wrongQueue.length){
+    miniQ.questions=miniQ.wrongQueue.map(q=>({...q}));
+    miniQ.wrongQueue=[];
+    miniQ.qi=0;
+    persistMiniQuizState();saveState();
+    showMiniRetryIntro();
+    return;
+  }
+  showMiniQuizResult();
+}
+
+function showMiniRetryIntro(){
+  const body=document.getElementById('mini-quiz-body');
+  body.innerHTML=`
+    <div style="text-align:center;padding:1rem 0;">
+      <div style="font-size:2rem;margin-bottom:.45rem;">🔁</div>
+      <div style="font-family:var(--fdec);font-size:1.35rem;color:var(--gold);margin-bottom:.35rem;">Try again</div>
+      <div style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">Get every question correct to finish the story.</div>
+      <button class="btn-g" onclick="renderMiniQuestion()">Go →</button>
+    </div>`;
+}
+
 function showMiniQuizResult(){
-  const pct=miniQ.questions.length?Math.round(miniQ.score/miniQ.questions.length*100):0;
-  const msg=pct===100?'🌟 Perfect! 全对！':pct>=75?'⭐ Great! 很棒！':pct>=50?'👍 Good! 不错！':'💪 Keep practicing! 继续加油！';
   const bonus=miniQ.score*3;
-  const s=state[curP];s.totalStars+=bonus;s.weekStars+=bonus;saveState();
+  const s=state[curP];
+  if(miniQ.attemptedStoryId&&!s.storiesCompleted.includes(miniQ.attemptedStoryId)){
+    s.storiesCompleted.push(miniQ.attemptedStoryId);
+    const ts=getTS(curP);ts.stories=(ts.stories||0)+1;
+    miniQ.storyCompletedNow=true;
+  }
+  s.totalStars+=bonus;s.weekStars+=bonus;saveState();
   checkBadges(curP);saveState();
+  clearStoryPending();saveState();
   document.getElementById('mini-quiz-body').innerHTML=`
     <div style="text-align:center;padding:1rem 0;">
-      <div style="font-size:2.8rem;margin-bottom:.5rem;">${msg.split(' ')[0]}</div>
-      <div style="font-family:var(--fdec);font-size:1.6rem;color:var(--gold);margin-bottom:.4rem;">${msg.slice(2)}</div>
-      <div style="font-size:.88rem;color:var(--muted);margin-bottom:1rem;">${miniQ.score}/${miniQ.questions.length} correct · +${bonus} ⭐</div>
+      <div style="font-size:2.8rem;margin-bottom:.5rem;">🌟</div>
+      <div style="font-family:var(--fdec);font-size:1.55rem;color:var(--gold);margin-bottom:.4rem;">Perfect! 全对！</div>
+      <div style="font-size:.88rem;color:var(--muted);margin-bottom:.6rem;">Quiz bonus +${bonus} ⭐</div>
+      ${miniQ.storyCompletedNow?'<div style="font-size:.8rem;color:var(--jade);margin-bottom:1rem;">📖 Story complete</div>':'<div style="margin-bottom:1rem;"></div>'}
       <button class="btn-g" onclick="closeMiniQuiz()">Continue →</button>
     </div>`;
 }
 
 function closeMiniQuiz(){
   document.getElementById('mini-quiz-overlay').classList.remove('show');
+  if(miniQ.storyCompletedNow||!miniQ.questions||!miniQ.questions.length)clearStoryPending();
+  else persistMiniQuizState();
+  saveState();
   goToHub();
 }
+
 
 // ══════════════════════════════════════════════════════
 // WORD DRILL — practice failed words, +2⭐ per correct
@@ -3025,6 +3822,7 @@ function startGateQuiz(did){
     pyQ:buildPYQ(vocab,pyN),
     sbPack:buildSBPack(did,false,sbN),
     sbRound:0,isDaddy:false,isChampion:false,mcqN,pyN,sbN,maxScore,noMcqAssistance:true};
+  persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
 }
 
@@ -3041,6 +3839,7 @@ function startChampionChallenge(group){
     pyQ:buildPYQ(vocab,pyN),
     sbPack:buildSBPack(did,true,sbN),
     sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true};
+  persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
 }
 
@@ -3215,6 +4014,7 @@ function renderQuizPhase(){
   else if(ph===1){pyAnswered=0;renderPYPhase(qc,scoreBar);}
   else if(ph===2){sbBuilt=[];renderSBPhase(qc,scoreBar);}
   else{renderQuizResult(qc);}
+  persistGateQuizState();saveState();
 }
 
 let speakUsed=false;// +2 bonus if 🔊 NOT used (MCQ)
@@ -3311,6 +4111,8 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     }
     fb.innerHTML='✅ +10 pts base'+bonusHtml;
     quizSt.score+=10+bonus;quizSt.phaseScores[0]+=10+bonus;
+    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    persistGateQuizState();saveState();
     setTimeout(goNext,1200);
   }else{
     btn.classList.add('wrong');fb.className='q-feedback err';fb.textContent='❌ Correct: '+correctAns;
@@ -3557,6 +4359,8 @@ function checkPY(){
     inp.className='py-input ok';fb.className='q-feedback ok';
     fb.innerHTML='✅ +8 pts base'+(bonus?'&nbsp;<span class="bonus-tag">+3 🎯 bonus</span>':'');
     quizSt.score+=8+bonus;quizSt.phaseScores[1]+=8+bonus;
+    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    persistGateQuizState();saveState();
     setTimeout(goNext,1200);
   }else{
     inp.className='py-input err';fb.className='q-feedback err';
@@ -3632,6 +4436,8 @@ function checkSB(){
   if(isCorrect){
     fb.className='q-feedback ok';fb.textContent='✅ Perfect! +20 pts';
     quizSt.score+=20;quizSt.phaseScores[2]+=20;
+    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    persistGateQuizState();saveState();
     setTimeout(goNext,1100);
   }else{
     fb.className='q-feedback err';fb.textContent='❌ Listen — then try again';
@@ -3663,6 +4469,7 @@ function renderQuizResult(qc){
     if(stars>prev)s.championCleared[grp]=stars;
     const pts=score;s.totalStars+=pts;s.weekStars+=pts;
     const ts=getTS(curP);ts.stars+=pts;ts.correct=(ts.correct||0)+(score>=10?1:0);
+    if(stars>=2){ts.champions=(ts.champions||0)+1;}
   }else if(passedGate){
     if(!s.gatesCompleted.includes(quizSt.did))s.gatesCompleted.push(quizSt.did);
     const prevStars=s.gateStars[quizSt.did]||0;
@@ -3670,6 +4477,7 @@ function renderQuizResult(qc){
     const pts=score;s.totalStars+=pts;s.weekStars+=pts;
     const ts=getTS(curP);ts.stars+=pts;ts.gates=(ts.gates||0)+1;ts.correct=(ts.correct||0)+(score>=10?1:0);
   }
+  clearGateQuizPending();
   saveState();
   checkBadges(curP,{speedGate:!!quizSt.noMcqAssistance&&!quizSt.isChampion});
   saveState();
@@ -3695,7 +4503,7 @@ function renderQuizResult(qc){
   if(stars>=2&&(quizSt.isChampion||passedGate))launchConfetti();
 }
 
-function exitQuiz(){goToHub();}
+function exitQuiz(){persistGateQuizState();saveState();goToHub();}
 
 function logWrong(p,zh,py,en){
   const s=state[p];if(!s.failedWords)s.failedWords={};
@@ -3817,7 +4625,7 @@ function renderParentSummary(){
       <div class="psr"><span class="psr-lbl">📖 Stories Read</span><span class="psr-val">${s.storiesCompleted.length}</span></div>
       <div class="psr"><span class="psr-lbl">📝 Characters Known</span><span class="psr-val">${Object.keys(s.library).length}</span></div>
       ${isNow?`<div class="psr"><span class="psr-lbl">⏱ Today's Time</span><span class="psr-val">${mins}m</span></div>`:''}
-      <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${s.streak||0} days</span></div>
+      <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} days</span></div>
       <div class="psr"><span class="psr-lbl">💪 Practice Queue</span><span class="psr-val">${Object.keys(s.failedWords||{}).length} words</span></div>
       ${Object.keys(s.championCleared||{}).length?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(Object.keys(s.championCleared).length)}</span></div>`:''}
     </div>`;
