@@ -4713,15 +4713,11 @@ function renderParentSummary(){
       const rawMs=(s.dailyTimeMs[dk])||0;
       const mins=Math.floor(rawMs/60000);const secs=Math.floor((rawMs%60000)/1000);
       grid.innerHTML+=`<div class="ppc"><div class="ppc-title" style="color:${color};">${p==='jenn'?'🐥 Jenn':'🦊 Jess'}</div>
-        <div class="psr"><span class="psr-lbl">⭐ All-time Stars</span><span class="psr-val">${s.totalStars}</span></div>
-        <div class="psr"><span class="psr-lbl">📅 Week Stars</span><span class="psr-val">${s.weekStars}</span></div>
         <div class="psr"><span class="psr-lbl">☀️ Day Stars (${lbl})</span><span class="psr-val" style="color:var(--gold)">${ts.stars||0}</span></div>
         <div class="psr"><span class="psr-lbl">✅ Correct</span><span class="psr-val">${ts.correct||0}</span></div>
         <div class="psr"><span class="psr-lbl">🏯 Gates Done</span><span class="psr-val">${ts.gates||0}</span></div>
         <div class="psr"><span class="psr-lbl">📚 Stories Read</span><span class="psr-val">${ts.stories||0}</span></div>
         <div class="psr"><span class="psr-lbl">⏱ Time Played</span><span class="psr-val">${mins}m ${secs}s</span></div>
-        <div class="psr"><span class="psr-lbl">🏯 Total Gates</span><span class="psr-val">${s.gatesCompleted.length}/22</span></div>
-        <div class="psr"><span class="psr-lbl">📖 Total Stories</span><span class="psr-val">${s.storiesCompleted.length}</span></div>
       </div>`;
       const dayWrong=Object.values(s.failedWords||{}).filter(w=>w.lastFailed===dk);
       wrongCols.push(wrongColHtml(p,dayWrong,'missed today'));
