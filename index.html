@@ -323,6 +323,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
   padding:.32rem .55rem;margin:.42rem 0;font-style:italic;line-height:1.6;}
 .dd-desc{font-size:.82rem;line-height:1.8;margin:.7rem 0 .9rem;color:var(--ink);}
 .dd-actions{display:flex;gap:.7rem;flex-wrap:wrap;}
+.hub-play-strip .btn-s,.hub-play-strip .btn-g{flex:1;min-width:140px;}
 
 /* Buttons */
 .btn-p{background:linear-gradient(135deg,#7A1010,#C0392B);color:white;border:none;border-radius:11px;
@@ -341,8 +342,12 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
    QUIZ SCREEN
 ═══════════════════════════════════ */
 #scr-quiz{flex-direction:column;max-width:700px;margin:0 auto;padding:1.4rem 1.4rem 4rem;width:100%;}
-.quiz-hdr{display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem;}
+.quiz-hdr{display:flex;align-items:center;gap:.7rem;margin-bottom:1.2rem;position:relative;padding-right:2.6rem;}
 .quiz-title{font-family:var(--fdec);font-size:1.35rem;color:var(--gold);flex:1;}
+.quiz-hdr .quiz-xclose{position:absolute;top:0;right:0;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);color:var(--muted);border-radius:7px;
+  width:2.1rem;height:2.1rem;font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;}
+.quiz-hdr .quiz-xclose:hover{color:var(--ink);border-color:var(--gold);}
 .phase-row{display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem;}
 .phdot{width:32px;height:6px;border-radius:3px;background:rgba(255,255,255,.1);transition:all .3s;}
 .phdot.done{background:var(--jade);}
@@ -478,7 +483,17 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .mini-quiz-overlay.show{display:flex;}
 .mini-quiz-card{background:linear-gradient(152deg,var(--surface2),var(--deep));
   border:1px solid rgba(212,160,23,.28);border-radius:22px;padding:1.6rem 1.4rem;
-  max-width:460px;width:100%;animation:popIn .34s cubic-bezier(.34,1.56,.64,1);}
+  max-width:460px;width:100%;animation:popIn .34s cubic-bezier(.34,1.56,.64,1);position:relative;}
+.mq-close{position:absolute;top:.65rem;right:.65rem;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);color:var(--muted);border-radius:7px;
+  width:2rem;height:2rem;font-size:.95rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;z-index:2;}
+.mq-close:hover{color:var(--ink);border-color:rgba(212,160,23,.35);}
+.hub-play-strip{margin-top:.75rem;padding:.75rem 1rem;background:rgba(255,255,255,.03);
+  border:1px solid rgba(212,160,23,.15);border-radius:14px;}
+.hub-play-btns{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;}
+.hub-star-rules{margin-top:.65rem;font-size:.68rem;color:var(--muted);line-height:1.55;
+  max-width:640px;margin-left:auto;margin-right:auto;}
+.hub-star-rules ul{margin:.35rem 0 0 1rem;padding:0;}
 .mq-title{font-family:var(--fdec);font-size:1.4rem;color:var(--gold);margin-bottom:.7rem;text-align:center;}
 .mq-progress{font-size:.74rem;color:var(--muted);margin-bottom:.6rem;text-align:center;}
 .mq-prompt-row{display:flex;align-items:center;justify-content:center;gap:.7rem;margin:.5rem 0;}
@@ -709,8 +724,6 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     <div class="badge-strip" id="badge-strip"></div>
     <button class="sidebar-btn" onclick="showPinyinChart()">📖 拼音表</button>
     <button class="sidebar-btn" onclick="showMyDay()">🌟 My Day · 今日</button>
-    <button class="sidebar-btn" onclick="openFlashPicker()">🎴 Flash Cards</button>
-    <button class="sidebar-btn" onclick="openGamesHub()">🎮 Games · 游戏</button>
     <div class="practice-box" id="practice-box"></div>
     <button class="sidebar-btn muted-btn" onclick="goToSelect()">← Back to Profiles</button>
   </div>
@@ -750,6 +763,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
   <div class="quiz-hdr">
     <button class="back-btn" onclick="exitQuiz()">← Exit</button>
     <div class="quiz-title" id="quiz-title">Gate Boss · 关卡挑战</div>
+    <button type="button" class="quiz-xclose" onclick="exitQuiz()" title="Close" aria-label="Close">✕</button>
   </div>
   <div class="phase-row" id="phase-row">
     <div class="phdot active"></div>
@@ -791,6 +805,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 <!-- ═══ STORY MINI-QUIZ OVERLAY ═══ -->
 <div class="mini-quiz-overlay" id="mini-quiz-overlay">
   <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeMiniQuiz()" title="Close" aria-label="Close">✕</button>
     <div class="mq-title">⚡ Quick Quiz · 小测验</div>
     <div id="mini-quiz-body"></div>
   </div>
@@ -799,6 +814,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 <!-- ═══ DRILL OVERLAY ═══ -->
 <div class="mini-quiz-overlay" id="drill-overlay">
   <div class="mini-quiz-card drill-card">
+    <button type="button" class="mq-close" onclick="closeDrill()" title="Close" aria-label="Close">✕</button>
     <div class="mq-title">💪 Word Drill · 生词练习</div>
     <div id="drill-body"></div>
   </div>
@@ -807,6 +823,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 <!-- ═══ DAILY WORD OVERLAY ═══ -->
 <div class="mini-quiz-overlay" id="daily-word-overlay">
   <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeDailyWordOverlay()" title="Close" aria-label="Close">✕</button>
     <div class="mq-title">Daily Challenge · 每日一字</div>
     <div id="daily-word-body"></div>
   </div>
@@ -815,6 +832,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 <!-- ═══ KID DAILY SUMMARY OVERLAY ═══ -->
 <div class="mini-quiz-overlay" id="myday-overlay">
   <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeMyDay()" title="Close" aria-label="Close">✕</button>
     <div class="mq-title">🌟 My Day · 今日进度</div>
     <div id="myday-body"></div>
   </div>
@@ -823,6 +841,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 <!-- ═══ FLASH CARD OVERLAY ═══ -->
 <div class="mini-quiz-overlay" id="flash-overlay">
   <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeFlashOverlay()" title="Close" aria-label="Close">✕</button>
     <div class="mq-title">🎴 Flash Cards · 词卡</div>
     <div id="flash-body"></div>
   </div>
@@ -831,6 +850,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 <!-- ═══ GAMES OVERLAY ═══ -->
 <div class="mini-quiz-overlay" id="games-overlay">
   <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeGamesOverlay()" title="Close" aria-label="Close">✕</button>
     <div class="mq-title">🎮 Games · 游戏</div>
     <div id="games-body"></div>
   </div>
@@ -1997,7 +2017,9 @@ function defPlayer(){
     badges:[],dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
     pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null},
     traceStars:{},
-    libraryCountAtDayStart:{}};
+    libraryCountAtDayStart:{},
+    gateGameStars:{},
+    lastGateQuizAttempt:null};
 }
 
 let state={jenn:null,jess:null};
@@ -2150,7 +2172,13 @@ function finishDailyWord(correct,correctAns,btn){
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
     document.getElementById('dw-opts').querySelectorAll('.mcq-opt').forEach(b2=>{if(b2.textContent===correctAns)b2.classList.add('correct');});
   }
-  setTimeout(()=>{document.getElementById('daily-word-overlay').classList.remove('show');renderHub();},correct?950:1500);
+  setTimeout(()=>{closeDailyWordOverlay();},correct?950:1500);
+}
+
+function closeDailyWordOverlay(){
+  const o=document.getElementById('daily-word-overlay');
+  if(o)o.classList.remove('show');
+  renderHub();
 }
 
 function loadState(){
@@ -2211,6 +2239,8 @@ function ensureState(p){
   if(!s.pendingSessions)s.pendingSessions={gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null};
   if(!s.traceStars)s.traceStars={};
   if(!s.libraryCountAtDayStart)s.libraryCountAtDayStart={};
+  if(!s.gateGameStars)s.gateGameStars={};
+  if(s.lastGateQuizAttempt===undefined)s.lastGateQuizAttempt=null;
   // Week reset
   if(!isSameWeek(s.weekStart)){
     const nws=weekStart();
@@ -2240,6 +2270,46 @@ function formatMs(ms){
   return `${mins}m ${secs}s`;
 }
 
+function nextOpenGateId(s){
+  for(const d of DYNASTIES){
+    if((d.id===1||s.gatesCompleted.includes(d.id-1))&&!s.gatesCompleted.includes(d.id))return d.id;
+  }
+  return null;
+}
+
+function effectiveGameTargetDid(){
+  if(!curP)return 1;
+  const s=state[curP];
+  if(selectedGateId!=null&&selectedGateId>0)return selectedGateId;
+  const n=nextOpenGateId(s);
+  return n!=null?n:22;
+}
+
+function starsFromAccuracy(correct,total){
+  const t=total||0;if(!t)return 0;
+  const pct=Math.round((correct||0)/t*100);
+  if(pct>85)return 3;if(pct>70)return 2;if(pct>55)return 1;return 0;
+}
+
+function updateGateGameBest(did,gameKey,stars){
+  if(!curP||!did||!gameKey)return;
+  ensureState(curP);
+  const s=state[curP];
+  if(!s.gateGameStars)s.gateGameStars={};
+  const k=String(did);
+  if(!s.gateGameStars[k])s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
+  const prev=s.gateGameStars[k][gameKey]||0;
+  if(stars>prev)s.gateGameStars[k][gameKey]=stars;
+}
+
+function gateGamesAllThree(s,did){
+  if(!did)return false;
+  const g=(s.gateGameStars&&s.gateGameStars[String(did)])||{};
+  return(g.trace||0)>=3&&(g.match||0)>=3&&(g.rain||0)>=3&&(g.listen||0)>=3;
+}
+
+let curGameTargetDid=null;
+
 function refreshOpenSummaries(){
   const parent=document.getElementById('overlay-parent');
   if(parent&&parent.classList.contains('show'))renderParentSummary();
@@ -2268,6 +2338,34 @@ function renderMyDay(){
   const learned=Math.max(0,Object.keys(s.library||{}).length-base);
   const body=document.getElementById('myday-body');
   if(!body)return;
+  const nextDid=nextOpenGateId(s);
+  let gateProg='';
+  if(nextDid){
+    const d=DYNASTIES.find(x=>x.id===nextDid);
+    const gk=String(nextDid);
+    const g=(s.gateGameStars&&s.gateGameStars[gk])||{};
+    const keys=['trace','match','rain','listen'];
+    const vals=keys.map(k=>g[k]||0);
+    const c1=vals.filter(x=>x>=1).length;
+    const c2=vals.filter(x=>x>=2).length;
+    const c3=vals.filter(x=>x>=3).length;
+    const la=s.lastGateQuizAttempt;
+    let quizLine='No gate quiz try saved yet — open Games, play the four games for 3★, then try the boss!';
+    if(la&&la.did===nextDid){
+      const lab=la.isChampion?'Champion':'Gate '+la.did;
+      quizLine=`Last ${lab} quiz: ${la.accPct}% correct · ${la.quizStars} quiz star${la.quizStars===1?'':'s'} ★`;
+    }else if(la){
+      quizLine=`Last quiz (${la.isChampion?'Champion Gate '+la.did:'Gate '+la.did}): ${la.accPct}% · ${la.quizStars}★`;
+    }
+    gateProg=`<div style="margin:.75rem 0;padding:.65rem .75rem;background:rgba(255,255,255,.04);border-radius:12px;border:1px solid rgba(212,160,23,.15);">
+      <div style="font-size:.72rem;font-weight:800;color:var(--gold);margin-bottom:.35rem;">Next gate · ${d?d.zh:'Gate '+nextDid}</div>
+      <div style="font-size:.72rem;color:var(--muted);line-height:1.55;">Games at least 1★: <b>${c1}</b>/4 · at least 2★: <b>${c2}</b>/4 · max 3★: <b>${c3}</b>/4</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;line-height:1.5;">${quizLine}</div>
+      <div style="font-size:.68rem;color:rgba(255,255,255,.45);margin-top:.35rem;">To pass: quiz over 90% correct, 3 quiz stars, and 3★ on all four games.</div>
+    </div>`;
+  }else{
+    gateProg='<div style="font-size:.72rem;color:var(--muted);margin:.5rem 0;">You cleared every gate — amazing!</div>';
+  }
   body.innerHTML=`
     <div class="today-stats" style="margin-bottom:.8rem;">
       <div class="ts-row"><span>☀️ Stars today</span><span>${ts.stars||0}</span></div>
@@ -2279,6 +2377,7 @@ function renderMyDay(){
       <div class="ts-row"><span>💪 Practice words left</span><span>${Object.keys(s.failedWords||{}).length}</span></div>
       <div class="ts-row"><span>🔥 Day streak</span><span>${getConsecutivePlayDays(curP)} days</span></div>
     </div>
+    ${gateProg}
     <div style="text-align:center;"><button class="btn-g" onclick="closeMyDay()">Keep going →</button></div>`;
 }
 
@@ -2350,8 +2449,7 @@ function openFlashPicker(){
   }).join('');
   body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.6rem;">Pick a dynasty · 选择朝代</div>
     ${ps&&ps.did?`<button class="btn-p" style="width:100%;margin-bottom:.55rem;" onclick="resumeSession('flash')">▶ Continue flash cards</button>`:''}
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;max-height:48vh;overflow-y:auto;">${rows}</div>
-    <div style="text-align:center;margin-top:.75rem;"><button class="btn-s" onclick="closeFlashOverlay()">Close</button></div>`;
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;max-height:48vh;overflow-y:auto;">${rows}</div>`;
   document.getElementById('flash-overlay').classList.add('show');
 }
 
@@ -2372,9 +2470,7 @@ function openFlashCards(did){
 function renderFlashModePicker(){
   const body=document.getElementById('flash-body');if(!body)return;
   const d=DYNASTIES.find(x=>x.id===flashSt.did);
-  body.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.55rem;">
-      <span style="font-size:.78rem;color:var(--muted);">${d?d.zh+' · Gate '+d.id:''} · ${flashSt.deck.length} cards</span>
-      <button class="btn-s" onclick="closeFlashOverlay()">✕</button></div>
+  body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;">${d?d.zh+' · Gate '+d.id:''} · ${flashSt.deck.length} cards</div>
     <div class="mq-question" style="margin-bottom:.45rem;">Mode · 模式</div>
     <div style="display:grid;gap:.4rem;">
       <button class="btn-s" onclick="setFlashMode('en2zh')">🔤 EN → 中文</button>
@@ -2393,7 +2489,7 @@ function setFlashSub(sub){flashSt.sub=sub==='quiz'?'quiz':'review';flashSt.i=0;f
 function renderFlashCurrent(){
   if(!flashSt.mode){renderFlashModePicker();return;}
   if(flashSt.i>=flashSt.deck.length){clearFlashSession();saveState();
-    const b=document.getElementById('flash-body');if(b)b.innerHTML='<div class="mq-title" style="text-align:center;">Done! 🎉</div><div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="closeFlashOverlay()">Close</button></div>';
+    const b=document.getElementById('flash-body');if(b)b.innerHTML='<div class="mq-title" style="text-align:center;">Done! 🎉</div>';
     return;
   }
   if(flashSt.sub==='quiz')renderFlashQuiz();else renderFlashReview();
@@ -2484,15 +2580,13 @@ function restoreFlashSession(){
 let matchSt={cards:[],openIdxs:[],matched:0,moves:0,start:0,pairCount:8};
 let rainSt={pool:[],target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0};
 let listenSt={questions:[],qi:0,streak:0,score:0};
-let traceSt={chars:[],i:0,writer:null,targetId:''};
+let traceSt={chars:[],i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:null};
 
 function closeGamesOverlay(){document.getElementById('games-overlay').classList.remove('show');}
 
 function openGamesHub(){
   const body=document.getElementById('games-body');if(!body)return;
-  body.innerHTML=`<div style="display:flex;justify-content:space-between;margin-bottom:.55rem;">
-      <span style="font-size:.78rem;color:var(--muted);">Pick a game</span>
-      <button class="btn-s" onclick="closeGamesOverlay()">✕</button></div>
+  body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;">Pick a game</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
       <button class="btn-s" onclick="pickGameScope('trace')">✍️ Trace</button>
       <button class="btn-s" onclick="pickGameScope('match')">🧠 Match</button>
@@ -2536,6 +2630,7 @@ function wordsForScope(kind){
 }
 
 function startGame(game,scope){
+  curGameTargetDid=scope==='dynasty'?effectiveGameTargetDid():null;
   const words=wordsForScope(scope);
   if(!words.length){showToast('Not enough words in this set yet.');return;}
   if(game==='match')startMemoryMatch(words);
@@ -2544,7 +2639,7 @@ function startGame(game,scope){
   else if(game==='trace')startTrace(words);
 }
 
-function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount};}
+function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null};}
 function clearMatch(){if(curP)state[curP].pendingSessions.match=null;}
 
 function startMemoryMatch(words){
@@ -2554,7 +2649,7 @@ function startMemoryMatch(words){
     cards.push({id:'a'+i,pair:i,side:'zh',text:w.zh,w:{...w},matched:false});
     cards.push({id:'b'+i,pair:i,side:'en',text:w.en,w:{...w},matched:false});
   });
-  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount:8};
+  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount:8,gameTargetDid:curGameTargetDid||null};
   persistMatch();saveState();renderMemoryMatch();
 }
 
@@ -2562,10 +2657,12 @@ function renderMemoryMatch(){
   const body=document.getElementById('games-body');if(!body)return;
   if(matchSt.matched>=matchSt.pairCount){
     clearMatch();saveState();
-    const sec=Math.max(1,Math.round((Date.now()-matchSt.start)/1000));
-    const stars=matchSt.moves<=matchSt.pairCount*2?3:matchSt.moves<=matchSt.pairCount*3?2:1;
+    const sec=(Date.now()-matchSt.start)/1000;
+    const stars=sec<120?3:sec<180?2:sec<240?1:0;
+    const tid=matchSt.gameTargetDid;
+    if(tid)updateGateGameBest(tid,'match',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Done!</div>
-      <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${sec}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
     return;
   }
@@ -2598,8 +2695,6 @@ function tapMatch(idx){
       getTS(curP).correct=(getTS(curP).correct||0)+1;
       persistMatch();saveState();renderMemoryMatch();
     }else{
-      logWrong(curP,a.w.zh,a.w.py,a.w.en);
-      logWrong(curP,b.w.zh,b.w.py,b.w.en);
       persistMatch();saveState();renderMemoryMatch();
       setTimeout(()=>{matchSt.openIdxs=[];persistMatch();saveState();renderMemoryMatch();},650);
     }
@@ -2609,14 +2704,16 @@ function tapMatch(idx){
 function persistRain(){
   if(!curP)return;
   state[curP].pendingSessions.rain={pool:rainSt.pool.map(w=>({...w})),target:rainSt.target?{...rainSt.target}:null,
-    score:rainSt.score,combo:rainSt.combo,bestCombo:rainSt.bestCombo,timeLeft:rainSt.timeLeft};
+    score:rainSt.score,combo:rainSt.combo,bestCombo:rainSt.bestCombo,timeLeft:rainSt.timeLeft,
+    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null};
 }
 function clearRainTimers(){if(rainSt.spawnIv)clearInterval(rainSt.spawnIv);if(rainSt.tickIv)clearInterval(rainSt.tickIv);rainSt.spawnIv=rainSt.tickIv=null;}
 function clearRainSession(){clearRainTimers();if(curP)state[curP].pendingSessions.rain=null;}
 
 function startRain(words){
   clearRainSession();
-  rainSt={pool:words.filter(w=>w.zh),target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0};
+  rainSt={pool:words.filter(w=>w.zh),target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0,
+    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null};
   if(rainSt.pool.length<2){showToast('Need more characters for rain.');return;}
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
@@ -2652,7 +2749,9 @@ function spawnRainDrop(){
   btn.style.position='absolute';btn.style.left=(8+Math.random()*72)+'%';btn.style.top='-8px';btn.style.transition='top 4.8s linear';
   btn.dataset.id=String(id);
   btn.onclick=()=>{
+    rainSt.rainAttempts=(rainSt.rainAttempts||0)+1;
     if(w.zh===rainSt.target.zh){
+      rainSt.rainHits=(rainSt.rainHits||0)+1;
       rainSt.combo++;rainSt.bestCombo=Math.max(rainSt.bestCombo,rainSt.combo);
       const add=Math.round(10*(1+Math.min(0.5,rainSt.combo*0.04)));
       rainSt.score+=add;getTS(curP).correct=(getTS(curP).correct||0)+1;pickRainTarget();
@@ -2663,18 +2762,23 @@ function spawnRainDrop(){
   requestAnimationFrame(()=>{btn.style.top='240px';});
   setTimeout(()=>{
     if(btn.parentNode){
-      if(w.zh===rainSt.target.zh){rainSt.combo=0;logWrong(curP,w.zh,w.py,w.en);persistRain();saveState();}
+      if(w.zh===rainSt.target.zh){
+        rainSt.rainAttempts=(rainSt.rainAttempts||0)+1;
+        rainSt.combo=0;logWrong(curP,w.zh,w.py,w.en);persistRain();saveState();
+      }
       btn.remove();
     }
   },4900);
 }
 
 function endRain(fromUser){
+  const ra=rainSt.rainAttempts||0,rh=rainSt.rainHits||0,tid=rainSt.gameTargetDid;
   clearRainSession();
   const body=document.getElementById('games-body');if(!body)return;
-  const stars=rainSt.score>=200?3:rainSt.score>=100?2:1;
+  const stars=starsFromAccuracy(rh,ra);
+  if(tid)updateGateGameBest(tid,'rain',stars);
   body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ ${fromUser?'Stopped':'Time up'}</div>
-    <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · best combo ${rainSt.bestCombo} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+    <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
     <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
   saveState();
 }
@@ -2682,7 +2786,8 @@ function endRain(fromUser){
 function restoreRain(){
   const ps=state[curP].pendingSessions.rain;if(!ps||!ps.pool||!ps.pool.length)return false;
   clearRainSession();
-  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||60,spawnIv:null,tickIv:null,dropId:0};
+  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||60,spawnIv:null,tickIv:null,dropId:0,
+    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
 }
@@ -2693,8 +2798,8 @@ function startListen(words){
     const wrong=shuffleArr(pool.filter(x=>x.zh!==w.zh)).slice(0,3);
     return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
   });
-  listenSt={questions:qs,qi:0,streak:0,score:0};
-  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0};
+  listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null};
+  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid};
   saveState();renderListen();
 }
 
@@ -2703,9 +2808,13 @@ function renderListen(){
   const q=listenSt.questions[listenSt.qi];
   if(!q){
     if(curP)state[curP].pendingSessions.listen=null;
-    const stars=listenSt.score>=24?3:listenSt.score>=14?2:1;
+    const tot=listenSt.questions.length;
+    const cc=listenSt.correctCount||0;
+    const stars=starsFromAccuracy(cc,tot);
+    const tid=listenSt.gameTargetDid;
+    if(tid)updateGateGameBest(tid,'listen',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Done</div>
-      <div class="mq-question" style="text-align:center;">Score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
     saveState();return;
   }
@@ -2726,6 +2835,7 @@ function checkListen(btn,ok,q){
   const grid=document.getElementById('listen-opts');const fb=document.getElementById('listen-fb');
   grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;if(b.textContent===q.w.zh)b.classList.add('correct');});
   if(ok){
+    listenSt.correctCount=(listenSt.correctCount||0)+1;
     listenSt.streak++;
     const bonus=listenSt.streak>=3?3:2;
     listenSt.score+=bonus;btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ +'+bonus;
@@ -2735,7 +2845,7 @@ function checkListen(btn,ok,q){
     logWrong(curP,q.w.zh,q.w.py,q.w.en);
   }
   listenSt.qi++;
-  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score};
+  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid};
   saveState();
   setTimeout(renderListen,800);
 }
@@ -2753,8 +2863,8 @@ function uniqueChars(words){
 function startTrace(words){
   const chars=uniqueChars(words);
   if(!chars.length){showToast('No characters to trace.');return;}
-  traceSt={chars,i:0,writer:null,targetId:''};
-  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0};
+  traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null};
+  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid};
   saveState();renderTrace();
 }
 
@@ -2763,7 +2873,14 @@ function renderTrace(){
   const c=traceSt.chars[traceSt.i];
   if(!c){
     if(curP)state[curP].pendingSessions.trace=null;
-    body.innerHTML='<div class="mq-title" style="text-align:center;">✍️ Trace done</div><div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>';
+    const tot=traceSt.chars.length;
+    const tg=traceSt.traceGood||0;
+    const stars=starsFromAccuracy(tg,tot);
+    const tid=traceSt.gameTargetDid;
+    if(tid)updateGateGameBest(tid,'trace',stars);
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Trace done</div>
+      <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
     saveState();return;
   }
   traceSt.targetId='trace-'+Date.now();
@@ -2782,6 +2899,8 @@ function renderTrace(){
       onComplete:()=>{
         const stars=mistakes===0?3:(mistakes<=2?2:1);
         const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
+        traceSt.traceGood=(traceSt.traceGood||0)+(mistakes===0?1:0);
+        if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid};
         getTS(curP).correct=(getTS(curP).correct||0)+1;
         showToast(c.zh+' '+('★'.repeat(stars)+'☆'.repeat(3-stars)));
         saveState();
@@ -2793,25 +2912,25 @@ function renderTrace(){
 }
 
 function traceAnimate(){if(traceSt.writer)traceSt.writer.animateCharacter();}
-function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i};saveState();renderTrace();}
+function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid};saveState();renderTrace();}
 
 function restoreTrace(){
   const ps=state[curP].pendingSessions.trace;if(!ps||!ps.chars)return false;
-  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:''};
+  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:'',traceGood:ps.traceGood||0,gameTargetDid:ps.gameTargetDid||null};
   document.getElementById('games-overlay').classList.add('show');
   renderTrace();return true;
 }
 
 function restoreMatch(){
   const ps=state[curP].pendingSessions.match;if(!ps||!ps.cards)return false;
-  matchSt={cards:ps.cards.map(c=>({...c})),openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount:ps.pairCount||8};
+  matchSt={cards:ps.cards.map(c=>({...c})),openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount:ps.pairCount||8,gameTargetDid:ps.gameTargetDid||null};
   document.getElementById('games-overlay').classList.add('show');
   renderMemoryMatch();return true;
 }
 
 function restoreListen(){
   const ps=state[curP].pendingSessions.listen;if(!ps||!ps.questions)return false;
-  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0};
+  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0,correctCount:ps.correctCount||0,gameTargetDid:ps.gameTargetDid||null};
   document.getElementById('games-overlay').classList.add('show');
   renderListen();return true;
 }
@@ -2829,7 +2948,8 @@ function persistGateQuizState(){
     sbRound:quizSt.sbRound||0,isChampion:!!quizSt.isChampion,champGroup:quizSt.champGroup||null,
     mcqN:quizSt.mcqN,pyN:quizSt.pyN,sbN:quizSt.sbN,maxScore:quizSt.maxScore,noMcqAssistance:!!quizSt.noMcqAssistance,
     mcqAnswered:typeof mcqAnswered==='number'?mcqAnswered:0,pyAnswered:typeof pyAnswered==='number'?pyAnswered:0,
-    sbBuilt:[...(typeof sbBuilt!=='undefined'?sbBuilt:[])],speakUsed:!!speakUsed,pyHintUsed:!!pyHintUsed,pyPeekUsed:!!pyPeekUsed
+    sbBuilt:[...(typeof sbBuilt!=='undefined'?sbBuilt:[])],speakUsed:!!speakUsed,pyHintUsed:!!pyHintUsed,pyPeekUsed:!!pyPeekUsed,
+    quizCorrect:quizSt.quizCorrect||0,quizAttempts:quizSt.quizAttempts||0
   };
 }
 
@@ -2852,7 +2972,8 @@ function restoreGateQuizSession(){
     pyQ:(ps.pyQ||[]).map(q=>({...q})),
     sbPack:(ps.sbPack||[]).map(s=>[...s]),
     sbRound:ps.sbRound||0,isDaddy:false,isChampion:!!ps.isChampion,champGroup:ps.champGroup||null,
-    mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:!!ps.noMcqAssistance
+    mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:!!ps.noMcqAssistance,
+    quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0
   };
   mcqAnswered=ps.mcqAnswered||0;pyAnswered=ps.pyAnswered||0;sbBuilt=[...(ps.sbBuilt||[])];
   speakUsed=!!ps.speakUsed;pyHintUsed=!!ps.pyHintUsed;pyPeekUsed=!!ps.pyPeekUsed;
@@ -3231,6 +3352,20 @@ function renderHubContent(){
       <div class="sec-hdr"><div class="sec-line"></div><div class="sec-ttl">🏯 Dynasty Road · 朝代之路</div><div class="sec-line r"></div></div>
       <div class="road-scroll"><div class="road-track" id="road-track"></div></div>
       <div id="dynasty-detail-panel"></div>
+      <div class="hub-play-strip">
+        <div class="hub-play-btns">
+          <button type="button" class="btn-s" onclick="openFlashPicker()">🎴 Flash Cards</button>
+          <button type="button" class="btn-g" onclick="openGamesHub()">🎮 Games · 游戏</button>
+        </div>
+        <div class="hub-star-rules">
+          <strong style="color:var(--ink);">How stars work</strong>
+          <ul>
+            <li><b>Quiz &amp; most games</b> (after you finish the round): more than 85% correct = 3★, more than 70% = 2★, more than 55% = 1★.</li>
+            <li><b>Memory match</b>: stars from time — under 2 min = 3★, under 3 min = 2★, under 4 min = 1★. Wrong flips do <b>not</b> add words to your practice list.</li>
+            <li><b>Unlock a gate</b>: quiz over 90% correct, 3 quiz stars, <b>and</b> 3★ on Trace, Memory, Rain, and Listen for that gate.</li>
+          </ul>
+        </div>
+      </div>
     </div>`);
 
   const track=document.getElementById('road-track');
@@ -3812,7 +3947,9 @@ function startGateQuiz(did){
     questions:buildMCQ(vocab,mcqN),
     pyQ:buildPYQ(vocab,pyN),
     sbPack:buildSBPack(did,false,sbN),
-    sbRound:0,isDaddy:false,isChampion:false,mcqN,pyN,sbN,maxScore,noMcqAssistance:true};
+    sbRound:0,isDaddy:false,isChampion:false,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
+    quizCorrect:0,quizAttempts:0};
+  mcqAnswered=0;pyAnswered=0;sbBuilt=[];
   persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
 }
@@ -3829,7 +3966,9 @@ function startChampionChallenge(group){
     questions:buildMCQ(vocab,mcqN),
     pyQ:buildPYQ(vocab,pyN),
     sbPack:buildSBPack(did,true,sbN),
-    sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true};
+    sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
+    quizCorrect:0,quizAttempts:0};
+  mcqAnswered=0;pyAnswered=0;sbBuilt=[];
   persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
 }
@@ -4001,9 +4140,9 @@ function renderQuizPhase(){
   const mx=quizSt.maxScore||220;
   const pct=Math.min(100,Math.round(quizSt.score/mx*100));
   const scoreBar=`<div class="quiz-prog-bar"><div class="quiz-prog-fill" id="qpf" style="width:${pct}%"></div></div>`;
-  if(ph===0){mcqAnswered=0;renderMCQPhase(qc,scoreBar);}
-  else if(ph===1){pyAnswered=0;renderPYPhase(qc,scoreBar);}
-  else if(ph===2){sbBuilt=[];renderSBPhase(qc,scoreBar);}
+  if(ph===0){renderMCQPhase(qc,scoreBar);}
+  else if(ph===1){renderPYPhase(qc,scoreBar);}
+  else if(ph===2){renderSBPhase(qc,scoreBar);}
   else{renderQuizResult(qc);}
   persistGateQuizState();saveState();
 }
@@ -4089,6 +4228,8 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     else nextPhase();
   };
   if(isCorrect){
+    quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
+    quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
     const spBonus=!speakUsed?2:0;
     const pyBonus=!pyHintUsed?2:0;
     const bonus=spBonus+pyBonus;
@@ -4106,6 +4247,7 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     persistGateQuizState();saveState();
     setTimeout(goNext,1200);
   }else{
+    quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     btn.classList.add('wrong');fb.className='q-feedback err';fb.textContent='❌ Correct: '+correctAns;
     const curQ=quizSt.questions[mcqAnswered];
     grid.querySelectorAll('.mcq-opt').forEach(b=>{
@@ -4316,6 +4458,8 @@ function checkPY(){
   };
   inp.disabled=true;
   if(val===correct){
+    quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
+    quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
     const bonus=!speakUsed&&!pyPeekUsed?3:0;
     inp.className='py-input ok';fb.className='q-feedback ok';
     fb.innerHTML='✅ +8 pts base'+(bonus?'&nbsp;<span class="bonus-tag">+3 🎯 bonus</span>':'');
@@ -4324,6 +4468,7 @@ function checkPY(){
     persistGateQuizState();saveState();
     setTimeout(goNext,1200);
   }else{
+    quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     inp.className='py-input err';fb.className='q-feedback err';
     fb.textContent='❌ Correct: '+q.correct;
     if(w)logWrong(curP,w.zh,w.py,w.en);
@@ -4395,46 +4540,65 @@ function checkSB(){
     else nextPhase();
   };
   if(isCorrect){
+    quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
+    quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
     fb.className='q-feedback ok';fb.textContent='✅ Perfect! +20 pts';
     quizSt.score+=20;quizSt.phaseScores[2]+=20;
     getTS(curP).correct=(getTS(curP).correct||0)+1;
     persistGateQuizState();saveState();
     setTimeout(goNext,1100);
   }else{
+    quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     fb.className='q-feedback err';fb.textContent='❌ Listen — then try again';
     const sent=correct.join('');
     showCorrectRevealCard({zh:sent,py:'',en:'Correct sentence',isSentence:true,onDone:()=>{
       const f=document.getElementById('q-fb');if(f)f.textContent='';
     }});
+    persistGateQuizState();saveState();
   }
 }
 
 function nextPhase(){
+  const prev=quizSt.phase;
   quizSt.phase++;
   if(quizSt.phase>=3)quizSt.phase=3;
+  if(prev===0&&quizSt.phase===1)pyAnswered=0;
+  if(prev===1&&quizSt.phase===2)sbBuilt=[];
   renderQuizPhase();
 }
 
 function renderQuizResult(qc){
   const score=quizSt.score;
   const mx=quizSt.maxScore||220;
-  const pct=Math.round(score/mx*100);
-  const stars=pct>=82?3:pct>=60?2:pct>=38?1:0;
-  const starsStr='★'.repeat(stars)+'☆'.repeat(3-stars);
+  const pctPts=Math.round(score/mx*100);
+  const qa=quizSt.quizAttempts||0;
+  const qcOk=quizSt.quizCorrect||0;
+  const accPct=qa?Math.round(qcOk/qa*100):0;
+  const quizStars=starsFromAccuracy(qcOk,qa);
+  const starsStr='★'.repeat(quizStars)+'☆'.repeat(3-quizStars);
   const d=DYNASTIES.find(x=>x.id===quizSt.did);
   const s=state[curP];
-  const passedGate=!quizSt.isChampion&&pct>=90&&stars===3;
+  const gamesOk=gateGamesAllThree(s,quizSt.did);
+  const quizPass=accPct>90&&quizStars===3;
+  const fullPass=quizPass&&gamesOk;
+  const passedGate=!quizSt.isChampion&&fullPass;
+  const passedChampion=!!quizSt.isChampion&&fullPass;
+  s.lastGateQuizAttempt={
+    did:quizSt.did,isChampion:!!quizSt.isChampion,accPct,quizStars,atKey:todayKey()
+  };
   if(quizSt.isChampion){
     const grp=quizSt.champGroup;
-    const prev=s.championCleared[grp]||0;
-    if(stars>prev)s.championCleared[grp]=stars;
-    const pts=score;s.totalStars+=pts;s.weekStars+=pts;
-    const ts=getTS(curP);ts.stars+=pts;ts.correct=(ts.correct||0)+(score>=10?1:0);
-    if(stars>=2){ts.champions=(ts.champions||0)+1;}
+    if(passedChampion){
+      const prev=s.championCleared[grp]||0;
+      if(quizStars>prev)s.championCleared[grp]=quizStars;
+      const pts=score;s.totalStars+=pts;s.weekStars+=pts;
+      const ts=getTS(curP);ts.stars+=pts;ts.correct=(ts.correct||0)+(score>=10?1:0);
+      if(quizStars>=2){ts.champions=(ts.champions||0)+1;}
+    }
   }else if(passedGate){
     if(!s.gatesCompleted.includes(quizSt.did))s.gatesCompleted.push(quizSt.did);
     const prevStars=s.gateStars[quizSt.did]||0;
-    if(stars>prevStars)s.gateStars[quizSt.did]=stars;
+    if(quizStars>prevStars)s.gateStars[quizSt.did]=quizStars;
     const pts=score;s.totalStars+=pts;s.weekStars+=pts;
     const ts=getTS(curP);ts.stars+=pts;ts.gates=(ts.gates||0)+1;ts.correct=(ts.correct||0)+(score>=10?1:0);
   }
@@ -4443,25 +4607,31 @@ function renderQuizResult(qc){
   checkBadges(curP,{speedGate:!!quizSt.noMcqAssistance&&!quizSt.isChampion});
   saveState();
   const gateLabel=quizSt.isChampion?`👑 Champion · Group ${quizSt.champGroup}`:`Gate ${quizSt.did}`;
-  const cleared=quizSt.isChampion?pct>=60:passedGate;
-  const ptsMsg=quizSt.isChampion||passedGate?score:0;
-  const lockMsg=!quizSt.isChampion&&!passedGate
-    ?'<div style="color:#FF9090;font-weight:700;margin:.7rem 0;text-align:center;line-height:1.5;">Unlock next gate: reach <b>90%</b> score and <b>three stars ★★★</b>. Keep trying!</div>'
-    :'';
+  const cleared=quizSt.isChampion?passedChampion:passedGate;
+  const ptsMsg=cleared?score:0;
+  const g=(s.gateGameStars&&s.gateGameStars[String(quizSt.did)])||{};
+  const g3=[g.trace,g.match,g.rain,g.listen].filter(x=>(x||0)>=3).length;
+  let lockMsg='';
+  if(!cleared){
+    const bits=[];
+    if(!quizPass)bits.push('quiz: need <b>over 90%</b> correct <b>and</b> 3 quiz stars (over 85% correct)');
+    if(!gamesOk)bits.push(`games: need 3★ on Trace, Memory, Rain, Listen for this gate (${g3}/4 ready)`);
+    lockMsg=`<div style="color:#FF9090;font-weight:700;margin:.7rem 0;text-align:center;line-height:1.55;">${bits.join('<br>')}</div>`;
+  }
   qc.innerHTML=`
   <div class="quiz-result">
-    <div class="quiz-prog-bar"><div class="quiz-prog-fill" style="width:${pct}%"></div></div>
+    <div class="quiz-prog-bar"><div class="quiz-prog-fill" style="width:${pctPts}%"></div></div>
     <div class="qr-stars">${starsStr}</div>
-    <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':(quizSt.isChampion?'Complete':'Not yet')}</div>
-    ${quizSt.isChampion&&pct>=60?'<div class="champion-badge">🏆 Champion Trophy Earned!</div>':''}
-    <div class="qr-msg">${d.zh} · ${d.en}\n\nScore: ${score}/${mx} pts (${pct}%) · ${ptsMsg?`+${ptsMsg} ⭐ saved`:'stars not saved — pass the gate to earn ⭐'}\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}</div>
+    <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':'Not yet'}</div>
+    ${quizSt.isChampion&&passedChampion?'<div class="champion-badge">🏆 Champion Trophy Earned!</div>':''}
+    <div class="qr-msg">${d.zh} · ${d.en}\n\nQuiz accuracy: ${accPct}% (${qcOk}/${qa}) · Quiz stars: ${quizStars}\nPoints: ${score}/${mx} (${pctPts}%)\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}\nGames at 3★ for this gate: ${g3}/4</div>
     ${lockMsg}
     <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;">
-      <button class="btn-g" onclick="exitQuiz()">${cleared||quizSt.isChampion?'✓ Done':'← Back'}</button>
+      <button class="btn-g" onclick="exitQuiz()">${cleared?'✓ Done':'← Back'}</button>
       ${quizSt.isChampion?`<button class="btn-s" onclick="startChampionChallenge(${quizSt.champGroup})">↺ Retry</button>`:`<button class="btn-s" onclick="startGateQuiz(${quizSt.did})">↺ Retry</button>`}
     </div>
   </div>`;
-  if(stars>=2&&(quizSt.isChampion||passedGate))launchConfetti();
+  if(quizStars>=2&&cleared)launchConfetti();
 }
 
 function exitQuiz(){persistGateQuizState();saveState();goToHub();}
