@@ -293,10 +293,9 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .dr-node.dr-completed .dr-circle{border-color:var(--jade);background:rgba(39,174,96,.12);
   box-shadow:0 0 12px rgba(39,174,96,.35);}
 .dr-node.dr-active .dr-circle{border-color:var(--gold);background:rgba(212,160,23,.1);
-  box-shadow:0 0 18px rgba(212,160,23,.5);animation:drGlow 2s ease-in-out infinite;}
+  box-shadow:0 0 14px rgba(212,160,23,.35);}
 .dr-node.dr-locked .dr-circle{opacity:.32;cursor:not-allowed;}
 .dr-node.dr-selected .dr-circle{border-color:var(--gold-bright);box-shadow:0 0 0 3px rgba(240,192,64,.3);}
-@keyframes drGlow{0%,100%{box-shadow:0 0 10px rgba(212,160,23,.4);}50%{box-shadow:0 0 22px rgba(212,160,23,.7);}}
 .dr-lbl{font-size:.65rem;color:var(--muted);text-align:center;margin-top:.32rem;max-width:78px;
   line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;}
 .dr-en{font-size:.5rem;color:rgba(255,255,255,.38);text-align:center;max-width:78px;
@@ -484,6 +483,8 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .mini-quiz-card{background:linear-gradient(152deg,var(--surface2),var(--deep));
   border:1px solid rgba(212,160,23,.28);border-radius:22px;padding:1.6rem 1.4rem;
   max-width:460px;width:100%;animation:popIn .34s cubic-bezier(.34,1.56,.64,1);position:relative;}
+#myday-overlay .mini-quiz-card{max-height:85vh;overflow-y:auto;}
+#myday-body{padding-right:.1rem;}
 .mq-close{position:absolute;top:.65rem;right:.65rem;background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.1);color:var(--muted);border-radius:7px;
   width:2rem;height:2rem;font-size:.95rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;z-index:2;}
@@ -2712,7 +2713,7 @@ function clearRainSession(){clearRainTimers();if(curP)state[curP].pendingSession
 
 function startRain(words){
   clearRainSession();
-  rainSt={pool:words.filter(w=>w.zh),target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0,
+  rainSt={pool:words.filter(w=>w.zh&&w.en),target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0,
     rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null};
   if(rainSt.pool.length<2){showToast('Need more characters for rain.');return;}
   pickRainTarget();persistRain();saveState();renderRain();runRain();
@@ -2723,7 +2724,7 @@ function pickRainTarget(){rainSt.target=rainSt.pool[Math.floor(Math.random()*rai
 function renderRain(){
   const body=document.getElementById('games-body');if(!body||!rainSt.target)return;
   body.innerHTML=`<div class="mq-progress">⏱ ${rainSt.timeLeft}s · ⭐ ${rainSt.score} · combo ${rainSt.combo}</div>
-    <div class="mq-question" id="rain-hint" style="text-align:center;">Tap: ${rainSt.target.en}</div>
+    <div class="mq-question" id="rain-hint" style="text-align:center;">Tap the character for this English meaning: <b>${rainSt.target.en}</b></div>
     <div id="rain-zone" style="position:relative;height:260px;border:1px solid rgba(212,160,23,.25);border-radius:10px;overflow:hidden;background:rgba(0,0,0,.18);"></div>
     <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="endRain(true)">Stop</button>`;
 }
