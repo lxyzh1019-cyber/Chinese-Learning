@@ -2712,7 +2712,7 @@ function clearRainSession(){clearRainTimers();if(curP)state[curP].pendingSession
 
 function startRain(words){
   clearRainSession();
-  rainSt={pool:words.filter(w=>w.zh),target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0,
+  rainSt={pool:words.filter(w=>w.zh&&w.en),target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0,
     rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null};
   if(rainSt.pool.length<2){showToast('Need more characters for rain.');return;}
   pickRainTarget();persistRain();saveState();renderRain();runRain();
@@ -2723,7 +2723,7 @@ function pickRainTarget(){rainSt.target=rainSt.pool[Math.floor(Math.random()*rai
 function renderRain(){
   const body=document.getElementById('games-body');if(!body||!rainSt.target)return;
   body.innerHTML=`<div class="mq-progress">⏱ ${rainSt.timeLeft}s · ⭐ ${rainSt.score} · combo ${rainSt.combo}</div>
-    <div class="mq-question" id="rain-hint" style="text-align:center;">Tap: ${rainSt.target.en}</div>
+    <div class="mq-question" id="rain-hint" style="text-align:center;">Tap the character for this English meaning: <b>${rainSt.target.en}</b></div>
     <div id="rain-zone" style="position:relative;height:260px;border:1px solid rgba(212,160,23,.25);border-radius:10px;overflow:hidden;background:rgba(0,0,0,.18);"></div>
     <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="endRain(true)">Stop</button>`;
 }
