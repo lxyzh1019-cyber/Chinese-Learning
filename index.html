@@ -18,7 +18,7 @@
   --fzh:'Noto Serif SC',serif;--fui:'Quicksand',sans-serif;--fdec:'Ma Shan Zheng',cursive;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;font-size:110%;}
 body{background:var(--bg);color:var(--ink);font-family:var(--fui);min-height:100vh;overflow-x:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation;}
 button{cursor:pointer;touch-action:manipulation;font-family:var(--fui);}
 input{font-family:var(--fui);}
@@ -495,6 +495,11 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .hub-star-rules{margin-top:.65rem;font-size:.68rem;color:var(--muted);line-height:1.55;
   max-width:640px;margin-left:auto;margin-right:auto;}
 .hub-star-rules ul{margin:.35rem 0 0 1rem;padding:0;}
+.rain-target{margin:.25rem 0 .55rem;padding:.58rem .75rem;border-radius:11px;
+  border:1px solid rgba(212,160,23,.42);background:linear-gradient(180deg,rgba(212,160,23,.2),rgba(212,160,23,.08));
+  text-align:center;font-size:1.02rem;font-weight:800;line-height:1.45;color:#FFF5CE;
+  text-shadow:0 0 14px rgba(212,160,23,.45);}
+.rain-target b{display:block;font-size:1.32rem;color:var(--gold-bright);margin-top:.2rem;letter-spacing:.02em;}
 .mq-title{font-family:var(--fdec);font-size:1.4rem;color:var(--gold);margin-bottom:.7rem;text-align:center;}
 .mq-progress{font-size:.74rem;color:var(--muted);margin-bottom:.6rem;text-align:center;}
 .mq-prompt-row{display:flex;align-items:center;justify-content:center;gap:.7rem;margin:.5rem 0;}
@@ -2587,23 +2592,14 @@ function closeGamesOverlay(){document.getElementById('games-overlay').classList.
 
 function openGamesHub(){
   const body=document.getElementById('games-body');if(!body)return;
-  body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;">Pick a game</div>
+  body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;text-align:center;">Pick a game · all games use selected dynasty words</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
-      <button class="btn-s" onclick="pickGameScope('trace')">✍️ Trace</button>
-      <button class="btn-s" onclick="pickGameScope('match')">🧠 Match</button>
-      <button class="btn-s" onclick="pickGameScope('rain')">🌧️ Rain</button>
-      <button class="btn-s" onclick="pickGameScope('listen')">👂 Listen</button>
-    </div>
-    <div id="game-scope" style="margin-top:.65rem;"></div>`;
+      <button class="btn-s" onclick="startGame('trace','dynasty')">✍️ Trace</button>
+      <button class="btn-s" onclick="startGame('match','dynasty')">🧠 Match</button>
+      <button class="btn-s" onclick="startGame('rain','dynasty')">🌧️ Rain</button>
+      <button class="btn-s" onclick="startGame('listen','dynasty')">👂 Listen</button>
+    </div>`;
   document.getElementById('games-overlay').classList.add('show');
-}
-
-function pickGameScope(game){
-  const el=document.getElementById('game-scope');if(!el)return;
-  el.innerHTML=`<div class="mq-question" style="margin-bottom:.35rem;">Word set · 词库</div>
-    <button class="btn-s" style="width:100%;margin-bottom:.35rem;" onclick="startGame('${game}','dynasty')">Selected dynasty (road)</button>
-    <button class="btn-s" style="width:100%;margin-bottom:.35rem;" onclick="startGame('${game}','hsk')">HSK ${curHSK||1} pool</button>
-    <button class="btn-s" style="width:100%;" onclick="startGame('${game}','failed')">Failed words only</button>`;
 }
 
 function currentDynastyIdForGames(){
@@ -2644,13 +2640,15 @@ function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards
 function clearMatch(){if(curP)state[curP].pendingSessions.match=null;}
 
 function startMemoryMatch(words){
-  const pick=shuffleArr(words).slice(0,8);
+  const did=(curGameTargetDid||effectiveGameTargetDid()||1);
+  const pairCount=did>=15?8:6;
+  const pick=shuffleArr(words).slice(0,pairCount);
   const cards=[];
   pick.forEach((w,i)=>{
     cards.push({id:'a'+i,pair:i,side:'zh',text:w.zh,w:{...w},matched:false});
     cards.push({id:'b'+i,pair:i,side:'en',text:w.en,w:{...w},matched:false});
   });
-  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount:8,gameTargetDid:curGameTargetDid||null};
+  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null};
   persistMatch();saveState();renderMemoryMatch();
 }
 
@@ -2667,8 +2665,9 @@ function renderMemoryMatch(){
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
     return;
   }
+  const cols=matchSt.pairCount<=6?3:4;
   body.innerHTML=`<div class="mq-progress">Matched ${matchSt.matched}/${matchSt.pairCount} · Moves ${matchSt.moves}</div>
-    <div id="match-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:.35rem;"></div>
+    <div id="match-grid" style="display:grid;grid-template-columns:repeat(${cols},1fr);gap:.35rem;"></div>
     <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="openGamesHub()">Back</button>`;
   const grid=document.getElementById('match-grid');
   matchSt.cards.forEach((c,idx)=>{
@@ -2713,18 +2712,29 @@ function clearRainSession(){clearRainTimers();if(curP)state[curP].pendingSession
 
 function startRain(words){
   clearRainSession();
-  rainSt={pool:words.filter(w=>w.zh&&w.en),target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0,
+  rainSt={pool:words.filter(w=>w.zh&&w.en),target:null,score:0,combo:0,bestCombo:0,timeLeft:30,spawnIv:null,tickIv:null,dropId:0,
     rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null};
   if(rainSt.pool.length<2){showToast('Need more characters for rain.');return;}
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
 
-function pickRainTarget(){rainSt.target=rainSt.pool[Math.floor(Math.random()*rainSt.pool.length)];}
+function pickRainTarget(){
+  if(!rainSt.pool.length){rainSt.target=null;return;}
+  if(rainSt.pool.length===1){rainSt.target=rainSt.pool[0];return;}
+  const prev=rainSt.target&&rainSt.target.zh;
+  let candidate=rainSt.pool[Math.floor(Math.random()*rainSt.pool.length)];
+  let guard=0;
+  while(candidate&&candidate.zh===prev&&guard<8){
+    candidate=rainSt.pool[Math.floor(Math.random()*rainSt.pool.length)];
+    guard++;
+  }
+  rainSt.target=candidate;
+}
 
 function renderRain(){
   const body=document.getElementById('games-body');if(!body||!rainSt.target)return;
   body.innerHTML=`<div class="mq-progress">⏱ ${rainSt.timeLeft}s · ⭐ ${rainSt.score} · combo ${rainSt.combo}</div>
-    <div class="mq-question" id="rain-hint" style="text-align:center;">Tap the character for this English meaning: <b>${rainSt.target.en}</b></div>
+    <div class="rain-target" id="rain-hint">Tap the character for this English meaning:<b>${rainSt.target.en}</b></div>
     <div id="rain-zone" style="position:relative;height:260px;border:1px solid rgba(212,160,23,.25);border-radius:10px;overflow:hidden;background:rgba(0,0,0,.18);"></div>
     <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="endRain(true)">Stop</button>`;
 }
@@ -2747,7 +2757,7 @@ function spawnRainDrop(){
   const id=++rainSt.dropId;
   const btn=document.createElement('button');
   btn.type='button';btn.className='mcq-opt zh-opt';btn.textContent=w.zh;
-  btn.style.position='absolute';btn.style.left=(8+Math.random()*72)+'%';btn.style.top='-8px';btn.style.transition='top 4.8s linear';
+  btn.style.position='absolute';btn.style.left=(8+Math.random()*72)+'%';btn.style.top='-8px';btn.style.transition='top 6s linear';
   btn.dataset.id=String(id);
   btn.onclick=()=>{
     rainSt.rainAttempts=(rainSt.rainAttempts||0)+1;
@@ -2756,6 +2766,8 @@ function spawnRainDrop(){
       rainSt.combo++;rainSt.bestCombo=Math.max(rainSt.bestCombo,rainSt.combo);
       const add=Math.round(10*(1+Math.min(0.5,rainSt.combo*0.04)));
       rainSt.score+=add;getTS(curP).correct=(getTS(curP).correct||0)+1;pickRainTarget();
+      const hint=document.getElementById('rain-hint');
+      if(hint&&rainSt.target)hint.innerHTML='Tap the character for this English meaning:<b>'+rainSt.target.en+'</b>';
     }else{rainSt.combo=0;logWrong(curP,w.zh,w.py,w.en);}
     btn.remove();persistRain();saveState();
   };
@@ -2769,7 +2781,7 @@ function spawnRainDrop(){
       }
       btn.remove();
     }
-  },4900);
+  },6100);
 }
 
 function endRain(fromUser){
@@ -2787,7 +2799,7 @@ function endRain(fromUser){
 function restoreRain(){
   const ps=state[curP].pendingSessions.rain;if(!ps||!ps.pool||!ps.pool.length)return false;
   clearRainSession();
-  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||60,spawnIv:null,tickIv:null,dropId:0,
+  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||30,spawnIv:null,tickIv:null,dropId:0,
     rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
@@ -4713,15 +4725,11 @@ function renderParentSummary(){
       const rawMs=(s.dailyTimeMs[dk])||0;
       const mins=Math.floor(rawMs/60000);const secs=Math.floor((rawMs%60000)/1000);
       grid.innerHTML+=`<div class="ppc"><div class="ppc-title" style="color:${color};">${p==='jenn'?'🐥 Jenn':'🦊 Jess'}</div>
-        <div class="psr"><span class="psr-lbl">⭐ All-time Stars</span><span class="psr-val">${s.totalStars}</span></div>
-        <div class="psr"><span class="psr-lbl">📅 Week Stars</span><span class="psr-val">${s.weekStars}</span></div>
         <div class="psr"><span class="psr-lbl">☀️ Day Stars (${lbl})</span><span class="psr-val" style="color:var(--gold)">${ts.stars||0}</span></div>
         <div class="psr"><span class="psr-lbl">✅ Correct</span><span class="psr-val">${ts.correct||0}</span></div>
         <div class="psr"><span class="psr-lbl">🏯 Gates Done</span><span class="psr-val">${ts.gates||0}</span></div>
         <div class="psr"><span class="psr-lbl">📚 Stories Read</span><span class="psr-val">${ts.stories||0}</span></div>
         <div class="psr"><span class="psr-lbl">⏱ Time Played</span><span class="psr-val">${mins}m ${secs}s</span></div>
-        <div class="psr"><span class="psr-lbl">🏯 Total Gates</span><span class="psr-val">${s.gatesCompleted.length}/22</span></div>
-        <div class="psr"><span class="psr-lbl">📖 Total Stories</span><span class="psr-val">${s.storiesCompleted.length}</span></div>
       </div>`;
       const dayWrong=Object.values(s.failedWords||{}).filter(w=>w.lastFailed===dk);
       wrongCols.push(wrongColHtml(p,dayWrong,'missed today'));
