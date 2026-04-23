@@ -2588,7 +2588,7 @@ function restoreFlashSession(){
 
 // ── Games hub ──
 let matchSt={cards:[],openIdxs:[],matched:0,moves:0,start:0,pairCount:8};
-let rainSt={pool:[],target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,dropId:0};
+let rainSt={pool:[],target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,targetIv:null,dropId:0,targetSeq:[],targetIdx:0,targetSeenCount:0};
 let listenSt={questions:[],qi:0,streak:0,score:0};
 let traceSt={chars:[],i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:null};
 
@@ -2605,15 +2605,24 @@ function gameRow(game,label){
     </div>`;
 }
 
-function openGamesHub(){
-  const body=document.getElementById('games-body');if(!body)return;
-  body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;text-align:center;">Pick a game and word pool</div>
+function gamePickerHtml(){
+  return `<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;text-align:center;">Pick a game and word pool</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
       ${gameRow('trace','✍️ Trace')}
       ${gameRow('match','🧠 Match')}
       ${gameRow('rain','🌧️ Rain')}
       ${gameRow('listen','👂 Listen')}
+    </div>
+    <div style="margin-top:.55rem;font-size:.7rem;line-height:1.5;color:var(--muted);text-align:center;">
+      <b>Dynasty</b> = words from the gate on your map ·
+      <b>HSK</b> = words from your current HSK level ·
+      <b>Failed</b> = words you missed before (practice list)
     </div>`;
+}
+
+function openGamesHub(){
+  const body=document.getElementById('games-body');if(!body)return;
+  body.innerHTML=gamePickerHtml();
   document.getElementById('games-overlay').classList.add('show');
 }
 
@@ -2642,6 +2651,7 @@ function wordsForScope(kind){
 }
 
 function startGame(game,scope){
+  document.getElementById('games-overlay').classList.add('show');
   curGameTargetDid=scope==='dynasty'?effectiveGameTargetDid():null;
   const words=wordsForScope(scope);
   if(!words.length){showToast('Not enough words in this set yet.');return;}
@@ -2720,35 +2730,43 @@ function persistRain(){
   if(!curP)return;
   state[curP].pendingSessions.rain={pool:rainSt.pool.map(w=>({...w})),target:rainSt.target?{...rainSt.target}:null,
     score:rainSt.score,combo:rainSt.combo,bestCombo:rainSt.bestCombo,timeLeft:rainSt.timeLeft,
-    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null};
+    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,
+    targetSeq:(rainSt.targetSeq||[]).map(w=>({...w})),targetIdx:rainSt.targetIdx||0,targetSeenCount:rainSt.targetSeenCount||0};
 }
-function clearRainTimers(){if(rainSt.spawnIv)clearInterval(rainSt.spawnIv);if(rainSt.tickIv)clearInterval(rainSt.tickIv);rainSt.spawnIv=rainSt.tickIv=null;}
+function clearRainTimers(){
+  if(rainSt.spawnIv)clearInterval(rainSt.spawnIv);
+  if(rainSt.tickIv)clearInterval(rainSt.tickIv);
+  if(rainSt.targetIv)clearInterval(rainSt.targetIv);
+  rainSt.spawnIv=rainSt.tickIv=rainSt.targetIv=null;
+}
 function clearRainSession(){clearRainTimers();if(curP)state[curP].pendingSessions.rain=null;}
 
 function startRain(words){
   clearRainSession();
-  rainSt={pool:words.filter(w=>w.zh&&w.en),target:null,score:0,combo:0,bestCombo:0,timeLeft:30,spawnIv:null,tickIv:null,dropId:0,
-    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null};
-  if(rainSt.pool.length<2){showToast('Need more characters for rain.');return;}
+  const uniq=[];const seen=new Set();
+  words.filter(w=>w.zh&&w.en).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);uniq.push(w);}});
+  if(uniq.length<5){showToast('Rain needs at least 5 words in this pool. Try Dynasty or HSK.');return;}
+  rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:30,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
+    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0};
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
 
-function pickRainTarget(){
+function pickRainTarget(forceAdvance=false){
   if(!rainSt.pool.length){rainSt.target=null;return;}
-  if(rainSt.pool.length===1){rainSt.target=rainSt.pool[0];return;}
-  const prev=rainSt.target&&rainSt.target.zh;
-  let candidate=rainSt.pool[Math.floor(Math.random()*rainSt.pool.length)];
-  let guard=0;
-  while(candidate&&candidate.zh===prev&&guard<8){
-    candidate=rainSt.pool[Math.floor(Math.random()*rainSt.pool.length)];
-    guard++;
+  if(!rainSt.targetSeq||!rainSt.targetSeq.length)rainSt.targetSeq=shuffleArr([...rainSt.pool]);
+  if(forceAdvance||!rainSt.target){
+    if(rainSt.targetIdx>=rainSt.targetSeq.length){
+      rainSt.targetSeq=shuffleArr([...rainSt.pool]);
+      rainSt.targetIdx=0;
+    }
+    rainSt.target=rainSt.targetSeq[rainSt.targetIdx++];
+    rainSt.targetSeenCount=Math.max(rainSt.targetSeenCount||0,Math.min(5,rainSt.targetIdx));
   }
-  rainSt.target=candidate;
 }
 
 function renderRain(){
   const body=document.getElementById('games-body');if(!body||!rainSt.target)return;
-  body.innerHTML=`<div class="mq-progress">⏱ ${rainSt.timeLeft}s · ⭐ ${rainSt.score} · combo ${rainSt.combo}</div>
+  body.innerHTML=`<div class="mq-progress">⏱ ${rainSt.timeLeft}s · ⭐ ${rainSt.score} · combo ${rainSt.combo} · targets ${Math.min(5,rainSt.targetSeenCount||1)}/5</div>
     <div class="rain-target" id="rain-hint">Tap the character for this English meaning:<b>${rainSt.target.en}</b></div>
     <div id="rain-zone" style="position:relative;height:260px;border:1px solid rgba(212,160,23,.25);border-radius:10px;overflow:hidden;background:rgba(0,0,0,.18);"></div>
     <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="endRain(true)">Stop</button>`;
@@ -2757,6 +2775,12 @@ function renderRain(){
 function runRain(){
   clearRainTimers();
   rainSt.spawnIv=setInterval(spawnRainDrop,900);
+  rainSt.targetIv=setInterval(()=>{
+    pickRainTarget(true);
+    const hint=document.getElementById('rain-hint');
+    if(hint&&rainSt.target)hint.innerHTML='Tap the character for this English meaning:<b>'+rainSt.target.en+'</b>';
+    persistRain();saveState();
+  },6000);
   rainSt.tickIv=setInterval(()=>{
     rainSt.timeLeft--;
     if(rainSt.timeLeft<=0){endRain(false);return;}
@@ -2780,7 +2804,7 @@ function spawnRainDrop(){
       rainSt.rainHits=(rainSt.rainHits||0)+1;
       rainSt.combo++;rainSt.bestCombo=Math.max(rainSt.bestCombo,rainSt.combo);
       const add=Math.round(10*(1+Math.min(0.5,rainSt.combo*0.04)));
-      rainSt.score+=add;getTS(curP).correct=(getTS(curP).correct||0)+1;pickRainTarget();
+      rainSt.score+=add;getTS(curP).correct=(getTS(curP).correct||0)+1;pickRainTarget(true);
       const hint=document.getElementById('rain-hint');
       if(hint&&rainSt.target)hint.innerHTML='Tap the character for this English meaning:<b>'+rainSt.target.en+'</b>';
     }else{rainSt.combo=0;logWrong(curP,w.zh,w.py,w.en);}
@@ -2814,8 +2838,9 @@ function endRain(fromUser){
 function restoreRain(){
   const ps=state[curP].pendingSessions.rain;if(!ps||!ps.pool||!ps.pool.length)return false;
   clearRainSession();
-  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||30,spawnIv:null,tickIv:null,dropId:0,
-    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null};
+  const seq=(ps.targetSeq&&ps.targetSeq.length)?ps.targetSeq.map(w=>({...w})):shuffleArr(ps.pool.map(w=>({...w})));
+  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||30,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
+    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
 }
@@ -3383,7 +3408,9 @@ function renderHubContent(){
       <div class="hub-play-strip">
         <div class="hub-play-btns">
           <button type="button" class="btn-s hub-flash-btn" onclick="openFlashPicker()">🎴 Flash Cards</button>
-          <button type="button" class="btn-g" onclick="openGamesHub()">🎮 Games · 游戏</button>
+        </div>
+        <div style="margin-top:.6rem;">
+          ${gamePickerHtml()}
         </div>
         <div class="hub-star-rules">
           <strong style="color:var(--ink);">How stars work</strong>
