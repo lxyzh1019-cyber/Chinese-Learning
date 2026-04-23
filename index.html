@@ -18,7 +18,7 @@
   --fzh:'Noto Serif SC',serif;--fui:'Quicksand',sans-serif;--fdec:'Ma Shan Zheng',cursive;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;font-size:110%;}
+html{scroll-behavior:smooth;font-size:120%;}
 body{background:var(--bg);color:var(--ink);font-family:var(--fui);min-height:100vh;overflow-x:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation;}
 button{cursor:pointer;touch-action:manipulation;font-family:var(--fui);}
 input{font-family:var(--fui);}
@@ -323,6 +323,8 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .dd-desc{font-size:.82rem;line-height:1.8;margin:.7rem 0 .9rem;color:var(--ink);}
 .dd-actions{display:flex;gap:.7rem;flex-wrap:wrap;}
 .hub-play-strip .btn-s,.hub-play-strip .btn-g{flex:1;min-width:140px;}
+.hub-flash-btn{transition:none!important;transform:none!important;animation:none!important;}
+.hub-flash-btn:hover{transform:none!important;box-shadow:none!important;}
 
 /* Buttons */
 .btn-p{background:linear-gradient(135deg,#7A1010,#C0392B);color:white;border:none;border-radius:11px;
@@ -1020,7 +1022,7 @@ const S_HAN={id:'han',did:6,hsk:2,title:'丝绸之路',en:'The Silk Road',
   sents:[
     [N('汉朝','Hàncháo','Han Dynasty'),C('的','de','DE'),C('人','rén','people'),C('向','xiàng','towards'),C('西','xī','west'),C('走','zǒu','walked'),C('了','le','CMPL'),C('很','hěn','very'),C('远','yuǎn','far'),P('。')],
     [C('他','tā','they'),C('们','men','PL'),C('带','dài','carried'),C('着','zhe','with'),N('中国','Zhōngguó','China'),C('的','de','DE'),C('丝','sī','silk-'),C('绸','chóu','-cloth'),C('去','qù','go'),C('做','zuò','do'),C('买','mǎi','buy-'),C('卖','mài','-sell'),P('。')],
-    [C('西','xī','west'),C('方','fāng','direction'),C('的','de','DE'),C('商','shāng','merchant-'),C('人','rén','-person'),C('带','dài','brought'),C('来','lái','came'),C('了','le','CMPL'),C('金','jīn','gold'),C('子','zi','SUF'),P('，'),B('和','hé','and'),B('很','hěn','very'),B('多','duō','many'),B('好','hǎo','good'),B('东','dōng','dōngxi'),B('西','xī','things (东西)'),P('。')],
+    [C('西','xī','west'),C('方','fāng','direction'),C('的','de','DE'),C('商','shāng','merchant-'),C('人','rén','-person'),C('带','dài','brought'),C('来','lái','came'),C('了','le','CMPL'),C('金','jīn','gold'),C('子','zi','SUF'),P('，'),B('和','hé','and'),B('很','hěn','very'),B('多','duō','many'),B('好','hǎo','good'),B('东','dōng','things-'),B('西','xī','-things'),P('。')],
     [C('两','liǎng','two'),C('边','biān','side'),C('的','de','DE'),C('人','rén','people'),C('通','tōng','through'),C('过','guò','pass'),C('这','zhè','this'),C('条','tiáo','CL-road'),C('路','lù','road'),C('认','rèn','know-'),C('识','shí','-know'),C('了','le','CMPL'),C('彼','bǐ','each-'),C('此','cǐ','-other'),P('。')],
     [N('丝绸之路','Sīchóu Zhī Lù','Silk Road'),C('让','ràng','made'),N('中国','Zhōngguó','China'),C('和','hé','and'),C('世','shì','world-'),C('界','jiè','-world'),C('连','lián','connect'),C('在','zài','together'),B('一','yī','yīqǐ'),B('起','qǐ','together'),P('。')],
   ],
@@ -1075,7 +1077,7 @@ const S_MING={id:'ming',did:19,hsk:4,title:'郑和下西洋',en:'Zheng He\'s Voy
   sents:[
     [N('明朝','Míngcháo','Ming Dynasty'),C('的','de','DE'),N('郑和','Zhèng Hé','Zheng He'),C('率','shuài','lead'),C('领','lǐng','lead'),C('着','zhe','ING'),C('一','yī','a'),C('支','zhī','CL-fleet'),C('庞','páng','gi-'),C('大','dà','-gantic'),C('的','de','DE'),C('船','chuán','ship-'),C('队','duì','-fleet'),C('出','chū','set out'),C('发','fā','depart'),C('了','le','CMPL'),P('。')],
     [C('他','tā','his'),C('的','de','DE'),C('船','chuán','ship-'),C('队','duì','-fleet'),C('有','yǒu','had'),C('超','chāo','over/more than'),C('过','guò','exceed'),C('三','sān','three'),C('百','bǎi','hundred'),C('艘','sōu','CL-ship'),C('大','dà','large'),C('船','chuán','ships'),P('。')],
-    [C('他','tā','he'),C('们','men','PL'),C('到','dào','reached'),C('过','guò','past'),C('东','dōng','South-'),C('南','nán','-east'),C('亚','yà','Asia'),P('、'),C('印','Yìn','In-'),C('度','dù','-dia'),P('、'),C('阿','Ā','A-'),C('拉','lā','-ra-'),C('伯','bó','-bia'),C('还','hái','even'),C('有','yǒu','and'),C('非','Fēi','Af-'),C('洲','zhōu','-rica'),P('。')],
+    [C('他','tā','they'),C('们','men','PL'),C('到','dào','reached'),C('过','guò','past'),C('东','dōng','South-'),C('南','nán','-east'),C('亚','yà','Asia'),P('、'),C('印','Yìn','In-'),C('度','dù','-dia'),P('、'),C('阿','Ā','A-'),C('拉','lā','-ra-'),C('伯','bó','-bia'),C('还','hái','even'),C('有','yǒu','and'),C('非','Fēi','Af-'),C('洲','zhōu','-rica'),P('。')],
     [C('他','tā','they'),C('们','men','PL'),C('带','dài','brought'),C('去','qù','along'),C('了','le','CMPL'),N('中国','Zhōngguó','China'),C('的','de','DE'),C('丝','sī','silk'),C('绸','chóu','silk'),P('、'),C('瓷','cí','porce-'),C('器','qì','-lain'),C('和','hé','and'),C('茶','chá','tea'),P('。')],
     [N('郑和','Zhèng Hé','Zheng He'),C('的','de','DE'),C('航','háng','voy-'),C('行','xíng','-age'),C('展','zhǎn','showed'),C('现','xiàn','showed'),C('了','le','CMPL'),N('中国','Zhōngguó','China'),C('的','de','DE'),C('强','qiáng','strong-'),C('大','dà','-great'),C('与','yǔ','and'),C('友','yǒu','friend-'),C('好','hǎo','-ly'),P('。')],
   ],
@@ -1116,7 +1118,7 @@ const S_ZHOU={id:'zhou',did:3,hsk:1,title:'天命的故事',en:'The Mandate of H
 };
 const S_KONFUCIUS={id:'konfucius',did:4,hsk:1,title:'孔子的学生',en:"Confucius's Students",
   sents:[
-    [N('孔子','Kǒngzǐ','Confucius'),C('是','shì','was'),B('一','yī','a'),B('位','wèi','great'),C('好','hǎo','good'),C('老','lǎo','tea-'),B('师','shī','-cher'),P('。')],
+    [N('孔子','Kǒngzǐ','Confucius'),C('是','shì','was'),B('一','yī','a'),B('位','wèi','great'),C('好','hǎo','good'),N('老师','lǎoshī','teacher'),P('。')],
     [C('他','tā','he'),C('有','yǒu','had'),C('很','hěn','very'),C('多','duō','many'),B('学','xué','stu-'),B('生','shēng','-dents'),P('。')],
     [C('他','tā','he'),C('说','shuō','said'),P('："'),C('每','měi','every'),C('天','tiān','day'),C('学','xué','study'),B('习','xí','learn'),P('，'),C('很','hěn','very'),C('好','hǎo','good'),P('。"')],
     [B('学','xué','stu-'),B('生','shēng','-dents'),C('很','hěn','very'),B('爱','ài','loved'),N('孔子','Kǒngzǐ','Confucius'),P('。')],
@@ -1251,17 +1253,17 @@ const S_ZHOU2={id:'zhou2',did:3,hsk:1,title:'大树下的朋友',en:'Friends Und
     [C('学','xué','school'),B('校','xiào','-school'),C('门','mén','gate'),B('口','kǒu','entrance'),C('有','yǒu','there is'),B('一','yī','a'),B('棵','kē','CL'),C('大','dà','big'),B('树','shù','tree'),P('。')],
     [C('我','wǒ','I'),C('和','hé','and'),C('我','wǒ','my'),C('的','de','DE'),B('朋','péng','fri-'),B('友','yǒu','-end'),C('每','měi','every'),C('天','tiān','day'),C('在','zài','at'),C('大','dà','big'),B('树','shù','tree'),B('下','xià','under'),B('玩','wán','play'),P('。')],
     [C('我','wǒ','we'),C('们','men','PL'),B('做','zuò','play'),B('游','yóu','game-'),B('戏','xì','-games'),P('，'),C('说','shuō','tell'),B('故','gù','sto-'),B('事','shì','-ry'),P('，'),C('很','hěn','very'),B('快','kuài','hap-'),B('乐','lè','-py'),P('。')],
-    [C('老','lǎo','tea-'),B('师','shī','-cher'),C('来','lái','came'),P('，'),C('说','shuō','said'),P('："'),C('要','yào','time to'),B('上','shàng','go to'),B('课','kè','class'),B('了','le','now'),P('！"')],
+    [N('老师','lǎoshī','teacher'),C('来','lái','came'),P('，'),C('说','shuō','said'),P('："'),C('要','yào','time to'),B('上','shàng','go to'),B('课','kè','class'),B('了','le','now'),P('！"')],
     [C('我','wǒ','we'),C('们','men','PL'),B('跑','pǎo','ran'),B('进','jìn','into'),B('教','jiào','class-'),B('室','shì','-room'),P('，'),C('开','kāi','start'),B('始','shǐ','begin'),C('学','xué','study'),C('习','xí','learn'),P('。')],
   ],
   trans:['There is a big tree at the school gate.','My friends and I play under the big tree every day.','We play games, tell stories, and are very happy.','The teacher came and said: "Time for class!"','We ran into the classroom and started studying.'],
 };
 const S_DONGZHOU2={id:'dongzhou2',did:4,hsk:1,title:'猫和老鼠',en:'Cat and Mouse',
   sents:[
-    [C('有','yǒu','there was'),B('一','yī','a'),B('只','zhī','CL'),B('猫','māo','cat'),C('和','hé','and'),B('一','yī','a'),B('只','zhī','CL'),B('老','lǎo','mo-'),B('鼠','shǔ','-use'),P('。')],
-    [B('猫','māo','cat'),C('要','yào','wanted to'),C('吃','chī','eat'),B('老','lǎo','mo-'),B('鼠','shǔ','-use'),P('，'),B('老','lǎo','mo-'),B('鼠','shǔ','-use'),B('跑','pǎo','ran'),C('得','de','ADV'),C('很','hěn','very'),B('快','kuài','fast'),P('。')],
-    [B('老','lǎo','mo-'),B('鼠','shǔ','-use'),B('跑','pǎo','ran to'),C('到','dào','to'),C('山','shān','mountain'),C('上','shàng','on top'),P('，'),B('猫','māo','cat'),C('没','méi','did not'),C('有','yǒu','have'),B('追','zhuī','chase'),C('到','dào','reach'),P('。')],
-    [B('老','lǎo','mo-'),B('鼠','shǔ','-use'),C('在','zài','on'),C('山','shān','mountain'),C('上','shàng','top'),C('找','zhǎo','found'),C('到','dào','CMPL'),C('很','hěn','very'),C('多','duō','many'),C('好','hǎo','good'),C('吃','chī','eat'),C('的','de','DE'),B('东','dōng','things-'),B('西','xī','-things'),P('。')],
+    [C('有','yǒu','there was'),B('一','yī','a'),B('只','zhī','CL'),B('猫','māo','cat'),C('和','hé','and'),B('一','yī','a'),B('只','zhī','CL'),B('老','lǎo','mou-'),B('鼠','shǔ','-use'),P('。')],
+    [B('猫','māo','cat'),C('要','yào','wanted to'),C('吃','chī','eat'),B('老','lǎo','mou-'),B('鼠','shǔ','-use'),P('，'),B('老','lǎo','mou-'),B('鼠','shǔ','-use'),B('跑','pǎo','ran'),C('得','de','ADV'),C('很','hěn','very'),B('快','kuài','fast'),P('。')],
+    [B('老','lǎo','mou-'),B('鼠','shǔ','-use'),B('跑','pǎo','ran to'),C('到','dào','to'),C('山','shān','mountain'),C('上','shàng','on top'),P('，'),B('猫','māo','cat'),C('没','méi','did not'),C('有','yǒu','have'),B('追','zhuī','chase'),C('到','dào','reach'),P('。')],
+    [B('老','lǎo','mou-'),B('鼠','shǔ','-use'),C('在','zài','on'),C('山','shān','mountain'),C('上','shàng','top'),C('找','zhǎo','found'),C('到','dào','CMPL'),C('很','hěn','very'),C('多','duō','many'),C('好','hǎo','good'),C('吃','chī','eat'),C('的','de','DE'),B('东','dōng','things-'),B('西','xī','-things'),P('。')],
     [C('它','tā','it'),C('说','shuō','said'),P('："'),C('这','zhè','here'),B('里','lǐ','inside'),C('很','hěn','very'),C('好','hǎo','good'),P('，'),C('我','wǒ','I'),C('不','bù','not'),B('下','xià','go down'),C('山','shān','mountain'),B('了','le','now'),P('！"')],
   ],
   trans:['There was a cat and a mouse.','The cat wanted to eat the mouse; the mouse ran very fast.','The mouse ran to the mountain and the cat couldn\'t catch it.','On the mountain the mouse found many delicious things.','It said: "This is great — I\'m not going back down!"'],
@@ -1309,7 +1311,7 @@ const S_SANGUO2={id:'sanguo2',did:8,hsk:2,title:'好朋友的力量',en:'The Pow
 const S_SHUFA2={id:'shufa2',did:9,hsk:2,title:'学写汉字',en:'Learning to Write Chinese Characters',
   sents:[
     [C('我','wǒ','I'),B('开始','kāishǐ','started'),C('学','xué','learn'),C('习','xí','learning'),C('写','xiě','write'),C('汉','Hàn','Chinese-'),C('字','zì','-characters'),B('了','le','now'),P('。')],
-    [C('老','lǎo','tea-'),B('师','shī','-cher'),B('教','jiào','taught'),C('我','wǒ','me'),B('握','wò','hold'),B('笔','bǐ','pen'),C('的','de','DE'),B('方','fāng','meth-'),B('法','fǎ','-od'),P('。')],
+    [N('老师','lǎoshī','teacher'),B('教','jiào','taught'),C('我','wǒ','me'),B('握','wò','hold'),B('笔','bǐ','pen'),C('的','de','DE'),B('方','fāng','meth-'),B('法','fǎ','-od'),P('。')],
     [C('我','wǒ','I'),B('练','liàn','prac-'),C('习','xí','-tice'),C('写','xiě','write'),P('"'),C('水','shuǐ','water'),P('"'),C('和','hé','and'),P('"'),C('山','shān','mountain'),P('"'),P('，'),C('写','xiě','wrote'),B('了','le','CMPL'),C('很','hěn','very'),C('多','duō','many'),B('遍','biàn','times'),P('。')],
     [B('刚','gāng','just'),B('开始','kāishǐ','start'),C('写','xiě','write'),C('得','de','ADV'),C('不','bù','not'),C('好','hǎo','well'),P('，'),B('但','dàn','but'),C('是','shì','is'),B('慢','màn','slowly'),B('慢','màn','slowly'),C('地','de','ADV'),B('变','biàn','became'),C('好','hǎo','better'),B('了','le','CMPL'),P('。')],
     [C('现','xiàn','now-'),C('在','zài','-now'),C('我','wǒ','I'),C('很','hěn','very'),B('喜','xǐ','like-'),B('欢','huān','-like'),C('写','xiě','write'),C('汉','Hàn','Chinese-'),C('字','zì','-characters'),P('，'),C('每','měi','every'),C('个','gè','CL'),C('字','zì','character'),C('都','dōu','all'),C('很','hěn','very'),B('美','měi','beautiful'),P('。')],
@@ -1348,7 +1350,7 @@ const S_TANG2={id:'tang2',did:12,hsk:3,title:'诗人看月亮',en:'The Poet Look
 };
 const S_PRINT2={id:'print2',did:13,hsk:3,title:'图书馆的一天',en:'A Day at the Library',
   sents:[
-    [C('今','jīn','today'),C('天','tiān','day'),C('老','lǎo','tea-'),B('师','shī','-cher'),B('带','dài','took'),C('我','wǒ','we'),C('们','men','PL'),C('去','qù','to'),B('了','le','CMPL'),B('图','tú','libr-'),B('书','shū','-ary'),B('馆','guǎn','library'),P('。')],
+    [C('今','jīn','today'),C('天','tiān','day'),N('老师','lǎoshī','teacher'),B('带','dài','took'),C('我','wǒ','we'),C('们','men','PL'),C('去','qù','to'),B('了','le','CMPL'),B('图','tú','libr-'),B('书','shū','-ary'),B('馆','guǎn','library'),P('。')],
     [B('图','tú','libr-'),B('书','shū','-ary'),B('馆','guǎn','library'),B('里','lǐ','inside'),C('有','yǒu','has'),B('成','chéng','thous-'),B('千','qiān','-ands'),B('上','shàng','upon'),B('万','wàn','ten-thousand'),C('本','běn','CL-book'),C('书','shū','books'),P('。')],
     [C('我','wǒ','I'),B('找','zhǎo','found'),C('到','dào','CMPL'),B('了','le','CMPL'),B('一','yī','a'),C('本','běn','CL-book'),B('关','guān','about'),B('于','yú','about'),B('古','gǔ','ancient'),C('代','dài','era'),N('中国','Zhōngguó','China'),C('的','de','DE'),B('故','gù','sto-'),B('事','shì','-ry'),C('书','shū','book'),P('。')],
     [C('我','wǒ','I'),C('在','zài','at'),B('图','tú','libr-'),B('书','shū','-ary'),B('馆','guǎn','library'),B('里','lǐ','inside'),C('读','dú','read'),B('了','le','CMPL'),B('两','liǎng','two'),B('个','gè','CL'),B('小','xiǎo','smal-'),B('时','shí','-hours'),P('，'),B('忘','wàng','forgot'),B('记','jì','CMPL'),B('了','le','CMPL'),C('时','shí','time'),B('间','jiān','time'),P('。')],
@@ -1368,7 +1370,7 @@ const S_SONG2={id:'song2',did:14,hsk:3,title:'纸钱的魔力',en:'The Magic of 
 };
 const S_TEA2={id:'tea2',did:15,hsk:3,title:'茶馆的故事',en:'Stories in the Teahouse',
   sents:[
-    [N('南宋','Nán Sòng','Southern Song'),C('时','shí','at that'),C('候','hòu','time'),N('临安','Lín\'ān','Lin\'an'),C('城','chéng','city-'),B('里','lǐ','in'),C('有','yǒu','had'),C('很','hěn','very'),C('多','duō','many'),B('著','zhù','famou'),B('名','míng','-s'),C('的','de','DE'),B('茶','chá','tea-'),B('馆','guǎn','-house'),P('。')],
+    [N('南宋','Nán Sòng','Southern Song'),C('时','shí','at that'),C('候','hòu','time'),N('临安','Lín\'ān','Lin\'an'),C('城','chéng','city-'),B('里','lǐ','in'),C('有','yǒu','had'),C('很','hěn','very'),C('多','duō','many'),B('著','zhù','famou-'),B('名','míng','-s'),C('的','de','DE'),B('茶','chá','tea-'),B('馆','guǎn','-house'),P('。')],
     [C('人','rén','people'),C('们','men','PL'),C('在','zài','in'),B('茶','chá','tea-'),B('馆','guǎn','-house'),B('里','lǐ','inside'),C('喝','hē','drink'),B('茶','chá','tea'),P('、'),B('聊','liáo','chat-'),B('天','tiān','-chat'),P('，'),B('分','fēn','share'),B('享','xiǎng','share'),B('新','xīn','new-'),B('闻','wén','-news'),P('。')],
     [B('艺','yì','art-'),B('人','rén','-ist'),C('在','zài','in'),B('茶','chá','tea-'),B('馆','guǎn','-house'),B('里','lǐ','inside'),B('表','biǎo','per-'),B('演','yǎn','-form'),P('，'),B('讲','jiǎng','tell'),B('故','gù','sto-'),B('事','shì','-ry'),B('给','gěi','to'),C('客','kè','guest-'),B('人','rén','-people'),B('听','tīng','hear'),P('。')],
     [B('茶','chá','tea-'),B('馆','guǎn','-house'),C('不','bù','not only'),B('仅','jǐn','only'),C('是','shì','was'),C('喝','hē','drink'),B('茶','chá','tea'),C('的','de','DE'),B('地','dì','place-'),B('方','fāng','-place'),P('，'),C('也','yě','also'),C('是','shì','was'),C('文','wén','cul-'),C('化','huà','-tural'),B('交','jiāo','ex-'),B('流','liú','-change'),C('的','de','DE'),B('中','zhōng','cen-'),B('心','xīn','-ter'),P('。')],
@@ -2025,7 +2027,8 @@ function defPlayer(){
     traceStars:{},
     libraryCountAtDayStart:{},
     gateGameStars:{},
-    lastGateQuizAttempt:null};
+    lastGateQuizAttempt:null,
+    recentGateQuestions:{}};
 }
 
 let state={jenn:null,jess:null};
@@ -2247,6 +2250,7 @@ function ensureState(p){
   if(!s.libraryCountAtDayStart)s.libraryCountAtDayStart={};
   if(!s.gateGameStars)s.gateGameStars={};
   if(s.lastGateQuizAttempt===undefined)s.lastGateQuizAttempt=null;
+  if(!s.recentGateQuestions)s.recentGateQuestions={};
   // Week reset
   if(!isSameWeek(s.weekStart)){
     const nws=weekStart();
@@ -2590,14 +2594,25 @@ let traceSt={chars:[],i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:null
 
 function closeGamesOverlay(){document.getElementById('games-overlay').classList.remove('show');}
 
+function gameRow(game,label){
+  return `<div style="padding:.45rem;border:1px solid rgba(212,160,23,.18);border-radius:10px;background:rgba(255,255,255,.02);">
+      <div style="font-weight:800;margin-bottom:.35rem;text-align:center;">${label}</div>
+      <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
+        <button class="btn-s" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','dynasty')">Dynasty</button>
+        <button class="btn-s" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','hsk')">HSK</button>
+        <button class="btn-s" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','failed')">Failed</button>
+      </div>
+    </div>`;
+}
+
 function openGamesHub(){
   const body=document.getElementById('games-body');if(!body)return;
-  body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;text-align:center;">Pick a game · all games use selected dynasty words</div>
+  body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;text-align:center;">Pick a game and word pool</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
-      <button class="btn-s" onclick="startGame('trace','dynasty')">✍️ Trace</button>
-      <button class="btn-s" onclick="startGame('match','dynasty')">🧠 Match</button>
-      <button class="btn-s" onclick="startGame('rain','dynasty')">🌧️ Rain</button>
-      <button class="btn-s" onclick="startGame('listen','dynasty')">👂 Listen</button>
+      ${gameRow('trace','✍️ Trace')}
+      ${gameRow('match','🧠 Match')}
+      ${gameRow('rain','🌧️ Rain')}
+      ${gameRow('listen','👂 Listen')}
     </div>`;
   document.getElementById('games-overlay').classList.add('show');
 }
@@ -2757,7 +2772,7 @@ function spawnRainDrop(){
   const id=++rainSt.dropId;
   const btn=document.createElement('button');
   btn.type='button';btn.className='mcq-opt zh-opt';btn.textContent=w.zh;
-  btn.style.position='absolute';btn.style.left=(8+Math.random()*72)+'%';btn.style.top='-8px';btn.style.transition='top 6s linear';
+  btn.style.position='absolute';btn.style.left=(8+Math.random()*72)+'%';btn.style.top='-8px';btn.style.transition='top 8.4s linear';
   btn.dataset.id=String(id);
   btn.onclick=()=>{
     rainSt.rainAttempts=(rainSt.rainAttempts||0)+1;
@@ -2781,7 +2796,7 @@ function spawnRainDrop(){
       }
       btn.remove();
     }
-  },6100);
+  },8500);
 }
 
 function endRain(fromUser){
@@ -3367,7 +3382,7 @@ function renderHubContent(){
       <div id="dynasty-detail-panel"></div>
       <div class="hub-play-strip">
         <div class="hub-play-btns">
-          <button type="button" class="btn-s" onclick="openFlashPicker()">🎴 Flash Cards</button>
+          <button type="button" class="btn-s hub-flash-btn" onclick="openFlashPicker()">🎴 Flash Cards</button>
           <button type="button" class="btn-g" onclick="openGamesHub()">🎮 Games · 游戏</button>
         </div>
         <div class="hub-star-rules">
@@ -3955,14 +3970,17 @@ function startGateQuiz(did){
   document.getElementById('quiz-title').textContent='Gate '+did+': '+d.zh+' Boss · 关卡挑战';
   const vocab=buildQuizVocab(d);
   const mcqN=8,pyN=10,sbN=3;
+  const recentStore=getRecentQuestionStore(curP);
+  const recent=recentStore[`g-${did}`]||{mcq:[],py:[]};
   const maxScore=mcqN*14+pyN*11+sbN*20;// 14 = base 10 + up to 4 bonus per MCQ
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
-    questions:buildMCQ(vocab,mcqN),
-    pyQ:buildPYQ(vocab,pyN),
+    questions:buildMCQ(vocab,mcqN,recent.mcq),
+    pyQ:buildPYQ(vocab,pyN,recent.py),
     sbPack:buildSBPack(did,false,sbN),
     sbRound:0,isDaddy:false,isChampion:false,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
     quizCorrect:0,quizAttempts:0};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];
+  recentStore[`g-${did}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
 }
@@ -3974,14 +3992,17 @@ function startChampionChallenge(group){
   document.getElementById('quiz-title').textContent='👑 CHAMPION CHALLENGE · '+group+'th Group · 大关挑战';
   const vocab=buildQuizVocab(d,true);// forChampion=true
   const mcqN=32,pyN=40,sbN=10;
+  const recentStore=getRecentQuestionStore(curP);
+  const recent=recentStore[`c-${group}`]||{mcq:[],py:[]};
   const maxScore=mcqN*14+pyN*11+sbN*20;
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
-    questions:buildMCQ(vocab,mcqN),
-    pyQ:buildPYQ(vocab,pyN),
+    questions:buildMCQ(vocab,mcqN,recent.mcq),
+    pyQ:buildPYQ(vocab,pyN,recent.py),
     sbPack:buildSBPack(did,true,sbN),
     sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
     quizCorrect:0,quizAttempts:0};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];
+  recentStore[`c-${group}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
 }
@@ -4070,24 +4091,54 @@ function supplementVocabFromGateList(primary,gateIds,minSize){
   return primary;
 }
 
+
+function vocabDifficulty(w){
+  const zh=(w&&w.zh)||'';
+  const py=(w&&w.py)||'';
+  if(zh.length<=1&&!py.includes(' '))return 'easy';
+  if(zh.length<=2)return 'medium';
+  return 'hard';
+}
+
+function pickBalancedVocab(vocab,n,avoidZh){
+  const avoid=new Set(avoidZh||[]);
+  const fresh=vocab.filter(w=>!avoid.has(w.zh));
+  const src=(fresh.length>=n?fresh:vocab).slice().sort(()=>Math.random()-.5);
+  const b={easy:[],medium:[],hard:[]};
+  src.forEach(w=>b[vocabDifficulty(w)].push(w));
+  const want={easy:Math.round(n*0.35),medium:Math.round(n*0.4)};
+  want.hard=Math.max(0,n-want.easy-want.medium);
+  const out=[];
+  ['easy','medium','hard'].forEach(k=>{for(let i=0;i<want[k]&&b[k].length;i++)out.push(b[k].pop());});
+  const rest=[...b.easy,...b.medium,...b.hard].sort(()=>Math.random()-.5);
+  while(out.length<n&&rest.length)out.push(rest.pop());
+  return out;
+}
+
+function getRecentQuestionStore(p){
+  const s=state[p];
+  if(!s.recentGateQuestions)s.recentGateQuestions={};
+  return s.recentGateQuestions;
+}
+
 function buildQuizVocab(d,forChampion=false){
   const did=d.id;
   let primary;
   if(forChampion){
     const groupStart=Math.max(1,did-4);
-    gateIds=[];for(let i=groupStart;i<=did;i++)gateIds.push(i);
+    const gateIds=[];for(let i=groupStart;i<=did;i++)gateIds.push(i);
     primary=mergeVocabFromDynasties(gateIds,false);
-    primary=supplementVocabFromGateList(primary,gateIds,80);
+    primary=supplementVocabFromGateList(primary,gateIds,120);
     return primary.sort(()=>Math.random()-.5);
   }
   primary=mergeVocabFromDynasties([did],true);
-  primary=supplementVocabFromGateList(primary,[did],12);
+  primary=supplementVocabFromGateList(primary,[did],40);
   return primary.sort(()=>Math.random()-.5);
 }
 
-function buildMCQ(vocab,n=8){
+function buildMCQ(vocab,n=8,avoidZh=[]){
   n=Math.min(n,20,vocab.length);
-  const pool=[...vocab].sort(()=>Math.random()-.5);
+  const pool=pickBalancedVocab(vocab,n,avoidZh);
   const qs=[];
   for(let i=0;i<Math.min(n,pool.length);i++){
     const correct=pool[i];
@@ -4113,9 +4164,9 @@ function buildMCQ(vocab,n=8){
   return qs;
 }
 
-function buildPYQ(vocab,n=10){
+function buildPYQ(vocab,n=10,avoidZh=[]){
   n=Math.min(n,20,vocab.length);
-  return [...vocab].sort(()=>Math.random()-.5).slice(0,n).map(w=>({zh:w.zh,correct:stripTones(w.py)}));
+  return pickBalancedVocab(vocab,n,avoidZh).map(w=>({zh:w.zh,correct:stripTones(w.py)}));
 }
 
 function buildSBPack(did,isDaddy=false,n=3){
