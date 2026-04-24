@@ -862,6 +862,19 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
   </div>
 </div>
 
+<div class="mini-quiz-overlay" id="timer-modal-overlay">
+  <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeTimerModal()" title="Close" aria-label="Close">✕</button>
+    <div class="mq-title" id="timer-modal-title">Gate Challenge</div>
+    <div id="timer-modal-body" style="font-size:.82rem;color:var(--muted);line-height:1.6;text-align:center;margin:.2rem 0 .6rem;"></div>
+    <div id="timer-modal-status" style="font-size:.74rem;color:var(--gold);text-align:center;margin-bottom:.8rem;"></div>
+    <div style="display:flex;justify-content:center;gap:.55rem;flex-wrap:wrap;">
+      <button class="btn-g" id="timer-modal-view-btn" onclick="timerModalViewTasks()">View Gate Tasks</button>
+      <button class="btn-s" onclick="closeTimerModal()">Later</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ TIME LOCK ═══ -->
 <div class="timelock" id="timelock">
   <div class="tl-card">
@@ -2255,6 +2268,9 @@ function ensureState(p){
   if(!s.gateBestQuiz)s.gateBestQuiz={};
   if(!s.championBestQuiz)s.championBestQuiz={};
   if(!s.gateTimers)s.gateTimers={};
+  if(!s.timerReminderShown)s.timerReminderShown={};
+  if(!s.timerWarningShown)s.timerWarningShown={};
+  if(!s.timerLastSeenAt)s.timerLastSeenAt={};
   if(s.lastGateQuizAttempt===undefined)s.lastGateQuizAttempt=null;
   if(!s.recentGateQuestions)s.recentGateQuestions={};
   // Week reset
@@ -2326,6 +2342,109 @@ function isDateAfter(a,b){
   return(a||'')>(b||'');
 }
 
+function gateTimerDays(did){
+  const n=Math.max(1,parseInt(did,10)||1);
+  return 5+2*Math.floor((n-1)/5);
+}
+
+function dateDiffDays(fromKey,toKey){
+  const a=(fromKey||'').split('-').map(x=>parseInt(x,10));
+  const b=(toKey||'').split('-').map(x=>parseInt(x,10));
+  if(a.length!==3||b.length!==3)return 0;
+  const d1=new Date(a[0],a[1]-1,a[2]);
+  const d2=new Date(b[0],b[1]-1,b[2]);
+  const ms=Math.round((d2-d1)/86400000);
+  return ms;
+}
+
+function gateTimerDaysLeft(t){
+  if(!t||!t.active)return 0;
+  return Math.max(0,dateDiffDays(todayKey(),t.deadlineKey)+1);
+}
+
+function showTimerModal(cfg){
+  const overlay=document.getElementById('timer-modal-overlay');
+  if(!overlay)return;
+  const title=document.getElementById('timer-modal-title');
+  const msg=document.getElementById('timer-modal-body')||document.getElementById('timer-modal-msg');
+  const status=document.getElementById('timer-modal-status');
+  const action=document.getElementById('timer-modal-action')||document.getElementById('timer-modal-view-btn');
+  if(cfg&&cfg.did!=null)overlay.dataset.did=String(cfg.did);else delete overlay.dataset.did;
+  title.textContent=cfg.title||'Gate Challenge';
+  if(msg)msg.textContent=cfg.msg||'';
+  status.textContent=cfg.status||'';
+  if(action){
+    action.onclick=()=>{
+      hideTimerModal();
+      if(typeof cfg.onAction==='function')cfg.onAction();
+    };
+  }
+  overlay.classList.add('show');
+}
+
+function hideTimerModal(){
+  const overlay=document.getElementById('timer-modal-overlay');
+  if(overlay)overlay.classList.remove('show');
+}
+
+function closeTimerModal(){hideTimerModal();}
+
+function timerModalViewTasks(){
+  const overlay=document.getElementById('timer-modal-overlay');
+  if(!overlay||!overlay.dataset.did){hideTimerModal();return;}
+  const did=parseInt(overlay.dataset.did,10)||null;
+  hideTimerModal();
+  focusGateTasks(did);
+}
+
+function timerModalViewGate(){timerModalViewTasks();}
+
+function maybeShowGateTimerReminder(s,did){
+  if(!s||!did||!s.gateTimers)return;
+  const k=String(did);
+  const t=s.gateTimers[k];
+  if(!t||!t.active)return;
+  const today=todayKey();
+  const left=gateTimerDaysLeft(t);
+  if(left<=0)return;
+  if(left<=1){
+    if((s.timerWarningShown&&s.timerWarningShown[k])===today)return;
+    if(!s.timerWarningShown)s.timerWarningShown={};
+    s.timerWarningShown[k]=today;
+    showTimerModal({
+      did,
+      title:'Final Day',
+      msg:'This is your last day to finish this gate challenge. Give it your best push now.',
+      status:`Due today: ${t.deadlineKey}`,
+      onAction:()=>focusGateTasks(did)
+    });
+    return;
+  }
+  if((s.timerReminderShown&&s.timerReminderShown[k])===today)return;
+  if(!s.timerReminderShown)s.timerReminderShown={};
+  s.timerReminderShown[k]=today;
+  showTimerModal({
+    did,
+    title:'Gate Challenge Check-In',
+    msg:'Your gate challenge is active. Keep going to finish your quiz and four games at 3 stars.',
+    status:`${left} days left (due ${t.deadlineKey})`,
+    onAction:()=>focusGateTasks(did)
+  });
+}
+
+function focusGateTasks(did){
+  if(did){selectedGateId=did;}
+  if(curP&&state[curP]&&did){
+    const s=state[curP];
+    if(!s.timerLastSeenAt)s.timerLastSeenAt={};
+    s.timerLastSeenAt[String(did)]=todayKey();
+  }
+  if(document.getElementById('myday-overlay').classList.contains('show'))closeMyDay();
+  if(document.getElementById('games-overlay').classList.contains('show'))closeGamesOverlay();
+  if(document.getElementById('flash-overlay').classList.contains('show'))closeFlashOverlay();
+  renderHub();
+}
+
 function resetGateProgress(s,did){
   const k=String(did);
   if(s.gateGameStars)s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
@@ -2342,9 +2461,18 @@ function startGateTimerIfNeeded(s,did,stars){
   const k=String(did);
   if(s.gateTimers[k]&&s.gateTimers[k].active)return;
   const start=todayKey();
-  const deadline=dateAddDays(5);
-  s.gateTimers[k]={startKey:start,deadlineKey:deadline,active:true};
-  showToast('Congratulations, warrior! You unlocked this gate path. Finish the rest in 5 days or restart.',4200);
+  const days=gateTimerDays(did);
+  const deadline=dateAddDays(days);
+  s.gateTimers[k]={startKey:start,deadlineKey:deadline,active:true,days};
+  showTimerModal({
+    did,
+    title:'Path Unlocked',
+    msg:`Great work, warrior. You unlocked this gate path. Finish all gate tasks in ${days} days to clear the gate.`,
+    status:`Deadline: ${deadline} (${days} days left)`,
+    onAction:()=>focusGateTasks(did)
+  });
+  if(!s.timerLastSeenAt)s.timerLastSeenAt={};
+  s.timerLastSeenAt[k]=start;
 }
 
 function expireGateTimerIfNeeded(s,did){
@@ -2355,15 +2483,23 @@ function expireGateTimerIfNeeded(s,did){
   if(!isDateAfter(todayKey(),t.deadlineKey))return false;
   resetGateProgress(s,did);
   t.active=false;
-  showToast('Gate timer expired — this gate progress reset. Try again!',3400);
+  showTimerModal({
+    did,
+    title:'Gate Challenge Reset',
+    msg:'Time is up for this gate challenge. This gate progress has restarted, and you can begin again right now.',
+    status:'New attempt ready',
+    onAction:()=>focusGateTasks(did)
+  });
   return true;
 }
 
 function gateTimerStatusLine(s,did){
   const k=String(did);
   const t=s.gateTimers&&s.gateTimers[k];
-  if(!t||!t.active)return 'Timer starts when first game reaches 3★.';
-  return `Gate timer: active · due by ${t.deadlineKey}`;
+  if(!t||!t.active)return 'Timer starts after your first 3-star game for this gate.';
+  const left=gateTimerDaysLeft(t);
+  if(left<=1)return 'Gate challenge final day: due today.';
+  return `Gate challenge active: ${left} days left (due ${t.deadlineKey}).`;
 }
 
 function bestQuizForAttempt(s,isChampion,did,group){
@@ -3425,6 +3561,8 @@ function getCurrentHSK(s){
 function renderHub(){
   if(!curP)return;
   const s=state[curP];
+  const nextDid=nextOpenGateId(s);
+  if(nextDid)maybeShowGateTimerReminder(s,nextDid);
   document.getElementById('hub-avatar').textContent=curP==='jenn'?'🐥':'🦊';
   document.getElementById('hub-name').textContent=curP==='jenn'?'Jenn':'Jess';
   const hsk=getCurrentHSK(s);
@@ -4812,7 +4950,11 @@ function renderQuizResult(qc){
     if(!quizPass)bits.push(`quiz best: need <b>over 90%</b> and 3 quiz stars (best saved: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★)`);
     if(!gamesOk)bits.push(`games: need 3★ on Trace, Memory, Rain, Listen for this gate (${g3}/4 ready)`);
     const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
-    if(timer&&timer.active)bits.push(`timer: complete by <b>${timer.deadlineKey}</b> or this gate restarts`);
+    if(timer&&timer.active){
+      const left=gateTimerDaysLeft(timer);
+      if(left<=1)bits.push('Timer: final day — complete now to avoid restart.');
+      else bits.push(`Timer: finish by <b>${timer.deadlineKey}</b> or this gate challenge restarts.`);
+    }
     lockMsg=`<div style="color:#FF9090;font-weight:700;margin:.7rem 0;text-align:center;line-height:1.55;">${bits.join('<br>')}</div>`;
   }
   qc.innerHTML=`
