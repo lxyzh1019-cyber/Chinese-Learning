@@ -730,8 +730,6 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
       <div class="ts-row" id="ts-champ-row" style="display:none;"><span>🏆 Champion</span><span id="ts-champ">—</span></div>
     </div>
     <div class="badge-strip" id="badge-strip"></div>
-    <button class="sidebar-btn" onclick="showPinyinChart()">📖 拼音表</button>
-    <button class="sidebar-btn" onclick="showMyDay()">🌟 My Day · 今日</button>
     <div class="practice-box" id="practice-box"></div>
     <button class="sidebar-btn muted-btn" onclick="goToSelect()">← Back to Profiles</button>
   </div>
@@ -2027,6 +2025,9 @@ function defPlayer(){
     traceStars:{},
     libraryCountAtDayStart:{},
     gateGameStars:{},
+    gateBestQuiz:{},
+    championBestQuiz:{},
+    gateTimers:{},
     lastGateQuizAttempt:null,
     recentGateQuestions:{}};
 }
@@ -2075,6 +2076,7 @@ const BADGE_DEFS={
   star_200:{icon:'⭐',title:'200 total stars'},
   daily_regular:{icon:'☀️',title:'7 daily challenges'},
   pinyin_master:{icon:'📘',title:'Finished pinyin intro'},
+  one_day_gate:{icon:'🏅',title:'Cleared a gate in one day'},
 };
 
 function checkBadges(p,opts){
@@ -2091,6 +2093,7 @@ function checkBadges(p,opts){
   if((s.dailyWordTotal||0)>=7)add('daily_regular');
   if(opts.speedGate)add('speed_scholar');
   if(opts.pinyinDone)add('pinyin_master');
+  if(opts.oneDayGate)add('one_day_gate');
 }
 
 function renderBadgeStrip(p){
@@ -2249,6 +2252,9 @@ function ensureState(p){
   if(!s.traceStars)s.traceStars={};
   if(!s.libraryCountAtDayStart)s.libraryCountAtDayStart={};
   if(!s.gateGameStars)s.gateGameStars={};
+  if(!s.gateBestQuiz)s.gateBestQuiz={};
+  if(!s.championBestQuiz)s.championBestQuiz={};
+  if(!s.gateTimers)s.gateTimers={};
   if(s.lastGateQuizAttempt===undefined)s.lastGateQuizAttempt=null;
   if(!s.recentGateQuestions)s.recentGateQuestions={};
   // Week reset
@@ -2305,11 +2311,93 @@ function updateGateGameBest(did,gameKey,stars){
   if(!curP||!did||!gameKey)return;
   ensureState(curP);
   const s=state[curP];
+  expireGateTimerIfNeeded(s,did);
   if(!s.gateGameStars)s.gateGameStars={};
   const k=String(did);
   if(!s.gateGameStars[k])s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
   const prev=s.gateGameStars[k][gameKey]||0;
-  if(stars>prev)s.gateGameStars[k][gameKey]=stars;
+  if(stars>prev){
+    s.gateGameStars[k][gameKey]=stars;
+    startGateTimerIfNeeded(s,did,stars);
+  }
+}
+
+function isDateAfter(a,b){
+  return(a||'')>(b||'');
+}
+
+function resetGateProgress(s,did){
+  const k=String(did);
+  if(s.gateGameStars)s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
+  if(s.gateBestQuiz)delete s.gateBestQuiz[k];
+  if(s.lastGateQuizAttempt&&s.lastGateQuizAttempt.did===did)s.lastGateQuizAttempt=null;
+  if(s.pendingSessions&&s.pendingSessions.gate&&s.pendingSessions.gate.did===did)s.pendingSessions.gate=null;
+}
+
+function startGateTimerIfNeeded(s,did,stars){
+  if(!did||stars<3)return;
+  if(!s.gateTimers)s.gateTimers={};
+  if(!s.gatesCompleted)s.gatesCompleted=[];
+  if(s.gatesCompleted.includes(did))return;
+  const k=String(did);
+  if(s.gateTimers[k]&&s.gateTimers[k].active)return;
+  const start=todayKey();
+  const deadline=dateAddDays(5);
+  s.gateTimers[k]={startKey:start,deadlineKey:deadline,active:true};
+  showToast('Congratulations, warrior! You unlocked this gate path. Finish the rest in 5 days or restart.',4200);
+}
+
+function expireGateTimerIfNeeded(s,did){
+  if(!s||!did||!s.gateTimers)return false;
+  const k=String(did);
+  const t=s.gateTimers[k];
+  if(!t||!t.active)return false;
+  if(!isDateAfter(todayKey(),t.deadlineKey))return false;
+  resetGateProgress(s,did);
+  t.active=false;
+  showToast('Gate timer expired — this gate progress reset. Try again!',3400);
+  return true;
+}
+
+function gateTimerStatusLine(s,did){
+  const k=String(did);
+  const t=s.gateTimers&&s.gateTimers[k];
+  if(!t||!t.active)return 'Timer starts when first game reaches 3★.';
+  return `Gate timer: active · due by ${t.deadlineKey}`;
+}
+
+function bestQuizForAttempt(s,isChampion,did,group){
+  if(isChampion){
+    const ck=String(group||0);
+    return(s.championBestQuiz&&s.championBestQuiz[ck])||{accPct:0,quizStars:0};
+  }
+  const k=String(did);
+  return(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0};
+}
+
+function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars){
+  if(isChampion){
+    const ck=String(group||0);
+    if(!s.championBestQuiz)s.championBestQuiz={};
+    const prev=s.championBestQuiz[ck]||{accPct:0,quizStars:0};
+    s.championBestQuiz[ck]={accPct:Math.max(prev.accPct||0,accPct||0),quizStars:Math.max(prev.quizStars||0,quizStars||0)};
+    return;
+  }
+  const k=String(did);
+  if(!s.gateBestQuiz)s.gateBestQuiz={};
+  const prev=s.gateBestQuiz[k]||{accPct:0,quizStars:0};
+  s.gateBestQuiz[k]={accPct:Math.max(prev.accPct||0,accPct||0),quizStars:Math.max(prev.quizStars||0,quizStars||0)};
+}
+
+function showStarEffect(stars,label){
+  if(stars>=3){
+    launchConfetti();
+    showToast('🎉 '+label+' 3★! Amazing!');
+  }else if(stars>=1){
+    showToast('✨ '+label+' '+stars+'★ — keep going!');
+  }else{
+    showToast('😢 '+label+' 0★ — try again, warrior!');
+  }
 }
 
 function gateGamesAllThree(s,did){
@@ -2351,6 +2439,7 @@ function renderMyDay(){
   const nextDid=nextOpenGateId(s);
   let gateProg='';
   if(nextDid){
+    expireGateTimerIfNeeded(s,nextDid);
     const d=DYNASTIES.find(x=>x.id===nextDid);
     const gk=String(nextDid);
     const g=(s.gateGameStars&&s.gateGameStars[gk])||{};
@@ -2371,7 +2460,8 @@ function renderMyDay(){
       <div style="font-size:.72rem;font-weight:800;color:var(--gold);margin-bottom:.35rem;">Next gate · ${d?d.zh:'Gate '+nextDid}</div>
       <div style="font-size:.72rem;color:var(--muted);line-height:1.55;">Games at least 1★: <b>${c1}</b>/4 · at least 2★: <b>${c2}</b>/4 · max 3★: <b>${c3}</b>/4</div>
       <div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;line-height:1.5;">${quizLine}</div>
-      <div style="font-size:.68rem;color:rgba(255,255,255,.45);margin-top:.35rem;">To pass: quiz over 90% correct, 3 quiz stars, and 3★ on all four games.</div>
+      <div style="font-size:.68rem;color:rgba(255,255,255,.45);margin-top:.35rem;">To pass: best quiz over 90% + 3 quiz stars, and best 3★ on all four games (can be across days, within timer).</div>
+      <div style="font-size:.68rem;color:rgba(255,255,255,.45);margin-top:.22rem;">${gateTimerStatusLine(s,nextDid)}</div>
     </div>`;
   }else{
     gateProg='<div style="font-size:.72rem;color:var(--muted);margin:.5rem 0;">You cleared every gate — amazing!</div>';
@@ -2688,6 +2778,7 @@ function renderMemoryMatch(){
     body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Done!</div>
       <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+    showStarEffect(stars,'Memory match');
     return;
   }
   const cols=matchSt.pairCount<=6?3:4;
@@ -2832,6 +2923,7 @@ function endRain(fromUser){
   body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ ${fromUser?'Stopped':'Time up'}</div>
     <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
     <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+  showStarEffect(stars,'Rain game');
   saveState();
 }
 
@@ -2869,6 +2961,7 @@ function renderListen(){
     body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Done</div>
       <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+    showStarEffect(stars,'Listen game');
     saveState();return;
   }
   body.innerHTML=`<div class="mq-progress">${listenSt.qi+1}/${listenSt.questions.length} · score ${listenSt.score}</div>
@@ -2934,6 +3027,7 @@ function renderTrace(){
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Trace done</div>
       <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+    showStarEffect(stars,'Trace game');
     saveState();return;
   }
   traceSt.targetId='trace-'+Date.now();
@@ -3407,6 +3501,10 @@ function renderHubContent(){
       <div id="dynasty-detail-panel"></div>
       <div class="hub-play-strip">
         <div class="hub-play-btns">
+          <button type="button" class="btn-s hub-flash-btn" onclick="showMyDay()">🌟 My Day · 今日</button>
+          <button type="button" class="btn-s hub-flash-btn" onclick="showPinyinChart()">📖 拼音表</button>
+        </div>
+        <div class="hub-play-btns">
           <button type="button" class="btn-s hub-flash-btn" onclick="openFlashPicker()">🎴 Flash Cards</button>
         </div>
         <div style="margin-top:.6rem;">
@@ -3417,7 +3515,7 @@ function renderHubContent(){
           <ul>
             <li><b>Quiz &amp; most games</b> (after you finish the round): more than 85% correct = 3★, more than 70% = 2★, more than 55% = 1★.</li>
             <li><b>Memory match</b>: stars from time — under 2 min = 3★, under 3 min = 2★, under 4 min = 1★. Wrong flips do <b>not</b> add words to your practice list.</li>
-            <li><b>Unlock a gate</b>: quiz over 90% correct, 3 quiz stars, <b>and</b> 3★ on Trace, Memory, Rain, and Listen for that gate.</li>
+            <li><b>Unlock a gate</b>: best quiz over 90% + 3 quiz stars, <b>and</b> best 3★ on Trace, Memory, Rain, and Listen for that gate. Timer starts at first game 3★ and lasts 5 days.</li>
           </ul>
         </div>
       </div>
@@ -4669,8 +4767,11 @@ function renderQuizResult(qc){
   const starsStr='★'.repeat(quizStars)+'☆'.repeat(3-quizStars);
   const d=DYNASTIES.find(x=>x.id===quizSt.did);
   const s=state[curP];
+  expireGateTimerIfNeeded(s,quizSt.did);
+  updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars);
+  const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup);
   const gamesOk=gateGamesAllThree(s,quizSt.did);
-  const quizPass=accPct>90&&quizStars===3;
+  const quizPass=(bestQuiz.accPct||0)>90&&(bestQuiz.quizStars||0)===3;
   const fullPass=quizPass&&gamesOk;
   const passedGate=!quizSt.isChampion&&fullPass;
   const passedChampion=!!quizSt.isChampion&&fullPass;
@@ -4690,6 +4791,9 @@ function renderQuizResult(qc){
     if(!s.gatesCompleted.includes(quizSt.did))s.gatesCompleted.push(quizSt.did);
     const prevStars=s.gateStars[quizSt.did]||0;
     if(quizStars>prevStars)s.gateStars[quizSt.did]=quizStars;
+    const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
+    if(timer&&timer.active&&timer.startKey===todayKey())checkBadges(curP,{oneDayGate:true});
+    if(timer&&timer.active)timer.active=false;
     const pts=score;s.totalStars+=pts;s.weekStars+=pts;
     const ts=getTS(curP);ts.stars+=pts;ts.gates=(ts.gates||0)+1;ts.correct=(ts.correct||0)+(score>=10?1:0);
   }
@@ -4705,8 +4809,10 @@ function renderQuizResult(qc){
   let lockMsg='';
   if(!cleared){
     const bits=[];
-    if(!quizPass)bits.push('quiz: need <b>over 90%</b> correct <b>and</b> 3 quiz stars (over 85% correct)');
+    if(!quizPass)bits.push(`quiz best: need <b>over 90%</b> and 3 quiz stars (best saved: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★)`);
     if(!gamesOk)bits.push(`games: need 3★ on Trace, Memory, Rain, Listen for this gate (${g3}/4 ready)`);
+    const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
+    if(timer&&timer.active)bits.push(`timer: complete by <b>${timer.deadlineKey}</b> or this gate restarts`);
     lockMsg=`<div style="color:#FF9090;font-weight:700;margin:.7rem 0;text-align:center;line-height:1.55;">${bits.join('<br>')}</div>`;
   }
   qc.innerHTML=`
@@ -4715,14 +4821,14 @@ function renderQuizResult(qc){
     <div class="qr-stars">${starsStr}</div>
     <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':'Not yet'}</div>
     ${quizSt.isChampion&&passedChampion?'<div class="champion-badge">🏆 Champion Trophy Earned!</div>':''}
-    <div class="qr-msg">${d.zh} · ${d.en}\n\nQuiz accuracy: ${accPct}% (${qcOk}/${qa}) · Quiz stars: ${quizStars}\nPoints: ${score}/${mx} (${pctPts}%)\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}\nGames at 3★ for this gate: ${g3}/4</div>
+    <div class="qr-msg">${d.zh} · ${d.en}\n\nThis try: ${accPct}% (${qcOk}/${qa}) · ${quizStars}★\nBest saved: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★\nPoints: ${score}/${mx} (${pctPts}%)\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}\nGames at 3★ for this gate: ${g3}/4</div>
     ${lockMsg}
     <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;">
       <button class="btn-g" onclick="exitQuiz()">${cleared?'✓ Done':'← Back'}</button>
       ${quizSt.isChampion?`<button class="btn-s" onclick="startChampionChallenge(${quizSt.champGroup})">↺ Retry</button>`:`<button class="btn-s" onclick="startGateQuiz(${quizSt.did})">↺ Retry</button>`}
     </div>
   </div>`;
-  if(quizStars>=2&&cleared)launchConfetti();
+  showStarEffect(quizStars,quizSt.isChampion?'Champion quiz':'Gate quiz');
 }
 
 function exitQuiz(){persistGateQuizState();saveState();goToHub();}
