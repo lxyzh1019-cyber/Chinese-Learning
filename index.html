@@ -3166,9 +3166,10 @@ function uniqueChars(words){
 }
 
 function startTrace(words){
-  const didForTrace=(curGameTargetDid||effectiveGameTargetDid()||1);
-  const maxTargets=traceTargetLimitForGate(didForTrace);
-  const chars=shuffleArr(uniqueChars(words)).slice(0,maxTargets);
+  const allChars=uniqueChars(words);
+  const chars=curGameTargetDid
+    ?shuffleArr(allChars).slice(0,traceTargetLimitForGate(curGameTargetDid))
+    :allChars;
   if(!chars.length){showToast('No characters to trace yet—learn a few more first!');return;}
   traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null};
   if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid};
@@ -3182,8 +3183,9 @@ function renderTrace(){
     if(curP)state[curP].pendingSessions.trace=null;
     const tot=traceSt.chars.length;
     const tg=traceSt.traceGood||0;
-    const didForStars=(traceSt.gameTargetDid||effectiveGameTargetDid()||1);
-    const stars=traceStarsFromAccuracy(tg,tot,didForStars);
+    const stars=traceSt.gameTargetDid
+      ?traceStarsFromAccuracy(tg,tot,traceSt.gameTargetDid)
+      :starsFromAccuracy(tg,tot);
     const tid=traceSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'trace',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
