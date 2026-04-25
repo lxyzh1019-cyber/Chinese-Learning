@@ -2328,6 +2328,24 @@ function starsFromAccuracy(correct,total){
   if(pct>85)return 3;if(pct>70)return 2;if(pct>55)return 1;return 0;
 }
 
+function traceTargetLimitForGate(did){
+  const gate=Math.max(1,parseInt(did,10)||1);
+  return 9+gate; // Gate 1 starts at 10, then +1 each gate
+}
+
+function traceStarsFromAccuracy(correct,total,did){
+  const t=total||0;if(!t)return 0;
+  const pct=Math.round((correct||0)/t*100);
+  const gate=Math.max(1,parseInt(did,10)||1);
+  const top=gate>=10?70:60;
+  const mid=top-20;
+  const low=top-40;
+  if(pct>=top)return 3;
+  if(pct>=mid)return 2;
+  if(pct>=low)return 1;
+  return 0;
+}
+
 function updateGateGameBest(did,gameKey,stars){
   if(!curP||!did||!gameKey)return;
   ensureState(curP);
@@ -3148,7 +3166,10 @@ function uniqueChars(words){
 }
 
 function startTrace(words){
-  const chars=uniqueChars(words);
+  const allChars=uniqueChars(words);
+  const chars=curGameTargetDid
+    ?shuffleArr(allChars).slice(0,traceTargetLimitForGate(curGameTargetDid))
+    :allChars;
   if(!chars.length){showToast('No characters to trace yet—learn a few more first!');return;}
   traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null};
   if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid};
@@ -3162,7 +3183,9 @@ function renderTrace(){
     if(curP)state[curP].pendingSessions.trace=null;
     const tot=traceSt.chars.length;
     const tg=traceSt.traceGood||0;
-    const stars=starsFromAccuracy(tg,tot);
+    const stars=traceSt.gameTargetDid
+      ?traceStarsFromAccuracy(tg,tot,traceSt.gameTargetDid)
+      :starsFromAccuracy(tg,tot);
     const tid=traceSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'trace',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
@@ -3172,15 +3195,15 @@ function renderTrace(){
     saveState();return;
   }
   traceSt.targetId='trace-'+Date.now();
-  body.innerHTML=`<div class="mq-progress">${traceSt.i+1}/${traceSt.chars.length}</div>
-    <div id="${traceSt.targetId}" style="width:260px;height:260px;margin:0 auto;border-radius:12px;background:rgba(255,255,255,.04);"></div>
-    <div class="mq-question" style="text-align:center;margin-top:.45rem;">${c.zh} · ${c.py}</div>
+  body.innerHTML=`<div class="mq-progress" style="font-size:.95rem;">${traceSt.i+1}/${traceSt.chars.length}</div>
+    <div id="${traceSt.targetId}" style="width:364px;height:364px;max-width:100%;margin:0 auto;border-radius:12px;background:rgba(255,255,255,.04);"></div>
+    <div class="mq-question" style="text-align:center;margin-top:.45rem;font-size:1.1rem;">${c.zh} · ${c.py}</div>
     <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.55rem;">
-      <button class="btn-s" onclick="traceAnimate()">Show stroke order</button>
-      <button class="btn-g" onclick="traceNext()">Next word</button>
+      <button class="btn-s" style="padding:.8rem 1rem;font-size:.95rem;" onclick="traceAnimate()">Show stroke order</button>
+      <button class="btn-g" style="padding:.8rem 1rem;font-size:.95rem;" onclick="traceNext()">Next word</button>
     </div>`;
   if(window.HanziWriter){
-    traceSt.writer=HanziWriter.create(traceSt.targetId,c.zh,{width:260,height:260,padding:5,showOutline:true,strokeAnimationSpeed:1,delayBetweenStrokes:120});
+    traceSt.writer=HanziWriter.create(traceSt.targetId,c.zh,{width:364,height:364,padding:5,showOutline:true,strokeAnimationSpeed:1,delayBetweenStrokes:120});
     let mistakes=0;
     traceSt.writer.quiz({
       onMistake:()=>{mistakes++;logWrong(curP,c.zh,c.py,c.en);},
