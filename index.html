@@ -414,9 +414,14 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .quiz-result{text-align:center;padding:1.5rem;}
 .qr-title{font-family:var(--fdec);font-size:2.3rem;color:var(--gold);margin-bottom:.4rem;}
 .qr-stars{font-size:2rem;margin:.6rem 0;}
-.qr-msg{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:1.4rem;}
+.qr-msg{font-size:.9rem;color:#FBEFCF;line-height:1.75;margin-bottom:1.1rem;background:rgba(20,10,10,.45);border:1px solid rgba(212,160,23,.22);border-radius:12px;padding:.75rem .8rem;}
 .quiz-prog-bar{height:7px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden;margin-bottom:1.4rem;}
 .quiz-prog-fill{height:100%;background:linear-gradient(90deg,#8B0000,var(--gold));border-radius:4px;transition:width .5s;}
+.lock-card{margin:.75rem 0 1rem;padding:.8rem .9rem;text-align:left;background:rgba(60,10,10,.72);border:1px solid #FF8D8D;border-radius:12px;color:#FFE5E5;box-shadow:0 0 0 1px rgba(0,0,0,.18) inset;}
+.lock-title{font-size:.82rem;font-weight:800;color:#FFD6D6;margin-bottom:.45rem;text-align:center;}
+.lock-item{display:flex;align-items:flex-start;gap:.45rem;line-height:1.5;font-size:.8rem;font-weight:700;color:#FFECEC;margin:.28rem 0;}
+.lock-dot{flex:0 0 auto;font-size:.78rem;line-height:1.45;color:#FFB3B3;}
+.lock-sub{display:block;color:#FFD2D2;font-size:.74rem;font-weight:700;margin-top:.1rem;}
 
 /* ═══════════════════════════════════
    PARENT OVERLAY
@@ -804,7 +809,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     <span class="comp-emoji" id="comp-emoji">🎉</span>
     <div class="comp-title" id="comp-title">太棒了！</div>
     <div class="comp-msg" id="comp-msg"></div>
-    <button class="btn-g" onclick="closeComplete()">继续 →</button>
+    <button class="btn-g" onclick="closeComplete()">Keep going →</button>
   </div>
 </div>
 
@@ -869,8 +874,8 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     <div id="timer-modal-body" style="font-size:.82rem;color:var(--muted);line-height:1.6;text-align:center;margin:.2rem 0 .6rem;"></div>
     <div id="timer-modal-status" style="font-size:.74rem;color:var(--gold);text-align:center;margin-bottom:.8rem;"></div>
     <div style="display:flex;justify-content:center;gap:.55rem;flex-wrap:wrap;">
-      <button class="btn-g" id="timer-modal-view-btn" onclick="timerModalViewTasks()">View Gate Tasks</button>
-      <button class="btn-s" onclick="closeTimerModal()">Later</button>
+      <button class="btn-g" id="timer-modal-view-btn" onclick="timerModalViewTasks()">Let's Do My Tasks</button>
+      <button class="btn-s" onclick="closeTimerModal()">Maybe later</button>
     </div>
   </div>
 </div>
@@ -2141,7 +2146,7 @@ function renderDailyWordBox(p){
   el.innerHTML=`<div class="dwb-title">Daily Challenge · 每日一字</div>
     <div class="dwb-row">
       <span class="dwb-done">${solved?'✅ Solved today! +5⭐':hint}</span>
-      <button class="dwb-btn" onclick="openDailyWordChallenge()" ${solved?'disabled':''}>${solved?'Done':'Start'}</button>
+      <button class="dwb-btn" onclick="openDailyWordChallenge()" ${solved?'disabled':''}>${solved?'Done':'Let's Start'}</button>
     </div>`;
 }
 
@@ -2160,7 +2165,7 @@ function getDailyWordEntry(){
 
 function openDailyWordChallenge(){
   ensureState(curP);
-  if(state[curP].dailyWordSolved===todayKey()){showToast('Already solved today!');return;}
+  if(state[curP].dailyWordSolved===todayKey()){showToast('Great job—you already solved this today!');return;}
   const w=getDailyWordEntry();
   const pool=[];
   [1,2,3,4].forEach(lv=>{(HSK_VOCAB[lv]||[]).forEach(x=>{if(x.en&&x.en!==w.en)pool.push(x.en);});});
@@ -2192,7 +2197,7 @@ function finishDailyWord(correct,correctAns,btn){
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ +5 ⭐';
     s.totalStars+=5;s.weekStars+=5;const ts=getTS(curP);ts.stars+=5;ts.correct=(ts.correct||0)+1;
     s.dailyWordSolved=todayKey();s.dailyWordTotal=(s.dailyWordTotal||0)+1;
-    checkBadges(curP);saveState();showToast('+5 stars!');
+    checkBadges(curP);saveState();showToast('Awesome! +5 stars!');
   }else{
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
     document.getElementById('dw-opts').querySelectorAll('.mcq-opt').forEach(b2=>{if(b2.textContent===correctAns)b2.classList.add('correct');});
@@ -2414,7 +2419,7 @@ function maybeShowGateTimerReminder(s,did){
     showTimerModal({
       did,
       title:'Final Day',
-      msg:'This is your last day to finish this gate challenge. Give it your best push now.',
+      msg:'Today is your last day for this Gate Challenge—give it your best shot!',
       status:`Due today: ${t.deadlineKey}`,
       onAction:()=>focusGateTasks(did)
     });
@@ -2426,7 +2431,7 @@ function maybeShowGateTimerReminder(s,did){
   showTimerModal({
     did,
     title:'Gate Challenge Check-In',
-    msg:'Your gate challenge is active. Keep going to finish your quiz and four games at 3 stars.',
+    msg:'You are doing great! Finish your quiz and all four games at 3★ to clear this gate.',
     status:`${left} days left (due ${t.deadlineKey})`,
     onAction:()=>focusGateTasks(did)
   });
@@ -2466,8 +2471,8 @@ function startGateTimerIfNeeded(s,did,stars){
   s.gateTimers[k]={startKey:start,deadlineKey:deadline,active:true,days};
   showTimerModal({
     did,
-    title:'Path Unlocked',
-    msg:`Great work, warrior. You unlocked this gate path. Finish all gate tasks in ${days} days to clear the gate.`,
+    title:'Challenge Started',
+    msg:`Awesome unlock! Complete all gate tasks in ${days} days to clear this gate.`,
     status:`Deadline: ${deadline} (${days} days left)`,
     onAction:()=>focusGateTasks(did)
   });
@@ -2486,8 +2491,8 @@ function expireGateTimerIfNeeded(s,did){
   showTimerModal({
     did,
     title:'Gate Challenge Reset',
-    msg:'Time is up for this gate challenge. This gate progress has restarted, and you can begin again right now.',
-    status:'New attempt ready',
+    msg:'Time is up for this round, but you can start again right now—you have got this!',
+    status:'New attempt is ready',
     onAction:()=>focusGateTasks(did)
   });
   return true;
@@ -2496,10 +2501,10 @@ function expireGateTimerIfNeeded(s,did){
 function gateTimerStatusLine(s,did){
   const k=String(did);
   const t=s.gateTimers&&s.gateTimers[k];
-  if(!t||!t.active)return 'Timer starts after your first 3-star game for this gate.';
+  if(!t||!t.active)return 'Timer starts after your first 3★ game for this gate.';
   const left=gateTimerDaysLeft(t);
-  if(left<=1)return 'Gate challenge final day: due today.';
-  return `Gate challenge active: ${left} days left (due ${t.deadlineKey}).`;
+  if(left<=1)return 'Final day for this Gate Challenge: due today.';
+  return `Gate Challenge active: ${left} days left (due ${t.deadlineKey}).`;
 }
 
 function bestQuizForAttempt(s,isChampion,did,group){
@@ -2528,11 +2533,11 @@ function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars){
 function showStarEffect(stars,label){
   if(stars>=3){
     launchConfetti();
-    showToast('🎉 '+label+' 3★! Amazing!');
+    showToast('🎉 Amazing! '+label+' earned 3★!');
   }else if(stars>=1){
-    showToast('✨ '+label+' '+stars+'★ — keep going!');
+    showToast('✨ Nice work! '+label+' earned '+stars+'★—keep going!');
   }else{
-    showToast('😢 '+label+' 0★ — try again, warrior!');
+    showToast(label+' got 0★ this time—keep trying, you can do it!');
   }
 }
 
@@ -2694,9 +2699,9 @@ function openFlashCards(did){
   ensureState(curP);
   const s=state[curP];
   const unlocked=did===1||s.gatesCompleted.includes(did-1);
-  if(!unlocked){showToast('🔒 Complete the previous gate first!');return;}
+  if(!unlocked){showToast('🔒 Finish the previous gate first to unlock this one!');return;}
   const deck=buildFlashDeckForDynasty(did);
-  if(!deck.length){showToast('No words yet — read a story first.');return;}
+  if(!deck.length){showToast('No words yet—read a story first, then come back!');return;}
   flashSt={did,mode:null,sub:'review',deck,i:0,flipped:false};
   persistFlashSession();saveState();
   renderFlashModePicker();
@@ -2725,7 +2730,7 @@ function setFlashSub(sub){flashSt.sub=sub==='quiz'?'quiz':'review';flashSt.i=0;f
 function renderFlashCurrent(){
   if(!flashSt.mode){renderFlashModePicker();return;}
   if(flashSt.i>=flashSt.deck.length){clearFlashSession();saveState();
-    const b=document.getElementById('flash-body');if(b)b.innerHTML='<div class="mq-title" style="text-align:center;">Done! 🎉</div>';
+    const b=document.getElementById('flash-body');if(b)b.innerHTML='<div class="mq-title" style="text-align:center;">Great job! You did it! 🎉</div>';
     return;
   }
   if(flashSt.sub==='quiz')renderFlashQuiz();else renderFlashReview();
@@ -2880,7 +2885,7 @@ function startGame(game,scope){
   document.getElementById('games-overlay').classList.add('show');
   curGameTargetDid=scope==='dynasty'?effectiveGameTargetDid():null;
   const words=wordsForScope(scope);
-  if(!words.length){showToast('Not enough words in this set yet.');return;}
+  if(!words.length){showToast('You need a few more words in this set first.');return;}
   if(game==='match')startMemoryMatch(words);
   else if(game==='rain')startRain(words);
   else if(game==='listen')startListen(words);
@@ -2911,7 +2916,7 @@ function renderMemoryMatch(){
     const stars=sec<120?3:sec<180?2:sec<240?1:0;
     const tid=matchSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'match',stars);
-    body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Done!</div>
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Brainy win!</div>
       <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
     showStarEffect(stars,'Memory match');
@@ -2972,7 +2977,7 @@ function startRain(words){
   clearRainSession();
   const uniq=[];const seen=new Set();
   words.filter(w=>w.zh&&w.en).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);uniq.push(w);}});
-  if(uniq.length<5){showToast('Rain needs at least 5 words in this pool. Try Dynasty or HSK.');return;}
+  if(uniq.length<5){showToast('Rain needs at least 5 words. Try Dynasty or HSK to build your word pool!');return;}
   rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:30,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
     rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0};
   pickRainTarget();persistRain();saveState();renderRain();runRain();
@@ -2996,7 +3001,7 @@ function renderRain(){
   body.innerHTML=`<div class="mq-progress">⏱ ${rainSt.timeLeft}s · ⭐ ${rainSt.score} · combo ${rainSt.combo} · targets ${Math.min(5,rainSt.targetSeenCount||1)}/5</div>
     <div class="rain-target" id="rain-hint">Tap the character for this English meaning:<b>${rainSt.target.en}</b></div>
     <div id="rain-zone" style="position:relative;height:260px;border:1px solid rgba(212,160,23,.25);border-radius:10px;overflow:hidden;background:rgba(0,0,0,.18);"></div>
-    <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="endRain(true)">Stop</button>`;
+    <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="endRain(true)">Stop for now</button>`;
 }
 
 function runRain(){
@@ -3056,7 +3061,7 @@ function endRain(fromUser){
   const body=document.getElementById('games-body');if(!body)return;
   const stars=starsFromAccuracy(rh,ra);
   if(tid)updateGateGameBest(tid,'rain',stars);
-  body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ ${fromUser?'Stopped':'Time up'}</div>
+  body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ ${fromUser?'Stopped for now':'Time is up'}</div>
     <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
     <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
   showStarEffect(stars,'Rain game');
@@ -3094,7 +3099,7 @@ function renderListen(){
     const stars=starsFromAccuracy(cc,tot);
     const tid=listenSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'listen',stars);
-    body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Done</div>
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Listening complete!</div>
       <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
     showStarEffect(stars,'Listen game');
@@ -3144,7 +3149,7 @@ function uniqueChars(words){
 
 function startTrace(words){
   const chars=uniqueChars(words);
-  if(!chars.length){showToast('No characters to trace.');return;}
+  if(!chars.length){showToast('No characters to trace yet—learn a few more first!');return;}
   traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null};
   if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid};
   saveState();renderTrace();
@@ -3160,7 +3165,7 @@ function renderTrace(){
     const stars=starsFromAccuracy(tg,tot);
     const tid=traceSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'trace',stars);
-    body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Trace done</div>
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
       <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
     showStarEffect(stars,'Trace game');
@@ -3171,8 +3176,8 @@ function renderTrace(){
     <div id="${traceSt.targetId}" style="width:260px;height:260px;margin:0 auto;border-radius:12px;background:rgba(255,255,255,.04);"></div>
     <div class="mq-question" style="text-align:center;margin-top:.45rem;">${c.zh} · ${c.py}</div>
     <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.55rem;">
-      <button class="btn-s" onclick="traceAnimate()">Stroke order</button>
-      <button class="btn-g" onclick="traceNext()">Next</button>
+      <button class="btn-s" onclick="traceAnimate()">Show stroke order</button>
+      <button class="btn-g" onclick="traceNext()">Next word</button>
     </div>`;
   if(window.HanziWriter){
     traceSt.writer=HanziWriter.create(traceSt.targetId,c.zh,{width:260,height:260,padding:5,showOutline:true,strokeAnimationSpeed:1,delayBetweenStrokes:120});
@@ -3288,7 +3293,7 @@ function resumeLastSession(){
   if(ps.rain&&resumeSession('rain'))return;
   if(ps.listen&&resumeSession('listen'))return;
   if(ps.trace&&resumeSession('trace'))return;
-  showToast('Nothing to resume right now.');
+  showToast('Nothing to resume right now—start a fresh challenge!');
 }
 
 /** Reading story for dynasty `did` unlocks after the previous dynasty's gate (id did−1) is cleared. */
@@ -3482,8 +3487,8 @@ function unlockTime(){
     timerSecs=SESSION_MINS*60;
     updateCountdownDisplay();
     timerIv=setInterval(()=>{timerSecs--;updateCountdownDisplay();if(timerSecs<=0){stopTimer();showTimeLock();}},1000);
-    showToast('+20 min unlocked! ⏰');
-  }else{document.getElementById('lock-err').textContent='Wrong PIN';}
+    showToast('Great focus! +20 minutes unlocked! ⏰');
+  }else{document.getElementById('lock-err').textContent='That PIN is not correct.';}
 }
 
 // Play time tracking
@@ -3613,7 +3618,7 @@ function renderHub(){
     const btn=document.createElement('button');
     btn.className='hsk-tab'+(lv===curHSK?' active':'')+(unlocked?'':' locked');
     btn.textContent='HSK '+lv+(unlocked?'':' 🔒');
-    btn.onclick=()=>{if(unlocked){curHSK=lv;renderHub();}else showToast('Complete more gates to unlock HSK '+lv);};
+    btn.onclick=()=>{if(unlocked){curHSK=lv;renderHub();}else showToast('Complete a few more gates to unlock HSK '+lv+'!');};
     tabs.appendChild(btn);
   });
   renderHubContent();
@@ -3694,7 +3699,7 @@ function renderHubContent(){
         },60);
       };
     }else{
-      node.onclick=()=>showToast('🔒 Complete the previous gate first!');
+      node.onclick=()=>showToast('🔒 Finish the previous gate first to unlock this one!');
     }
     track.appendChild(node);
 
@@ -3808,7 +3813,7 @@ function renderDynastyDetail(d,s){
       ${storyBtn(story,storyDone)}
       ${storyBtn(story2,story2Done)}
       <button class="btn-s" onclick="openFlashCards(${d.id})">🎴 Flash Cards</button>
-      <button class="btn-g" onclick="startGateQuiz(${d.id})">${done?'⚔️ Retry Boss':'⚔️ Boss Fight'}</button>
+      <button class="btn-g" onclick="startGateQuiz(${d.id})">${done?'⚔️ Try Boss Again':'⚔️ Boss Challenge'}</button>
     </div>
   </div>`;
 }
@@ -3824,7 +3829,7 @@ function openStory(story,dynasty){
   document.getElementById('prog-fill').style.width='0%';
   document.getElementById('prog-lbl').textContent='0%';
   document.getElementById('unlock-btn').disabled=true;
-  document.getElementById('hint-txt').textContent='Tap all study characters (gold) to finish · 点开金色生字；蓝色是补充词';
+  document.getElementById('hint-txt').textContent='Tap all gold study characters to finish · 点开金色生字；蓝色是补充词';
   // build sentences
   const sc=document.getElementById('story-content');sc.innerHTML='';
   story.sents.forEach((sent,si)=>{
@@ -3889,7 +3894,7 @@ function checkUnlock(){
   const all=n>=newChars.size;
   document.getElementById('unlock-btn').disabled=!all;
   const h=document.getElementById('hint-txt');
-  if(all)h.textContent='✨ All characters explored! · 所有生字都认识了！';
+  if(all)h.textContent='✨ Amazing! All study characters explored! · 所有生字都认识了！';
   else h.textContent='还有 '+(newChars.size-n)+' 个生字 · '+(newChars.size-n)+' study character(s) left (blue = optional)';
 }
 
@@ -4012,7 +4017,7 @@ function checkMiniQ(btn,isCorrect,correctAns,opts){
     else finishMiniPass();
   };
   if(isCorrect){
-    btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ Correct!';miniQ.score++;
+    btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ Great job! Correct!';miniQ.score++;
     getTS(curP).correct=(getTS(curP).correct||0)+1;
     persistMiniQuizState();saveState();
     setTimeout(goNext,900);
@@ -4053,7 +4058,7 @@ function showMiniRetryIntro(){
       <div style="font-size:2rem;margin-bottom:.45rem;">🔁</div>
       <div style="font-family:var(--fdec);font-size:1.35rem;color:var(--gold);margin-bottom:.35rem;">Try again</div>
       <div style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">Get every question correct to finish the story.</div>
-      <button class="btn-g" onclick="renderMiniQuestion()">Go →</button>
+      <button class="btn-g" onclick="renderMiniQuestion()">Let's go →</button>
     </div>`;
 }
 
@@ -4074,7 +4079,7 @@ function showMiniQuizResult(){
       <div style="font-family:var(--fdec);font-size:1.55rem;color:var(--gold);margin-bottom:.4rem;">Perfect! 全对！</div>
       <div style="font-size:.88rem;color:var(--muted);margin-bottom:.6rem;">Quiz bonus +${bonus} ⭐</div>
       ${miniQ.storyCompletedNow?'<div style="font-size:.8rem;color:var(--jade);margin-bottom:1rem;">📖 Story complete</div>':'<div style="margin-bottom:1rem;"></div>'}
-      <button class="btn-g" onclick="closeMiniQuiz()">Continue →</button>
+      <button class="btn-g" onclick="closeMiniQuiz()">Keep going →</button>
     </div>`;
 }
 
@@ -4095,7 +4100,7 @@ let drillSt={words:[],qi:0,correct:0,streak:0,maxStreak:0};
 function startDrill(){
   const s=state[curP];
   const failed=Object.values(s.failedWords||{}).sort((a,b)=>b.failCount-a.failCount);
-  if(!failed.length){showToast('No practice words yet! Keep learning. 📖');return;}
+  if(!failed.length){showToast('No practice words yet—keep learning, you're doing great! 📖');return;}
   // Build distractor pool from HSK vocab (all levels)
   const hskPool=[];
   [1,2,3,4].forEach(lv=>{
@@ -4197,14 +4202,14 @@ function togglePY(){
   hidePY=!hidePY;
   document.getElementById('btn-hide-py').classList.toggle('on',hidePY);
   document.body.classList.toggle('hide-pinyin',hidePY);
-  showToast(hidePY?'Pinyin hidden 🔤':'Pinyin visible ✓');
+  showToast(hidePY?'Pinyin hidden! Great challenge mode 🔤':'Pinyin is back on ✓');
 }
 
 function toggleEN(){
   hideEN=!hideEN;
   document.getElementById('btn-hide-en').classList.toggle('on',hideEN);
   document.body.classList.toggle('hide-english',hideEN);
-  showToast(hideEN?'English hints hidden 🔡':'English hints visible ✓');
+  showToast(hideEN?'English hints hidden—nice challenge! 🔡':'English hints are back on ✓');
 }
 
 function toggleNoPY(){
@@ -4212,14 +4217,14 @@ function toggleNoPY(){
   document.getElementById('btn-nopy').classList.toggle('on',noPYmode);
   document.body.classList.toggle('nopy-mode',noPYmode);
   if(noPYmode){
-    showToast('📝 Sentence Exercise Mode — pinyin hidden!');
+    showToast('📝 Sentence Exercise Mode on! Pinyin is hidden for extra challenge!');
     // Reset all reveals to hidden (visual exercise)
     document.querySelectorAll('.cu.revealed:not(.known)').forEach(cu=>{
       cu.classList.remove('revealed','tapped');
     });
     tapped.clear();updateProg();checkUnlock();
   }else{
-    showToast('Pinyin visible again ✓');
+    showToast('Pinyin is visible again ✓');
   }
 }
 
@@ -4524,7 +4529,7 @@ function renderMCQPhase(qc,scoreBar){
       <div class="q-phase-lbl">${pfx}Phase 1: Character Recognition · 汉字认读 (${mcqAnswered+1}/${quizSt.questions.length})</div>
       <div class="q-prompt-row">
         <div class="q-prompt" style="cursor:pointer;" onclick="revealPYHint('${pyEsc}')" title="Tap to reveal pinyin">${q.zh}</div>
-        <button type="button" class="q-speak" id="mcq-speak" title="Tap to hear" aria-label="Hear pronunciation">🔊</button>
+        <button type="button" class="q-speak" id="mcq-speak" title="Tap to listen" aria-label="Listen to pronunciation">🔊</button>
       </div>
       <div class="py-hint-row">
         <button class="py-hint-btn" id="py-hint-btn" onclick="revealPYHint('${pyEsc}')">👆 Tap for pinyin hint <span style="font-size:.62rem;opacity:.6">(-2 bonus)</span></button>
@@ -4575,7 +4580,7 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     setTimeout(goNext,1200);
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
-    btn.classList.add('wrong');fb.className='q-feedback err';fb.textContent='❌ Correct: '+correctAns;
+    btn.classList.add('wrong');fb.className='q-feedback err';fb.textContent='❌ Nice try! Correct answer: '+correctAns;
     const curQ=quizSt.questions[mcqAnswered];
     grid.querySelectorAll('.mcq-opt').forEach(b=>{
       if(curQ&&b.textContent===(curQ.reverse?curQ.zh:curQ.correct))b.classList.add('correct');
@@ -4754,7 +4759,7 @@ function renderPYPhase(qc,scoreBar){
   qc.innerHTML=scoreBar+`
   <div class="quiz-card">
     <div class="q-phase-lbl">${quizSt.isChampion?'👑 CHAMPION · ':''}Phase 2: Pinyin Typing · 拼音练习 (${pyAnswered+1}/${quizSt.pyQ.length})</div>
-    <div class="q-prompt-row"><div class="q-prompt">${q.zh}</div><button type="button" class="q-speak" id="py-speak" title="Tap to hear (no bonus if used)" aria-label="Hear pronunciation">🔊</button></div>
+    <div class="q-prompt-row"><div class="q-prompt">${q.zh}</div><button type="button" class="q-speak" id="py-speak" title="Tap to listen (no bonus if used)" aria-label="Listen to pronunciation">🔊</button></div>
     <div class="pinyin-peek-bar" id="py-peek" onclick="togglePYPeeK()">📖 Pinyin chart (peek) · using this removes +3 bonus</div>
     <div class="pinyin-peek-inner" id="py-peek-in"></div>
     <div class="q-text" style="text-align:center;">Type the pinyin for this character or word<br><small style="opacity:.6">(no tone marks needed · 🔕 no 🔊 / no peek = +3 bonus)</small></div>
@@ -4797,7 +4802,7 @@ function checkPY(){
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     inp.className='py-input err';fb.className='q-feedback err';
-    fb.textContent='❌ Correct: '+q.correct;
+    fb.textContent='❌ Nice try! Correct answer: '+q.correct;
     if(w)logWrong(curP,w.zh,w.py,w.en);
     const isLong=(q.zh||'').length>1;
     showCorrectRevealCard({zh:q.zh,py:w?w.py:q.correct,en:w?w.en:'',isSentence:isLong,onDone:goNext});
@@ -4814,12 +4819,12 @@ function renderSBPhase(qc,scoreBar){
   <div class="quiz-card">
     <div class="q-phase-lbl">Phase 3: Sentence Builder · 句子排列 (${quizSt.sbRound+1}/3)</div>
     <div class="q-text">Arrange the words in the correct order:</div>
-    <div class="q-prompt-row" style="justify-content:flex-start;margin:.4rem 0 .6rem;"><button type="button" class="q-speak" id="sb-speak-all" aria-label="Hear sentence hint">🔊</button><span style="font-size:.72rem;color:var(--muted);">Tap to hear all words read aloud</span></div>
+    <div class="q-prompt-row" style="justify-content:flex-start;margin:.4rem 0 .6rem;"><button type="button" class="q-speak" id="sb-speak-all" aria-label="Hear sentence hint">🔊</button><span style="font-size:.72rem;color:var(--muted);">Tap to hear all words out loud</span></div>
     <div class="sb-target" id="sb-target"></div>
     <div class="sb-words" id="sb-words"></div>
     <div style="display:flex;gap:.6rem;margin-top:.8rem;flex-wrap:wrap;">
-      <button class="btn-p" onclick="checkSB()">Check ✓</button>
-      <button class="btn-s" onclick="resetSB()">Reset ↺</button>
+      <button class="btn-p" onclick="checkSB()">Check answer ✓</button>
+      <button class="btn-s" onclick="resetSB()">Try again ↺</button>
     </div>
     <div class="q-feedback" id="q-fb"></div>
     <div class="q-score-mini">Sentence ${quizSt.sbRound+1} of 3 · Score: ${quizSt.score} / 220</div>
@@ -4869,14 +4874,14 @@ function checkSB(){
   if(isCorrect){
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
-    fb.className='q-feedback ok';fb.textContent='✅ Perfect! +20 pts';
+    fb.className='q-feedback ok';fb.textContent='✅ Perfect! +20 points!';
     quizSt.score+=20;quizSt.phaseScores[2]+=20;
     getTS(curP).correct=(getTS(curP).correct||0)+1;
     persistGateQuizState();saveState();
     setTimeout(goNext,1100);
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
-    fb.className='q-feedback err';fb.textContent='❌ Listen — then try again';
+    fb.className='q-feedback err';fb.textContent='❌ Listen once more, then try again!';
     const sent=correct.join('');
     showCorrectRevealCard({zh:sent,py:'',en:'Correct sentence',isSentence:true,onDone:()=>{
       const f=document.getElementById('q-fb');if(f)f.textContent='';
@@ -4947,26 +4952,26 @@ function renderQuizResult(qc){
   let lockMsg='';
   if(!cleared){
     const bits=[];
-    if(!quizPass)bits.push(`quiz best: need <b>over 90%</b> and 3 quiz stars (best saved: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★)`);
-    if(!gamesOk)bits.push(`games: need 3★ on Trace, Memory, Rain, Listen for this gate (${g3}/4 ready)`);
+    if(!quizPass)bits.push(`Quiz goal: score <b>over 90%</b> and earn 3 quiz stars. You are getting closer! <span class="lock-sub">Best so far: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★</span>`);
+    if(!gamesOk)bits.push(`Game goal: earn 3★ in Trace, Memory, Rain, and Listen for this gate. <span class="lock-sub">Ready: ${g3}/4</span>`);
     const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
     if(timer&&timer.active){
       const left=gateTimerDaysLeft(timer);
-      if(left<=1)bits.push('Timer: final day — complete now to avoid restart.');
-      else bits.push(`Timer: finish by <b>${timer.deadlineKey}</b> or this gate challenge restarts.`);
+      if(left<=1)bits.push('Timer goal: final day! Complete now to keep your progress.');
+      else bits.push(`Timer goal: finish by <b>${timer.deadlineKey}</b> to keep this challenge progress.`);
     }
-    lockMsg=`<div style="color:#FF9090;font-weight:700;margin:.7rem 0;text-align:center;line-height:1.55;">${bits.join('<br>')}</div>`;
+    lockMsg=`<div class="lock-card"><div class="lock-title">Keep going — you are close!</div>${bits.map(bit=>`<div class="lock-item"><span class="lock-dot">⭕</span><span>${bit}</span></div>`).join('')}</div>`;
   }
   qc.innerHTML=`
   <div class="quiz-result">
     <div class="quiz-prog-bar"><div class="quiz-prog-fill" style="width:${pctPts}%"></div></div>
     <div class="qr-stars">${starsStr}</div>
-    <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':'Not yet'}</div>
-    ${quizSt.isChampion&&passedChampion?'<div class="champion-badge">🏆 Champion Trophy Earned!</div>':''}
-    <div class="qr-msg">${d.zh} · ${d.en}\n\nThis try: ${accPct}% (${qcOk}/${qa}) · ${quizStars}★\nBest saved: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★\nPoints: ${score}/${mx} (${pctPts}%)\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}\nGames at 3★ for this gate: ${g3}/4</div>
+    <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':'Almost there!'}</div>
+    ${quizSt.isChampion&&passedChampion?'<div class="champion-badge">🏆 Champion Trophy Earned! Amazing work!</div>':''}
+    <div class="qr-msg">${d.zh} · ${d.en}\n\nThis try: ${accPct}% (${qcOk}/${qa}) · ${quizStars}★\nBest score: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★\nPoints: ${score}/${mx} (${pctPts}%)\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}\nGames at 3★ for this gate: ${g3}/4</div>
     ${lockMsg}
     <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;">
-      <button class="btn-g" onclick="exitQuiz()">${cleared?'✓ Done':'← Back'}</button>
+      <button class="btn-g" onclick="exitQuiz()">${cleared?'✓ Done':'← Go Back'}</button>
       ${quizSt.isChampion?`<button class="btn-s" onclick="startChampionChallenge(${quizSt.champGroup})">↺ Retry</button>`:`<button class="btn-s" onclick="startGateQuiz(${quizSt.did})">↺ Retry</button>`}
     </div>
   </div>`;
@@ -4994,13 +4999,13 @@ function showParentSummary(){
 
 function closeParentSummary(){document.getElementById('overlay-parent').classList.remove('show');}
 function clearAllProgressWithParentPwd(){
-  const pin=prompt('Parent password required to clear ALL progress:');
+  const pin=prompt('Enter parent password to clear all progress:');
   if(pin===null)return;
   if(pin!==PARENT_PWD){
-    showToast('Wrong parent password');
+    showToast('That parent password does not match.');
     return;
   }
-  const ok=confirm('This will permanently reset ALL progress for Jenn and Jess. Continue?');
+  const ok=confirm('This will permanently reset all progress for Jenn and Jess. Continue?');
   if(!ok)return;
   state={jenn:defPlayer(),jess:defPlayer()};
   ensureState('jenn');ensureState('jess');
@@ -5008,7 +5013,7 @@ function clearAllProgressWithParentPwd(){
   renderSelectBadges();
   if(curP)renderHub();
   renderParentSummary();
-  showToast('All progress cleared.');
+  showToast('All progress has been cleared.');
 }
 
 function setSumMode(m){
@@ -5040,7 +5045,7 @@ function renderParentSummary(){
     const dk=dateAddDays(sumOffset);
     const lbl=sumOffset===0?'Today':sumOffset===-1?'Yesterday':dk;
     nav.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;">
-      <button class="btn-s" onclick="sumOffset--;renderParentSummary()" style="padding:.35rem .8rem;font-size:.74rem;"${sumOffset<=-13?' disabled':''}>← Prev</button>
+      <button class="btn-s" onclick="sumOffset--;renderParentSummary()" style="padding:.35rem .8rem;font-size:.74rem;"${sumOffset<=-13?' disabled':''}>← Previous</button>
       <span style="font-family:var(--fdec);color:var(--gold);font-size:.95rem;">Daily · ${lbl}</span>
       <button class="btn-s" onclick="sumOffset++;renderParentSummary()" style="padding:.35rem .8rem;font-size:.74rem;"${sumOffset>=0?' disabled':''}>Next →</button></div>`;
     const wrongCols=[];
@@ -5068,7 +5073,7 @@ function renderParentSummary(){
   const ws=weekStart();
   const lbl=isNow?'This Week':sumOffset===-1?'Last Week':Math.abs(sumOffset)+' Weeks Ago';
   nav.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;">
-    <button class="btn-s" onclick="sumOffset--;renderParentSummary()" style="padding:.35rem .8rem;font-size:.74rem;"${sumOffset<=-3?' disabled':''}>← Prev</button>
+    <button class="btn-s" onclick="sumOffset--;renderParentSummary()" style="padding:.35rem .8rem;font-size:.74rem;"${sumOffset<=-3?' disabled':''}>← Previous</button>
     <span style="font-family:var(--fdec);color:var(--gold);font-size:.95rem;">Weekly · ${lbl}</span>
     <button class="btn-s" onclick="sumOffset++;renderParentSummary()" style="padding:.35rem .8rem;font-size:.74rem;"${isNow?' disabled':''}>Next →</button></div>`;
   const wrongCols=[];
