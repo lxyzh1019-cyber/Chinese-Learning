@@ -2899,7 +2899,7 @@ function restoreFlashSession(){
 
 // ── Games hub ──
 let matchSt={cards:[],openIdxs:[],matched:0,moves:0,start:0,pairCount:8};
-let rainSt={pool:[],target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,targetIv:null,dropId:0,targetSeq:[],targetIdx:0,targetSeenCount:0};
+let rainSt={pool:[],target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:null,tickIv:null,targetIv:null,dropId:0,targetSeq:[],targetIdx:0,targetSeenCount:0,spawnsSinceTarget:0,targetShownThisRound:false};
 let listenSt={questions:[],qi:0,streak:0,score:0};
 let traceSt={chars:[],i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:null};
 
@@ -3056,7 +3056,8 @@ function persistRain(){
   state[curP].pendingSessions.rain={pool:rainSt.pool.map(w=>({...w})),target:rainSt.target?{...rainSt.target}:null,
     score:rainSt.score,combo:rainSt.combo,bestCombo:rainSt.bestCombo,timeLeft:rainSt.timeLeft,
     rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,
-    targetSeq:(rainSt.targetSeq||[]).map(w=>({...w})),targetIdx:rainSt.targetIdx||0,targetSeenCount:rainSt.targetSeenCount||0};
+    targetSeq:(rainSt.targetSeq||[]).map(w=>({...w})),targetIdx:rainSt.targetIdx||0,targetSeenCount:rainSt.targetSeenCount||0,
+    spawnsSinceTarget:rainSt.spawnsSinceTarget||0,targetShownThisRound:!!rainSt.targetShownThisRound};
 }
 function clearRainTimers(){
   if(rainSt.spawnIv)clearInterval(rainSt.spawnIv);
@@ -3072,7 +3073,8 @@ function startRain(words){
   words.filter(w=>w.zh&&w.en).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);uniq.push(w);}});
   if(uniq.length<5){showToast('Rain needs at least 5 words. Try Dynasty or HSK to build your word pool!');return;}
   rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0};
+    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0,
+    spawnsSinceTarget:0,targetShownThisRound:false};
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
 
@@ -3086,6 +3088,8 @@ function pickRainTarget(forceAdvance=false){
     }
     rainSt.target=rainSt.targetSeq[rainSt.targetIdx++];
     rainSt.targetSeenCount=Math.max(rainSt.targetSeenCount||0,Math.min(5,rainSt.targetIdx));
+    rainSt.spawnsSinceTarget=0;
+    rainSt.targetShownThisRound=false;
   }
 }
 
@@ -3109,9 +3113,15 @@ function runRain(){
 
 function spawnRainDrop(){
   const zone=document.getElementById('rain-zone');if(!zone||!rainSt.target)return;
+  rainSt.spawnsSinceTarget=(rainSt.spawnsSinceTarget||0)+1;
   let opts=shuffleArr([...rainSt.pool]).slice(0,5);
   if(!opts.find(x=>x.zh===rainSt.target.zh))opts[0]=rainSt.target;
-  const w=opts[Math.floor(Math.random()*opts.length)];
+  const forceTarget=rainSt.spawnsSinceTarget>=7;
+  const w=forceTarget?rainSt.target:opts[Math.floor(Math.random()*opts.length)];
+  if(w.zh===rainSt.target.zh){
+    rainSt.targetShownThisRound=true;
+    rainSt.spawnsSinceTarget=0;
+  }
   const id=++rainSt.dropId;
   const btn=document.createElement('button');
   btn.type='button';btn.className='mcq-opt zh-opt';btn.textContent=w.zh;
@@ -3133,7 +3143,7 @@ function spawnRainDrop(){
   requestAnimationFrame(()=>{btn.style.top='240px';});
   setTimeout(()=>{
     if(btn.parentNode){
-      if(w.zh===rainSt.target.zh){
+      if(w.zh===rainSt.target.zh&&rainSt.targetShownThisRound){
         rainSt.rainAttempts=(rainSt.rainAttempts||0)+1;
         rainSt.combo=0;logWrong(curP,w.zh,w.py,w.en);persistRain();saveState();
       }
@@ -3160,7 +3170,8 @@ function restoreRain(){
   clearRainSession();
   const seq=(ps.targetSeq&&ps.targetSeq.length)?ps.targetSeq.map(w=>({...w})):shuffleArr(ps.pool.map(w=>({...w})));
   rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0};
+    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0,
+    spawnsSinceTarget:ps.spawnsSinceTarget||0,targetShownThisRound:!!ps.targetShownThisRound};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
 }
