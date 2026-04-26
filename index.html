@@ -2397,6 +2397,7 @@ function showTimerModal(cfg){
   const status=document.getElementById('timer-modal-status');
   const action=document.getElementById('timer-modal-action')||document.getElementById('timer-modal-view-btn');
   if(cfg&&cfg.did!=null)overlay.dataset.did=String(cfg.did);else delete overlay.dataset.did;
+  if(cfg&&cfg.kind)overlay.dataset.kind=String(cfg.kind);else delete overlay.dataset.kind;
   title.textContent=cfg.title||'Gate Challenge';
   if(msg)msg.textContent=cfg.msg||'';
   status.textContent=cfg.status||'';
@@ -2414,7 +2415,24 @@ function hideTimerModal(){
   if(overlay)overlay.classList.remove('show');
 }
 
-function closeTimerModal(){hideTimerModal();}
+function closeTimerModal(){
+  const overlay=document.getElementById('timer-modal-overlay');
+  const did=overlay&&overlay.dataset&&overlay.dataset.did?parseInt(overlay.dataset.did,10):null;
+  const kind=overlay&&overlay.dataset?overlay.dataset.kind:'';
+  if(curP&&did&&(kind==='checkin'||kind==='final-day')){
+    const s=state[curP];
+    if(s){
+      const k=String(did);
+      const today=todayKey();
+      if(!s.timerReminderShown)s.timerReminderShown={};
+      if(!s.timerWarningShown)s.timerWarningShown={};
+      s.timerReminderShown[k]=today;
+      s.timerWarningShown[k]=today;
+      saveState();
+    }
+  }
+  hideTimerModal();
+}
 
 function timerModalViewTasks(){
   const overlay=document.getElementById('timer-modal-overlay');
@@ -2440,6 +2458,7 @@ function maybeShowGateTimerReminder(s,did){
     s.timerWarningShown[k]=today;
     showTimerModal({
       did,
+      kind:'final-day',
       title:'Final Day',
       msg:'Today is your last day for this Gate Challenge—give it your best shot!',
       status:`Due today: ${t.deadlineKey}`,
@@ -2452,6 +2471,7 @@ function maybeShowGateTimerReminder(s,did){
   s.timerReminderShown[k]=today;
   showTimerModal({
     did,
+    kind:'checkin',
     title:'Gate Challenge Check-In',
     msg:'You are doing great! Finish your quiz and all four games at 3★ to clear this gate.',
     status:`${left} days left (due ${t.deadlineKey})`,
@@ -2493,6 +2513,7 @@ function startGateTimerIfNeeded(s,did,stars){
   s.gateTimers[k]={startKey:start,deadlineKey:deadline,active:true,days};
   showTimerModal({
     did,
+    kind:'start',
     title:'Challenge Started',
     msg:`Awesome unlock! Complete all gate tasks in ${days} days to clear this gate.`,
     status:`Deadline: ${deadline} (${days} days left)`,
@@ -2512,6 +2533,7 @@ function expireGateTimerIfNeeded(s,did){
   t.active=false;
   showTimerModal({
     did,
+    kind:'reset',
     title:'Gate Challenge Reset',
     msg:'Time is up for this round, but you can start again right now—you have got this!',
     status:'New attempt is ready',
