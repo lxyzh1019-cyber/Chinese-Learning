@@ -3588,6 +3588,8 @@ function getCurrentHSK(s){
 // ══════════════════════════════════════════════════════
 function renderHub(){
   if(!curP)return;
+  const hubMain=document.querySelector('#scr-hub .hub-main');
+  const prevHubScroll=hubMain?hubMain.scrollTop:0;
   const s=state[curP];
   const nextDid=nextOpenGateId(s);
   if(nextDid)maybeShowGateTimerReminder(s,nextDid);
@@ -3645,6 +3647,7 @@ function renderHub(){
     tabs.appendChild(btn);
   });
   renderHubContent();
+  if(hubMain)hubMain.scrollTop=prevHubScroll;
 }
 
 // Road connector widths — proportional to each dynasty's duration in years
