@@ -18,8 +18,8 @@
   --fzh:'Noto Serif SC',serif;--fui:'Quicksand',sans-serif;--fdec:'Ma Shan Zheng',cursive;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;font-size:120%;}
-body{background:var(--bg);color:var(--ink);font-family:var(--fui);min-height:100vh;overflow-x:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation;}
+html{scroll-behavior:smooth;font-size:120%;overscroll-behavior-y:none;}
+body{background:var(--bg);color:var(--ink);font-family:var(--fui);min-height:100vh;overflow-x:hidden;user-select:none;-webkit-user-select:none;touch-action:manipulation;overscroll-behavior-y:none;}
 button{cursor:pointer;touch-action:manipulation;font-family:var(--fui);}
 input{font-family:var(--fui);}
 
@@ -78,7 +78,7 @@ input{font-family:var(--fui);}
   border-right:1px solid rgba(212,160,23,.1);display:flex;flex-direction:column;
   align-items:center;padding:1.4rem .9rem;gap:.8rem;
   position:sticky;top:0;height:100vh;overflow-y:auto;}
-.hub-main{flex:1;padding:1.4rem 1.6rem;overflow-y:auto;max-height:100vh;}
+.hub-main{flex:1;padding:1.4rem 1.6rem;overflow-y:auto;max-height:100vh;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;}
 .sidebar-avatar{font-size:2.8rem;text-align:center;}
 .sidebar-name{font-family:var(--fdec);font-size:1.35rem;color:var(--gold);text-align:center;}
 .sidebar-hsk-badge{font-size:.7rem;font-weight:700;color:var(--jade);text-align:center;
@@ -3661,7 +3661,7 @@ function renderHub(){
   }
   renderStreakCal(curP);
   renderDailyWordBox(curP);
-  checkBadges(curP);saveState();
+  checkBadges(curP);
   renderBadgeStrip(curP);
   // Practice words sidebar
   const practiceBox=document.getElementById('practice-box');
