@@ -2068,6 +2068,9 @@ function defPlayer(){
     championBestQuiz:{},
     gateTimers:{},
     lastGateQuizAttempt:null,
+    altRoundProgress:{trace:0,match:0,rain:0,listen:0,total:0},
+    forgivenessProgress:{trace:0,match:0,rain:0,listen:0},
+    dynastyForgiveness:{trace:0,match:0,rain:0,listen:0},
     recentGateQuestions:{}};
 }
 
@@ -2116,6 +2119,7 @@ const BADGE_DEFS={
   daily_regular:{icon:'☀️',title:'7 daily challenges'},
   pinyin_master:{icon:'📘',title:'Finished pinyin intro'},
   one_day_gate:{icon:'🏅',title:'Cleared a gate in one day'},
+  cross_trainer:{icon:'🧩',title:'20 HSK/WIP rounds completed'},
 };
 
 function checkBadges(p,opts){
@@ -2130,6 +2134,7 @@ function checkBadges(p,opts){
   if(getConsecutivePlayDays(p)>=7)add('week_warrior');
   if(s.totalStars>=200)add('star_200');
   if((s.dailyWordTotal||0)>=7)add('daily_regular');
+  if(((s.altRoundProgress&&s.altRoundProgress.total)||0)>=20)add('cross_trainer');
   if(opts.speedGate)add('speed_scholar');
   if(opts.pinyinDone)add('pinyin_master');
   if(opts.oneDayGate)add('one_day_gate');
@@ -2316,6 +2321,9 @@ function ensureState(p){
   if(!s.timerLastSeenAt)s.timerLastSeenAt={};
   if(s.timerUnlockUntil===undefined)s.timerUnlockUntil=0;
   if(s.lastGateQuizAttempt===undefined)s.lastGateQuizAttempt=null;
+  if(!s.altRoundProgress)s.altRoundProgress={trace:0,match:0,rain:0,listen:0,total:0};
+  if(!s.forgivenessProgress)s.forgivenessProgress={trace:0,match:0,rain:0,listen:0};
+  if(!s.dynastyForgiveness)s.dynastyForgiveness={trace:0,match:0,rain:0,listen:0};
   if(!s.recentGateQuestions)s.recentGateQuestions={};
   // Week reset
   if(!isSameWeek(s.weekStart)){
@@ -2399,6 +2407,49 @@ function updateGateGameBest(did,gameKey,stars){
     s.gateGameStars[k][gameKey]=stars;
     startGateTimerIfNeeded(s,did,stars);
   }
+}
+
+function starsText(n){
+  const v=Math.max(0,Math.min(3,parseInt(n,10)||0));
+  return '★'.repeat(v)+'☆'.repeat(3-v);
+}
+
+function tokenLabel(gameKey){
+  if(gameKey==='trace')return 'Trace';
+  if(gameKey==='match')return 'Match';
+  if(gameKey==='rain')return 'Rain';
+  return 'Listen';
+}
+
+function awardAltRound(gameKey,stars){
+  if(!curP||!gameKey)return;
+  const s=state[curP];
+  if(curGameTargetDid)return;
+  if(!s.altRoundProgress)s.altRoundProgress={trace:0,match:0,rain:0,listen:0,total:0};
+  if(!s.forgivenessProgress)s.forgivenessProgress={trace:0,match:0,rain:0,listen:0};
+  if(!s.dynastyForgiveness)s.dynastyForgiveness={trace:0,match:0,rain:0,listen:0};
+  s.altRoundProgress[gameKey]=(s.altRoundProgress[gameKey]||0)+1;
+  s.altRoundProgress.total=(s.altRoundProgress.total||0)+1;
+  if(stars===2){
+    s.forgivenessProgress[gameKey]=(s.forgivenessProgress[gameKey]||0)+1;
+    if(s.forgivenessProgress[gameKey]>=2){
+      s.forgivenessProgress[gameKey]-=2;
+      s.dynastyForgiveness[gameKey]=(s.dynastyForgiveness[gameKey]||0)+1;
+      showToast(`💚 Dynasty bonus: +1 ${tokenLabel(gameKey)} forgiveness`);
+    }
+  }
+  checkBadges(curP);
+}
+
+function consumeDynastyForgiveness(gameKey){
+  if(!curP||!curGameTargetDid)return false;
+  const s=state[curP];
+  if(!s.dynastyForgiveness)s.dynastyForgiveness={trace:0,match:0,rain:0,listen:0};
+  const have=s.dynastyForgiveness[gameKey]||0;
+  if(have<=0)return false;
+  s.dynastyForgiveness[gameKey]=have-1;
+  showToast(`🛡️ ${tokenLabel(gameKey)} mistake forgiven in Dynasty mode`);
+  return true;
 }
 
 function isDateAfter(a,b){
@@ -2659,6 +2710,8 @@ function renderMyDay(){
   if(!body)return;
   const nextDid=nextOpenGateId(s);
   let gateProg='';
+  const tok=s.dynastyForgiveness||{trace:0,match:0,rain:0,listen:0};
+  const alt=s.altRoundProgress||{trace:0,match:0,rain:0,listen:0,total:0};
   if(nextDid){
     expireGateTimerIfNeeded(s,nextDid);
     const d=DYNASTIES.find(x=>x.id===nextDid);
@@ -2681,7 +2734,8 @@ function renderMyDay(){
       <div style="font-size:.72rem;font-weight:800;color:var(--gold);margin-bottom:.35rem;">Next gate · ${d?d.zh:'Gate '+nextDid}</div>
       <div style="font-size:.72rem;color:var(--muted);line-height:1.55;">Games at least 1★: <b>${c1}</b>/4 · at least 2★: <b>${c2}</b>/4 · max 3★: <b>${c3}</b>/4</div>
       <div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;line-height:1.5;">${quizLine}</div>
-      <div style="font-size:.68rem;color:rgba(255,255,255,.45);margin-top:.35rem;">To pass: best quiz over 90% + 3 quiz stars, and best 3★ on all four games (can be across days, within timer).</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:.38rem;line-height:1.45;">Per-game stars: Trace <b>${starsText(g.trace||0)}</b> · Match <b>${starsText(g.match||0)}</b> · Rain <b>${starsText(g.rain||0)}</b> · Listen <b>${starsText(g.listen||0)}</b></div>
+      <div style="font-size:.68rem;color:rgba(255,255,255,.45);margin-top:.35rem;">To pass: best quiz 90% or above + 3 quiz stars, and best 3★ on all four games (can be across days, within timer).</div>
       <div style="font-size:.68rem;color:rgba(255,255,255,.45);margin-top:.22rem;">${gateTimerStatusLine(s,nextDid)}</div>
     </div>`;
   }else{
@@ -2696,6 +2750,8 @@ function renderMyDay(){
       <div class="ts-row"><span>📝 Characters learned today</span><span>${learned}</span></div>
       <div class="ts-row"><span>⏱ Time played today</span><span>${formatMs(rawMs)}</span></div>
       <div class="ts-row"><span>💪 Practice words left</span><span>${Object.keys(s.failedWords||{}).length}</span></div>
+      <div class="ts-row"><span>🧩 HSK/WIP rounds</span><span>${alt.total||0}</span></div>
+      <div class="ts-row"><span>🛡️ Forgiveness tokens</span><span>T ${tok.trace||0} · M ${tok.match||0} · R ${tok.rain||0} · L ${tok.listen||0}</span></div>
       <div class="ts-row"><span>🔥 Day streak</span><span>${getConsecutivePlayDays(curP)} days</span></div>
     </div>
     ${gateProg}
@@ -2916,7 +2972,7 @@ function gameRow(game,label){
       <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
         <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','dynasty')">Dynasty</button>
         <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','hsk')">HSK</button>
-        <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','failed')">Failed</button>
+        <button class="btn-s game-picker-btn" style="padding:.25rem .5rem;font-size:.66rem;" onclick="startGame('${game}','failed')">Work in Progress</button>
       </div>
     </div>`;
 }
@@ -2932,7 +2988,7 @@ function gamePickerHtml(){
     <div style="margin-top:.55rem;font-size:.7rem;line-height:1.5;color:var(--muted);text-align:center;">
       <b>Dynasty</b> = words from the gate on your map ·
       <b>HSK</b> = words from your current HSK level ·
-      <b>Failed</b> = words you missed before (practice list)
+      <b>Work in Progress</b> = words you missed before (practice list)
     </div>`;
 }
 
@@ -3009,6 +3065,7 @@ function renderMemoryMatch(){
     const stars=sec<120?3:sec<180?2:sec<240?1:0;
     const tid=matchSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'match',stars);
+    awardAltRound('match',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Brainy win!</div>
       <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
@@ -3045,6 +3102,9 @@ function tapMatch(idx){
       getTS(curP).correct=(getTS(curP).correct||0)+1;
       persistMatch();saveState();renderMemoryMatch();
     }else{
+      if(!consumeDynastyForgiveness('match')){
+        logWrong(curP,a.w&&a.w.zh||'',a.w&&a.w.py||'',a.w&&a.w.en||'');
+      }
       persistMatch();saveState();renderMemoryMatch();
       setTimeout(()=>{matchSt.openIdxs=[];persistMatch();saveState();renderMemoryMatch();},650);
     }
@@ -3126,7 +3186,10 @@ function spawnRainDrop(){
       rainSt.score+=add;getTS(curP).correct=(getTS(curP).correct||0)+1;pickRainTarget(true);
       const hint=document.getElementById('rain-hint');
       if(hint&&rainSt.target)hint.innerHTML='Tap the character for this English meaning:<b>'+rainSt.target.en+'</b>';
-    }else{rainSt.combo=0;logWrong(curP,w.zh,w.py,w.en);}
+    }else{
+      rainSt.combo=0;
+      if(!consumeDynastyForgiveness('rain'))logWrong(curP,w.zh,w.py,w.en);
+    }
     btn.remove();persistRain();saveState();
   };
   zone.appendChild(btn);
@@ -3135,7 +3198,9 @@ function spawnRainDrop(){
     if(btn.parentNode){
       if(w.zh===rainSt.target.zh){
         rainSt.rainAttempts=(rainSt.rainAttempts||0)+1;
-        rainSt.combo=0;logWrong(curP,w.zh,w.py,w.en);persistRain();saveState();
+        rainSt.combo=0;
+        if(!consumeDynastyForgiveness('rain'))logWrong(curP,w.zh,w.py,w.en);
+        persistRain();saveState();
       }
       btn.remove();
     }
@@ -3148,6 +3213,7 @@ function endRain(fromUser){
   const body=document.getElementById('games-body');if(!body)return;
   const stars=starsFromAccuracy(rh,ra);
   if(tid)updateGateGameBest(tid,'rain',stars);
+  awardAltRound('rain',stars);
   body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ ${fromUser?'Stopped for now':'Time is up'}</div>
     <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
     <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
@@ -3186,6 +3252,7 @@ function renderListen(){
     const stars=starsFromAccuracy(cc,tot);
     const tid=listenSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'listen',stars);
+    awardAltRound('listen',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Listening complete!</div>
       <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
@@ -3216,7 +3283,7 @@ function checkListen(btn,ok,q){
     getTS(curP).correct=(getTS(curP).correct||0)+1;
   }else{
     listenSt.streak=0;btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+q.w.zh;
-    logWrong(curP,q.w.zh,q.w.py,q.w.en);
+    if(!consumeDynastyForgiveness('listen'))logWrong(curP,q.w.zh,q.w.py,q.w.en);
   }
   listenSt.qi++;
   if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid};
@@ -3257,6 +3324,7 @@ function renderTrace(){
       :starsFromAccuracy(tg,tot);
     const tid=traceSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'trace',stars);
+    awardAltRound('trace',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
       <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
@@ -3275,7 +3343,12 @@ function renderTrace(){
     traceSt.writer=HanziWriter.create(traceSt.targetId,c.zh,{width:364,height:364,padding:5,showOutline:true,strokeAnimationSpeed:1,delayBetweenStrokes:120});
     let mistakes=0;
     traceSt.writer.quiz({
-      onMistake:()=>{mistakes++;logWrong(curP,c.zh,c.py,c.en);},
+      onMistake:()=>{
+        if(!consumeDynastyForgiveness('trace')){
+          mistakes++;
+          logWrong(curP,c.zh,c.py,c.en);
+        }
+      },
       onComplete:()=>{
         const stars=mistakes===0?3:(mistakes<=2?2:1);
         const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
@@ -3771,7 +3844,9 @@ function renderHubContent(){
           <ul>
             <li><b>Quiz &amp; most games</b> (after you finish the round): more than 85% correct = 3★, more than 70% = 2★, more than 55% = 1★.</li>
             <li><b>Memory match</b>: stars from time — under 2 min = 3★, under 3 min = 2★, under 4 min = 1★. Wrong flips do <b>not</b> add words to your practice list.</li>
-            <li><b>Unlock a gate</b>: best quiz over 90% + 3 quiz stars, <b>and</b> best 3★ on Trace, Memory, Rain, and Listen for that gate. Timer starts at first game 3★ and lasts 5 days.</li>
+            <li><b>Unlock a gate</b>: best quiz 90% or above + 3 quiz stars, <b>and</b> best 3★ on Trace, Memory, Rain, and Listen for that gate. Timer starts at first game 3★ and lasts 5 days.</li>
+            <li><b>Work in Progress + HSK rounds</b>: these build a separate overall progress track (badge at 20 rounds), but they do <b>not</b> unlock gates.</li>
+            <li><b>Forgiveness tokens (Dynasty games only)</b>: every two 2★ rounds in HSK/Work in Progress earns +1 forgiveness in the same game type.</li>
           </ul>
         </div>
       </div>
@@ -5027,7 +5102,7 @@ function renderQuizResult(qc){
   updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars);
   const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup);
   const gamesOk=gateGamesAllThree(s,quizSt.did);
-  const quizPass=(bestQuiz.accPct||0)>90&&(bestQuiz.quizStars||0)===3;
+  const quizPass=(bestQuiz.accPct||0)>=90&&(bestQuiz.quizStars||0)===3;
   const fullPass=quizPass&&gamesOk;
   const passedGate=!quizSt.isChampion&&fullPass;
   const passedChampion=!!quizSt.isChampion&&fullPass;
@@ -5065,7 +5140,7 @@ function renderQuizResult(qc){
   let lockMsg='';
   if(!cleared){
     const bits=[];
-    if(!quizPass)bits.push(`Quiz goal: score <b>over 90%</b> and earn 3 quiz stars. You are getting closer! <span class="lock-sub">Best so far: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★</span>`);
+    if(!quizPass)bits.push(`Quiz goal: score <b>90% or above</b> and earn 3 quiz stars. You are getting closer! <span class="lock-sub">Best so far: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★</span>`);
     if(!gamesOk)bits.push(`Game goal: earn 3★ in Trace, Memory, Rain, and Listen for this gate. <span class="lock-sub">Ready: ${g3}/4</span>`);
     const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
     if(timer&&timer.active){
@@ -5249,7 +5324,7 @@ function captureStateSnapshot(pid){
 function validatePlayerState(pid){
   const s=state[pid];
   if(!s)return{ok:false,missing:['player']};
-  const required=['library','failedWords','todayStats','dailyTimeMs','weeklyHistory','gatesCompleted','storiesCompleted','gateStars','pendingSessions','traceStars','libraryCountAtDayStart','gateGameStars','gateBestQuiz','championBestQuiz','gateTimers','timerReminderShown','timerWarningShown','timerLastSeenAt','recentGateQuestions'];
+  const required=['library','failedWords','todayStats','dailyTimeMs','weeklyHistory','gatesCompleted','storiesCompleted','gateStars','pendingSessions','traceStars','libraryCountAtDayStart','gateGameStars','gateBestQuiz','championBestQuiz','gateTimers','timerReminderShown','timerWarningShown','timerLastSeenAt','altRoundProgress','forgivenessProgress','dynastyForgiveness','recentGateQuestions'];
   const missing=required.filter(k=>s[k]==null);
   return{
     ok:missing.length===0,
