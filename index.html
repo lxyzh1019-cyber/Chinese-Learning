@@ -487,9 +487,12 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .mini-quiz-overlay{display:none;position:fixed;inset:0;background:rgba(8,2,2,.88);
   backdrop-filter:blur(10px);z-index:250;align-items:center;justify-content:center;padding:1rem;}
 .mini-quiz-overlay.show{display:flex;}
+.mini-quiz-overlay.failed-focus{background:rgba(8,2,2,.98);backdrop-filter:none;}
 .mini-quiz-card{background:linear-gradient(152deg,var(--surface2),var(--deep));
   border:1px solid rgba(212,160,23,.28);border-radius:22px;padding:1.6rem 1.4rem;
   max-width:460px;width:100%;animation:popIn .34s cubic-bezier(.34,1.56,.64,1);position:relative;}
+.game-picker-btn{animation:none!important;transition:none!important;transform:none!important;box-shadow:none!important;}
+.game-picker-btn:hover{transform:none!important;box-shadow:none!important;}
 #myday-overlay .mini-quiz-card{max-height:85vh;overflow-y:auto;}
 #myday-body{padding-right:.1rem;}
 .mq-close{position:absolute;top:.65rem;right:.65rem;background:rgba(255,255,255,.06);
@@ -2276,6 +2279,7 @@ function ensureState(p){
   if(!s.timerReminderShown)s.timerReminderShown={};
   if(!s.timerWarningShown)s.timerWarningShown={};
   if(!s.timerLastSeenAt)s.timerLastSeenAt={};
+  if(s.timerUnlockUntil===undefined)s.timerUnlockUntil=0;
   if(s.lastGateQuizAttempt===undefined)s.lastGateQuizAttempt=null;
   if(!s.recentGateQuestions)s.recentGateQuestions={};
   // Week reset
@@ -2842,14 +2846,19 @@ let listenSt={questions:[],qi:0,streak:0,score:0};
 let traceSt={chars:[],i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:null};
 
 function closeGamesOverlay(){document.getElementById('games-overlay').classList.remove('show');}
+function setGamesFailedFocus(active){
+  const ov=document.getElementById('games-overlay');
+  if(!ov)return;
+  ov.classList.toggle('failed-focus',!!active);
+}
 
 function gameRow(game,label){
   return `<div style="padding:.45rem;border:1px solid rgba(212,160,23,.18);border-radius:10px;background:rgba(255,255,255,.02);">
       <div style="font-weight:800;margin-bottom:.35rem;text-align:center;">${label}</div>
       <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
-        <button class="btn-s" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','dynasty')">Dynasty</button>
-        <button class="btn-s" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','hsk')">HSK</button>
-        <button class="btn-s" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','failed')">Failed</button>
+        <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','dynasty')">Dynasty</button>
+        <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','hsk')">HSK</button>
+        <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','failed')">Failed</button>
       </div>
     </div>`;
 }
@@ -2871,6 +2880,7 @@ function gamePickerHtml(){
 
 function openGamesHub(){
   const body=document.getElementById('games-body');if(!body)return;
+  setGamesFailedFocus(false);
   body.innerHTML=gamePickerHtml();
   document.getElementById('games-overlay').classList.add('show');
 }
@@ -2901,9 +2911,16 @@ function wordsForScope(kind){
 
 function startGame(game,scope){
   document.getElementById('games-overlay').classList.add('show');
+  setGamesFailedFocus(scope==='failed');
   curGameTargetDid=scope==='dynasty'?effectiveGameTargetDid():null;
   const words=wordsForScope(scope);
   if(!words.length){showToast('You need a few more words in this set first.');return;}
+  if(scope==='failed'){
+    const dynastyWords=wordsForScope('dynasty');
+    if(words.length<dynastyWords.length){
+      showToast('Great practice run! To unlock the gate, we just need to find a bigger Dynasty pool.');
+    }
+  }
   if(game==='match')startMemoryMatch(words);
   else if(game==='rain')startRain(words);
   else if(game==='listen')startListen(words);
@@ -2996,7 +3013,7 @@ function startRain(words){
   const uniq=[];const seen=new Set();
   words.filter(w=>w.zh&&w.en).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);uniq.push(w);}});
   if(uniq.length<5){showToast('Rain needs at least 5 words. Try Dynasty or HSK to build your word pool!');return;}
-  rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:30,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
+  rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
     rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0};
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
@@ -3025,12 +3042,6 @@ function renderRain(){
 function runRain(){
   clearRainTimers();
   rainSt.spawnIv=setInterval(spawnRainDrop,900);
-  rainSt.targetIv=setInterval(()=>{
-    pickRainTarget(true);
-    const hint=document.getElementById('rain-hint');
-    if(hint&&rainSt.target)hint.innerHTML='Tap the character for this English meaning:<b>'+rainSt.target.en+'</b>';
-    persistRain();saveState();
-  },6000);
   rainSt.tickIv=setInterval(()=>{
     rainSt.timeLeft--;
     if(rainSt.timeLeft<=0){endRain(false);return;}
@@ -3090,7 +3101,7 @@ function restoreRain(){
   const ps=state[curP].pendingSessions.rain;if(!ps||!ps.pool||!ps.pool.length)return false;
   clearRainSession();
   const seq=(ps.targetSeq&&ps.targetSeq.length)?ps.targetSeq.map(w=>({...w})):shuffleArr(ps.pool.map(w=>({...w})));
-  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||30,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
+  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
     rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
@@ -3479,14 +3490,25 @@ function startTimer(){
   stopTimer();
   // Load remaining time from today's usage
   if(curP){
-    const used=state[curP].dailyTimeMs[todayKey()]||0;
-    timerSecs=Math.max(0,SESSION_MINS*60-Math.floor(used/1000));
+    const s=state[curP];
+    const now=Date.now();
+    const unlockUntil=s.timerUnlockUntil||0;
+    if(unlockUntil>now){
+      timerSecs=Math.ceil((unlockUntil-now)/1000);
+    }else{
+      const used=s.dailyTimeMs[todayKey()]||0;
+      timerSecs=Math.max(0,SESSION_MINS*60-Math.floor(used/1000));
+    }
   }else{timerSecs=SESSION_MINS*60;}
   updateCountdownDisplay();
   timerIv=setInterval(()=>{
     timerSecs--;
     updateCountdownDisplay();
-    if(timerSecs<=0){stopTimer();showTimeLock();}
+    if(timerSecs<=0){
+      if(curP&&state[curP])state[curP].timerUnlockUntil=0;
+      saveState();
+      stopTimer();showTimeLock();
+    }
   },1000);
 }
 function stopTimer(){if(timerIv){clearInterval(timerIv);timerIv=null;}}
@@ -3501,15 +3523,14 @@ function showTimeLock(){document.getElementById('timelock').classList.add('show'
 function unlockTime(){
   const v=document.getElementById('lock-input').value;
   if(v===PARENT_PWD){
+    if(curP&&state[curP]){
+      state[curP].timerUnlockUntil=Date.now()+SESSION_MINS*60*1000;
+      saveState();
+    }
     document.getElementById('timelock').classList.remove('show');
     document.getElementById('lock-input').value='';
     document.getElementById('lock-err').textContent='';
-    // Grant a fresh 20-min session WITHOUT re-reading dailyTimeMs
-    // (which would immediately hit 0 and re-show the lock)
-    stopTimer();
-    timerSecs=SESSION_MINS*60;
-    updateCountdownDisplay();
-    timerIv=setInterval(()=>{timerSecs--;updateCountdownDisplay();if(timerSecs<=0){stopTimer();showTimeLock();}},1000);
+    startTimer();
     showToast('Great focus! +20 minutes unlocked! ⏰');
   }else{document.getElementById('lock-err').textContent='That PIN is not correct.';}
 }
@@ -3588,6 +3609,8 @@ function getCurrentHSK(s){
 // ══════════════════════════════════════════════════════
 function renderHub(){
   if(!curP)return;
+  const hubMain=document.querySelector('#scr-hub .hub-main');
+  const prevHubScroll=hubMain?hubMain.scrollTop:0;
   const s=state[curP];
   const nextDid=nextOpenGateId(s);
   if(nextDid)maybeShowGateTimerReminder(s,nextDid);
@@ -3645,6 +3668,7 @@ function renderHub(){
     tabs.appendChild(btn);
   });
   renderHubContent();
+  if(hubMain)hubMain.scrollTop=prevHubScroll;
 }
 
 // Road connector widths — proportional to each dynasty's duration in years
