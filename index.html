@@ -194,8 +194,7 @@ input{font-family:var(--fui);}
 /* Sentence blocks */
 .sent-block{background:var(--surface);border:1px solid rgba(255,255,255,.04);border-left:3px solid;
   border-radius:14px;padding:1rem .9rem .85rem;margin-bottom:.8rem;
-  opacity:0;transform:translateY(10px);animation:sentIn .4s forwards;}
-@keyframes sentIn{to{opacity:1;transform:none;}}
+  opacity:1;transform:none;animation:none;}
 .sent-line{display:flex;flex-wrap:wrap;gap:5px 3px;align-items:flex-end;}
 .sent-en{font-size:.72rem;color:var(--muted);margin-top:.45rem;font-style:italic;transition:opacity .25s;}
 .sent-en.hidden{opacity:0;pointer-events:none;}
