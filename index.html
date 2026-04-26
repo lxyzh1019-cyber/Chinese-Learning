@@ -2728,12 +2728,12 @@ function renderMyDay(){
     let quizLine='No gate quiz try saved yet — open Games, play the four games for 3★, then try the boss!';
     if(la&&la.did===nextDid){
       const lab=la.isChampion?'Champion':'Gate '+la.did;
-      quizLine=`Last ${lab} quiz: ${la.accPct}% correct · ${la.quizStars} quiz star${la.quizStars===1?'':'s'} ★`;
+      quizLine=`Last quiz result (separate from next gate): ${lab} · ${la.accPct}% correct · ${la.quizStars} quiz star${la.quizStars===1?'':'s'} ★`;
     }else if(la){
-      quizLine=`Last quiz (${la.isChampion?'Champion Gate '+la.did:'Gate '+la.did}): ${la.accPct}% · ${la.quizStars}★`;
+      quizLine=`Last quiz result (separate from next gate): ${la.isChampion?'Champion Gate '+la.did:'Gate '+la.did} · ${la.accPct}% · ${la.quizStars}★`;
     }
     gateProg=`<div style="margin:.75rem 0;padding:.65rem .75rem;background:rgba(255,255,255,.04);border-radius:12px;border:1px solid rgba(212,160,23,.15);">
-      <div style="font-size:.72rem;font-weight:800;color:var(--gold);margin-bottom:.35rem;">Next gate · ${d?d.zh:'Gate '+nextDid}</div>
+      <div style="font-size:.72rem;font-weight:800;color:var(--gold);margin-bottom:.35rem;">Next gate · Gate ${d?d.id:nextDid} · ${d?d.zh+' · '+d.en:'(loading...)'}</div>
       <div style="font-size:.72rem;color:var(--muted);line-height:1.55;">Games at least 1★: <b>${c1}</b>/4 · at least 2★: <b>${c2}</b>/4 · max 3★: <b>${c3}</b>/4</div>
       <div style="font-size:.72rem;color:var(--muted);margin-top:.4rem;line-height:1.5;">${quizLine}</div>
       <div style="font-size:.72rem;color:var(--muted);margin-top:.38rem;line-height:1.45;">Per-game stars: Trace <b>${starsText(g.trace||0)}</b> · Match <b>${starsText(g.match||0)}</b> · Rain <b>${starsText(g.rain||0)}</b> · Listen <b>${starsText(g.listen||0)}</b></div>
