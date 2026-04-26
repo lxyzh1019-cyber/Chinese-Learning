@@ -2302,6 +2302,8 @@ function ensureState(p){
   const s=state[p];if(!s.library)s.library={};if(!s.failedWords)s.failedWords={};
   if(!s.todayStats)s.todayStats={};if(!s.dailyTimeMs)s.dailyTimeMs={};
   if(!s.weeklyHistory)s.weeklyHistory=[];if(!s.gatesCompleted)s.gatesCompleted=[];
+  if(!Array.isArray(s.gatesCompleted))s.gatesCompleted=[];
+  s.gatesCompleted=[...new Set(s.gatesCompleted.map(v=>parseInt(v,10)).filter(v=>Number.isFinite(v)&&v>0))];
   if(!s.storiesCompleted)s.storiesCompleted=[];if(!s.gateStars)s.gateStars={};
   if(!s.championCleared)s.championCleared={};
   if(!s.badges)s.badges=[];
