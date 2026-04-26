@@ -2996,7 +2996,7 @@ function startRain(words){
   const uniq=[];const seen=new Set();
   words.filter(w=>w.zh&&w.en).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);uniq.push(w);}});
   if(uniq.length<5){showToast('Rain needs at least 5 words. Try Dynasty or HSK to build your word pool!');return;}
-  rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:30,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
+  rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
     rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0};
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
@@ -3025,12 +3025,6 @@ function renderRain(){
 function runRain(){
   clearRainTimers();
   rainSt.spawnIv=setInterval(spawnRainDrop,900);
-  rainSt.targetIv=setInterval(()=>{
-    pickRainTarget(true);
-    const hint=document.getElementById('rain-hint');
-    if(hint&&rainSt.target)hint.innerHTML='Tap the character for this English meaning:<b>'+rainSt.target.en+'</b>';
-    persistRain();saveState();
-  },6000);
   rainSt.tickIv=setInterval(()=>{
     rainSt.timeLeft--;
     if(rainSt.timeLeft<=0){endRain(false);return;}
@@ -3090,7 +3084,7 @@ function restoreRain(){
   const ps=state[curP].pendingSessions.rain;if(!ps||!ps.pool||!ps.pool.length)return false;
   clearRainSession();
   const seq=(ps.targetSeq&&ps.targetSeq.length)?ps.targetSeq.map(w=>({...w})):shuffleArr(ps.pool.map(w=>({...w})));
-  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||30,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
+  rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
     rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
