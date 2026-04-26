@@ -2146,7 +2146,7 @@ function renderDailyWordBox(p){
   el.innerHTML=`<div class="dwb-title">Daily Challenge · 每日一字</div>
     <div class="dwb-row">
       <span class="dwb-done">${solved?'✅ Solved today! +5⭐':hint}</span>
-      <button class="dwb-btn" onclick="openDailyWordChallenge()" ${solved?'disabled':''}>${solved?'Done':'Let's Start'}</button>
+      <button class="dwb-btn" onclick="openDailyWordChallenge()" ${solved?'disabled':''}>${solved?'Done':"Let's Start"}</button>
     </div>`;
 }
 
@@ -4123,7 +4123,7 @@ let drillSt={words:[],qi:0,correct:0,streak:0,maxStreak:0};
 function startDrill(){
   const s=state[curP];
   const failed=Object.values(s.failedWords||{}).sort((a,b)=>b.failCount-a.failCount);
-  if(!failed.length){showToast('No practice words yet—keep learning, you're doing great! 📖');return;}
+  if(!failed.length){showToast("No practice words yet—keep learning, you're doing great! 📖");return;}
   // Build distractor pool from HSK vocab (all levels)
   const hskPool=[];
   [1,2,3,4].forEach(lv=>{
