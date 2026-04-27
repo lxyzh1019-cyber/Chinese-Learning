@@ -4971,7 +4971,12 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     grid.querySelectorAll('.mcq-opt').forEach(b=>{
       if(curQ&&b.textContent===(curQ.reverse?curQ.zh:curQ.correct))b.classList.add('correct');
     });
-    const w=quizSt.vocab.find(v=>v.zh===zhHint&&v.en===correctAns)||quizSt.vocab.find(v=>v.zh===zhHint)||{zh:zhHint||'?',py:pyHint||'?',en:correctAns};
+    // Use the exact current question row first to avoid homograph ambiguity (e.g. 都: dū vs dōu).
+    const qKey=curQ&&curQ.zh?curQ.zh:zhHint;
+    const w=quizSt.vocab.find(v=>v.zh===qKey&&v.en===correctAns)
+      || quizSt.vocab.find(v=>v.zh===qKey&&v.py===pyHint)
+      || quizSt.vocab.find(v=>v.zh===qKey)
+      || {zh:qKey||'?',py:pyHint||'?',en:correctAns};
     logWrong(curP,w.zh,w.py,w.en);
     showCorrectRevealCard({zh:w.zh,py:w.py,en:w.en||correctAns,isSentence:false,onDone:goNext});
   }
