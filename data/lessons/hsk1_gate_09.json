@@ -3,43 +3,93 @@
   "level": "HSK1",
   "gateId": 9,
   "title": "HSK1 Gate 9 Lesson",
-  "explanation": "This gate focuses on practical high-frequency words. Learn the key words first, then read the short paragraph and answer comprehension questions.",
-  "passage": "Gate 9 mini passage: 我们今天学习第9关的新词。先听、再读、再说，用中文介绍自己的一天。",
+  "explanation": "HSK1 Gate 9：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
+  "passage": "第9关：今天的新词有：非常、开、叫、孩子、这里、别、请、钱、本、回……等（共14个生字）。复习字有：喜欢、吃、谁、新、找、打、还有、快……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
   "keyVocab": [
     {
-      "zh": "我",
-      "pinyin": "wǒ",
-      "en": "I/me"
+      "zh": "非常",
+      "pinyin": "fēi cháng",
+      "en": "very; really"
     },
     {
-      "zh": "你",
-      "pinyin": "nǐ",
-      "en": "you"
+      "zh": "开",
+      "pinyin": "kāi",
+      "en": "to open (transitive or intransitive)"
     },
     {
-      "zh": "学",
-      "pinyin": "xué",
-      "en": "learn/study"
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "to shout"
     },
     {
-      "zh": "说",
-      "pinyin": "shuō",
-      "en": "speak/say"
+      "zh": "孩子",
+      "pinyin": "hái zi",
+      "en": "child"
+    },
+    {
+      "zh": "这里",
+      "pinyin": "zhè lǐ",
+      "en": "variant of 这里"
+    },
+    {
+      "zh": "别",
+      "pinyin": "Bié",
+      "en": "surname Bie"
+    },
+    {
+      "zh": "请",
+      "pinyin": "qǐng",
+      "en": "to ask"
+    },
+    {
+      "zh": "钱",
+      "pinyin": "Qián",
+      "en": "surname Qian"
+    },
+    {
+      "zh": "本",
+      "pinyin": "běn",
+      "en": "root"
+    },
+    {
+      "zh": "回",
+      "pinyin": "huí",
+      "en": "to circle"
+    },
+    {
+      "zh": "东西",
+      "pinyin": "dōng xī",
+      "en": "east and west"
+    },
+    {
+      "zh": "一些",
+      "pinyin": "yī xiē",
+      "en": "some"
+    },
+    {
+      "zh": "三",
+      "pinyin": "Sān",
+      "en": "surname San"
+    },
+    {
+      "zh": "一样",
+      "pinyin": "yī yàng",
+      "en": "same"
     }
   ],
   "comprehension": [
     {
-      "question": "Who is learning new words in this lesson?",
-      "answer": "We are learning together."
+      "question": "本关有几个生字（新词）？",
+      "answer": "14个。"
     },
     {
-      "question": "What should you do before speaking?",
-      "answer": "Listen first, then read, then speak."
+      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
+      "answer": "例如：喜欢 和 吃（答案不唯一，合理即可）。"
     },
     {
-      "question": "What can you introduce in Chinese?",
-      "answer": "Your day."
+      "question": "读完以后，你应该自己先做哪一步？",
+      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
     }
   ],
-  "speakingPrompt": "Use 2-3 short Chinese sentences to describe your day."
+  "speakingPrompt": "用本关的词（例如「非常」「开」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
 }

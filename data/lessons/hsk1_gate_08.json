@@ -3,43 +3,93 @@
   "level": "HSK1",
   "gateId": 8,
   "title": "HSK1 Gate 8 Lesson",
-  "explanation": "This gate focuses on practical high-frequency words. Learn the key words first, then read the short paragraph and answer comprehension questions.",
-  "passage": "Gate 8 mini passage: 我们今天学习第8关的新词。先听、再读、再说，用中文介绍自己的一天。",
+  "explanation": "HSK1 Gate 8：本关有 13 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
+  "passage": "第8关：今天的新词有：还是、觉得、月、看到、起来、一起、起、几、见、车……等（共13个生字）。复习字有：事、后、吗、家、你们、前、时间、怎么……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
   "keyVocab": [
     {
-      "zh": "我",
-      "pinyin": "wǒ",
-      "en": "I/me"
+      "zh": "还是",
+      "pinyin": "hái shi",
+      "en": "still (as before)"
     },
     {
-      "zh": "你",
-      "pinyin": "nǐ",
-      "en": "you"
+      "zh": "觉得",
+      "pinyin": "jué de",
+      "en": "to think that ...; to feel that ..."
     },
     {
-      "zh": "学",
-      "pinyin": "xué",
-      "en": "learn/study"
+      "zh": "月",
+      "pinyin": "yuè",
+      "en": "moon"
     },
     {
-      "zh": "说",
-      "pinyin": "shuō",
-      "en": "speak/say"
+      "zh": "看到",
+      "pinyin": "kàn dào",
+      "en": "to see"
+    },
+    {
+      "zh": "起来",
+      "pinyin": "qǐ lai",
+      "en": "to stand up"
+    },
+    {
+      "zh": "一起",
+      "pinyin": "yī qǐ",
+      "en": "in the same place"
+    },
+    {
+      "zh": "起",
+      "pinyin": "qǐ",
+      "en": "to rise"
+    },
+    {
+      "zh": "几",
+      "pinyin": "jī",
+      "en": "small table"
+    },
+    {
+      "zh": "见",
+      "pinyin": "jiàn",
+      "en": "to see"
+    },
+    {
+      "zh": "车",
+      "pinyin": "Chē",
+      "en": "surname Che"
+    },
+    {
+      "zh": "找到",
+      "pinyin": "zhǎo dào",
+      "en": "to find"
+    },
+    {
+      "zh": "手",
+      "pinyin": "shǒu",
+      "en": "hand"
+    },
+    {
+      "zh": "听",
+      "pinyin": "yǐn",
+      "en": "smile (archaic)"
+    },
+    {
+      "zh": "事",
+      "pinyin": "shì",
+      "en": "matter"
     }
   ],
   "comprehension": [
     {
-      "question": "Who is learning new words in this lesson?",
-      "answer": "We are learning together."
+      "question": "本关有几个生字（新词）？",
+      "answer": "13个。"
     },
     {
-      "question": "What should you do before speaking?",
-      "answer": "Listen first, then read, then speak."
+      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
+      "answer": "例如：事 和 后（答案不唯一，合理即可）。"
     },
     {
-      "question": "What can you introduce in Chinese?",
-      "answer": "Your day."
+      "question": "读完以后，你应该自己先做哪一步？",
+      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
     }
   ],
-  "speakingPrompt": "Use 2-3 short Chinese sentences to describe your day."
+  "speakingPrompt": "用本关的词（例如「还是」「觉得」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
 }

@@ -3,43 +3,93 @@
   "level": "HSK1",
   "gateId": 22,
   "title": "HSK1 Gate 22 Lesson",
-  "explanation": "This gate focuses on practical high-frequency words. Learn the key words first, then read the short paragraph and answer comprehension questions.",
-  "passage": "Gate 22 mini passage: 我们今天学习第22关的新词。先听、再读、再说，用中文介绍自己的一天。",
+  "explanation": "HSK1 Gate 22：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
+  "passage": "第22关：今天的新词有：休息、班、坏、一边、洗、有的、毛、忘记、房间、八……等（共14个生字）。复习字有：教、不用、读、忘、认真、电、房子、冷……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
   "keyVocab": [
     {
-      "zh": "我",
-      "pinyin": "wǒ",
-      "en": "I/me"
+      "zh": "休息",
+      "pinyin": "xiū xi",
+      "en": "rest"
     },
     {
-      "zh": "你",
-      "pinyin": "nǐ",
-      "en": "you"
+      "zh": "班",
+      "pinyin": "Bān",
+      "en": "surname Ban"
     },
     {
-      "zh": "学",
-      "pinyin": "xué",
-      "en": "learn/study"
+      "zh": "坏",
+      "pinyin": "huài",
+      "en": "bad"
     },
     {
-      "zh": "说",
-      "pinyin": "shuō",
-      "en": "speak/say"
+      "zh": "一边",
+      "pinyin": "yī biān",
+      "en": "one side"
+    },
+    {
+      "zh": "洗",
+      "pinyin": "xǐ",
+      "en": "to wash; to bathe"
+    },
+    {
+      "zh": "有的",
+      "pinyin": "yǒu de",
+      "en": "(there are) some (who are...)"
+    },
+    {
+      "zh": "毛",
+      "pinyin": "Máo",
+      "en": "surname Mao"
+    },
+    {
+      "zh": "忘记",
+      "pinyin": "wàng jì",
+      "en": "to forget"
+    },
+    {
+      "zh": "房间",
+      "pinyin": "fáng jiān",
+      "en": "room"
+    },
+    {
+      "zh": "八",
+      "pinyin": "bā",
+      "en": "eight; 8"
+    },
+    {
+      "zh": "左",
+      "pinyin": "Zuǒ",
+      "en": "surname Zuo"
+    },
+    {
+      "zh": "吃饭",
+      "pinyin": "chī fàn",
+      "en": "to have a meal"
+    },
+    {
+      "zh": "动作",
+      "pinyin": "dòng zuò",
+      "en": "movement; motion; action"
+    },
+    {
+      "zh": "七",
+      "pinyin": "qī",
+      "en": "seven"
     }
   ],
   "comprehension": [
     {
-      "question": "Who is learning new words in this lesson?",
-      "answer": "We are learning together."
+      "question": "本关有几个生字（新词）？",
+      "answer": "14个。"
     },
     {
-      "question": "What should you do before speaking?",
-      "answer": "Listen first, then read, then speak."
+      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
+      "answer": "例如：教 和 不用（答案不唯一，合理即可）。"
     },
     {
-      "question": "What can you introduce in Chinese?",
-      "answer": "Your day."
+      "question": "读完以后，你应该自己先做哪一步？",
+      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
     }
   ],
-  "speakingPrompt": "Use 2-3 short Chinese sentences to describe your day."
+  "speakingPrompt": "用本关的词（例如「休息」「班」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
 }
