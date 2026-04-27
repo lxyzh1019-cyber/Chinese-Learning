@@ -567,6 +567,16 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
   border-radius:8px;padding:.35rem .7rem;font-size:.72rem;font-weight:800;cursor:pointer;}
 .dwb-btn:disabled{opacity:.45;cursor:not-allowed;}
 .dwb-done{font-size:.68rem;color:var(--jade);font-weight:700;}
+.hub-rules-details{margin-top:.55rem;border-radius:12px;background:linear-gradient(135deg,rgba(212,160,23,.08),rgba(39,174,96,.06));
+  border:1px solid rgba(212,160,23,.22);padding:.35rem .45rem;font-size:.68rem;line-height:1.45;color:var(--ink);}
+.hub-rules-details summary{cursor:pointer;font-weight:800;color:var(--gold);font-size:.62rem;letter-spacing:.03em;list-style:none;}
+.hub-rules-details summary::-webkit-details-marker{display:none;}
+.hub-rules-body{color:var(--muted);margin-top:.35rem;padding-top:.35rem;border-top:1px solid rgba(255,255,255,.08);}
+.hub-rules-body strong{color:var(--ink);}
+.mystery-prize-card{text-align:center;padding:.5rem 0;}
+.mystery-prize-emoji{font-size:2.6rem;line-height:1;margin-bottom:.35rem;}
+.mystery-prize-title{font-family:var(--fdec);font-size:1.25rem;color:var(--gold);margin-bottom:.25rem;}
+.mystery-prize-sub{font-size:.78rem;color:var(--muted);line-height:1.45;}
 .badge-strip{display:flex;flex-wrap:wrap;gap:.25rem;padding:.4rem 0 .2rem;margin-bottom:.35rem;}
 .badge-item{font-size:1.1rem;opacity:.85;cursor:default;filter:drop-shadow(0 0 4px rgba(212,160,23,.2));}
 .badge-item.dim{opacity:.35;filter:grayscale(.4);}
@@ -732,6 +742,11 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     <div class="daily-word-box" id="daily-word-box"></div>
     <div class="daily-word-box" id="daily-mission-box" style="margin-top:.55rem;"></div>
     <div class="daily-word-box" id="rivalry-coop-strip" style="margin-top:.55rem;"></div>
+    <div id="hub-mystery-card" style="margin-top:.55rem;"></div>
+    <details class="hub-rules-details" id="hub-rules-details">
+      <summary>How stars, tips & boxes work · 规则说明</summary>
+      <div class="hub-rules-body" id="hub-rules-body"></div>
+    </details>
     <div class="today-stats" id="today-stats-box">
       <div class="ts-row"><span>⭐ Today's Stars</span><span id="ts-stars">0</span></div>
       <div class="ts-row"><span>✅ Correct</span><span id="ts-correct">0</span></div>
@@ -897,6 +912,14 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     <button type="button" class="mq-close" onclick="closeCultureStories()" title="Close" aria-label="Close">✕</button>
     <div class="mq-title">🏮 Culture Stories · 文化故事</div>
     <div id="culture-body"></div>
+  </div>
+</div>
+
+<div class="mini-quiz-overlay" id="mystery-overlay">
+  <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeMysteryBoxOverlay()" title="Close" aria-label="Close">✕</button>
+    <div class="mq-title">Mystery box · 神秘礼盒</div>
+    <div id="mystery-body"></div>
   </div>
 </div>
 
@@ -2104,7 +2127,10 @@ function defPlayer(){
     recentGateQuestions:{},
     dailyMission:{date:null,goalKey:null,progress:0,target:1,done:false,rewarded:false},
     microRewardLastAt:0,
-    mascotSession:{count:0,lastAt:0}};
+    mascotSession:{count:0,lastAt:0},
+    mascotUnlockedNotified:false,
+    mysteryPicksPending:0,
+    mysteryLastFamilyAt:0};
 }
 
 let state={jenn:null,jess:null};
@@ -2205,8 +2231,15 @@ function loadEngagementSettings(){
 function saveEngagementSettings(){
   try{localStorage.setItem(ENG_SETTINGS_KEY,JSON.stringify(engagementSettings));}catch(e){}
 }
+function mascotFriendUnlocked(){
+  if(!curP)return false;
+  ensureState(curP);
+  const s=state[curP];
+  return !!(s&&s.gatesCompleted&&s.gatesCompleted.includes(5));
+}
 function isMascotSuppressed(){
   if(engagementSettings.mascotDisabled)return true;
+  if(!mascotFriendUnlocked())return true;
   const q=document.getElementById('scr-quiz');
   if(q&&q.classList.contains('show'))return true;
   return false;
@@ -2309,7 +2342,7 @@ function renderDailyMissionPanel(p){
   const labels={gates:'Clear 1 gate today',stories:'Finish 1 story today',correct:'Get 12 correct answers today',stars:'Earn 25 stars today'};
   const lbl=labels[m.goalKey]||'Daily mission';
   const pct=Math.min(100,Math.round((m.progress||0)/(m.target||1)*100));
-  el.innerHTML=`<div class="practice-box-title">Daily mission</div>
+  el.innerHTML=`<div class="dwb-title">Daily mission · 今日任务</div>
     <div style="font-size:.72rem;color:var(--muted);margin:.2rem 0 .35rem;">${lbl}</div>
     <div class="prog-track" style="height:6px;margin:.25rem 0;"><div class="prog-fill" style="width:${pct}%;height:6px;"></div></div>
     <div style="font-size:.68rem;color:var(--ink);">${m.progress||0} / ${m.target||1}${m.done?' · Done':''}</div>`;
@@ -2329,10 +2362,115 @@ function renderRivalryCoopStrip(){
     showToast('Family co-op goal reached! Great teamwork!');
     maybeMascotToast('coop');
   }
-  el.innerHTML=`<div class="practice-box-title">This week</div>
+  el.innerHTML=`<div class="dwb-title">This week · 本周</div>
     <div style="font-size:.72rem;color:var(--muted);">Jenn ${jn}⭐ vs Jess ${jw}⭐</div>
     <div style="font-size:.68rem;color:var(--gold);margin-top:.35rem;">Family co-op: ${coop} / ${goal} week stars</div>
     <div class="prog-track" style="height:6px;margin:.3rem 0;"><div class="prog-fill" style="width:${pct}%;height:6px;"></div></div>`;
+}
+function renderHubRulesBody(){
+  const el=document.getElementById('hub-rules-body');if(!el)return;
+  const goal=engagementSettings.familyCoopGoalStars||120;
+  const friendUnlocked=mascotFriendUnlocked();
+  const friendLine=friendUnlocked
+    ?'Your <strong>study friend</strong> may send a few short tips in the sidebar (not during boss quizzes). A grown-up can turn tips off in Parent Summary.'
+    :'<strong>Study friend</strong> unlocks after you clear <strong>Gate 5</strong>—then you may see short cheer messages in the sidebar.';
+  el.innerHTML=`<p><strong>Daily Challenge</strong> · 每日一字: solve once per day for <strong>+5</strong> stars.</p>
+    <p><strong>Daily mission</strong> · 今日任务: one goal per day; finish it for <strong>+8</strong> stars.</p>
+    <p><strong>This week</strong> · 本周: Jenn vs Jess week stars + family teamwork bar (<strong>${goal}</strong> week stars). Hit the goal for a family cheer toast.</p>
+    <p>${friendLine}</p>
+    <p><strong>Mystery box</strong> · 神秘盒: sometimes when you clear a gate you earn an extra open. Culture stories can give box tokens. Tap <strong>Open</strong> below when you have picks. Prizes can be bonus stars or a family coupon—show coupons to a grown-up.</p>`;
+}
+function renderMysteryHubCard(){
+  const wrap=document.getElementById('hub-mystery-card');if(!wrap||!curP)return;
+  ensureState(curP);
+  const n=state[curP].mysteryPicksPending||0;
+  if(n<1){wrap.innerHTML='';return;}
+  wrap.innerHTML=`<div class="daily-word-box" style="margin-bottom:0;">
+    <div class="dwb-title">Mystery box · 神秘礼盒</div>
+    <div class="dwb-row" style="margin-top:.35rem;">
+      <span class="dwb-done">${n} pick${n!==1?'s':''} waiting</span>
+      <button type="button" class="dwb-btn" onclick="openMysteryBoxOverlay()">Open 🎁</button>
+    </div></div>`;
+}
+function checkMascotGateFiveUnlock(){
+  if(!curP)return;
+  ensureState(curP);
+  const s=state[curP];
+  if(s.gatesCompleted.includes(5)&&!s.mascotUnlockedNotified){
+    s.mascotUnlockedNotified=true;
+    saveState();
+    showToast('You unlocked your study friend! They visit for quick cheers.',2600);
+    launchConfetti();
+  }
+}
+function getMysteryFamilyCatalog(){
+  const d=curriculumCache.culture;
+  const arr=d&&d.rewardCatalog&&Array.isArray(d.rewardCatalog.familyRewardTypes)?d.rewardCatalog.familyRewardTypes:null;
+  return arr&&arr.length?arr:['ask_parents_help','movie_night','game_night','choose_dinner'];
+}
+const MYSTERY_FAMILY_LABELS={
+  ask_parents_help:'Ask parents for a little help on one tricky word',
+  movie_night:'Family movie night',
+  game_night:'Family game night',
+  choose_dinner:'Choose dinner (grown-up says ok)'
+};
+function openMysteryBoxOverlay(){
+  if(!curP)return;
+  ensureState(curP);
+  if(!(state[curP].mysteryPicksPending>0))return;
+  const body=document.getElementById('mystery-body');if(!body)return;
+  body.innerHTML=`<div class="mq-progress" style="text-align:center;">Tap the gift to open!</div>
+    <div style="text-align:center;margin:1rem 0;"><button type="button" class="btn-g" style="font-size:2rem;padding:.6rem 1rem;" onclick="revealMysteryPick()">🎁</button></div>`;
+  document.getElementById('mystery-overlay').classList.add('show');
+}
+function closeMysteryBoxOverlay(){
+  const o=document.getElementById('mystery-overlay');if(o)o.classList.remove('show');
+  if(curP)renderHub();
+}
+function revealMysteryPick(){
+  if(!curP)return;
+  ensureState(curP);
+  const s=state[curP];
+  const body=document.getElementById('mystery-body');if(!body)return;
+  if(!(s.mysteryPicksPending>0)){closeMysteryBoxOverlay();return;}
+  s.mysteryPicksPending--;
+  const r=Math.random();
+  const now=Date.now();
+  const cat=getMysteryFamilyCatalog();
+  const allowFam=!s.mysteryLastFamilyAt||(now-s.mysteryLastFamilyAt>21600000);
+  if(r>=0.9&&allowFam&&cat.length){
+    const pick=cat[seededPick(`mbox_${curP}_${now}`,cat.length)];
+    s.mysteryLastFamilyAt=now;
+    const lbl=MYSTERY_FAMILY_LABELS[pick]||String(pick).replace(/_/g,' ');
+    body.innerHTML=`<div class="mystery-prize-card">
+      <div class="mystery-prize-emoji">🎟️</div>
+      <div class="mystery-prize-title">Family coupon</div>
+      <div class="mystery-prize-sub">${lbl}<br><small>Show this to a grown-up.</small></div>
+      <button type="button" class="btn-g" style="margin-top:.8rem;" onclick="closeMysteryBoxOverlay()">Done</button></div>`;
+    saveState();
+    return;
+  }
+  let stars=3,sub='Small star bonus!';
+  if(r<0.52)stars=3;
+  else if(r<0.78){stars=6;sub='Lucky! Medium stars';}
+  else{stars=10;sub=r>=0.9?'Extra stars (family prize cooling down)':'Jackpot stars!';}
+  addEarnedStars(stars);
+  body.innerHTML=`<div class="mystery-prize-card">
+    <div class="mystery-prize-emoji">⭐</div>
+    <div class="mystery-prize-title">+${stars} stars</div>
+    <div class="mystery-prize-sub">${sub}</div>
+    <button type="button" class="btn-g" style="margin-top:.8rem;" onclick="closeMysteryBoxOverlay()">Done</button></div>`;
+  saveState();
+}
+function maybeGrantMysteryFromGate(did){
+  if(!curP)return;
+  const g=getGateCurriculum(did,curHSK);
+  const ch=g&&g.rewards&&typeof g.rewards.mysteryBoxChance==='number'?g.rewards.mysteryBoxChance:0;
+  if(!(ch>0)||Math.random()>=ch)return;
+  ensureState(curP);
+  state[curP].mysteryPicksPending=(state[curP].mysteryPicksPending||0)+1;
+  showToast('Mystery box! Open 🎁 in the hub.',2000);
+  saveState();
 }
 function syncParentMascotFromUi(){
   const el=document.getElementById('parent-mascot-off');
@@ -2602,6 +2740,9 @@ function ensureState(p){
   if(!s.dailyMission)s.dailyMission={date:null,goalKey:null,progress:0,target:1,done:false,rewarded:false};
   if(s.microRewardLastAt===undefined)s.microRewardLastAt=0;
   if(!s.mascotSession)s.mascotSession={count:0,lastAt:0};
+  if(s.mascotUnlockedNotified===undefined)s.mascotUnlockedNotified=!!(s.gatesCompleted&&s.gatesCompleted.includes(5));
+  if(s.mysteryPicksPending===undefined)s.mysteryPicksPending=0;
+  if(s.mysteryLastFamilyAt===undefined)s.mysteryLastFamilyAt=0;
   // Week reset
   if(!isSameWeek(s.weekStart)){
     const nws=weekStart();
@@ -4092,6 +4233,8 @@ function renderHub(){
   renderDailyWordBox(curP);
   renderDailyMissionPanel(curP);
   renderRivalryCoopStrip();
+  renderHubRulesBody();
+  renderMysteryHubCard();
   checkBadges(curP);
   renderBadgeStrip(curP);
   // Practice words sidebar
@@ -4353,6 +4496,11 @@ function applyCultureReward(story){
   const r=story.rewards;
   const stars=Math.max(0,parseInt(r.stars,10)||0);
   if(stars>0){addEarnedStars(stars);}
+  const tok=Math.max(0,parseInt(r.mysteryBoxToken,10)||0);
+  if(tok>0){
+    s.mysteryPicksPending=(s.mysteryPicksPending||0)+tok;
+    showToast('+'+tok+' mystery box pick'+(tok>1?'s':'')+'! Open 🎁 in the hub.',2000);
+  }
   if(r.familyRewardType){
     const fam=String(r.familyRewardType).replace(/_/g,' ');
     showToast('Family reward unlocked: '+fam);
@@ -5660,8 +5808,10 @@ function renderQuizResult(qc){
       if(score>=10)bumpCorrectCount(1);
       const tsCh=getTS(curP);
       if(quizStars>=2){tsCh.champions=(tsCh.champions||0)+1;}
+      if(quizStars>prev)maybeGrantMysteryFromGate(quizSt.did);
     }
   }else if(passedGate){
+    const gateJustCleared=!s.gatesCompleted.includes(quizSt.did);
     if(!s.gatesCompleted.includes(quizSt.did))s.gatesCompleted.push(quizSt.did);
     const prevStars=s.gateStars[quizSt.did]||0;
     if(quizStars>prevStars)s.gateStars[quizSt.did]=quizStars;
@@ -5671,6 +5821,10 @@ function renderQuizResult(qc){
     const pts=score;addEarnedStars(pts);
     const ts=getTS(curP);ts.gates=(ts.gates||0)+1;if(score>=10)bumpCorrectCount(1);
     bumpMission('gates',1);
+    if(gateJustCleared){
+      maybeGrantMysteryFromGate(quizSt.did);
+      checkMascotGateFiveUnlock();
+    }
   }
   clearGateQuizPending();
   saveState();
