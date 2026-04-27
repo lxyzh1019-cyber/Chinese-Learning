@@ -721,6 +721,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     <div class="sidebar-avatar" id="hub-avatar">🐥</div>
     <div class="sidebar-name" id="hub-name">Jenn</div>
     <div class="sidebar-hsk-badge" id="hub-hsk">HSK 1</div>
+    <div id="mascot-bubble" style="display:none;margin:.45rem auto 0;max-width:230px;padding:.45rem .55rem;background:rgba(39,174,96,.12);border:1px solid rgba(39,174,96,.35);border-radius:10px;font-size:.68rem;color:var(--ink);text-align:center;line-height:1.35;"></div>
     <div class="sidebar-clock" id="hub-clock">--:--</div>
     <div class="sidebar-date-small" id="hub-date"></div>
     <div class="countdown-wrap">
@@ -729,6 +730,8 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     </div>
     <div id="streak-cal"></div>
     <div class="daily-word-box" id="daily-word-box"></div>
+    <div class="daily-word-box" id="daily-mission-box" style="margin-top:.55rem;"></div>
+    <div class="daily-word-box" id="rivalry-coop-strip" style="margin-top:.55rem;"></div>
     <div class="today-stats" id="today-stats-box">
       <div class="ts-row"><span>⭐ Today's Stars</span><span id="ts-stars">0</span></div>
       <div class="ts-row"><span>✅ Correct</span><span id="ts-correct">0</span></div>
@@ -795,6 +798,17 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
       <button class="sum-tab active" id="tab-wk" onclick="setSumMode('weekly')">📅 Weekly</button>
       <button class="sum-tab" id="tab-dy" onclick="setSumMode('daily')">📆 Daily</button>
     </div>
+    <div style="margin:.55rem 0 .9rem;padding:.55rem .65rem;border:1px solid rgba(212,160,23,.2);border-radius:10px;background:rgba(0,0,0,.12);font-size:.74rem;line-height:1.45;">
+      <label style="display:flex;align-items:center;gap:.45rem;cursor:pointer;">
+        <input type="checkbox" id="parent-mascot-off" onchange="syncParentMascotFromUi()">
+        <span>Hide mascot bubble for kids (sidebar tips stay off)</span>
+      </label>
+      <div style="margin-top:.45rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;">
+        <span style="color:var(--muted);">Family co-op week stars goal:</span>
+        <input id="parent-coop-goal" type="number" min="40" max="500" step="10" style="width:4.2rem;padding:.25rem .4rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);">
+        <button type="button" class="btn-s" style="padding:.28rem .55rem;font-size:.68rem;" onclick="saveCoopGoalFromParent()">Save</button>
+      </div>
+    </div>
     <div id="sum-nav"></div>
     <div id="sum-grid"></div>
     <div class="divider"></div>
@@ -830,6 +844,15 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     <button type="button" class="mq-close" onclick="closeDrill()" title="Close" aria-label="Close">✕</button>
     <div class="mq-title">💪 Word Drill · 生词练习</div>
     <div id="drill-body"></div>
+  </div>
+</div>
+
+<!-- ═══ REVENGE ROUND OVERLAY ═══ -->
+<div class="mini-quiz-overlay" id="revenge-overlay">
+  <div class="mini-quiz-card drill-card">
+    <button type="button" class="mq-close" onclick="closeRevengeRound()" title="Close" aria-label="Close">✕</button>
+    <div class="mq-title">Revenge round · 错题反击</div>
+    <div id="revenge-body"></div>
   </div>
 </div>
 
@@ -2067,7 +2090,7 @@ function defPlayer(){
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
     weekStart:weekStart(),
     badges:[],dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
-    pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null},
+    pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null},
     traceStars:{},
     libraryCountAtDayStart:{},
     gateGameStars:{},
@@ -2078,7 +2101,10 @@ function defPlayer(){
     altRoundProgress:{trace:0,match:0,rain:0,listen:0,total:0},
     forgivenessProgress:{trace:0,match:0,rain:0,listen:0},
     dynastyForgiveness:{trace:0,match:0,rain:0,listen:0},
-    recentGateQuestions:{}};
+    recentGateQuestions:{},
+    dailyMission:{date:null,goalKey:null,progress:0,target:1,done:false,rewarded:false},
+    microRewardLastAt:0,
+    mascotSession:{count:0,lastAt:0}};
 }
 
 let state={jenn:null,jess:null};
@@ -2146,6 +2172,7 @@ function lessonRefForGate(did){
   const g=getGateCurriculum(did,curHSK);
   if(g&&g.lessonRef)return g.lessonRef;
   if(curHSK===1)return `hsk1_gate_${String(did).padStart(2,'0')}`;
+  if(curHSK===2)return `hsk2_gate_${String(did).padStart(2,'0')}`;
   return null;
 }
 async function loadLessonByRef(ref){
@@ -2159,6 +2186,169 @@ async function loadLessonByRef(ref){
     dbgLog('loadLessonByRef failed',{ref,msg:String(e&&e.message||e)});
     return null;
   }
+}
+
+const ENG_SETTINGS_KEY='zh_adv_eng_v1';
+const MASCOT_COOLDOWN_MS=100000;
+const MASCOT_MAX_SESSION=3;
+let engagementSettings={mascotDisabled:false,familyCoopGoalStars:120,coopToastWeek:null,mascotStreakShown:0};
+let sessionQuizCorrect=0;
+let quizCelebrate={c3:false,c6:false};
+let lastBossQuizThemeIdx=0;
+
+function loadEngagementSettings(){
+  try{
+    const r=localStorage.getItem(ENG_SETTINGS_KEY);
+    if(r){const o=JSON.parse(r);if(o&&typeof o==='object')engagementSettings=Object.assign(engagementSettings,o);}
+  }catch(e){}
+}
+function saveEngagementSettings(){
+  try{localStorage.setItem(ENG_SETTINGS_KEY,JSON.stringify(engagementSettings));}catch(e){}
+}
+function isMascotSuppressed(){
+  if(engagementSettings.mascotDisabled)return true;
+  const q=document.getElementById('scr-quiz');
+  if(q&&q.classList.contains('show'))return true;
+  return false;
+}
+function showMascotBubble(msg){
+  if(isMascotSuppressed())return;
+  const el=document.getElementById('mascot-bubble');
+  if(!el)return;
+  el.textContent=msg;
+  el.style.display='block';
+  setTimeout(()=>{if(el)el.style.display='none';},3400);
+}
+function maybeMascotToast(key){
+  if(isMascotSuppressed())return;
+  const s=curP?state[curP]:null;
+  if(!s)return;
+  ensureState(curP);
+  const ms=s.mascotSession||{count:0,lastAt:0};
+  const now=Date.now();
+  if((ms.count||0)>=MASCOT_MAX_SESSION)return;
+  if(ms.lastAt&&now-ms.lastAt<MASCOT_COOLDOWN_MS)return;
+  s.mascotSession={count:(ms.count||0)+1,lastAt:now};
+  const lines={
+    streak:'Your friend says: steady steps win!',
+    mission:'Your friend says: one more small win for today!',
+    celebrate:'Your friend says: you are on fire!',
+    revenge:'Your friend says: you can turn mistakes into power!',
+    coop:'Your friend says: together you are stronger!'
+  };
+  showMascotBubble(lines[key]||'Keep going!');
+  saveState();
+}
+function microRewardToast(msg){
+  const now=Date.now();
+  if(!curP)return;
+  ensureState(curP);
+  const s=state[curP];
+  if(now-(s.microRewardLastAt||0)<45000)return;
+  s.microRewardLastAt=now;
+  showToast(msg,1600);
+  saveState();
+}
+function pickDailyMissionGoal(s){
+  const keys=['gates','stories','correct','stars'];
+  const seed=(todayKey()+'_'+curP);
+  const idx=seededPick(seed,keys.length);
+  return keys[idx];
+}
+function ensureDailyMission(s){
+  const k=todayKey();
+  if(!s.dailyMission||s.dailyMission.date!==k){
+    const gk=pickDailyMissionGoal(s);
+    const targets={gates:1,stories:1,correct:12,stars:25};
+    s.dailyMission={date:k,goalKey:gk,progress:0,target:targets[gk]||1,done:false,rewarded:false};
+  }
+}
+function bumpMission(evt,val){
+  if(!curP)return;
+  ensureState(curP);
+  const s=state[curP];
+  ensureDailyMission(s);
+  const m=s.dailyMission;
+  if(!m||m.done||m.date!==todayKey())return;
+  if(m.goalKey!==evt)return;
+  m.progress=Math.min((m.progress||0)+(val||1),(m.target||1));
+  if(m.progress>=m.target&&!m.done){
+    m.done=true;
+    const bonus=8;
+    addEarnedStars(bonus);
+    showToast('Daily mission complete! +'+bonus+' stars');
+    maybeMascotToast('mission');
+    saveState();
+  }
+}
+function addEarnedStars(delta){
+  if(!curP||!(delta>0))return;
+  ensureState(curP);
+  const s=state[curP];
+  s.totalStars+=delta;s.weekStars+=delta;
+  const ts=getTS(curP);ts.stars=(ts.stars||0)+delta;
+  bumpMission('stars',delta);
+}
+function bumpCorrectCount(n){
+  if(!curP)return;
+  const ts=getTS(curP);
+  ts.correct=(ts.correct||0)+(n||1);
+  bumpMission('correct',n||1);
+}
+function maybeCelebrateQuizMilestone(){
+  if(!curP)return;
+  sessionQuizCorrect++;
+  if(sessionQuizCorrect===3&&!quizCelebrate.c3){quizCelebrate.c3=true;launchConfetti();showToast('Great streak in this quiz!',1800);maybeMascotToast('celebrate');}
+  if(sessionQuizCorrect===6&&!quizCelebrate.c6){quizCelebrate.c6=true;launchConfetti();showToast('Halfway power!',1800);}
+}
+function renderDailyMissionPanel(p){
+  const el=document.getElementById('daily-mission-box');if(!el)return;
+  const s=state[p];if(!s)return;
+  ensureDailyMission(s);
+  const m=s.dailyMission;
+  const labels={gates:'Clear 1 gate today',stories:'Finish 1 story today',correct:'Get 12 correct answers today',stars:'Earn 25 stars today'};
+  const lbl=labels[m.goalKey]||'Daily mission';
+  const pct=Math.min(100,Math.round((m.progress||0)/(m.target||1)*100));
+  el.innerHTML=`<div class="practice-box-title">Daily mission</div>
+    <div style="font-size:.72rem;color:var(--muted);margin:.2rem 0 .35rem;">${lbl}</div>
+    <div class="prog-track" style="height:6px;margin:.25rem 0;"><div class="prog-fill" style="width:${pct}%;height:6px;"></div></div>
+    <div style="font-size:.68rem;color:var(--ink);">${m.progress||0} / ${m.target||1}${m.done?' · Done':''}</div>`;
+}
+function renderRivalryCoopStrip(){
+  const el=document.getElementById('rivalry-coop-strip');if(!el)return;
+  ensureState('jenn');ensureState('jess');
+  const jw=(state.jess&&state.jess.weekStars)||0;
+  const jn=(state.jenn&&state.jenn.weekStars)||0;
+  const coop=(jw+jn);
+  const goal=engagementSettings.familyCoopGoalStars||120;
+  const pct=Math.min(100,Math.round(coop/Math.max(1,goal)*100));
+  const wk=weekStart();
+  if(coop>=goal&&engagementSettings.coopToastWeek!==wk){
+    engagementSettings.coopToastWeek=wk;
+    saveEngagementSettings();
+    showToast('Family co-op goal reached! Great teamwork!');
+    maybeMascotToast('coop');
+  }
+  el.innerHTML=`<div class="practice-box-title">This week</div>
+    <div style="font-size:.72rem;color:var(--muted);">Jenn ${jn}⭐ vs Jess ${jw}⭐</div>
+    <div style="font-size:.68rem;color:var(--gold);margin-top:.35rem;">Family co-op: ${coop} / ${goal} week stars</div>
+    <div class="prog-track" style="height:6px;margin:.3rem 0;"><div class="prog-fill" style="width:${pct}%;height:6px;"></div></div>`;
+}
+function syncParentMascotFromUi(){
+  const el=document.getElementById('parent-mascot-off');
+  engagementSettings.mascotDisabled=!!(el&&el.checked);
+  saveEngagementSettings();
+  showToast(engagementSettings.mascotDisabled?'Mascot bubble hidden for kids':'Mascot bubble on');
+}
+function saveCoopGoalFromParent(){
+  const inp=document.getElementById('parent-coop-goal');
+  if(!inp)return;
+  const v=parseInt(inp.value,10);
+  if(!Number.isFinite(v)||v<40||v>500){showToast('Please enter a goal between 40 and 500.');return;}
+  engagementSettings.familyCoopGoalStars=v;
+  saveEngagementSettings();
+  showToast('Co-op goal saved');
+  if(curP)renderHub();
 }
 
 // ── Helpers ──
@@ -2300,7 +2490,7 @@ function finishDailyWord(correct,correctAns,btn){
   const s=state[curP];
   if(correct){
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ +5 ⭐';
-    s.totalStars+=5;s.weekStars+=5;const ts=getTS(curP);ts.stars+=5;ts.correct=(ts.correct||0)+1;
+    addEarnedStars(5);bumpCorrectCount(1);
     s.dailyWordSolved=todayKey();s.dailyWordTotal=(s.dailyWordTotal||0)+1;
     checkBadges(curP);saveState();showToast('Awesome! +5 stars!');
   }else{
@@ -2392,7 +2582,8 @@ function ensureState(p){
   if(s.dailyWordTotal===undefined)s.dailyWordTotal=0;
   if(s.pinyinIntroDone===undefined)s.pinyinIntroDone=false;
   if(s.lastSaved===undefined)s.lastSaved=0;
-  if(!s.pendingSessions)s.pendingSessions={gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null};
+  if(!s.pendingSessions)s.pendingSessions={gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null};
+  if(s.pendingSessions&&s.pendingSessions.revenge===undefined)s.pendingSessions.revenge=null;
   if(!s.traceStars)s.traceStars={};
   if(!s.libraryCountAtDayStart)s.libraryCountAtDayStart={};
   if(!s.gateGameStars)s.gateGameStars={};
@@ -2408,6 +2599,9 @@ function ensureState(p){
   if(!s.forgivenessProgress)s.forgivenessProgress={trace:0,match:0,rain:0,listen:0};
   if(!s.dynastyForgiveness)s.dynastyForgiveness={trace:0,match:0,rain:0,listen:0};
   if(!s.recentGateQuestions)s.recentGateQuestions={};
+  if(!s.dailyMission)s.dailyMission={date:null,goalKey:null,progress:0,target:1,done:false,rewarded:false};
+  if(s.microRewardLastAt===undefined)s.microRewardLastAt=0;
+  if(!s.mascotSession)s.mascotSession={count:0,lastAt:0};
   // Week reset
   if(!isSameWeek(s.weekStart)){
     const nws=weekStart();
@@ -3033,7 +3227,7 @@ function checkFlashAnswer(btn,ok,answer,w){
   grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;if(b.textContent===answer)b.classList.add('correct');});
   if(ok){
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅';
-    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    bumpCorrectCount(1);
   }else{
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+answer;
     logWrong(curP,w.zh,w.py,w.en);
@@ -3198,7 +3392,7 @@ function tapMatch(idx){
     if(a.pair===b.pair){
       a.matched=b.matched=true;matchSt.matched++;
       matchSt.openIdxs=[];
-      getTS(curP).correct=(getTS(curP).correct||0)+1;
+      bumpCorrectCount(1);
       persistMatch();saveState();renderMemoryMatch();
     }else{
       if(!consumeDynastyForgiveness('match')){
@@ -3292,7 +3486,7 @@ function spawnRainDrop(){
       rainSt.rainHits=(rainSt.rainHits||0)+1;
       rainSt.combo++;rainSt.bestCombo=Math.max(rainSt.bestCombo,rainSt.combo);
       const add=Math.round(10*(1+Math.min(0.5,rainSt.combo*0.04)));
-      rainSt.score+=add;getTS(curP).correct=(getTS(curP).correct||0)+1;pickRainTarget(true);
+      rainSt.score+=add;bumpCorrectCount(1);pickRainTarget(true);
       const hint=document.getElementById('rain-hint');
       if(hint&&rainSt.target)hint.innerHTML='Tap the character for this English meaning:<b>'+rainSt.target.en+'</b>';
     }else{
@@ -3390,7 +3584,7 @@ function checkListen(btn,ok,q){
     listenSt.streak++;
     const bonus=listenSt.streak>=3?3:2;
     listenSt.score+=bonus;btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ +'+bonus;
-    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    bumpCorrectCount(1);
   }else{
     listenSt.streak=0;btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+q.w.zh;
     if(!consumeDynastyForgiveness('listen'))logWrong(curP,q.w.zh,q.w.py,q.w.en);
@@ -3464,7 +3658,6 @@ function renderTrace(){
         const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
         traceSt.traceGood=(traceSt.traceGood||0)+(mistakes===0?1:0);
         if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid};
-        getTS(curP).correct=(getTS(curP).correct||0)+1;
         showToast(c.zh+' '+('★'.repeat(stars)+'☆'.repeat(3-stars)));
         saveState();
       }
@@ -3555,6 +3748,7 @@ function resumeSession(type){
   if(type==='rain')return restoreRain();
   if(type==='listen')return restoreListen();
   if(type==='trace')return restoreTrace();
+  if(type==='revenge')return restoreRevengeRound();
   return false;
 }
 
@@ -3568,6 +3762,7 @@ function resumeLastSession(){
   if(ps.rain&&resumeSession('rain'))return;
   if(ps.listen&&resumeSession('listen'))return;
   if(ps.trace&&resumeSession('trace'))return;
+  if(ps.revenge&&resumeSession('revenge'))return;
   showToast('Nothing to resume right now—start a fresh challenge!');
 }
 
@@ -3807,6 +4002,7 @@ function showScreen(id){
 
 function selectPlayer(p){
   curP=p;ensureState(p);curHSK=1;
+  state[p].mascotSession={count:0,lastAt:0};
   stopCharOriginRotation();
   const coc=document.getElementById('char-origin-card');if(coc)coc.style.display='none';
   renderSelectBadges();
@@ -3887,7 +4083,15 @@ function renderHub(){
     }
   }
   renderStreakCal(curP);
+  const streakDays=getConsecutivePlayDays(curP);
+  if(streakDays>=7&&streakDays>(engagementSettings.mascotStreakShown||0)){
+    engagementSettings.mascotStreakShown=streakDays;
+    saveEngagementSettings();
+    maybeMascotToast('streak');
+  }
   renderDailyWordBox(curP);
+  renderDailyMissionPanel(curP);
+  renderRivalryCoopStrip();
   checkBadges(curP);
   renderBadgeStrip(curP);
   // Practice words sidebar
@@ -3901,7 +4105,8 @@ function renderHub(){
     if(failWords.length){
       practiceBox.innerHTML='<div class="practice-box-title">💪 Practice</div>'+
         failWords.map(w=>`<div class="pw-row"><span class="pw-zh" onclick="speak('${w.zh}')">${w.zh}</span><span class="pw-py">${w.py}</span><span class="pw-cnt">✗${w.failCount}</span></div>`).join('')+
-        `<button class="drill-btn" onclick="startDrill()">⚡ Drill All · +2⭐ per correct</button>`+resumeBtn;
+        `<button class="drill-btn" onclick="startDrill()">⚡ Drill All · +2⭐ per correct</button>`+
+        `<button class="drill-btn" style="margin-top:.35rem;background:rgba(39,174,96,.12);border-color:rgba(39,174,96,.35);" onclick="startRevengeRound()">⚔️ Revenge round · 错题反击</button>`+resumeBtn;
     }else{
       practiceBox.innerHTML='<div class="practice-box-title">💪 Practice</div><div class="pw-empty">✅ All clear!</div>'+resumeBtn;
     }
@@ -4147,10 +4352,7 @@ function applyCultureReward(story){
   const s=state[curP];
   const r=story.rewards;
   const stars=Math.max(0,parseInt(r.stars,10)||0);
-  if(stars>0){
-    s.totalStars+=stars;s.weekStars+=stars;
-    const ts=getTS(curP);ts.stars=(ts.stars||0)+stars;
-  }
+  if(stars>0){addEarnedStars(stars);}
   if(r.familyRewardType){
     const fam=String(r.familyRewardType).replace(/_/g,' ');
     showToast('Family reward unlocked: '+fam);
@@ -4283,8 +4485,7 @@ function completeStory(){
   });
   const s=state[curP];
   const pts=newChars.size*5+20;
-  s.totalStars+=pts;s.weekStars+=pts;
-  const ts=getTS(curP);ts.stars+=pts;
+  addEarnedStars(pts);
   saveState();
   checkBadges(curP);saveState();
   launchConfetti();
@@ -4322,6 +4523,7 @@ function restoreStoryMiniQuiz(){
   curStory=st;
   const dyn=DYNASTIES.find(d=>d.id===ps.dynastyId)||DYNASTIES.find(d=>d.story===ps.storyId||d.story2===ps.storyId);
   if(dyn)curDynasty=dyn;
+  sessionQuizCorrect=0;quizCelebrate={c3:false,c6:false};
   miniQ={
     questions:(ps.questions||[]).map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),
     qi:ps.qi||0,score:ps.score||0,
@@ -4352,6 +4554,7 @@ function buildMiniQuizQuestions(){
 }
 
 function startMiniQuiz(){
+  sessionQuizCorrect=0;quizCelebrate={c3:false,c6:false};
   document.getElementById('mini-quiz-overlay').classList.add('show');
   miniQ={
     questions:buildMiniQuizQuestions(),qi:0,score:0,wrongQueue:[],phase:'main',
@@ -4395,7 +4598,9 @@ function checkMiniQ(btn,isCorrect,correctAns,opts){
   };
   if(isCorrect){
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ Great job! Correct!';miniQ.score++;
-    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    bumpCorrectCount(1);
+    maybeCelebrateQuizMilestone();
+    microRewardToast('Nice one!');
     persistMiniQuizState();saveState();
     setTimeout(goNext,900);
   }else{
@@ -4445,11 +4650,13 @@ function showMiniQuizResult(){
   if(miniQ.attemptedStoryId&&!s.storiesCompleted.includes(miniQ.attemptedStoryId)){
     s.storiesCompleted.push(miniQ.attemptedStoryId);
     const ts=getTS(curP);ts.stories=(ts.stories||0)+1;
+    bumpMission('stories',1);
     miniQ.storyCompletedNow=true;
   }
-  s.totalStars+=bonus;s.weekStars+=bonus;saveState();
+  addEarnedStars(bonus);saveState();
   checkBadges(curP);saveState();
   clearStoryPending();saveState();
+  microRewardToast('Story quiz win!');
   document.getElementById('mini-quiz-body').innerHTML=`
     <div style="text-align:center;padding:1rem 0;">
       <div style="font-size:2.8rem;margin-bottom:.5rem;">🌟</div>
@@ -4518,6 +4725,7 @@ function renderDrillQ(){
 }
 
 function checkDrillQ(btn,isCorrect,correctAns,opts,zh,py){
+  const s=state[curP];
   opts.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;});
   const fb=document.getElementById('drill-fb');
   const goNext=()=>{
@@ -4532,8 +4740,7 @@ function checkDrillQ(btn,isCorrect,correctAns,opts,zh,py){
     const bonus=drillSt.streak>=3?3:2;
     fb.className='mq-fb ok';
     fb.innerHTML=`✅ +${bonus}⭐${drillSt.streak>=3?'&nbsp;<span class="bonus-tag">🔥 streak bonus!</span>':''}`;
-    const s=state[curP];s.totalStars+=bonus;s.weekStars+=bonus;
-    getTS(curP).stars+=bonus;
+    addEarnedStars(bonus);
     if(s.failedWords&&s.failedWords[zh]){
       s.failedWords[zh].failCount--;
       if(s.failedWords[zh].failCount<=0)delete s.failedWords[zh];
@@ -4574,6 +4781,95 @@ function closeDrill(){
   document.getElementById('drill-overlay').classList.remove('show');
 }
 
+let revengeSt={words:[],qi:0,correct:0};
+function closeRevengeRound(){
+  const ov=document.getElementById('revenge-overlay');if(ov)ov.classList.remove('show');
+  if(curP&&state[curP].pendingSessions)state[curP].pendingSessions.revenge=null;
+  saveState();
+}
+function startRevengeRound(){
+  if(!curP)return;
+  ensureState(curP);
+  const s=state[curP];
+  const failed=Object.values(s.failedWords||{}).filter(w=>w&&w.zh).sort((a,b)=>b.failCount-a.failCount).slice(0,6);
+  if(!failed.length){showToast('No trouble words yet—keep learning!');return;}
+  const hskPool=[];
+  [1,2,3,4].forEach(lv=>{
+    if(HSK_VOCAB[lv])HSK_VOCAB[lv].forEach(w=>{if(!failed.find(f=>f.zh===w.zh))hskPool.push(w);});
+  });
+  const qs=failed.map(w=>{
+    const distractors=[...hskPool].sort(()=>Math.random()-.5).slice(0,3);
+    const opts=[w,...distractors].sort(()=>Math.random()-.5).map(x=>x.en);
+    return {zh:w.zh,py:w.py,correct:w.en,opts};
+  }).sort(()=>Math.random()-.5);
+  revengeSt={words:qs,qi:0,correct:0};
+  if(s.pendingSessions)s.pendingSessions.revenge={words:qs.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),qi:0,correct:0};
+  saveState();
+  document.getElementById('revenge-overlay').classList.add('show');
+  renderRevengeQuestion();
+  maybeMascotToast('revenge');
+}
+function renderRevengeQuestion(){
+  const q=revengeSt.words[revengeSt.qi];
+  const body=document.getElementById('revenge-body');
+  if(!q||!body){closeRevengeRound();return;}
+  const total=revengeSt.words.length;
+  body.innerHTML=`
+    <div class="drill-progress">${revengeSt.qi+1} / ${total} · ✅ ${revengeSt.correct}</div>
+    <div class="mq-prompt-row"><div class="mq-hz">${q.zh}</div><button class="q-speak" onclick="speak('${q.zh.replace(/'/g,"\\'")}')">🔊</button></div>
+    <div class="mq-py">${q.py}</div>
+    <div class="mq-question">What does this mean?</div>
+    <div class="mq-opts" id="rev-opts"></div>
+    <div class="mq-fb" id="rev-fb"></div>`;
+  const grid=document.getElementById('rev-opts');
+  q.opts.forEach(o=>{
+    const b=document.createElement('button');b.className='mcq-opt';b.textContent=o;
+    b.onclick=()=>checkRevengeQ(b,o===q.correct,q.correct,grid,q.zh,q.py);
+    grid.appendChild(b);
+  });
+}
+function checkRevengeQ(btn,isCorrect,correctAns,grid,zh,py){
+  grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;});
+  const fb=document.getElementById('rev-fb');
+  const goNext=()=>{
+    revengeSt.qi++;
+    if(revengeSt.qi<revengeSt.words.length){
+      if(curP&&state[curP].pendingSessions)state[curP].pendingSessions.revenge={words:revengeSt.words.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),qi:revengeSt.qi,correct:revengeSt.correct};
+      saveState();
+      renderRevengeQuestion();
+    }else{
+      const bonus=revengeSt.correct>=4?10:(revengeSt.correct>=2?6:3);
+      addEarnedStars(bonus);
+      showToast('Revenge round done! +'+bonus+' stars');
+      closeRevengeRound();
+      renderHub();
+    }
+  };
+  if(isCorrect){
+    revengeSt.correct++;
+    btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ Nice!';
+    microRewardToast('Strong comeback!');
+    bumpCorrectCount(1);
+    saveState();
+    setTimeout(goNext,900);
+  }else{
+    btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
+    grid.querySelectorAll('.mcq-opt').forEach(b=>{if(b.textContent===correctAns)b.classList.add('correct');});
+    logWrong(curP,zh,py,correctAns);
+    saveState();
+    showCorrectRevealCard({zh,py,en:correctAns,isSentence:(zh||'').length>1,onDone:goNext});
+  }
+}
+function restoreRevengeRound(){
+  if(!curP||!state[curP].pendingSessions||!state[curP].pendingSessions.revenge)return false;
+  const ps=state[curP].pendingSessions.revenge;
+  if(!ps||!ps.words||!ps.words.length)return false;
+  revengeSt={words:ps.words.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),qi:ps.qi||0,correct:ps.correct||0};
+  document.getElementById('revenge-overlay').classList.add('show');
+  renderRevengeQuestion();
+  return true;
+}
+
 // Toggle functions
 function togglePY(){
   hidePY=!hidePY;
@@ -4612,9 +4908,13 @@ function toggleNoPY(){
 // ══════════════════════════════════════════════════════
 function startGateQuiz(did){
   const d=DYNASTIES.find(x=>x.id===did);if(!d)return;curDynasty=d;
+  sessionQuizCorrect=0;quizCelebrate={c3:false,c6:false};
   document.getElementById('quiz-title').textContent='Gate '+did+': '+d.zh+' Boss · 关卡挑战';
   const vocab=buildQuizVocab(d,false,did);
-  const mcqN=8,pyN=10,sbN=3;
+  lastBossQuizThemeIdx=(lastBossQuizThemeIdx+1)%3;
+  let mcqN=8,pyN=10,sbN=3;
+  if(lastBossQuizThemeIdx===1){mcqN=7;pyN=11;}
+  if(lastBossQuizThemeIdx===2){mcqN=9;pyN=9;}
   const recentStore=getRecentQuestionStore(curP);
   const recent=recentStore[`g-${did}`]||{mcq:[],py:[]};
   const maxScore=mcqN*14+pyN*11+sbN*20;// 14 = base 10 + up to 4 bonus per MCQ
@@ -4634,9 +4934,13 @@ function startGateQuiz(did){
 function startChampionChallenge(group){
   const did=group*5;// e.g. group 1 → did=5, group 2 → did=10
   const d=DYNASTIES.find(x=>x.id===did);if(!d)return;curDynasty=d;
+  sessionQuizCorrect=0;quizCelebrate={c3:false,c6:false};
   document.getElementById('quiz-title').textContent='👑 CHAMPION CHALLENGE · '+group+'th Group · 大关挑战';
   const vocab=buildQuizVocab(d,true,did);// forChampion=true
-  const mcqN=32,pyN=40,sbN=10;
+  lastBossQuizThemeIdx=(lastBossQuizThemeIdx+1)%3;
+  let mcqN=32,pyN=40,sbN=10;
+  if(lastBossQuizThemeIdx===1){mcqN=30;pyN=42;}
+  if(lastBossQuizThemeIdx===2){mcqN=34;pyN=38;}
   const recentStore=getRecentQuestionStore(curP);
   const recent=recentStore[`c-${group}`]||{mcq:[],py:[]};
   const maxScore=mcqN*14+pyN*11+sbN*20;
@@ -4766,12 +5070,16 @@ function getRecentQuestionStore(p){
   return s.recentGateQuestions;
 }
 
-function buildQuizVocab(d,forChampion=false){
-  const did=d.id;
+function buildQuizVocab(d,forChampion=false,didOverride){
+  const did=didOverride!=null?didOverride:d.id;
+  const prevHSK=curHSK;
+  if(d&&d.hsk)curHSK=d.hsk;
   const datasetPrimary=forChampion?getDatasetVocabForChampion(did):getDatasetVocabForGate(did);
   if(datasetPrimary.length){
     const minSize=forChampion?120:40;
-    return supplementVocabFromGateList(datasetPrimary,[did],minSize).sort(()=>Math.random()-.5);
+    const out=supplementVocabFromGateList(datasetPrimary,[did],minSize).sort(()=>Math.random()-.5);
+    curHSK=prevHSK;
+    return out;
   }
   let primary;
   if(forChampion){
@@ -4779,10 +5087,12 @@ function buildQuizVocab(d,forChampion=false){
     const gateIds=[];for(let i=groupStart;i<=did;i++)gateIds.push(i);
     primary=mergeVocabFromDynasties(gateIds,false);
     primary=supplementVocabFromGateList(primary,gateIds,120);
+    curHSK=prevHSK;
     return primary.sort(()=>Math.random()-.5);
   }
   primary=mergeVocabFromDynasties([did],true);
   primary=supplementVocabFromGateList(primary,[did],40);
+  curHSK=prevHSK;
   return primary.sort(()=>Math.random()-.5);
 }
 
@@ -4862,6 +5172,16 @@ function renderQuizPhase(){
   else if(ph===1){renderPYPhase(qc,scoreBar);}
   else if(ph===2){renderSBPhase(qc,scoreBar);}
   else{renderQuizResult(qc);}
+  if(ph===0&&mcqAnswered===0){
+    const card=qc.querySelector('.quiz-card');
+    if(card&&quizSt){
+      const hintTexts=['Mix: balanced challenge.','Mix: extra typing emphasis this run.','Mix: extra meaning emphasis this run.'];
+      const h=document.createElement('div');
+      h.style.fontSize='.65rem';h.style.color='var(--muted)';h.style.marginBottom='.45rem';
+      h.textContent=hintTexts[lastBossQuizThemeIdx]||hintTexts[0];
+      card.insertBefore(h,card.firstChild);
+    }
+  }
   persistGateQuizState();saveState();
 }
 
@@ -4961,7 +5281,9 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     }
     fb.innerHTML='✅ +10 pts base'+bonusHtml;
     quizSt.score+=10+bonus;quizSt.phaseScores[0]+=10+bonus;
-    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    bumpCorrectCount(1);
+    maybeCelebrateQuizMilestone();
+    microRewardToast('Nice one!');
     persistGateQuizState();saveState();
     setTimeout(goNext,1200);
   }else{
@@ -5187,7 +5509,9 @@ function checkPY(){
     inp.className='py-input ok';fb.className='q-feedback ok';
     fb.innerHTML='✅ +8 pts base'+(bonus?'&nbsp;<span class="bonus-tag">+3 🎯 bonus</span>':'');
     quizSt.score+=8+bonus;quizSt.phaseScores[1]+=8+bonus;
-    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    bumpCorrectCount(1);
+    maybeCelebrateQuizMilestone();
+    microRewardToast('Nice one!');
     persistGateQuizState();saveState();
     setTimeout(goNext,1200);
   }else{
@@ -5280,7 +5604,9 @@ function checkSB(){
     quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
     fb.className='q-feedback ok';fb.textContent='✅ Perfect! +20 points!';
     quizSt.score+=20;quizSt.phaseScores[2]+=20;
-    getTS(curP).correct=(getTS(curP).correct||0)+1;
+    bumpCorrectCount(1);
+    maybeCelebrateQuizMilestone();
+    microRewardToast('Nice one!');
     persistGateQuizState();saveState();
     setTimeout(goNext,1100);
   }else{
@@ -5330,9 +5656,10 @@ function renderQuizResult(qc){
     if(passedChampion){
       const prev=s.championCleared[grp]||0;
       if(quizStars>prev)s.championCleared[grp]=quizStars;
-      const pts=score;s.totalStars+=pts;s.weekStars+=pts;
-      const ts=getTS(curP);ts.stars+=pts;ts.correct=(ts.correct||0)+(score>=10?1:0);
-      if(quizStars>=2){ts.champions=(ts.champions||0)+1;}
+      const pts=score;addEarnedStars(pts);
+      if(score>=10)bumpCorrectCount(1);
+      const tsCh=getTS(curP);
+      if(quizStars>=2){tsCh.champions=(tsCh.champions||0)+1;}
     }
   }else if(passedGate){
     if(!s.gatesCompleted.includes(quizSt.did))s.gatesCompleted.push(quizSt.did);
@@ -5341,8 +5668,9 @@ function renderQuizResult(qc){
     const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
     if(timer&&timer.active&&timer.startKey===todayKey())checkBadges(curP,{oneDayGate:true});
     if(timer&&timer.active)timer.active=false;
-    const pts=score;s.totalStars+=pts;s.weekStars+=pts;
-    const ts=getTS(curP);ts.stars+=pts;ts.gates=(ts.gates||0)+1;ts.correct=(ts.correct||0)+(score>=10?1:0);
+    const pts=score;addEarnedStars(pts);
+    const ts=getTS(curP);ts.gates=(ts.gates||0)+1;if(score>=10)bumpCorrectCount(1);
+    bumpMission('gates',1);
   }
   clearGateQuizPending();
   saveState();
@@ -5406,6 +5734,9 @@ function showParentSummary(){
   sumMode='weekly';sumOffset=0;
   document.getElementById('tab-wk').classList.add('active');
   document.getElementById('tab-dy').classList.remove('active');
+  loadEngagementSettings();
+  const mc=document.getElementById('parent-mascot-off');if(mc)mc.checked=!!engagementSettings.mascotDisabled;
+  const cg=document.getElementById('parent-coop-goal');if(cg)cg.value=String(engagementSettings.familyCoopGoalStars||120);
   renderParentSummary();
   document.getElementById('overlay-parent').classList.add('show');
 }
@@ -5563,6 +5894,7 @@ function validatePlayerState(pid){
 // ══════════════════════════════════════════════════════
 function init(){
   dbgLog('init start',{search:window.location.search||''});
+  loadEngagementSettings();
   state=loadState();
   preloadCurriculum().then(()=>{if(curP)renderHub();});
   initFirestore();
