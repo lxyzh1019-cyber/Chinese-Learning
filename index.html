@@ -5026,7 +5026,10 @@ function checkPY(){
 }
 
 function renderSBPhase(qc,scoreBar){
-  if(!scoreBar)scoreBar=`<div class="quiz-prog-bar"><div class="quiz-prog-fill" id="qpf" style="width:${Math.round(quizSt.score/220*100)}%"></div></div>`;
+  if(!scoreBar){
+    const max=quizSt.maxScore||220;
+    scoreBar=`<div class="quiz-prog-bar"><div class="quiz-prog-fill" id="qpf" style="width:${Math.round(quizSt.score/max*100)}%"></div></div>`;
+  }
   const words=quizSt.sbPack&&quizSt.sbPack[quizSt.sbRound];
   if(!words||words.length<2){nextPhase();return;}
   sbBuilt=[];
@@ -5043,7 +5046,7 @@ function renderSBPhase(qc,scoreBar){
       <button class="btn-s" onclick="resetSB()">Try again ↺</button>
     </div>
     <div class="q-feedback" id="q-fb"></div>
-    <div class="q-score-mini">Sentence ${quizSt.sbRound+1} of 3 · Score: ${quizSt.score} / 220</div>
+    <div class="q-score-mini">Sentence ${quizSt.sbRound+1} of ${quizSt.sbN||3} · Score: ${quizSt.score} / ${quizSt.maxScore||220}</div>
   </div>`;
   const sbSpeak=document.getElementById('sb-speak-all');
   if(sbSpeak)sbSpeak.onclick=()=>{words.forEach((w,i)=>setTimeout(()=>speak(w,{sentence:true}),i*680));};
@@ -5059,14 +5062,24 @@ function placeWord(chip,w,idx){
   if(chip.classList.contains('used'))return;
   const target=document.getElementById('sb-target');
   const placed=document.createElement('div');placed.className='wchip in-tgt';placed.textContent=w;
-  placed.dataset.idx=idx;placed.onclick=()=>removeFromTarget(placed,chip);
+  placed.dataset.idx=idx;
+  placed.dataset.order=String(sbBuilt.length);
+  placed.onclick=()=>removeFromTarget(placed,chip);
   target.appendChild(placed);
   chip.classList.add('used');
   sbBuilt.push(w);
 }
 
 function removeFromTarget(placed,origChip){
-  placed.remove();sbBuilt.splice(sbBuilt.indexOf(placed.textContent),1);
+  const order=parseInt(placed.dataset.order,10);
+  placed.remove();
+  if(Number.isFinite(order)&&order>=0&&order<sbBuilt.length){
+    sbBuilt.splice(order,1);
+    const target=document.getElementById('sb-target');
+    if(target){
+      target.querySelectorAll('.wchip.in-tgt').forEach((chipEl,i)=>{chipEl.dataset.order=String(i);});
+    }
+  }
   if(origChip)origChip.classList.remove('used');
 }
 
@@ -5194,7 +5207,16 @@ function renderQuizResult(qc){
   showStarEffect(quizStars,quizSt.isChampion?'Champion quiz':'Gate quiz');
 }
 
-function exitQuiz(){persistGateQuizState();saveState();goToHub();}
+function exitQuiz(){
+  // Keep resumable state only when leaving an in-progress quiz.
+  if(quizSt&&typeof quizSt.phase==='number'&&quizSt.phase<3){
+    persistGateQuizState();
+  }else{
+    clearGateQuizPending();
+  }
+  saveState();
+  goToHub();
+}
 
 function logWrong(p,zh,py,en){
   const s=state[p];if(!s.failedWords)s.failedWords={};
