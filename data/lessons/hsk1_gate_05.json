@@ -3,43 +3,93 @@
   "level": "HSK1",
   "gateId": 5,
   "title": "HSK1 Gate 5 Lesson",
-  "explanation": "This gate focuses on practical high-frequency words. Learn the key words first, then read the short paragraph and answer comprehension questions.",
-  "passage": "Gate 5 mini passage: 我们今天学习第5关的新词。先听、再读、再说，用中文介绍自己的一天。",
+  "explanation": "HSK1 Gate 5：本关有 13 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
+  "passage": "第5关：今天的新词有：两、等、天、出、太、最、再、吧、次、小……等（共13个生字）。复习字有：去、她、着、想、给、没有、能、那……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
   "keyVocab": [
     {
-      "zh": "我",
-      "pinyin": "wǒ",
-      "en": "I/me"
+      "zh": "两",
+      "pinyin": "liǎng",
+      "en": "two"
     },
     {
-      "zh": "你",
-      "pinyin": "nǐ",
-      "en": "you"
+      "zh": "等",
+      "pinyin": "děng",
+      "en": "class"
     },
     {
-      "zh": "学",
-      "pinyin": "xué",
-      "en": "learn/study"
+      "zh": "天",
+      "pinyin": "tiān",
+      "en": "day"
     },
     {
-      "zh": "说",
-      "pinyin": "shuō",
-      "en": "speak/say"
+      "zh": "出",
+      "pinyin": "chū",
+      "en": "to go out"
+    },
+    {
+      "zh": "太",
+      "pinyin": "tài",
+      "en": "highest"
+    },
+    {
+      "zh": "最",
+      "pinyin": "zuì",
+      "en": "variant of 最"
+    },
+    {
+      "zh": "再",
+      "pinyin": "zài",
+      "en": "again; once more; re-"
+    },
+    {
+      "zh": "吧",
+      "pinyin": "bā",
+      "en": "bar (loanword) (serving drinks, or providing Internet access etc)"
+    },
+    {
+      "zh": "次",
+      "pinyin": "cì",
+      "en": "next in sequence"
+    },
+    {
+      "zh": "小",
+      "pinyin": "xiǎo",
+      "en": "small"
+    },
+    {
+      "zh": "知道",
+      "pinyin": "zhī dào",
+      "en": "to know; to become aware of"
+    },
+    {
+      "zh": "时候",
+      "pinyin": "shí hou",
+      "en": "time"
+    },
+    {
+      "zh": "走",
+      "pinyin": "zǒu",
+      "en": "to walk"
+    },
+    {
+      "zh": "去",
+      "pinyin": "qù",
+      "en": "to go"
     }
   ],
   "comprehension": [
     {
-      "question": "Who is learning new words in this lesson?",
-      "answer": "We are learning together."
+      "question": "本关有几个生字（新词）？",
+      "answer": "13个。"
     },
     {
-      "question": "What should you do before speaking?",
-      "answer": "Listen first, then read, then speak."
+      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
+      "answer": "例如：去 和 她（答案不唯一，合理即可）。"
     },
     {
-      "question": "What can you introduce in Chinese?",
-      "answer": "Your day."
+      "question": "读完以后，你应该自己先做哪一步？",
+      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
     }
   ],
-  "speakingPrompt": "Use 2-3 short Chinese sentences to describe your day."
+  "speakingPrompt": "用本关的词（例如「两」「等」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
 }

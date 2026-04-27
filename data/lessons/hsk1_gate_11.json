@@ -3,43 +3,93 @@
   "level": "HSK1",
   "gateId": 11,
   "title": "HSK1 Gate 11 Lesson",
-  "explanation": "This gate focuses on practical high-frequency words. Learn the key words first, then read the short paragraph and answer comprehension questions.",
-  "passage": "Gate 11 mini passage: 我们今天学习第11关的新词。先听、再读、再说，用中文介绍自己的一天。",
+  "explanation": "HSK1 Gate 11：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
+  "passage": "第11关：今天的新词有：高、正、岁、先、得到、那些、准备、水、进、写……等（共14个生字）。复习字有：这里、别、请、钱、本、回、东西、一些……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
   "keyVocab": [
     {
-      "zh": "我",
-      "pinyin": "wǒ",
-      "en": "I/me"
+      "zh": "高",
+      "pinyin": "Gāo",
+      "en": "surname Gao"
     },
     {
-      "zh": "你",
-      "pinyin": "nǐ",
-      "en": "you"
+      "zh": "正",
+      "pinyin": "zhēng",
+      "en": "first month of the lunar year"
     },
     {
-      "zh": "学",
-      "pinyin": "xué",
-      "en": "learn/study"
+      "zh": "岁",
+      "pinyin": "suì",
+      "en": "variant of 岁, year"
     },
     {
-      "zh": "说",
-      "pinyin": "shuō",
-      "en": "speak/say"
+      "zh": "先",
+      "pinyin": "xiān",
+      "en": "early"
+    },
+    {
+      "zh": "得到",
+      "pinyin": "dé dào",
+      "en": "to get"
+    },
+    {
+      "zh": "那些",
+      "pinyin": "nà xiē",
+      "en": "those"
+    },
+    {
+      "zh": "准备",
+      "pinyin": "zhǔn bèi",
+      "en": "preparation"
+    },
+    {
+      "zh": "水",
+      "pinyin": "Shuǐ",
+      "en": "surname Shui"
+    },
+    {
+      "zh": "进",
+      "pinyin": "jìn",
+      "en": "to go forward"
+    },
+    {
+      "zh": "写",
+      "pinyin": "xiě",
+      "en": "to write"
+    },
+    {
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "en": "country; nation; state"
+    },
+    {
+      "zh": "您",
+      "pinyin": "nín",
+      "en": "you (courteous, as opposed to informal 你)"
+    },
+    {
+      "zh": "电话",
+      "pinyin": "diàn huà",
+      "en": "telephone"
+    },
+    {
+      "zh": "送",
+      "pinyin": "sòng",
+      "en": "to send; to deliver; to transmit"
     }
   ],
   "comprehension": [
     {
-      "question": "Who is learning new words in this lesson?",
-      "answer": "We are learning together."
+      "question": "本关有几个生字（新词）？",
+      "answer": "14个。"
     },
     {
-      "question": "What should you do before speaking?",
-      "answer": "Listen first, then read, then speak."
+      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
+      "answer": "例如：这里 和 别（答案不唯一，合理即可）。"
     },
     {
-      "question": "What can you introduce in Chinese?",
-      "answer": "Your day."
+      "question": "读完以后，你应该自己先做哪一步？",
+      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
     }
   ],
-  "speakingPrompt": "Use 2-3 short Chinese sentences to describe your day."
+  "speakingPrompt": "用本关的词（例如「高」「正」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
 }

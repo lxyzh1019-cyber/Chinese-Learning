@@ -3,43 +3,93 @@
   "level": "HSK1",
   "gateId": 19,
   "title": "HSK1 Gate 19 Lesson",
-  "explanation": "This gate focuses on practical high-frequency words. Learn the key words first, then read the short paragraph and answer comprehension questions.",
-  "passage": "Gate 19 mini passage: 我们今天学习第19关的新词。先听、再读、再说，用中文介绍自己的一天。",
+  "explanation": "HSK1 Gate 19：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
+  "passage": "第19关：今天的新词有：汽车、爸爸、字、高兴、白、去年、热、试、来到、睡觉……等（共14个生字）。复习字有：那里、电视、飞、介绍、下午、出去、学习、老师……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
   "keyVocab": [
     {
-      "zh": "我",
-      "pinyin": "wǒ",
-      "en": "I/me"
+      "zh": "汽车",
+      "pinyin": "qì chē",
+      "en": "car"
     },
     {
-      "zh": "你",
-      "pinyin": "nǐ",
-      "en": "you"
+      "zh": "爸爸",
+      "pinyin": "bà ba",
+      "en": "(coll.) father; dad"
     },
     {
-      "zh": "学",
-      "pinyin": "xué",
-      "en": "learn/study"
+      "zh": "字",
+      "pinyin": "zì",
+      "en": "letter"
     },
     {
-      "zh": "说",
-      "pinyin": "shuō",
-      "en": "speak/say"
+      "zh": "高兴",
+      "pinyin": "gāo xìng",
+      "en": "happy"
+    },
+    {
+      "zh": "白",
+      "pinyin": "Bái",
+      "en": "surname Bai"
+    },
+    {
+      "zh": "去年",
+      "pinyin": "qù nián",
+      "en": "last year"
+    },
+    {
+      "zh": "热",
+      "pinyin": "rè",
+      "en": "to warm up"
+    },
+    {
+      "zh": "试",
+      "pinyin": "shì",
+      "en": "to test"
+    },
+    {
+      "zh": "来到",
+      "pinyin": "lái dào",
+      "en": "to arrive; to come"
+    },
+    {
+      "zh": "睡觉",
+      "pinyin": "shuì jiào",
+      "en": "to go to bed"
+    },
+    {
+      "zh": "电脑",
+      "pinyin": "diàn nǎo",
+      "en": "computer"
+    },
+    {
+      "zh": "票",
+      "pinyin": "piào",
+      "en": "ticket"
+    },
+    {
+      "zh": "西",
+      "pinyin": "Xī",
+      "en": "the West"
+    },
+    {
+      "zh": "床",
+      "pinyin": "chuáng",
+      "en": "bed"
     }
   ],
   "comprehension": [
     {
-      "question": "Who is learning new words in this lesson?",
-      "answer": "We are learning together."
+      "question": "本关有几个生字（新词）？",
+      "answer": "14个。"
     },
     {
-      "question": "What should you do before speaking?",
-      "answer": "Listen first, then read, then speak."
+      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
+      "answer": "例如：那里 和 电视（答案不唯一，合理即可）。"
     },
     {
-      "question": "What can you introduce in Chinese?",
-      "answer": "Your day."
+      "question": "读完以后，你应该自己先做哪一步？",
+      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
     }
   ],
-  "speakingPrompt": "Use 2-3 short Chinese sentences to describe your day."
+  "speakingPrompt": "用本关的词（例如「汽车」「爸爸」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
 }
