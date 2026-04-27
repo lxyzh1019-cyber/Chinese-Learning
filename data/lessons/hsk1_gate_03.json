@@ -1,0 +1,45 @@
+{
+  "lessonId": "hsk1_gate_03",
+  "level": "HSK1",
+  "gateId": 3,
+  "title": "HSK1 Gate 3 Lesson",
+  "explanation": "This gate focuses on practical high-frequency words. Learn the key words first, then read the short paragraph and answer comprehension questions.",
+  "passage": "Gate 3 mini passage: 我们今天学习第3关的新词。先听、再读、再说，用中文介绍自己的一天。",
+  "keyVocab": [
+    {
+      "zh": "我",
+      "pinyin": "wǒ",
+      "en": "I/me"
+    },
+    {
+      "zh": "你",
+      "pinyin": "nǐ",
+      "en": "you"
+    },
+    {
+      "zh": "学",
+      "pinyin": "xué",
+      "en": "learn/study"
+    },
+    {
+      "zh": "说",
+      "pinyin": "shuō",
+      "en": "speak/say"
+    }
+  ],
+  "comprehension": [
+    {
+      "question": "Who is learning new words in this lesson?",
+      "answer": "We are learning together."
+    },
+    {
+      "question": "What should you do before speaking?",
+      "answer": "Listen first, then read, then speak."
+    },
+    {
+      "question": "What can you introduce in Chinese?",
+      "answer": "Your day."
+    }
+  ],
+  "speakingPrompt": "Use 2-3 short Chinese sentences to describe your day."
+}

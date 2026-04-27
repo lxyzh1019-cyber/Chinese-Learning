@@ -869,6 +869,14 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
   </div>
 </div>
 
+<div class="mini-quiz-overlay" id="culture-overlay">
+  <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeCultureStories()" title="Close" aria-label="Close">✕</button>
+    <div class="mq-title">🏮 Culture Stories · 文化故事</div>
+    <div id="culture-body"></div>
+  </div>
+</div>
+
 <div class="mini-quiz-overlay" id="timer-modal-overlay">
   <div class="mini-quiz-card">
     <button type="button" class="mq-close" onclick="closeTimerModal()" title="Close" aria-label="Close">✕</button>
@@ -2080,6 +2088,78 @@ let playTimeIv=null,lastTimeMark=0;
 let sumMode='weekly',sumOffset=0;
 let hidePY=false,hideEN=false,noPYmode=false;
 let tapped=new Set(),newChars=new Set(),totalNew=0;
+const curriculumCache={levels:{},culture:null,lessons:{}};
+let curriculumLoading=false;
+
+function fetchJsonSafe(url){
+  return fetch(url,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json();});
+}
+async function loadLevelCurriculum(lv){
+  if(curriculumCache.levels[lv])return curriculumCache.levels[lv];
+  try{
+    const data=await fetchJsonSafe(`data/hsk${lv}.json`);
+    if(data&&Array.isArray(data.gates))curriculumCache.levels[lv]=data;
+  }catch(e){dbgLog('loadLevelCurriculum failed',{lv,msg:String(e&&e.message||e)});}
+  return curriculumCache.levels[lv]||null;
+}
+async function loadCultureCurriculum(){
+  if(curriculumCache.culture)return curriculumCache.culture;
+  try{
+    const data=await fetchJsonSafe('data/culture_stories.json');
+    if(data&&Array.isArray(data.tracks))curriculumCache.culture=data;
+  }catch(e){dbgLog('loadCultureCurriculum failed',String(e&&e.message||e));}
+  return curriculumCache.culture||null;
+}
+async function preloadCurriculum(){
+  if(curriculumLoading)return;
+  curriculumLoading=true;
+  await Promise.all([1,2,3,4].map(loadLevelCurriculum));
+  await loadCultureCurriculum();
+  curriculumLoading=false;
+}
+function getLevelCurriculum(lv){return curriculumCache.levels[lv]||null;}
+function getGateCurriculum(did,lv){
+  const levelData=getLevelCurriculum(lv||curHSK);
+  if(!levelData||!Array.isArray(levelData.gates))return null;
+  return levelData.gates.find(g=>g&&g.gateId===did)||null;
+}
+function vocabFromGateWords(arr){
+  return (arr||[]).map(w=>({zh:w.zh,py:w.pinyin||w.py||'',en:w.en||''})).filter(w=>w.zh&&w.py&&w.en);
+}
+function getDatasetVocabForGate(did){
+  const g=getGateCurriculum(did,curHSK);if(!g)return [];
+  const out=[];const seen=new Set();
+  [...vocabFromGateWords(g.newWords),...vocabFromGateWords(g.reviewWords)].forEach(w=>{
+    if(!seen.has(w.zh)){seen.add(w.zh);out.push(w);}
+  });
+  return out;
+}
+function getDatasetVocabForChampion(did){
+  const out=[];const seen=new Set();
+  const start=Math.max(1,did-4);
+  for(let x=start;x<=did;x++){
+    getDatasetVocabForGate(x).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);out.push(w);}});
+  }
+  return out;
+}
+function lessonRefForGate(did){
+  const g=getGateCurriculum(did,curHSK);
+  if(g&&g.lessonRef)return g.lessonRef;
+  if(curHSK===1)return `hsk1_gate_${String(did).padStart(2,'0')}`;
+  return null;
+}
+async function loadLessonByRef(ref){
+  if(!ref)return null;
+  if(curriculumCache.lessons[ref])return curriculumCache.lessons[ref];
+  try{
+    const data=await fetchJsonSafe(`data/lessons/${ref}.json`);
+    curriculumCache.lessons[ref]=data;
+    return data;
+  }catch(e){
+    dbgLog('loadLessonByRef failed',{ref,msg:String(e&&e.message||e)});
+    return null;
+  }
+}
 
 // ── Helpers ──
 function todayKey(){const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
@@ -2302,7 +2382,9 @@ function ensureState(p){
   if(!s.todayStats)s.todayStats={};if(!s.dailyTimeMs)s.dailyTimeMs={};
   if(!s.weeklyHistory)s.weeklyHistory=[];if(!s.gatesCompleted)s.gatesCompleted=[];
   if(!Array.isArray(s.gatesCompleted))s.gatesCompleted=[];
-  s.gatesCompleted=[...new Set(s.gatesCompleted.map(v=>parseInt(v,10)).filter(v=>Number.isFinite(v)&&v>0))];
+  s.gatesCompleted=[...new Set(s.gatesCompleted.map(v=>parseInt(v,10)).filter(v=>Number.isFinite(v)&&v>0&&v<=22))];
+  // Preserve current unlock semantics per player; do not auto-recalculate.
+  if(!s.progressVersion)s.progressVersion='legacy-gate-index';
   if(!s.storiesCompleted)s.storiesCompleted=[];if(!s.gateStars)s.gateStars={};
   if(!s.championCleared)s.championCleared={};
   if(!s.badges)s.badges=[];
@@ -3774,6 +3856,7 @@ function getCurrentHSK(s){
 // ══════════════════════════════════════════════════════
 function renderHub(){
   if(!curP)return;
+  preloadCurriculum().catch(()=>{});
   const hubMain=document.querySelector('#scr-hub .hub-main');
   const prevHubScroll=hubMain?hubMain.scrollTop:0;
   dbgLog('renderHub begin',{curP,scrollTop:prevHubScroll});
@@ -3863,6 +3946,7 @@ function renderHubContent(){
         </div>
         <div class="hub-play-btns">
           <button type="button" class="btn-s hub-flash-btn" onclick="openFlashPicker()">🎴 Flash Cards</button>
+          <button type="button" class="btn-s hub-flash-btn" onclick="openCultureStories()">🏮 Culture Stories</button>
         </div>
         <div style="margin-top:.6rem;">
           ${gamePickerHtml()}
@@ -4005,6 +4089,7 @@ function renderDynastyDetail(d,s){
   const storyDone=story&&s.storiesCompleted.includes(story.id);
   const story2Done=story2&&s.storiesCompleted.includes(story2.id);
   const storyUnlocked=isStoryUnlockedForDynasty(d.id,s);
+  const lessonRef=lessonRefForGate(d.id);
 
   function storyBtn(st,isDone){
     if(!st)return '';
@@ -4031,7 +4116,83 @@ function renderDynastyDetail(d,s){
       <button class="btn-s" onclick="openFlashCards(${d.id})">🎴 Flash Cards</button>
       <button class="btn-g" onclick="startGateQuiz(${d.id})">${done?'⚔️ Try Boss Again':'⚔️ Boss Challenge'}</button>
     </div>
+    <div id="gate-lesson-box" style="margin-top:.8rem;"></div>
   </div>`;
+  if(lessonRef)renderGateLesson(d.id,lessonRef);
+}
+
+async function renderGateLesson(did,lessonRef){
+  const box=document.getElementById('gate-lesson-box');if(!box)return;
+  box.innerHTML='<div class="dd-desc">Loading lesson...</div>';
+  const lesson=await loadLessonByRef(lessonRef);
+  if(!lesson){
+    box.innerHTML='<div class="dd-desc">Lesson content will be added soon for this gate.</div>';
+    return;
+  }
+  const vocab=(lesson.keyVocab||[]).slice(0,8).map(v=>`<span class="badge-item" title="${v.en||''}">${v.zh}</span>`).join('');
+  const qs=(lesson.comprehension||[]).slice(0,3).map(q=>`<li>${q.question||''}</li>`).join('');
+  box.innerHTML=`<div class="dd-icon-meaning"><strong>Lesson · 课程</strong></div>
+    <div class="dd-desc">${lesson.explanation||''}</div>
+    <div class="dd-desc" style="white-space:pre-line;">${lesson.passage||''}</div>
+    ${vocab?`<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0;">${vocab}</div>`:''}
+    ${qs?`<div class="dd-desc"><strong>Check understanding</strong><ol style="margin:.35rem 0 .1rem 1.1rem;">${qs}</ol></div>`:''}
+    ${lesson.speakingPrompt?`<div class="dd-desc"><strong>Speaking prompt:</strong> ${lesson.speakingPrompt}</div>`:''}`;
+}
+
+function closeCultureStories(){
+  const ov=document.getElementById('culture-overlay');if(ov)ov.classList.remove('show');
+}
+function applyCultureReward(story){
+  if(!curP||!story||!story.rewards)return;
+  const s=state[curP];
+  const r=story.rewards;
+  const stars=Math.max(0,parseInt(r.stars,10)||0);
+  if(stars>0){
+    s.totalStars+=stars;s.weekStars+=stars;
+    const ts=getTS(curP);ts.stars=(ts.stars||0)+stars;
+  }
+  if(r.familyRewardType){
+    const fam=String(r.familyRewardType).replace(/_/g,' ');
+    showToast('Family reward unlocked: '+fam);
+  }else showToast('Culture story reward collected!');
+  saveState();
+  renderHub();
+}
+function cultureRewardBtn(story){
+  if(!story)return '';
+  const key=String(story.id||'').replace(/[^a-zA-Z0-9_\\-]/g,'');
+  const title=(story.title||story.id||'Story').replace(/"/g,'&quot;');
+  const stars=((story.rewards&&story.rewards.stars)||0);
+  return `<button class="btn-s" style="padding:.2rem .55rem;font-size:.66rem;" onclick="applyCultureRewardById('${key}')">Collect +${stars}⭐</button>`;
+}
+function applyCultureRewardById(storyId){
+  const data=curriculumCache.culture;
+  if(!data||!Array.isArray(data.tracks))return;
+  for(const t of data.tracks){
+    for(const st of (t.stories||[])){
+      if(String(st.id)===String(storyId)){applyCultureReward(st);return;}
+    }
+  }
+}
+async function openCultureStories(){
+  const ov=document.getElementById('culture-overlay');if(!ov)return;
+  const body=document.getElementById('culture-body');if(!body)return;
+  body.innerHTML='<div class="dd-desc">Loading culture stories...</div>';
+  ov.classList.add('show');
+  const data=await loadCultureCurriculum();
+  if(!data||!Array.isArray(data.tracks)){body.innerHTML='<div class="dd-desc">Culture stories are unavailable right now.</div>';return;}
+  const cards=[];
+  data.tracks.forEach(t=>{
+    cards.push(`<div class="practice-box"><div class="practice-box-title">${t.title||t.id}</div>`);
+    (t.stories||[]).slice(0,8).forEach(st=>{
+      cards.push(`<div class="pw-row" style="justify-content:space-between;gap:.5rem;">
+        <span class="pw-zh">${st.title||st.id}</span>
+        ${cultureRewardBtn(st)}
+      </div>`);
+    });
+    cards.push('</div>');
+  });
+  body.innerHTML=cards.join('')||'<div class="dd-desc">No culture stories configured.</div>';
 }
 
 // ══════════════════════════════════════════════════════
@@ -4452,7 +4613,7 @@ function toggleNoPY(){
 function startGateQuiz(did){
   const d=DYNASTIES.find(x=>x.id===did);if(!d)return;curDynasty=d;
   document.getElementById('quiz-title').textContent='Gate '+did+': '+d.zh+' Boss · 关卡挑战';
-  const vocab=buildQuizVocab(d);
+  const vocab=buildQuizVocab(d,false,did);
   const mcqN=8,pyN=10,sbN=3;
   const recentStore=getRecentQuestionStore(curP);
   const recent=recentStore[`g-${did}`]||{mcq:[],py:[]};
@@ -4474,7 +4635,7 @@ function startChampionChallenge(group){
   const did=group*5;// e.g. group 1 → did=5, group 2 → did=10
   const d=DYNASTIES.find(x=>x.id===did);if(!d)return;curDynasty=d;
   document.getElementById('quiz-title').textContent='👑 CHAMPION CHALLENGE · '+group+'th Group · 大关挑战';
-  const vocab=buildQuizVocab(d,true);// forChampion=true
+  const vocab=buildQuizVocab(d,true,did);// forChampion=true
   const mcqN=32,pyN=40,sbN=10;
   const recentStore=getRecentQuestionStore(curP);
   const recent=recentStore[`c-${group}`]||{mcq:[],py:[]};
@@ -4607,6 +4768,11 @@ function getRecentQuestionStore(p){
 
 function buildQuizVocab(d,forChampion=false){
   const did=d.id;
+  const datasetPrimary=forChampion?getDatasetVocabForChampion(did):getDatasetVocabForGate(did);
+  if(datasetPrimary.length){
+    const minSize=forChampion?120:40;
+    return supplementVocabFromGateList(datasetPrimary,[did],minSize).sort(()=>Math.random()-.5);
+  }
   let primary;
   if(forChampion){
     const groupStart=Math.max(1,did-4);
@@ -4654,6 +4820,10 @@ function buildPYQ(vocab,n=10,avoidZh=[]){
 }
 
 function buildSBPack(did,isDaddy=false,n=3){
+  const gateData=getGateCurriculum(did,curHSK);
+  if(gateData&&Array.isArray(gateData.sentenceTargetsPack)&&gateData.sentenceTargetsPack.length){
+    return gateData.sentenceTargetsPack.map(s=>[...s]).slice(0,n);
+  }
   if(isDaddy){
     // Mix sentences from all 5 dynasties in the group
     const sents=[];
@@ -5389,6 +5559,7 @@ function validatePlayerState(pid){
 function init(){
   dbgLog('init start',{search:window.location.search||''});
   state=loadState();
+  preloadCurriculum().then(()=>{if(curP)renderHub();});
   initFirestore();
   ensureState('jenn');ensureState('jess');
   if(DBG){
