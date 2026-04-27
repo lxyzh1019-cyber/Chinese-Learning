@@ -2407,7 +2407,23 @@ function updateGateGameBest(did,gameKey,stars){
   if(stars>prev){
     s.gateGameStars[k][gameKey]=stars;
     startGateTimerIfNeeded(s,did,stars);
+    // If quiz and all four game requirements become true in different sessions/orders,
+    // auto-clear the gate as soon as both are satisfied.
+    const best=(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0};
+    const quizOk=(best.accPct||0)>=90&&(best.quizStars||0)===3;
+    const gamesOk=gateGamesAllThree(s,did);
+    if(quizOk&&gamesOk&&!s.gatesCompleted.includes(did)){
+      s.gatesCompleted.push(did);
+      const prevGateStars=s.gateStars[did]||0;
+      if((best.quizStars||0)>prevGateStars)s.gateStars[did]=best.quizStars||0;
+      const timer=(s.gateTimers&&s.gateTimers[k])||null;
+      if(timer&&timer.active)timer.active=false;
+      const ts=getTS(curP);
+      ts.gates=(ts.gates||0)+1;
+      showToast(`🎉 Gate ${did} cleared! Next gate unlocked.`);
+    }
   }
+  saveState();
 }
 
 function starsText(n){
