@@ -1,0 +1,525 @@
+{
+  "trackId": "culture-stories",
+  "version": 1,
+  "description": "Parallel culture-story branch with rewards connected to main progression.",
+  "rewardCatalog": {
+    "familyRewardTypes": [
+      "ask_parents_help",
+      "movie_night",
+      "game_night",
+      "choose_dinner"
+    ]
+  },
+  "tracks": [
+    {
+      "id": "solar_terms_24",
+      "title": "24 Solar Terms",
+      "stories": [
+        {
+          "id": "term_01_li_chun",
+          "title": "立春",
+          "season": "spring",
+          "hskBand": "HSK1",
+          "focusTags": [
+            "weather",
+            "nature"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 8,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_02_yu_shui",
+          "title": "雨水",
+          "season": "spring",
+          "hskBand": "HSK1",
+          "focusTags": [
+            "weather",
+            "daily_life"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 8,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_03_jing_zhe",
+          "title": "惊蛰",
+          "season": "spring",
+          "hskBand": "HSK1",
+          "focusTags": [
+            "animals",
+            "nature"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 9,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_04_chun_fen",
+          "title": "春分",
+          "season": "spring",
+          "hskBand": "HSK1",
+          "focusTags": [
+            "time",
+            "nature"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 9,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_05_qing_ming_term",
+          "title": "清明",
+          "season": "spring",
+          "hskBand": "HSK2",
+          "focusTags": [
+            "family",
+            "culture"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 10,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 1,
+            "familyRewardType": "ask_parents_help"
+          }
+        },
+        {
+          "id": "term_06_gu_yu",
+          "title": "谷雨",
+          "season": "spring",
+          "hskBand": "HSK2",
+          "focusTags": [
+            "food",
+            "nature"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 10,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_07_li_xia",
+          "title": "立夏",
+          "season": "summer",
+          "hskBand": "HSK2",
+          "focusTags": [
+            "weather",
+            "daily_life"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 10,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_08_xiao_man",
+          "title": "小满",
+          "season": "summer",
+          "hskBand": "HSK2",
+          "focusTags": [
+            "nature",
+            "farming"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 10,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_09_mang_zhong",
+          "title": "芒种",
+          "season": "summer",
+          "hskBand": "HSK2",
+          "focusTags": [
+            "farming",
+            "verbs"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 11,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_10_xia_zhi",
+          "title": "夏至",
+          "season": "summer",
+          "hskBand": "HSK2",
+          "focusTags": [
+            "time",
+            "weather"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 11,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_11_xiao_shu",
+          "title": "小暑",
+          "season": "summer",
+          "hskBand": "HSK3",
+          "focusTags": [
+            "weather",
+            "adjectives"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 12,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_12_da_shu",
+          "title": "大暑",
+          "season": "summer",
+          "hskBand": "HSK3",
+          "focusTags": [
+            "weather",
+            "health"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 12,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 1,
+            "familyRewardType": "movie_night"
+          }
+        },
+        {
+          "id": "term_13_li_qiu",
+          "title": "立秋",
+          "season": "autumn",
+          "hskBand": "HSK3",
+          "focusTags": [
+            "nature",
+            "time"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 12,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_14_chu_shu",
+          "title": "处暑",
+          "season": "autumn",
+          "hskBand": "HSK3",
+          "focusTags": [
+            "weather",
+            "daily_life"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 12,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_15_bai_lu",
+          "title": "白露",
+          "season": "autumn",
+          "hskBand": "HSK3",
+          "focusTags": [
+            "nature",
+            "observation"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 13,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_16_qiu_fen",
+          "title": "秋分",
+          "season": "autumn",
+          "hskBand": "HSK3",
+          "focusTags": [
+            "time",
+            "balance"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 13,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_17_han_lu",
+          "title": "寒露",
+          "season": "autumn",
+          "hskBand": "HSK4",
+          "focusTags": [
+            "weather",
+            "clothing"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 14,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_18_shuang_jiang",
+          "title": "霜降",
+          "season": "autumn",
+          "hskBand": "HSK4",
+          "focusTags": [
+            "nature",
+            "temperature"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 14,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_19_li_dong",
+          "title": "立冬",
+          "season": "winter",
+          "hskBand": "HSK4",
+          "focusTags": [
+            "weather",
+            "food"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 14,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_20_xiao_xue",
+          "title": "小雪",
+          "season": "winter",
+          "hskBand": "HSK4",
+          "focusTags": [
+            "weather",
+            "travel"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 15,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_21_da_xue",
+          "title": "大雪",
+          "season": "winter",
+          "hskBand": "HSK4",
+          "focusTags": [
+            "weather",
+            "verbs"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 15,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_22_dong_zhi",
+          "title": "冬至",
+          "season": "winter",
+          "hskBand": "HSK4",
+          "focusTags": [
+            "family",
+            "food"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 15,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 1,
+            "familyRewardType": "game_night"
+          }
+        },
+        {
+          "id": "term_23_xiao_han",
+          "title": "小寒",
+          "season": "winter",
+          "hskBand": "HSK4",
+          "focusTags": [
+            "weather",
+            "adjectives"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 16,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 0,
+            "familyRewardType": null
+          }
+        },
+        {
+          "id": "term_24_da_han",
+          "title": "大寒",
+          "season": "winter",
+          "hskBand": "HSK4",
+          "focusTags": [
+            "weather",
+            "health"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 16,
+            "badgeFragments": 1,
+            "mysteryBoxToken": 1,
+            "familyRewardType": "choose_dinner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "festivals",
+      "title": "Festival Stories",
+      "stories": [
+        {
+          "id": "festival_spring",
+          "title": "春节",
+          "season": "winter",
+          "hskBand": "HSK1",
+          "focusTags": [
+            "family",
+            "food",
+            "greetings"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 12,
+            "badgeFragments": 2,
+            "mysteryBoxToken": 1,
+            "familyRewardType": "ask_parents_help"
+          }
+        },
+        {
+          "id": "festival_lantern",
+          "title": "元宵节",
+          "season": "spring",
+          "hskBand": "HSK2",
+          "focusTags": [
+            "festival",
+            "food",
+            "night"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 12,
+            "badgeFragments": 2,
+            "mysteryBoxToken": 1,
+            "familyRewardType": "movie_night"
+          }
+        },
+        {
+          "id": "festival_qingming",
+          "title": "清明节",
+          "season": "spring",
+          "hskBand": "HSK2",
+          "focusTags": [
+            "family",
+            "tradition"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 12,
+            "badgeFragments": 2,
+            "mysteryBoxToken": 1,
+            "familyRewardType": "ask_parents_help"
+          }
+        },
+        {
+          "id": "festival_dragon_boat",
+          "title": "端午节",
+          "season": "summer",
+          "hskBand": "HSK3",
+          "focusTags": [
+            "history",
+            "food",
+            "sports"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 14,
+            "badgeFragments": 2,
+            "mysteryBoxToken": 1,
+            "familyRewardType": "game_night"
+          }
+        },
+        {
+          "id": "festival_mid_autumn",
+          "title": "中秋节",
+          "season": "autumn",
+          "hskBand": "HSK3",
+          "focusTags": [
+            "moon",
+            "family",
+            "story"
+          ],
+          "targetWords": [],
+          "rewards": {
+            "stars": 14,
+            "badgeFragments": 2,
+            "mysteryBoxToken": 1,
+            "familyRewardType": "choose_dinner"
+          }
+        }
+      ]
+    }
+  ],
+  "totalStories": 29
+}

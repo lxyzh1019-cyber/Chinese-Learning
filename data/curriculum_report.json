@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-04-27T19:57:18.156Z",
+  "source": "drkameleon/complete-hsk-vocabulary wordlists/exclusive/new",
+  "constraints": {
+    "perLevelTotal": 300,
+    "gateCount": 22,
+    "hsk2Borrowed": 103
+  },
+  "levels": {
+    "hsk1": {
+      "words": 300,
+      "gates": 22
+    },
+    "hsk2": {
+      "words": 300,
+      "gates": 22,
+      "borrowedFromHsk3": 103
+    },
+    "hsk3": {
+      "words": 300,
+      "gates": 22
+    },
+    "hsk4": {
+      "words": 300,
+      "gates": 22
+    }
+  }
+}
