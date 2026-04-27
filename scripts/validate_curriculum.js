@@ -15,6 +15,23 @@ function assert(cond, msg) {
   if (!cond) throw new Error(msg);
 }
 
+/** Common kid-track homographs: warn if pinyin/en look like a less-common reading. */
+const HOMOGRAPH_WARN = [
+  { zh: "都", badPy: /^dū/i, hint: "prefer dōu (all/both) for learners" },
+  {
+    zh: "还",
+    badPy: /^huán/i,
+    skipIfEn: /surname|return|pay\s*back|repay/i,
+    hint: "hái (still/also) vs huán (return); check gloss matches pinyin",
+  },
+  {
+    zh: "行",
+    badPy: /^háng/i,
+    skipIfEn: /row|line|bank|industry|walk\s*of|surname/i,
+    hint: "xíng (OK/walk) vs háng (row); check gloss matches pinyin",
+  },
+];
+
 function checkLevel(doc, name) {
   assert(doc.totalWords === 300, `${name}: totalWords must be 300`);
   assert(Array.isArray(doc.words) && doc.words.length === 300, `${name}: words must be 300`);
@@ -23,6 +40,18 @@ function checkLevel(doc, name) {
   assert(uniq.size === 300, `${name}: duplicate zh found inside level`);
   const gateSum = doc.gates.reduce((a, g) => a + ((g.newWords && g.newWords.length) || 0), 0);
   assert(gateSum === 300, `${name}: gate newWords sum must be 300`);
+
+  for (const w of doc.words) {
+    const py = (w.pinyin || w.py || "").trim();
+    const en = String(w.en || "");
+    for (const rule of HOMOGRAPH_WARN) {
+      if (w.zh !== rule.zh) continue;
+      if (rule.skipIfEn && rule.skipIfEn.test(en)) continue;
+      if (rule.badPy && rule.badPy.test(py)) {
+        console.warn(`${name}: homograph audit — ${rule.zh} pinyin "${py}" / "${en}" (${rule.hint})`);
+      }
+    }
+  }
 }
 
 function main() {
