@@ -10,7 +10,7 @@ This document lists features and “fun” concepts that are **not fully impleme
 |------|----------------|-------------------------|
 | **Mystery box from gates** | `mysteryBoxChance` on each gate in `data/hsk*.json` | **Done in app:** roll on gate clear, `mysteryPicksPending`, hub + overlay. |
 | **Mystery tokens from culture** | `mysteryBoxToken` in `data/culture_stories.json` | **Done in app:** `applyCultureReward` adds pending picks. |
-| **`badgeFragments` in culture rewards** | Present in JSON | **Not used:** no collection UI, no crafting, no badges from fragments. Either remove from data or add a “fragments → badge” loop. |
+| **`badgeFragments` in culture rewards** | Present in JSON | **Done (v1):** collected in culture rewards, fragment counter tracked, auto-craft at threshold into a badge. |
 | **HSK3 / HSK4 per-gate lessons** | `data/lessons/hsk3_gate_*.json`, `hsk4_gate_*.json` + `lessonRefForGate` | **Done:** `scripts/generate_hsk_gate_lessons.js 3|4`; app loads `hsk3_gate_XX` / `hsk4_gate_XX`. |
 | **Champion-only mystery rolls** | Optional | Currently champion clear can also grant a box roll when trophy improves; could be tuned or shown separately in UI. |
 
@@ -21,7 +21,7 @@ This document lists features and “fun” concepts that are **not fully impleme
 | Idea | Current behavior | Enhancement |
 |------|------------------|-------------|
 | **Full culture reader** | Read overlay + `readerParagraphs` / `readerComprehension` in JSON | **Done (lite):** paragraphs + questions; collect stars from list. Per-line audio = future. |
-| **Solar term / festival animations** | Static cards | Simple illustrations or Lottie-style cards per story. |
+| **Solar term / festival animations** | Story rows now include lightweight season animation accents (respect reduced-motion) | **Done (lite):** CSS-based animated row accents for seasonal culture stories. |
 | **Culture streak / track progress** | Per-track bar + read checkmarks in overlay | **Done (v1).** Date-locked next story = future. |
 
 ---
@@ -45,7 +45,7 @@ This document lists features and “fun” concepts that are **not fully impleme
 | **Weighted tables per HSK level** | **Done (v1):** mystery star/family thresholds scale with `curHSK` when opening a box. |
 | **“Double or nothing” kid-safe variant** | Second tap for +50% stars with small chance of “try again tomorrow” (needs careful UX). |
 | **Physical reward pairing** | QR or “show parent” sheet export for family prizes (privacy). |
-| **Box from daily mission only** | Gates do not roll; mission completion grants 1 pick (simpler economy). |
+| **Box from daily mission only** | **Done (v1):** default economy awards 1 mystery pick on daily mission completion; gate-roll path is disabled by setting. |
 
 ---
 
@@ -55,7 +55,7 @@ This document lists features and “fun” concepts that are **not fully impleme
 |------|------------------|-------------|
 | **Week stars rivalry strip** | Jenn vs Jess + co-op bar | **Done:** `week_star_lead` badge when current player leads by week stars (both ≥12). |
 | **Sibling co-op mini-game** | None | Short 2-player pass-and-play quiz on one device. |
-| **Parent dashboard push** | Firestore sync exists | Email/webhook summaries (external infra). |
+| **Parent dashboard push** | Firestore sync exists + parent summary export/webhook stub | **Done (stub):** parent can export weekly JSON summary and POST to configured webhook URL from Parent Summary. |
 
 ---
 
@@ -64,7 +64,7 @@ This document lists features and “fun” concepts that are **not fully impleme
 Shipped items below are marked **Done**; the rest are still optional backlog:
 
 1. **Sticker book / collection album** — **Done (v1):** hub button + 6 stickers (gates 1/5/10, culture reads, first story).
-2. **Seasonal hub skin** — autumn/spring palette swap by calendar (cosmetic only).
+2. **Seasonal hub skin** — **Done (v1):** autumn/spring palette swap by calendar (cosmetic only).
 3. **Soundboard of praise phrases** — **Done (v1):** cheer toasts in hub rules panel (no audio assets).
 4. **“Boss rematch” variants** — **Done (v1):** “Hard boss” = more MCQ/PY, hints allowed for bonus. Timed mode = future.
 5. **Word of the week** — larger spotlight character with etymology (partially overlaps char-origin card).
@@ -81,8 +81,8 @@ Shipped items below are marked **Done**; the rest are still optional backlog:
 | Idea | Status |
 |------|--------|
 | **Parent toggle: disable mascot** | Implemented (Parent Summary). |
-| **Parent toggle: “opt-in quiz audio” or stricter TTS** | Not a separate setting; quiz still has speak buttons. Could add global “sound lessons only when parent unlocks.” |
-| **Stricter session caps on toasts** | Partially (micro-reward throttle); could unify all non-critical toasts. |
+| **Parent toggle: “opt-in quiz audio” or stricter TTS** | **Done (v1):** parent audio mode now supports `normal` vs `parent unlock required in quiz`. |
+| **Stricter session caps on toasts** | **Done (v1):** session toast caps applied by toast kind for non-critical messages. |
 
 ---
 
@@ -101,4 +101,4 @@ Shipped items below are marked **Done**; the rest are still optional backlog:
 3. Named mascot art + one idle animation (emotional attachment).
 4. Fragment system OR remove `badgeFragments` from data until designed.
 
-Last updated: HSK3/4 lessons, culture reader + track progress, sticker book, mascot idle + cosmetics, mystery weights by HSK, weekly rivalry badge, hard boss + soundboard.
+Last updated: HSK3/4 lessons, culture reader + track progress, sticker book, mascot idle + cosmetics, mystery weights by HSK, weekly rivalry badge, hard boss + soundboard, badge fragments v1, mission-only mystery v1, seasonal hub skin, parent audio mode, toast session caps, culture season animations lite, family timer goal, parent weekly export/webhook stub.
