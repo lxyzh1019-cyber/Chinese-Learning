@@ -11,7 +11,7 @@ This document lists features and “fun” concepts that are **not fully impleme
 | **Mystery box from gates** | `mysteryBoxChance` on each gate in `data/hsk*.json` | **Done in app:** roll on gate clear, `mysteryPicksPending`, hub + overlay. |
 | **Mystery tokens from culture** | `mysteryBoxToken` in `data/culture_stories.json` | **Done in app:** `applyCultureReward` adds pending picks. |
 | **`badgeFragments` in culture rewards** | Present in JSON | **Not used:** no collection UI, no crafting, no badges from fragments. Either remove from data or add a “fragments → badge” loop. |
-| **HSK3 / HSK4 per-gate lessons** | Vocab/gates in JSON; no `data/lessons/hsk3_gate_*.json` or `hsk4_gate_*.json` | Generate 22+22 lesson files (same template as HSK1/2) and ensure `lessonRef` on gates if not defaulting. |
+| **HSK3 / HSK4 per-gate lessons** | `data/lessons/hsk3_gate_*.json`, `hsk4_gate_*.json` + `lessonRefForGate` | **Done:** `scripts/generate_hsk_gate_lessons.js 3|4`; app loads `hsk3_gate_XX` / `hsk4_gate_XX`. |
 | **Champion-only mystery rolls** | Optional | Currently champion clear can also grant a box roll when trophy improves; could be tuned or shown separately in UI. |
 
 ---
@@ -20,9 +20,9 @@ This document lists features and “fun” concepts that are **not fully impleme
 
 | Idea | Current behavior | Enhancement |
 |------|------------------|-------------|
-| **Full culture reader** | List of stories + “Collect” for stars | Inline reader with paragraphs, audio per line, mini-quiz like dynasty stories. |
+| **Full culture reader** | Read overlay + `readerParagraphs` / `readerComprehension` in JSON | **Done (lite):** paragraphs + questions; collect stars from list. Per-line audio = future. |
 | **Solar term / festival animations** | Static cards | Simple illustrations or Lottie-style cards per story. |
-| **Culture streak / track progress** | None | Progress bar per track (24 terms, festivals), unlock next by order or by date. |
+| **Culture streak / track progress** | Per-track bar + read checkmarks in overlay | **Done (v1).** Date-locked next story = future. |
 
 ---
 
@@ -31,8 +31,8 @@ This document lists features and “fun” concepts that are **not fully impleme
 | Idea | Current behavior | Enhancement |
 |------|------------------|-------------|
 | **Sidebar text bubble** | After Gate 5 + caps + parent off + not in quiz | Baseline shipped. |
-| **Named character + avatar art** | Emoji / text only | Small illustrated mascot with idle animation in hub. |
-| **Dress-up / accessories** | None | Unlock hats or frames from gates, streaks, or mystery box. |
+| **Named character + avatar art** | Hub mascot ring + idle bounce + emoji face | **Done (v1):** CSS + 🐼 after Gate 5. |
+| **Dress-up / accessories** | “Change look” cycles hat/bow on mascot | **Done (v1):** cosmetic only, stored in `mascotCosmetic`. |
 | **Mascot reactions to wrong answers** | Suppressed during quiz | Optional gentle reaction after quiz exit only (respect limits). |
 | **Voice lines for mascot** | None | Short pre-recorded clips or strict TTS with parent mute (adds scope). |
 
@@ -42,7 +42,7 @@ This document lists features and “fun” concepts that are **not fully impleme
 
 | Idea | Notes |
 |------|--------|
-| **Weighted tables per HSK level** | Different star/family weights for HSK2–4. |
+| **Weighted tables per HSK level** | **Done (v1):** mystery star/family thresholds scale with `curHSK` when opening a box. |
 | **“Double or nothing” kid-safe variant** | Second tap for +50% stars with small chance of “try again tomorrow” (needs careful UX). |
 | **Physical reward pairing** | QR or “show parent” sheet export for family prizes (privacy). |
 | **Box from daily mission only** | Gates do not roll; mission completion grants 1 pick (simpler economy). |
@@ -53,7 +53,7 @@ This document lists features and “fun” concepts that are **not fully impleme
 
 | Idea | Current behavior | Enhancement |
 |------|------------------|-------------|
-| **Week stars rivalry strip** | Jenn vs Jess + co-op bar | Optional: weekly “winner” badge, non-toxic copy. |
+| **Week stars rivalry strip** | Jenn vs Jess + co-op bar | **Done:** `week_star_lead` badge when current player leads by week stars (both ≥12). |
 | **Sibling co-op mini-game** | None | Short 2-player pass-and-play quiz on one device. |
 | **Parent dashboard push** | Firestore sync exists | Email/webhook summaries (external infra). |
 
@@ -61,12 +61,12 @@ This document lists features and “fun” concepts that are **not fully impleme
 
 ## F. Gameplay variety (suggested fun ideas from earlier brainstorms)
 
-These are **not** dedicated systems in the app today unless noted:
+Shipped items below are marked **Done**; the rest are still optional backlog:
 
-1. **Sticker book / collection album** — collect stickers per gate or per story; view in hub.
+1. **Sticker book / collection album** — **Done (v1):** hub button + 6 stickers (gates 1/5/10, culture reads, first story).
 2. **Seasonal hub skin** — autumn/spring palette swap by calendar (cosmetic only).
-3. **Soundboard of praise phrases** — tap for encouragement (parent volume / mute).
-4. **“Boss rematch” variants** — timed MCQ, or “hard mode” fewer hints (separate from current boss).
+3. **Soundboard of praise phrases** — **Done (v1):** cheer toasts in hub rules panel (no audio assets).
+4. **“Boss rematch” variants** — **Done (v1):** “Hard boss” = more MCQ/PY, hints allowed for bonus. Timed mode = future.
 5. **Word of the week** — larger spotlight character with etymology (partially overlaps char-origin card).
 6. **Treasure map meta-progress** — cosmetic path across eras unrelated to strict gate order.
 7. **Rivalry “challenge send”** — one kid sends 3 words to the other’s practice queue (needs moderation).
@@ -101,4 +101,4 @@ These are **not** dedicated systems in the app today unless noted:
 3. Named mascot art + one idle animation (emotional attachment).
 4. Fragment system OR remove `badgeFragments` from data until designed.
 
-Last updated with the hub rules panel, Gate 5 mascot unlock, and playable mystery box implementation.
+Last updated: HSK3/4 lessons, culture reader + track progress, sticker book, mascot idle + cosmetics, mystery weights by HSK, weekly rivalry badge, hard boss + soundboard.

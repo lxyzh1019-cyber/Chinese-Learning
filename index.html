@@ -577,6 +577,25 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .mystery-prize-emoji{font-size:2.6rem;line-height:1;margin-bottom:.35rem;}
 .mystery-prize-title{font-family:var(--fdec);font-size:1.25rem;color:var(--gold);margin-bottom:.25rem;}
 .mystery-prize-sub{font-size:.78rem;color:var(--muted);line-height:1.45;}
+.mascot-wrap{display:flex;flex-direction:column;align-items:center;margin:.35rem 0 .25rem;}
+.mascot-art{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff8,#ffd78a22),linear-gradient(145deg,#2a4a38,#1a2e22);
+  border:2px solid rgba(39,174,96,.45);box-shadow:0 0 14px rgba(39,174,96,.25);position:relative;animation:mascotIdle 3.2s ease-in-out infinite;}
+.mascot-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.65rem;line-height:1;}
+.mascot-hat{position:absolute;top:-6px;left:50%;transform:translateX(-50%);font-size:1.15rem;filter:drop-shadow(0 2px 2px rgba(0,0,0,.4));}
+.mascot-bow{position:absolute;bottom:4px;right:2px;font-size:.85rem;}
+@keyframes mascotIdle{0%,100%{transform:translateY(0);}50%{transform:translateY(-3px);}}
+.mascot-cos-btn{font-size:.58rem;padding:.15rem .4rem;margin-top:.2rem;border-radius:6px;border:1px solid rgba(212,160,23,.35);background:rgba(0,0,0,.2);color:var(--gold);cursor:pointer;}
+.culture-track-hdr{display:flex;justify-content:space-between;align-items:center;gap:.4rem;margin:.35rem 0 .2rem;font-size:.68rem;color:var(--gold);}
+.culture-prog{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-bottom:.45rem;}
+.culture-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--jade),var(--gold));transition:width .4s;}
+.culture-story-row{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;justify-content:space-between;padding:.28rem 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.culture-reader-body{font-size:.88rem;line-height:1.65;color:var(--ink);max-height:62vh;overflow-y:auto;}
+.culture-reader-cn{font-family:var(--fzh);font-size:1.05rem;color:var(--gold);margin:.5rem 0;}
+.sticker-grid{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;padding:.5rem 0;}
+.sticker-cell{width:52px;height:52px;border-radius:10px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.6rem;background:rgba(0,0,0,.15);opacity:.35;}
+.sticker-cell.on{opacity:1;border-color:rgba(212,160,23,.5);box-shadow:0 0 8px rgba(212,160,23,.2);}
+.soundboard-grid{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin-top:.45rem;}
+.soundboard-grid button{min-width:5.2rem;}
 .badge-strip{display:flex;flex-wrap:wrap;gap:.25rem;padding:.4rem 0 .2rem;margin-bottom:.35rem;}
 .badge-item{font-size:1.1rem;opacity:.85;cursor:default;filter:drop-shadow(0 0 4px rgba(212,160,23,.2));}
 .badge-item.dim{opacity:.35;filter:grayscale(.4);}
@@ -728,6 +747,14 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 <!-- ═══ HUB SCREEN ═══ -->
 <div class="screen" id="scr-hub">
   <div class="hub-sidebar">
+    <div class="mascot-wrap" id="mascot-wrap" style="display:none;">
+      <div class="mascot-art" id="mascot-art" aria-hidden="true">
+        <span class="mascot-hat" id="mascot-hat" style="display:none;"></span>
+        <span class="mascot-face" id="mascot-face-emoji">🐼</span>
+        <span class="mascot-bow" id="mascot-bow" style="display:none;">🎀</span>
+      </div>
+      <button type="button" class="mascot-cos-btn" id="mascot-cos-btn" onclick="cycleMascotCosmetic()">Change look</button>
+    </div>
     <div class="sidebar-avatar" id="hub-avatar">🐥</div>
     <div class="sidebar-name" id="hub-name">Jenn</div>
     <div class="sidebar-hsk-badge" id="hub-hsk">HSK 1</div>
@@ -755,6 +782,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
       <div class="ts-row" id="ts-champ-row" style="display:none;"><span>🏆 Champion</span><span id="ts-champ">—</span></div>
     </div>
     <div class="badge-strip" id="badge-strip"></div>
+    <button type="button" class="drill-btn" style="margin-bottom:.45rem;" onclick="openStickerBook()">📒 Sticker book</button>
     <div class="practice-box" id="practice-box"></div>
     <button class="sidebar-btn muted-btn" onclick="goToSelect()">← Back to Profiles</button>
   </div>
@@ -912,6 +940,27 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
     <button type="button" class="mq-close" onclick="closeCultureStories()" title="Close" aria-label="Close">✕</button>
     <div class="mq-title">🏮 Culture Stories · 文化故事</div>
     <div id="culture-body"></div>
+  </div>
+</div>
+
+<div class="mini-quiz-overlay" id="culture-reader-overlay">
+  <div class="mini-quiz-card" style="max-width:440px;">
+    <button type="button" class="mq-close" onclick="closeCultureReader()" title="Close" aria-label="Close">✕</button>
+    <div class="mq-title" id="culture-reader-title">Culture read</div>
+    <div id="culture-reader-body" class="culture-reader-body"></div>
+    <div style="display:flex;justify-content:center;margin-top:.75rem;gap:.5rem;flex-wrap:wrap;">
+      <button type="button" class="btn-g" onclick="finishCultureReader()">Done reading ✓</button>
+    </div>
+  </div>
+</div>
+
+<div class="mini-quiz-overlay" id="sticker-overlay">
+  <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeStickerBook()" title="Close" aria-label="Close">✕</button>
+    <div class="mq-title">📒 Sticker book</div>
+    <div id="sticker-body" class="dd-desc" style="text-align:center;">Collect stickers by clearing gates and culture stories!</div>
+    <div class="sticker-grid" id="sticker-grid"></div>
+    <button type="button" class="btn-g" onclick="closeStickerBook()">Close</button>
   </div>
 </div>
 
@@ -2130,11 +2179,15 @@ function defPlayer(){
     mascotSession:{count:0,lastAt:0},
     mascotUnlockedNotified:false,
     mysteryPicksPending:0,
-    mysteryLastFamilyAt:0};
+    mysteryLastFamilyAt:0,
+    cultureSeen:{},
+    stickerIds:[],
+    mascotCosmetic:0,
+    weeklyStarLeadWeeks:[]};
 }
 
 let state={jenn:null,jess:null};
-let curP=null,curHSK=1,curStory=null,curDynasty=null,quizSt=null;
+let curP=null,curHSK=1,curStory=null,curDynasty=null,quizSt=null,curCultureReaderStory=null;
 let timerSecs=SESSION_MINS*60,timerIv=null,clockIv=null;
 let playTimeIv=null,lastTimeMark=0;
 let sumMode='weekly',sumOffset=0;
@@ -2199,6 +2252,8 @@ function lessonRefForGate(did){
   if(g&&g.lessonRef)return g.lessonRef;
   if(curHSK===1)return `hsk1_gate_${String(did).padStart(2,'0')}`;
   if(curHSK===2)return `hsk2_gate_${String(did).padStart(2,'0')}`;
+  if(curHSK===3)return `hsk3_gate_${String(did).padStart(2,'0')}`;
+  if(curHSK===4)return `hsk4_gate_${String(did).padStart(2,'0')}`;
   return null;
 }
 async function loadLessonByRef(ref){
@@ -2236,6 +2291,87 @@ function mascotFriendUnlocked(){
   ensureState(curP);
   const s=state[curP];
   return !!(s&&s.gatesCompleted&&s.gatesCompleted.includes(5));
+}
+const STICKER_DEFS=[
+  {id:'g1',emoji:'🌟',label:'Gate 1',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.includes(1)},
+  {id:'g5',emoji:'🎋',label:'Gate 5 friend',need:()=>mascotFriendUnlocked()},
+  {id:'g10',emoji:'🏯',label:'Gate 10',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.includes(10)},
+  {id:'c1',emoji:'🏮',label:'Culture read',need:()=>state[curP]&&state[curP].cultureSeen&&Object.keys(state[curP].cultureSeen).length>=1},
+  {id:'c5',emoji:'🌸',label:'5 culture',need:()=>state[curP]&&state[curP].cultureSeen&&Object.keys(state[curP].cultureSeen).length>=5},
+  {id:'st',emoji:'📚',label:'First story',need:()=>state[curP]&&(state[curP].storiesCompleted||[]).length>=1}
+];
+function grantSticker(id){
+  if(!curP)return;
+  ensureState(curP);
+  const s=state[curP];
+  if(!s.stickerIds)s.stickerIds=[];
+  if(s.stickerIds.includes(id))return;
+  s.stickerIds.push(id);
+  showToast('New sticker! Open sticker book 📒');
+  saveState();
+}
+function checkStickerUnlocks(){
+  if(!curP)return;
+  ensureState(curP);
+  STICKER_DEFS.forEach(d=>{if(d.need())grantSticker(d.id);});
+}
+function openStickerBook(){
+  const g=document.getElementById('sticker-grid');if(!g)return;
+  ensureState(curP);
+  checkStickerUnlocks();
+  const have=new Set(state[curP].stickerIds||[]);
+  g.innerHTML=STICKER_DEFS.map(d=>`<div class="sticker-cell${have.has(d.id)?' on':''}" title="${d.label}">${d.emoji}</div>`).join('');
+  document.getElementById('sticker-overlay').classList.add('show');
+}
+function closeStickerBook(){document.getElementById('sticker-overlay').classList.remove('show');}
+function renderMascotHubVisual(){
+  const wrap=document.getElementById('mascot-wrap');
+  const btn=document.getElementById('mascot-cos-btn');
+  if(!wrap)return;
+  if(!mascotFriendUnlocked()){wrap.style.display='none';return;}
+  wrap.style.display='flex';
+  if(btn)btn.style.display=mascotFriendUnlocked()?'inline-block':'none';
+  const s=state[curP];
+  const c=(s&&s.mascotCosmetic)||0;
+  const hat=document.getElementById('mascot-hat');
+  const bow=document.getElementById('mascot-bow');
+  if(hat)hat.style.display=(c===1||c===3)?'block':'none';
+  if(bow)bow.style.display=(c===2||c===3)?'block':'none';
+  if(hat&&(c===1||c===3))hat.textContent=c===3?'🎩':'🧢';
+}
+function cycleMascotCosmetic(){
+  if(!curP||!mascotFriendUnlocked())return;
+  ensureState(curP);
+  state[curP].mascotCosmetic=((state[curP].mascotCosmetic||0)+1)%4;
+  saveState();
+  renderMascotHubVisual();
+  showToast('New look saved!');
+}
+function cultureSeenCount(){
+  if(!curP)return 0;
+  return Object.keys((state[curP]&&state[curP].cultureSeen)||{}).length;
+}
+function markCultureSeen(storyId){
+  if(!curP||!storyId)return;
+  ensureState(curP);
+  if(!state[curP].cultureSeen)state[curP].cultureSeen={};
+  state[curP].cultureSeen[String(storyId)]=true;
+  saveState();
+  checkStickerUnlocks();
+}
+function getMysteryStarWeights(){
+  const lv=curHSK||1;
+  if(lv>=4)return{low:.48,mid:.78};
+  if(lv>=3)return{low:.50,mid:.80};
+  if(lv>=2)return{low:.52,mid:.82};
+  return{low:.52,mid:.78};
+}
+function getMysteryFamilyRollThreshold(){
+  const lv=curHSK||1;
+  if(lv>=4)return 0.88;
+  if(lv>=3)return 0.89;
+  if(lv>=2)return 0.90;
+  return 0.9;
 }
 function isMascotSuppressed(){
   if(engagementSettings.mascotDisabled)return true;
@@ -2366,6 +2502,26 @@ function renderRivalryCoopStrip(){
     <div style="font-size:.72rem;color:var(--muted);">Jenn ${jn}⭐ vs Jess ${jw}⭐</div>
     <div style="font-size:.68rem;color:var(--gold);margin-top:.35rem;">Family co-op: ${coop} / ${goal} week stars</div>
     <div class="prog-track" style="height:6px;margin:.3rem 0;"><div class="prog-fill" style="width:${pct}%;height:6px;"></div></div>`;
+  checkWeeklyRivalryBadge(jn,jw);
+}
+function checkWeeklyRivalryBadge(jn,jw){
+  if(!curP)return;
+  const wk=weekStart();
+  const max=Math.max(jn,jw);
+  if(max<12||jn===jw)return;
+  ensureState(curP);
+  const s=state[curP];
+  const leader=jn>jw?'jenn':'jess';
+  if(leader!==curP)return;
+  if(!s.weeklyStarLeadWeeks)s.weeklyStarLeadWeeks=[];
+  if(s.weeklyStarLeadWeeks.includes(wk))return;
+  s.weeklyStarLeadWeeks.push(wk);
+  if(s.weeklyStarLeadWeeks.length>12)s.weeklyStarLeadWeeks.shift();
+  if(!s.badges)s.badges=[];
+  if(!s.badges.includes('week_star_lead'))s.badges.push('week_star_lead');
+  showToast('Weekly star lead — badge earned! 🥇');
+  saveState();
+  renderBadgeStrip(curP);
 }
 function renderHubRulesBody(){
   const el=document.getElementById('hub-rules-body');if(!el)return;
@@ -2378,7 +2534,18 @@ function renderHubRulesBody(){
     <p><strong>Daily mission</strong> · 今日任务: one goal per day; finish it for <strong>+8</strong> stars.</p>
     <p><strong>This week</strong> · 本周: Jenn vs Jess week stars + family teamwork bar (<strong>${goal}</strong> week stars). Hit the goal for a family cheer toast.</p>
     <p>${friendLine}</p>
-    <p><strong>Mystery box</strong> · 神秘盒: sometimes when you clear a gate you earn an extra open. Culture stories can give box tokens. Tap <strong>Open</strong> below when you have picks. Prizes can be bonus stars or a family coupon—show coupons to a grown-up.</p>`;
+    <p><strong>Mystery box</strong> · 神秘盒: sometimes when you clear a gate you earn an extra open. Culture stories can give box tokens. Tap <strong>Open</strong> below when you have picks. Prizes can be bonus stars or a family coupon—show coupons to a grown-up.</p>
+    <p><strong>Cheer box</strong> · 加油：tap a button for a quick cheer (no stars).</p>
+    <div class="soundboard-grid">
+      <button type="button" class="btn-s" onclick="playSoundboard('go')">Go!</button>
+      <button type="button" class="btn-s" onclick="playSoundboard('nice')">Nice!</button>
+      <button type="button" class="btn-s" onclick="playSoundboard('breathe')">Breathe</button>
+      <button type="button" class="btn-s" onclick="playSoundboard('try')">Try again</button>
+    </div>`;
+}
+function playSoundboard(key){
+  const m={go:'You got this — one step at a time!',nice:'Nice work! Keep your steady pace.',breathe:'Slow breath. Then read the next line.',try:'Mistakes help you grow. Try once more!'};
+  showToast(m[key]||'Keep going!',1800);
 }
 function renderMysteryHubCard(){
   const wrap=document.getElementById('hub-mystery-card');if(!wrap||!curP)return;
@@ -2438,7 +2605,8 @@ function revealMysteryPick(){
   const now=Date.now();
   const cat=getMysteryFamilyCatalog();
   const allowFam=!s.mysteryLastFamilyAt||(now-s.mysteryLastFamilyAt>21600000);
-  if(r>=0.9&&allowFam&&cat.length){
+  const famTh=getMysteryFamilyRollThreshold();
+  if(r>=famTh&&allowFam&&cat.length){
     const pick=cat[seededPick(`mbox_${curP}_${now}`,cat.length)];
     s.mysteryLastFamilyAt=now;
     const lbl=MYSTERY_FAMILY_LABELS[pick]||String(pick).replace(/_/g,' ');
@@ -2450,10 +2618,11 @@ function revealMysteryPick(){
     saveState();
     return;
   }
+  const w=getMysteryStarWeights();
   let stars=3,sub='Small star bonus!';
-  if(r<0.52)stars=3;
-  else if(r<0.78){stars=6;sub='Lucky! Medium stars';}
-  else{stars=10;sub=r>=0.9?'Extra stars (family prize cooling down)':'Jackpot stars!';}
+  if(r<w.low)stars=3;
+  else if(r<w.mid){stars=6;sub='Lucky! Medium stars';}
+  else{stars=10;sub=r>=famTh?'Extra stars (family prize cooling down)':'Jackpot stars!';}
   addEarnedStars(stars);
   body.innerHTML=`<div class="mystery-prize-card">
     <div class="mystery-prize-emoji">⭐</div>
@@ -2527,6 +2696,7 @@ const BADGE_DEFS={
   pinyin_master:{icon:'📘',title:'Finished pinyin intro'},
   one_day_gate:{icon:'🏅',title:'Cleared a gate in one day'},
   cross_trainer:{icon:'🧩',title:'20 HSK/WIP rounds completed'},
+  week_star_lead:{icon:'🥇',title:'Led week stars (12+)'},
 };
 
 function checkBadges(p,opts){
@@ -2743,6 +2913,10 @@ function ensureState(p){
   if(s.mascotUnlockedNotified===undefined)s.mascotUnlockedNotified=!!(s.gatesCompleted&&s.gatesCompleted.includes(5));
   if(s.mysteryPicksPending===undefined)s.mysteryPicksPending=0;
   if(s.mysteryLastFamilyAt===undefined)s.mysteryLastFamilyAt=0;
+  if(!s.cultureSeen)s.cultureSeen={};
+  if(!s.stickerIds)s.stickerIds=[];
+  if(s.mascotCosmetic===undefined)s.mascotCosmetic=0;
+  if(!s.weeklyStarLeadWeeks)s.weeklyStarLeadWeeks=[];
   // Week reset
   if(!isSameWeek(s.weekStart)){
     const nws=weekStart();
@@ -3843,6 +4017,7 @@ function persistGateQuizState(){
     pyQ:(quizSt.pyQ||[]).map(q=>({...q})),
     sbPack:(quizSt.sbPack||[]).map(s=>[...s]),
     sbRound:quizSt.sbRound||0,isChampion:!!quizSt.isChampion,champGroup:quizSt.champGroup||null,
+    hardMode:!!quizSt.hardMode,
     mcqN:quizSt.mcqN,pyN:quizSt.pyN,sbN:quizSt.sbN,maxScore:quizSt.maxScore,noMcqAssistance:!!quizSt.noMcqAssistance,
     mcqAnswered:typeof mcqAnswered==='number'?mcqAnswered:0,pyAnswered:typeof pyAnswered==='number'?pyAnswered:0,
     sbBuilt:[...(typeof sbBuilt!=='undefined'?sbBuilt:[])],speakUsed:!!speakUsed,pyHintUsed:!!pyHintUsed,pyPeekUsed:!!pyPeekUsed,
@@ -3869,7 +4044,8 @@ function restoreGateQuizSession(){
     pyQ:(ps.pyQ||[]).map(q=>({...q})),
     sbPack:(ps.sbPack||[]).map(s=>[...s]),
     sbRound:ps.sbRound||0,isDaddy:false,isChampion:!!ps.isChampion,champGroup:ps.champGroup||null,
-    mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:!!ps.noMcqAssistance,
+    hardMode:!!ps.hardMode,
+    mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:ps.noMcqAssistance!==false,
     quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0
   };
   mcqAnswered=ps.mcqAnswered||0;pyAnswered=ps.pyAnswered||0;sbBuilt=[...(ps.sbBuilt||[])];
@@ -4235,6 +4411,8 @@ function renderHub(){
   renderRivalryCoopStrip();
   renderHubRulesBody();
   renderMysteryHubCard();
+  renderMascotHubVisual();
+  checkStickerUnlocks();
   checkBadges(curP);
   renderBadgeStrip(curP);
   // Practice words sidebar
@@ -4463,6 +4641,7 @@ function renderDynastyDetail(d,s){
       ${storyBtn(story2,story2Done)}
       <button class="btn-s" onclick="openFlashCards(${d.id})">🎴 Flash Cards</button>
       <button class="btn-g" onclick="startGateQuiz(${d.id})">${done?'⚔️ Try Boss Again':'⚔️ Boss Challenge'}</button>
+      <button class="btn-s" onclick="startGateQuiz(${d.id},{hardMode:true})">⚡ Hard boss</button>
     </div>
     <div id="gate-lesson-box" style="margin-top:.8rem;"></div>
   </div>`;
@@ -4490,6 +4669,16 @@ async function renderGateLesson(did,lessonRef){
 function closeCultureStories(){
   const ov=document.getElementById('culture-overlay');if(ov)ov.classList.remove('show');
 }
+function findCultureStoryById(storyId){
+  const data=curriculumCache.culture;
+  if(!data||!Array.isArray(data.tracks))return null;
+  for(const t of data.tracks){
+    for(const st of t.stories||[]){
+      if(String(st.id)===String(storyId))return st;
+    }
+  }
+  return null;
+}
 function applyCultureReward(story){
   if(!curP||!story||!story.rewards)return;
   const s=state[curP];
@@ -4516,13 +4705,39 @@ function cultureRewardBtn(story){
   return `<button class="btn-s" style="padding:.2rem .55rem;font-size:.66rem;" onclick="applyCultureRewardById('${key}')">Collect +${stars}⭐</button>`;
 }
 function applyCultureRewardById(storyId){
-  const data=curriculumCache.culture;
-  if(!data||!Array.isArray(data.tracks))return;
-  for(const t of data.tracks){
-    for(const st of (t.stories||[])){
-      if(String(st.id)===String(storyId)){applyCultureReward(st);return;}
-    }
+  const st=findCultureStoryById(storyId);
+  if(st)applyCultureReward(st);
+}
+function closeCultureReader(){
+  curCultureReaderStory=null;
+  const o=document.getElementById('culture-reader-overlay');if(o)o.classList.remove('show');
+}
+function openCultureReaderFromBtn(btn){
+  const id=btn&&btn.getAttribute&&btn.getAttribute('data-culture-read');
+  const st=findCultureStoryById(id);
+  openCultureReader(st);
+}
+function openCultureReader(st){
+  if(!st)return;
+  curCultureReaderStory=st;
+  const title=document.getElementById('culture-reader-title');
+  const box=document.getElementById('culture-reader-body');
+  if(title)title.textContent=(st.title||st.id)+' · Read';
+  const paras=(st.readerParagraphs&&st.readerParagraphs.length)?st.readerParagraphs:[`${st.title||''}：读一读，想一想。`];
+  const qs=(st.readerComprehension&&st.readerComprehension.length)?st.readerComprehension:[];
+  let html=paras.map(p=>`<div class="culture-reader-cn">${p}</div>`).join('');
+  if(qs.length){
+    html+='<div class="dd-desc" style="margin-top:.6rem;"><strong>Think about</strong></div><ol style="margin:.3rem 0 0 1.1rem;font-size:.82rem;color:var(--muted);">';
+    html+=qs.map(q=>`<li>${(q&&q.question)||''}</li>`).join('');
+    html+='</ol>';
   }
+  if(box)box.innerHTML=html;
+  document.getElementById('culture-reader-overlay').classList.add('show');
+}
+function finishCultureReader(){
+  if(curCultureReaderStory&&curCultureReaderStory.id)markCultureSeen(curCultureReaderStory.id);
+  closeCultureReader();
+  showToast('Great reading! Collect your stars in the list when ready.');
 }
 async function openCultureStories(){
   const ov=document.getElementById('culture-overlay');if(!ov)return;
@@ -4531,13 +4746,24 @@ async function openCultureStories(){
   ov.classList.add('show');
   const data=await loadCultureCurriculum();
   if(!data||!Array.isArray(data.tracks)){body.innerHTML='<div class="dd-desc">Culture stories are unavailable right now.</div>';return;}
+  ensureState(curP);
+  const seen=state[curP].cultureSeen||{};
   const cards=[];
   data.tracks.forEach(t=>{
-    cards.push(`<div class="practice-box"><div class="practice-box-title">${t.title||t.id}</div>`);
-    (t.stories||[]).slice(0,8).forEach(st=>{
-      cards.push(`<div class="pw-row" style="justify-content:space-between;gap:.5rem;">
-        <span class="pw-zh">${st.title||st.id}</span>
-        ${cultureRewardBtn(st)}
+    const stories=t.stories||[];
+    const done=stories.filter(st=>seen[st.id]).length;
+    const pct=stories.length?Math.round(done/stories.length*100):0;
+    cards.push(`<div class="practice-box"><div class="culture-track-hdr"><span>${t.title||t.id}</span><span>${done}/${stories.length}</span></div>
+      <div class="culture-prog"><i style="width:${pct}%"></i></div>`);
+    stories.forEach(st=>{
+      const read=!!seen[st.id];
+      const sid=String(st.id||'').replace(/"/g,'&quot;');
+      cards.push(`<div class="culture-story-row">
+        <span class="pw-zh">${st.title||st.id}${read?' ✓':''}</span>
+        <span style="display:flex;gap:.3rem;flex-wrap:wrap;">
+          <button type="button" class="btn-s" style="padding:.2rem .45rem;font-size:.62rem;" data-culture-read="${sid}" onclick="openCultureReaderFromBtn(this)">Read</button>
+          ${cultureRewardBtn(st)}
+        </span>
       </div>`);
     });
     cards.push('</div>');
@@ -5054,15 +5280,18 @@ function toggleNoPY(){
 // ══════════════════════════════════════════════════════
 // GATE BOSS QUIZ
 // ══════════════════════════════════════════════════════
-function startGateQuiz(did){
+function startGateQuiz(did,opts){
+  opts=opts||{};
+  const hard=!!opts.hardMode;
   const d=DYNASTIES.find(x=>x.id===did);if(!d)return;curDynasty=d;
   sessionQuizCorrect=0;quizCelebrate={c3:false,c6:false};
-  document.getElementById('quiz-title').textContent='Gate '+did+': '+d.zh+' Boss · 关卡挑战';
+  document.getElementById('quiz-title').textContent=(hard?'⚡ HARD ':'')+'Gate '+did+': '+d.zh+' Boss · 关卡挑战';
   const vocab=buildQuizVocab(d,false,did);
   lastBossQuizThemeIdx=(lastBossQuizThemeIdx+1)%3;
   let mcqN=8,pyN=10,sbN=3;
   if(lastBossQuizThemeIdx===1){mcqN=7;pyN=11;}
   if(lastBossQuizThemeIdx===2){mcqN=9;pyN=9;}
+  if(hard){mcqN=Math.min(10,mcqN+2);pyN=Math.min(12,pyN+2);}
   const recentStore=getRecentQuestionStore(curP);
   const recent=recentStore[`g-${did}`]||{mcq:[],py:[]};
   const maxScore=mcqN*14+pyN*11+sbN*20;// 14 = base 10 + up to 4 bonus per MCQ
@@ -5070,7 +5299,7 @@ function startGateQuiz(did){
     questions:buildMCQ(vocab,mcqN,recent.mcq),
     pyQ:buildPYQ(vocab,pyN,recent.py),
     sbPack:buildSBPack(did,false,sbN),
-    sbRound:0,isDaddy:false,isChampion:false,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
+    sbRound:0,isDaddy:false,isChampion:false,hardMode:hard,mcqN,pyN,sbN,maxScore,noMcqAssistance:!hard,
     quizCorrect:0,quizAttempts:0};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];
   recentStore[`g-${did}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
@@ -5824,6 +6053,7 @@ function renderQuizResult(qc){
     if(gateJustCleared){
       maybeGrantMysteryFromGate(quizSt.did);
       checkMascotGateFiveUnlock();
+      checkStickerUnlocks();
     }
   }
   clearGateQuizPending();
@@ -5858,7 +6088,7 @@ function renderQuizResult(qc){
     ${lockMsg}
     <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;">
       <button class="btn-g" onclick="exitQuiz()">${cleared?'✓ Done':'← Go Back'}</button>
-      ${quizSt.isChampion?`<button class="btn-s" onclick="startChampionChallenge(${quizSt.champGroup})">↺ Retry</button>`:`<button class="btn-s" onclick="startGateQuiz(${quizSt.did})">↺ Retry</button>`}
+      ${quizSt.isChampion?`<button class="btn-s" onclick="startChampionChallenge(${quizSt.champGroup})">↺ Retry</button>`:`<button class="btn-s" onclick="startGateQuiz(${quizSt.did},{hardMode:${!!quizSt.hardMode}})">↺ Retry</button>`}
     </div>
   </div>`;
   showStarEffect(quizStars,quizSt.isChampion?'Champion quiz':'Gate quiz');
