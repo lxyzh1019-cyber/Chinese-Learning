@@ -547,6 +547,12 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
   z-index:400;transition:transform .28s;pointer-events:none;}
 .toast.show{transform:translateX(-50%) translateY(0);}
 #ccanvas{position:fixed;inset:0;pointer-events:none;z-index:500;}
+.season-pill{display:inline-block;padding:.12rem .5rem;border-radius:999px;font-size:.62rem;font-weight:800;letter-spacing:.03em;margin-left:.35rem;border:1px solid rgba(255,255,255,.15);}
+body.season-spring{--bg:#102214;--deep:#0a160d;--surface:#1a3522;--surface2:#21462d;--panel:#285836;--hover:#2e6942;--gold:#d6b84b;--gold-dim:rgba(214,184,75,.22);--ink:#e9f2de;--muted:#8fad91;}
+body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2a10;--panel:#5b3415;--hover:#6d431d;--gold:#e0a93a;--gold-dim:rgba(224,169,58,.24);--ink:#f5e6ce;--muted:#be9367;}
+@media (prefers-reduced-motion: reduce){
+  .culture-story-row.animated-row{animation:none!important;}
+}
 
 /* Utility */
 .mt8{margin-top:.5rem;}.mt16{margin-top:1rem;}
@@ -589,6 +595,10 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .culture-prog{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-bottom:.45rem;}
 .culture-prog>i{display:block;height:100%;background:linear-gradient(90deg,var(--jade),var(--gold));transition:width .4s;}
 .culture-story-row{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center;justify-content:space-between;padding:.28rem 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.culture-story-row.animated-row{animation:cultureGlow 2.6s ease-in-out infinite;}
+.culture-story-row.animated-row i{display:inline-block;animation:cultureFloat 1.6s ease-in-out infinite;}
+@keyframes cultureGlow{0%,100%{box-shadow:inset 0 0 0 rgba(212,160,23,0);}50%{box-shadow:inset 0 0 0 999px rgba(212,160,23,.04);}}
+@keyframes cultureFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-2px);}}
 .culture-reader-body{font-size:.88rem;line-height:1.65;color:var(--ink);max-height:62vh;overflow-y:auto;}
 .culture-reader-cn{font-family:var(--fzh);font-size:1.05rem;color:var(--gold);margin:.5rem 0;}
 .sticker-grid{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;padding:.5rem 0;}
@@ -850,6 +860,25 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
         <span style="color:var(--muted);">Family co-op week stars goal:</span>
         <input id="parent-coop-goal" type="number" min="40" max="500" step="10" style="width:4.2rem;padding:.25rem .4rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);">
         <button type="button" class="btn-s" style="padding:.28rem .55rem;font-size:.68rem;" onclick="saveCoopGoalFromParent()">Save</button>
+      </div>
+      <div style="margin-top:.45rem;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;">
+        <span style="color:var(--muted);">Audio mode:</span>
+        <select id="parent-audio-mode" onchange="saveAudioModeFromParent()" style="padding:.25rem .35rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);">
+          <option value="normal">Normal</option>
+          <option value="parentUnlocked">Parent unlock required in quiz</option>
+        </select>
+      </div>
+      <div style="margin-top:.45rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;">
+        <span style="color:var(--muted);">Family co-op week minutes goal:</span>
+        <input id="parent-coop-min-goal" type="number" min="30" max="600" step="15" style="width:4.6rem;padding:.25rem .4rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);">
+        <button type="button" class="btn-s" style="padding:.28rem .55rem;font-size:.68rem;" onclick="saveCoopMinutesGoalFromParent()">Save</button>
+      </div>
+      <div style="margin-top:.45rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;">
+        <span style="color:var(--muted);">Parent webhook URL (optional):</span>
+        <input id="parent-webhook-url" type="text" placeholder="https://example.com/webhook" style="min-width:14rem;flex:1;padding:.25rem .4rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);">
+        <button type="button" class="btn-s" style="padding:.28rem .55rem;font-size:.68rem;" onclick="saveParentWebhookUrl()">Save</button>
+        <button type="button" class="btn-s" style="padding:.28rem .55rem;font-size:.68rem;" onclick="exportParentWeeklySummary()">Export weekly JSON</button>
+        <button type="button" class="btn-s" style="padding:.28rem .55rem;font-size:.68rem;" onclick="sendParentWeeklySummaryWebhook()">Send webhook</button>
       </div>
     </div>
     <div id="sum-nav"></div>
@@ -2180,6 +2209,8 @@ function defPlayer(){
     mascotUnlockedNotified:false,
     mysteryPicksPending:0,
     mysteryLastFamilyAt:0,
+    badgeFragments:0,
+    craftedBadges:0,
     cultureSeen:{},
     stickerIds:[],
     mascotCosmetic:0,
@@ -2272,7 +2303,10 @@ async function loadLessonByRef(ref){
 const ENG_SETTINGS_KEY='zh_adv_eng_v1';
 const MASCOT_COOLDOWN_MS=100000;
 const MASCOT_MAX_SESSION=3;
-let engagementSettings={mascotDisabled:false,familyCoopGoalStars:120,coopToastWeek:null,mascotStreakShown:0};
+const TOAST_SESSION_LIMITS={celebrate:6,micro:8,mystery:6,soundboard:10,default:8};
+const SEASON_THEMES={spring:{cls:'season-spring',label:'Spring'},autumn:{cls:'season-autumn',label:'Autumn'}};
+let engagementSettings={mascotDisabled:false,familyCoopGoalStars:120,familyCoopGoalMinutes:150,coopToastWeek:null,mascotStreakShown:0,audioMode:'normal',parentWebhookUrl:'',mysteryFromMissionsOnly:true};
+let toastSession={};
 let sessionQuizCorrect=0;
 let quizCelebrate={c3:false,c6:false};
 let lastBossQuizThemeIdx=0;
@@ -6273,6 +6307,227 @@ function validatePlayerState(pid){
   };
 }
 
+// ── Backlog execution overrides (v2) ──
+function weekMinutesForPlayer(pid,ws){
+  ensureState(pid);
+  const s=state[pid];
+  if(!s||!s.dailyTimeMs)return 0;
+  let tot=0;
+  Object.entries(s.dailyTimeMs).forEach(([dk,ms])=>{if(dk>=ws)tot+=Math.floor((ms||0)/60000);});
+  return tot;
+}
+function buildParentWeeklySummaryPayload(){
+  const ws=weekStart();
+  const today=todayKey();
+  const mk=(pid)=>{ensureState(pid);const s=state[pid];const ts=(s.todayStats&&s.todayStats[today])||{};return{player:pid,weekStars:s.weekStars||0,weekMinutes:weekMinutesForPlayer(pid,ws),todayStars:ts.stars||0,todayCorrect:ts.correct||0,gatesCompleted:(s.gatesCompleted||[]).length,storiesRead:(s.storiesCompleted||[]).length};};
+  return{weekStart:ws,generatedAt:new Date().toISOString(),players:[mk('jenn'),mk('jess')]};
+}
+function saveAudioModeFromParent(){
+  const sel=document.getElementById('parent-audio-mode');if(!sel)return;
+  engagementSettings.audioMode=sel.value==='parentUnlocked'?'parentUnlocked':'normal';
+  saveEngagementSettings();
+  showToast(engagementSettings.audioMode==='parentUnlocked'?'Quiz audio requires parent unlock':'Quiz audio normal');
+}
+function saveCoopMinutesGoalFromParent(){
+  const inp=document.getElementById('parent-coop-min-goal');if(!inp)return;
+  const v=parseInt(inp.value,10);
+  if(!Number.isFinite(v)||v<30||v>600){showToast('Please enter minutes between 30 and 600.');return;}
+  engagementSettings.familyCoopGoalMinutes=v;
+  saveEngagementSettings();
+  showToast('Family timer goal saved');
+  if(curP)renderHub();
+}
+function saveParentWebhookUrl(){
+  const inp=document.getElementById('parent-webhook-url');if(!inp)return;
+  engagementSettings.parentWebhookUrl=String(inp.value||'').trim();
+  saveEngagementSettings();
+  showToast(engagementSettings.parentWebhookUrl?'Webhook URL saved':'Webhook URL cleared');
+}
+function exportParentWeeklySummary(){
+  const payload=buildParentWeeklySummaryPayload();
+  const text=JSON.stringify(payload,null,2);
+  const blob=new Blob([text],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`parent_weekly_summary_${payload.weekStart}.json`;
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1200);
+  showToast('Weekly summary exported');
+}
+async function sendParentWeeklySummaryWebhook(){
+  const url=String(engagementSettings.parentWebhookUrl||'').trim();
+  if(!url){showToast('Save a webhook URL first.');return;}
+  const payload=buildParentWeeklySummaryPayload();
+  try{
+    const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!r.ok){showToast('Webhook failed: HTTP '+r.status);return;}
+    showToast('Weekly summary sent to webhook');
+  }catch(e){showToast('Webhook send failed');}
+}
+function speakAllowedInCurrentScreen(){
+  if(engagementSettings.audioMode!=='parentUnlocked')return true;
+  const q=document.getElementById('scr-quiz');
+  return !(q&&q.classList.contains('show'));
+}
+function speak(text,opts){
+  opts=opts||{};
+  if(!text)return;
+  if(!speakAllowedInCurrentScreen()){showToast('Audio locked in quiz until parent unlocks.');return;}
+  const t=String(text).trim();if(!t)return;
+  if(t.length===1){playZhClipByChar(t,{fallbackText:t});return;}
+  if(!('speechSynthesis'in window))return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(t);
+  u.lang='zh-CN';u.rate=opts.slow?0.62:(opts.sentence?0.66:0.8);u.pitch=1.03;
+  const zh=speechSynthesis.getVoices().find(v=>/zh|Chinese|Mandarin|Ting-Ting|Mei-Jia/i.test((v.lang||'')+' '+(v.name||'')));
+  if(zh)u.voice=zh;speechSynthesis.speak(u);
+}
+function showToast(msg,dur=2000,kind){
+  kind=kind||'default';
+  toastSession[kind]=(toastSession[kind]||0)+1;
+  const lim=TOAST_SESSION_LIMITS[kind]||TOAST_SESSION_LIMITS.default;
+  if(toastSession[kind]>lim)return;
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  if(toastTimer)clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),dur);
+}
+function maybeGrantMysteryFromGate(did){
+  if(!curP||engagementSettings.mysteryFromMissionsOnly)return;
+  const g=getGateCurriculum(did,curHSK);
+  const ch=g&&g.rewards&&typeof g.rewards.mysteryBoxChance==='number'?g.rewards.mysteryBoxChance:0;
+  if(!(ch>0)||Math.random()>=ch)return;
+  ensureState(curP);
+  state[curP].mysteryPicksPending=(state[curP].mysteryPicksPending||0)+1;
+  showToast('Mystery box! Open 🎁 in the hub.',2000,'mystery');
+  saveState();
+}
+function applyCultureReward(story){
+  if(!curP||!story||!story.rewards)return;
+  ensureState(curP);
+  const s=state[curP],r=story.rewards;
+  const stars=Math.max(0,parseInt(r.stars,10)||0);if(stars>0)addEarnedStars(stars);
+  const tok=Math.max(0,parseInt(r.mysteryBoxToken,10)||0);
+  if(tok>0){s.mysteryPicksPending=(s.mysteryPicksPending||0)+tok;showToast('+'+tok+' mystery box pick'+(tok>1?'s':'')+'! Open 🎁 in the hub.',2000,'mystery');}
+  const fr=Math.max(0,parseInt(r.badgeFragments,10)||0);
+  if(fr>0){
+    s.badgeFragments=(s.badgeFragments||0)+fr;
+    showToast('+'+fr+' badge fragment'+(fr>1?'s':'')+' collected!',1800,'celebrate');
+    if((s.badgeFragments||0)>=10){
+      s.badgeFragments-=10;s.craftedBadges=(s.craftedBadges||0)+1;
+      if(!s.badges)s.badges=[];
+      if(!s.badges.includes('culture_fragment_badge'))s.badges.push('culture_fragment_badge');
+      showToast('Crafted a culture fragment badge! 🧩',2200,'celebrate');
+    }
+  }
+  if(r.familyRewardType){
+    const fam=String(r.familyRewardType).replace(/_/g,' ');
+    s.pendingFamilySummary={type:r.familyRewardType,label:fam,storyId:String(story.id||''),at:Date.now()};
+    showToast('Family reward unlocked: '+fam,2000,'mystery');
+  }else showToast('Culture story reward collected!');
+  saveState();renderHub();
+}
+function renderRivalryCoopStrip(){
+  const el=document.getElementById('rivalry-coop-strip');if(!el)return;
+  ensureState('jenn');ensureState('jess');
+  const jw=(state.jess&&state.jess.weekStars)||0,jn=(state.jenn&&state.jenn.weekStars)||0;
+  const coop=(jw+jn),goal=engagementSettings.familyCoopGoalStars||120;
+  const pct=Math.min(100,Math.round(coop/Math.max(1,goal)*100));
+  const wk=weekStart();
+  const jennMin=weekMinutesForPlayer('jenn',wk),jessMin=weekMinutesForPlayer('jess',wk);
+  const minTotal=jennMin+jessMin,minGoal=engagementSettings.familyCoopGoalMinutes||150;
+  const minPct=Math.min(100,Math.round(minTotal/Math.max(1,minGoal)*100));
+  if((coop>=goal||minTotal>=minGoal)&&engagementSettings.coopToastWeek!==wk){
+    engagementSettings.coopToastWeek=wk;saveEngagementSettings();showToast('Family co-op goal reached! Great teamwork!',2000,'celebrate');maybeMascotToast('coop');
+  }
+  el.innerHTML=`<div class="dwb-title">This week · 本周</div>
+    <div style="font-size:.72rem;color:var(--muted);">Jenn ${jn}⭐ vs Jess ${jw}⭐</div>
+    <div style="font-size:.68rem;color:var(--gold);margin-top:.35rem;">Family co-op: ${coop} / ${goal} week stars</div>
+    <div class="prog-track" style="height:6px;margin:.3rem 0;"><div class="prog-fill" style="width:${pct}%;height:6px;"></div></div>
+    <div style="font-size:.68rem;color:var(--muted);">Family timer: ${minTotal} / ${minGoal} mins</div>
+    <div class="prog-track" style="height:6px;margin:.3rem 0 .1rem;"><div class="prog-fill" style="width:${minPct}%;height:6px;"></div></div>`;
+  checkWeeklyRivalryBadge(jn,jw);
+}
+const _origEnsureState=ensureState;
+ensureState=function(p){
+  _origEnsureState(p);
+  const s=state[p];
+  if(s.badgeFragments===undefined)s.badgeFragments=0;
+  if(s.craftedBadges===undefined)s.craftedBadges=0;
+  if(s.pendingFamilySummary===undefined)s.pendingFamilySummary=null;
+};
+const _origBumpMission=bumpMission;
+bumpMission=function(evt,val){
+  _origBumpMission(evt,val);
+  if(!curP||evt!=='stars')return;
+  ensureState(curP);
+  const s=state[curP];
+  const m=s.dailyMission;
+  if(!m||!m.done||!engagementSettings.mysteryFromMissionsOnly)return;
+  if(m._mysteryAwarded)return;
+  m._mysteryAwarded=true;
+  s.mysteryPicksPending=(s.mysteryPicksPending||0)+1;
+  showToast('Daily mission gift: +1 mystery pick 🎁',2100,'mystery');
+  saveState();
+};
+const _origRenderHub=renderHub;
+renderHub=function(){
+  applySeasonTheme();
+  _origRenderHub();
+};
+function applySeasonTheme(){
+  const m=(new Date()).getMonth()+1;
+  let key='';
+  if(m>=3&&m<=5)key='spring';else if(m>=9&&m<=11)key='autumn';
+  document.body.classList.remove('season-spring','season-autumn');
+  if(key&&SEASON_THEMES[key])document.body.classList.add(SEASON_THEMES[key].cls);
+}
+async function openCultureStories(){
+  const ov=document.getElementById('culture-overlay');if(!ov)return;
+  const body=document.getElementById('culture-body');if(!body)return;
+  body.innerHTML='<div class="dd-desc">Loading culture stories...</div>';
+  ov.classList.add('show');
+  const data=await loadCultureCurriculum();
+  if(!data||!Array.isArray(data.tracks)){body.innerHTML='<div class="dd-desc">Culture stories are unavailable right now.</div>';return;}
+  ensureState(curP);
+  const seen=state[curP].cultureSeen||{};
+  const cards=[];
+  data.tracks.forEach(t=>{
+    const stories=t.stories||[];
+    const done=stories.filter(st=>seen[st.id]).length;
+    const pct=stories.length?Math.round(done/stories.length*100):0;
+    cards.push(`<div class="practice-box"><div class="culture-track-hdr"><span>${t.title||t.id}</span><span>${done}/${stories.length}</span></div>
+      <div class="culture-prog"><i style="width:${pct}%"></i></div>`);
+    stories.forEach(st=>{
+      const read=!!seen[st.id];
+      const sid=String(st.id||'').replace(/"/g,'&quot;');
+      const hasAnim=!!(st&&st.season);
+      const animEmoji=hasAnim?(st.season==='spring'?'🌱':st.season==='summer'?'☀️':st.season==='autumn'?'🍂':'❄️'):'';
+      cards.push(`<div class="culture-story-row${hasAnim?' animated-row':''}">
+        <span class="pw-zh">${st.title||st.id}${read?' ✓':''}${hasAnim?` <i>${animEmoji}</i>`:''}</span>
+        <span style="display:flex;gap:.3rem;flex-wrap:wrap;">
+          <button type="button" class="btn-s" style="padding:.2rem .45rem;font-size:.62rem;" data-culture-read="${sid}" onclick="openCultureReaderFromBtn(this)">Read</button>
+          ${cultureRewardBtn(st)}
+        </span>
+      </div>`);
+    });
+    cards.push('</div>');
+  });
+  body.innerHTML=cards.join('')||'<div class="dd-desc">No culture stories configured.</div>';
+}
+function showParentSummary(){
+  sumMode='weekly';sumOffset=0;
+  document.getElementById('tab-wk').classList.add('active');
+  document.getElementById('tab-dy').classList.remove('active');
+  loadEngagementSettings();
+  const mc=document.getElementById('parent-mascot-off');if(mc)mc.checked=!!engagementSettings.mascotDisabled;
+  const cg=document.getElementById('parent-coop-goal');if(cg)cg.value=String(engagementSettings.familyCoopGoalStars||120);
+  const am=document.getElementById('parent-audio-mode');if(am)am.value=engagementSettings.audioMode==='parentUnlocked'?'parentUnlocked':'normal';
+  const cm=document.getElementById('parent-coop-min-goal');if(cm)cm.value=String(engagementSettings.familyCoopGoalMinutes||150);
+  const wh=document.getElementById('parent-webhook-url');if(wh)wh.value=String(engagementSettings.parentWebhookUrl||'');
+  renderParentSummary();
+  document.getElementById('overlay-parent').classList.add('show');
+}
+
 // ══════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════
@@ -6300,6 +6555,7 @@ function init(){
     dbgLog('debug helper ready','window.__dbgRefresh.getSnapshot()');
   }
   renderSelectBadges();
+  applySeasonTheme();
   startClock();
   startCharOriginRotation();
   showScreen('select');
