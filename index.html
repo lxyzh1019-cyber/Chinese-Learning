@@ -4177,6 +4177,25 @@ function playPinyinClip(clipKey,fallbackText){
 function playPinyinFromMarked(marked,fallbackText){
   playPinyinClip(markedPinyinToClipKey(marked),fallbackText);
 }
+let zhCharClipMap=null;
+function getZhCharClipMap(){
+  if(zhCharClipMap)return zhCharClipMap;
+  zhCharClipMap={};
+  const addWord=(w)=>{
+    if(!w||typeof w.zh!=='string'||w.zh.length!==1)return;
+    const key=markedPinyinToClipKey(w.py||w.pinyin||'');
+    if(key&&!zhCharClipMap[w.zh])zhCharClipMap[w.zh]=key;
+  };
+  [1,2,3,4].forEach((lv)=>{(HSK_VOCAB[lv]||[]).forEach(addWord);});
+  Object.values(GATE_VOCAB||{}).forEach((arr)=>{(arr||[]).forEach(addWord);});
+  return zhCharClipMap;
+}
+function playZhClipByChar(ch,opts){
+  opts=opts||{};
+  const key=getZhCharClipMap()[ch];
+  if(key){playPinyinClip(key,'');return;}
+  if(opts.fallbackText)speak(opts.fallbackText,{forceTts:true,sentence:!!opts.sentence,slow:!!opts.slow});
+}
 let toneAudioCtx=null;
 function getToneAudioCtx(){
   if(toneAudioCtx)return toneAudioCtx;
@@ -6374,7 +6393,7 @@ function speak(text,opts){
   if(!text)return;
   if(!speakAllowedInCurrentScreen()){showToast('Audio locked in quiz until parent unlocks.');return;}
   const t=String(text).trim();if(!t)return;
-  if(t.length===1){playZhClipByChar(t,{fallbackText:t});return;}
+  if(!opts.forceTts&&t.length===1){playZhClipByChar(t,{fallbackText:t,sentence:!!opts.sentence,slow:!!opts.slow});return;}
   if(!('speechSynthesis'in window))return;
   speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(t);
