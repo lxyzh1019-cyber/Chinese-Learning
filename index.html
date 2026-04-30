@@ -599,6 +599,8 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 .culture-story-row.animated-row i{display:inline-block;animation:cultureFloat 1.6s ease-in-out infinite;}
 @keyframes cultureGlow{0%,100%{box-shadow:inset 0 0 0 rgba(212,160,23,0);}50%{box-shadow:inset 0 0 0 999px rgba(212,160,23,.04);}}
 @keyframes cultureFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-2px);}}
+#culture-overlay .mini-quiz-card{max-height:88vh;display:flex;flex-direction:column;}
+#culture-body{flex:1;overflow-y:auto;min-height:0;padding-right:.2rem;}
 .culture-reader-body{font-size:.88rem;line-height:1.65;color:var(--ink);max-height:62vh;overflow-y:auto;}
 .culture-reader-cn{font-family:var(--fzh);font-size:1.05rem;color:var(--gold);margin:.5rem 0;}
 .sticker-grid{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;padding:.5rem 0;}
@@ -2212,6 +2214,7 @@ function defPlayer(){
     badgeFragments:0,
     craftedBadges:0,
     cultureSeen:{},
+    cultureRewarded:{},
     stickerIds:[],
     mascotCosmetic:0,
     weeklyStarLeadWeeks:[]};
@@ -2948,6 +2951,7 @@ function ensureState(p){
   if(s.mysteryPicksPending===undefined)s.mysteryPicksPending=0;
   if(s.mysteryLastFamilyAt===undefined)s.mysteryLastFamilyAt=0;
   if(!s.cultureSeen)s.cultureSeen={};
+  if(!s.cultureRewarded)s.cultureRewarded={};
   if(!s.stickerIds)s.stickerIds=[];
   if(s.mascotCosmetic===undefined)s.mascotCosmetic=0;
   if(!s.weeklyStarLeadWeeks)s.weeklyStarLeadWeeks=[];
@@ -6450,6 +6454,11 @@ function applyCultureReward(story){
   if(!curP||!story||!story.rewards)return;
   ensureState(curP);
   const s=state[curP],r=story.rewards;
+  const sid=String(story.id||'');
+  if(!s.cultureSeen||!s.cultureSeen[sid]){showToast('Read the story first before collecting your reward!',2200);return;}
+  if(s.cultureRewarded&&s.cultureRewarded[sid]){showToast('Reward already collected for this story.',2000);return;}
+  if(!s.cultureRewarded)s.cultureRewarded={};
+  s.cultureRewarded[sid]=true;
   const stars=Math.max(0,parseInt(r.stars,10)||0);if(stars>0)addEarnedStars(stars);
   const tok=Math.max(0,parseInt(r.mysteryBoxToken,10)||0);
   if(tok>0){s.mysteryPicksPending=(s.mysteryPicksPending||0)+tok;showToast('+'+tok+' mystery box pick'+(tok>1?'s':'')+'! Open 🎁 in the hub.',2000,'mystery');}
@@ -6466,10 +6475,11 @@ function applyCultureReward(story){
   }
   if(r.familyRewardType){
     const fam=String(r.familyRewardType).replace(/_/g,' ');
-    s.pendingFamilySummary={type:r.familyRewardType,label:fam,storyId:String(story.id||''),at:Date.now()};
+    s.pendingFamilySummary={type:r.familyRewardType,label:fam,storyId:sid,at:Date.now()};
     showToast('Family reward unlocked: '+fam,2000,'mystery');
   }else showToast('Culture story reward collected!');
   saveState();renderHub();
+  openCultureStories();
 }
 function renderRivalryCoopStrip(){
   const el=document.getElementById('rivalry-coop-strip');if(!el)return;
@@ -6535,6 +6545,10 @@ async function openCultureStories(){
   if(!data||!Array.isArray(data.tracks)){body.innerHTML='<div class="dd-desc">Culture stories are unavailable right now.</div>';return;}
   ensureState(curP);
   const seen=state[curP].cultureSeen||{};
+  const rewarded=state[curP].cultureRewarded||{};
+  const gatesCleared=(state[curP].gatesCompleted||[]).length;
+  const unlockCount=gatesCleared*2;
+  let globalIdx=0;
   const cards=[];
   data.tracks.forEach(t=>{
     const stories=t.stories||[];
@@ -6543,17 +6557,33 @@ async function openCultureStories(){
     cards.push(`<div class="practice-box"><div class="culture-track-hdr"><span>${t.title||t.id}</span><span>${done}/${stories.length}</span></div>
       <div class="culture-prog"><i style="width:${pct}%"></i></div>`);
     stories.forEach(st=>{
-      const read=!!seen[st.id];
+      const isUnlocked=globalIdx<unlockCount;
+      globalIdx++;
       const sid=String(st.id||'').replace(/"/g,'&quot;');
       const hasAnim=!!(st&&st.season);
       const animEmoji=hasAnim?(st.season==='spring'?'🌱':st.season==='summer'?'☀️':st.season==='autumn'?'🍂':'❄️'):'';
-      cards.push(`<div class="culture-story-row${hasAnim?' animated-row':''}">
-        <span class="pw-zh">${st.title||st.id}${read?' ✓':''}${hasAnim?` <i>${animEmoji}</i>`:''}</span>
-        <span style="display:flex;gap:.3rem;flex-wrap:wrap;">
-          <button type="button" class="btn-s" style="padding:.2rem .45rem;font-size:.62rem;" data-culture-read="${sid}" onclick="openCultureReaderFromBtn(this)">Read</button>
-          ${cultureRewardBtn(st)}
-        </span>
-      </div>`);
+      if(!isUnlocked){
+        cards.push(`<div class="culture-story-row">
+          <span class="pw-zh" style="color:var(--muted);">🔒 ${st.title||st.id}</span>
+          <span style="font-size:.62rem;color:var(--muted);">Clear more gates to unlock</span>
+        </div>`);
+      }else{
+        const read=!!seen[st.id];
+        const claimed=!!rewarded[st.id];
+        const stars=((st.rewards&&st.rewards.stars)||0);
+        const rewardBtn=claimed
+          ?`<span style="font-size:.62rem;color:var(--jade);padding:.2rem .3rem;">✓ Claimed</span>`
+          :read
+            ?`<button type="button" class="btn-s" style="padding:.2rem .55rem;font-size:.66rem;" onclick="applyCultureRewardById('${sid}')">Collect +${stars}⭐</button>`
+            :`<button type="button" class="btn-s" style="padding:.2rem .45rem;font-size:.62rem;opacity:.45;" disabled title="Read the story first">+${stars}⭐</button>`;
+        cards.push(`<div class="culture-story-row${hasAnim?' animated-row':''}">
+          <span class="pw-zh">${st.title||st.id}${read?' ✓':''}${hasAnim?` <i>${animEmoji}</i>`:''}</span>
+          <span style="display:flex;gap:.3rem;flex-wrap:wrap;align-items:center;">
+            <button type="button" class="btn-s" style="padding:.2rem .45rem;font-size:.62rem;" data-culture-read="${sid}" onclick="openCultureReaderFromBtn(this)">Read</button>
+            ${rewardBtn}
+          </span>
+        </div>`);
+      }
     });
     cards.push('</div>');
   });
