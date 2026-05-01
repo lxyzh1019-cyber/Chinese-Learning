@@ -445,7 +445,7 @@ body.nopy-mode .cu:hover{border-color:rgba(212,160,23,.45)!important;}
 .sum-tab.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
 #sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;align-items:start;}
 .ppc{background:var(--surface);border-radius:14px;padding:.9rem 1rem;margin-bottom:.7rem;}
-@media(max-width:600px){#sum-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){#sum-grid{grid-template-columns:1fr;}#parent-star-controls{grid-template-columns:1fr;}}
 .ppc-title{font-weight:700;font-size:1rem;margin-bottom:.5rem;}
 .psr{display:flex;justify-content:space-between;font-size:.76rem;padding:.18rem 0;
   border-bottom:1px solid rgba(255,255,255,.04);}
@@ -887,6 +887,43 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
     <div id="sum-grid"></div>
     <div class="divider"></div>
     <div id="sum-wrong"></div>
+    <!-- ── PARENT STAR & MYSTERY BOX CONTROLS ── -->
+    <div class="divider"></div>
+    <div style="margin:.6rem 0 .4rem;font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.06em;">⭐ Star Manager &amp; 🎁 Mystery Box</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;" id="parent-star-controls">
+      <!-- Jenn -->
+      <div style="background:var(--surface);border:1px solid rgba(232,68,90,.25);border-radius:14px;padding:.8rem .9rem;">
+        <div style="font-weight:700;font-size:.88rem;color:var(--jenn);margin-bottom:.5rem;">🐥 Jenn</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-bottom:.35rem;">Current stars: <strong id="parent-jenn-stars" style="color:var(--gold);">0</strong></div>
+        <div style="display:flex;gap:.35rem;align-items:center;flex-wrap:wrap;margin-bottom:.4rem;">
+          <input id="parent-jenn-star-amt" type="number" min="1" max="500" value="5" style="width:3.4rem;padding:.22rem .35rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);font-size:.78rem;">
+          <button class="btn-s" style="background:rgba(39,174,96,.18);border-color:rgba(39,174,96,.4);font-size:.72rem;" onclick="parentAdjustStars('jenn',1)">＋ Give</button>
+          <button class="btn-s" style="background:rgba(192,57,43,.18);border-color:rgba(192,57,43,.4);font-size:.72rem;" onclick="parentAdjustStars('jenn',-1)">－ Take</button>
+        </div>
+        <div style="font-size:.72rem;color:var(--muted);margin-bottom:.35rem;">Mystery picks pending: <strong id="parent-jenn-mystery" style="color:var(--gold-bright);">0</strong></div>
+        <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+          <button class="btn-s" style="font-size:.68rem;" onclick="parentAddMysteryPick('jenn')">＋ Give Mystery Pick</button>
+          <button class="btn-s" style="font-size:.68rem;background:rgba(192,57,43,.18);border-color:rgba(192,57,43,.4);" onclick="parentRemoveMysteryPick('jenn')">－ Remove Pick</button>
+        </div>
+      </div>
+      <!-- Jess -->
+      <div style="background:var(--surface);border:1px solid rgba(59,130,246,.25);border-radius:14px;padding:.8rem .9rem;">
+        <div style="font-weight:700;font-size:.88rem;color:var(--jess);margin-bottom:.5rem;">🦊 Jess</div>
+        <div style="font-size:.72rem;color:var(--muted);margin-bottom:.35rem;">Current stars: <strong id="parent-jess-stars" style="color:var(--gold);">0</strong></div>
+        <div style="display:flex;gap:.35rem;align-items:center;flex-wrap:wrap;margin-bottom:.4rem;">
+          <input id="parent-jess-star-amt" type="number" min="1" max="500" value="5" style="width:3.4rem;padding:.22rem .35rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);font-size:.78rem;">
+          <button class="btn-s" style="background:rgba(39,174,96,.18);border-color:rgba(39,174,96,.4);font-size:.72rem;" onclick="parentAdjustStars('jess',1)">＋ Give</button>
+          <button class="btn-s" style="background:rgba(192,57,43,.18);border-color:rgba(192,57,43,.4);font-size:.72rem;" onclick="parentAdjustStars('jess',-1)">－ Take</button>
+        </div>
+        <div style="font-size:.72rem;color:var(--muted);margin-bottom:.35rem;">Mystery picks pending: <strong id="parent-jess-mystery" style="color:var(--gold-bright);">0</strong></div>
+        <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+          <button class="btn-s" style="font-size:.68rem;" onclick="parentAddMysteryPick('jess')">＋ Give Mystery Pick</button>
+          <button class="btn-s" style="font-size:.68rem;background:rgba(192,57,43,.18);border-color:rgba(192,57,43,.4);" onclick="parentRemoveMysteryPick('jess')">－ Remove Pick</button>
+        </div>
+      </div>
+    </div>
+    <div id="parent-star-msg" style="font-size:.72rem;color:var(--jade);min-height:1.2rem;margin:.3rem 0;text-align:center;"></div>
+    <div class="divider"></div>
     <div class="sum-reset-wrap">
       <button class="btn-danger" onclick="clearAllProgressWithParentPwd()">🗑️ Clear All Progress</button>
     </div>
@@ -4738,14 +4775,40 @@ async function renderGateLesson(did,lessonRef){
     box.innerHTML='<div class="dd-desc">Lesson content will be added soon for this gate.</div>';
     return;
   }
-  const vocab=(lesson.keyVocab||[]).slice(0,8).map(v=>`<span class="badge-item" title="${v.en||''}">${v.zh}</span>`).join('');
-  const qs=(lesson.comprehension||[]).slice(0,3).map(q=>`<li>${q.question||''}</li>`).join('');
-  box.innerHTML=`<div class="dd-icon-meaning"><strong>Lesson · 课程</strong></div>
-    <div class="dd-desc">${lesson.explanation||''}</div>
-    <div class="dd-desc" style="white-space:pre-line;">${lesson.passage||''}</div>
-    ${vocab?`<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0;">${vocab}</div>`:''}
-    ${qs?`<div class="dd-desc"><strong>Check understanding</strong><ol style="margin:.35rem 0 .1rem 1.1rem;">${qs}</ol></div>`:''}
-    ${lesson.speakingPrompt?`<div class="dd-desc"><strong>Speaking prompt:</strong> ${lesson.speakingPrompt}</div>`:''}`;
+  const lvl=String(lesson.level||'HSK1');
+  const gate=lesson.gateId||did;
+  const newCount=(lesson.keyVocab||[]).length;
+  // Build vocab cards with visible English
+  const vocab=(lesson.keyVocab||[]).map(v=>`<div style="display:inline-flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(212,160,23,.18);border-radius:9px;padding:.3rem .55rem;gap:.1rem;">
+    <span style="font-family:var(--fzh);font-size:1.1rem;color:var(--gold);">${v.zh}</span>
+    <span style="font-size:.65rem;color:var(--muted);">${v.pinyin||''}</span>
+    <span style="font-size:.62rem;color:var(--ink);text-align:center;">${v.en||''}</span>
+  </div>`).join('');
+  // Comprehension questions with bilingual display
+  const qs=(lesson.comprehension||[]).slice(0,3).map((q,i)=>{
+    const enQs=['How many new words are in this gate?','Say two new words from this gate.','After reading, what should you do first?'];
+    const enAs=['Count the key vocabulary words listed above.','Pick any two characters from the list above.','Read the words aloud, then try to use one in a short sentence.'];
+    return `<li style="margin:.25rem 0;">
+      <span style="color:var(--ink);">${enQs[i]||''}</span>
+      <span style="color:var(--muted);font-size:.8em;display:block;margin-top:.1rem;">（${q.question||''}）</span>
+      <span style="color:var(--jade);font-size:.85em;display:block;">→ ${enAs[i]||q.answer||''}</span>
+    </li>`;
+  }).join('');
+  // English intro
+  const enIntro=`This gate introduces <strong>${newCount} key words</strong>. First read each word aloud with the pinyin, then try to say a short sentence using one of the new words. Ask a parent for help with about 20% of unclear parts — the rest you can do yourself!`;
+  // Speaking prompt in English
+  let spEn='';
+  if(lesson.speakingPrompt){
+    const sp=lesson.speakingPrompt;
+    const firstZh=sp.match(/「([^」]+)」/g);
+    const examples=firstZh?firstZh.map(s=>s.replace(/[「」]/g,'')).join(', '):'the new words';
+    spEn=`Try saying 2–3 short sentences using today's words (e.g. ${examples}).`;
+  }
+  box.innerHTML=`<div class="dd-icon-meaning"><strong>📖 Lesson · 课程 — ${lvl} Gate ${gate}</strong></div>
+    <div class="dd-desc" style="background:rgba(39,174,96,.07);border:1px solid rgba(39,174,96,.2);border-radius:8px;padding:.5rem .7rem;margin:.3rem 0;">${enIntro}</div>
+    ${vocab?`<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0;">${vocab}</div>`:''}
+    ${qs?`<div class="dd-desc"><strong>✅ Check Understanding (answer with your parent)</strong><ol style="margin:.35rem 0 .1rem 1.1rem;line-height:1.7;">${qs}</ol></div>`:''}
+    ${spEn?`<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;"><strong>🗣 Speaking Practice:</strong> ${spEn}</div>`:''}`;
 }
 
 function closeCultureStories(){
@@ -4840,8 +4903,9 @@ async function openCultureStories(){
     stories.forEach(st=>{
       const read=!!seen[st.id];
       const sid=String(st.id||'').replace(/"/g,'&quot;');
+      const stTitleEn=st.titleEn?`<span style="font-size:.62rem;color:var(--muted);display:block;line-height:1.2;">${st.titleEn}</span>`:'';
       cards.push(`<div class="culture-story-row">
-        <span class="pw-zh">${st.title||st.id}${read?' ✓':''}</span>
+        <span class="pw-zh" style="display:flex;flex-direction:column;gap:.05rem;">${st.title||st.id}${read?' ✓':''}${stTitleEn}</span>
         <span style="display:flex;gap:.3rem;flex-wrap:wrap;">
           <button type="button" class="btn-s" style="padding:.2rem .45rem;font-size:.62rem;" data-culture-read="${sid}" onclick="openCultureReaderFromBtn(this)">Read</button>
           ${cultureRewardBtn(st)}
@@ -6196,6 +6260,57 @@ function logWrong(p,zh,py,en){
 // ══════════════════════════════════════════════════════
 // PARENT SUMMARY
 // ══════════════════════════════════════════════════════
+function refreshParentStarControls(){
+  ['jenn','jess'].forEach(p=>{
+    ensureState(p);
+    const s=state[p];
+    const starEl=document.getElementById(`parent-${p}-stars`);
+    const mystEl=document.getElementById(`parent-${p}-mystery`);
+    if(starEl)starEl.textContent=s.totalStars||0;
+    if(mystEl)mystEl.textContent=s.mysteryPicksPending||0;
+  });
+}
+function parentAdjustStars(p,dir){
+  ensureState(p);
+  const amtEl=document.getElementById(`parent-${p}-star-amt`);
+  const amt=Math.max(1,parseInt(amtEl&&amtEl.value,10)||5);
+  const s=state[p];
+  const prev=s.totalStars||0;
+  if(dir>0){
+    s.totalStars=prev+amt;
+    s.weekStars=(s.weekStars||0)+amt;
+    const ts=getTS(p);ts.stars=(ts.stars||0)+amt;
+    showParentStarMsg(`+${amt}⭐ given to ${p==='jenn'?'Jenn':'Jess'}!`,'var(--jade)');
+  }else{
+    const remove=Math.min(amt,prev);
+    s.totalStars=prev-remove;
+    s.weekStars=Math.max(0,(s.weekStars||0)-remove);
+    const ts=getTS(p);ts.stars=Math.max(0,(ts.stars||0)-remove);
+    showParentStarMsg(`−${remove}⭐ removed from ${p==='jenn'?'Jenn':'Jess'}.`,'var(--warn)');
+  }
+  saveState();refreshParentStarControls();renderParentSummary();
+}
+function parentAddMysteryPick(p){
+  ensureState(p);
+  state[p].mysteryPicksPending=(state[p].mysteryPicksPending||0)+1;
+  saveState();refreshParentStarControls();
+  showParentStarMsg(`+1 mystery pick given to ${p==='jenn'?'Jenn':'Jess'}!`,'var(--gold)');
+}
+function parentRemoveMysteryPick(p){
+  ensureState(p);
+  const cur=state[p].mysteryPicksPending||0;
+  if(cur<1){showParentStarMsg('No mystery picks to remove.','var(--muted)');return;}
+  state[p].mysteryPicksPending=cur-1;
+  saveState();refreshParentStarControls();
+  showParentStarMsg(`−1 mystery pick removed from ${p==='jenn'?'Jenn':'Jess'}.`,'var(--warn)');
+}
+function showParentStarMsg(msg,color){
+  const el=document.getElementById('parent-star-msg');
+  if(!el)return;
+  el.style.color=color||'var(--jade)';
+  el.textContent=msg;
+  clearTimeout(el._t);el._t=setTimeout(()=>{el.textContent='';},3000);
+}
 function showParentSummary(){
   sumMode='weekly';sumOffset=0;
   document.getElementById('tab-wk').classList.add('active');
@@ -6204,6 +6319,7 @@ function showParentSummary(){
   const mc=document.getElementById('parent-mascot-off');if(mc)mc.checked=!!engagementSettings.mascotDisabled;
   const cg=document.getElementById('parent-coop-goal');if(cg)cg.value=String(engagementSettings.familyCoopGoalStars||120);
   renderParentSummary();
+  refreshParentStarControls();
   document.getElementById('overlay-parent').classList.add('show');
 }
 
@@ -6562,9 +6678,10 @@ async function openCultureStories(){
       const sid=String(st.id||'').replace(/"/g,'&quot;');
       const hasAnim=!!(st&&st.season);
       const animEmoji=hasAnim?(st.season==='spring'?'🌱':st.season==='summer'?'☀️':st.season==='autumn'?'🍂':'❄️'):'';
+      const titleEnSub=st.titleEn?`<span style="font-size:.6rem;color:var(--muted);display:block;line-height:1.2;">${st.titleEn}</span>`:'';
       if(!isUnlocked){
         cards.push(`<div class="culture-story-row">
-          <span class="pw-zh" style="color:var(--muted);">🔒 ${st.title||st.id}</span>
+          <span class="pw-zh" style="display:flex;flex-direction:column;gap:.05rem;color:var(--muted);">🔒 ${st.title||st.id}${titleEnSub}</span>
           <span style="font-size:.62rem;color:var(--muted);">Clear more gates to unlock</span>
         </div>`);
       }else{
@@ -6577,7 +6694,7 @@ async function openCultureStories(){
             ?`<button type="button" class="btn-s" style="padding:.2rem .55rem;font-size:.66rem;" onclick="applyCultureRewardById('${sid}')">Collect +${stars}⭐</button>`
             :`<button type="button" class="btn-s" style="padding:.2rem .45rem;font-size:.62rem;opacity:.45;" disabled title="Read the story first">+${stars}⭐</button>`;
         cards.push(`<div class="culture-story-row${hasAnim?' animated-row':''}">
-          <span class="pw-zh">${st.title||st.id}${read?' ✓':''}${hasAnim?` <i>${animEmoji}</i>`:''}</span>
+          <span class="pw-zh" style="display:flex;flex-direction:column;gap:.05rem;">${st.title||st.id}${read?' ✓':''}${hasAnim?` <i>${animEmoji}</i>`:''}${titleEnSub}</span>
           <span style="display:flex;gap:.3rem;flex-wrap:wrap;align-items:center;">
             <button type="button" class="btn-s" style="padding:.2rem .45rem;font-size:.62rem;" data-culture-read="${sid}" onclick="openCultureReaderFromBtn(this)">Read</button>
             ${rewardBtn}
@@ -6600,6 +6717,7 @@ function showParentSummary(){
   const cm=document.getElementById('parent-coop-min-goal');if(cm)cm.value=String(engagementSettings.familyCoopGoalMinutes||150);
   const wh=document.getElementById('parent-webhook-url');if(wh)wh.value=String(engagementSettings.parentWebhookUrl||'');
   renderParentSummary();
+  refreshParentStarControls();
   document.getElementById('overlay-parent').classList.add('show');
 }
 
