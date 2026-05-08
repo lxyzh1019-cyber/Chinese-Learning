@@ -21,7 +21,6 @@ const HOMOGRAPH_WARN = [
   {
     zh: "还",
     badPy: /^huán/i,
-    skipIfEn: /surname|return|pay\s*back|repay/i,
     hint: "hái (still/also) vs huán (return); check gloss matches pinyin",
   },
   {
@@ -49,6 +48,24 @@ function checkLevel(doc, name) {
       if (rule.skipIfEn && rule.skipIfEn.test(en)) continue;
       if (rule.badPy && rule.badPy.test(py)) {
         console.warn(`${name}: homograph audit — ${rule.zh} pinyin "${py}" / "${en}" (${rule.hint})`);
+      }
+    }
+  }
+
+  for (const g of doc.gates) {
+    for (const field of ["newWords", "reviewWords"]) {
+      for (const w of g[field] || []) {
+        const py = (w.pinyin || w.py || "").trim();
+        const en = String(w.en || "");
+        for (const rule of HOMOGRAPH_WARN) {
+          if (w.zh !== rule.zh) continue;
+          if (rule.skipIfEn && rule.skipIfEn.test(en)) continue;
+          if (rule.badPy && rule.badPy.test(py)) {
+            console.warn(
+              `${name} gate ${g.gateId} ${field}: homograph audit — ${rule.zh} pinyin "${py}" / "${en}" (${rule.hint})`
+            );
+          }
+        }
       }
     }
   }
