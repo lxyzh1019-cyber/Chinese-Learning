@@ -2229,7 +2229,7 @@ function defPlayer(){
     library:{},failedWords:{},
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
     weekStart:weekStart(),
-    badges:[],dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
+    badges:[],totalWrongAnswers:0,dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
     pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null},
     traceStars:{},
     libraryCountAtDayStart:{},
@@ -2771,6 +2771,10 @@ const BADGE_DEFS={
   one_day_gate:{icon:'🏅',title:'Cleared a gate in one day'},
   cross_trainer:{icon:'🧩',title:'20 HSK/WIP rounds completed'},
   week_star_lead:{icon:'🥇',title:'Led week stars (12+)'},
+  wrong_100:{icon:'😵',title:'100 wrong answers'},
+  wrong_500:{icon:'💀',title:'500 wrong answers'},
+  wrong_1000:{icon:'☠️',title:'1000 wrong answers'},
+  no_brain:{icon:'🤦',title:'No Brain: same word wrong 5×'},
 };
 
 function checkBadges(p,opts){
@@ -2789,6 +2793,10 @@ function checkBadges(p,opts){
   if(opts.speedGate)add('speed_scholar');
   if(opts.pinyinDone)add('pinyin_master');
   if(opts.oneDayGate)add('one_day_gate');
+  if((s.totalWrongAnswers||0)>=100)add('wrong_100');
+  if((s.totalWrongAnswers||0)>=500)add('wrong_500');
+  if((s.totalWrongAnswers||0)>=1000)add('wrong_1000');
+  if(Object.values(s.failedWords||{}).some(w=>w.failCount>=5))add('no_brain');
 }
 
 function renderBadgeStrip(p){
@@ -6255,6 +6263,20 @@ function logWrong(p,zh,py,en){
   const s=state[p];if(!s.failedWords)s.failedWords={};
   if(!s.failedWords[zh])s.failedWords[zh]={zh,py,en,failCount:0,lastFailed:null};
   s.failedWords[zh].failCount++;s.failedWords[zh].lastFailed=todayKey();
+  if(!s.totalWrongAnswers)s.totalWrongAnswers=0;
+  s.totalWrongAnswers++;
+  if(!s.badges)s.badges=[];
+  // no_brain badge: same word wrong 5 times
+  if(s.failedWords[zh].failCount===5&&!s.badges.includes('no_brain')){
+    s.badges.push('no_brain');
+    showToast('🤦 No Brain badge! Same answer wrong 5×',2500);
+  }
+  // wrong answer milestones
+  const wc=s.totalWrongAnswers;
+  const milestones=[[100,'wrong_100','😵 100 wrong answers — you\'re getting there!'],[500,'wrong_500','💀 500 wrong answers — a true trooper!'],[1000,'wrong_1000','☠️ 1000 wrong answers — legendary stubbornness!']];
+  for(const[n,id,msg] of milestones){
+    if(wc===n&&!s.badges.includes(id)){s.badges.push(id);showToast(msg,2500);break;}
+  }
 }
 
 // ══════════════════════════════════════════════════════
