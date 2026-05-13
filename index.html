@@ -691,6 +691,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 .correct-reveal-card{background:linear-gradient(152deg,#2a1515,var(--deep));
   border:2px solid rgba(212,160,23,.45);border-radius:22px;padding:1.5rem 1.3rem;max-width:380px;width:92%;
   text-align:center;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.55);}
+.correct-reveal-card .cr-hint{font-size:.95rem;color:#9FF5D1;font-weight:700;margin:.1rem 0 .5rem;letter-spacing:.02em;}
 .correct-reveal-card .cr-zh{font-family:var(--fzh);font-size:3.2rem;color:var(--gold);margin:.4rem 0;}
 .correct-reveal-card .cr-py{font-size:1.35rem;font-weight:800;color:#9FF5D1;margin-bottom:.35rem;
   letter-spacing:.1em;font-family:var(--fui);text-shadow:0 0 20px rgba(39,174,96,.5);
@@ -2771,10 +2772,10 @@ const BADGE_DEFS={
   one_day_gate:{icon:'🏅',title:'Cleared a gate in one day'},
   cross_trainer:{icon:'🧩',title:'20 HSK/WIP rounds completed'},
   week_star_lead:{icon:'🥇',title:'Led week stars (12+)'},
-  wrong_100:{icon:'😵',title:'100 wrong answers'},
-  wrong_500:{icon:'💀',title:'500 wrong answers'},
-  wrong_1000:{icon:'☠️',title:'1000 wrong answers'},
-  no_brain:{icon:'🤦',title:'No Brain: same word wrong 5×'},
+  tries_100:{icon:'🌱',title:'100 brave tries — every try grows you!'},
+  tries_500:{icon:'🌳',title:'500 brave tries — mighty learner!'},
+  tries_1000:{icon:'🏔️',title:'1000 brave tries — true climber!'},
+  persistent_5:{icon:'💪',title:'Never give up — met a word 5 times'},
 };
 
 function checkBadges(p,opts){
@@ -2793,10 +2794,10 @@ function checkBadges(p,opts){
   if(opts.speedGate)add('speed_scholar');
   if(opts.pinyinDone)add('pinyin_master');
   if(opts.oneDayGate)add('one_day_gate');
-  if((s.totalWrongAnswers||0)>=100)add('wrong_100');
-  if((s.totalWrongAnswers||0)>=500)add('wrong_500');
-  if((s.totalWrongAnswers||0)>=1000)add('wrong_1000');
-  if(Object.values(s.failedWords||{}).some(w=>w.failCount>=5))add('no_brain');
+  if((s.totalWrongAnswers||0)>=100)add('tries_100');
+  if((s.totalWrongAnswers||0)>=500)add('tries_500');
+  if((s.totalWrongAnswers||0)>=1000)add('tries_1000');
+  if(Object.values(s.failedWords||{}).some(w=>w.failCount>=5))add('persistent_5');
 }
 
 function renderBadgeStrip(p){
@@ -2925,12 +2926,14 @@ function showCorrectRevealCard(o){
   wrap.innerHTML='';
   const card=document.createElement('div');card.className='correct-reveal-card';
   const btn=document.createElement('button');btn.className='cr-close';btn.type='button';btn.textContent='✕';
+  const encouragements=['Nice try! Here it is 🌟','Good effort! Let\'s learn it 💡','Brave try — now you\'ll remember 🌱','Almost! Every try counts 💪','Good attempt! Take a look 🔍','Keep going! Mistakes help your brain grow 🧠✨'];
+  const hint=document.createElement('div');hint.className='cr-hint';hint.textContent=encouragements[Math.floor(Math.random()*encouragements.length)];
   const zhEl=document.createElement('div');zhEl.className='cr-zh';zhEl.textContent=o.zh||'';
   const pyEl=document.createElement('div');pyEl.className='cr-py';pyEl.textContent=o.py||'';
   const enEl=document.createElement('div');enEl.className='cr-en';enEl.textContent=o.en||'';
   const spk=document.createElement('button');spk.className='cr-speak';spk.type='button';spk.textContent='🔊 Hear again';
   const bar=document.createElement('div');bar.className='cr-bar';bar.appendChild(document.createElement('i'));
-  card.appendChild(btn);card.appendChild(zhEl);card.appendChild(pyEl);card.appendChild(enEl);card.appendChild(spk);card.appendChild(bar);
+  card.appendChild(btn);card.appendChild(hint);card.appendChild(zhEl);card.appendChild(pyEl);card.appendChild(enEl);card.appendChild(spk);card.appendChild(bar);
   wrap.appendChild(card);wrap.classList.add('show');
   speak(o.zh||'',{sentence:!!o.isSentence});
   spk.onclick=()=>speak(o.zh||'',{sentence:!!o.isSentence});
@@ -6266,16 +6269,20 @@ function logWrong(p,zh,py,en){
   if(!s.totalWrongAnswers)s.totalWrongAnswers=0;
   s.totalWrongAnswers++;
   if(!s.badges)s.badges=[];
-  // no_brain badge: same word wrong 5 times
-  if(s.failedWords[zh].failCount===5&&!s.badges.includes('no_brain')){
-    s.badges.push('no_brain');
-    showToast('🤦 No Brain badge! Same answer wrong 5×',2500);
+  // Persistent learner badge: same word tried 5 times (that's how words stick!)
+  if(s.failedWords[zh].failCount===5&&!s.badges.includes('persistent_5')){
+    s.badges.push('persistent_5');
+    showToast('💪 Never Give Up badge! Meeting a word 5 times is how it sticks.',2800);
   }
-  // wrong answer milestones
+  // Brave Tries milestones — every attempt grows the brain
   const wc=s.totalWrongAnswers;
-  const milestones=[[100,'wrong_100','😵 100 wrong answers — you\'re getting there!'],[500,'wrong_500','💀 500 wrong answers — a true trooper!'],[1000,'wrong_1000','☠️ 1000 wrong answers — legendary stubbornness!']];
+  const milestones=[
+    [100,'tries_100','🌱 Brave Tries badge! Every try grows your brain.'],
+    [500,'tries_500','🌳 Mighty Learner! 500 brave tries — amazing effort.'],
+    [1000,'tries_1000','🏔️ Master Climber! 1000 brave tries — incredible.']
+  ];
   for(const[n,id,msg] of milestones){
-    if(wc===n&&!s.badges.includes(id)){s.badges.push(id);showToast(msg,2500);break;}
+    if(wc===n&&!s.badges.includes(id)){s.badges.push(id);showToast(msg,2800);break;}
   }
 }
 
