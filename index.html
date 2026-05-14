@@ -3967,12 +3967,22 @@ function spawnRainDrop(){
 
 function endRain(fromUser){
   const ra=rainSt.rainAttempts||0,rh=rainSt.rainHits||0,tid=rainSt.gameTargetDid;
-  clearRainSession();
   const body=document.getElementById('games-body');if(!body)return;
-  const stars=starsFromAccuracy(rh,ra,10);
+  if(fromUser){
+    // Early quit: stop the timers but keep the session saved so they can resume
+    clearRainTimers();persistRain();saveState();
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Progress saved!</div>
+      <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra}</div>
+      <div style="font-size:.85rem;color:var(--muted);text-align:center;margin:.4rem 0 .7rem;">Finish the round to earn stars ⭐</div>
+      <div style="text-align:center;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+    return;
+  }
+  // Natural end (timer ran out) — full round completed, stars deserved
+  clearRainSession();
+  const stars=starsFromAccuracy(rh,ra);
   if(tid)updateGateGameBest(tid,'rain',stars);
   awardAltRound('rain',stars);
-  body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ ${fromUser?'Stopped for now':'Time is up'}</div>
+  body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Time is up!</div>
     <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
     <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
   showStarEffect(stars,'Rain game');
@@ -4008,7 +4018,7 @@ function renderListen(){
     if(curP)state[curP].pendingSessions.listen=null;
     const tot=listenSt.questions.length;
     const cc=listenSt.correctCount||0;
-    const stars=starsFromAccuracy(cc,tot,5);
+    const stars=starsFromAccuracy(cc,tot);
     const tid=listenSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'listen',stars);
     awardAltRound('listen',stars);
@@ -4080,7 +4090,7 @@ function renderTrace(){
     const tg=traceSt.traceGood||0;
     const stars=traceSt.gameTargetDid
       ?traceStarsFromAccuracy(tg,tot,traceSt.gameTargetDid)
-      :starsFromAccuracy(tg,tot,3);
+      :starsFromAccuracy(tg,tot);
     const tid=traceSt.gameTargetDid;
     if(tid)updateGateGameBest(tid,'trace',stars);
     awardAltRound('trace',stars);
