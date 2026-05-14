@@ -4190,7 +4190,6 @@ function exitTrace(){
   showToast('Progress saved — finish all characters to earn stars! ✍️',2400);
   openGamesHub();
 }
-}
 
 function traceAnimate(){traceWatchAgain();}
 function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid};saveState();renderTrace();}
