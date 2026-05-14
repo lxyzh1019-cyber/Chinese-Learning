@@ -3695,12 +3695,15 @@ function gameUnlockForDid(did){
   };
 }
 
-function gameRow(game,label,dynastyLocked,lockMsg){
+function gameRow(game,label,dynastyLocked,lockMsg,stars){
   const dynastyBtn=dynastyLocked
     ?`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;opacity:.4;cursor:default;" disabled>Dynasty 🔒</button>`
     :`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','dynasty')">Dynasty</button>`;
+  const st=Math.max(0,Math.min(3,stars|0));
+  const starStrip=`<div style="text-align:center;font-size:.85rem;letter-spacing:.1em;margin-bottom:.25rem;color:${st>0?'#f5c542':'rgba(255,255,255,.25)'};" title="Best stars on this gate">${'★'.repeat(st)}${'☆'.repeat(3-st)}</div>`;
   return `<div style="padding:.45rem;border:1px solid rgba(212,160,23,.18);border-radius:10px;background:rgba(255,255,255,.02);">
-      <div style="font-weight:800;margin-bottom:.35rem;text-align:center;">${label}</div>
+      <div style="font-weight:800;margin-bottom:.2rem;text-align:center;">${label}</div>
+      ${starStrip}
       <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
         ${dynastyBtn}
         <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','hsk')">HSK</button>
@@ -3713,12 +3716,17 @@ function gameRow(game,label,dynastyLocked,lockMsg){
 function gamePickerHtml(){
   const did=currentDynastyIdForGames();
   const ul=gameUnlockForDid(did);
-  return `<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;text-align:center;">Pick a game and word pool</div>
+  const s=curP?state[curP]:null;
+  const gs=(s&&s.gateGameStars&&s.gateGameStars[String(did)])||{};
+  const dynasty=DYNASTIES.find(d=>d.id===did);
+  const scopeLbl=dynasty?`${dynasty.icon||''} ${dynasty.en} — your best stars on this gate`:'Your best stars on this gate';
+  return `<div style="font-size:.78rem;color:var(--muted);margin-bottom:.25rem;text-align:center;">Pick a game and word pool</div>
+    <div style="font-size:.7rem;color:var(--muted);margin-bottom:.45rem;text-align:center;">${scopeLbl}</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
-      ${gameRow('listen','👂 Listen',!ul.listen,'Read the story once first 📖')}
-      ${gameRow('trace','✍️ Trace',!ul.trace,'Read story + finish flashcards 🃏')}
-      ${gameRow('match','🧠 Match',!ul.match,'Read the story twice 📖📖')}
-      ${gameRow('rain','🌧️ Rain',!ul.rain,'Play Listen first 👂')}
+      ${gameRow('listen','👂 Listen',!ul.listen,'Read the story once first 📖',gs.listen||0)}
+      ${gameRow('trace','✍️ Trace',!ul.trace,'Read story + finish flashcards 🃏',gs.trace||0)}
+      ${gameRow('match','🧠 Match',!ul.match,'Read the story twice 📖📖',gs.match||0)}
+      ${gameRow('rain','🌧️ Rain',!ul.rain,'Play Listen first 👂',gs.rain||0)}
     </div>
     <div style="margin-top:.55rem;font-size:.7rem;line-height:1.5;color:var(--muted);text-align:center;">
       <b>Dynasty</b> = words from the gate on your map ·
