@@ -691,6 +691,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 .correct-reveal-card{background:linear-gradient(152deg,#2a1515,var(--deep));
   border:2px solid rgba(212,160,23,.45);border-radius:22px;padding:1.5rem 1.3rem;max-width:380px;width:92%;
   text-align:center;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.55);}
+.correct-reveal-card .cr-hint{font-size:.95rem;color:#9FF5D1;font-weight:700;margin:.1rem 0 .5rem;letter-spacing:.02em;}
 .correct-reveal-card .cr-zh{font-family:var(--fzh);font-size:3.2rem;color:var(--gold);margin:.4rem 0;}
 .correct-reveal-card .cr-py{font-size:1.35rem;font-weight:800;color:#9FF5D1;margin-bottom:.35rem;
   letter-spacing:.1em;font-family:var(--fui);text-shadow:0 0 20px rgba(39,174,96,.5);
@@ -2229,7 +2230,7 @@ function defPlayer(){
     library:{},failedWords:{},
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
     weekStart:weekStart(),
-    badges:[],dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
+    badges:[],totalWrongAnswers:0,storyReadCount:{},flashPassDone:{},dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
     pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null},
     traceStars:{},
     libraryCountAtDayStart:{},
@@ -2263,7 +2264,7 @@ let timerSecs=SESSION_MINS*60,timerIv=null,clockIv=null;
 let playTimeIv=null,lastTimeMark=0;
 let sumMode='weekly',sumOffset=0;
 let hidePY=false,hideEN=false,noPYmode=false;
-let tapped=new Set(),newChars=new Set(),totalNew=0;
+let tapped=new Set(),newChars=new Set(),totalNew=0,storyOpenTime=0;
 const curriculumCache={levels:{},culture:null,lessons:{}};
 let curriculumLoading=false;
 
@@ -2771,6 +2772,10 @@ const BADGE_DEFS={
   one_day_gate:{icon:'🏅',title:'Cleared a gate in one day'},
   cross_trainer:{icon:'🧩',title:'20 HSK/WIP rounds completed'},
   week_star_lead:{icon:'🥇',title:'Led week stars (12+)'},
+  tries_100:{icon:'🌱',title:'100 brave tries — every try grows you!'},
+  tries_500:{icon:'🌳',title:'500 brave tries — mighty learner!'},
+  tries_1000:{icon:'🏔️',title:'1000 brave tries — true climber!'},
+  persistent_5:{icon:'💪',title:'Never give up — met a word 5 times'},
 };
 
 function checkBadges(p,opts){
@@ -2789,6 +2794,10 @@ function checkBadges(p,opts){
   if(opts.speedGate)add('speed_scholar');
   if(opts.pinyinDone)add('pinyin_master');
   if(opts.oneDayGate)add('one_day_gate');
+  if((s.totalWrongAnswers||0)>=100)add('tries_100');
+  if((s.totalWrongAnswers||0)>=500)add('tries_500');
+  if((s.totalWrongAnswers||0)>=1000)add('tries_1000');
+  if(Object.values(s.failedWords||{}).some(w=>w.failCount>=5))add('persistent_5');
 }
 
 function renderBadgeStrip(p){
@@ -2917,12 +2926,14 @@ function showCorrectRevealCard(o){
   wrap.innerHTML='';
   const card=document.createElement('div');card.className='correct-reveal-card';
   const btn=document.createElement('button');btn.className='cr-close';btn.type='button';btn.textContent='✕';
+  const encouragements=['Nice try! Here it is 🌟','Good effort! Let\'s learn it 💡','Brave try — now you\'ll remember 🌱','Almost! Every try counts 💪','Good attempt! Take a look 🔍','Keep going! Mistakes help your brain grow 🧠✨'];
+  const hint=document.createElement('div');hint.className='cr-hint';hint.textContent=encouragements[Math.floor(Math.random()*encouragements.length)];
   const zhEl=document.createElement('div');zhEl.className='cr-zh';zhEl.textContent=o.zh||'';
   const pyEl=document.createElement('div');pyEl.className='cr-py';pyEl.textContent=o.py||'';
   const enEl=document.createElement('div');enEl.className='cr-en';enEl.textContent=o.en||'';
   const spk=document.createElement('button');spk.className='cr-speak';spk.type='button';spk.textContent='🔊 Hear again';
   const bar=document.createElement('div');bar.className='cr-bar';bar.appendChild(document.createElement('i'));
-  card.appendChild(btn);card.appendChild(zhEl);card.appendChild(pyEl);card.appendChild(enEl);card.appendChild(spk);card.appendChild(bar);
+  card.appendChild(btn);card.appendChild(hint);card.appendChild(zhEl);card.appendChild(pyEl);card.appendChild(enEl);card.appendChild(spk);card.appendChild(bar);
   wrap.appendChild(card);wrap.classList.add('show');
   speak(o.zh||'',{sentence:!!o.isSentence});
   spk.onclick=()=>speak(o.zh||'',{sentence:!!o.isSentence});
@@ -3037,8 +3048,9 @@ function effectiveGameTargetDid(){
   return n!=null?n:22;
 }
 
-function starsFromAccuracy(correct,total){
+function starsFromAccuracy(correct,total,minSamples){
   const t=total||0;if(!t)return 0;
+  if(minSamples&&t<minSamples)return 0;
   const pct=Math.round((correct||0)/t*100);
   if(pct>85)return 3;if(pct>70)return 2;if(pct>55)return 1;return 0;
 }
@@ -3548,7 +3560,18 @@ function setFlashSub(sub){flashSt.sub=sub==='quiz'?'quiz':'review';flashSt.i=0;f
 
 function renderFlashCurrent(){
   if(!flashSt.mode){renderFlashModePicker();return;}
-  if(flashSt.i>=flashSt.deck.length){clearFlashSession();saveState();
+  if(flashSt.i>=flashSt.deck.length){
+    clearFlashSession();
+    // Mark flashcard pass done for this dynasty — unlocks Trace game
+    if(curP&&flashSt.did){
+      const s=state[curP];
+      if(!s.flashPassDone)s.flashPassDone={};
+      if(!s.flashPassDone[String(flashSt.did)]){
+        s.flashPassDone[String(flashSt.did)]=true;
+        showToast('Flashcard pass done! ✍️ Trace game is now unlocked for Dynasty.',2800);
+      }
+    }
+    saveState();
     const b=document.getElementById('flash-body');if(b)b.innerHTML='<div class="mq-title" style="text-align:center;">Great job! You did it! 🎉</div>';
     return;
   }
@@ -3649,24 +3672,53 @@ function setGamesFailedFocus(active){
   ov.classList.toggle('failed-focus',!!active);
 }
 
-function gameRow(game,label){
+// Returns {listen,trace,match,rain} — true = dynasty scope unlocked for that game.
+// HSK and Work-in-Progress scopes are always open; only Dynasty scope is gated.
+function gameUnlockForDid(did){
+  if(!curP||!did)return{listen:true,trace:true,match:true,rain:true};
+  const s=state[curP];
+  // Already completed this gate — no re-reading required
+  if(s.gatesCompleted&&s.gatesCompleted.includes(did))return{listen:true,trace:true,match:true,rain:true};
+  const dynasty=DYNASTIES.find(d=>d.id===did);
+  if(!dynasty)return{listen:true,trace:true,match:true,rain:true};
+  const storyIds=[dynasty.story,dynasty.story2].filter(Boolean);
+  // Legacy: if story already in storiesCompleted (pre-feature), treat as fully read
+  if(storyIds.some(sid=>(s.storiesCompleted||[]).includes(sid)))return{listen:true,trace:true,match:true,rain:true};
+  const maxReads=Math.max(0,...storyIds.map(sid=>(s.storyReadCount||{})[sid]||0));
+  const flashDone=!!(s.flashPassDone&&s.flashPassDone[String(did)]);
+  const listenPlayed=((s.gateGameStars&&s.gateGameStars[String(did)])||{}).listen>0;
+  return{
+    listen:maxReads>=1,
+    trace:maxReads>=1&&flashDone,
+    match:maxReads>=2,
+    rain:maxReads>=2&&!!listenPlayed
+  };
+}
+
+function gameRow(game,label,dynastyLocked,lockMsg){
+  const dynastyBtn=dynastyLocked
+    ?`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;opacity:.4;cursor:default;" disabled>Dynasty 🔒</button>`
+    :`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','dynasty')">Dynasty</button>`;
   return `<div style="padding:.45rem;border:1px solid rgba(212,160,23,.18);border-radius:10px;background:rgba(255,255,255,.02);">
       <div style="font-weight:800;margin-bottom:.35rem;text-align:center;">${label}</div>
       <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
-        <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','dynasty')">Dynasty</button>
+        ${dynastyBtn}
         <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','hsk')">HSK</button>
         <button class="btn-s game-picker-btn" style="padding:.25rem .5rem;font-size:.66rem;" onclick="startGame('${game}','failed')">Work in Progress</button>
       </div>
+      ${dynastyLocked?`<div style="font-size:.68rem;color:var(--muted);text-align:center;margin-top:.3rem;">${lockMsg}</div>`:''}
     </div>`;
 }
 
 function gamePickerHtml(){
+  const did=currentDynastyIdForGames();
+  const ul=gameUnlockForDid(did);
   return `<div style="font-size:.78rem;color:var(--muted);margin-bottom:.55rem;text-align:center;">Pick a game and word pool</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
-      ${gameRow('trace','✍️ Trace')}
-      ${gameRow('match','🧠 Match')}
-      ${gameRow('rain','🌧️ Rain')}
-      ${gameRow('listen','👂 Listen')}
+      ${gameRow('listen','👂 Listen',!ul.listen,'Read the story once first 📖')}
+      ${gameRow('trace','✍️ Trace',!ul.trace,'Read story + finish flashcards 🃏')}
+      ${gameRow('match','🧠 Match',!ul.match,'Read the story twice 📖📖')}
+      ${gameRow('rain','🌧️ Rain',!ul.rain,'Play Listen first 👂')}
     </div>
     <div style="margin-top:.55rem;font-size:.7rem;line-height:1.5;color:var(--muted);text-align:center;">
       <b>Dynasty</b> = words from the gate on your map ·
@@ -3710,6 +3762,19 @@ function startGame(game,scope){
   document.getElementById('games-overlay').classList.add('show');
   setGamesFailedFocus(scope==='failed');
   curGameTargetDid=scope==='dynasty'?effectiveGameTargetDid():null;
+  // Enforce reading-first unlock order for dynasty scope
+  if(scope==='dynasty'&&curGameTargetDid){
+    const ul=gameUnlockForDid(curGameTargetDid);
+    if(!ul[game]){
+      const msgs={
+        listen:'Read the story at least once first! 📖',
+        trace:'Finish one story read and the flashcard deck first! 🃏',
+        match:'Read the story twice to unlock Match! 📖📖',
+        rain:'Play Listen (dynasty) at least once to unlock Rain! 👂'
+      };
+      showToast(msgs[game]||'Complete earlier steps first!',2600);return;
+    }
+  }
   const words=wordsForScope(scope);
   if(!words.length){showToast('You need a few more words in this set first.');return;}
   if(scope==='failed'){
@@ -3902,12 +3967,22 @@ function spawnRainDrop(){
 
 function endRain(fromUser){
   const ra=rainSt.rainAttempts||0,rh=rainSt.rainHits||0,tid=rainSt.gameTargetDid;
-  clearRainSession();
   const body=document.getElementById('games-body');if(!body)return;
+  if(fromUser){
+    // Early quit: stop the timers but keep the session saved so they can resume
+    clearRainTimers();persistRain();saveState();
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Progress saved!</div>
+      <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra}</div>
+      <div style="font-size:.85rem;color:var(--muted);text-align:center;margin:.4rem 0 .7rem;">Finish the round to earn stars ⭐</div>
+      <div style="text-align:center;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+    return;
+  }
+  // Natural end (timer ran out) — full round completed, stars deserved
+  clearRainSession();
   const stars=starsFromAccuracy(rh,ra);
   if(tid)updateGateGameBest(tid,'rain',stars);
   awardAltRound('rain',stars);
-  body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ ${fromUser?'Stopped for now':'Time is up'}</div>
+  body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Time is up!</div>
     <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
     <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
   showStarEffect(stars,'Rain game');
@@ -4001,7 +4076,7 @@ function startTrace(words){
     ?shuffleArr(allChars).slice(0,traceTargetLimitForGate(curGameTargetDid))
     :allChars;
   if(!chars.length){showToast('No characters to trace yet—learn a few more first!');return;}
-  traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null};
+  traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null,watchCount:0,quizActive:false};
   if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid};
   saveState();renderTrace();
 }
@@ -4026,38 +4101,76 @@ function renderTrace(){
     saveState();return;
   }
   traceSt.targetId='trace-'+Date.now();
+  traceSt.watchCount=0;traceSt.quizActive=false;
   body.innerHTML=`<div class="mq-progress" style="font-size:.95rem;">${traceSt.i+1}/${traceSt.chars.length}</div>
     <div id="${traceSt.targetId}" style="width:364px;height:364px;max-width:100%;margin:0 auto;border-radius:12px;background:rgba(255,255,255,.04);"></div>
-    <div class="mq-question" style="text-align:center;margin-top:.45rem;font-size:1.1rem;">${c.zh} · ${c.py}</div>
+    <div class="mq-question" style="text-align:center;margin-top:.45rem;font-size:1.1rem;">${c.zh} · ${c.py} · <span style="color:var(--muted);font-size:.9rem;">${c.en||''}</span></div>
+    <div style="text-align:center;font-size:.8rem;color:var(--muted);margin:.25rem 0;">Watch the stroke order, then trace it yourself!</div>
     <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.55rem;">
-      <button class="btn-s" style="padding:.8rem 1rem;font-size:.95rem;" onclick="traceAnimate()">Show stroke order</button>
-      <button class="btn-g" style="padding:.8rem 1rem;font-size:.95rem;" onclick="traceNext()">Next word</button>
+      <button id="trace-watch-btn" class="btn-s" style="padding:.8rem 1rem;font-size:.95rem;" onclick="traceWatchAgain()">👀 Watch again (3 left)</button>
+      <button id="trace-ready-btn" class="btn-g" style="padding:.8rem 1rem;font-size:.95rem;" onclick="startTraceQuiz()">✏️ Start Tracing!</button>
     </div>`;
   if(window.HanziWriter){
-    traceSt.writer=HanziWriter.create(traceSt.targetId,c.zh,{width:364,height:364,padding:5,showOutline:true,strokeAnimationSpeed:1,delayBetweenStrokes:120});
-    let mistakes=0;
-    traceSt.writer.quiz({
-      onMistake:()=>{
-        if(!consumeDynastyForgiveness('trace')){
-          mistakes++;
-          logWrong(curP,c.zh,c.py,c.en);
-        }
-      },
-      onComplete:()=>{
-        const stars=mistakes===0?3:(mistakes<=2?2:1);
-        const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
-        traceSt.traceGood=(traceSt.traceGood||0)+(mistakes===0?1:0);
-        if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid};
-        showToast(c.zh+' '+('★'.repeat(stars)+'☆'.repeat(3-stars)));
-        saveState();
-      }
-    });
+    traceSt.writer=HanziWriter.create(traceSt.targetId,c.zh,{width:364,height:364,padding:5,showOutline:true,strokeAnimationSpeed:0.7,delayBetweenStrokes:200});
+    // Auto-play animation so kids see it before tracing
+    traceSt.writer.animateCharacter();
+    traceSt.watchCount=1;
+    updateTraceWatchBtn();
   }else{
     body.innerHTML+='<div class="mq-fb err">Tracing library failed to load</div>';
   }
 }
 
-function traceAnimate(){if(traceSt.writer)traceSt.writer.animateCharacter();}
+function updateTraceWatchBtn(){
+  const btn=document.getElementById('trace-watch-btn');if(!btn)return;
+  const left=3-(traceSt.watchCount||0);
+  if(left<=0){btn.disabled=true;btn.textContent='👀 No more previews';}
+  else btn.textContent=`👀 Watch again (${left} left)`;
+}
+
+function traceWatchAgain(){
+  if(!traceSt.writer||traceSt.watchCount>=3)return;
+  traceSt.watchCount++;
+  traceSt.writer.animateCharacter();
+  updateTraceWatchBtn();
+}
+
+function startTraceQuiz(){
+  if(traceSt.quizActive||!traceSt.writer)return;
+  traceSt.quizActive=true;
+  const readyBtn=document.getElementById('trace-ready-btn');
+  const watchBtn=document.getElementById('trace-watch-btn');
+  if(readyBtn){readyBtn.disabled=true;readyBtn.textContent='Tracing...';}
+  if(watchBtn)watchBtn.disabled=true;
+  const c=traceSt.chars[traceSt.i];
+  let mistakes=0;
+  traceSt.writer.quiz({
+    onMistake:()=>{
+      if(!consumeDynastyForgiveness('trace')){
+        mistakes++;
+        logWrong(curP,c.zh,c.py,c.en);
+      }
+    },
+    onComplete:()=>{
+      // Softer thresholds: 0 mistakes=3★, ≤4=2★, anything else=1★
+      const stars=mistakes===0?3:(mistakes<=4?2:1);
+      const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
+      traceSt.traceGood=(traceSt.traceGood||0)+(mistakes===0?1:0);
+      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid};
+      const msgs=stars===3
+        ?['Perfect! 🌟','Flawless! Amazing! ✨','No mistakes — you nailed it! 🏆']
+        :stars===2
+        ?['Great job! Keep going! 💪','Well done! Getting better! 🌱','Nice effort! 🎉']
+        :['Good try! Every stroke counts! 📚','You\'re learning! Keep it up! 🌟','Practice makes perfect! 💫'];
+      const msg=msgs[Math.floor(Math.random()*msgs.length)];
+      showToast(c.zh+' '+('★'.repeat(stars)+'☆'.repeat(3-stars))+' · '+msg,2200);
+      saveState();
+    }
+  });
+}
+}
+
+function traceAnimate(){traceWatchAgain();}
 function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid};saveState();renderTrace();}
 
 function restoreTrace(){
@@ -4970,6 +5083,7 @@ function openStory(story,dynasty){
     }
     sc.appendChild(block);
   });
+  storyOpenTime=Date.now();
   showScreen('reader');
 }
 
@@ -5006,6 +5120,15 @@ function completeStory(){
   const s=state[curP];
   const pts=newChars.size*5+20;
   addEarnedStars(pts);
+  // Track read count only if the kid spent at least 45s in the story
+  const sid=curStory&&curStory.id;
+  if(sid&&(Date.now()-storyOpenTime)>=45000){
+    if(!s.storyReadCount)s.storyReadCount={};
+    s.storyReadCount[sid]=(s.storyReadCount[sid]||0)+1;
+    const reads=s.storyReadCount[sid];
+    if(reads===1)showToast('First read done! 🌱 Listen game unlocked for Dynasty.',2800);
+    else if(reads===2)showToast('Second read done! 🌳 Match + Rain are now unlocked.',2800);
+  }
   saveState();
   checkBadges(curP);saveState();
   launchConfetti();
@@ -6255,6 +6378,24 @@ function logWrong(p,zh,py,en){
   const s=state[p];if(!s.failedWords)s.failedWords={};
   if(!s.failedWords[zh])s.failedWords[zh]={zh,py,en,failCount:0,lastFailed:null};
   s.failedWords[zh].failCount++;s.failedWords[zh].lastFailed=todayKey();
+  if(!s.totalWrongAnswers)s.totalWrongAnswers=0;
+  s.totalWrongAnswers++;
+  if(!s.badges)s.badges=[];
+  // Persistent learner badge: same word tried 5 times (that's how words stick!)
+  if(s.failedWords[zh].failCount===5&&!s.badges.includes('persistent_5')){
+    s.badges.push('persistent_5');
+    showToast('💪 Never Give Up badge! Meeting a word 5 times is how it sticks.',2800);
+  }
+  // Brave Tries milestones — every attempt grows the brain
+  const wc=s.totalWrongAnswers;
+  const milestones=[
+    [100,'tries_100','🌱 Brave Tries badge! Every try grows your brain.'],
+    [500,'tries_500','🌳 Mighty Learner! 500 brave tries — amazing effort.'],
+    [1000,'tries_1000','🏔️ Master Climber! 1000 brave tries — incredible.']
+  ];
+  for(const[n,id,msg] of milestones){
+    if(wc===n&&!s.badges.includes(id)){s.badges.push(id);showToast(msg,2800);break;}
+  }
 }
 
 // ══════════════════════════════════════════════════════
@@ -6425,6 +6566,7 @@ function renderParentSummary(){
       <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} days</span></div>
       <div class="psr"><span class="psr-lbl">💪 Practice Queue</span><span class="psr-val">${Object.keys(s.failedWords||{}).length} words</span></div>
       ${Object.keys(s.championCleared||{}).length?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(Object.keys(s.championCleared).length)}</span></div>`:''}
+      ${(()=>{const skipped=DYNASTIES.filter(d=>{const gg=(s.gateGameStars&&s.gateGameStars[String(d.id)])||{};const gp=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);const ids=[d.story,d.story2].filter(Boolean);const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));return gp>0&&reads<2&&!s.gatesCompleted.includes(d.id);}).map(d=>d.zh+' ('+d.en+')');return skipped.length?`<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span><span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`:'';})()}
     </div>`;
     if(isNow){
       const ww=Object.values(s.failedWords||{}).filter(w=>w.lastFailed&&w.lastFailed>=ws).sort((a,b)=>b.failCount-a.failCount);
