@@ -3823,7 +3823,7 @@ function renderMemoryMatch(){
   const cols=matchSt.pairCount<=6?3:4;
   body.innerHTML=`<div class="mq-progress">Matched ${matchSt.matched}/${matchSt.pairCount} · Moves ${matchSt.moves}</div>
     <div id="match-grid" style="display:grid;grid-template-columns:repeat(${cols},1fr);gap:.35rem;"></div>
-    <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="openGamesHub()">Back</button>`;
+    <button class="btn-s" style="width:100%;margin-top:.55rem;" onclick="exitMatch()">Save &amp; Exit</button>`;
   const grid=document.getElementById('match-grid');
   matchSt.cards.forEach((c,idx)=>{
     const b=document.createElement('button');
@@ -3834,6 +3834,12 @@ function renderMemoryMatch(){
     b.onclick=()=>tapMatch(idx);
     grid.appendChild(b);
   });
+}
+
+function exitMatch(){
+  persistMatch();saveState();
+  showToast('Progress saved — finish all pairs to earn stars! 🧠',2400);
+  openGamesHub();
 }
 
 function tapMatch(idx){
@@ -4031,7 +4037,8 @@ function renderListen(){
   body.innerHTML=`<div class="mq-progress">${listenSt.qi+1}/${listenSt.questions.length} · score ${listenSt.score}</div>
     <div class="mq-question" style="text-align:center;">Listen · tap the character</div>
     <div style="text-align:center;margin:.45rem 0;"><button class="q-speak" onclick="speak('${q.w.zh.replace(/'/g,"\\'")}')">🔊</button></div>
-    <div class="mq-opts" id="listen-opts"></div><div class="mq-fb" id="listen-fb"></div>`;
+    <div class="mq-opts" id="listen-opts"></div><div class="mq-fb" id="listen-fb"></div>
+    <div style="text-align:center;margin-top:.55rem;"><button class="btn-s" style="font-size:.75rem;opacity:.7;" onclick="exitListen()">Save &amp; Exit</button></div>`;
   speak(q.w.zh);
   const grid=document.getElementById('listen-opts');
   q.opts.forEach(o=>{
@@ -4039,6 +4046,12 @@ function renderListen(){
     b.onclick=()=>checkListen(b,o===q.w.zh,q);
     grid.appendChild(b);
   });
+}
+
+function exitListen(){
+  // State is already saved after each answer; just exit
+  showToast('Progress saved — answer all 10 to earn stars! 👂',2400);
+  openGamesHub();
 }
 
 function checkListen(btn,ok,q){
@@ -4109,7 +4122,8 @@ function renderTrace(){
     <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.55rem;">
       <button id="trace-watch-btn" class="btn-s" style="padding:.8rem 1rem;font-size:.95rem;" onclick="traceWatchAgain()">👀 Watch again (3 left)</button>
       <button id="trace-ready-btn" class="btn-g" style="padding:.8rem 1rem;font-size:.95rem;" onclick="startTraceQuiz()">✏️ Start Tracing!</button>
-    </div>`;
+    </div>
+    <div style="text-align:center;margin-top:.45rem;"><button class="btn-s" style="font-size:.75rem;opacity:.7;" onclick="exitTrace()">Save &amp; Exit</button></div>`;
   if(window.HanziWriter){
     traceSt.writer=HanziWriter.create(traceSt.targetId,c.zh,{width:364,height:364,padding:5,showOutline:true,strokeAnimationSpeed:0.7,delayBetweenStrokes:200});
     // Auto-play animation so kids see it before tracing
@@ -4163,10 +4177,18 @@ function startTraceQuiz(){
         ?['Great job! Keep going! 💪','Well done! Getting better! 🌱','Nice effort! 🎉']
         :['Good try! Every stroke counts! 📚','You\'re learning! Keep it up! 🌟','Practice makes perfect! 💫'];
       const msg=msgs[Math.floor(Math.random()*msgs.length)];
-      showToast(c.zh+' '+('★'.repeat(stars)+'☆'.repeat(3-stars))+' · '+msg,2200);
+      showToast(c.zh+' '+('★'.repeat(stars)+'☆'.repeat(3-stars))+' · '+msg,2000);
       saveState();
+      // Auto-advance to next character after showing the result
+      setTimeout(traceNext,2000);
     }
   });
+}
+
+function exitTrace(){
+  // Session is already persisted per-character — just exit
+  showToast('Progress saved — finish all characters to earn stars! ✍️',2400);
+  openGamesHub();
 }
 }
 
@@ -6367,6 +6389,7 @@ function exitQuiz(){
   // Keep resumable state only when leaving an in-progress quiz.
   if(quizSt&&typeof quizSt.phase==='number'&&quizSt.phase<3){
     persistGateQuizState();
+    showToast('Progress saved — finish the quiz to earn stars! 🏯',2400);
   }else{
     clearGateQuizPending();
   }
