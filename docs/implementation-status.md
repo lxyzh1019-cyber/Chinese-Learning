@@ -44,10 +44,12 @@ when its todo marker is removed and the test passes.
 
 | Req ID | Defect | Test | Status |
 |---|---|---|---|
-| S01 / M-T16 | `saveState` stamps and writes **both** player documents | `tests/progression.test.cjs` | todo — fails, capturing writes to `['jenn','jess']` |
 | T03 / M-T03 | `storiesCompleted` bypasses the read/flashcard unlock chain for new users | `tests/progression.test.cjs` | todo — fails, all four games unlock |
 | T04 | `uniqueChars` gives every character its whole word's reading | `tests/progression.test.cjs` | todo — fails, 习 reads "xué xí" |
 | B02d / M-T11 | `buildMCQ`/`buildPYQ` cap champion rounds at 20 items | `tests/progression.test.cjs` | todo — fails, 32 → 20 and 40 → 20 |
+
+Resolved: **S01 / M-T16** (`saveState` writing both player documents) was fixed
+in this phase and its test now passes without a todo marker.
 
 Pinned (correct today, guarded against regression): `starsFromAccuracy`
 boundaries and its lack of a minimum sample size; the `gateTimerDays` formula;
@@ -76,15 +78,57 @@ acted on; both are recorded here for decision.
    authentication anywhere. Anyone who has the repository URL can therefore read
    and overwrite both children's records.
 
-   No rule has been changed. The plan is explicit that live rules are not to be
-   modified unasked, and tightening them would break the app until matching auth
-   is added. Raised for the owner's decision.
+   **Now addressed, pending deployment.** `firestore.rules` contains a scoped
+   merge fragment and `scripts/check_firestore_rules.js` verifies it. It is not
+   deployed — see the blocked item under Phase A.
 
 ---
 
-## Phases A–D
+## Phase A part 1 — assessment engine
 
-Not started. See the plan document for scope. Phase A begins with the two
-prerequisites named in §A.2 (`saveState` owner scoping, callback cancellation on
-profile switch), each of which already has a failing todo test above or will get
-one before the fix lands.
+| ID | Requirement | Status | Files | Evidence |
+|---|---|---|---|---|
+| S01 | Owner-scoped saves | verified | `index.html` (`savePlayer`, `saveState`, 3 parent mutators, `clearAllProgress`) | 4 tests in `tests/progression.test.cjs`, incl. a parent star edit with `curP` null writing only Jess. |
+| A-T12 | Deferred-callback cancellation | verified | `index.html` (registry, `laterCall`/`repeatCall`/`drainScope`/`sessionGen`, 15 wrapped sites, 4 drain points) | 6 tests in `tests/callbacks.test.cjs`; a Rain miss scheduled for Jenn writes nothing to Jess. |
+| A01 | Always-available hub entry, no side effects | verified | `index.html` hub strip + overlay | Browser run: button enabled with 0 gates cleared; total stars, week stars, gates, timers, game stars, failed words and badges all unchanged across a 9-answer attempt. |
+| A02–A05 | Domains, scoring, routing | verified | `js/assessment-core.js` | A-T01, A-T02, A-T03, A-T09, A-T10 + ceiling test. |
+| A06 | State machine, present-before-display, write-once | verified | `js/assessment-core.js` | A-T04, A-T05, A-T13. |
+| A09 | Repeat and comparison | verified | `js/assessment-core.js` | A-T06, A-T07, A-T08, A-T14. |
+| A10 | Attempt persistence, revision CAS, offline queue | verified | `js/player-store.js` | A-T11 plus queue/append tests. |
+| A03/A04 | Bank + contract | verified | `data/assessment/**`, `scripts/build_assessment_bank.js`, `scripts/validate_assessment.js` | 60 items, 34/form, 8 anchors; validator proven by injecting 3 defects; all 28 clips reachable. |
+| — | Firestore rules | **blocked** | `firestore.rules`, `scripts/check_firestore_rules.js` | Cannot deploy from here. Probe currently reports the rules are still wide open — expected until the block is pasted into the console. |
+
+### Verification output
+
+```
+npm run verify
+  parse_check: 1 inline script(s) parsed cleanly.
+  Curriculum validation passed.
+  assessment bank valid — 60 items, 0 warning(s).
+  tests 39 | pass 36 | fail 0 | todo 3
+```
+
+Browser walkthrough (Chromium 1194, 1024x768 @2x, local http server): profile
+select -> hub -> assessment opens -> baseline starts -> 34-question C1 form A ->
+answers advance -> save & exit -> resume offered -> stored attempt owned by
+`jenn`, status `paused`. No local resource failed to load.
+
+### Blocked / not verified here
+
+1. **Firestore rules are not deployed.** `scripts/check_firestore_rules.js`
+   currently reports both unintended paths as readable, which is the correct
+   *pre-deployment* result. Paste the marked block from `firestore.rules` into
+   the console alongside the existing rules, then re-run the probe.
+2. **Cloud sync was never exercised.** This sandbox blocks the Firebase CDN, so
+   `db` was null throughout the browser run and only localStorage was tested.
+   The revision compare-and-set path is covered by unit tests against a stub,
+   not against real Firestore.
+3. **Not run on the girls' iPad.** Needed there: audio start and failure
+   behaviour, overlay scrolling, backgrounding mid-question, the 20-minute
+   session limit landing mid-answer, next-day resume, and profile switch during
+   an attempt. A desktop Chromium run is not iPad validation.
+4. **No educator has reviewed the bank.** See `docs/content-review.md`.
+
+## Phases B–D
+
+Not started. The three remaining `todo` tests are the Phase B entry points.

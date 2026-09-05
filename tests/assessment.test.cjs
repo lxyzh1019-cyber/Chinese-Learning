@@ -238,3 +238,118 @@ test("the bank never awards stars or touches gate state", () => {
     assert.ok(!src.includes(f), `assessment-core must not reference ${f}`);
   });
 });
+
+// ── persistence (A-T11, A-T14) ──────────────────────────────────────────────
+const S = require("../js/player-store.js");
+
+function memStorage() {
+  const m = new Map();
+  return {
+    getItem: (k) => (m.has(k) ? m.get(k) : null),
+    setItem: (k, v) => m.set(k, String(v)),
+    removeItem: (k) => m.delete(k),
+  };
+}
+
+/** Firestore stub holding one revision per path. */
+function fakeDb(seed = {}) {
+  const docs = Object.assign({}, seed);
+  return {
+    docs,
+    collection: (c) => ({
+      doc: (a) => ({
+        collection: (s) => ({
+          doc: (b) => {
+            const key = `${c}/${a}/${s}/${b}`;
+            return {
+              get: async () => ({ exists: key in docs, data: () => docs[key] }),
+              set: async (v) => { docs[key] = JSON.parse(JSON.stringify(v)); },
+            };
+          },
+        }),
+      }),
+    }),
+  };
+}
+
+test("attempts are stored under the player who took them", () => {
+  assert.equal(
+    S.attemptPath("jenn", "att-1"),
+    "chinese-adventure/jenn/assessments/att-1"
+  );
+});
+
+test("a local save reports 'Saved on this device', not 'Synced'", () => {
+  const ctx = { storage: memStorage(), db: null };
+  const a = newAttempt();
+  const res = S.saveAttempt(ctx, a);
+  assert.equal(res.localOk, true);
+  assert.equal(res.status, S.SYNC_LOCAL, "local success must not be reported as synced");
+  assert.equal(S.loadAttempt(ctx, a.attemptId).attemptId, a.attemptId);
+});
+
+test("A-T11: two devices answering the same item surface a conflict, not a silent overwrite", async () => {
+  const item = C.selectItems(bank, forms, "A", "C1")[0];
+
+  // Device A answers correctly and syncs.
+  const deviceA = newAttempt();
+  C.present(deviceA, item);
+  C.respond(deviceA, { itemId: item.id, selectedOptionId: item.acceptedOptionIds[0] });
+  const db = fakeDb();
+  const ctxA = { storage: memStorage(), db };
+  assert.equal((await S.pushAttempt(ctxA, deviceA)).ok, true);
+
+  // Device B was offline with the same attempt and answered differently.
+  const deviceB = JSON.parse(JSON.stringify(newAttempt()));
+  C.present(deviceB, item);
+  C.respond(deviceB, { itemId: item.id, selectedOptionId: item.options[2].id });
+  // Its revision is behind what is now stored.
+  deviceB.revision = 1;
+  db.docs[S.attemptPath("jenn", "att-1")].revision = 9;
+
+  const res = await S.pushAttempt({ storage: memStorage(), db }, deviceB);
+  assert.equal(res.ok, false, "the stale write is refused");
+  assert.equal(res.status, S.SYNC_ATTENTION);
+  assert.ok(res.conflict, "a conflict is surfaced");
+  assert.equal(res.conflict.conflictingItems.length, 1, "the disputed item is named");
+  assert.equal(res.conflict.conflictingItems[0].itemId, item.id);
+  assert.ok(res.conflict.local && res.conflict.remote, "both records are preserved");
+});
+
+test("distinct attempts append independently rather than colliding", async () => {
+  const db = fakeDb();
+  const ctx = { storage: memStorage(), db };
+  await S.pushAttempt(ctx, newAttempt({ attemptId: "att-1" }));
+  await S.pushAttempt(ctx, newAttempt({ attemptId: "att-2" }));
+  assert.ok(db.docs[S.attemptPath("jenn", "att-1")]);
+  assert.ok(db.docs[S.attemptPath("jenn", "att-2")]);
+});
+
+test("an offline save stays queued and flushes when the db returns", async () => {
+  const storage = memStorage();
+  const a = newAttempt();
+  S.saveAttempt({ storage, db: null }, a);
+  assert.equal(S.readLocal(storage).queue.length, 1, "queued while offline");
+
+  const out = await S.flushQueue({ storage, db: fakeDb() });
+  assert.equal(out.pending, 0);
+  assert.equal(out.conflicts.length, 0);
+  assert.equal(out.status, S.SYNC_OK);
+});
+
+test("A-T14: excluding a faulty anchor adjusts both denominators and keeps the originals", () => {
+  const a = newAttempt({ attemptId: "a", formId: "A" });
+  answerDomain(a, "recognition_unaided", 4);
+  const b = newAttempt({ attemptId: "b", formId: "B" });
+  answerDomain(b, "recognition_unaided", 7);
+  const cmp = C.compareAttempts(a, b, bank, forms);
+
+  const bad = bank.items.find((i) => i.anchorGroupId && i.domain === "recognition_unaided").id;
+  const revised = S.excludeItems(cmp, [bad], "anchor found to have two defensible answers");
+
+  assert.deepEqual(revised.excludedItems, [bad]);
+  assert.match(revised.note, /both sides/);
+  assert.match(revised.note, /unchanged/);
+  assert.ok(revised.anchors, "the comparison itself is still reported");
+  assert.equal(a.responses.length > 0 && b.responses.length > 0, true, "raw records survive");
+});

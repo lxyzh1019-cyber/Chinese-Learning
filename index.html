@@ -1054,6 +1054,15 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
   </div>
 </div>
 
+<!-- ═══ ASSESSMENT OVERLAY ═══ -->
+<div class="mini-quiz-overlay" id="assessment-overlay">
+  <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeAssessment()" title="Close" aria-label="Close">✕</button>
+    <div class="mq-title">📊 Assessment · 学习评估</div>
+    <div id="assessment-body"></div>
+  </div>
+</div>
+
 <!-- ═══ TIME LOCK ═══ -->
 <div class="timelock" id="timelock">
   <div class="tl-card">
@@ -2265,7 +2274,7 @@ let playTimeIv=null,lastTimeMark=0;
 let sumMode='weekly',sumOffset=0;
 let hidePY=false,hideEN=false,noPYmode=false;
 let tapped=new Set(),newChars=new Set(),totalNew=0,storyOpenTime=0;
-const curriculumCache={levels:{},culture:null,lessons:{}};
+const curriculumCache={levels:{},culture:null,lessons:{},assessment:null};
 let curriculumLoading=false;
 
 function fetchJsonSafe(url){
@@ -2286,6 +2295,25 @@ async function loadCultureCurriculum(){
     if(data&&Array.isArray(data.tracks))curriculumCache.culture=data;
   }catch(e){dbgLog('loadCultureCurriculum failed',String(e&&e.message||e));}
   return curriculumCache.culture||null;
+}
+// Assessment bank. Lazy-loaded on first open rather than at boot: it is not
+// needed to render the hub, and a slow fetch must not delay the child getting
+// into the app. Same contract as the curriculum loaders — never throws,
+// shape-validates before caching, returns null on failure.
+async function loadAssessmentBank(){
+  if(curriculumCache.assessment)return curriculumCache.assessment;
+  try{
+    const manifest=await fetchJsonSafe('data/assessment/manifest.json');
+    if(!manifest||!manifest.files)return null;
+    const [items,forms]=await Promise.all([
+      fetchJsonSafe('data/assessment/'+manifest.files.items),
+      fetchJsonSafe('data/assessment/'+manifest.files.forms),
+    ]);
+    if(items&&Array.isArray(items.items)&&forms&&forms.forms){
+      curriculumCache.assessment={manifest,bank:items,forms};
+    }
+  }catch(e){dbgLog('loadAssessmentBank failed',String(e&&e.message||e));}
+  return curriculumCache.assessment||null;
 }
 async function preloadCurriculum(){
   if(curriculumLoading)return;
@@ -4837,6 +4865,9 @@ function renderHubContent(){
           <button type="button" class="btn-s hub-flash-btn" onclick="openFlashPicker()">🎴 Flash Cards</button>
           <button type="button" class="btn-s hub-flash-btn" onclick="openCultureStories()">🏮 Culture Stories</button>
         </div>
+        <div class="hub-play-btns">
+          <button type="button" class="btn-s hub-flash-btn" onclick="openAssessment()">📊 Assessment · 学习评估</button>
+        </div>
         <div style="margin-top:.6rem;">
           ${gamePickerHtml()}
         </div>
@@ -7046,5 +7077,8 @@ function init(){
 
 init();
 </script>
+<script src="js/assessment-core.js"></script>
+<script src="js/player-store.js"></script>
+<script src="js/assessment-ui.js"></script>
 </body>
 </html>
