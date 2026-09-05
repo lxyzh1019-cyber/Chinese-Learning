@@ -1,0 +1,16 @@
+{
+  "bankVersion": "1.0.0",
+  "bands": [
+    "C1"
+  ],
+  "forms": [
+    "A",
+    "B"
+  ],
+  "files": {
+    "items": "v1/items.json",
+    "forms": "v1/forms.json"
+  },
+  "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+  "note": "C1 only. C2-C4 are not yet authored; routing reports the ceiling honestly."
+}

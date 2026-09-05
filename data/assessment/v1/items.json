@@ -1,0 +1,3769 @@
+{
+  "bankVersion": "1.0.0",
+  "band": "C1",
+  "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+  "rubrics": {
+    "writing-recall-v1": {
+      "version": 1,
+      "levels": [
+        {
+          "score": 0,
+          "label": "missing, wrong target, or unrecognisable"
+        },
+        {
+          "score": 1,
+          "label": "target recognisable but incomplete or structurally inaccurate"
+        },
+        {
+          "score": 2,
+          "label": "correct recognisable form with essential components and reasonable proportions"
+        }
+      ],
+      "note": "Stroke order cannot be judged from a finished image and is not scored here."
+    }
+  },
+  "passages": {
+    "p1": {
+      "id": "p1",
+      "band": "C1",
+      "zh": "早上，妈妈在家。她说：“今天天很好，我们上山去。”我很爱上山。山上有花，花很白。我笑了。",
+      "charCount": 33
+    },
+    "p2": {
+      "id": "p2",
+      "band": "C1",
+      "zh": "爸爸有一本书。书里有山，有水，也有花。他很爱看这本书。晚上，他在家看书。我也看。",
+      "charCount": 32
+    },
+    "p3": {
+      "id": "p3",
+      "band": "C1",
+      "zh": "今天很冷。我和哥哥走到山下。山上有水，水很冷。哥哥说：“早点回家吧。”我们就走了。",
+      "charCount": 32
+    }
+  },
+  "items": [
+    {
+      "id": "as-v1-C1-rec-001",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:水"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "水",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "da4",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": "C1-rec-anchor-水",
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "水"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"shuǐ\" and gloss \"water\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-002",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:山"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "山",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "da4",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": "C1-rec-anchor-山",
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "山"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"shān\" and gloss \"mountain\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-003",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:人"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "人",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "da4",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "人"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"rén\" and gloss \"person\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-004",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:大"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "大",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "da4",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "大"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"dà\" and gloss \"big\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-005",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:小"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "小",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "xiao3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "小"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"xiǎo\" and gloss \"small\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-006",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:好"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "好",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "hao3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "好"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"hǎo\" and gloss \"good\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-007",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:天"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "天",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "tian1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "天"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"tiān\" and gloss \"sky; day\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-008",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:家"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "家",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "jia1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "家"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"jiā\" and gloss \"home\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-009",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:门"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "门",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "men2",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "门"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"mén\" and gloss \"door\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-010",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:车"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "车",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "che1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "车"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"chē\" and gloss \"car\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-011",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:手"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "手",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "shou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "手"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"shǒu\" and gloss \"hand\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-012",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:口"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "口",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "kou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "口"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"kǒu\" and gloss \"mouth\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-013",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:花"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "花",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "hua1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "花"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"huā\" and gloss \"flower\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-rec-014",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "recognition_unaided",
+      "targetWordIds": [
+        "hsk1:月"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "月",
+        "enInstruction": "Listen to each one. Which sound matches this character?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "yue4",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "shui3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "shan1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "ren2",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "月"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Reading \"yuè\" and gloss \"moon\" authored here; dataset entry not used verbatim."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-001",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:吃"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "吃",
+        "pinyin": "chī",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "shuo1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": "C1-dec-anchor-吃",
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "吃"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-002",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:走"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "走",
+        "pinyin": "zǒu",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "shuo1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": "C1-dec-anchor-走",
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "走"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-003",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:喝"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "喝",
+        "pinyin": "hē",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "shuo1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "喝"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-004",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:说"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "说",
+        "pinyin": "shuō",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "shuo1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "说"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-005",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:学"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "学",
+        "pinyin": "xué",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "xue2",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "学"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-006",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:白"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "白",
+        "pinyin": "bái",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "bai2",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "白"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-007",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:高"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "高",
+        "pinyin": "gāo",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "gao1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "高"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-008",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:快"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "快",
+        "pinyin": "kuài",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "kuai4",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "快"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-009",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:冷"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "冷",
+        "pinyin": "lěng",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "leng3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "冷"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-010",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:热"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "热",
+        "pinyin": "rè",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "re4",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "热"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-011",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:老"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "老",
+        "pinyin": "lǎo",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "lao3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "老"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-012",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:爱"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "爱",
+        "pinyin": "ài",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "ai4",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "爱"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-013",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:笑"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "笑",
+        "pinyin": "xiào",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "xiao4",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "笑"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-dec-014",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "decoding_supported",
+      "targetWordIds": [
+        "hsk1:早"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "早",
+        "pinyin": "zǎo",
+        "enInstruction": "The pinyin is shown to help. Which sound matches?"
+      },
+      "support": {
+        "targetPinyin": true,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": null,
+          "audioAssetId": "zao3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o2",
+          "text": null,
+          "audioAssetId": "chi1",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o3",
+          "text": null,
+          "audioAssetId": "zou3",
+          "audioSource": "clip"
+        },
+        {
+          "id": "o4",
+          "text": null,
+          "audioAssetId": "he1",
+          "audioSource": "clip"
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "早"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Supported-decoding twin of the recognition set; target words are disjoint from it by design."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-001",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:喝"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "我喝水。",
+        "highlight": "喝",
+        "enInstruction": "In this sentence, what does 「喝」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "drink",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "eat",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "run",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "sleep",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": "C1-mean-anchor-喝",
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "喝"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-002",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:家"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "妈妈在家。",
+        "highlight": "家",
+        "enInstruction": "In this sentence, what does 「家」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "home",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "school",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "shop",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "park",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": "C1-mean-anchor-家",
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "家"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-003",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:书"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "爸爸看书。",
+        "highlight": "书",
+        "enInstruction": "In this sentence, what does 「书」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "book",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "phone",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "bowl",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "chair",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "书"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-004",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:月"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "天上有月。",
+        "highlight": "月",
+        "enInstruction": "In this sentence, what does 「月」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "the moon",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "a bird",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "the sun",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "a cloud",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "月"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-005",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:花"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "山上有花。",
+        "highlight": "花",
+        "enInstruction": "In this sentence, what does 「花」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "flowers",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "snow",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "rocks",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "houses",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "花"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-006",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:学"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "我学中文。",
+        "highlight": "学",
+        "enInstruction": "In this sentence, what does 「学」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "study",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "forget",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "sell",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "carry",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "学"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-007",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:冷"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "水很冷。",
+        "highlight": "冷",
+        "enInstruction": "In this sentence, what does 「冷」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "cold",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "deep",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "clean",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "sweet",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "冷"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-008",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:快"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "他走得很快。",
+        "highlight": "快",
+        "enInstruction": "In this sentence, what does 「快」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "fast",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "slowly",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "quietly",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "far",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "快"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-009",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:热"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "天很热。",
+        "highlight": "热",
+        "enInstruction": "In this sentence, what does 「热」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "hot",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "windy",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "dark",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "wet",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "热"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-010",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:早"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "哥哥走得早。",
+        "highlight": "早",
+        "enInstruction": "In this sentence, what does 「早」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "early",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "late",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "alone",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "again",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "早"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-011",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:笑"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "他笑了。",
+        "highlight": "笑",
+        "enInstruction": "In this sentence, what does 「笑」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "laughed",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "cried",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "left",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "slept",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "笑"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-012",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:前"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "门前有车。",
+        "highlight": "前",
+        "enInstruction": "In this sentence, what does 「前」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "in front of",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "behind",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "inside",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "under",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "前"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-013",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:爱"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "我爱我家。",
+        "highlight": "爱",
+        "enInstruction": "In this sentence, what does 「爱」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "love",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "leave",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "clean",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "build",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "爱"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-mean-014",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "meaning_context",
+      "targetWordIds": [
+        "hsk1:老"
+      ],
+      "passageId": null,
+      "prompt": {
+        "zh": "老人在前面。",
+        "highlight": "老",
+        "enInstruction": "In this sentence, what does 「老」 mean?"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "old",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "tall",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "busy",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "new",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "老"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Concrete, common sense of the word in a short authored sentence; no obscure dictionary senses."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-001",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p1",
+      "prompt": {
+        "enInstruction": "What did Mum say the weather was like today?",
+        "questionKind": "literal"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "Very good",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "Very cold",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "Very windy",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "Very dark",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "literal question on authored passage p1; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-002",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p1",
+      "prompt": {
+        "enInstruction": "In the story, who is “她” (she)?",
+        "questionKind": "reference"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "Mum",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "The child",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "The flower",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "A friend",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "reference question on authored passage p1; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-003",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p1",
+      "prompt": {
+        "enInstruction": "Why does the child smile at the end?",
+        "questionKind": "inference"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "Because they are happy going up the mountain",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "Because they are going home",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "Because it started to rain",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "Because Mum was late",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "inference question on authored passage p1; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-004",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p2",
+      "prompt": {
+        "enInstruction": "What does Dad have?",
+        "questionKind": "literal"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "A book",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "A car",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "A flower",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "A cup",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": "C1-pass-anchor-p2",
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "literal question on authored passage p2; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-005",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p2",
+      "prompt": {
+        "enInstruction": "What is inside the book?",
+        "questionKind": "literal"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "Mountains, water and flowers",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "Cars and roads",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "Animals and food",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "Numbers and letters",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "literal question on authored passage p2; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-006",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p2",
+      "prompt": {
+        "enInstruction": "Where does Dad read in the evening?",
+        "questionKind": "reference"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "At home",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "At school",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "On the mountain",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "In the car",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "reference question on authored passage p2; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-007",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p2",
+      "prompt": {
+        "enInstruction": "In the story, who is “他” (he)?",
+        "questionKind": "reference"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "Dad",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "The child",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "The writer",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "A teacher",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "reference question on authored passage p2; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-008",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p2",
+      "prompt": {
+        "enInstruction": "How can you tell Dad likes this book?",
+        "questionKind": "inference"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "He reads it at home in the evenings",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "He bought two of them",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "He gave it away",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "He wrote it himself",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "inference question on authored passage p2; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-009",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p3",
+      "prompt": {
+        "enInstruction": "What is the weather like today?",
+        "questionKind": "literal"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "Cold",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "Hot",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "Rainy",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "Windy",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "literal question on authored passage p3; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-010",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p3",
+      "prompt": {
+        "enInstruction": "What happens right after big brother speaks?",
+        "questionKind": "sequence"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "They go home",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "They climb higher",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "They drink the water",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "They sit down",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "sequence question on authored passage p3; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-pass-011",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "passage_comprehension",
+      "targetWordIds": [],
+      "passageId": "p3",
+      "prompt": {
+        "enInstruction": "Why does big brother want to go home early?",
+        "questionKind": "inference"
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": false,
+        "translation": false
+      },
+      "options": [
+        {
+          "id": "o1",
+          "text": "Because it is cold",
+          "audioAssetId": null
+        },
+        {
+          "id": "o2",
+          "text": "Because he is hungry",
+          "audioAssetId": null
+        },
+        {
+          "id": "o3",
+          "text": "Because it is dark",
+          "audioAssetId": null
+        },
+        {
+          "id": "o4",
+          "text": "Because he is tired",
+          "audioAssetId": null
+        }
+      ],
+      "acceptedOptionIds": [
+        "o1"
+      ],
+      "rubricId": null,
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": []
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "inference question on authored passage p3; the passage is unchanged between forms where shared."
+      }
+    },
+    {
+      "id": "as-v1-C1-writ-001",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "writing_recall",
+      "targetWordIds": [
+        "hsk1:水"
+      ],
+      "passageId": null,
+      "prompt": {
+        "enInstruction": "Listen, then write the character for “water”.",
+        "audioAssetId": "shui3",
+        "hint": null
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": true,
+        "translation": true
+      },
+      "options": [],
+      "acceptedOptionIds": [],
+      "rubricId": "writing-recall-v1",
+      "anchorGroupId": "C1-writ-anchor-水",
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "水"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Familiar, high-frequency character chosen for handwriting rather than every reading target."
+      }
+    },
+    {
+      "id": "as-v1-C1-writ-002",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "writing_recall",
+      "targetWordIds": [
+        "hsk1:人"
+      ],
+      "passageId": null,
+      "prompt": {
+        "enInstruction": "Listen, then write the character for “person”.",
+        "audioAssetId": "ren2",
+        "hint": null
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": true,
+        "translation": true
+      },
+      "options": [],
+      "acceptedOptionIds": [],
+      "rubricId": "writing-recall-v1",
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "人"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Familiar, high-frequency character chosen for handwriting rather than every reading target."
+      }
+    },
+    {
+      "id": "as-v1-C1-writ-003",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "writing_recall",
+      "targetWordIds": [
+        "hsk1:大"
+      ],
+      "passageId": null,
+      "prompt": {
+        "enInstruction": "Listen, then write the character for “big”.",
+        "audioAssetId": "da4",
+        "hint": null
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": true,
+        "translation": true
+      },
+      "options": [],
+      "acceptedOptionIds": [],
+      "rubricId": "writing-recall-v1",
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "大"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Familiar, high-frequency character chosen for handwriting rather than every reading target."
+      }
+    },
+    {
+      "id": "as-v1-C1-writ-004",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "writing_recall",
+      "targetWordIds": [
+        "hsk1:小"
+      ],
+      "passageId": null,
+      "prompt": {
+        "enInstruction": "Listen, then write the character for “small”.",
+        "audioAssetId": "xiao3",
+        "hint": null
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": true,
+        "translation": true
+      },
+      "options": [],
+      "acceptedOptionIds": [],
+      "rubricId": "writing-recall-v1",
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "小"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Familiar, high-frequency character chosen for handwriting rather than every reading target."
+      }
+    },
+    {
+      "id": "as-v1-C1-writ-005",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "writing_recall",
+      "targetWordIds": [
+        "hsk1:口"
+      ],
+      "passageId": null,
+      "prompt": {
+        "enInstruction": "Listen, then write the character for “mouth”.",
+        "audioAssetId": "kou3",
+        "hint": null
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": true,
+        "translation": true
+      },
+      "options": [],
+      "acceptedOptionIds": [],
+      "rubricId": "writing-recall-v1",
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "口"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Familiar, high-frequency character chosen for handwriting rather than every reading target."
+      }
+    },
+    {
+      "id": "as-v1-C1-writ-006",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "writing_recall",
+      "targetWordIds": [
+        "hsk1:手"
+      ],
+      "passageId": null,
+      "prompt": {
+        "enInstruction": "Listen, then write the character for “hand”.",
+        "audioAssetId": "shou3",
+        "hint": null
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": true,
+        "translation": true
+      },
+      "options": [],
+      "acceptedOptionIds": [],
+      "rubricId": "writing-recall-v1",
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "手"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Familiar, high-frequency character chosen for handwriting rather than every reading target."
+      }
+    },
+    {
+      "id": "as-v1-C1-writ-007",
+      "bankVersion": "1.0.0",
+      "band": "C1",
+      "domain": "writing_recall",
+      "targetWordIds": [
+        "hsk1:山"
+      ],
+      "passageId": null,
+      "prompt": {
+        "enInstruction": "Listen, then write the character for “mountain”.",
+        "audioAssetId": "shan1",
+        "hint": null
+      },
+      "support": {
+        "targetPinyin": false,
+        "targetAudio": true,
+        "translation": true
+      },
+      "options": [],
+      "acceptedOptionIds": [],
+      "rubricId": "writing-recall-v1",
+      "anchorGroupId": null,
+      "reference": {
+        "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+        "entries": [
+          "山"
+        ]
+      },
+      "review": {
+        "status": "reviewed",
+        "reviewerType": "model",
+        "sources": [
+          {
+            "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+            "note": "band membership only"
+          }
+        ],
+        "notes": "Familiar, high-frequency character chosen for handwriting rather than every reading target."
+      }
+    }
+  ]
+}
