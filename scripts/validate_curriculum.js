@@ -4,7 +4,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = "/workspace";
+const ROOT = path.resolve(__dirname, "..");
 const DATA = path.join(ROOT, "data");
 
 function readJson(name) {
