@@ -162,11 +162,31 @@ function loadApp(opts = {}) {
   const documentStub = makeDocument();
   const localStorageStub = makeLocalStorage();
 
+  // Track every timer the app schedules. selectPlayer() starts the session
+  // countdown and the play-time flush, which are intervals that never stop on
+  // their own — without this a single test that switches profile keeps the
+  // Node event loop alive and the run hangs instead of finishing.
+  const liveTimers = new Set();
+  const trackedSetTimeout = (fn, ms, ...rest) => {
+    const id = setTimeout((...a) => { liveTimers.delete(id); return fn(...a); }, ms, ...rest);
+    liveTimers.add(id);
+    return id;
+  };
+  const trackedSetInterval = (fn, ms, ...rest) => {
+    const id = setInterval(fn, ms, ...rest);
+    liveTimers.add(id);
+    return id;
+  };
+  const trackedClear = (id) => { liveTimers.delete(id); clearTimeout(id); clearInterval(id); };
+
   const ctx = {
     console,
-    setTimeout, clearTimeout, setInterval, clearInterval,
-    requestAnimationFrame: (fn) => setTimeout(fn, 0),
-    cancelAnimationFrame: clearTimeout,
+    setTimeout: trackedSetTimeout,
+    clearTimeout: trackedClear,
+    setInterval: trackedSetInterval,
+    clearInterval: trackedClear,
+    requestAnimationFrame: (fn) => trackedSetTimeout(fn, 0),
+    cancelAnimationFrame: trackedClear,
     document: documentStub,
     localStorage: localStorageStub,
     sessionStorage: makeLocalStorage(),
@@ -190,6 +210,12 @@ function loadApp(opts = {}) {
 
   vm.createContext(ctx);
   new vm.Script(code, { filename: "index.html<inline>" }).runInContext(ctx);
+
+  /** Stop every timer this app instance started. Call when a test is done. */
+  ctx.__stopAllTimers = () => {
+    liveTimers.forEach((id) => { clearTimeout(id); clearInterval(id); });
+    liveTimers.clear();
+  };
   return ctx;
 }
 

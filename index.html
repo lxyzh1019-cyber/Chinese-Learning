@@ -2461,7 +2461,7 @@ function showMascotBubble(msg){
   if(!el)return;
   el.textContent=msg;
   el.style.display='block';
-  setTimeout(()=>{if(el)el.style.display='none';},3400);
+  laterCall('ui',()=>{if(el)el.style.display='none';},3400);
 }
 function maybeMascotToast(key){
   if(isMascotSuppressed())return;
@@ -2888,7 +2888,7 @@ function finishDailyWord(correct,correctAns,btn){
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
     document.getElementById('dw-opts').querySelectorAll('.mcq-opt').forEach(b2=>{if(b2.textContent===correctAns)b2.classList.add('correct');});
   }
-  setTimeout(()=>{closeDailyWordOverlay();},correct?950:1500);
+  laterCall('ui',()=>{closeDailyWordOverlay();},correct?950:1500);
 }
 
 function closeDailyWordOverlay(){
@@ -2939,25 +2939,107 @@ function showCorrectRevealCard(o){
   spk.onclick=()=>speak(o.zh||'',{sentence:!!o.isSentence});
   const fin=o.onDone||function(){};
   btn.onclick=()=>dismissCorrectReveal(fin);
-  correctRevealTimer=setTimeout(()=>dismissCorrectReveal(fin),4000);
+  correctRevealTimer=laterCall('reveal',()=>dismissCorrectReveal(fin),4000);
 }
-function saveState(){
+// ══════════════════════════════════════════════════════
+// DEFERRED-CALLBACK REGISTRY
+// ══════════════════════════════════════════════════════
+// Timers and library callbacks that fire after the child has moved on used to
+// mutate whatever profile happened to be selected when they landed — a Rain
+// drop logging a wrong answer into the other child's practice list, an
+// abandoned round awarding stars, a quiz result written against the wrong
+// player. Everything deferred is registered here so it can be cancelled at the
+// boundaries where it stops being valid.
+//
+// Two mechanisms, because not everything is a timer:
+//   - laterCall/repeatCall hold handles in per-scope Sets. Sets, not single
+//     handles: Rain has ~9 drop timeouts alive at once and the sentence-builder
+//     schedules one per word.
+//   - sessionGen is a counter bumped on every profile change, for callbacks
+//     that cannot be cancelled by handle — HanziWriter's quiz callbacks and
+//     in-flight awaits. They capture the generation and bail if it moved.
+//
+// Deliberately NOT registered (these must survive): the wall clock, confetti,
+// the blob-URL revoke, the Firestore listeners and the visibilitychange
+// handler.
+let sessionGen=0;
+const deferredScopes={};
+function deferredBucket(scope){
+  if(!deferredScopes[scope])deferredScopes[scope]=new Set();
+  return deferredScopes[scope];
+}
+/** setTimeout that is cancelled by drainScope and skipped if the profile changed. */
+function laterCall(scope,fn,ms){
+  const bucket=deferredBucket(scope);
+  const gen=sessionGen;
+  const rec={interval:false,id:null};
+  rec.id=setTimeout(()=>{
+    bucket.delete(rec);
+    if(gen!==sessionGen)return;
+    fn();
+  },ms);
+  bucket.add(rec);
+  return rec.id;
+}
+/** setInterval with the same guarantees. */
+function repeatCall(scope,fn,ms){
+  const bucket=deferredBucket(scope);
+  const gen=sessionGen;
+  const rec={interval:true,id:null};
+  rec.id=setInterval(()=>{
+    if(gen!==sessionGen){clearInterval(rec.id);bucket.delete(rec);return;}
+    fn();
+  },ms);
+  bucket.add(rec);
+  return rec.id;
+}
+function drainScope(scope){
+  const bucket=deferredScopes[scope];
+  if(!bucket)return;
+  bucket.forEach(rec=>{if(rec.interval)clearInterval(rec.id);else clearTimeout(rec.id);});
+  bucket.clear();
+}
+/** Drop everything cancellable. Callers handle ordering-sensitive work first. */
+function drainAllDeferred(){
+  Object.keys(deferredScopes).forEach(drainScope);
+  try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){}
+}
+/**
+ * Invalidate every outstanding non-timer callback. Call when the active player
+ * changes, so anything already past its cancellation point still refuses to
+ * write to the newly selected child.
+ */
+function bumpSessionGen(){
+  sessionGen++;
+  return sessionGen;
+}
+
+// Persist exactly one player.
+// Only this player's lastSaved is stamped and only this player's document is
+// written. That is the whole point: an untouched player keeps its old stamp and
+// so correctly LOSES the `remote.lastSaved > local.lastSaved` comparison in the
+// onSnapshot handler, instead of overwriting a newer copy from another device.
+// localStorage holds both players in one blob, so it is always written whole.
+function savePlayer(pid){
+  if(!pid||!state[pid])return;
   try{
-    const now=Date.now();
-    ['jenn','jess'].forEach(pid=>{if(state[pid])state[pid].lastSaved=now;});
-    dbgLog('saveState begin',{
-      jennLastSaved:(state.jenn&&state.jenn.lastSaved)||0,
-      jessLastSaved:(state.jess&&state.jess.lastSaved)||0,
-      curP:curP||null
-    });
+    state[pid].lastSaved=Date.now();
+    dbgLog('savePlayer',{pid,lastSaved:state[pid].lastSaved,curP:curP||null});
     localStorage.setItem(SK,JSON.stringify(state));
     if(db){
-      ['jenn','jess'].forEach(pid=>{
-        db.collection('chinese-adventure').doc(pid).set(state[pid]).catch(()=>{});
-      });
+      db.collection('chinese-adventure').doc(pid).set(state[pid]).catch(()=>{});
     }
     refreshOpenSummaries();
   }catch(e){}
+}
+// Save the ACTIVE player. Several callers reach this with no player selected
+// (the session-timer tick, exitQuiz, the parent panel opened from the select
+// screen), so a null curP is a no-op rather than an error.
+// Code that mutates a player who is not curP — the parent star/mystery controls,
+// clearAllProgress — must call savePlayer(pid) directly instead.
+function saveState(){
+  if(!curP)return;
+  savePlayer(curP);
 }
 
 function ensureState(p){
@@ -3646,7 +3728,7 @@ function checkFlashAnswer(btn,ok,answer,w){
     logWrong(curP,w.zh,w.py,w.en);
   }
   flashSt.i++;persistFlashSession();saveState();
-  setTimeout(renderFlashCurrent,850);
+  laterCall('flash',renderFlashCurrent,850);
 }
 
 function restoreFlashSession(){
@@ -3665,7 +3747,15 @@ let rainSt={pool:[],target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:
 let listenSt={questions:[],qi:0,streak:0,score:0};
 let traceSt={chars:[],i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:null};
 
-function closeGamesOverlay(){document.getElementById('games-overlay').classList.remove('show');}
+function closeGamesOverlay(){
+  document.getElementById('games-overlay').classList.remove('show');
+  // This was a one-liner that cleared nothing: Rain's intervals and its ~9
+  // in-flight drop timeouts, the match flip-back and the trace advance all
+  // survive the overlay being hidden. Left running they keep writing to
+  // state[curP] — and award stars for a round the child abandoned.
+  clearRainTimers();
+  drainScope('games');
+}
 function setGamesFailedFocus(active){
   const ov=document.getElementById('games-overlay');
   if(!ov)return;
@@ -3868,7 +3958,7 @@ function tapMatch(idx){
         logWrong(curP,a.w&&a.w.zh||'',a.w&&a.w.py||'',a.w&&a.w.en||'');
       }
       persistMatch();saveState();renderMemoryMatch();
-      setTimeout(()=>{matchSt.openIdxs=[];persistMatch();saveState();renderMemoryMatch();},650);
+      laterCall('games',()=>{matchSt.openIdxs=[];persistMatch();saveState();renderMemoryMatch();},650);
     }
   }else{persistMatch();saveState();renderMemoryMatch();}
 }
@@ -3966,7 +4056,7 @@ function spawnRainDrop(){
   };
   zone.appendChild(btn);
   requestAnimationFrame(()=>{btn.style.top='240px';});
-  setTimeout(()=>{
+  laterCall('games',()=>{
     if(btn.parentNode){
       if(w.zh===rainSt.target.zh&&rainSt.targetShownThisRound){
         rainSt.rainAttempts=(rainSt.rainAttempts||0)+1;
@@ -4078,7 +4168,7 @@ function checkListen(btn,ok,q){
   listenSt.qi++;
   if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid};
   saveState();
-  setTimeout(renderListen,800);
+  laterCall('listen',renderListen,800);
 }
 
 function uniqueChars(words){
@@ -4166,14 +4256,17 @@ function startTraceQuiz(){
   if(watchBtn)watchBtn.disabled=true;
   const c=traceSt.chars[traceSt.i];
   let mistakes=0;
+  const traceGen=sessionGen;
   traceSt.writer.quiz({
     onMistake:()=>{
+      if(traceGen!==sessionGen)return;
       if(!consumeDynastyForgiveness('trace')){
         mistakes++;
         logWrong(curP,c.zh,c.py,c.en);
       }
     },
     onComplete:()=>{
+      if(traceGen!==sessionGen)return;
       // Softer thresholds: 0 mistakes=3★, ≤4=2★, anything else=1★
       const stars=mistakes===0?3:(mistakes<=4?2:1);
       const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
@@ -4188,7 +4281,7 @@ function startTraceQuiz(){
       showToast(c.zh+' '+('★'.repeat(stars)+'☆'.repeat(3-stars))+' · '+msg,2000);
       saveState();
       // Auto-advance to next character after showing the result
-      setTimeout(traceNext,2000);
+      laterCall('games',traceNext,2000);
     }
   });
 }
@@ -4579,6 +4672,13 @@ function showScreen(id){
 }
 
 function selectPlayer(p){
+  // stopPlayTime() flushes the outstanding play-time delta and must run while
+  // curP still points at the outgoing player, so it stays ahead of the drain.
+  stopPlayTime();
+  drainAllDeferred();
+  bumpSessionGen();
+  // Otherwise the new profile's hub opens on the previous child's gate.
+  selectedGateId=null;
   curP=p;ensureState(p);curHSK=1;
   state[p].mascotSession={count:0,lastAt:0};
   stopCharOriginRotation();
@@ -4590,6 +4690,8 @@ function selectPlayer(p){
 
 function goToSelect(){
   stopTimer();stopPlayTime();
+  drainAllDeferred();
+  bumpSessionGen();
   hidePY=false;hideEN=false;noPYmode=false;
   document.body.classList.remove('nopy-mode');
   curP=null;renderSelectBadges();showScreen('select');
@@ -5031,8 +5133,13 @@ async function openCultureStories(){
   const body=document.getElementById('culture-body');if(!body)return;
   body.innerHTML='<div class="dd-desc">Loading culture stories...</div>';
   ov.classList.add('show');
+  // The fetch can outlive the profile that started it; without this the reads
+  // below land on whichever child is selected when it resolves.
+  const gen=sessionGen;
   const data=await loadCultureCurriculum();
+  if(gen!==sessionGen)return;
   if(!data||!Array.isArray(data.tracks)){body.innerHTML='<div class="dd-desc">Culture stories are unavailable right now.</div>';return;}
+  if(!curP)return;
   ensureState(curP);
   const seen=state[curP].cultureSeen||{};
   const cards=[];
@@ -5274,7 +5381,7 @@ function checkMiniQ(btn,isCorrect,correctAns,opts){
     maybeCelebrateQuizMilestone();
     microRewardToast('Nice one!');
     persistMiniQuizState();saveState();
-    setTimeout(goNext,900);
+    laterCall('miniquiz',goNext,900);
   }else{
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
     opts.querySelectorAll('.mcq-opt').forEach(b=>{if(b.textContent===correctAns)b.classList.add('correct');});
@@ -5418,7 +5525,7 @@ function checkDrillQ(btn,isCorrect,correctAns,opts,zh,py){
       if(s.failedWords[zh].failCount<=0)delete s.failedWords[zh];
     }
     saveState();
-    setTimeout(goNext,1100);
+    laterCall('drill',goNext,1100);
   }else{
     drillSt.streak=0;
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
@@ -5523,7 +5630,7 @@ function checkRevengeQ(btn,isCorrect,correctAns,grid,zh,py){
     microRewardToast('Strong comeback!');
     bumpCorrectCount(1);
     saveState();
-    setTimeout(goNext,900);
+    laterCall('revenge',goNext,900);
   }else{
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
     grid.querySelectorAll('.mcq-opt').forEach(b=>{if(b.textContent===correctAns)b.classList.add('correct');});
@@ -5960,7 +6067,7 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     maybeCelebrateQuizMilestone();
     microRewardToast('Nice one!');
     persistGateQuizState();saveState();
-    setTimeout(goNext,1200);
+    laterCall('quiz',goNext,1200);
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     btn.classList.add('wrong');fb.className='q-feedback err';fb.textContent='❌ Nice try! Correct answer: '+correctAns;
@@ -6188,7 +6295,7 @@ function checkPY(){
     maybeCelebrateQuizMilestone();
     microRewardToast('Nice one!');
     persistGateQuizState();saveState();
-    setTimeout(goNext,1200);
+    laterCall('quiz',goNext,1200);
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     inp.className='py-input err';fb.className='q-feedback err';
@@ -6223,7 +6330,7 @@ function renderSBPhase(qc,scoreBar){
     <div class="q-score-mini">Sentence ${quizSt.sbRound+1} of ${quizSt.sbN||3} · Score: ${quizSt.score} / ${quizSt.maxScore||220}</div>
   </div>`;
   const sbSpeak=document.getElementById('sb-speak-all');
-  if(sbSpeak)sbSpeak.onclick=()=>{words.forEach((w,i)=>setTimeout(()=>speak(w,{sentence:true}),i*680));};
+  if(sbSpeak)sbSpeak.onclick=()=>{words.forEach((w,i)=>laterCall('quiz',()=>speak(w,{sentence:true}),i*680));};
   const wordsEl=document.getElementById('sb-words');
   shuffled.forEach((w,i)=>{
     const chip=document.createElement('div');chip.className='wchip';chip.textContent=w;chip.dataset.idx=i;
@@ -6283,7 +6390,7 @@ function checkSB(){
     maybeCelebrateQuizMilestone();
     microRewardToast('Nice one!');
     persistGateQuizState();saveState();
-    setTimeout(goNext,1100);
+    laterCall('quiz',goNext,1100);
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     fb.className='q-feedback err';fb.textContent='❌ Listen once more, then try again!';
@@ -6400,6 +6507,10 @@ function exitQuiz(){
   }else{
     clearGateQuizPending();
   }
+  // A pending goNext or reveal-card continuation would otherwise render a quiz
+  // result after the child is already back on the hub.
+  drainScope('quiz');
+  drainScope('reveal');
   saveState();
   goToHub();
 }
@@ -6459,12 +6570,12 @@ function parentAdjustStars(p,dir){
     const ts=getTS(p);ts.stars=Math.max(0,(ts.stars||0)-remove);
     showParentStarMsg(`−${remove}⭐ removed from ${p==='jenn'?'Jenn':'Jess'}.`,'var(--warn)');
   }
-  saveState();refreshParentStarControls();renderParentSummary();
+  savePlayer(p);refreshParentStarControls();renderParentSummary();
 }
 function parentAddMysteryPick(p){
   ensureState(p);
   state[p].mysteryPicksPending=(state[p].mysteryPicksPending||0)+1;
-  saveState();refreshParentStarControls();
+  savePlayer(p);refreshParentStarControls();
   showParentStarMsg(`+1 mystery pick given to ${p==='jenn'?'Jenn':'Jess'}!`,'var(--gold)');
 }
 function parentRemoveMysteryPick(p){
@@ -6472,7 +6583,7 @@ function parentRemoveMysteryPick(p){
   const cur=state[p].mysteryPicksPending||0;
   if(cur<1){showParentStarMsg('No mystery picks to remove.','var(--muted)');return;}
   state[p].mysteryPicksPending=cur-1;
-  saveState();refreshParentStarControls();
+  savePlayer(p);refreshParentStarControls();
   showParentStarMsg(`−1 mystery pick removed from ${p==='jenn'?'Jenn':'Jess'}.`,'var(--warn)');
 }
 function showParentStarMsg(msg,color){
@@ -6506,7 +6617,8 @@ function clearAllProgressWithParentPwd(){
   if(!ok)return;
   state={jenn:defPlayer(),jess:defPlayer()};
   ensureState('jenn');ensureState('jess');
-  saveState();
+  // The one place a two-player write is correct.
+  savePlayer('jenn');savePlayer('jess');
   renderSelectBadges();
   if(curP)renderHub();
   renderParentSummary();
@@ -6829,8 +6941,13 @@ async function openCultureStories(){
   const body=document.getElementById('culture-body');if(!body)return;
   body.innerHTML='<div class="dd-desc">Loading culture stories...</div>';
   ov.classList.add('show');
+  // The fetch can outlive the profile that started it; without this the reads
+  // below land on whichever child is selected when it resolves.
+  const gen=sessionGen;
   const data=await loadCultureCurriculum();
+  if(gen!==sessionGen)return;
   if(!data||!Array.isArray(data.tracks)){body.innerHTML='<div class="dd-desc">Culture stories are unavailable right now.</div>';return;}
+  if(!curP)return;
   ensureState(curP);
   const seen=state[curP].cultureSeen||{};
   const rewarded=state[curP].cultureRewarded||{};

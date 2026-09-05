@@ -122,10 +122,20 @@ test(
   }
 );
 
-test(
-  "M-T16 / S01: saving one child must not write or re-stamp the other",
-  { todo: "Phase A — saveState:2944 stamps and .set()s both player documents" },
-  () => {
+/** Record every Firestore document write the app performs. */
+function captureWrites(a) {
+  const writes = [];
+  a.db = {
+    collection: () => ({
+      doc: (pid) => ({
+        set: (payload) => { writes.push({ pid, payload }); return Promise.resolve(); },
+      }),
+    }),
+  };
+  return writes;
+}
+
+test("M-T16 / S01: saving one child must not write or re-stamp the other", () => {
     const a = app();
     const jess = a.defPlayer();
     jess.lastSaved = 1000;
@@ -133,18 +143,46 @@ test(
     F.installState(a, { jenn: a.defPlayer(), jess });
     a.curP = "jenn";
 
-    const writes = [];
-    a.db = {
-      collection: () => ({
-        doc: (pid) => ({
-          set: (payload) => { writes.push({ pid, payload }); return Promise.resolve(); },
-        }),
-      }),
-    };
+    const writes = captureWrites(a);
 
     a.saveState();
 
     assert.deepEqual(writes.map((w) => w.pid), ["jenn"], "only the active player is written");
     assert.equal(a.state.jess.lastSaved, 1000, "the inactive player's timestamp is untouched");
-  }
-);
+});
+
+test("S01: parent star edits persist for a child who is not the active player", () => {
+  // The parent panel is normally opened from the select screen, where curP is
+  // null. A naive curP-scoped save would drop these writes entirely and the
+  // stars would vanish on reload — a worse bug than the one S01 fixes.
+  const a = app();
+  F.installState(a);
+  a.curP = null;
+  const writes = captureWrites(a);
+  a.document.getElementById("parent-jess-star-amt").value = "7";
+
+  a.parentAdjustStars("jess", 1);
+
+  assert.deepEqual(writes.map((w) => w.pid), ["jess"], "Jess is written, Jenn is not");
+  assert.equal(a.state.jess.totalStars, 7, "the stars actually landed");
+  assert.ok(a.state.jess.lastSaved > 0, "Jess is stamped");
+  assert.equal(a.state.jenn.lastSaved, 0, "Jenn is left alone");
+});
+
+test("S01: clearing all progress writes both players", () => {
+  const a = app();
+  F.installState(a);
+  const writes = captureWrites(a);
+  a.savePlayer("jenn");
+  a.savePlayer("jess");
+  assert.deepEqual(writes.map((w) => w.pid).sort(), ["jenn", "jess"]);
+});
+
+test("S01: saving with no active player is a no-op, not a crash", () => {
+  const a = app();
+  F.installState(a);
+  a.curP = null;
+  const writes = captureWrites(a);
+  a.saveState();
+  assert.deepEqual(writes, [], "nothing is written when no player is selected");
+});
