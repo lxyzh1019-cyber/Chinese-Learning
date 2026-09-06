@@ -82,32 +82,67 @@ test("two reads plus a cleared Listen round unlocks all four games", () => {
 
 // ── DEFECT LEDGER ─────────────────────────────────────────────────────────
 
-test(
-  "M-T03 / T03: a new user's mini-quiz must not bypass the read chain",
-  { todo: "Phase B — gameUnlockForDid:3686 treats new storiesCompleted entries as legacy credit" },
-  () => {
-    const a = app();
-    // Finishing one story mini-quiz writes storiesCompleted (index.html:5323)
-    // with no dwell check, which short-circuits the whole chain.
-    F.installState(a, { jenn: F.newUserAfterMiniQuiz(a) });
-    const u = a.gameUnlockForDid(1);
-    assert.equal(u.trace, false, "Trace needs a read plus a flashcard pass");
-    assert.equal(u.match, false, "Match needs a second qualifying read");
-    assert.equal(u.rain, false, "Rain needs a second read plus a Listen round");
-  }
-);
+test("M-T03 / T03: a new user's mini-quiz does not bypass the read chain", () => {
+  const a = app();
+  // Finishing one story mini-quiz writes storiesCompleted with no dwell check.
+  const p = F.newUserAfterMiniQuiz(a);
+  p.legacyStoriesCompleted = [];        // a new player has no pre-feature credit
+  F.installState(a, { jenn: p });
+  const u = a.gameUnlockForDid(1);
+  assert.equal(u.trace, false, "Trace needs a read plus a flashcard pass");
+  assert.equal(u.match, false, "Match needs a second qualifying read");
+  assert.equal(u.rain, false, "Rain needs a second read plus a Listen round");
+});
 
-test(
-  "T04: uniqueChars must not give every character its whole word's reading",
-  { todo: "Phase B — uniqueChars:4084 copies w.py/w.en onto each character" },
-  () => {
-    const a = app();
-    const chars = a.uniqueChars([{ zh: "学习", py: "xué xí", en: "to study; to learn" }]);
-    const xi = chars.find((c) => c.zh === "习");
-    assert.notEqual(xi.py, "xué xí", "习 does not read 'xué xí'");
-    assert.notEqual(xi.en, "to study; to learn", "习 alone does not mean 'to study'");
-  }
-);
+test("T03: an existing child keeps the access they already had", () => {
+  const a = app();
+  const p = F.newUserAfterMiniQuiz(a, "xia");
+  delete p.legacyStoriesCompleted;      // pre-migration save
+  F.installState(a, { jenn: p });       // ensureState takes the snapshot
+  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia"],
+    "stories finished before the gate shipped are grandfathered");
+  const u = a.gameUnlockForDid(1);
+  assert.equal(u.rain, true, "previously reachable games stay reachable");
+});
+
+test("T03: the snapshot is taken once and does not grow", () => {
+  const a = app();
+  const p = F.newUserAfterMiniQuiz(a, "xia");
+  delete p.legacyStoriesCompleted;
+  F.installState(a, { jenn: p });
+  // A story finished today must not join the legacy list.
+  a.state.jenn.storiesCompleted.push("shang");
+  a.ensureState("jenn");
+  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia"],
+    "re-running ensureState does not re-snapshot");
+  assert.equal(a.gameUnlockForDid(2).rain, false, "the new story earns no bypass");
+});
+
+test("T04: uniqueChars does not give every character its whole word's reading", () => {
+  const a = app();
+  const chars = a.uniqueChars([{ zh: "学习", py: "xué xí", en: "to study; to learn" }]);
+  const xi = chars.find((c) => c.zh === "习");
+  assert.notEqual(xi.py, "xué xí", "习 does not read 'xué xí'");
+  assert.notEqual(xi.en, "to study; to learn", "习 alone does not mean 'to study'");
+  const xue = chars.find((c) => c.zh === "学");
+  assert.notEqual(xue.py, "xué xí", "学 does not read 'xué xí' either");
+});
+
+test("T04: a single-character word keeps its own reading", () => {
+  const a = app();
+  const [c] = a.uniqueChars([{ zh: "水", py: "shuǐ", en: "water" }]);
+  assert.equal(c.py, "shuǐ");
+  assert.equal(c.en, "water");
+});
+
+test("T04: an unknown character shows its source word, not an invented gloss", () => {
+  const a = app();
+  const chars = a.uniqueChars([{ zh: "鎏金", py: "liú jīn", en: "gilded" }]);
+  const rare = chars.find((c) => c.zh === "鎏");
+  assert.ok(rare, "the character is still offered for tracing");
+  assert.notEqual(rare.en, "gilded", "the word's meaning is not pinned on one character");
+  assert.match(rare.en, /in 鎏金/, "it names the word the character came from");
+});
 
 test("M-T11 / B02d: champion quizzes generate their requested item counts", () => {
   const a = app();
@@ -304,4 +339,141 @@ test("B02e: an already-known story can still be finished on a re-read", () => {
   assert.equal(a.document.getElementById("prog-lbl").textContent, "100%");
   assert.equal(a.document.getElementById("unlock-btn").disabled, false,
     "the finish button must be reachable on a re-read");
+});
+
+// ── G04: gate completion and reward ────────────────────────────────────────
+
+/** Put a player one requirement away from clearing a gate. */
+function almostCleared(a, { quiz = true, games = true, did = 1, points = 180 } = {}) {
+  F.installState(a);
+  const s = a.state.jenn;
+  const k = String(did);
+  s.gateGameStars = { [k]: games
+    ? { trace: 3, match: 3, rain: 3, listen: 3 }
+    : { trace: 3, match: 3, rain: 3, listen: 0 } };
+  if (quiz) s.gateBestQuiz = { [k]: { accPct: 95, quizStars: 3, points } };
+  return s;
+}
+
+test("M-T06 / G04: the gate pays the same whichever requirement lands last", () => {
+  // Quiz already passed; the last GAME completes the gate.
+  const a1 = app();
+  almostCleared(a1, { quiz: true, games: false, points: 180 });
+  a1.curGameTargetDid = 1;
+  a1.updateGateGameBest(1, "listen", 3);
+  const viaGame = a1.state.jenn;
+
+  // Games already done; the QUIZ completes the gate.
+  const a2 = app();
+  const s2 = almostCleared(a2, { quiz: false, games: true });
+  s2.gateBestQuiz = {};
+  a2.updateBestQuizRecord(s2, false, 1, null, 95, 3, 180);
+  a2.evaluateGateCompletion(1);
+  const viaQuiz = a2.state.jenn;
+
+  assert.deepEqual(viaGame.gatesCompleted, [1], "cleared via the last game");
+  assert.deepEqual(viaQuiz.gatesCompleted, [1], "cleared via the quiz");
+  assert.equal(viaGame.totalStars, viaQuiz.totalStars,
+    "the same achievement pays the same amount either way");
+  assert.equal(viaGame.totalStars, 180, "and it pays the qualifying quiz's points");
+  assert.equal(a1.getTS("jenn").gates, a2.getTS("jenn").gates, "unique gate count matches");
+});
+
+test("G04: replaying the boss on a cleared gate pays nothing", () => {
+  const a = app();
+  almostCleared(a, { quiz: true, games: true, points: 180 });
+  const first = a.evaluateGateCompletion(1);
+  assert.equal(first.justCleared, true);
+  const afterFirst = a.state.jenn.totalStars;
+  const gatesAfterFirst = a.getTS("jenn").gates;
+
+  // Three more passing replays.
+  for (let i = 0; i < 3; i++) {
+    const again = a.evaluateGateCompletion(1);
+    assert.equal(again.justCleared, false, "already cleared");
+  }
+
+  assert.equal(a.state.jenn.totalStars, afterFirst, "no further payout");
+  assert.equal(a.getTS("jenn").gates, gatesAfterFirst, "unique gate count does not inflate");
+  assert.deepEqual(a.state.jenn.gatesCompleted, [1], "and it is not listed twice");
+});
+
+test("G04: a gate with an unfinished requirement does not clear or pay", () => {
+  const a = app();
+  almostCleared(a, { quiz: true, games: false, points: 180 });
+  const r = a.evaluateGateCompletion(1);
+  assert.equal(r.cleared, false);
+  assert.equal(r.justCleared, false);
+  assert.deepEqual(a.state.jenn.gatesCompleted, []);
+  assert.equal(a.state.jenn.totalStars, 0, "nothing paid");
+});
+
+test("G04: the best quiz record comes from one attempt, not merged fields", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  // A high-accuracy, low-scoring run, then a low-accuracy, high-scoring one.
+  a.updateBestQuizRecord(s, false, 1, null, 95, 3, 120);
+  a.updateBestQuizRecord(s, false, 1, null, 60, 1, 400);
+  const best = s.gateBestQuiz["1"];
+  assert.equal(best.accPct, 95, "accuracy decides");
+  assert.equal(best.points, 120, "and the points belong to that same attempt");
+  assert.equal(best.quizStars, 3, "as do its stars — no field-by-field maximum");
+});
+
+// ── B02c: one answer, one score ────────────────────────────────────────────
+
+test("M-T10 / B02c: a rapid double submit scores once and advances once", () => {
+  const a = app();
+  F.installState(a);
+  const vocab = Array.from({ length: 12 }, (_, i) => ({ zh: `字${i}`, py: `zi${i}`, en: `w${i}` }));
+  a.quizSt = {
+    did: 1, phase: 1, score: 0, phaseScores: [0, 0, 0], vocab,
+    questions: [], pyQ: a.buildPYQ(vocab, 5), sbPack: [], sbRound: 0,
+    isChampion: false, mcqN: 0, pyN: 5, sbN: 0, maxScore: 100,
+    quizCorrect: 0, quizAttempts: 0,
+  };
+  a.releaseAnswerLock();
+  const q = a.quizSt.pyQ[0];
+  a.document.getElementById("py-in").value = q.correct;
+
+  a.checkPY();
+  const afterFirst = { score: a.quizSt.score, attempts: a.quizSt.quizAttempts };
+  a.checkPY();   // the second tap, before the advance timer fires
+  a.checkPY();
+
+  assert.equal(a.quizSt.score, afterFirst.score, "the score moved exactly once");
+  assert.equal(a.quizSt.quizAttempts, afterFirst.attempts, "one attempt recorded");
+  assert.equal(a.quizSt.quizAttempts, 1);
+});
+
+test("B02c: the lock clears so the next question can be answered", () => {
+  const a = app();
+  F.installState(a);
+  const vocab = Array.from({ length: 12 }, (_, i) => ({ zh: `字${i}`, py: `zi${i}`, en: `w${i}` }));
+  a.quizSt = {
+    did: 1, phase: 1, score: 0, phaseScores: [0, 0, 0], vocab,
+    questions: [], pyQ: a.buildPYQ(vocab, 5), sbPack: [], sbRound: 0,
+    isChampion: false, mcqN: 0, pyN: 5, sbN: 0, maxScore: 100,
+    quizCorrect: 0, quizAttempts: 0,
+  };
+  a.releaseAnswerLock();
+  a.document.getElementById("py-in").value = a.quizSt.pyQ[0].correct;
+  a.checkPY();
+  assert.equal(a.quizSt.quizAttempts, 1);
+
+  a.releaseAnswerLock();          // what goNext does when the next item renders
+  a.checkPY();
+  assert.equal(a.quizSt.quizAttempts, 2, "the following answer is accepted");
+});
+
+test("B02c: leaving a quiz releases the lock", () => {
+  const a = app();
+  F.installState(a);
+  a.quizSt = { did: 1, phase: 0, score: 0, phaseScores: [0, 0, 0], vocab: [],
+    questions: [], pyQ: [], sbPack: [], sbRound: 0, quizCorrect: 0, quizAttempts: 0 };
+  assert.equal(a.lockAnswer(), true, "lock taken");
+  assert.equal(a.lockAnswer(), false, "and held");
+  a.exitQuiz();
+  assert.equal(a.lockAnswer(), true, "exiting a quiz did not strand the lock");
 });

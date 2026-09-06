@@ -2235,7 +2235,7 @@ const SENT_COLORS=['#C0392B','#D4A017','#27AE60','#E8445A','#3B82F6','#A78BFA'];
 
 function defPlayer(){
   return{totalStars:0,weekStars:0,lastPlayed:null,lastSaved:0,
-    gatesCompleted:[],storiesCompleted:[],gateStars:{},
+    gatesCompleted:[],storiesCompleted:[],legacyStoriesCompleted:[],gateStars:{},
     library:{},failedWords:{},
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
     weekStart:weekStart(),
@@ -3033,6 +3033,22 @@ function drainAllDeferred(){
   try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){}
 }
 /**
+ * Answer lock for the quiz phases.
+ *
+ * checkPY disabled its input but never its submit button, and checkSB had no
+ * guard at all — so a double tap scored the same answer twice AND scheduled two
+ * advances, skipping the next question while being paid for it. The lock is
+ * taken before any score is applied and released when the next question renders.
+ */
+let answerLocked=false;
+function lockAnswer(){
+  if(answerLocked)return false;
+  answerLocked=true;
+  return true;
+}
+function releaseAnswerLock(){answerLocked=false;}
+
+/**
  * Invalidate every outstanding non-timer callback. Call when the active player
  * changes, so anything already past its cancellation point still refuses to
  * write to the newly selected child.
@@ -3079,6 +3095,11 @@ function ensureState(p){
   // Preserve current unlock semantics per player; do not auto-recalculate.
   if(!s.progressVersion)s.progressVersion='legacy-gate-index';
   if(!s.storiesCompleted)s.storiesCompleted=[];if(!s.gateStars)s.gateStars={};
+  // Snapshot the stories finished before the read-chain gate shipped, once.
+  // Anything completed from now on has to earn its unlocks the normal way.
+  if(!Array.isArray(s.legacyStoriesCompleted)){
+    s.legacyStoriesCompleted=s.storiesCompleted.slice();
+  }
   if(!s.championCleared)s.championCleared={};
   if(!s.badges)s.badges=[];
   if(s.dailyWordSolved===undefined)s.dailyWordSolved=null;
@@ -3195,21 +3216,8 @@ function updateGateGameBest(did,gameKey,stars){
   if(stars>prev){
     s.gateGameStars[k][gameKey]=stars;
     startGateTimerIfNeeded(s,did,stars);
-    // If quiz and all four game requirements become true in different sessions/orders,
-    // auto-clear the gate as soon as both are satisfied.
-    const best=(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0};
-    const quizOk=(best.accPct||0)>=90&&(best.quizStars||0)===3;
-    const gamesOk=gateGamesAllThree(s,did);
-    if(quizOk&&gamesOk&&!s.gatesCompleted.includes(did)){
-      s.gatesCompleted.push(did);
-      const prevGateStars=s.gateStars[did]||0;
-      if((best.quizStars||0)>prevGateStars)s.gateStars[did]=best.quizStars||0;
-      const timer=(s.gateTimers&&s.gateTimers[k])||null;
-      if(timer&&timer.active)timer.active=false;
-      const ts=getTS(curP);
-      ts.gates=(ts.gates||0)+1;
-      showToast(`🎉 Gate ${did} cleared! Next gate unlocked.`);
-    }
+    // Requirements can be met in any order and across days; one function decides.
+    evaluateGateCompletion(did);
   }
   saveState();
 }
@@ -3452,18 +3460,71 @@ function bestQuizForAttempt(s,isChampion,did,group){
   return(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0};
 }
 
-function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars){
-  if(isChampion){
-    const ck=String(group||0);
-    if(!s.championBestQuiz)s.championBestQuiz={};
-    const prev=s.championBestQuiz[ck]||{accPct:0,quizStars:0};
-    s.championBestQuiz[ck]={accPct:Math.max(prev.accPct||0,accPct||0),quizStars:Math.max(prev.quizStars||0,quizStars||0)};
-    return;
-  }
+/**
+ * Merge one finished quiz attempt into the stored best.
+ *
+ * `points` is carried alongside so a gate cleared by a GAME can still pay the
+ * amount the qualifying quiz was actually worth. The old record kept only
+ * accuracy and stars, which is why the payout depended on which requirement
+ * happened to land last.
+ *
+ * Best is chosen by highest accuracy, then highest points, then the earliest
+ * attempt — assembled from ONE attempt, never max()-ed field by field across
+ * different ones.
+ */
+function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars,points){
+  const store=isChampion?'championBestQuiz':'gateBestQuiz';
+  const key=isChampion?String(group||0):String(did);
+  if(!s[store])s[store]={};
+  const prev=s[store][key]||null;
+  const next={accPct:accPct||0,quizStars:quizStars||0,points:points||0,atKey:todayKey()};
+  if(!prev){s[store][key]=next;return;}
+  const better=(next.accPct>(prev.accPct||0))||
+    (next.accPct===(prev.accPct||0)&&next.points>(prev.points||0));
+  if(better)s[store][key]=next;
+  else if(prev.points===undefined)s[store][key]=Object.assign({points:0},prev);
+}
+
+/**
+ * The single place a gate is judged complete. Idempotent: call it after a game
+ * star changes and after a quiz finishes, in any order, any number of times.
+ *
+ * Previously two separate sites decided this and paid differently — finishing
+ * with the quiz paid up to 220 points plus a mystery box, a mission tick and
+ * the one-day badge, while finishing with the last game paid a toast and
+ * nothing else. And because the pass test read the STORED BEST rather than the
+ * current attempt, every later boss replay on a cleared gate re-ran the payout,
+ * even a run answered almost entirely wrong.
+ */
+function evaluateGateCompletion(did){
+  if(!curP||!did)return{cleared:false,justCleared:false};
+  const s=state[curP];
   const k=String(did);
-  if(!s.gateBestQuiz)s.gateBestQuiz={};
-  const prev=s.gateBestQuiz[k]||{accPct:0,quizStars:0};
-  s.gateBestQuiz[k]={accPct:Math.max(prev.accPct||0,accPct||0),quizStars:Math.max(prev.quizStars||0,quizStars||0)};
+  const best=(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0,points:0};
+  const quizOk=(best.accPct||0)>=90&&(best.quizStars||0)===3;
+  const gamesOk=gateGamesAllThree(s,did);
+  const already=s.gatesCompleted.includes(did);
+  if(!quizOk||!gamesOk)return{cleared:already,justCleared:false};
+  if(already)return{cleared:true,justCleared:false};
+
+  s.gatesCompleted.push(did);
+  const prevGateStars=s.gateStars[did]||0;
+  if((best.quizStars||0)>prevGateStars)s.gateStars[did]=best.quizStars||0;
+  const timer=(s.gateTimers&&s.gateTimers[k])||null;
+  if(timer&&timer.active&&timer.startKey===todayKey())checkBadges(curP,{oneDayGate:true});
+  if(timer&&timer.active)timer.active=false;
+
+  // Paid exactly once, from the qualifying record, whichever requirement landed
+  // last.
+  const pts=best.points||0;
+  if(pts>0)addEarnedStars(pts);
+  const ts=getTS(curP);ts.gates=(ts.gates||0)+1;
+  bumpMission('gates',1);
+  maybeGrantMysteryFromGate(did);
+  checkMascotGateFiveUnlock();
+  checkStickerUnlocks();
+  showToast(`🎉 Gate ${did} cleared! Next gate unlocked.`);
+  return{cleared:true,justCleared:true,points:pts};
 }
 
 function showStarEffect(stars,label){
@@ -3800,8 +3861,13 @@ function gameUnlockForDid(did){
   const dynasty=DYNASTIES.find(d=>d.id===did);
   if(!dynasty)return{listen:true,trace:true,match:true,rain:true};
   const storyIds=[dynasty.story,dynasty.story2].filter(Boolean);
-  // Legacy: if story already in storiesCompleted (pre-feature), treat as fully read
-  if(storyIds.some(sid=>(s.storiesCompleted||[]).includes(sid)))return{listen:true,trace:true,match:true,rain:true};
+  // Legacy exemption, for children who finished a story BEFORE the read chain
+  // existed. It reads legacyStoriesCompleted — a one-time snapshot taken by
+  // ensureState — not the live list. The live list is still written today by
+  // the story mini-quiz, with no dwell-time check, so treating it as
+  // pre-feature credit let a brand-new user skim one story and unlock all four
+  // games instantly.
+  if(storyIds.some(sid=>(s.legacyStoriesCompleted||[]).includes(sid)))return{listen:true,trace:true,match:true,rain:true};
   const maxReads=Math.max(0,...storyIds.map(sid=>(s.storyReadCount||{})[sid]||0));
   const flashDone=!!(s.flashPassDone&&s.flashPassDone[String(did)]);
   const listenPlayed=((s.gateGameStars&&s.gateGameStars[String(did)])||{}).listen>0;
@@ -4209,11 +4275,55 @@ function checkListen(btn,ok,q){
   laterCall('listen',renderListen,800);
 }
 
+/**
+ * Per-character reading and meaning, built once from the story tokens.
+ *
+ * Stories carry accurate per-character `py` and `mn` on every token, so they
+ * are the reliable source. Single-character vocabulary entries fill any gaps.
+ */
+let charMetaIndex=null;
+function getCharMeta(){
+  if(charMetaIndex)return charMetaIndex;
+  charMetaIndex={};
+  Object.values(STORIES_MAP||{}).forEach(st=>{
+    (st.sents||[]).forEach(sent=>sent.forEach(tok=>{
+      if(tok&&tok.t==='c'&&tok.ch&&tok.py&&!charMetaIndex[tok.ch]){
+        charMetaIndex[tok.ch]={py:tok.py,en:tok.mn||''};
+      }
+    }));
+  });
+  const addSingle=(w)=>{
+    if(!w||typeof w.zh!=='string'||[...w.zh].length!==1)return;
+    const py=w.py||w.pinyin||'';
+    if(py&&!charMetaIndex[w.zh])charMetaIndex[w.zh]={py,en:w.en||''};
+  };
+  [1,2,3,4].forEach(lv=>(HSK_VOCAB[lv]||[]).forEach(addSingle));
+  Object.values(GATE_VOCAB||{}).forEach(arr=>(arr||[]).forEach(addSingle));
+  return charMetaIndex;
+}
+
+/**
+ * Split words into the characters to trace.
+ *
+ * This used to hand every character its whole WORD's reading and meaning, so a
+ * child tracing 习 was told it reads "xué xí" and means "to study" — both
+ * wrong. Each character now gets its own metadata; where none is known we show
+ * the word it came from, clearly labelled, rather than inventing a gloss for a
+ * character that may not stand alone.
+ */
 function uniqueChars(words){
+  const meta=getCharMeta();
   const m={};
   words.forEach(w=>{
-    [...(w.zh||'')].forEach(ch=>{
-      if(/[\u4e00-\u9fff]/.test(ch)&&!m[ch])m[ch]={zh:ch,py:w.py||'',en:w.en||''};
+    const chars=[...(w.zh||'')].filter(ch=>/[\u4e00-\u9fff]/.test(ch));
+    const single=chars.length===1;
+    chars.forEach(ch=>{
+      if(m[ch])return;
+      if(single){m[ch]={zh:ch,py:w.py||'',en:w.en||''};return;}
+      const info=meta[ch];
+      if(info){m[ch]={zh:ch,py:info.py,en:info.en||''};return;}
+      // No standalone reading known: show the source word instead of guessing.
+      m[ch]={zh:ch,py:'',en:`in ${w.zh}${w.en?' — '+w.en:''}`,fromWord:w.zh};
     });
   });
   return Object.values(m);
@@ -4721,6 +4831,7 @@ function selectPlayer(p){
   // curP still points at the outgoing player, so it stays ahead of the drain.
   stopPlayTime();
   drainAllDeferred();
+  releaseAnswerLock();
   bumpSessionGen();
   // Otherwise the new profile's hub opens on the previous child's gate.
   selectedGateId=null;
@@ -4736,6 +4847,7 @@ function selectPlayer(p){
 function goToSelect(){
   stopTimer();stopPlayTime();
   drainAllDeferred();
+  releaseAnswerLock();
   bumpSessionGen();
   hidePY=false;hideEN=false;noPYmode=false;
   document.body.classList.remove('nopy-mode');
@@ -5767,7 +5879,7 @@ function startGateQuiz(did,opts){
     questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:false,hardMode:hard,mcqN,pyN,sbN,maxScore,noMcqAssistance:!hard,
     quizCorrect:0,quizAttempts:0};
-  mcqAnswered=0;pyAnswered=0;sbBuilt=[];
+  mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
   recentStore[`g-${did}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
@@ -5797,7 +5909,7 @@ function startChampionChallenge(group){
     questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
     quizCorrect:0,quizAttempts:0};
-  mcqAnswered=0;pyAnswered=0;sbBuilt=[];
+  mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
   recentStore[`c-${group}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
@@ -6110,10 +6222,12 @@ function renderMCQPhase(qc,scoreBar){
 }
 
 function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
+  if(!lockAnswer())return;
   if(speakUsed||pyHintUsed)quizSt.noMcqAssistance=false;
   grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;});
   const fb=document.getElementById('q-fb');
   const goNext=()=>{
+    releaseAnswerLock();
     mcqAnswered++;
     if(mcqAnswered<quizSt.questions.length)renderMCQPhase(document.getElementById('quiz-content'),'');
     else nextPhase();
@@ -6344,12 +6458,14 @@ function renderPYPhase(qc,scoreBar){
 
 function checkPY(){
   const q=quizSt.pyQ[pyAnswered];if(!q)return;
+  if(!lockAnswer())return;
   const inp=document.getElementById('py-in');
   const val=stripTones(inp.value.trim().replace(/\s/g,''));
   const correct=stripTones(q.correct.replace(/\s/g,''));
   const fb=document.getElementById('q-fb');
   const w=quizSt.vocab.find(v=>v.zh===q.zh);
   const goNext=()=>{
+    releaseAnswerLock();
     pyAnswered++;
     if(pyAnswered<quizSt.pyQ.length)renderPYPhase(document.getElementById('quiz-content'),'');
     else nextPhase();
@@ -6443,9 +6559,12 @@ function resetSB(){
 
 function checkSB(){
   const correct=quizSt.sbPack[quizSt.sbRound];
+  if(!correct)return;
+  if(!lockAnswer())return;
   const fb=document.getElementById('q-fb');
   const isCorrect=sbBuilt.join('')===correct.join('');
   const goNext=()=>{
+    releaseAnswerLock();
     quizSt.sbRound++;
     resetSB();
     const sbTotal=quizSt.sbN||3;
@@ -6494,7 +6613,7 @@ function renderQuizResult(qc){
   const d=DYNASTIES.find(x=>x.id===quizSt.did);
   const s=state[curP];
   expireGateTimerIfNeeded(s,quizSt.did);
-  updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars);
+  updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars,score);
   const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup);
   const gamesOk=gateGamesAllThree(s,quizSt.did);
   const quizPass=(bestQuiz.accPct||0)>=90&&(bestQuiz.quizStars||0)===3;
@@ -6507,30 +6626,26 @@ function renderQuizResult(qc){
   if(quizSt.isChampion){
     const grp=quizSt.champGroup;
     if(passedChampion){
+      // Champion trophies pay once too. The old code ran addEarnedStars on
+      // every passing replay because the pass test read the stored best.
+      const firstClear=!(grp in s.championCleared);
       const prev=s.championCleared[grp]||0;
       if(quizStars>prev)s.championCleared[grp]=quizStars;
-      const pts=score;addEarnedStars(pts);
-      if(score>=10)bumpCorrectCount(1);
-      const tsCh=getTS(curP);
-      if(quizStars>=2){tsCh.champions=(tsCh.champions||0)+1;}
-      if(quizStars>prev)maybeGrantMysteryFromGate(quizSt.did);
+      if(firstClear){
+        const pts=bestQuiz.points||score;
+        if(pts>0)addEarnedStars(pts);
+        if(score>=10)bumpCorrectCount(1);
+        const tsCh=getTS(curP);
+        if(quizStars>=2){tsCh.champions=(tsCh.champions||0)+1;}
+        maybeGrantMysteryFromGate(quizSt.did);
+      }
     }
-  }else if(passedGate){
-    const gateJustCleared=!s.gatesCompleted.includes(quizSt.did);
-    if(!s.gatesCompleted.includes(quizSt.did))s.gatesCompleted.push(quizSt.did);
-    const prevStars=s.gateStars[quizSt.did]||0;
-    if(quizStars>prevStars)s.gateStars[quizSt.did]=quizStars;
-    const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
-    if(timer&&timer.active&&timer.startKey===todayKey())checkBadges(curP,{oneDayGate:true});
-    if(timer&&timer.active)timer.active=false;
-    const pts=score;addEarnedStars(pts);
-    const ts=getTS(curP);ts.gates=(ts.gates||0)+1;if(score>=10)bumpCorrectCount(1);
-    bumpMission('gates',1);
-    if(gateJustCleared){
-      maybeGrantMysteryFromGate(quizSt.did);
-      checkMascotGateFiveUnlock();
-      checkStickerUnlocks();
-    }
+  }else{
+    // One idempotent decision, shared with the game-star path: the gate pays
+    // the same whether the quiz or the last game was the final requirement,
+    // and a replay of a cleared gate pays nothing.
+    const outcome=evaluateGateCompletion(quizSt.did);
+    if(outcome.justCleared&&score>=10)bumpCorrectCount(1);
   }
   clearGateQuizPending();
   saveState();
@@ -6582,6 +6697,7 @@ function exitQuiz(){
   // result after the child is already back on the hub.
   drainScope('quiz');
   drainScope('reveal');
+  releaseAnswerLock();
   saveState();
   goToHub();
 }
