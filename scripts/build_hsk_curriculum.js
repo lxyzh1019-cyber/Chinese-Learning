@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const https = require("https");
 
-const ROOT = "/workspace";
+const ROOT = path.resolve(__dirname, "..");
 const DATA_DIR = path.join(ROOT, "data");
 const REPORT_PATH = path.join(DATA_DIR, "curriculum_report.json");
 
@@ -203,7 +203,7 @@ async function main() {
     }
   };
   fs.writeFileSync(REPORT_PATH, JSON.stringify(report, null, 2));
-  console.log("Generated curriculum files under /workspace/data");
+  console.log(`Generated curriculum files under ${DATA_DIR}`);
 }
 
 main().catch((err) => {

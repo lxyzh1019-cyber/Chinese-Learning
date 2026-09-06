@@ -1,0 +1,59 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// Chinese Adventure — Firestore rules
+//
+// ⚠️  THIS IS A MERGE FRAGMENT, NOT A COMPLETE RULESET. DO NOT PUBLISH AS-IS.
+//
+// Firestore publishes one ruleset for the whole project, and this project
+// (chore-tracker-a461b) is shared with other apps whose collections are not
+// visible from this repository. Publishing this file on its own would deny
+// every path those apps use and break them.
+//
+// To apply: copy ONLY the `match /chinese-adventure/{playerId}` block below
+// into your existing ruleset in the Firebase console, inside the existing
+// `match /databases/{database}/documents { ... }`, leaving every other match
+// block exactly as it is. Then publish.
+//
+//   Firebase console -> Firestore Database -> Rules -> paste -> Publish
+//
+// If it turns out this project only ever serves Chinese Adventure, the
+// surrounding scaffolding below is already correct and you can publish the
+// whole file.
+//
+// What this changes: today these documents are readable and writable by anyone
+// on the internet who has the public API key, which is committed in
+// index.html. This narrows that to the two known player documents and their
+// assessment attempts, and denies everything else under the collection. It
+// does NOT add authentication — the app performs no sign-in, so a rule
+// requiring auth would lock the girls out. Closing that gap properly needs an
+// auth story and is tracked separately.
+// ═══════════════════════════════════════════════════════════════════════════
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── BEGIN chinese-adventure (copy from here) ──────────────────────────
+    match /chinese-adventure/{playerId} {
+      // Only the two real profiles. A typo'd or probed document name is denied
+      // rather than silently created.
+      allow read, write: if playerId in ['jenn', 'jess'];
+
+      // Assessment attempts live under the player who took them. Attempts are
+      // append-and-amend: they are never deleted from the app.
+      match /assessments/{attemptId} {
+        allow read, create, update: if playerId in ['jenn', 'jess'];
+        allow delete: if false;
+      }
+
+      // Any other subcollection under a player is not part of the app.
+      match /{other=**} {
+        allow read, write: if false;
+      }
+    }
+    // ── END chinese-adventure (copy to here) ──────────────────────────────
+
+    // Other apps sharing this project keep their own match blocks here.
+    // Nothing else in this collection space is granted by the block above.
+  }
+}

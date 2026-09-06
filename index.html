@@ -713,6 +713,9 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3/dist/hanzi-writer.min.js"></script>
+<script src="js/gate-identity.js"></script>
+<script src="js/merge-state.js"></script>
+<script src="js/review-core.js"></script>
 </head>
 <body>
 <canvas id="ccanvas"></canvas>
@@ -1051,6 +1054,15 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
       <button class="btn-g" id="timer-modal-view-btn" onclick="timerModalViewTasks()">Let's Do My Tasks</button>
       <button class="btn-s" onclick="closeTimerModal()">Maybe later</button>
     </div>
+  </div>
+</div>
+
+<!-- ═══ ASSESSMENT OVERLAY ═══ -->
+<div class="mini-quiz-overlay" id="assessment-overlay">
+  <div class="mini-quiz-card">
+    <button type="button" class="mq-close" onclick="closeAssessment()" title="Close" aria-label="Close">✕</button>
+    <div class="mq-title">📊 Assessment · 学习评估</div>
+    <div id="assessment-body"></div>
   </div>
 </div>
 
@@ -2207,8 +2219,23 @@ function initFirestore(){
         const remote=snap.data();
         ensureState(pid);
         dbgLog('snapshot received',{pid,remoteLastSaved:(remote&&remote.lastSaved)||0,localLastSaved:(state[pid]&&state[pid].lastSaved)||0});
-        if((remote&&remote.lastSaved||0)>(state[pid].lastSaved||0)){
-          state[pid]=mergePlayerState(state[pid],remote);
+        const remoteRev=(remote&&remote.revision)||0;
+        const localRev=(state[pid]&&state[pid].revision)||0;
+        // Revision decides when both sides have one; documents written before
+        // revisions existed still fall back to the timestamp.
+        const newer=(remoteRev||localRev)
+          ?remoteRev>localRev
+          :((remote&&remote.lastSaved||0)>(state[pid].lastSaved||0));
+        if(newer){
+          // A shallow assign would drop anything this device did that the
+          // other has not seen. Merge the two histories instead.
+          try{
+            state[pid]=MergeState.mergePlayers(state[pid],remote,{weekKey:state[pid].weekStart||null}).player;
+          }catch(e){
+            state[pid]=mergePlayerState(state[pid],remote);
+          }
+          remoteBaseRevision[pid]=remoteRev;
+          setSyncStatus(pid,'synced');
           try{localStorage.setItem(SK,JSON.stringify(state));}catch(e){}
           ensureState(pid);
           dbgLog('snapshot applied',{pid,lastSaved:(state[pid]&&state[pid].lastSaved)||0});
@@ -2226,7 +2253,11 @@ const SENT_COLORS=['#C0392B','#D4A017','#27AE60','#E8445A','#3B82F6','#A78BFA'];
 
 function defPlayer(){
   return{totalStars:0,weekStars:0,lastPlayed:null,lastSaved:0,
-    gatesCompleted:[],storiesCompleted:[],gateStars:{},
+    // A fresh player is already in the current model, so the migration must
+    // not run over it and mistake its gate keys for legacy numeric ids.
+    schemaVersion:GateIdentity.SCHEMA_VERSION,
+    revision:0,syncConflicts:[],
+    gatesCompleted:[],storiesCompleted:[],legacyStoriesCompleted:[],gateStars:{},
     library:{},failedWords:{},
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
     weekStart:weekStart(),
@@ -2265,7 +2296,7 @@ let playTimeIv=null,lastTimeMark=0;
 let sumMode='weekly',sumOffset=0;
 let hidePY=false,hideEN=false,noPYmode=false;
 let tapped=new Set(),newChars=new Set(),totalNew=0,storyOpenTime=0;
-const curriculumCache={levels:{},culture:null,lessons:{}};
+const curriculumCache={levels:{},culture:null,lessons:{},assessment:null};
 let curriculumLoading=false;
 
 function fetchJsonSafe(url){
@@ -2286,6 +2317,25 @@ async function loadCultureCurriculum(){
     if(data&&Array.isArray(data.tracks))curriculumCache.culture=data;
   }catch(e){dbgLog('loadCultureCurriculum failed',String(e&&e.message||e));}
   return curriculumCache.culture||null;
+}
+// Assessment bank. Lazy-loaded on first open rather than at boot: it is not
+// needed to render the hub, and a slow fetch must not delay the child getting
+// into the app. Same contract as the curriculum loaders — never throws,
+// shape-validates before caching, returns null on failure.
+async function loadAssessmentBank(){
+  if(curriculumCache.assessment)return curriculumCache.assessment;
+  try{
+    const manifest=await fetchJsonSafe('data/assessment/manifest.json');
+    if(!manifest||!manifest.files)return null;
+    const [items,forms]=await Promise.all([
+      fetchJsonSafe('data/assessment/'+manifest.files.items),
+      fetchJsonSafe('data/assessment/'+manifest.files.forms),
+    ]);
+    if(items&&Array.isArray(items.items)&&forms&&forms.forms){
+      curriculumCache.assessment={manifest,bank:items,forms};
+    }
+  }catch(e){dbgLog('loadAssessmentBank failed',String(e&&e.message||e));}
+  return curriculumCache.assessment||null;
 }
 async function preloadCurriculum(){
   if(curriculumLoading)return;
@@ -2365,12 +2415,12 @@ function mascotFriendUnlocked(){
   if(!curP)return false;
   ensureState(curP);
   const s=state[curP];
-  return !!(s&&s.gatesCompleted&&s.gatesCompleted.includes(5));
+  return !!(s&&s.gatesCompleted&&s.gatesCompleted.length>=5);
 }
 const STICKER_DEFS=[
-  {id:'g1',emoji:'🌟',label:'Gate 1',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.includes(1)},
+  {id:'g1',emoji:'🌟',label:'Gate 1',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.length>=1},
   {id:'g5',emoji:'🎋',label:'Gate 5 friend',need:()=>mascotFriendUnlocked()},
-  {id:'g10',emoji:'🏯',label:'Gate 10',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.includes(10)},
+  {id:'g10',emoji:'🏯',label:'Gate 10',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.length>=10},
   {id:'c1',emoji:'🏮',label:'Culture read',need:()=>state[curP]&&state[curP].cultureSeen&&Object.keys(state[curP].cultureSeen).length>=1},
   {id:'c5',emoji:'🌸',label:'5 culture',need:()=>state[curP]&&state[curP].cultureSeen&&Object.keys(state[curP].cultureSeen).length>=5},
   {id:'st',emoji:'📚',label:'First story',need:()=>state[curP]&&(state[curP].storiesCompleted||[]).length>=1}
@@ -2461,7 +2511,7 @@ function showMascotBubble(msg){
   if(!el)return;
   el.textContent=msg;
   el.style.display='block';
-  setTimeout(()=>{if(el)el.style.display='none';},3400);
+  laterCall('ui',()=>{if(el)el.style.display='none';},3400);
 }
 function maybeMascotToast(key){
   if(isMascotSuppressed())return;
@@ -2525,10 +2575,13 @@ function bumpMission(evt,val){
     saveState();
   }
 }
-function addEarnedStars(delta){
+function addEarnedStars(delta,eventId){
   if(!curP||!(delta>0))return;
   ensureState(curP);
   const s=state[curP];
+  // Recorded as an event as well as a total. A running total cannot be merged
+  // across two devices without either losing an award or counting one twice.
+  MergeState.recordStarEvent(s,delta,'earn',{id:eventId,week:s.weekStart||null});
   s.totalStars+=delta;s.weekStars+=delta;
   const ts=getTS(curP);ts.stars=(ts.stars||0)+delta;
   bumpMission('stars',delta);
@@ -2638,7 +2691,7 @@ function checkMascotGateFiveUnlock(){
   if(!curP)return;
   ensureState(curP);
   const s=state[curP];
-  if(s.gatesCompleted.includes(5)&&!s.mascotUnlockedNotified){
+  if(s.gatesCompleted.length>=5&&!s.mascotUnlockedNotified){
     s.mascotUnlockedNotified=true;
     saveState();
     showToast('You unlocked your study friend! They visit for quick cheers.',2600);
@@ -2888,7 +2941,7 @@ function finishDailyWord(correct,correctAns,btn){
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
     document.getElementById('dw-opts').querySelectorAll('.mcq-opt').forEach(b2=>{if(b2.textContent===correctAns)b2.classList.add('correct');});
   }
-  setTimeout(()=>{closeDailyWordOverlay();},correct?950:1500);
+  laterCall('ui',()=>{closeDailyWordOverlay();},correct?950:1500);
 }
 
 function closeDailyWordOverlay(){
@@ -2939,25 +2992,262 @@ function showCorrectRevealCard(o){
   spk.onclick=()=>speak(o.zh||'',{sentence:!!o.isSentence});
   const fin=o.onDone||function(){};
   btn.onclick=()=>dismissCorrectReveal(fin);
-  correctRevealTimer=setTimeout(()=>dismissCorrectReveal(fin),4000);
+  correctRevealTimer=laterCall('reveal',()=>dismissCorrectReveal(fin),4000);
 }
-function saveState(){
+// ══════════════════════════════════════════════════════
+// DEFERRED-CALLBACK REGISTRY
+// ══════════════════════════════════════════════════════
+// Timers and library callbacks that fire after the child has moved on used to
+// mutate whatever profile happened to be selected when they landed — a Rain
+// drop logging a wrong answer into the other child's practice list, an
+// abandoned round awarding stars, a quiz result written against the wrong
+// player. Everything deferred is registered here so it can be cancelled at the
+// boundaries where it stops being valid.
+//
+// Two mechanisms, because not everything is a timer:
+//   - laterCall/repeatCall hold handles in per-scope Sets. Sets, not single
+//     handles: Rain has ~9 drop timeouts alive at once and the sentence-builder
+//     schedules one per word.
+//   - sessionGen is a counter bumped on every profile change, for callbacks
+//     that cannot be cancelled by handle — HanziWriter's quiz callbacks and
+//     in-flight awaits. They capture the generation and bail if it moved.
+//
+// Deliberately NOT registered (these must survive): the wall clock, confetti,
+// the blob-URL revoke, the Firestore listeners and the visibilitychange
+// handler.
+let sessionGen=0;
+const deferredScopes={};
+function deferredBucket(scope){
+  if(!deferredScopes[scope])deferredScopes[scope]=new Set();
+  return deferredScopes[scope];
+}
+/** setTimeout that is cancelled by drainScope and skipped if the profile changed. */
+function laterCall(scope,fn,ms){
+  const bucket=deferredBucket(scope);
+  const gen=sessionGen;
+  const rec={interval:false,id:null};
+  rec.id=setTimeout(()=>{
+    bucket.delete(rec);
+    if(gen!==sessionGen)return;
+    fn();
+  },ms);
+  bucket.add(rec);
+  return rec.id;
+}
+/** setInterval with the same guarantees. */
+function repeatCall(scope,fn,ms){
+  const bucket=deferredBucket(scope);
+  const gen=sessionGen;
+  const rec={interval:true,id:null};
+  rec.id=setInterval(()=>{
+    if(gen!==sessionGen){clearInterval(rec.id);bucket.delete(rec);return;}
+    fn();
+  },ms);
+  bucket.add(rec);
+  return rec.id;
+}
+function drainScope(scope){
+  const bucket=deferredScopes[scope];
+  if(!bucket)return;
+  bucket.forEach(rec=>{if(rec.interval)clearInterval(rec.id);else clearTimeout(rec.id);});
+  bucket.clear();
+}
+/** Drop everything cancellable. Callers handle ordering-sensitive work first. */
+function drainAllDeferred(){
+  Object.keys(deferredScopes).forEach(drainScope);
+  try{if(window.speechSynthesis)speechSynthesis.cancel();}catch(e){}
+}
+/**
+ * Answer lock for the quiz phases.
+ *
+ * checkPY disabled its input but never its submit button, and checkSB had no
+ * guard at all — so a double tap scored the same answer twice AND scheduled two
+ * advances, skipping the next question while being paid for it. The lock is
+ * taken before any score is applied and released when the next question renders.
+ */
+let answerLocked=false;
+function lockAnswer(){
+  if(answerLocked)return false;
+  answerLocked=true;
+  return true;
+}
+function releaseAnswerLock(){answerLocked=false;}
+
+/**
+ * Invalidate every outstanding non-timer callback. Call when the active player
+ * changes, so anything already past its cancellation point still refuses to
+ * write to the newly selected child.
+ */
+function bumpSessionGen(){
+  sessionGen++;
+  return sessionGen;
+}
+
+// Persist exactly one player.
+// Only this player's lastSaved is stamped and only this player's document is
+// written. That is the whole point: an untouched player keeps its old stamp and
+// so correctly LOSES the `remote.lastSaved > local.lastSaved` comparison in the
+// onSnapshot handler, instead of overwriting a newer copy from another device.
+// localStorage holds both players in one blob, so it is always written whole.
+// ── Sync state ──────────────────────────────────────────────────────────────
+// The revision we last saw on the server for each player. A write is only
+// allowed if the stored revision still matches it; otherwise another device has
+// written since, and blindly overwriting would silently discard their work.
+/**
+ * Pick distractors that cannot be mistaken for the answer.
+ *
+ * The builders used to exclude the answer by Chinese spelling or array index
+ * and then render `.en`. With genuine near-synonyms in the curriculum — 他们
+ * and 她们 both "they", 两 and 二 both "two" — that produced questions where a
+ * wrong option read exactly like the right one, which no child could answer.
+ *
+ * @param pool   candidates to draw from
+ * @param answer the correct item
+ * @param render how an option is displayed; comparison happens on this
+ */
+function pickDistractors(pool,answer,render,n){
+  const answerText=String(render(answer)||'').trim();
+  const seen=new Set([answerText]);
+  const out=[];
+  shuffleArr(pool.slice()).forEach(c=>{
+    if(out.length>=n)return;
+    const text=String(render(c)||'').trim();
+    if(!text||seen.has(text))return;
+    seen.add(text);
+    out.push(c);
+  });
+  return out;
+}
+
+// ── Gate identity helpers ───────────────────────────────────────────────────
+// A gate is (level, dynasty), not a dynasty alone. `curHSK` is the active
+// level and is now authoritative rather than cosmetic: it decides which of the
+// 88 gates a result belongs to.
+function gateKeyOf(did,level){
+  const lv=Number(level||curHSK||1);
+  const g=Number(did);
+  if(!(lv>=1&&lv<=4)||!(g>=1&&g<=22))return null;
+  return GateIdentity.gateKey(lv,g);
+}
+/** Has this gate — in this level — been cleared? */
+function gateCleared(s,did,level){
+  const key=gateKeyOf(did,level);
+  return !!(key&&s&&Array.isArray(s.gatesCompleted)&&s.gatesCompleted.includes(key));
+}
+/** Is this level's tab available? Inherited access counts, per the migration. */
+function levelIsUnlocked(s,lv){
+  if(!s)return lv===1;
+  return GateIdentity.levelUnlocked(lv,s.gatesCompleted||[],s.legacyLevelAccess||[]);
+}
+
+const remoteBaseRevision={jenn:0,jess:0};
+const syncStatus={jenn:'local',jess:'local'};   // 'local' | 'synced' | 'attention'
+
+function setSyncStatus(pid,status){
+  if(!pid)return;
+  syncStatus[pid]=status;
+  const el=document.getElementById('sync-status-'+pid);
+  if(el)el.textContent=status==='synced'?'Synced':(status==='attention'?'Needs attention':'Saved on this device');
+}
+
+/**
+ * Record that another device wrote this player while we were behind.
+ *
+ * Only a bounded summary is kept — enough for a person to see that a
+ * divergence happened and roughly how big it was — not a copy of the other
+ * document, which would grow without limit.
+ */
+function noteSyncConflict(pid,remote,remoteRev){
+  const s=state[pid];
+  if(!s)return;
+  // Record what the two sides looked like BEFORE reconciling, so the log shows
+  // the divergence rather than its resolution.
+  const beforeStars=s.totalStars||0;
+  const beforeGates=(s.gatesCompleted||[]).length;
+  // Reconcile rather than pick a winner. Stars come from the union of both
+  // ledgers, completions and learned words from the union of both sets, and a
+  // round in progress on both devices is kept twice with the choice surfaced.
+  if(remote){
+    try{
+      const merged=MergeState.mergePlayers(s,remote,{weekKey:s.weekStart||null});
+      Object.keys(merged.player).forEach(k=>{s[k]=merged.player[k];});
+      if(merged.notes.length)showToast(merged.notes[0],3200);
+    }catch(e){dbgLog('merge failed',String(e&&e.message||e));}
+  }
+  if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
+  s.syncConflicts.push({
+    at:Date.now(),
+    remoteRevision:remoteRev||0,
+    remoteLastSaved:(remote&&remote.lastSaved)||0,
+    remoteTotalStars:(remote&&remote.totalStars)||0,
+    remoteGatesCompleted:((remote&&remote.gatesCompleted)||[]).length,
+    localTotalStars:beforeStars,
+    localGatesCompleted:beforeGates,
+    mergedTotalStars:s.totalStars||0,
+    mergedGatesCompleted:(s.gatesCompleted||[]).length,
+  });
+  if(s.syncConflicts.length>5)s.syncConflicts=s.syncConflicts.slice(-5);
+  // Move ahead of the other device so the next write is decisive, having first
+  // recorded that the two diverged rather than pretending they did not.
+  s.revision=Math.max(s.revision||0,remoteRev||0)+1;
+  remoteBaseRevision[pid]=remoteRev||0;
+  setSyncStatus(pid,'attention');
+}
+
+/**
+ * Push one player with a compare-and-set on `revision`.
+ *
+ * The old code did an unconditional full-document .set(), and conflicts were
+ * resolved by comparing device clocks — so the same child on two devices could
+ * lose work to whichever clock happened to be later. A stale write is now
+ * refused rather than applied.
+ */
+function pushPlayer(pid){
+  if(!db||!state[pid])return;
+  const ref=db.collection('chinese-adventure').doc(pid);
+  const payload=JSON.parse(JSON.stringify(state[pid]));
+  const runner=(typeof db.runTransaction==='function')
+    ?db.runTransaction(tx=>Promise.resolve(tx.get(ref)).then(snap=>{
+        const remote=(snap&&snap.exists)?snap.data():null;
+        const remoteRev=(remote&&remote.revision)||0;
+        if(remote&&remoteRev>(remoteBaseRevision[pid]||0)){
+          const err=new Error('stale-write');
+          err.conflict=true;err.remote=remote;err.remoteRev=remoteRev;
+          throw err;
+        }
+        tx.set(ref,payload);
+      }))
+    : ref.set(payload);   // older SDK: behave as before rather than not saving
+  Promise.resolve(runner).then(()=>{
+    remoteBaseRevision[pid]=payload.revision||0;
+    setSyncStatus(pid,'synced');
+  }).catch(err=>{
+    if(err&&err.conflict)noteSyncConflict(pid,err.remote,err.remoteRev);
+    else setSyncStatus(pid,'local');
+  });
+}
+
+function savePlayer(pid){
+  if(!pid||!state[pid])return;
   try{
-    const now=Date.now();
-    ['jenn','jess'].forEach(pid=>{if(state[pid])state[pid].lastSaved=now;});
-    dbgLog('saveState begin',{
-      jennLastSaved:(state.jenn&&state.jenn.lastSaved)||0,
-      jessLastSaved:(state.jess&&state.jess.lastSaved)||0,
-      curP:curP||null
-    });
+    const s=state[pid];
+    s.lastSaved=Date.now();
+    s.revision=(s.revision||0)+1;
+    dbgLog('savePlayer',{pid,revision:s.revision,curP:curP||null});
     localStorage.setItem(SK,JSON.stringify(state));
-    if(db){
-      ['jenn','jess'].forEach(pid=>{
-        db.collection('chinese-adventure').doc(pid).set(state[pid]).catch(()=>{});
-      });
-    }
+    setSyncStatus(pid,'local');
+    if(db)pushPlayer(pid);
     refreshOpenSummaries();
   }catch(e){}
+}
+// Save the ACTIVE player. Several callers reach this with no player selected
+// (the session-timer tick, exitQuiz, the parent panel opened from the select
+// screen), so a null curP is a no-op rather than an error.
+// Code that mutates a player who is not curP — the parent star/mystery controls,
+// clearAllProgress — must call savePlayer(pid) directly instead.
+function saveState(){
+  if(!curP)return;
+  savePlayer(curP);
 }
 
 function ensureState(p){
@@ -2965,10 +3255,31 @@ function ensureState(p){
   if(!s.todayStats)s.todayStats={};if(!s.dailyTimeMs)s.dailyTimeMs={};
   if(!s.weeklyHistory)s.weeklyHistory=[];if(!s.gatesCompleted)s.gatesCompleted=[];
   if(!Array.isArray(s.gatesCompleted))s.gatesCompleted=[];
-  s.gatesCompleted=[...new Set(s.gatesCompleted.map(v=>parseInt(v,10)).filter(v=>Number.isFinite(v)&&v>0&&v<=22))];
+  // Migrate a legacy 22-gate document to the 88-gate model. This used to
+  // DISCARD any id above 22, which is what made an 88-gate scheme impossible.
+  // The migration is idempotent, invents no completions, and preserves both
+  // the gates already reachable and the level tabs already open.
+  if((s.schemaVersion||1)<GateIdentity.SCHEMA_VERSION||GateIdentity.looksLegacy(s)){
+    const migrated=GateIdentity.migratePlayer(s).player;
+    Object.keys(migrated).forEach(k=>{s[k]=migrated[k];});
+  }
+  s.gatesCompleted=[...new Set((s.gatesCompleted||[]).filter(GateIdentity.isGateKey))];
   // Preserve current unlock semantics per player; do not auto-recalculate.
   if(!s.progressVersion)s.progressVersion='legacy-gate-index';
   if(!s.storiesCompleted)s.storiesCompleted=[];if(!s.gateStars)s.gateStars={};
+  // Snapshot the stories finished before the read-chain gate shipped, once.
+  // Anything completed from now on has to earn its unlocks the normal way.
+  if(!s.gateAttemptHistory)s.gateAttemptHistory={};
+  // Per-{word, skill} retention evidence. Separate from failedWords, which is a
+  // single undifferentiated counter and cannot tell "cannot write it" from
+  // "does not know what it means".
+  if(!s.reviewRecords)s.reviewRecords={};
+  if(typeof s.revision!=='number')s.revision=0;
+  MergeState.ensureLedger(s);
+  if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
+  if(!Array.isArray(s.legacyStoriesCompleted)){
+    s.legacyStoriesCompleted=s.storiesCompleted.slice();
+  }
   if(!s.championCleared)s.championCleared={};
   if(!s.badges)s.badges=[];
   if(s.dailyWordSolved===undefined)s.dailyWordSolved=null;
@@ -2995,7 +3306,7 @@ function ensureState(p){
   if(!s.dailyMission)s.dailyMission={date:null,goalKey:null,progress:0,target:1,done:false,rewarded:false};
   if(s.microRewardLastAt===undefined)s.microRewardLastAt=0;
   if(!s.mascotSession)s.mascotSession={count:0,lastAt:0};
-  if(s.mascotUnlockedNotified===undefined)s.mascotUnlockedNotified=!!(s.gatesCompleted&&s.gatesCompleted.includes(5));
+  if(s.mascotUnlockedNotified===undefined)s.mascotUnlockedNotified=!!(s.gatesCompleted&&s.gatesCompleted.length>=5);
   if(s.mysteryPicksPending===undefined)s.mysteryPicksPending=0;
   if(s.mysteryLastFamilyAt===undefined)s.mysteryLastFamilyAt=0;
   if(!s.cultureSeen)s.cultureSeen={};
@@ -3035,7 +3346,7 @@ function formatMs(ms){
 
 function nextOpenGateId(s){
   for(const d of DYNASTIES){
-    if((d.id===1||s.gatesCompleted.includes(d.id-1))&&!s.gatesCompleted.includes(d.id))return d.id;
+    if((d.id===1||gateCleared(s,d.id-1))&&!gateCleared(s,d.id))return d.id;
   }
   return null;
 }
@@ -3073,33 +3384,22 @@ function traceStarsFromAccuracy(correct,total,did){
   return 0;
 }
 
-function updateGateGameBest(did,gameKey,stars){
+function updateGateGameBest(did,gameKey,stars,level){
   if(!curP||!did||!gameKey)return;
   ensureState(curP);
   const s=state[curP];
-  expireGateTimerIfNeeded(s,did);
+  const lv=Number(level||curHSK||1);
+  expireGateTimerIfNeeded(s,did,{level:lv});
   if(!s.gateGameStars)s.gateGameStars={};
-  const k=String(did);
+  const k=gateKeyOf(did,lv);
+  if(!k)return;
   if(!s.gateGameStars[k])s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
   const prev=s.gateGameStars[k][gameKey]||0;
   if(stars>prev){
     s.gateGameStars[k][gameKey]=stars;
-    startGateTimerIfNeeded(s,did,stars);
-    // If quiz and all four game requirements become true in different sessions/orders,
-    // auto-clear the gate as soon as both are satisfied.
-    const best=(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0};
-    const quizOk=(best.accPct||0)>=90&&(best.quizStars||0)===3;
-    const gamesOk=gateGamesAllThree(s,did);
-    if(quizOk&&gamesOk&&!s.gatesCompleted.includes(did)){
-      s.gatesCompleted.push(did);
-      const prevGateStars=s.gateStars[did]||0;
-      if((best.quizStars||0)>prevGateStars)s.gateStars[did]=best.quizStars||0;
-      const timer=(s.gateTimers&&s.gateTimers[k])||null;
-      if(timer&&timer.active)timer.active=false;
-      const ts=getTS(curP);
-      ts.gates=(ts.gates||0)+1;
-      showToast(`🎉 Gate ${did} cleared! Next gate unlocked.`);
-    }
+    startGateTimerIfNeeded(s,did,stars,lv);
+    // Requirements can be met in any order and across days; one function decides.
+    evaluateGateCompletion(did,lv);
   }
   saveState();
 }
@@ -3204,7 +3504,7 @@ function closeTimerModal(){
   if(curP&&did&&(kind==='checkin'||kind==='final-day')){
     const s=state[curP];
     if(s){
-      const k=String(did);
+      const k=gateKeyOf(did);
       const today=todayKey();
       if(!s.timerReminderShown)s.timerReminderShown={};
       if(!s.timerWarningShown)s.timerWarningShown={};
@@ -3226,9 +3526,9 @@ function timerModalViewTasks(){
 
 function timerModalViewGate(){timerModalViewTasks();}
 
-function maybeShowGateTimerReminder(s,did){
+function maybeShowGateTimerReminder(s,did,level){
   if(!s||!did||!s.gateTimers)return;
-  const k=String(did);
+  const k=gateKeyOf(did,level);
   const t=s.gateTimers[k];
   if(!t||!t.active)return;
   const today=todayKey();
@@ -3266,7 +3566,7 @@ function focusGateTasks(did){
   if(curP&&state[curP]&&did){
     const s=state[curP];
     if(!s.timerLastSeenAt)s.timerLastSeenAt={};
-    s.timerLastSeenAt[String(did)]=todayKey();
+    s.timerLastSeenAt[gateKeyOf(did)]=todayKey();
   }
   if(document.getElementById('myday-overlay').classList.contains('show'))closeMyDay();
   if(document.getElementById('games-overlay').classList.contains('show'))closeGamesOverlay();
@@ -3274,25 +3574,55 @@ function focusGateTasks(did){
   renderHub();
 }
 
-function resetGateProgress(s,did){
-  const k=String(did);
+/**
+ * End the current timed attempt at a gate and start a fresh one.
+ *
+ * The qualifying records are archived rather than deleted: the deliberate
+ * deadline reset is about the CHALLENGE, not about erasing what the child did.
+ * Reading counts, flashcard passes, vocabulary, the practice queue, total
+ * stars and assessment history are all untouched — only this attempt's
+ * qualifying bests are cleared.
+ */
+function resetGateProgress(s,did,level){
+  const k=gateKeyOf(did,level);
+  const timer=(s.gateTimers&&s.gateTimers[k])||null;
+  if(!s.gateAttemptHistory)s.gateAttemptHistory={};
+  if(!s.gateAttemptHistory[k])s.gateAttemptHistory[k]=[];
+  s.gateAttemptHistory[k].push({
+    attemptId:(timer&&timer.attemptId)||null,
+    startKey:(timer&&timer.startKey)||null,
+    deadlineKey:(timer&&timer.deadlineKey)||null,
+    endedKey:todayKey(),
+    reason:'deadline',
+    gameStars:Object.assign({trace:0,match:0,rain:0,listen:0},(s.gateGameStars&&s.gateGameStars[k])||{}),
+    bestQuiz:(s.gateBestQuiz&&s.gateBestQuiz[k])||null,
+  });
+  // Keep the history bounded so a player document cannot grow without limit.
+  if(s.gateAttemptHistory[k].length>10)s.gateAttemptHistory[k]=s.gateAttemptHistory[k].slice(-10);
+
   if(s.gateGameStars)s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
   if(s.gateBestQuiz)delete s.gateBestQuiz[k];
   if(s.lastGateQuizAttempt&&s.lastGateQuizAttempt.did===did)s.lastGateQuizAttempt=null;
-  if(s.pendingSessions&&s.pendingSessions.gate&&s.pendingSessions.gate.did===did)s.pendingSessions.gate=null;
+  // A quiz already in progress is NOT thrown away. It is flagged as belonging
+  // to the expired attempt so it can be finished as practice without
+  // qualifying the new one.
+  if(s.pendingSessions&&s.pendingSessions.gate&&s.pendingSessions.gate.did===did){
+    s.pendingSessions.gate.attemptExpired=true;
+  }
 }
 
-function startGateTimerIfNeeded(s,did,stars){
+function startGateTimerIfNeeded(s,did,stars,level){
   if(!did||stars<3)return;
   if(!s.gateTimers)s.gateTimers={};
   if(!s.gatesCompleted)s.gatesCompleted=[];
-  if(s.gatesCompleted.includes(did))return;
-  const k=String(did);
+  if(gateCleared(s,did,level))return;
+  const k=gateKeyOf(did,level);
   if(s.gateTimers[k]&&s.gateTimers[k].active)return;
   const start=todayKey();
   const days=gateTimerDays(did);
   const deadline=dateAddDays(days);
-  s.gateTimers[k]={startKey:start,deadlineKey:deadline,active:true,days};
+  s.gateTimers[k]={startKey:start,deadlineKey:deadline,active:true,days,
+    attemptId:`g${did}-${start}-${Math.random().toString(36).slice(2,8)}`};
   showTimerModal({
     did,
     kind:'start',
@@ -3305,14 +3635,15 @@ function startGateTimerIfNeeded(s,did,stars){
   s.timerLastSeenAt[k]=start;
 }
 
-function expireGateTimerIfNeeded(s,did){
+function expireGateTimerIfNeeded(s,did,opts){
   if(!s||!did||!s.gateTimers)return false;
-  const k=String(did);
+  const k=gateKeyOf(did,opts&&opts.level);
   const t=s.gateTimers[k];
   if(!t||!t.active)return false;
   if(!isDateAfter(todayKey(),t.deadlineKey))return false;
-  resetGateProgress(s,did);
+  resetGateProgress(s,did,opts&&opts.level);
   t.active=false;
+  if(opts&&opts.silent)return true;
   showTimerModal({
     did,
     kind:'reset',
@@ -3324,8 +3655,36 @@ function expireGateTimerIfNeeded(s,did){
   return true;
 }
 
-function gateTimerStatusLine(s,did){
-  const k=String(did);
+/**
+ * Expire every lapsed gate timer, now.
+ *
+ * Expiry used to be lazy: it ran only from updateGateGameBest, renderQuizResult
+ * and My Day (for the next open gate alone). renderHub never called it, so a
+ * lapsed timer went on reporting "Final day: due today" indefinitely and then
+ * detonated without warning the next time the child happened to finish a game
+ * — wiping that gate's stars mid-session with no notice. Sweeping at render
+ * time means the reset is announced when it happens.
+ *
+ * Returns the gate ids that expired on this pass. Each expires once, because
+ * expireGateTimerIfNeeded clears the active flag.
+ */
+function sweepExpiredGateTimers(s){
+  if(!s||!s.gateTimers)return[];
+  const expired=[];
+  Object.keys(s.gateTimers).forEach(k=>{
+    const p=GateIdentity.parseGateKey(k);
+    if(!p)return;
+    const t=s.gateTimers[k];
+    if(!t||!t.active)return;
+    if(!isDateAfter(todayKey(),t.deadlineKey))return;
+    // Expire in the level the timer belongs to, not the one on screen.
+    if(expireGateTimerIfNeeded(s,p.gateId,{silent:expired.length>0,level:p.levelId}))expired.push(k);
+  });
+  return expired;
+}
+
+function gateTimerStatusLine(s,did,level){
+  const k=gateKeyOf(did,level);
   const t=s.gateTimers&&s.gateTimers[k];
   if(!t||!t.active)return 'Timer starts after your first 3★ game for this gate.';
   const left=gateTimerDaysLeft(t);
@@ -3338,22 +3697,76 @@ function bestQuizForAttempt(s,isChampion,did,group){
     const ck=String(group||0);
     return(s.championBestQuiz&&s.championBestQuiz[ck])||{accPct:0,quizStars:0};
   }
-  const k=String(did);
+  const k=gateKeyOf(did);
   return(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0};
 }
 
-function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars){
-  if(isChampion){
-    const ck=String(group||0);
-    if(!s.championBestQuiz)s.championBestQuiz={};
-    const prev=s.championBestQuiz[ck]||{accPct:0,quizStars:0};
-    s.championBestQuiz[ck]={accPct:Math.max(prev.accPct||0,accPct||0),quizStars:Math.max(prev.quizStars||0,quizStars||0)};
-    return;
-  }
-  const k=String(did);
-  if(!s.gateBestQuiz)s.gateBestQuiz={};
-  const prev=s.gateBestQuiz[k]||{accPct:0,quizStars:0};
-  s.gateBestQuiz[k]={accPct:Math.max(prev.accPct||0,accPct||0),quizStars:Math.max(prev.quizStars||0,quizStars||0)};
+/**
+ * Merge one finished quiz attempt into the stored best.
+ *
+ * `points` is carried alongside so a gate cleared by a GAME can still pay the
+ * amount the qualifying quiz was actually worth. The old record kept only
+ * accuracy and stars, which is why the payout depended on which requirement
+ * happened to land last.
+ *
+ * Best is chosen by highest accuracy, then highest points, then the earliest
+ * attempt — assembled from ONE attempt, never max()-ed field by field across
+ * different ones.
+ */
+function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars,points){
+  const store=isChampion?'championBestQuiz':'gateBestQuiz';
+  const key=isChampion?GateIdentity.championKey(curHSK||1,group||0):gateKeyOf(did);
+  if(!s[store])s[store]={};
+  const prev=s[store][key]||null;
+  const next={accPct:accPct||0,quizStars:quizStars||0,points:points||0,atKey:todayKey()};
+  if(!prev){s[store][key]=next;return;}
+  const better=(next.accPct>(prev.accPct||0))||
+    (next.accPct===(prev.accPct||0)&&next.points>(prev.points||0));
+  if(better)s[store][key]=next;
+  else if(prev.points===undefined)s[store][key]=Object.assign({points:0},prev);
+}
+
+/**
+ * The single place a gate is judged complete. Idempotent: call it after a game
+ * star changes and after a quiz finishes, in any order, any number of times.
+ *
+ * Previously two separate sites decided this and paid differently — finishing
+ * with the quiz paid up to 220 points plus a mystery box, a mission tick and
+ * the one-day badge, while finishing with the last game paid a toast and
+ * nothing else. And because the pass test read the STORED BEST rather than the
+ * current attempt, every later boss replay on a cleared gate re-ran the payout,
+ * even a run answered almost entirely wrong.
+ */
+function evaluateGateCompletion(did,level){
+  if(!curP||!did)return{cleared:false,justCleared:false};
+  const s=state[curP];
+  const k=gateKeyOf(did,level);
+  if(!k)return{cleared:false,justCleared:false};
+  const best=(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0,points:0};
+  const quizOk=(best.accPct||0)>=90&&(best.quizStars||0)===3;
+  const gamesOk=gateGamesAllThree(s,did,level);
+  const already=s.gatesCompleted.includes(k);
+  if(!quizOk||!gamesOk)return{cleared:already,justCleared:false};
+  if(already)return{cleared:true,justCleared:false};
+
+  s.gatesCompleted.push(k);
+  const prevGateStars=s.gateStars[k]||0;
+  if((best.quizStars||0)>prevGateStars)s.gateStars[k]=best.quizStars||0;
+  const timer=(s.gateTimers&&s.gateTimers[k])||null;
+  if(timer&&timer.active&&timer.startKey===todayKey())checkBadges(curP,{oneDayGate:true});
+  if(timer&&timer.active)timer.active=false;
+
+  // Paid exactly once, from the qualifying record, whichever requirement landed
+  // last.
+  const pts=best.points||0;
+  if(pts>0)addEarnedStars(pts);
+  const ts=getTS(curP);ts.gates=(ts.gates||0)+1;
+  bumpMission('gates',1);
+  maybeGrantMysteryFromGate(did);
+  checkMascotGateFiveUnlock();
+  checkStickerUnlocks();
+  showToast(`🎉 Gate ${did} cleared! Next gate unlocked.`);
+  return{cleared:true,justCleared:true,points:pts};
 }
 
 function showStarEffect(stars,label){
@@ -3367,13 +3780,46 @@ function showStarEffect(stars,label){
   }
 }
 
-function gateGamesAllThree(s,did){
+function gateGamesAllThree(s,did,level){
   if(!did)return false;
-  const g=(s.gateGameStars&&s.gateGameStars[String(did)])||{};
+  const g=(s.gateGameStars&&s.gateGameStars[gateKeyOf(did,level)])||{};
   return(g.trace||0)>=3&&(g.match||0)>=3&&(g.rain||0)>=3&&(g.listen||0)>=3;
 }
 
 let curGameTargetDid=null;
+// The level a round was STARTED in. Stars must land in that level even if
+// the child changes tab mid-round, so it travels with the session rather
+// than being re-read from the global at the end.
+let curGameTargetLevel=null;
+
+/**
+ * Stamp a pending session with the moment it was last touched.
+ *
+ * resumeLastSession used a fixed priority chain with no timestamps, so "Resume
+ * last activity" returned whatever sat highest in that list rather than what
+ * the child was actually doing. Combined with a Match round that could not be
+ * finished, one stuck session outranked everything else indefinitely.
+ */
+function touchSession(kind){
+  if(!curP)return;
+  const ps=state[curP].pendingSessions;
+  if(ps&&ps[kind])ps[kind].updatedAt=Date.now();
+}
+
+/** The most recently touched resumable session, or null. */
+function mostRecentSession(){
+  if(!curP)return null;
+  const ps=state[curP].pendingSessions||{};
+  const kinds=['story','gate','champion','flash','match','rain','listen','trace','revenge'];
+  let best=null;
+  kinds.forEach(k=>{
+    const sess=ps[k];
+    if(!sess)return;
+    const at=sess.updatedAt||0;
+    if(!best||at>best.at)best={kind:k==='champion'?'gate':k,at};
+  });
+  return best;
+}
 
 function refreshOpenSummaries(){
   const parent=document.getElementById('overlay-parent');
@@ -3410,7 +3856,7 @@ function renderMyDay(){
   if(nextDid){
     expireGateTimerIfNeeded(s,nextDid);
     const d=DYNASTIES.find(x=>x.id===nextDid);
-    const gk=String(nextDid);
+    const gk=gateKeyOf(nextDid);
     const g=(s.gateGameStars&&s.gateGameStars[gk])||{};
     const keys=['trace','match','rain','listen'];
     const vals=keys.map(k=>g[k]||0);
@@ -3500,6 +3946,7 @@ function persistFlashSession(){
     did:flashSt.did,mode:flashSt.mode,sub:flashSt.sub,i:flashSt.i||0,flipped:!!flashSt.flipped,
     deck:flashSt.deck.map(w=>({zh:w.zh,py:w.py,en:w.en}))
   };
+  touchSession('flash');
 }
 
 function clearFlashSession(){if(curP&&state[curP]&&state[curP].pendingSessions)state[curP].pendingSessions.flash=null;}
@@ -3516,7 +3963,7 @@ function openFlashPicker(){
   const body=document.getElementById('flash-body');if(!body)return;
   const ps=s.pendingSessions&&s.pendingSessions.flash;
   const rows=DYNASTIES.map(d=>{
-    const unlocked=d.id===1||s.gatesCompleted.includes(d.id-1);
+    const unlocked=d.id===1||gateCleared(s,d.id-1);
     return `<button class="btn-s" style="opacity:${unlocked?1:.45}" ${unlocked?`onclick="openFlashCards(${d.id})"`:'disabled'}>${d.id}. ${d.zh}</button>`;
   }).join('');
   body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.6rem;">Pick a dynasty · 选择朝代</div>
@@ -3529,7 +3976,7 @@ function openFlashCards(did){
   if(!curP)return;
   ensureState(curP);
   const s=state[curP];
-  const unlocked=did===1||s.gatesCompleted.includes(did-1);
+  const unlocked=did===1||gateCleared(s,did-1);
   if(!unlocked){showToast('🔒 Finish the previous gate first to unlock this one!');return;}
   const deck=buildFlashDeckForDynasty(did);
   if(!deck.length){showToast('No words yet—read a story first, then come back!');return;}
@@ -3611,8 +4058,8 @@ function flashGotIt(){flashSt.i++;flashSt.flipped=false;persistFlashSession();sa
 
 function renderFlashQuiz(){
   const w=flashSt.deck[flashSt.i];
-  const pool=flashSt.deck.filter(x=>x.zh!==w.zh);
-  const wrong=shuffleArr(pool).slice(0,3);
+  const renderOpt=flashSt.mode==='zh2en'?(x=>x.en):(x=>x.zh);
+  const wrong=pickDistractors(flashSt.deck.filter(x=>x.zh!==w.zh),w,renderOpt,3);
   let answer='',opts=[];
   if(flashSt.mode==='en2zh'){answer=w.zh;opts=shuffleArr([w.zh,...wrong.map(x=>x.zh)]);}
   else if(flashSt.mode==='zh2en'){answer=w.en;opts=shuffleArr([w.en,...wrong.map(x=>x.en)]);}
@@ -3646,7 +4093,7 @@ function checkFlashAnswer(btn,ok,answer,w){
     logWrong(curP,w.zh,w.py,w.en);
   }
   flashSt.i++;persistFlashSession();saveState();
-  setTimeout(renderFlashCurrent,850);
+  laterCall('flash',renderFlashCurrent,850);
 }
 
 function restoreFlashSession(){
@@ -3665,7 +4112,15 @@ let rainSt={pool:[],target:null,score:0,combo:0,bestCombo:0,timeLeft:60,spawnIv:
 let listenSt={questions:[],qi:0,streak:0,score:0};
 let traceSt={chars:[],i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:null};
 
-function closeGamesOverlay(){document.getElementById('games-overlay').classList.remove('show');}
+function closeGamesOverlay(){
+  document.getElementById('games-overlay').classList.remove('show');
+  // This was a one-liner that cleared nothing: Rain's intervals and its ~9
+  // in-flight drop timeouts, the match flip-back and the trace advance all
+  // survive the overlay being hidden. Left running they keep writing to
+  // state[curP] — and award stars for a round the child abandoned.
+  clearRainTimers();
+  drainScope('games');
+}
 function setGamesFailedFocus(active){
   const ov=document.getElementById('games-overlay');
   if(!ov)return;
@@ -3678,15 +4133,20 @@ function gameUnlockForDid(did){
   if(!curP||!did)return{listen:true,trace:true,match:true,rain:true};
   const s=state[curP];
   // Already completed this gate — no re-reading required
-  if(s.gatesCompleted&&s.gatesCompleted.includes(did))return{listen:true,trace:true,match:true,rain:true};
+  if(gateCleared(s,did))return{listen:true,trace:true,match:true,rain:true};
   const dynasty=DYNASTIES.find(d=>d.id===did);
   if(!dynasty)return{listen:true,trace:true,match:true,rain:true};
   const storyIds=[dynasty.story,dynasty.story2].filter(Boolean);
-  // Legacy: if story already in storiesCompleted (pre-feature), treat as fully read
-  if(storyIds.some(sid=>(s.storiesCompleted||[]).includes(sid)))return{listen:true,trace:true,match:true,rain:true};
+  // Legacy exemption, for children who finished a story BEFORE the read chain
+  // existed. It reads legacyStoriesCompleted — a one-time snapshot taken by
+  // ensureState — not the live list. The live list is still written today by
+  // the story mini-quiz, with no dwell-time check, so treating it as
+  // pre-feature credit let a brand-new user skim one story and unlock all four
+  // games instantly.
+  if(storyIds.some(sid=>(s.legacyStoriesCompleted||[]).includes(sid)))return{listen:true,trace:true,match:true,rain:true};
   const maxReads=Math.max(0,...storyIds.map(sid=>(s.storyReadCount||{})[sid]||0));
-  const flashDone=!!(s.flashPassDone&&s.flashPassDone[String(did)]);
-  const listenPlayed=((s.gateGameStars&&s.gateGameStars[String(did)])||{}).listen>0;
+  const flashDone=!!(s.flashPassDone&&s.flashPassDone[gateKeyOf(did)]);
+  const listenPlayed=((s.gateGameStars&&s.gateGameStars[gateKeyOf(did)])||{}).listen>0;
   return{
     listen:maxReads>=1,
     trace:maxReads>=1&&flashDone,
@@ -3717,7 +4177,7 @@ function gamePickerHtml(){
   const did=currentDynastyIdForGames();
   const ul=gameUnlockForDid(did);
   const s=curP?state[curP]:null;
-  const gs=(s&&s.gateGameStars&&s.gateGameStars[String(did)])||{};
+  const gs=(s&&s.gateGameStars&&s.gateGameStars[gateKeyOf(did)])||{};
   const dynasty=DYNASTIES.find(d=>d.id===did);
   const scopeLbl=dynasty?`${dynasty.icon||''} ${dynasty.en} — your best stars on this gate`:'Your best stars on this gate';
   return `<div style="font-size:.78rem;color:var(--muted);margin-bottom:.25rem;text-align:center;">Pick a game and word pool</div>
@@ -3746,7 +4206,7 @@ function currentDynastyIdForGames(){
   if(selectedGateId)return selectedGateId;
   const s=state[curP];
   for(const d of DYNASTIES){
-    if((d.id===1||s.gatesCompleted.includes(d.id-1))&&!s.gatesCompleted.includes(d.id))return d.id;
+    if((d.id===1||gateCleared(s,d.id-1))&&!gateCleared(s,d.id))return d.id;
   }
   return 22;
 }
@@ -3797,20 +4257,28 @@ function startGame(game,scope){
   else if(game==='trace')startTrace(words);
 }
 
-function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null};}
+function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null,gameTargetLevel:matchSt.gameTargetLevel||null};}
 function clearMatch(){if(curP)state[curP].pendingSessions.match=null;}
 
 function startMemoryMatch(words){
   const did=(curGameTargetDid||effectiveGameTargetDid()||1);
-  const pairCount=did>=15?8:6;
-  const pick=shuffleArr(words).slice(0,pairCount);
+  // The board size is capped by the gate, but it can never exceed the words
+  // actually available. Deriving it from the gate alone made a small
+  // Work-in-Progress pool unwinnable: with 3 words and a target of 6 the
+  // header read "Matched 3/6" forever, the round could not end, and because
+  // the unfinished session is persisted it also outranked every other
+  // activity on the resume button.
+  const cap=did>=15?8:6;
+  const pick=shuffleArr(words).slice(0,cap);
+  const pairCount=pick.length;
   const cards=[];
   pick.forEach((w,i)=>{
     cards.push({id:'a'+i,pair:i,side:'zh',text:w.zh,w:{...w},matched:false});
     cards.push({id:'b'+i,pair:i,side:'en',text:w.en,w:{...w},matched:false});
   });
-  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null};
+  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
   persistMatch();saveState();renderMemoryMatch();
+  touchSession('match');
 }
 
 function renderMemoryMatch(){
@@ -3820,7 +4288,7 @@ function renderMemoryMatch(){
     const sec=(Date.now()-matchSt.start)/1000;
     const stars=sec<120?3:sec<180?2:sec<240?1:0;
     const tid=matchSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'match',stars);
+    if(tid)updateGateGameBest(tid,'match',stars,matchSt.gameTargetLevel);
     awardAltRound('match',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Brainy win!</div>
       <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
@@ -3864,11 +4332,14 @@ function tapMatch(idx){
       bumpCorrectCount(1);
       persistMatch();saveState();renderMemoryMatch();
     }else{
-      if(!consumeDynastyForgiveness('match')){
-        logWrong(curP,a.w&&a.w.zh||'',a.w&&a.w.py||'',a.w&&a.w.en||'');
-      }
+      // A mismatched flip is a memory miss, not evidence the child does not
+      // know the word — and the code only ever logged card `a`, so which word
+      // got blamed depended on flip order. It no longer feeds the practice
+      // queue; the move counter and the time-based star rule already capture
+      // how the round went. (This is what CLAUDE.md section 16.2 always
+      // claimed the game did.)
       persistMatch();saveState();renderMemoryMatch();
-      setTimeout(()=>{matchSt.openIdxs=[];persistMatch();saveState();renderMemoryMatch();},650);
+      laterCall('games',()=>{matchSt.openIdxs=[];persistMatch();saveState();renderMemoryMatch();},650);
     }
   }else{persistMatch();saveState();renderMemoryMatch();}
 }
@@ -3877,9 +4348,10 @@ function persistRain(){
   if(!curP)return;
   state[curP].pendingSessions.rain={pool:rainSt.pool.map(w=>({...w})),target:rainSt.target?{...rainSt.target}:null,
     score:rainSt.score,combo:rainSt.combo,bestCombo:rainSt.bestCombo,timeLeft:rainSt.timeLeft,
-    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,
+    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,gameTargetLevel:rainSt.gameTargetLevel||null,
     targetSeq:(rainSt.targetSeq||[]).map(w=>({...w})),targetIdx:rainSt.targetIdx||0,targetSeenCount:rainSt.targetSeenCount||0,
     spawnsSinceTarget:rainSt.spawnsSinceTarget||0,targetShownThisRound:!!rainSt.targetShownThisRound};
+  touchSession('rain');
 }
 function clearRainTimers(){
   if(rainSt.spawnIv)clearInterval(rainSt.spawnIv);
@@ -3895,7 +4367,7 @@ function startRain(words){
   words.filter(w=>w.zh&&w.en).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);uniq.push(w);}});
   if(uniq.length<5){showToast('Rain needs at least 5 words. Try Dynasty or HSK to build your word pool!');return;}
   rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0,
+    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0,
     spawnsSinceTarget:0,targetShownThisRound:false};
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
@@ -3966,7 +4438,7 @@ function spawnRainDrop(){
   };
   zone.appendChild(btn);
   requestAnimationFrame(()=>{btn.style.top='240px';});
-  setTimeout(()=>{
+  laterCall('games',()=>{
     if(btn.parentNode){
       if(w.zh===rainSt.target.zh&&rainSt.targetShownThisRound){
         rainSt.rainAttempts=(rainSt.rainAttempts||0)+1;
@@ -3994,7 +4466,7 @@ function endRain(fromUser){
   // Natural end (timer ran out) — full round completed, stars deserved
   clearRainSession();
   const stars=starsFromAccuracy(rh,ra);
-  if(tid)updateGateGameBest(tid,'rain',stars);
+  if(tid)updateGateGameBest(tid,'rain',stars,rainSt.gameTargetLevel);
   awardAltRound('rain',stars);
   body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Time is up!</div>
     <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
@@ -4008,7 +4480,7 @@ function restoreRain(){
   clearRainSession();
   const seq=(ps.targetSeq&&ps.targetSeq.length)?ps.targetSeq.map(w=>({...w})):shuffleArr(ps.pool.map(w=>({...w})));
   rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0,
+    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0,
     spawnsSinceTarget:ps.spawnsSinceTarget||0,targetShownThisRound:!!ps.targetShownThisRound};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
@@ -4017,11 +4489,11 @@ function restoreRain(){
 function startListen(words){
   const pool=shuffleArr(words).filter(w=>w.zh);
   const qs=shuffleArr(pool).slice(0,10).map(w=>{
-    const wrong=shuffleArr(pool.filter(x=>x.zh!==w.zh)).slice(0,3);
+    const wrong=pickDistractors(pool.filter(x=>x.zh!==w.zh),w,x=>x.en,3);
     return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
   });
-  listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null};
-  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid};
+  listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
+  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null};touchSession('listen');
   saveState();renderListen();
 }
 
@@ -4034,7 +4506,7 @@ function renderListen(){
     const cc=listenSt.correctCount||0;
     const stars=starsFromAccuracy(cc,tot);
     const tid=listenSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'listen',stars);
+    if(tid)updateGateGameBest(tid,'listen',stars,listenSt.gameTargetLevel);
     awardAltRound('listen',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Listening complete!</div>
       <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
@@ -4075,17 +4547,63 @@ function checkListen(btn,ok,q){
     listenSt.streak=0;btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+q.w.zh;
     if(!consumeDynastyForgiveness('listen'))logWrong(curP,q.w.zh,q.w.py,q.w.en);
   }
+  // Audio to character with no pinyin on screen: unaided recognition.
+  noteEvidence(curP,q.w,'recognition',ok,{source:'listen'});
   listenSt.qi++;
-  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid};
+  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null};touchSession('listen');
   saveState();
-  setTimeout(renderListen,800);
+  laterCall('listen',renderListen,800);
 }
 
+/**
+ * Per-character reading and meaning, built once from the story tokens.
+ *
+ * Stories carry accurate per-character `py` and `mn` on every token, so they
+ * are the reliable source. Single-character vocabulary entries fill any gaps.
+ */
+let charMetaIndex=null;
+function getCharMeta(){
+  if(charMetaIndex)return charMetaIndex;
+  charMetaIndex={};
+  Object.values(STORIES_MAP||{}).forEach(st=>{
+    (st.sents||[]).forEach(sent=>sent.forEach(tok=>{
+      if(tok&&tok.t==='c'&&tok.ch&&tok.py&&!charMetaIndex[tok.ch]){
+        charMetaIndex[tok.ch]={py:tok.py,en:tok.mn||''};
+      }
+    }));
+  });
+  const addSingle=(w)=>{
+    if(!w||typeof w.zh!=='string'||[...w.zh].length!==1)return;
+    const py=w.py||w.pinyin||'';
+    if(py&&!charMetaIndex[w.zh])charMetaIndex[w.zh]={py,en:w.en||''};
+  };
+  [1,2,3,4].forEach(lv=>(HSK_VOCAB[lv]||[]).forEach(addSingle));
+  Object.values(GATE_VOCAB||{}).forEach(arr=>(arr||[]).forEach(addSingle));
+  return charMetaIndex;
+}
+
+/**
+ * Split words into the characters to trace.
+ *
+ * This used to hand every character its whole WORD's reading and meaning, so a
+ * child tracing 习 was told it reads "xué xí" and means "to study" — both
+ * wrong. Each character now gets its own metadata; where none is known we show
+ * the word it came from, clearly labelled, rather than inventing a gloss for a
+ * character that may not stand alone.
+ */
 function uniqueChars(words){
+  const meta=getCharMeta();
   const m={};
   words.forEach(w=>{
-    [...(w.zh||'')].forEach(ch=>{
-      if(/[\u4e00-\u9fff]/.test(ch)&&!m[ch])m[ch]={zh:ch,py:w.py||'',en:w.en||''};
+    const chars=[...(w.zh||'')].filter(ch=>/[\u4e00-\u9fff]/.test(ch));
+    const single=chars.length===1;
+    chars.forEach(ch=>{
+      if(m[ch])return;
+      if(single){m[ch]={zh:ch,py:w.py||'',en:w.en||''};return;}
+      const info=meta[ch];
+      if(info){m[ch]={zh:ch,py:info.py,en:info.en||''};return;}
+      // No standalone reading known: show the source word instead of guessing.
+      m[ch]={zh:ch,py:'',en:`in ${w.zh}${w.en?' — '+w.en:''}`,fromWord:w.zh};
     });
   });
   return Object.values(m);
@@ -4098,7 +4616,7 @@ function startTrace(words){
     :allChars;
   if(!chars.length){showToast('No characters to trace yet—learn a few more first!');return;}
   traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null,watchCount:0,quizActive:false};
-  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid};
+  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');
   saveState();renderTrace();
 }
 
@@ -4113,7 +4631,7 @@ function renderTrace(){
       ?traceStarsFromAccuracy(tg,tot,traceSt.gameTargetDid)
       :starsFromAccuracy(tg,tot);
     const tid=traceSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'trace',stars);
+    if(tid)updateGateGameBest(tid,'trace',stars,traceSt.gameTargetLevel);
     awardAltRound('trace',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
       <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
@@ -4166,19 +4684,22 @@ function startTraceQuiz(){
   if(watchBtn)watchBtn.disabled=true;
   const c=traceSt.chars[traceSt.i];
   let mistakes=0;
+  const traceGen=sessionGen;
   traceSt.writer.quiz({
     onMistake:()=>{
+      if(traceGen!==sessionGen)return;
       if(!consumeDynastyForgiveness('trace')){
         mistakes++;
         logWrong(curP,c.zh,c.py,c.en);
       }
     },
     onComplete:()=>{
+      if(traceGen!==sessionGen)return;
       // Softer thresholds: 0 mistakes=3★, ≤4=2★, anything else=1★
       const stars=mistakes===0?3:(mistakes<=4?2:1);
       const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
       traceSt.traceGood=(traceSt.traceGood||0)+(mistakes===0?1:0);
-      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid};
+      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');
       const msgs=stars===3
         ?['Perfect! 🌟','Flawless! Amazing! ✨','No mistakes — you nailed it! 🏆']
         :stars===2
@@ -4188,7 +4709,7 @@ function startTraceQuiz(){
       showToast(c.zh+' '+('★'.repeat(stars)+'☆'.repeat(3-stars))+' · '+msg,2000);
       saveState();
       // Auto-advance to next character after showing the result
-      setTimeout(traceNext,2000);
+      laterCall('games',traceNext,2000);
     }
   });
 }
@@ -4200,25 +4721,32 @@ function exitTrace(){
 }
 
 function traceAnimate(){traceWatchAgain();}
-function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid};saveState();renderTrace();}
+function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');saveState();renderTrace();}
 
 function restoreTrace(){
   const ps=state[curP].pendingSessions.trace;if(!ps||!ps.chars)return false;
-  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:'',traceGood:ps.traceGood||0,gameTargetDid:ps.gameTargetDid||null};
+  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:'',traceGood:ps.traceGood||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
   document.getElementById('games-overlay').classList.add('show');
   renderTrace();return true;
 }
 
 function restoreMatch(){
   const ps=state[curP].pendingSessions.match;if(!ps||!ps.cards)return false;
-  matchSt={cards:ps.cards.map(c=>({...c})),openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount:ps.pairCount||8,gameTargetDid:ps.gameTargetDid||null};
+  const cards=ps.cards.map(c=>({...c}));
+  // A session saved before the pair-count fix can carry an impossible target
+  // (say 6 pairs on a 3-pair board). Derive it from the board that was
+  // actually dealt so an old save resumes into a finishable round rather than
+  // a permanent dead end.
+  const dealtPairs=new Set(cards.map(c=>c.pair)).size;
+  const pairCount=Math.min(ps.pairCount||dealtPairs,dealtPairs);
+  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
   document.getElementById('games-overlay').classList.add('show');
   renderMemoryMatch();return true;
 }
 
 function restoreListen(){
   const ps=state[curP].pendingSessions.listen;if(!ps||!ps.questions)return false;
-  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0,correctCount:ps.correctCount||0,gameTargetDid:ps.gameTargetDid||null};
+  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0,correctCount:ps.correctCount||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
   document.getElementById('games-overlay').classList.add('show');
   renderListen();return true;
 }
@@ -4240,6 +4768,11 @@ function persistGateQuizState(){
     sbBuilt:[...(typeof sbBuilt!=='undefined'?sbBuilt:[])],speakUsed:!!speakUsed,pyHintUsed:!!pyHintUsed,pyPeekUsed:!!pyPeekUsed,
     quizCorrect:quizSt.quizCorrect||0,quizAttempts:quizSt.quizAttempts||0
   };
+  touchSession('gate');
+  if(quizSt&&quizSt.attemptExpired&&state[curP]&&state[curP].pendingSessions){
+    const slot=quizSt.isChampion?'champion':'gate';
+    if(state[curP].pendingSessions[slot])state[curP].pendingSessions[slot].attemptExpired=true;
+  }
 }
 
 function clearGateQuizPending(){
@@ -4263,7 +4796,8 @@ function restoreGateQuizSession(){
     sbRound:ps.sbRound||0,isDaddy:false,isChampion:!!ps.isChampion,champGroup:ps.champGroup||null,
     hardMode:!!ps.hardMode,
     mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:ps.noMcqAssistance!==false,
-    quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0
+    quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0,
+    attemptExpired:!!ps.attemptExpired
   };
   mcqAnswered=ps.mcqAnswered||0;pyAnswered=ps.pyAnswered||0;sbBuilt=[...(ps.sbBuilt||[])];
   speakUsed=!!ps.speakUsed;pyHintUsed=!!ps.pyHintUsed;pyPeekUsed=!!ps.pyPeekUsed;
@@ -4289,6 +4823,10 @@ function resumeSession(type){
 function resumeLastSession(){
   if(!curP)return;
   const ps=state[curP].pendingSessions||{};
+  // Prefer whatever was actually touched last. The fixed priority order below
+  // is only the fallback for sessions saved before timestamps existed.
+  const recent=mostRecentSession();
+  if(recent&&recent.at>0&&resumeSession(recent.kind))return;
   if(ps.story&&resumeSession('story'))return;
   if((ps.gate||ps.champion)&&resumeSession('gate'))return;
   if(ps.flash&&resumeSession('flash'))return;
@@ -4302,7 +4840,7 @@ function resumeLastSession(){
 
 /** Reading story for dynasty `did` unlocks after the previous dynasty's gate (id did−1) is cleared. */
 function isStoryUnlockedForDynasty(did,s){
-  return did===1||s.gatesCompleted.includes(did-1);
+  return did===1||gateCleared(s,did-1);
 }
 
 // ── TTS ── opts: { sentence: true } = slower for full sentences
@@ -4579,6 +5117,14 @@ function showScreen(id){
 }
 
 function selectPlayer(p){
+  // stopPlayTime() flushes the outstanding play-time delta and must run while
+  // curP still points at the outgoing player, so it stays ahead of the drain.
+  stopPlayTime();
+  drainAllDeferred();
+  releaseAnswerLock();
+  bumpSessionGen();
+  // Otherwise the new profile's hub opens on the previous child's gate.
+  selectedGateId=null;
   curP=p;ensureState(p);curHSK=1;
   state[p].mascotSession={count:0,lastAt:0};
   stopCharOriginRotation();
@@ -4590,6 +5136,9 @@ function selectPlayer(p){
 
 function goToSelect(){
   stopTimer();stopPlayTime();
+  drainAllDeferred();
+  releaseAnswerLock();
+  bumpSessionGen();
   hidePY=false;hideEN=false;noPYmode=false;
   document.body.classList.remove('nopy-mode');
   curP=null;renderSelectBadges();showScreen('select');
@@ -4618,11 +5167,27 @@ function renderSelectBadges(){
   });
 }
 
+/**
+ * The furthest level the child has reached.
+ *
+ * This used to be a running total of gates cleared across the whole app, which
+ * is what made a level a label rather than a place. It now reports the highest
+ * level that is actually open — cleared its predecessor's gate 22, or carries
+ * inherited access from the migration.
+ */
 function getCurrentHSK(s){
-  if(s.gatesCompleted.length>=17)return 4;
-  if(s.gatesCompleted.length>=11)return 3;
-  if(s.gatesCompleted.length>=5)return 2;
-  return 1;
+  if(!s)return 1;
+  let top=1;
+  [2,3,4].forEach(lv=>{if(levelIsUnlocked(s,lv))top=lv;});
+  return top;
+}
+
+/** How many of a level's 22 gates are cleared. */
+function gatesClearedInLevel(s,lv){
+  return ((s&&s.gatesCompleted)||[]).filter(k=>{
+    const p=GateIdentity.parseGateKey(k);
+    return p&&p.levelId===Number(lv);
+  }).length;
 }
 
 // ══════════════════════════════════════════════════════
@@ -4635,6 +5200,11 @@ function renderHub(){
   const prevHubScroll=hubMain?hubMain.scrollTop:0;
   dbgLog('renderHub begin',{curP,scrollTop:prevHubScroll});
   const s=state[curP];
+  // Announce any lapsed challenge here, rather than letting it fire silently
+  // the next time a game ends.
+  const expiredNow=sweepExpiredGateTimers(s);
+  if(expiredNow.length>1)showToast(`${expiredNow.length} gate challenges ran out of time — fresh attempts are ready.`,3200);
+  if(expiredNow.length)saveState();
   const nextDid=nextOpenGateId(s);
   if(nextDid)maybeShowGateTimerReminder(s,nextDid);
   document.getElementById('hub-avatar').textContent=curP==='jenn'?'🐥':'🦊';
@@ -4696,7 +5266,9 @@ function renderHub(){
   // HSK tabs
   const tabs=document.getElementById('hsk-tabs');tabs.innerHTML='';
   [1,2,3,4].forEach(lv=>{
-    const unlocked=lv===1||s.gatesCompleted.length>=(lv===2?5:lv===3?11:17);
+    // A level opens when the previous level is finished, or when the child
+    // already had it under the old running-total rule.
+    const unlocked=levelIsUnlocked(s,lv);
     const btn=document.createElement('button');
     btn.className='hsk-tab'+(lv===curHSK?' active':'')+(unlocked?'':' locked');
     btn.textContent='HSK '+lv+(unlocked?'':' 🔒');
@@ -4735,6 +5307,9 @@ function renderHubContent(){
           <button type="button" class="btn-s hub-flash-btn" onclick="openFlashPicker()">🎴 Flash Cards</button>
           <button type="button" class="btn-s hub-flash-btn" onclick="openCultureStories()">🏮 Culture Stories</button>
         </div>
+        <div class="hub-play-btns">
+          <button type="button" class="btn-s hub-flash-btn" onclick="openAssessment()">📊 Assessment · 学习评估</button>
+        </div>
         <div style="margin-top:.6rem;">
           ${gamePickerHtml()}
         </div>
@@ -4753,16 +5328,16 @@ function renderHubContent(){
 
   const track=document.getElementById('road-track');
   DYNASTIES.forEach((d,idx)=>{
-    const done=s.gatesCompleted.includes(d.id);
-    const prevDone=idx===0||s.gatesCompleted.includes(DYNASTIES[idx-1].id);
+    const done=gateCleared(s,d.id);
+    const prevDone=idx===0||gateCleared(s,DYNASTIES[idx-1].id);
     const isActive=!done&&prevDone;
     const locked=!prevDone&&!done;
-    const stars=s.gateStars[d.id]||0;
+    const stars=s.gateStars[gateKeyOf(d.id)]||0;
 
     // Connector before this gate node
     if(idx>0){
       const span=document.createElement('div');
-      span.className='dr-conn'+(s.gatesCompleted.includes(DYNASTIES[idx-1].id)?' done':'');
+      span.className='dr-conn'+(gateCleared(s,DYNASTIES[idx-1].id)?' done':'');
       span.style.width=(ROAD_PX[idx-1]||20)+'px';
       track.appendChild(span);
     }
@@ -4796,7 +5371,7 @@ function renderHubContent(){
       const champDone=s.championCleared&&s.championCleared[grp];
       const champStars=champDone||0;
       // All 5 gates in this group must be done to unlock champion
-      const groupDone=[1,2,3,4,5].every(i=>s.gatesCompleted.includes(d.id-5+i));
+      const groupDone=[1,2,3,4,5].every(i=>gateCleared(s,d.id-5+i));
 
       // Connector to champion node
       const connChamp=document.createElement('div');
@@ -4868,8 +5443,8 @@ const DIM={
 
 function renderDynastyDetail(d,s){
   const panel=document.getElementById('dynasty-detail-panel');if(!panel)return;
-  const done=s.gatesCompleted.includes(d.id);
-  const stars=s.gateStars&&s.gateStars[d.id]||0;
+  const done=gateCleared(s,d.id);
+  const stars=s.gateStars&&s.gateStars[gateKeyOf(d.id)]||0;
   const starsStr=done?'★'.repeat(stars)+'☆'.repeat(3-stars):'';
   const story=d.story&&STORIES_MAP[d.story];
   const story2=d.story2&&STORIES_MAP[d.story2];
@@ -4912,45 +5487,56 @@ function renderDynastyDetail(d,s){
 async function renderGateLesson(did,lessonRef){
   const box=document.getElementById('gate-lesson-box');if(!box)return;
   box.innerHTML='<div class="dd-desc">Loading lesson...</div>';
+  // The fetch can outlive the gate that started it.
+  const gen=sessionGen;
+  const owner=curP;
   const lesson=await loadLessonByRef(lessonRef);
+  if(gen!==sessionGen||curP!==owner)return;
   if(!lesson){
     box.innerHTML='<div class="dd-desc">Lesson content will be added soon for this gate.</div>';
     return;
   }
   const lvl=String(lesson.level||'HSK1');
   const gate=lesson.gateId||did;
-  const newCount=(lesson.keyVocab||[]).length;
-  // Build vocab cards with visible English
+  const esc=(t)=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
   const vocab=(lesson.keyVocab||[]).map(v=>`<div style="display:inline-flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(212,160,23,.18);border-radius:9px;padding:.3rem .55rem;gap:.1rem;">
-    <span style="font-family:var(--fzh);font-size:1.1rem;color:var(--gold);">${v.zh}</span>
-    <span style="font-size:.65rem;color:var(--muted);">${v.pinyin||''}</span>
-    <span style="font-size:.62rem;color:var(--ink);text-align:center;">${v.en||''}</span>
+    <span style="font-family:var(--fzh);font-size:1.1rem;color:var(--gold);">${esc(v.zh)}</span>
+    <span style="font-size:.65rem;color:var(--muted);">${esc(v.pinyin||'')}</span>
+    <span style="font-size:.62rem;color:var(--ink);text-align:center;">${esc(v.en||'')}</span>
   </div>`).join('');
-  // Comprehension questions with bilingual display
-  const qs=(lesson.comprehension||[]).slice(0,3).map((q,i)=>{
-    const enQs=['How many new words are in this gate?','Say two new words from this gate.','After reading, what should you do first?'];
-    const enAs=['Count the key vocabulary words listed above.','Pick any two characters from the list above.','Read the words aloud, then try to use one in a short sentence.'];
-    return `<li style="margin:.25rem 0;">
-      <span style="color:var(--ink);">${enQs[i]||''}</span>
-      <span style="color:var(--muted);font-size:.8em;display:block;margin-top:.1rem;">（${q.question||''}）</span>
-      <span style="color:var(--jade);font-size:.85em;display:block;">→ ${enAs[i]||q.answer||''}</span>
-    </li>`;
-  }).join('');
-  // English intro
-  const enIntro=`This gate introduces <strong>${newCount} key words</strong>. First read each word aloud with the pinyin, then try to say a short sentence using one of the new words. Ask a parent for help with about 20% of unclear parts — the rest you can do yourself!`;
-  // Speaking prompt in English
-  let spEn='';
-  if(lesson.speakingPrompt){
-    const sp=lesson.speakingPrompt;
-    const firstZh=sp.match(/「([^」]+)」/g);
-    const examples=firstZh?firstZh.map(s=>s.replace(/[「」]/g,'')).join(', '):'the new words';
-    spEn=`Try saying 2–3 short sentences using today's words (e.g. ${examples}).`;
-  }
-  box.innerHTML=`<div class="dd-icon-meaning"><strong>📖 Lesson · 课程 — ${lvl} Gate ${gate}</strong></div>
-    <div class="dd-desc" style="background:rgba(39,174,96,.07);border:1px solid rgba(39,174,96,.2);border-radius:8px;padding:.5rem .7rem;margin:.3rem 0;">${enIntro}</div>
+
+  // The authored passage. It was written for every one of the 88 gates and then
+  // never displayed — `lesson.passage` was referenced nowhere in the app.
+  const passage=lesson.passage
+    ? `<div class="practice-box" style="text-align:left;font-family:var(--fzh);font-size:1.02rem;line-height:1.95;margin:.5rem 0;">${esc(lesson.passage)}</div>`
+    : '';
+
+  // The lesson's own explanation, likewise never shown.
+  const intro=lesson.explanation
+    ? `<div class="dd-desc" style="background:rgba(39,174,96,.07);border:1px solid rgba(39,174,96,.2);border-radius:8px;padding:.5rem .7rem;margin:.3rem 0;line-height:1.65;">${esc(lesson.explanation)}</div>`
+    : '';
+
+  // The authored questions and THEIR answers. Three hard-coded English
+  // questions used to be printed instead — "How many new words are in this
+  // gate?" — with the real question demoted to a parenthetical and the real
+  // answer never rendered at all. On 22 of the 88 lessons the substitute did
+  // not even match the question it replaced.
+  const qs=(lesson.comprehension||[]).map(q=>`<li style="margin:.35rem 0;">
+      <span style="color:var(--ink);">${esc(q.question||'')}</span>
+      <span style="color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;">→ ${esc(q.answer||'')}</span>
+    </li>`).join('');
+
+  const speaking=lesson.speakingPrompt
+    ? `<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;line-height:1.6;"><strong>🗣 Speaking · 口语：</strong> ${esc(lesson.speakingPrompt)}</div>`
+    : '';
+
+  box.innerHTML=`<div class="dd-icon-meaning"><strong>📖 Lesson · 课程 — ${esc(lvl)} Gate ${esc(gate)}</strong></div>
+    ${intro}
     ${vocab?`<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0;">${vocab}</div>`:''}
-    ${qs?`<div class="dd-desc"><strong>✅ Check Understanding (answer with your parent)</strong><ol style="margin:.35rem 0 .1rem 1.1rem;line-height:1.7;">${qs}</ol></div>`:''}
-    ${spEn?`<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;"><strong>🗣 Speaking Practice:</strong> ${spEn}</div>`:''}`;
+    ${passage}
+    ${qs?`<div class="dd-desc"><strong>✅ 读一读，想一想 · Check understanding</strong><ol style="margin:.35rem 0 .1rem 1.1rem;line-height:1.7;">${qs}</ol></div>`:''}
+    ${speaking}`;
 }
 
 function closeCultureStories(){
@@ -5031,8 +5617,13 @@ async function openCultureStories(){
   const body=document.getElementById('culture-body');if(!body)return;
   body.innerHTML='<div class="dd-desc">Loading culture stories...</div>';
   ov.classList.add('show');
+  // The fetch can outlive the profile that started it; without this the reads
+  // below land on whichever child is selected when it resolves.
+  const gen=sessionGen;
   const data=await loadCultureCurriculum();
+  if(gen!==sessionGen)return;
   if(!data||!Array.isArray(data.tracks)){body.innerHTML='<div class="dd-desc">Culture stories are unavailable right now.</div>';return;}
+  if(!curP)return;
   ensureState(curP);
   const seen=state[curP].cultureSeen||{};
   const cards=[];
@@ -5096,7 +5687,12 @@ function openStory(story,dynasty){
       // char (C or B — bonus taps optional for completion)
       const isBonus=!!tok.bonus;
       const known=!!state[curP].library[tok.ch];
-      if(!known&&!isBonus){totalNew++;newChars.add(tok.ch);}
+      // newChars is a Set of unique characters; totalNew used to count token
+      // OCCURRENCES, so a character appearing twice inflated the denominator
+      // and the bar stopped at 79% on the very first story even when every
+      // study character had been explored. Both sides now count unique
+      // characters, which is also what checkUnlock has always used.
+      if(!known&&!isBonus)newChars.add(tok.ch);
       const u=document.createElement('div');
       u.className='cu'+(known?' known revealed':'')+(isBonus?' bonus':'');
       u.innerHTML=`<div class="tap-ring"></div><div class="py">${tok.py}</div><div class="hz">${tok.ch}</div><div class="mtip">${tok.mn||''}</div><div class="thint">🔊</div>`;
@@ -5112,6 +5708,11 @@ function openStory(story,dynasty){
     }
     sc.appendChild(block);
   });
+  // Settle the bar and the finish button now that every token is placed.
+  // Without this, re-reading a story whose characters are all already known
+  // left the bar at 0% and the finish button disabled forever: tapChar returns
+  // early on a `known` character, so no tap could ever reach updateProg.
+  updateProg();checkUnlock();
   storyOpenTime=Date.now();
   showScreen('reader');
 }
@@ -5126,7 +5727,7 @@ function tapChar(u,tok){
 
 function updateProg(){
   const n=[...tapped].filter(c=>newChars.has(c)).length;
-  const pct=totalNew===0?100:Math.round(n/totalNew*100);
+  const pct=newChars.size===0?100:Math.round(n/newChars.size*100);
   document.getElementById('prog-fill').style.width=pct+'%';
   document.getElementById('prog-lbl').textContent=pct+'%';
 }
@@ -5185,6 +5786,7 @@ function persistMiniQuizState(){
     qi:miniQ.qi,score:miniQ.score,phase:miniQ.phase,
     wrongQueue:miniQ.wrongQueue.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]}))
   };
+  touchSession('story');
 }
 
 function restoreStoryMiniQuiz(){
@@ -5217,7 +5819,7 @@ function buildMiniQuizQuestions(){
   const qs=[];
   for(let i=0;i<Math.min(4,pool.length);i++){
     const q=pool[i];
-    const distractors=pool.filter((_,j)=>j!==i).sort(()=>Math.random()-.5).slice(0,3);
+    const distractors=pickDistractors(pool.filter((_,j)=>j!==i),pool[i],x=>x.en,3);
     if(distractors.length<1)continue;
     const opts=[q,...distractors].sort(()=>Math.random()-.5).map(w=>w.en);
     qs.push({zh:q.zh,py:q.py,correct:q.en,opts});
@@ -5268,13 +5870,17 @@ function checkMiniQ(btn,isCorrect,correctAns,opts){
     if(miniQ.qi<miniQ.questions.length){persistMiniQuizState();renderMiniQuestion();}
     else finishMiniPass();
   };
+  // The second pass re-asks items the child just had revealed, so it is
+  // teaching rather than retrieval and must not advance the schedule.
+  noteEvidence(curP,{zh:q.zh},'meaning',isCorrect,
+    {sameSession:miniQ.phase!=='main',source:'story-mini-quiz'});
   if(isCorrect){
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ Great job! Correct!';miniQ.score++;
     bumpCorrectCount(1);
     maybeCelebrateQuizMilestone();
     microRewardToast('Nice one!');
     persistMiniQuizState();saveState();
-    setTimeout(goNext,900);
+    laterCall('miniquiz',goNext,900);
   }else{
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
     opts.querySelectorAll('.mcq-opt').forEach(b=>{if(b.textContent===correctAns)b.classList.add('correct');});
@@ -5405,6 +6011,7 @@ function checkDrillQ(btn,isCorrect,correctAns,opts,zh,py){
     if(drillSt.qi<drillSt.words.length)renderDrillQ();
     else showDrillResult();
   };
+  noteEvidence(curP,{zh},'meaning',isCorrect,{source:'drill'});
   if(isCorrect){
     drillSt.correct++;drillSt.streak++;
     if(drillSt.streak>drillSt.maxStreak)drillSt.maxStreak=drillSt.streak;
@@ -5418,7 +6025,7 @@ function checkDrillQ(btn,isCorrect,correctAns,opts,zh,py){
       if(s.failedWords[zh].failCount<=0)delete s.failedWords[zh];
     }
     saveState();
-    setTimeout(goNext,1100);
+    laterCall('drill',goNext,1100);
   }else{
     drillSt.streak=0;
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
@@ -5456,7 +6063,18 @@ function closeDrill(){
 let revengeSt={words:[],qi:0,correct:0};
 function closeRevengeRound(){
   const ov=document.getElementById('revenge-overlay');if(ov)ov.classList.remove('show');
-  if(curP&&state[curP].pendingSessions)state[curP].pendingSessions.revenge=null;
+  // Closing used to null the session outright, so shutting the overlay at
+  // question 3 of 6 discarded the whole round silently — and made the revenge
+  // branch of resumeLastSession unreachable except after a reload. It now
+  // saves like every other activity.
+  if(curP&&state[curP].pendingSessions&&revengeSt&&revengeSt.words&&revengeSt.words.length&&revengeSt.qi<revengeSt.words.length){
+    state[curP].pendingSessions.revenge={
+      words:revengeSt.words.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),
+      qi:revengeSt.qi,correct:revengeSt.correct,updatedAt:Date.now()};
+    showToast('Progress saved — finish the round to earn stars! ⚔️',2400);
+  }else if(curP&&state[curP].pendingSessions){
+    state[curP].pendingSessions.revenge=null;
+  }
   saveState();
 }
 function startRevengeRound(){
@@ -5517,13 +6135,14 @@ function checkRevengeQ(btn,isCorrect,correctAns,grid,zh,py){
       renderHub();
     }
   };
+  noteEvidence(curP,{zh},'meaning',isCorrect,{source:'revenge'});
   if(isCorrect){
     revengeSt.correct++;
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ Nice!';
     microRewardToast('Strong comeback!');
     bumpCorrectCount(1);
     saveState();
-    setTimeout(goNext,900);
+    laterCall('revenge',goNext,900);
   }else{
     btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+correctAns;
     grid.querySelectorAll('.mcq-opt').forEach(b=>{if(b.textContent===correctAns)b.classList.add('correct');});
@@ -5592,14 +6211,17 @@ function startGateQuiz(did,opts){
   if(hard){mcqN=Math.min(10,mcqN+2);pyN=Math.min(12,pyN+2);}
   const recentStore=getRecentQuestionStore(curP);
   const recent=recentStore[`g-${did}`]||{mcq:[],py:[]};
+  const questions=buildMCQ(vocab,mcqN,recent.mcq);
+  const pyQ=buildPYQ(vocab,pyN,recent.py);
+  const sbPack=buildSBPack(did,false,sbN);
+  // Derived from what was actually built, never from what was requested.
+  mcqN=questions.length;pyN=pyQ.length;sbN=sbPack.length;
   const maxScore=mcqN*14+pyN*11+sbN*20;// 14 = base 10 + up to 4 bonus per MCQ
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
-    questions:buildMCQ(vocab,mcqN,recent.mcq),
-    pyQ:buildPYQ(vocab,pyN,recent.py),
-    sbPack:buildSBPack(did,false,sbN),
+    questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:false,hardMode:hard,mcqN,pyN,sbN,maxScore,noMcqAssistance:!hard,
     quizCorrect:0,quizAttempts:0};
-  mcqAnswered=0;pyAnswered=0;sbBuilt=[];
+  mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
   recentStore[`g-${did}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
@@ -5618,14 +6240,18 @@ function startChampionChallenge(group){
   if(lastBossQuizThemeIdx===2){mcqN=34;pyN=38;}
   const recentStore=getRecentQuestionStore(curP);
   const recent=recentStore[`c-${group}`]||{mcq:[],py:[]};
+  const questions=buildMCQ(vocab,mcqN,recent.mcq);
+  const pyQ=buildPYQ(vocab,pyN,recent.py);
+  const sbPack=buildSBPack(did,true,sbN);
+  // A champion used to display "/1088" for a round whose real maximum was 700,
+  // which also pinned the progress bar at ~64% on a flawless run.
+  mcqN=questions.length;pyN=pyQ.length;sbN=sbPack.length;
   const maxScore=mcqN*14+pyN*11+sbN*20;
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
-    questions:buildMCQ(vocab,mcqN,recent.mcq),
-    pyQ:buildPYQ(vocab,pyN,recent.py),
-    sbPack:buildSBPack(did,true,sbN),
+    questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
     quizCorrect:0,quizAttempts:0};
-  mcqAnswered=0;pyAnswered=0;sbBuilt=[];
+  mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
   recentStore[`c-${group}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
   showScreen('quiz');renderQuizPhase();
@@ -5747,8 +6373,11 @@ function getRecentQuestionStore(p){
 
 function buildQuizVocab(d,forChampion=false,didOverride){
   const did=didOverride!=null?didOverride:d.id;
+  // The dynasty's old `hsk` field used to override the active level here,
+  // because the level was cosmetic and the dynasty carried the real one. Under
+  // the 88-gate model the level IS the identity, so the active level decides
+  // which curriculum a gate draws from. The dynasty is only the theme.
   const prevHSK=curHSK;
-  if(d&&d.hsk)curHSK=d.hsk;
   const datasetPrimary=forChampion?getDatasetVocabForChampion(did):getDatasetVocabForGate(did);
   if(datasetPrimary.length){
     const minSize=forChampion?120:40;
@@ -5772,7 +6401,10 @@ function buildQuizVocab(d,forChampion=false,didOverride){
 }
 
 function buildMCQ(vocab,n=8,avoidZh=[]){
-  n=Math.min(n,20,vocab.length);
+  // The literal 20 here silently truncated every champion round: a request for
+  // 32 MCQ and 40 pinyin became 20 and 20, while the score line still advertised
+  // the uncapped maximum. The pool size remains a genuine limit; the cap was not.
+  n=Math.min(n,vocab.length);
   const pool=pickBalancedVocab(vocab,n,avoidZh);
   const qs=[];
   for(let i=0;i<Math.min(n,pool.length);i++){
@@ -5790,7 +6422,9 @@ function buildMCQ(vocab,n=8,avoidZh=[]){
       }
       qs.push({zh:correct.zh,py:correct.py,correct:correct.en,opts,reverse:true});
     }else{
-      const wrong=pool.filter(w=>w.zh!==correct.zh).sort(()=>Math.random()-.5).slice(0,3);
+      // Compared on the rendered meaning, so a near-synonym cannot appear as a
+      // wrong option that reads exactly like the right one.
+      const wrong=pickDistractors(pool.filter(w=>w.zh!==correct.zh),correct,w=>w.en,3);
       if(wrong.length<1)continue;
       const opts=[correct,...wrong].sort(()=>Math.random()-.5);
       qs.push({zh:correct.zh,py:correct.py,correct:correct.en,opts:opts.map(w=>w.en),reverse:false});
@@ -5800,7 +6434,10 @@ function buildMCQ(vocab,n=8,avoidZh=[]){
 }
 
 function buildPYQ(vocab,n=10,avoidZh=[]){
-  n=Math.min(n,20,vocab.length);
+  // The literal 20 here silently truncated every champion round: a request for
+  // 32 MCQ and 40 pinyin became 20 and 20, while the score line still advertised
+  // the uncapped maximum. The pool size remains a genuine limit; the cap was not.
+  n=Math.min(n,vocab.length);
   return pickBalancedVocab(vocab,n,avoidZh).map(w=>({zh:w.zh,correct:stripTones(w.py)}));
 }
 
@@ -5932,14 +6569,28 @@ function renderMCQPhase(qc,scoreBar){
 }
 
 function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
+  if(!lockAnswer())return;
   if(speakUsed||pyHintUsed)quizSt.noMcqAssistance=false;
   grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;});
   const fb=document.getElementById('q-fb');
   const goNext=()=>{
+    releaseAnswerLock();
     mcqAnswered++;
     if(mcqAnswered<quizSt.questions.length)renderMCQPhase(document.getElementById('quiz-content'),'');
     else nextPhase();
   };
+  const curQ=quizSt.questions[mcqAnswered];
+  // Use the exact current question row first to avoid homograph ambiguity (e.g. 都: dū vs dōu).
+  const qKey=curQ&&curQ.zh?curQ.zh:zhHint;
+  const w=quizSt.vocab.find(v=>v.zh===qKey&&v.en===correctAns)
+    || quizSt.vocab.find(v=>v.zh===qKey&&v.py===pyHint)
+    || quizSt.vocab.find(v=>v.zh===qKey)
+    || {zh:qKey||'?',py:pyHint||'?',en:correctAns};
+  // A reverse item shows English and asks for the character; the rest show the
+  // character and ask what it means. Pinyin or audio on screen makes it a
+  // supported answer, which is recorded but never advances the schedule.
+  noteEvidence(curP,w,(curQ&&curQ.reverse)?'recognition':'meaning',isCorrect,
+    {supported:!!(speakUsed||pyHintUsed),source:'gate-quiz-mcq'});
   if(isCorrect){
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
@@ -5960,20 +6611,13 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     maybeCelebrateQuizMilestone();
     microRewardToast('Nice one!');
     persistGateQuizState();saveState();
-    setTimeout(goNext,1200);
+    laterCall('quiz',goNext,1200);
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     btn.classList.add('wrong');fb.className='q-feedback err';fb.textContent='❌ Nice try! Correct answer: '+correctAns;
-    const curQ=quizSt.questions[mcqAnswered];
     grid.querySelectorAll('.mcq-opt').forEach(b=>{
       if(curQ&&b.textContent===(curQ.reverse?curQ.zh:curQ.correct))b.classList.add('correct');
     });
-    // Use the exact current question row first to avoid homograph ambiguity (e.g. 都: dū vs dōu).
-    const qKey=curQ&&curQ.zh?curQ.zh:zhHint;
-    const w=quizSt.vocab.find(v=>v.zh===qKey&&v.en===correctAns)
-      || quizSt.vocab.find(v=>v.zh===qKey&&v.py===pyHint)
-      || quizSt.vocab.find(v=>v.zh===qKey)
-      || {zh:qKey||'?',py:pyHint||'?',en:correctAns};
     logWrong(curP,w.zh,w.py,w.en);
     showCorrectRevealCard({zh:w.zh,py:w.py,en:w.en||correctAns,isSentence:false,onDone:goNext});
   }
@@ -6166,17 +6810,23 @@ function renderPYPhase(qc,scoreBar){
 
 function checkPY(){
   const q=quizSt.pyQ[pyAnswered];if(!q)return;
+  if(!lockAnswer())return;
   const inp=document.getElementById('py-in');
   const val=stripTones(inp.value.trim().replace(/\s/g,''));
   const correct=stripTones(q.correct.replace(/\s/g,''));
   const fb=document.getElementById('q-fb');
   const w=quizSt.vocab.find(v=>v.zh===q.zh);
   const goNext=()=>{
+    releaseAnswerLock();
     pyAnswered++;
     if(pyAnswered<quizSt.pyQ.length)renderPYPhase(document.getElementById('quiz-content'),'');
     else nextPhase();
   };
   inp.disabled=true;
+  // Character on screen, reading typed from memory: recognition. The pinyin
+  // chart is answer-revealing, so a peek makes the answer a supported one.
+  noteEvidence(curP,w||{zh:q.zh},'recognition',val===correct,
+    {supported:!!(speakUsed||pyPeekUsed),source:'gate-quiz-pinyin'});
   if(val===correct){
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
@@ -6188,7 +6838,7 @@ function checkPY(){
     maybeCelebrateQuizMilestone();
     microRewardToast('Nice one!');
     persistGateQuizState();saveState();
-    setTimeout(goNext,1200);
+    laterCall('quiz',goNext,1200);
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     inp.className='py-input err';fb.className='q-feedback err';
@@ -6210,7 +6860,7 @@ function renderSBPhase(qc,scoreBar){
   const shuffled=[...words].sort(()=>Math.random()-.5);
   qc.innerHTML=scoreBar+`
   <div class="quiz-card">
-    <div class="q-phase-lbl">Phase 3: Sentence Builder · 句子排列 (${quizSt.sbRound+1}/3)</div>
+    <div class="q-phase-lbl">Phase 3: Sentence Builder · 句子排列 (${quizSt.sbRound+1}/${quizSt.sbN||3})</div>
     <div class="q-text">Arrange the words in the correct order:</div>
     <div class="q-prompt-row" style="justify-content:flex-start;margin:.4rem 0 .6rem;"><button type="button" class="q-speak" id="sb-speak-all" aria-label="Hear sentence hint">🔊</button><span style="font-size:.72rem;color:var(--muted);">Tap to hear all words out loud</span></div>
     <div class="sb-target" id="sb-target"></div>
@@ -6223,7 +6873,7 @@ function renderSBPhase(qc,scoreBar){
     <div class="q-score-mini">Sentence ${quizSt.sbRound+1} of ${quizSt.sbN||3} · Score: ${quizSt.score} / ${quizSt.maxScore||220}</div>
   </div>`;
   const sbSpeak=document.getElementById('sb-speak-all');
-  if(sbSpeak)sbSpeak.onclick=()=>{words.forEach((w,i)=>setTimeout(()=>speak(w,{sentence:true}),i*680));};
+  if(sbSpeak)sbSpeak.onclick=()=>{words.forEach((w,i)=>laterCall('quiz',()=>speak(w,{sentence:true}),i*680));};
   const wordsEl=document.getElementById('sb-words');
   shuffled.forEach((w,i)=>{
     const chip=document.createElement('div');chip.className='wchip';chip.textContent=w;chip.dataset.idx=i;
@@ -6265,9 +6915,12 @@ function resetSB(){
 
 function checkSB(){
   const correct=quizSt.sbPack[quizSt.sbRound];
+  if(!correct)return;
+  if(!lockAnswer())return;
   const fb=document.getElementById('q-fb');
   const isCorrect=sbBuilt.join('')===correct.join('');
   const goNext=()=>{
+    releaseAnswerLock();
     quizSt.sbRound++;
     resetSB();
     const sbTotal=quizSt.sbN||3;
@@ -6283,7 +6936,7 @@ function checkSB(){
     maybeCelebrateQuizMilestone();
     microRewardToast('Nice one!');
     persistGateQuizState();saveState();
-    setTimeout(goNext,1100);
+    laterCall('quiz',goNext,1100);
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     fb.className='q-feedback err';fb.textContent='❌ Listen once more, then try again!';
@@ -6316,7 +6969,13 @@ function renderQuizResult(qc){
   const d=DYNASTIES.find(x=>x.id===quizSt.did);
   const s=state[curP];
   expireGateTimerIfNeeded(s,quizSt.did);
-  updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars);
+  // A quiz started under an attempt that has since run out of time can be
+  // finished — the child's work is not thrown away — but it does not qualify
+  // the new attempt. Otherwise an old pending round could resurrect credit the
+  // deadline reset deliberately cleared.
+  if(!quizSt.attemptExpired){
+    updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars,score);
+  }
   const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup);
   const gamesOk=gateGamesAllThree(s,quizSt.did);
   const quizPass=(bestQuiz.accPct||0)>=90&&(bestQuiz.quizStars||0)===3;
@@ -6329,30 +6988,26 @@ function renderQuizResult(qc){
   if(quizSt.isChampion){
     const grp=quizSt.champGroup;
     if(passedChampion){
+      // Champion trophies pay once too. The old code ran addEarnedStars on
+      // every passing replay because the pass test read the stored best.
+      const firstClear=!(grp in s.championCleared);
       const prev=s.championCleared[grp]||0;
       if(quizStars>prev)s.championCleared[grp]=quizStars;
-      const pts=score;addEarnedStars(pts);
-      if(score>=10)bumpCorrectCount(1);
-      const tsCh=getTS(curP);
-      if(quizStars>=2){tsCh.champions=(tsCh.champions||0)+1;}
-      if(quizStars>prev)maybeGrantMysteryFromGate(quizSt.did);
+      if(firstClear){
+        const pts=bestQuiz.points||score;
+        if(pts>0)addEarnedStars(pts);
+        if(score>=10)bumpCorrectCount(1);
+        const tsCh=getTS(curP);
+        if(quizStars>=2){tsCh.champions=(tsCh.champions||0)+1;}
+        maybeGrantMysteryFromGate(quizSt.did);
+      }
     }
-  }else if(passedGate){
-    const gateJustCleared=!s.gatesCompleted.includes(quizSt.did);
-    if(!s.gatesCompleted.includes(quizSt.did))s.gatesCompleted.push(quizSt.did);
-    const prevStars=s.gateStars[quizSt.did]||0;
-    if(quizStars>prevStars)s.gateStars[quizSt.did]=quizStars;
-    const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
-    if(timer&&timer.active&&timer.startKey===todayKey())checkBadges(curP,{oneDayGate:true});
-    if(timer&&timer.active)timer.active=false;
-    const pts=score;addEarnedStars(pts);
-    const ts=getTS(curP);ts.gates=(ts.gates||0)+1;if(score>=10)bumpCorrectCount(1);
-    bumpMission('gates',1);
-    if(gateJustCleared){
-      maybeGrantMysteryFromGate(quizSt.did);
-      checkMascotGateFiveUnlock();
-      checkStickerUnlocks();
-    }
+  }else{
+    // One idempotent decision, shared with the game-star path: the gate pays
+    // the same whether the quiz or the last game was the final requirement,
+    // and a replay of a cleared gate pays nothing.
+    const outcome=evaluateGateCompletion(quizSt.did);
+    if(outcome.justCleared&&score>=10)bumpCorrectCount(1);
   }
   clearGateQuizPending();
   saveState();
@@ -6361,14 +7016,14 @@ function renderQuizResult(qc){
   const gateLabel=quizSt.isChampion?`👑 Champion · Group ${quizSt.champGroup}`:`Gate ${quizSt.did}`;
   const cleared=quizSt.isChampion?passedChampion:passedGate;
   const ptsMsg=cleared?score:0;
-  const g=(s.gateGameStars&&s.gateGameStars[String(quizSt.did)])||{};
+  const g=(s.gateGameStars&&s.gateGameStars[gateKeyOf(quizSt.did)])||{};
   const g3=[g.trace,g.match,g.rain,g.listen].filter(x=>(x||0)>=3).length;
   let lockMsg='';
   if(!cleared){
     const bits=[];
     if(!quizPass)bits.push(`Quiz goal: score <b>90% or above</b> and earn 3 quiz stars. You are getting closer! <span class="lock-sub">Best so far: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★</span>`);
     if(!gamesOk)bits.push(`Game goal: earn 3★ in Trace, Memory, Rain, and Listen for this gate. <span class="lock-sub">Ready: ${g3}/4</span>`);
-    const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
+    const timer=(s.gateTimers&&s.gateTimers[gateKeyOf(quizSt.did)])||null;
     if(timer&&timer.active){
       const left=gateTimerDaysLeft(timer);
       if(left<=1)bits.push('Timer goal: final day! Complete now to keep your progress.');
@@ -6400,8 +7055,52 @@ function exitQuiz(){
   }else{
     clearGateQuizPending();
   }
+  // A pending goNext or reveal-card continuation would otherwise render a quiz
+  // result after the child is already back on the hub.
+  drainScope('quiz');
+  drainScope('reveal');
+  releaseAnswerLock();
   saveState();
   goToHub();
+}
+
+/**
+ * Record retention evidence for one {word, skill} pair.
+ *
+ * Deliberately narrower than logWrong. logWrong counts every miss anywhere,
+ * including ones that say nothing about vocabulary — a mistimed tap in Rain, a
+ * mismatched flip in Match. Those are game mechanics, so they are not recorded
+ * here at all; only answers where the child was actually asked about the word.
+ *
+ * `supported` marks an answer reached with pinyin or a translation on screen.
+ * `sameSession` marks a retry straight after the answer was revealed. Neither
+ * advances the schedule: being told is not remembering.
+ */
+function noteEvidence(p,word,skill,correct,opts){
+  if(!p||!word||!word.zh)return;
+  if(typeof ReviewCore==='undefined')return;
+  const s=state[p];if(!s)return;
+  if(!s.reviewRecords)s.reviewRecords={};
+  const o=opts||{};
+  s.reviewRecords=ReviewCore.recordAttempt(s.reviewRecords,{
+    wordId:word.zh,skill,correct:!!correct,todayKey:todayKey(),
+    supported:!!o.supported,sameSession:!!o.sameSession,source:o.source||null,
+  });
+}
+
+/** What is due for review today, within the session budget. */
+function reviewDueToday(p,mode){
+  if(typeof ReviewCore==='undefined')return{items:[],dueTotal:0,remaining:0,summary:''};
+  const s=state[p];if(!s)return{items:[],dueTotal:0,remaining:0,summary:''};
+  const limit=mode==='focus'?ReviewCore.BUDGET.focusItems:ReviewCore.BUDGET.normalItems;
+  return ReviewCore.selectDue(s.reviewRecords||{},todayKey(),{limit});
+}
+
+/** The honest label for one {word, skill}: never "mastered", never "failed". */
+function reviewStatus(p,zh,skill){
+  if(typeof ReviewCore==='undefined')return'';
+  const s=state[p];if(!s)return'';
+  return ReviewCore.statusOf(ReviewCore.getRecord(s.reviewRecords||{},zh,skill));
 }
 
 function logWrong(p,zh,py,en){
@@ -6448,23 +7147,27 @@ function parentAdjustStars(p,dir){
   const s=state[p];
   const prev=s.totalStars||0;
   if(dir>0){
+    MergeState.recordStarEvent(s,amt,'parent',{week:s.weekStart||null});
     s.totalStars=prev+amt;
     s.weekStars=(s.weekStars||0)+amt;
     const ts=getTS(p);ts.stars=(ts.stars||0)+amt;
     showParentStarMsg(`+${amt}⭐ given to ${p==='jenn'?'Jenn':'Jess'}!`,'var(--jade)');
   }else{
     const remove=Math.min(amt,prev);
+    // A deduction is an event too, so it is replayed on merge rather than
+    // undone by taking the maximum of two totals.
+    MergeState.recordStarEvent(s,-remove,'parent',{week:s.weekStart||null});
     s.totalStars=prev-remove;
     s.weekStars=Math.max(0,(s.weekStars||0)-remove);
     const ts=getTS(p);ts.stars=Math.max(0,(ts.stars||0)-remove);
     showParentStarMsg(`−${remove}⭐ removed from ${p==='jenn'?'Jenn':'Jess'}.`,'var(--warn)');
   }
-  saveState();refreshParentStarControls();renderParentSummary();
+  savePlayer(p);refreshParentStarControls();renderParentSummary();
 }
 function parentAddMysteryPick(p){
   ensureState(p);
   state[p].mysteryPicksPending=(state[p].mysteryPicksPending||0)+1;
-  saveState();refreshParentStarControls();
+  savePlayer(p);refreshParentStarControls();
   showParentStarMsg(`+1 mystery pick given to ${p==='jenn'?'Jenn':'Jess'}!`,'var(--gold)');
 }
 function parentRemoveMysteryPick(p){
@@ -6472,7 +7175,7 @@ function parentRemoveMysteryPick(p){
   const cur=state[p].mysteryPicksPending||0;
   if(cur<1){showParentStarMsg('No mystery picks to remove.','var(--muted)');return;}
   state[p].mysteryPicksPending=cur-1;
-  saveState();refreshParentStarControls();
+  savePlayer(p);refreshParentStarControls();
   showParentStarMsg(`−1 mystery pick removed from ${p==='jenn'?'Jenn':'Jess'}.`,'var(--warn)');
 }
 function showParentStarMsg(msg,color){
@@ -6506,7 +7209,8 @@ function clearAllProgressWithParentPwd(){
   if(!ok)return;
   state={jenn:defPlayer(),jess:defPlayer()};
   ensureState('jenn');ensureState('jess');
-  saveState();
+  // The one place a two-player write is correct.
+  savePlayer('jenn');savePlayer('jess');
   renderSelectBadges();
   if(curP)renderHub();
   renderParentSummary();
@@ -6596,7 +7300,7 @@ function renderParentSummary(){
       <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} days</span></div>
       <div class="psr"><span class="psr-lbl">💪 Practice Queue</span><span class="psr-val">${Object.keys(s.failedWords||{}).length} words</span></div>
       ${Object.keys(s.championCleared||{}).length?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(Object.keys(s.championCleared).length)}</span></div>`:''}
-      ${(()=>{const skipped=DYNASTIES.filter(d=>{const gg=(s.gateGameStars&&s.gateGameStars[String(d.id)])||{};const gp=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);const ids=[d.story,d.story2].filter(Boolean);const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));return gp>0&&reads<2&&!s.gatesCompleted.includes(d.id);}).map(d=>d.zh+' ('+d.en+')');return skipped.length?`<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span><span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`:'';})()}
+      ${(()=>{const skipped=DYNASTIES.filter(d=>{const gg=(s.gateGameStars&&s.gateGameStars[gateKeyOf(d.id)])||{};const gp=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);const ids=[d.story,d.story2].filter(Boolean);const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));return gp>0&&reads<2&&!gateCleared(s,d.id);}).map(d=>d.zh+' ('+d.en+')');return skipped.length?`<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span><span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`:'';})()}
     </div>`;
     if(isNow){
       const ww=Object.values(s.failedWords||{}).filter(w=>w.lastFailed&&w.lastFailed>=ws).sort((a,b)=>b.failCount-a.failCount);
@@ -6829,8 +7533,13 @@ async function openCultureStories(){
   const body=document.getElementById('culture-body');if(!body)return;
   body.innerHTML='<div class="dd-desc">Loading culture stories...</div>';
   ov.classList.add('show');
+  // The fetch can outlive the profile that started it; without this the reads
+  // below land on whichever child is selected when it resolves.
+  const gen=sessionGen;
   const data=await loadCultureCurriculum();
+  if(gen!==sessionGen)return;
   if(!data||!Array.isArray(data.tracks)){body.innerHTML='<div class="dd-desc">Culture stories are unavailable right now.</div>';return;}
+  if(!curP)return;
   ensureState(curP);
   const seen=state[curP].cultureSeen||{};
   const rewarded=state[curP].cultureRewarded||{};
@@ -6929,5 +7638,8 @@ function init(){
 
 init();
 </script>
+<script src="js/assessment-core.js"></script>
+<script src="js/player-store.js"></script>
+<script src="js/assessment-ui.js"></script>
 </body>
 </html>
