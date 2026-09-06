@@ -701,7 +701,8 @@ test("S02: the divergence is recorded with both sides' shape", async () => {
   assert.equal(c[0].remoteRevision, 7);
   assert.equal(c[0].remoteTotalStars, 900);
   assert.equal(c[0].remoteGatesCompleted, 3);
-  assert.equal(c[0].localTotalStars, 10, "the local side is recorded too");
+  assert.equal(c[0].localTotalStars, 10, "the local side is recorded as it was");
+  assert.ok(c[0].mergedTotalStars >= 10, "and the reconciled result is recorded too");
 });
 
 test("S02: after a conflict the next save is decisive rather than looping", async () => {

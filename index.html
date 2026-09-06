@@ -714,6 +714,8 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3/dist/hanzi-writer.min.js"></script>
 <script src="js/gate-identity.js"></script>
+<script src="js/merge-state.js"></script>
+<script src="js/merge-state.js"></script>
 </head>
 <body>
 <canvas id="ccanvas"></canvas>
@@ -2225,7 +2227,13 @@ function initFirestore(){
           ?remoteRev>localRev
           :((remote&&remote.lastSaved||0)>(state[pid].lastSaved||0));
         if(newer){
-          state[pid]=mergePlayerState(state[pid],remote);
+          // A shallow assign would drop anything this device did that the
+          // other has not seen. Merge the two histories instead.
+          try{
+            state[pid]=MergeState.mergePlayers(state[pid],remote,{weekKey:state[pid].weekStart||null}).player;
+          }catch(e){
+            state[pid]=mergePlayerState(state[pid],remote);
+          }
           remoteBaseRevision[pid]=remoteRev;
           setSyncStatus(pid,'synced');
           try{localStorage.setItem(SK,JSON.stringify(state));}catch(e){}
@@ -2567,10 +2575,13 @@ function bumpMission(evt,val){
     saveState();
   }
 }
-function addEarnedStars(delta){
+function addEarnedStars(delta,eventId){
   if(!curP||!(delta>0))return;
   ensureState(curP);
   const s=state[curP];
+  // Recorded as an event as well as a total. A running total cannot be merged
+  // across two devices without either losing an award or counting one twice.
+  MergeState.recordStarEvent(s,delta,'earn',{id:eventId,week:s.weekStart||null});
   s.totalStars+=delta;s.weekStars+=delta;
   const ts=getTS(curP);ts.stars=(ts.stars||0)+delta;
   bumpMission('stars',delta);
@@ -3123,6 +3134,20 @@ function setSyncStatus(pid,status){
 function noteSyncConflict(pid,remote,remoteRev){
   const s=state[pid];
   if(!s)return;
+  // Record what the two sides looked like BEFORE reconciling, so the log shows
+  // the divergence rather than its resolution.
+  const beforeStars=s.totalStars||0;
+  const beforeGates=(s.gatesCompleted||[]).length;
+  // Reconcile rather than pick a winner. Stars come from the union of both
+  // ledgers, completions and learned words from the union of both sets, and a
+  // round in progress on both devices is kept twice with the choice surfaced.
+  if(remote){
+    try{
+      const merged=MergeState.mergePlayers(s,remote,{weekKey:s.weekStart||null});
+      Object.keys(merged.player).forEach(k=>{s[k]=merged.player[k];});
+      if(merged.notes.length)showToast(merged.notes[0],3200);
+    }catch(e){dbgLog('merge failed',String(e&&e.message||e));}
+  }
   if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
   s.syncConflicts.push({
     at:Date.now(),
@@ -3130,8 +3155,10 @@ function noteSyncConflict(pid,remote,remoteRev){
     remoteLastSaved:(remote&&remote.lastSaved)||0,
     remoteTotalStars:(remote&&remote.totalStars)||0,
     remoteGatesCompleted:((remote&&remote.gatesCompleted)||[]).length,
-    localTotalStars:s.totalStars||0,
-    localGatesCompleted:(s.gatesCompleted||[]).length,
+    localTotalStars:beforeStars,
+    localGatesCompleted:beforeGates,
+    mergedTotalStars:s.totalStars||0,
+    mergedGatesCompleted:(s.gatesCompleted||[]).length,
   });
   if(s.syncConflicts.length>5)s.syncConflicts=s.syncConflicts.slice(-5);
   // Move ahead of the other device so the next write is decisive, having first
@@ -3218,6 +3245,7 @@ function ensureState(p){
   // Anything completed from now on has to earn its unlocks the normal way.
   if(!s.gateAttemptHistory)s.gateAttemptHistory={};
   if(typeof s.revision!=='number')s.revision=0;
+  MergeState.ensureLedger(s);
   if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
   if(!Array.isArray(s.legacyStoriesCompleted)){
     s.legacyStoriesCompleted=s.storiesCompleted.slice();
@@ -3529,8 +3557,6 @@ function resetGateProgress(s,did,level){
   const k=gateKeyOf(did,level);
   const timer=(s.gateTimers&&s.gateTimers[k])||null;
   if(!s.gateAttemptHistory)s.gateAttemptHistory={};
-  if(typeof s.revision!=='number')s.revision=0;
-  if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
   if(!s.gateAttemptHistory[k])s.gateAttemptHistory[k]=[];
   s.gateAttemptHistory[k].push({
     attemptId:(timer&&timer.attemptId)||null,
@@ -7022,12 +7048,16 @@ function parentAdjustStars(p,dir){
   const s=state[p];
   const prev=s.totalStars||0;
   if(dir>0){
+    MergeState.recordStarEvent(s,amt,'parent',{week:s.weekStart||null});
     s.totalStars=prev+amt;
     s.weekStars=(s.weekStars||0)+amt;
     const ts=getTS(p);ts.stars=(ts.stars||0)+amt;
     showParentStarMsg(`+${amt}⭐ given to ${p==='jenn'?'Jenn':'Jess'}!`,'var(--jade)');
   }else{
     const remove=Math.min(amt,prev);
+    // A deduction is an event too, so it is replayed on merge rather than
+    // undone by taking the maximum of two totals.
+    MergeState.recordStarEvent(s,-remove,'parent',{week:s.weekStart||null});
     s.totalStars=prev-remove;
     s.weekStars=Math.max(0,(s.weekStars||0)-remove);
     const ts=getTS(p);ts.stars=Math.max(0,(ts.stars||0)-remove);
