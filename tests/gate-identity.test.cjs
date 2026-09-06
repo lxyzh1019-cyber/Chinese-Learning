@@ -164,3 +164,30 @@ test("ambiguous champion records are flagged rather than guessed", () => {
   assert.ok(report.warnings.some((w) => /championCleared/.test(w)),
     "group numbers carry no level, so they are reported instead of assigned");
 });
+
+test("C03: a legacy save is migrated even when it claims to be current", () => {
+  // The app merges a saved document over a default player, and the default now
+  // carries the current schemaVersion — so a legacy save emerges from that
+  // merge *claiming* to be migrated while its gate ids are still numbers.
+  // Trusting the stamp alone silently dropped every completion. The shape is
+  // checked too.
+  const merged = { schemaVersion: G.SCHEMA_VERSION, gatesCompleted: [1, 2, 3], gateStars: { 1: 3 } };
+  assert.equal(G.looksLegacy(merged), true, "numeric gate ids give it away");
+
+  const { player, report } = G.migratePlayer(merged);
+  assert.equal(report.alreadyMigrated, false, "it is migrated despite the stamp");
+  assert.deepEqual(player.gatesCompleted, ["h1-g01", "h1-g02", "h1-g03"]);
+  assert.equal(player.gateStars["h1-g01"], 3);
+});
+
+test("C03: a genuinely migrated document is left alone", () => {
+  const done = { schemaVersion: G.SCHEMA_VERSION, gatesCompleted: ["h1-g01"], gateStars: { "h1-g01": 3 } };
+  assert.equal(G.looksLegacy(done), false);
+  assert.equal(G.migratePlayer(done).report.alreadyMigrated, true);
+});
+
+test("C03: flashcard passes follow their gate through the migration", () => {
+  const { player } = G.migratePlayer({ gatesCompleted: [6], flashPassDone: { 6: true } });
+  assert.equal(player.flashPassDone["h2-g06"], true, "or Trace would silently re-lock");
+  assert.equal(player.flashPassDone["6"], undefined);
+});

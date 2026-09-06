@@ -344,10 +344,11 @@ test("B02e: an already-known story can still be finished on a re-read", () => {
 // ── G04: gate completion and reward ────────────────────────────────────────
 
 /** Put a player one requirement away from clearing a gate. */
-function almostCleared(a, { quiz = true, games = true, did = 1, points = 180 } = {}) {
+function almostCleared(a, { quiz = true, games = true, did = 1, points = 180, level = 1 } = {}) {
   F.installState(a);
+  a.curHSK = level;
   const s = a.state.jenn;
-  const k = String(did);
+  const k = a.gateKeyOf(did, level);
   s.gateGameStars = { [k]: games
     ? { trace: 3, match: 3, rain: 3, listen: 3 }
     : { trace: 3, match: 3, rain: 3, listen: 0 } };
@@ -371,8 +372,8 @@ test("M-T06 / G04: the gate pays the same whichever requirement lands last", () 
   a2.evaluateGateCompletion(1);
   const viaQuiz = a2.state.jenn;
 
-  assert.deepEqual(viaGame.gatesCompleted, [1], "cleared via the last game");
-  assert.deepEqual(viaQuiz.gatesCompleted, [1], "cleared via the quiz");
+  assert.deepEqual(viaGame.gatesCompleted, ["h1-g01"], "cleared via the last game");
+  assert.deepEqual(viaQuiz.gatesCompleted, ["h1-g01"], "cleared via the quiz");
   assert.equal(viaGame.totalStars, viaQuiz.totalStars,
     "the same achievement pays the same amount either way");
   assert.equal(viaGame.totalStars, 180, "and it pays the qualifying quiz's points");
@@ -395,7 +396,7 @@ test("G04: replaying the boss on a cleared gate pays nothing", () => {
 
   assert.equal(a.state.jenn.totalStars, afterFirst, "no further payout");
   assert.equal(a.getTS("jenn").gates, gatesAfterFirst, "unique gate count does not inflate");
-  assert.deepEqual(a.state.jenn.gatesCompleted, [1], "and it is not listed twice");
+  assert.deepEqual(a.state.jenn.gatesCompleted, ["h1-g01"], "and it is not listed twice");
 });
 
 test("G04: a gate with an unfinished requirement does not clear or pay", () => {
@@ -415,7 +416,7 @@ test("G04: the best quiz record comes from one attempt, not merged fields", () =
   // A high-accuracy, low-scoring run, then a low-accuracy, high-scoring one.
   a.updateBestQuizRecord(s, false, 1, null, 95, 3, 120);
   a.updateBestQuizRecord(s, false, 1, null, 60, 1, 400);
-  const best = s.gateBestQuiz["1"];
+  const best = s.gateBestQuiz["h1-g01"];
   assert.equal(best.accPct, 95, "accuracy decides");
   assert.equal(best.points, 120, "and the points belong to that same attempt");
   assert.equal(best.quizStars, 3, "as do its stars — no field-by-field maximum");
@@ -533,17 +534,18 @@ test("B02f: closing a finished Revenge round clears it", () => {
 // ── G03: gate deadline expiry ──────────────────────────────────────────────
 
 /** A player mid-attempt at a gate whose deadline has already passed. */
-function lapsedGate(a, did = 1) {
+function lapsedGate(a, did = 1, level = 1) {
   F.installState(a);
+  a.curHSK = level;
   const s = a.state.jenn;
-  const k = String(did);
+  const k = a.gateKeyOf(did, level);
   s.gateGameStars = { [k]: { trace: 3, match: 3, rain: 3, listen: 0 } };
   s.gateBestQuiz = { [k]: { accPct: 95, quizStars: 3, points: 200 } };
   s.gateTimers = { [k]: { startKey: "2026-08-01", deadlineKey: "2026-08-06", active: true, days: 5, attemptId: "g1-old" } };
   s.library = { 水: { py: "shuǐ", mn: "water" } };
   s.failedWords = { 山: { zh: "山", py: "shān", en: "mountain", failCount: 2 } };
   s.storyReadCount = { xia: 2 };
-  s.flashPassDone = { "1": true };
+  s.flashPassDone = { [k]: true };
   s.totalStars = 500;
   return s;
 }
@@ -552,8 +554,8 @@ test("G03: a lapsed timer is expired at render time, not silently later", () => 
   const a = app();
   const s = lapsedGate(a);
   const expired = a.sweepExpiredGateTimers(s);
-  assert.deepEqual(expired, [1], "the sweep finds and expires it");
-  assert.equal(s.gateTimers["1"].active, false);
+  assert.deepEqual(expired, ["h1-g01"], "the sweep finds and expires it");
+  assert.equal(s.gateTimers["h1-g01"].active, false);
 });
 
 test("G03: expiry clears the attempt but keeps everything learned", () => {
@@ -561,13 +563,13 @@ test("G03: expiry clears the attempt but keeps everything learned", () => {
   const s = lapsedGate(a);
   a.sweepExpiredGateTimers(s);
 
-  assert.deepEqual(s.gateGameStars["1"], { trace: 0, match: 0, rain: 0, listen: 0 }, "qualifying game stars cleared");
-  assert.equal(s.gateBestQuiz["1"], undefined, "qualifying quiz best cleared");
+  assert.deepEqual(s.gateGameStars["h1-g01"], { trace: 0, match: 0, rain: 0, listen: 0 }, "qualifying game stars cleared");
+  assert.equal(s.gateBestQuiz["h1-g01"], undefined, "qualifying quiz best cleared");
 
   assert.deepEqual(Object.keys(s.library), ["水"], "learned characters kept");
   assert.deepEqual(Object.keys(s.failedWords), ["山"], "practice queue kept");
   assert.equal(s.storyReadCount.xia, 2, "reading credit kept");
-  assert.equal(s.flashPassDone["1"], true, "flashcard pass kept");
+  assert.equal(s.flashPassDone["h1-g01"], true, "flashcard pass kept");
   assert.equal(s.totalStars, 500, "stars already earned are not taken away");
 });
 
@@ -576,7 +578,7 @@ test("G03: the expired attempt is archived, not erased", () => {
   const s = lapsedGate(a);
   a.sweepExpiredGateTimers(s);
 
-  const hist = s.gateAttemptHistory["1"];
+  const hist = s.gateAttemptHistory["h1-g01"];
   assert.equal(hist.length, 1);
   assert.equal(hist[0].attemptId, "g1-old");
   assert.equal(hist[0].reason, "deadline");
@@ -590,7 +592,7 @@ test("G03: expiry happens once, however many times the hub renders", () => {
   a.sweepExpiredGateTimers(s);
   a.sweepExpiredGateTimers(s);
   a.sweepExpiredGateTimers(s);
-  assert.equal(s.gateAttemptHistory["1"].length, 1, "no duplicate history entries");
+  assert.equal(s.gateAttemptHistory["h1-g01"].length, 1, "no duplicate history entries");
 });
 
 test("M-T08 / G03: an old pending round cannot qualify the new attempt", () => {
@@ -606,10 +608,10 @@ test("M-T08 / G03: an old pending round cannot qualify the new attempt", () => {
 test("G03: a timer still inside its deadline is left alone", () => {
   const a = app();
   const s = lapsedGate(a);
-  s.gateTimers["1"].deadlineKey = "2099-01-01";
+  s.gateTimers["h1-g01"].deadlineKey = "2099-01-01";
   assert.deepEqual(a.sweepExpiredGateTimers(s), [], "nothing expires");
-  assert.equal(s.gateTimers["1"].active, true);
-  assert.equal(s.gateBestQuiz["1"].accPct, 95, "progress untouched");
+  assert.equal(s.gateTimers["h1-g01"].active, true);
+  assert.equal(s.gateBestQuiz["h1-g01"].accPct, 95, "progress untouched");
 });
 
 test("G03: each new timed attempt gets its own identity", () => {
@@ -617,11 +619,11 @@ test("G03: each new timed attempt gets its own identity", () => {
   F.installState(a);
   const s = a.state.jenn;
   a.startGateTimerIfNeeded(s, 1, 3);
-  const first = s.gateTimers["1"].attemptId;
+  const first = s.gateTimers["h1-g01"].attemptId;
   assert.ok(first, "an attempt id is recorded");
-  s.gateTimers["1"].active = false;
+  s.gateTimers["h1-g01"].active = false;
   a.startGateTimerIfNeeded(s, 1, 3);
-  assert.notEqual(s.gateTimers["1"].attemptId, first, "a fresh attempt is distinguishable from the old one");
+  assert.notEqual(s.gateTimers["h1-g01"].attemptId, first, "a fresh attempt is distinguishable from the old one");
 });
 
 // ── S02: revision-checked sync ─────────────────────────────────────────────
@@ -727,4 +729,122 @@ test("S02: the conflict log stays bounded", async () => {
     a.noteSyncConflict("jenn", { revision: i, lastSaved: i, totalStars: i, gatesCompleted: [] }, i);
   }
   assert.equal(a.state.jenn.syncConflicts.length, 5, "a player document cannot grow without limit");
+});
+
+// ── C01–C04: 88 gate identities inside the app ─────────────────────────────
+
+test("M-T01: clearing level 1 gate 1 does not clear level 2 gate 1", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  s.gateGameStars = { "h1-g01": { trace: 3, match: 3, rain: 3, listen: 3 } };
+  s.gateBestQuiz = { "h1-g01": { accPct: 95, quizStars: 3, points: 150 } };
+
+  assert.equal(a.evaluateGateCompletion(1, 1).justCleared, true);
+  assert.deepEqual(s.gatesCompleted, ["h1-g01"]);
+
+  // The same dynasty, one level up, is a different gate entirely.
+  assert.equal(a.gateCleared(s, 1, 1), true);
+  assert.equal(a.gateCleared(s, 1, 2), false, "level 2 gate 1 is untouched");
+  a.curHSK = 2;
+  assert.equal(a.gameUnlockForDid(1).rain, false, "and it has not inherited the unlock");
+});
+
+test("M-T02: a round files its stars in the level it was started in", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 2;
+  a.curGameTargetDid = 3;
+  a.curGameTargetLevel = 2;
+  const words = [
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "山", py: "shān", en: "mountain" },
+  ];
+  a.startMemoryMatch(words);
+  assert.equal(a.matchSt.gameTargetLevel, 2, "the level travels with the round");
+
+  // The child switches tab mid-round.
+  a.curHSK = 4;
+  a.updateGateGameBest(3, "match", 3, a.matchSt.gameTargetLevel);
+
+  assert.ok(a.state.jenn.gateGameStars["h2-g03"], "stars land in level 2, where the round began");
+  assert.equal(a.state.jenn.gateGameStars["h2-g03"].match, 3);
+  assert.equal(a.state.jenn.gateGameStars["h4-g03"], undefined, "not in the tab that happens to be open");
+});
+
+test("C01: all 88 gates are reachable by the intended progression", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  const G = a.GateIdentity;
+  // Walk the whole curriculum.
+  G.allGateKeys().forEach((k) => {
+    const p = G.parseGateKey(k);
+    assert.equal(G.isGateOpen(k, s.gatesCompleted), true, `${k} should be open once its predecessor is cleared`);
+    s.gatesCompleted.push(k);
+  });
+  assert.equal(s.gatesCompleted.length, 88, "88 distinct gates cleared, not 22");
+  assert.equal(G.nextOpenGateKey(s.gatesCompleted), null);
+});
+
+test("C01: the level a child is on comes from real progress, not a running total", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  s.legacyLevelAccess = [1];
+
+  s.gatesCompleted = ["h1-g01", "h1-g02", "h1-g03", "h1-g04", "h1-g05", "h1-g06"];
+  assert.equal(a.getCurrentHSK(s), 1, "six gates in level 1 does not open level 2");
+
+  // Finishing the level does.
+  for (let g = 7; g <= 22; g++) s.gatesCompleted.push(`h1-g${String(g).padStart(2, "0")}`);
+  assert.equal(a.getCurrentHSK(s), 2, "clearing gate 22 opens the next level");
+  assert.equal(a.gatesClearedInLevel(s, 1), 22);
+  assert.equal(a.gatesClearedInLevel(s, 2), 0);
+});
+
+test("C03: migrating a legacy save keeps both the credit and the access", () => {
+  const a = app();
+  // A pre-migration document, exactly as it sits on disk today.
+  const legacy = a.defPlayer();
+  delete legacy.schemaVersion;
+  legacy.gatesCompleted = [1, 2, 3, 4, 5];
+  legacy.gateStars = { 1: 3, 2: 3, 3: 3, 4: 3, 5: 3 };
+  legacy.gateGameStars = { 5: { trace: 3, match: 3, rain: 3, listen: 3 } };
+  legacy.totalStars = 2270;
+  F.installState(a, { jenn: legacy });
+
+  const s = a.state.jenn;
+  assert.deepEqual(s.gatesCompleted, ["h1-g01", "h1-g02", "h1-g03", "h1-g04", "h1-g05"]);
+  assert.equal(s.gateStars["h1-g05"], 3, "stars follow their gate");
+  assert.equal(s.gateGameStars["h1-g05"].trace, 3, "so do game stars");
+  assert.equal(s.totalStars, 2270, "and nothing else is disturbed");
+  assert.deepEqual(s.legacyCredit.gatesCompleted, [1, 2, 3, 4, 5], "provenance kept");
+  assert.deepEqual(s.legacyLevelAccess, [1, 2], "the HSK2 tab they already had stays open");
+  assert.equal(a.levelIsUnlocked(s, 2), true);
+  assert.equal(a.levelIsUnlocked(s, 3), false, "but no tab they had not earned");
+});
+
+test("M-T18: re-running the migration through ensureState changes nothing", () => {
+  const a = app();
+  const legacy = a.defPlayer();
+  delete legacy.schemaVersion;
+  legacy.gatesCompleted = [1, 2];
+  legacy.totalStars = 100;
+  F.installState(a, { jenn: legacy });
+  const once = JSON.stringify(a.state.jenn);
+
+  a.ensureState("jenn");
+  a.ensureState("jenn");
+  assert.equal(JSON.stringify(a.state.jenn), once, "no duplicate credit, no lost access");
+});
+
+test("C03: a fresh player is not put through the migration", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  assert.equal(s.schemaVersion, a.GateIdentity.SCHEMA_VERSION);
+  assert.equal(s.legacyCredit, undefined, "nothing to inherit");
+  assert.deepEqual(s.gatesCompleted, []);
 });

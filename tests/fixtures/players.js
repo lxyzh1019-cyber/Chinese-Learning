@@ -30,18 +30,19 @@ function oneQualifyingRead(app, storyId = "xia") {
 }
 
 /** A player who read twice and cleared a Listen round: all four should unlock. */
-function twoReadsPlusListen(app, storyId = "xia", did = 1) {
+function twoReadsPlusListen(app, storyId = "xia", did = 1, level = 1) {
   const p = app.defPlayer();
+  const key = `h${level}-g${String(did).padStart(2, "0")}`;
   p.storyReadCount = { [storyId]: 2 };
-  p.flashPassDone = { [String(did)]: true };
-  p.gateGameStars = { [String(did)]: { trace: 0, match: 0, rain: 0, listen: 2 } };
+  p.flashPassDone = { [key]: true };
+  p.gateGameStars = { [key]: { trace: 0, match: 0, rain: 0, listen: 2 } };
   return p;
 }
 
 /** A gate with all four games at 3 stars and a passing boss quiz. */
-function gateFullyQualified(app, did = 1) {
+function gateFullyQualified(app, did = 1, level = 1) {
   const p = app.defPlayer();
-  const k = String(did);
+  const k = `h${level}-g${String(did).padStart(2, "0")}`;
   p.gateGameStars = { [k]: { trace: 3, match: 3, rain: 3, listen: 3 } };
   p.gateBestQuiz = { [k]: { accPct: 95, quizStars: 3 } };
   p.storyReadCount = { xia: 2 };

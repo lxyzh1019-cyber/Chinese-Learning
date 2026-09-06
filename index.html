@@ -713,6 +713,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3/dist/hanzi-writer.min.js"></script>
+<script src="js/gate-identity.js"></script>
 </head>
 <body>
 <canvas id="ccanvas"></canvas>
@@ -2244,6 +2245,9 @@ const SENT_COLORS=['#C0392B','#D4A017','#27AE60','#E8445A','#3B82F6','#A78BFA'];
 
 function defPlayer(){
   return{totalStars:0,weekStars:0,lastPlayed:null,lastSaved:0,
+    // A fresh player is already in the current model, so the migration must
+    // not run over it and mistake its gate keys for legacy numeric ids.
+    schemaVersion:GateIdentity.SCHEMA_VERSION,
     revision:0,syncConflicts:[],
     gatesCompleted:[],storiesCompleted:[],legacyStoriesCompleted:[],gateStars:{},
     library:{},failedWords:{},
@@ -2403,12 +2407,12 @@ function mascotFriendUnlocked(){
   if(!curP)return false;
   ensureState(curP);
   const s=state[curP];
-  return !!(s&&s.gatesCompleted&&s.gatesCompleted.includes(5));
+  return !!(s&&s.gatesCompleted&&s.gatesCompleted.length>=5);
 }
 const STICKER_DEFS=[
-  {id:'g1',emoji:'🌟',label:'Gate 1',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.includes(1)},
+  {id:'g1',emoji:'🌟',label:'Gate 1',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.length>=1},
   {id:'g5',emoji:'🎋',label:'Gate 5 friend',need:()=>mascotFriendUnlocked()},
-  {id:'g10',emoji:'🏯',label:'Gate 10',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.includes(10)},
+  {id:'g10',emoji:'🏯',label:'Gate 10',need:()=>state[curP]&&state[curP].gatesCompleted&&state[curP].gatesCompleted.length>=10},
   {id:'c1',emoji:'🏮',label:'Culture read',need:()=>state[curP]&&state[curP].cultureSeen&&Object.keys(state[curP].cultureSeen).length>=1},
   {id:'c5',emoji:'🌸',label:'5 culture',need:()=>state[curP]&&state[curP].cultureSeen&&Object.keys(state[curP].cultureSeen).length>=5},
   {id:'st',emoji:'📚',label:'First story',need:()=>state[curP]&&(state[curP].storiesCompleted||[]).length>=1}
@@ -2676,7 +2680,7 @@ function checkMascotGateFiveUnlock(){
   if(!curP)return;
   ensureState(curP);
   const s=state[curP];
-  if(s.gatesCompleted.includes(5)&&!s.mascotUnlockedNotified){
+  if(s.gatesCompleted.length>=5&&!s.mascotUnlockedNotified){
     s.mascotUnlockedNotified=true;
     saveState();
     showToast('You unlocked your study friend! They visit for quick cheers.',2600);
@@ -3078,6 +3082,27 @@ function bumpSessionGen(){
 // The revision we last saw on the server for each player. A write is only
 // allowed if the stored revision still matches it; otherwise another device has
 // written since, and blindly overwriting would silently discard their work.
+// ── Gate identity helpers ───────────────────────────────────────────────────
+// A gate is (level, dynasty), not a dynasty alone. `curHSK` is the active
+// level and is now authoritative rather than cosmetic: it decides which of the
+// 88 gates a result belongs to.
+function gateKeyOf(did,level){
+  const lv=Number(level||curHSK||1);
+  const g=Number(did);
+  if(!(lv>=1&&lv<=4)||!(g>=1&&g<=22))return null;
+  return GateIdentity.gateKey(lv,g);
+}
+/** Has this gate — in this level — been cleared? */
+function gateCleared(s,did,level){
+  const key=gateKeyOf(did,level);
+  return !!(key&&s&&Array.isArray(s.gatesCompleted)&&s.gatesCompleted.includes(key));
+}
+/** Is this level's tab available? Inherited access counts, per the migration. */
+function levelIsUnlocked(s,lv){
+  if(!s)return lv===1;
+  return GateIdentity.levelUnlocked(lv,s.gatesCompleted||[],s.legacyLevelAccess||[]);
+}
+
 const remoteBaseRevision={jenn:0,jess:0};
 const syncStatus={jenn:'local',jess:'local'};   // 'local' | 'synced' | 'attention'
 
@@ -3177,7 +3202,15 @@ function ensureState(p){
   if(!s.todayStats)s.todayStats={};if(!s.dailyTimeMs)s.dailyTimeMs={};
   if(!s.weeklyHistory)s.weeklyHistory=[];if(!s.gatesCompleted)s.gatesCompleted=[];
   if(!Array.isArray(s.gatesCompleted))s.gatesCompleted=[];
-  s.gatesCompleted=[...new Set(s.gatesCompleted.map(v=>parseInt(v,10)).filter(v=>Number.isFinite(v)&&v>0&&v<=22))];
+  // Migrate a legacy 22-gate document to the 88-gate model. This used to
+  // DISCARD any id above 22, which is what made an 88-gate scheme impossible.
+  // The migration is idempotent, invents no completions, and preserves both
+  // the gates already reachable and the level tabs already open.
+  if((s.schemaVersion||1)<GateIdentity.SCHEMA_VERSION||GateIdentity.looksLegacy(s)){
+    const migrated=GateIdentity.migratePlayer(s).player;
+    Object.keys(migrated).forEach(k=>{s[k]=migrated[k];});
+  }
+  s.gatesCompleted=[...new Set((s.gatesCompleted||[]).filter(GateIdentity.isGateKey))];
   // Preserve current unlock semantics per player; do not auto-recalculate.
   if(!s.progressVersion)s.progressVersion='legacy-gate-index';
   if(!s.storiesCompleted)s.storiesCompleted=[];if(!s.gateStars)s.gateStars={};
@@ -3215,7 +3248,7 @@ function ensureState(p){
   if(!s.dailyMission)s.dailyMission={date:null,goalKey:null,progress:0,target:1,done:false,rewarded:false};
   if(s.microRewardLastAt===undefined)s.microRewardLastAt=0;
   if(!s.mascotSession)s.mascotSession={count:0,lastAt:0};
-  if(s.mascotUnlockedNotified===undefined)s.mascotUnlockedNotified=!!(s.gatesCompleted&&s.gatesCompleted.includes(5));
+  if(s.mascotUnlockedNotified===undefined)s.mascotUnlockedNotified=!!(s.gatesCompleted&&s.gatesCompleted.length>=5);
   if(s.mysteryPicksPending===undefined)s.mysteryPicksPending=0;
   if(s.mysteryLastFamilyAt===undefined)s.mysteryLastFamilyAt=0;
   if(!s.cultureSeen)s.cultureSeen={};
@@ -3255,7 +3288,7 @@ function formatMs(ms){
 
 function nextOpenGateId(s){
   for(const d of DYNASTIES){
-    if((d.id===1||s.gatesCompleted.includes(d.id-1))&&!s.gatesCompleted.includes(d.id))return d.id;
+    if((d.id===1||gateCleared(s,d.id-1))&&!gateCleared(s,d.id))return d.id;
   }
   return null;
 }
@@ -3293,20 +3326,22 @@ function traceStarsFromAccuracy(correct,total,did){
   return 0;
 }
 
-function updateGateGameBest(did,gameKey,stars){
+function updateGateGameBest(did,gameKey,stars,level){
   if(!curP||!did||!gameKey)return;
   ensureState(curP);
   const s=state[curP];
-  expireGateTimerIfNeeded(s,did);
+  const lv=Number(level||curHSK||1);
+  expireGateTimerIfNeeded(s,did,{level:lv});
   if(!s.gateGameStars)s.gateGameStars={};
-  const k=String(did);
+  const k=gateKeyOf(did,lv);
+  if(!k)return;
   if(!s.gateGameStars[k])s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
   const prev=s.gateGameStars[k][gameKey]||0;
   if(stars>prev){
     s.gateGameStars[k][gameKey]=stars;
-    startGateTimerIfNeeded(s,did,stars);
+    startGateTimerIfNeeded(s,did,stars,lv);
     // Requirements can be met in any order and across days; one function decides.
-    evaluateGateCompletion(did);
+    evaluateGateCompletion(did,lv);
   }
   saveState();
 }
@@ -3411,7 +3446,7 @@ function closeTimerModal(){
   if(curP&&did&&(kind==='checkin'||kind==='final-day')){
     const s=state[curP];
     if(s){
-      const k=String(did);
+      const k=gateKeyOf(did);
       const today=todayKey();
       if(!s.timerReminderShown)s.timerReminderShown={};
       if(!s.timerWarningShown)s.timerWarningShown={};
@@ -3433,9 +3468,9 @@ function timerModalViewTasks(){
 
 function timerModalViewGate(){timerModalViewTasks();}
 
-function maybeShowGateTimerReminder(s,did){
+function maybeShowGateTimerReminder(s,did,level){
   if(!s||!did||!s.gateTimers)return;
-  const k=String(did);
+  const k=gateKeyOf(did,level);
   const t=s.gateTimers[k];
   if(!t||!t.active)return;
   const today=todayKey();
@@ -3473,7 +3508,7 @@ function focusGateTasks(did){
   if(curP&&state[curP]&&did){
     const s=state[curP];
     if(!s.timerLastSeenAt)s.timerLastSeenAt={};
-    s.timerLastSeenAt[String(did)]=todayKey();
+    s.timerLastSeenAt[gateKeyOf(did)]=todayKey();
   }
   if(document.getElementById('myday-overlay').classList.contains('show'))closeMyDay();
   if(document.getElementById('games-overlay').classList.contains('show'))closeGamesOverlay();
@@ -3490,8 +3525,8 @@ function focusGateTasks(did){
  * stars and assessment history are all untouched — only this attempt's
  * qualifying bests are cleared.
  */
-function resetGateProgress(s,did){
-  const k=String(did);
+function resetGateProgress(s,did,level){
+  const k=gateKeyOf(did,level);
   const timer=(s.gateTimers&&s.gateTimers[k])||null;
   if(!s.gateAttemptHistory)s.gateAttemptHistory={};
   if(typeof s.revision!=='number')s.revision=0;
@@ -3520,12 +3555,12 @@ function resetGateProgress(s,did){
   }
 }
 
-function startGateTimerIfNeeded(s,did,stars){
+function startGateTimerIfNeeded(s,did,stars,level){
   if(!did||stars<3)return;
   if(!s.gateTimers)s.gateTimers={};
   if(!s.gatesCompleted)s.gatesCompleted=[];
-  if(s.gatesCompleted.includes(did))return;
-  const k=String(did);
+  if(gateCleared(s,did,level))return;
+  const k=gateKeyOf(did,level);
   if(s.gateTimers[k]&&s.gateTimers[k].active)return;
   const start=todayKey();
   const days=gateTimerDays(did);
@@ -3546,11 +3581,11 @@ function startGateTimerIfNeeded(s,did,stars){
 
 function expireGateTimerIfNeeded(s,did,opts){
   if(!s||!did||!s.gateTimers)return false;
-  const k=String(did);
+  const k=gateKeyOf(did,opts&&opts.level);
   const t=s.gateTimers[k];
   if(!t||!t.active)return false;
   if(!isDateAfter(todayKey(),t.deadlineKey))return false;
-  resetGateProgress(s,did);
+  resetGateProgress(s,did,opts&&opts.level);
   t.active=false;
   if(opts&&opts.silent)return true;
   showTimerModal({
@@ -3581,18 +3616,19 @@ function sweepExpiredGateTimers(s){
   if(!s||!s.gateTimers)return[];
   const expired=[];
   Object.keys(s.gateTimers).forEach(k=>{
-    const did=parseInt(k,10);
-    if(!Number.isFinite(did))return;
+    const p=GateIdentity.parseGateKey(k);
+    if(!p)return;
     const t=s.gateTimers[k];
     if(!t||!t.active)return;
     if(!isDateAfter(todayKey(),t.deadlineKey))return;
-    if(expireGateTimerIfNeeded(s,did,{silent:expired.length>0}))expired.push(did);
+    // Expire in the level the timer belongs to, not the one on screen.
+    if(expireGateTimerIfNeeded(s,p.gateId,{silent:expired.length>0,level:p.levelId}))expired.push(k);
   });
   return expired;
 }
 
-function gateTimerStatusLine(s,did){
-  const k=String(did);
+function gateTimerStatusLine(s,did,level){
+  const k=gateKeyOf(did,level);
   const t=s.gateTimers&&s.gateTimers[k];
   if(!t||!t.active)return 'Timer starts after your first 3★ game for this gate.';
   const left=gateTimerDaysLeft(t);
@@ -3605,7 +3641,7 @@ function bestQuizForAttempt(s,isChampion,did,group){
     const ck=String(group||0);
     return(s.championBestQuiz&&s.championBestQuiz[ck])||{accPct:0,quizStars:0};
   }
-  const k=String(did);
+  const k=gateKeyOf(did);
   return(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0};
 }
 
@@ -3623,7 +3659,7 @@ function bestQuizForAttempt(s,isChampion,did,group){
  */
 function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars,points){
   const store=isChampion?'championBestQuiz':'gateBestQuiz';
-  const key=isChampion?String(group||0):String(did);
+  const key=isChampion?GateIdentity.championKey(curHSK||1,group||0):gateKeyOf(did);
   if(!s[store])s[store]={};
   const prev=s[store][key]||null;
   const next={accPct:accPct||0,quizStars:quizStars||0,points:points||0,atKey:todayKey()};
@@ -3645,20 +3681,21 @@ function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars,points){
  * current attempt, every later boss replay on a cleared gate re-ran the payout,
  * even a run answered almost entirely wrong.
  */
-function evaluateGateCompletion(did){
+function evaluateGateCompletion(did,level){
   if(!curP||!did)return{cleared:false,justCleared:false};
   const s=state[curP];
-  const k=String(did);
+  const k=gateKeyOf(did,level);
+  if(!k)return{cleared:false,justCleared:false};
   const best=(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0,points:0};
   const quizOk=(best.accPct||0)>=90&&(best.quizStars||0)===3;
-  const gamesOk=gateGamesAllThree(s,did);
-  const already=s.gatesCompleted.includes(did);
+  const gamesOk=gateGamesAllThree(s,did,level);
+  const already=s.gatesCompleted.includes(k);
   if(!quizOk||!gamesOk)return{cleared:already,justCleared:false};
   if(already)return{cleared:true,justCleared:false};
 
-  s.gatesCompleted.push(did);
-  const prevGateStars=s.gateStars[did]||0;
-  if((best.quizStars||0)>prevGateStars)s.gateStars[did]=best.quizStars||0;
+  s.gatesCompleted.push(k);
+  const prevGateStars=s.gateStars[k]||0;
+  if((best.quizStars||0)>prevGateStars)s.gateStars[k]=best.quizStars||0;
   const timer=(s.gateTimers&&s.gateTimers[k])||null;
   if(timer&&timer.active&&timer.startKey===todayKey())checkBadges(curP,{oneDayGate:true});
   if(timer&&timer.active)timer.active=false;
@@ -3687,13 +3724,17 @@ function showStarEffect(stars,label){
   }
 }
 
-function gateGamesAllThree(s,did){
+function gateGamesAllThree(s,did,level){
   if(!did)return false;
-  const g=(s.gateGameStars&&s.gateGameStars[String(did)])||{};
+  const g=(s.gateGameStars&&s.gateGameStars[gateKeyOf(did,level)])||{};
   return(g.trace||0)>=3&&(g.match||0)>=3&&(g.rain||0)>=3&&(g.listen||0)>=3;
 }
 
 let curGameTargetDid=null;
+// The level a round was STARTED in. Stars must land in that level even if
+// the child changes tab mid-round, so it travels with the session rather
+// than being re-read from the global at the end.
+let curGameTargetLevel=null;
 
 /**
  * Stamp a pending session with the moment it was last touched.
@@ -3759,7 +3800,7 @@ function renderMyDay(){
   if(nextDid){
     expireGateTimerIfNeeded(s,nextDid);
     const d=DYNASTIES.find(x=>x.id===nextDid);
-    const gk=String(nextDid);
+    const gk=gateKeyOf(nextDid);
     const g=(s.gateGameStars&&s.gateGameStars[gk])||{};
     const keys=['trace','match','rain','listen'];
     const vals=keys.map(k=>g[k]||0);
@@ -3866,7 +3907,7 @@ function openFlashPicker(){
   const body=document.getElementById('flash-body');if(!body)return;
   const ps=s.pendingSessions&&s.pendingSessions.flash;
   const rows=DYNASTIES.map(d=>{
-    const unlocked=d.id===1||s.gatesCompleted.includes(d.id-1);
+    const unlocked=d.id===1||gateCleared(s,d.id-1);
     return `<button class="btn-s" style="opacity:${unlocked?1:.45}" ${unlocked?`onclick="openFlashCards(${d.id})"`:'disabled'}>${d.id}. ${d.zh}</button>`;
   }).join('');
   body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.6rem;">Pick a dynasty · 选择朝代</div>
@@ -3879,7 +3920,7 @@ function openFlashCards(did){
   if(!curP)return;
   ensureState(curP);
   const s=state[curP];
-  const unlocked=did===1||s.gatesCompleted.includes(did-1);
+  const unlocked=did===1||gateCleared(s,did-1);
   if(!unlocked){showToast('🔒 Finish the previous gate first to unlock this one!');return;}
   const deck=buildFlashDeckForDynasty(did);
   if(!deck.length){showToast('No words yet—read a story first, then come back!');return;}
@@ -4036,7 +4077,7 @@ function gameUnlockForDid(did){
   if(!curP||!did)return{listen:true,trace:true,match:true,rain:true};
   const s=state[curP];
   // Already completed this gate — no re-reading required
-  if(s.gatesCompleted&&s.gatesCompleted.includes(did))return{listen:true,trace:true,match:true,rain:true};
+  if(gateCleared(s,did))return{listen:true,trace:true,match:true,rain:true};
   const dynasty=DYNASTIES.find(d=>d.id===did);
   if(!dynasty)return{listen:true,trace:true,match:true,rain:true};
   const storyIds=[dynasty.story,dynasty.story2].filter(Boolean);
@@ -4048,8 +4089,8 @@ function gameUnlockForDid(did){
   // games instantly.
   if(storyIds.some(sid=>(s.legacyStoriesCompleted||[]).includes(sid)))return{listen:true,trace:true,match:true,rain:true};
   const maxReads=Math.max(0,...storyIds.map(sid=>(s.storyReadCount||{})[sid]||0));
-  const flashDone=!!(s.flashPassDone&&s.flashPassDone[String(did)]);
-  const listenPlayed=((s.gateGameStars&&s.gateGameStars[String(did)])||{}).listen>0;
+  const flashDone=!!(s.flashPassDone&&s.flashPassDone[gateKeyOf(did)]);
+  const listenPlayed=((s.gateGameStars&&s.gateGameStars[gateKeyOf(did)])||{}).listen>0;
   return{
     listen:maxReads>=1,
     trace:maxReads>=1&&flashDone,
@@ -4080,7 +4121,7 @@ function gamePickerHtml(){
   const did=currentDynastyIdForGames();
   const ul=gameUnlockForDid(did);
   const s=curP?state[curP]:null;
-  const gs=(s&&s.gateGameStars&&s.gateGameStars[String(did)])||{};
+  const gs=(s&&s.gateGameStars&&s.gateGameStars[gateKeyOf(did)])||{};
   const dynasty=DYNASTIES.find(d=>d.id===did);
   const scopeLbl=dynasty?`${dynasty.icon||''} ${dynasty.en} — your best stars on this gate`:'Your best stars on this gate';
   return `<div style="font-size:.78rem;color:var(--muted);margin-bottom:.25rem;text-align:center;">Pick a game and word pool</div>
@@ -4109,7 +4150,7 @@ function currentDynastyIdForGames(){
   if(selectedGateId)return selectedGateId;
   const s=state[curP];
   for(const d of DYNASTIES){
-    if((d.id===1||s.gatesCompleted.includes(d.id-1))&&!s.gatesCompleted.includes(d.id))return d.id;
+    if((d.id===1||gateCleared(s,d.id-1))&&!gateCleared(s,d.id))return d.id;
   }
   return 22;
 }
@@ -4160,7 +4201,7 @@ function startGame(game,scope){
   else if(game==='trace')startTrace(words);
 }
 
-function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null};}
+function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null,gameTargetLevel:matchSt.gameTargetLevel||null};}
 function clearMatch(){if(curP)state[curP].pendingSessions.match=null;}
 
 function startMemoryMatch(words){
@@ -4179,7 +4220,7 @@ function startMemoryMatch(words){
     cards.push({id:'a'+i,pair:i,side:'zh',text:w.zh,w:{...w},matched:false});
     cards.push({id:'b'+i,pair:i,side:'en',text:w.en,w:{...w},matched:false});
   });
-  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null};
+  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
   persistMatch();saveState();renderMemoryMatch();
   touchSession('match');
 }
@@ -4191,7 +4232,7 @@ function renderMemoryMatch(){
     const sec=(Date.now()-matchSt.start)/1000;
     const stars=sec<120?3:sec<180?2:sec<240?1:0;
     const tid=matchSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'match',stars);
+    if(tid)updateGateGameBest(tid,'match',stars,matchSt.gameTargetLevel);
     awardAltRound('match',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Brainy win!</div>
       <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
@@ -4251,7 +4292,7 @@ function persistRain(){
   if(!curP)return;
   state[curP].pendingSessions.rain={pool:rainSt.pool.map(w=>({...w})),target:rainSt.target?{...rainSt.target}:null,
     score:rainSt.score,combo:rainSt.combo,bestCombo:rainSt.bestCombo,timeLeft:rainSt.timeLeft,
-    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,
+    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,gameTargetLevel:rainSt.gameTargetLevel||null,
     targetSeq:(rainSt.targetSeq||[]).map(w=>({...w})),targetIdx:rainSt.targetIdx||0,targetSeenCount:rainSt.targetSeenCount||0,
     spawnsSinceTarget:rainSt.spawnsSinceTarget||0,targetShownThisRound:!!rainSt.targetShownThisRound};
   touchSession('rain');
@@ -4270,7 +4311,7 @@ function startRain(words){
   words.filter(w=>w.zh&&w.en).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);uniq.push(w);}});
   if(uniq.length<5){showToast('Rain needs at least 5 words. Try Dynasty or HSK to build your word pool!');return;}
   rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0,
+    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0,
     spawnsSinceTarget:0,targetShownThisRound:false};
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
@@ -4369,7 +4410,7 @@ function endRain(fromUser){
   // Natural end (timer ran out) — full round completed, stars deserved
   clearRainSession();
   const stars=starsFromAccuracy(rh,ra);
-  if(tid)updateGateGameBest(tid,'rain',stars);
+  if(tid)updateGateGameBest(tid,'rain',stars,rainSt.gameTargetLevel);
   awardAltRound('rain',stars);
   body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Time is up!</div>
     <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
@@ -4383,7 +4424,7 @@ function restoreRain(){
   clearRainSession();
   const seq=(ps.targetSeq&&ps.targetSeq.length)?ps.targetSeq.map(w=>({...w})):shuffleArr(ps.pool.map(w=>({...w})));
   rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0,
+    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0,
     spawnsSinceTarget:ps.spawnsSinceTarget||0,targetShownThisRound:!!ps.targetShownThisRound};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
@@ -4395,8 +4436,8 @@ function startListen(words){
     const wrong=shuffleArr(pool.filter(x=>x.zh!==w.zh)).slice(0,3);
     return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
   });
-  listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null};
-  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid};touchSession('listen');
+  listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
+  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null};touchSession('listen');
   saveState();renderListen();
 }
 
@@ -4409,7 +4450,7 @@ function renderListen(){
     const cc=listenSt.correctCount||0;
     const stars=starsFromAccuracy(cc,tot);
     const tid=listenSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'listen',stars);
+    if(tid)updateGateGameBest(tid,'listen',stars,listenSt.gameTargetLevel);
     awardAltRound('listen',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Listening complete!</div>
       <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
@@ -4451,7 +4492,7 @@ function checkListen(btn,ok,q){
     if(!consumeDynastyForgiveness('listen'))logWrong(curP,q.w.zh,q.w.py,q.w.en);
   }
   listenSt.qi++;
-  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid};touchSession('listen');
+  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null};touchSession('listen');
   saveState();
   laterCall('listen',renderListen,800);
 }
@@ -4517,7 +4558,7 @@ function startTrace(words){
     :allChars;
   if(!chars.length){showToast('No characters to trace yet—learn a few more first!');return;}
   traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null,watchCount:0,quizActive:false};
-  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid};touchSession('trace');
+  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');
   saveState();renderTrace();
 }
 
@@ -4532,7 +4573,7 @@ function renderTrace(){
       ?traceStarsFromAccuracy(tg,tot,traceSt.gameTargetDid)
       :starsFromAccuracy(tg,tot);
     const tid=traceSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'trace',stars);
+    if(tid)updateGateGameBest(tid,'trace',stars,traceSt.gameTargetLevel);
     awardAltRound('trace',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
       <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
@@ -4600,7 +4641,7 @@ function startTraceQuiz(){
       const stars=mistakes===0?3:(mistakes<=4?2:1);
       const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
       traceSt.traceGood=(traceSt.traceGood||0)+(mistakes===0?1:0);
-      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid};touchSession('trace');
+      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');
       const msgs=stars===3
         ?['Perfect! 🌟','Flawless! Amazing! ✨','No mistakes — you nailed it! 🏆']
         :stars===2
@@ -4622,11 +4663,11 @@ function exitTrace(){
 }
 
 function traceAnimate(){traceWatchAgain();}
-function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid};touchSession('trace');saveState();renderTrace();}
+function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');saveState();renderTrace();}
 
 function restoreTrace(){
   const ps=state[curP].pendingSessions.trace;if(!ps||!ps.chars)return false;
-  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:'',traceGood:ps.traceGood||0,gameTargetDid:ps.gameTargetDid||null};
+  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:'',traceGood:ps.traceGood||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
   document.getElementById('games-overlay').classList.add('show');
   renderTrace();return true;
 }
@@ -4640,14 +4681,14 @@ function restoreMatch(){
   // a permanent dead end.
   const dealtPairs=new Set(cards.map(c=>c.pair)).size;
   const pairCount=Math.min(ps.pairCount||dealtPairs,dealtPairs);
-  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount,gameTargetDid:ps.gameTargetDid||null};
+  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
   document.getElementById('games-overlay').classList.add('show');
   renderMemoryMatch();return true;
 }
 
 function restoreListen(){
   const ps=state[curP].pendingSessions.listen;if(!ps||!ps.questions)return false;
-  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0,correctCount:ps.correctCount||0,gameTargetDid:ps.gameTargetDid||null};
+  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0,correctCount:ps.correctCount||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
   document.getElementById('games-overlay').classList.add('show');
   renderListen();return true;
 }
@@ -4741,7 +4782,7 @@ function resumeLastSession(){
 
 /** Reading story for dynasty `did` unlocks after the previous dynasty's gate (id did−1) is cleared. */
 function isStoryUnlockedForDynasty(did,s){
-  return did===1||s.gatesCompleted.includes(did-1);
+  return did===1||gateCleared(s,did-1);
 }
 
 // ── TTS ── opts: { sentence: true } = slower for full sentences
@@ -5068,11 +5109,27 @@ function renderSelectBadges(){
   });
 }
 
+/**
+ * The furthest level the child has reached.
+ *
+ * This used to be a running total of gates cleared across the whole app, which
+ * is what made a level a label rather than a place. It now reports the highest
+ * level that is actually open — cleared its predecessor's gate 22, or carries
+ * inherited access from the migration.
+ */
 function getCurrentHSK(s){
-  if(s.gatesCompleted.length>=17)return 4;
-  if(s.gatesCompleted.length>=11)return 3;
-  if(s.gatesCompleted.length>=5)return 2;
-  return 1;
+  if(!s)return 1;
+  let top=1;
+  [2,3,4].forEach(lv=>{if(levelIsUnlocked(s,lv))top=lv;});
+  return top;
+}
+
+/** How many of a level's 22 gates are cleared. */
+function gatesClearedInLevel(s,lv){
+  return ((s&&s.gatesCompleted)||[]).filter(k=>{
+    const p=GateIdentity.parseGateKey(k);
+    return p&&p.levelId===Number(lv);
+  }).length;
 }
 
 // ══════════════════════════════════════════════════════
@@ -5151,7 +5208,9 @@ function renderHub(){
   // HSK tabs
   const tabs=document.getElementById('hsk-tabs');tabs.innerHTML='';
   [1,2,3,4].forEach(lv=>{
-    const unlocked=lv===1||s.gatesCompleted.length>=(lv===2?5:lv===3?11:17);
+    // A level opens when the previous level is finished, or when the child
+    // already had it under the old running-total rule.
+    const unlocked=levelIsUnlocked(s,lv);
     const btn=document.createElement('button');
     btn.className='hsk-tab'+(lv===curHSK?' active':'')+(unlocked?'':' locked');
     btn.textContent='HSK '+lv+(unlocked?'':' 🔒');
@@ -5211,16 +5270,16 @@ function renderHubContent(){
 
   const track=document.getElementById('road-track');
   DYNASTIES.forEach((d,idx)=>{
-    const done=s.gatesCompleted.includes(d.id);
-    const prevDone=idx===0||s.gatesCompleted.includes(DYNASTIES[idx-1].id);
+    const done=gateCleared(s,d.id);
+    const prevDone=idx===0||gateCleared(s,DYNASTIES[idx-1].id);
     const isActive=!done&&prevDone;
     const locked=!prevDone&&!done;
-    const stars=s.gateStars[d.id]||0;
+    const stars=s.gateStars[gateKeyOf(d.id)]||0;
 
     // Connector before this gate node
     if(idx>0){
       const span=document.createElement('div');
-      span.className='dr-conn'+(s.gatesCompleted.includes(DYNASTIES[idx-1].id)?' done':'');
+      span.className='dr-conn'+(gateCleared(s,DYNASTIES[idx-1].id)?' done':'');
       span.style.width=(ROAD_PX[idx-1]||20)+'px';
       track.appendChild(span);
     }
@@ -5254,7 +5313,7 @@ function renderHubContent(){
       const champDone=s.championCleared&&s.championCleared[grp];
       const champStars=champDone||0;
       // All 5 gates in this group must be done to unlock champion
-      const groupDone=[1,2,3,4,5].every(i=>s.gatesCompleted.includes(d.id-5+i));
+      const groupDone=[1,2,3,4,5].every(i=>gateCleared(s,d.id-5+i));
 
       // Connector to champion node
       const connChamp=document.createElement('div');
@@ -5326,8 +5385,8 @@ const DIM={
 
 function renderDynastyDetail(d,s){
   const panel=document.getElementById('dynasty-detail-panel');if(!panel)return;
-  const done=s.gatesCompleted.includes(d.id);
-  const stars=s.gateStars&&s.gateStars[d.id]||0;
+  const done=gateCleared(s,d.id);
+  const stars=s.gateStars&&s.gateStars[gateKeyOf(d.id)]||0;
   const starsStr=done?'★'.repeat(stars)+'☆'.repeat(3-stars):'';
   const story=d.story&&STORIES_MAP[d.story];
   const story2=d.story2&&STORIES_MAP[d.story2];
@@ -6239,8 +6298,11 @@ function getRecentQuestionStore(p){
 
 function buildQuizVocab(d,forChampion=false,didOverride){
   const did=didOverride!=null?didOverride:d.id;
+  // The dynasty's old `hsk` field used to override the active level here,
+  // because the level was cosmetic and the dynasty carried the real one. Under
+  // the 88-gate model the level IS the identity, so the active level decides
+  // which curriculum a gate draws from. The dynasty is only the theme.
   const prevHSK=curHSK;
-  if(d&&d.hsk)curHSK=d.hsk;
   const datasetPrimary=forChampion?getDatasetVocabForChampion(did):getDatasetVocabForGate(did);
   if(datasetPrimary.length){
     const minSize=forChampion?120:40;
@@ -6868,14 +6930,14 @@ function renderQuizResult(qc){
   const gateLabel=quizSt.isChampion?`👑 Champion · Group ${quizSt.champGroup}`:`Gate ${quizSt.did}`;
   const cleared=quizSt.isChampion?passedChampion:passedGate;
   const ptsMsg=cleared?score:0;
-  const g=(s.gateGameStars&&s.gateGameStars[String(quizSt.did)])||{};
+  const g=(s.gateGameStars&&s.gateGameStars[gateKeyOf(quizSt.did)])||{};
   const g3=[g.trace,g.match,g.rain,g.listen].filter(x=>(x||0)>=3).length;
   let lockMsg='';
   if(!cleared){
     const bits=[];
     if(!quizPass)bits.push(`Quiz goal: score <b>90% or above</b> and earn 3 quiz stars. You are getting closer! <span class="lock-sub">Best so far: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★</span>`);
     if(!gamesOk)bits.push(`Game goal: earn 3★ in Trace, Memory, Rain, and Listen for this gate. <span class="lock-sub">Ready: ${g3}/4</span>`);
-    const timer=(s.gateTimers&&s.gateTimers[String(quizSt.did)])||null;
+    const timer=(s.gateTimers&&s.gateTimers[gateKeyOf(quizSt.did)])||null;
     if(timer&&timer.active){
       const left=gateTimerDaysLeft(timer);
       if(left<=1)bits.push('Timer goal: final day! Complete now to keep your progress.');
@@ -7109,7 +7171,7 @@ function renderParentSummary(){
       <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} days</span></div>
       <div class="psr"><span class="psr-lbl">💪 Practice Queue</span><span class="psr-val">${Object.keys(s.failedWords||{}).length} words</span></div>
       ${Object.keys(s.championCleared||{}).length?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(Object.keys(s.championCleared).length)}</span></div>`:''}
-      ${(()=>{const skipped=DYNASTIES.filter(d=>{const gg=(s.gateGameStars&&s.gateGameStars[String(d.id)])||{};const gp=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);const ids=[d.story,d.story2].filter(Boolean);const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));return gp>0&&reads<2&&!s.gatesCompleted.includes(d.id);}).map(d=>d.zh+' ('+d.en+')');return skipped.length?`<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span><span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`:'';})()}
+      ${(()=>{const skipped=DYNASTIES.filter(d=>{const gg=(s.gateGameStars&&s.gateGameStars[gateKeyOf(d.id)])||{};const gp=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);const ids=[d.story,d.story2].filter(Boolean);const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));return gp>0&&reads<2&&!gateCleared(s,d.id);}).map(d=>d.zh+' ('+d.en+')');return skipped.length?`<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span><span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`:'';})()}
     </div>`;
     if(isNow){
       const ww=Object.values(s.failedWords||{}).filter(w=>w.lastFailed&&w.lastFailed>=ws).sort((a,b)=>b.failCount-a.failCount);

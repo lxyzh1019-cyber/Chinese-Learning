@@ -88,6 +88,31 @@
     return allGateKeys().find((k) => cleared.indexOf(k) === -1) || null;
   }
 
+  /**
+   * Which levels a child may open.
+   *
+   * The new rule is strict: a level opens when the previous level's gate 22 is
+   * cleared. The old rule was a running total (5/11/17 gates), which was much
+   * looser — so migrating without care would TAKE AWAY a tab a child already
+   * had. `legacyLevelAccess` carries that earlier access forward. Access is not
+   * completion: an inherited tab is browsable, it is not credit.
+   */
+  function levelUnlocked(levelId, clearedKeys, legacyLevelAccess) {
+    const lv = Number(levelId);
+    if (lv === 1) return true;
+    if ((legacyLevelAccess || []).indexOf(lv) !== -1) return true;
+    return (clearedKeys || []).indexOf(gateKey(lv - 1, GATES_PER_LEVEL)) !== -1;
+  }
+
+  /** The levels the old running-total rule would have opened. */
+  function legacyLevelsFor(clearedCount) {
+    const levels = [1];
+    if (clearedCount >= 5) levels.push(2);
+    if (clearedCount >= 11) levels.push(3);
+    if (clearedCount >= 17) levels.push(4);
+    return levels;
+  }
+
   /** Champion groups stay optional, keyed by level and group, after gates 5/10/15/20. */
   function championKey(levelId, group) { return `h${Number(levelId)}-c${Number(group)}`; }
   function championGateKeys(levelId, group) {
@@ -127,10 +152,27 @@
    * Idempotent — running it twice produces the same result and no extra
    * completions, stars or history.
    */
+  /**
+   * Does this document still carry legacy numeric gate ids?
+   *
+   * The version stamp alone is not enough to trust. The app merges a saved
+   * document over a default player, and the default now carries the current
+   * schemaVersion — so a legacy save comes out of that merge *claiming* to be
+   * current while its gate ids are still numbers. Checking the shape makes the
+   * migration self-correcting rather than dependent on a field that can be
+   * inherited from the wrong side of a merge.
+   */
+  function looksLegacy(src) {
+    if ((src.gatesCompleted || []).some((v) => typeof v === "number" || /^\d+$/.test(String(v)))) return true;
+    return ["gateStars", "gateGameStars", "gateBestQuiz", "gateTimers", "flashPassDone"]
+      .some((f) => Object.keys(src[f] || {}).some((k) => /^\d+$/.test(k)));
+  }
+
   function migratePlayer(player) {
     const src = player || {};
+    const legacyShape = looksLegacy(src);
     const report = {
-      alreadyMigrated: src.schemaVersion >= SCHEMA_VERSION,
+      alreadyMigrated: src.schemaVersion >= SCHEMA_VERSION && !legacyShape,
       gatesCompleted: [], legacyAccess: [], skipped: [], warnings: [],
     };
     if (report.alreadyMigrated) return { player: src, report };
@@ -150,6 +192,7 @@
 
     [["gateStars", "stars"], ["gateGameStars", "game stars"], ["gateBestQuiz", "best quiz"],
      ["gateTimers", "timers"], ["gateAttemptHistory", "attempt history"],
+     ["flashPassDone", "flashcard passes"],
      ["timerReminderShown", "timer reminders"], ["timerWarningShown", "timer warnings"],
      ["timerLastSeenAt", "timer last seen"]].forEach(([field, label]) => {
       if (!src[field]) return;
@@ -165,6 +208,10 @@
     reachable.add(gateKey(1, 1));
     next.legacyAccess = [...reachable].sort();
     report.legacyAccess = next.legacyAccess;
+
+    // Preserve the level tabs the old threshold rule had already opened.
+    next.legacyLevelAccess = legacyLevelsFor(cleared.length);
+    report.legacyLevelAccess = next.legacyLevelAccess;
 
     // The evidence that these came from the old model, kept for provenance.
     next.legacyCredit = {
@@ -187,7 +234,7 @@
     LEVELS, GATES_PER_LEVEL, SCHEMA_VERSION, LEGACY_DYNASTY_LEVEL,
     gateKey, parseGateKey, isGateKey, allGateKeys,
     nextGateKey, previousGateKey, isGateOpen, nextOpenGateKey,
-    championKey, championGateKeys,
-    legacyGateKey, migratePlayer,
+    championKey, championGateKeys, levelUnlocked, legacyLevelsFor,
+    legacyGateKey, migratePlayer, looksLegacy,
   };
 });

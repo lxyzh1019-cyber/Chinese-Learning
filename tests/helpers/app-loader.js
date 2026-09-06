@@ -35,6 +35,7 @@ const BRIDGED = [
   "flashSt", "matchSt", "rainSt", "listenSt", "traceSt", "miniQ",
   "tapped", "newChars", "totalNew", "storyOpenTime",
   "revengeSt", "drillSt", "answerLocked", "remoteBaseRevision", "syncStatus",
+  "curGameTargetLevel",
   // Content tables. Also `const`, so also invisible without the bridge.
   "STORIES_MAP", "DYNASTIES", "HSK_VOCAB", "GATE_VOCAB", "GATE_SENTENCES",
 ];
@@ -200,6 +201,8 @@ function loadApp(opts = {}) {
     Audio: function () { return { play: () => Promise.resolve(), pause() {}, currentTime: 0, src: "" }; },
     AudioContext: function () { return { createOscillator: () => ({ connect() {}, start() {}, stop() {} }), createGain: () => ({ connect() {}, gain: { value: 0 } }), destination: {}, currentTime: 0, resume: () => Promise.resolve() }; },
     fetch: () => Promise.reject(new Error("fetch disabled in tests")),
+    // Loaded before the inline script in index.html, so the app can rely on it.
+    GateIdentity: require("../../js/gate-identity.js"),
     HanziWriter: { create: () => ({ animateCharacter() {}, quiz() {}, cancelQuiz() {}, hideCharacter() {} }) },
     // firebase intentionally undefined: initFirestore() bails, so no test can
     // reach the live chinese-adventure collection.
