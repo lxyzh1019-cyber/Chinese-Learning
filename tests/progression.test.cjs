@@ -919,3 +919,40 @@ test("T01: the curriculum no longer teaches dictionary artefacts", () => {
   assert.equal(find("里").en, "inside; in");
   assert.equal(find("新").en, "new");
 });
+
+// ── T02: the lesson shows what was actually written ────────────────────────
+
+test("T02: the renderer no longer carries hard-coded substitute questions", () => {
+  const fs = require("fs");
+  const src = fs.readFileSync(require("path").join(__dirname, "..", "index.html"), "utf8");
+  const start = src.indexOf("async function renderGateLesson");
+  const body = src.slice(start, src.indexOf("function closeCultureStories"));
+  ["How many new words are in this gate?",
+   "Say two new words from this gate.",
+   "After reading, what should you do first?"].forEach((q) => {
+    assert.ok(!body.includes(q), `the substitute question "${q}" is gone`);
+  });
+  assert.ok(body.includes("lesson.passage"), "the authored passage is rendered");
+  assert.ok(body.includes("lesson.explanation"), "so is the authored explanation");
+  assert.ok(body.includes("q.answer"), "and the authored answer, which was never displayed");
+});
+
+test("T02: every lesson file has the content the renderer now needs", () => {
+  const fs = require("fs");
+  const path = require("path");
+  const dir = path.join(__dirname, "..", "data", "lessons");
+  const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
+  assert.equal(files.length, 88, "one lesson per gate");
+
+  const missing = [];
+  files.forEach((f) => {
+    const l = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+    if (!l.passage) missing.push(`${f}: no passage`);
+    if (!Array.isArray(l.comprehension) || !l.comprehension.length) missing.push(`${f}: no questions`);
+    (l.comprehension || []).forEach((q, i) => {
+      if (!q.question) missing.push(`${f}: question ${i} has no text`);
+      if (!q.answer) missing.push(`${f}: question ${i} has no answer`);
+    });
+  });
+  assert.deepEqual(missing, [], "nothing the renderer reads is absent");
+});

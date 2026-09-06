@@ -715,7 +715,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3/dist/hanzi-writer.min.js"></script>
 <script src="js/gate-identity.js"></script>
 <script src="js/merge-state.js"></script>
-<script src="js/merge-state.js"></script>
+<script src="js/review-core.js"></script>
 </head>
 <body>
 <canvas id="ccanvas"></canvas>
@@ -3270,6 +3270,10 @@ function ensureState(p){
   // Snapshot the stories finished before the read-chain gate shipped, once.
   // Anything completed from now on has to earn its unlocks the normal way.
   if(!s.gateAttemptHistory)s.gateAttemptHistory={};
+  // Per-{word, skill} retention evidence. Separate from failedWords, which is a
+  // single undifferentiated counter and cannot tell "cannot write it" from
+  // "does not know what it means".
+  if(!s.reviewRecords)s.reviewRecords={};
   if(typeof s.revision!=='number')s.revision=0;
   MergeState.ensureLedger(s);
   if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
@@ -4543,6 +4547,8 @@ function checkListen(btn,ok,q){
     listenSt.streak=0;btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+q.w.zh;
     if(!consumeDynastyForgiveness('listen'))logWrong(curP,q.w.zh,q.w.py,q.w.en);
   }
+  // Audio to character with no pinyin on screen: unaided recognition.
+  noteEvidence(curP,q.w,'recognition',ok,{source:'listen'});
   listenSt.qi++;
   if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null};touchSession('listen');
   saveState();
@@ -5481,45 +5487,56 @@ function renderDynastyDetail(d,s){
 async function renderGateLesson(did,lessonRef){
   const box=document.getElementById('gate-lesson-box');if(!box)return;
   box.innerHTML='<div class="dd-desc">Loading lesson...</div>';
+  // The fetch can outlive the gate that started it.
+  const gen=sessionGen;
+  const owner=curP;
   const lesson=await loadLessonByRef(lessonRef);
+  if(gen!==sessionGen||curP!==owner)return;
   if(!lesson){
     box.innerHTML='<div class="dd-desc">Lesson content will be added soon for this gate.</div>';
     return;
   }
   const lvl=String(lesson.level||'HSK1');
   const gate=lesson.gateId||did;
-  const newCount=(lesson.keyVocab||[]).length;
-  // Build vocab cards with visible English
+  const esc=(t)=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
   const vocab=(lesson.keyVocab||[]).map(v=>`<div style="display:inline-flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(212,160,23,.18);border-radius:9px;padding:.3rem .55rem;gap:.1rem;">
-    <span style="font-family:var(--fzh);font-size:1.1rem;color:var(--gold);">${v.zh}</span>
-    <span style="font-size:.65rem;color:var(--muted);">${v.pinyin||''}</span>
-    <span style="font-size:.62rem;color:var(--ink);text-align:center;">${v.en||''}</span>
+    <span style="font-family:var(--fzh);font-size:1.1rem;color:var(--gold);">${esc(v.zh)}</span>
+    <span style="font-size:.65rem;color:var(--muted);">${esc(v.pinyin||'')}</span>
+    <span style="font-size:.62rem;color:var(--ink);text-align:center;">${esc(v.en||'')}</span>
   </div>`).join('');
-  // Comprehension questions with bilingual display
-  const qs=(lesson.comprehension||[]).slice(0,3).map((q,i)=>{
-    const enQs=['How many new words are in this gate?','Say two new words from this gate.','After reading, what should you do first?'];
-    const enAs=['Count the key vocabulary words listed above.','Pick any two characters from the list above.','Read the words aloud, then try to use one in a short sentence.'];
-    return `<li style="margin:.25rem 0;">
-      <span style="color:var(--ink);">${enQs[i]||''}</span>
-      <span style="color:var(--muted);font-size:.8em;display:block;margin-top:.1rem;">（${q.question||''}）</span>
-      <span style="color:var(--jade);font-size:.85em;display:block;">→ ${enAs[i]||q.answer||''}</span>
-    </li>`;
-  }).join('');
-  // English intro
-  const enIntro=`This gate introduces <strong>${newCount} key words</strong>. First read each word aloud with the pinyin, then try to say a short sentence using one of the new words. Ask a parent for help with about 20% of unclear parts — the rest you can do yourself!`;
-  // Speaking prompt in English
-  let spEn='';
-  if(lesson.speakingPrompt){
-    const sp=lesson.speakingPrompt;
-    const firstZh=sp.match(/「([^」]+)」/g);
-    const examples=firstZh?firstZh.map(s=>s.replace(/[「」]/g,'')).join(', '):'the new words';
-    spEn=`Try saying 2–3 short sentences using today's words (e.g. ${examples}).`;
-  }
-  box.innerHTML=`<div class="dd-icon-meaning"><strong>📖 Lesson · 课程 — ${lvl} Gate ${gate}</strong></div>
-    <div class="dd-desc" style="background:rgba(39,174,96,.07);border:1px solid rgba(39,174,96,.2);border-radius:8px;padding:.5rem .7rem;margin:.3rem 0;">${enIntro}</div>
+
+  // The authored passage. It was written for every one of the 88 gates and then
+  // never displayed — `lesson.passage` was referenced nowhere in the app.
+  const passage=lesson.passage
+    ? `<div class="practice-box" style="text-align:left;font-family:var(--fzh);font-size:1.02rem;line-height:1.95;margin:.5rem 0;">${esc(lesson.passage)}</div>`
+    : '';
+
+  // The lesson's own explanation, likewise never shown.
+  const intro=lesson.explanation
+    ? `<div class="dd-desc" style="background:rgba(39,174,96,.07);border:1px solid rgba(39,174,96,.2);border-radius:8px;padding:.5rem .7rem;margin:.3rem 0;line-height:1.65;">${esc(lesson.explanation)}</div>`
+    : '';
+
+  // The authored questions and THEIR answers. Three hard-coded English
+  // questions used to be printed instead — "How many new words are in this
+  // gate?" — with the real question demoted to a parenthetical and the real
+  // answer never rendered at all. On 22 of the 88 lessons the substitute did
+  // not even match the question it replaced.
+  const qs=(lesson.comprehension||[]).map(q=>`<li style="margin:.35rem 0;">
+      <span style="color:var(--ink);">${esc(q.question||'')}</span>
+      <span style="color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;">→ ${esc(q.answer||'')}</span>
+    </li>`).join('');
+
+  const speaking=lesson.speakingPrompt
+    ? `<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;line-height:1.6;"><strong>🗣 Speaking · 口语：</strong> ${esc(lesson.speakingPrompt)}</div>`
+    : '';
+
+  box.innerHTML=`<div class="dd-icon-meaning"><strong>📖 Lesson · 课程 — ${esc(lvl)} Gate ${esc(gate)}</strong></div>
+    ${intro}
     ${vocab?`<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0;">${vocab}</div>`:''}
-    ${qs?`<div class="dd-desc"><strong>✅ Check Understanding (answer with your parent)</strong><ol style="margin:.35rem 0 .1rem 1.1rem;line-height:1.7;">${qs}</ol></div>`:''}
-    ${spEn?`<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;"><strong>🗣 Speaking Practice:</strong> ${spEn}</div>`:''}`;
+    ${passage}
+    ${qs?`<div class="dd-desc"><strong>✅ 读一读，想一想 · Check understanding</strong><ol style="margin:.35rem 0 .1rem 1.1rem;line-height:1.7;">${qs}</ol></div>`:''}
+    ${speaking}`;
 }
 
 function closeCultureStories(){
@@ -5853,6 +5870,10 @@ function checkMiniQ(btn,isCorrect,correctAns,opts){
     if(miniQ.qi<miniQ.questions.length){persistMiniQuizState();renderMiniQuestion();}
     else finishMiniPass();
   };
+  // The second pass re-asks items the child just had revealed, so it is
+  // teaching rather than retrieval and must not advance the schedule.
+  noteEvidence(curP,{zh:q.zh},'meaning',isCorrect,
+    {sameSession:miniQ.phase!=='main',source:'story-mini-quiz'});
   if(isCorrect){
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ Great job! Correct!';miniQ.score++;
     bumpCorrectCount(1);
@@ -5990,6 +6011,7 @@ function checkDrillQ(btn,isCorrect,correctAns,opts,zh,py){
     if(drillSt.qi<drillSt.words.length)renderDrillQ();
     else showDrillResult();
   };
+  noteEvidence(curP,{zh},'meaning',isCorrect,{source:'drill'});
   if(isCorrect){
     drillSt.correct++;drillSt.streak++;
     if(drillSt.streak>drillSt.maxStreak)drillSt.maxStreak=drillSt.streak;
@@ -6113,6 +6135,7 @@ function checkRevengeQ(btn,isCorrect,correctAns,grid,zh,py){
       renderHub();
     }
   };
+  noteEvidence(curP,{zh},'meaning',isCorrect,{source:'revenge'});
   if(isCorrect){
     revengeSt.correct++;
     btn.classList.add('correct');fb.className='mq-fb ok';fb.textContent='✅ Nice!';
@@ -6556,6 +6579,18 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     if(mcqAnswered<quizSt.questions.length)renderMCQPhase(document.getElementById('quiz-content'),'');
     else nextPhase();
   };
+  const curQ=quizSt.questions[mcqAnswered];
+  // Use the exact current question row first to avoid homograph ambiguity (e.g. 都: dū vs dōu).
+  const qKey=curQ&&curQ.zh?curQ.zh:zhHint;
+  const w=quizSt.vocab.find(v=>v.zh===qKey&&v.en===correctAns)
+    || quizSt.vocab.find(v=>v.zh===qKey&&v.py===pyHint)
+    || quizSt.vocab.find(v=>v.zh===qKey)
+    || {zh:qKey||'?',py:pyHint||'?',en:correctAns};
+  // A reverse item shows English and asks for the character; the rest show the
+  // character and ask what it means. Pinyin or audio on screen makes it a
+  // supported answer, which is recorded but never advances the schedule.
+  noteEvidence(curP,w,(curQ&&curQ.reverse)?'recognition':'meaning',isCorrect,
+    {supported:!!(speakUsed||pyHintUsed),source:'gate-quiz-mcq'});
   if(isCorrect){
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
@@ -6580,16 +6615,9 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
   }else{
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     btn.classList.add('wrong');fb.className='q-feedback err';fb.textContent='❌ Nice try! Correct answer: '+correctAns;
-    const curQ=quizSt.questions[mcqAnswered];
     grid.querySelectorAll('.mcq-opt').forEach(b=>{
       if(curQ&&b.textContent===(curQ.reverse?curQ.zh:curQ.correct))b.classList.add('correct');
     });
-    // Use the exact current question row first to avoid homograph ambiguity (e.g. 都: dū vs dōu).
-    const qKey=curQ&&curQ.zh?curQ.zh:zhHint;
-    const w=quizSt.vocab.find(v=>v.zh===qKey&&v.en===correctAns)
-      || quizSt.vocab.find(v=>v.zh===qKey&&v.py===pyHint)
-      || quizSt.vocab.find(v=>v.zh===qKey)
-      || {zh:qKey||'?',py:pyHint||'?',en:correctAns};
     logWrong(curP,w.zh,w.py,w.en);
     showCorrectRevealCard({zh:w.zh,py:w.py,en:w.en||correctAns,isSentence:false,onDone:goNext});
   }
@@ -6795,6 +6823,10 @@ function checkPY(){
     else nextPhase();
   };
   inp.disabled=true;
+  // Character on screen, reading typed from memory: recognition. The pinyin
+  // chart is answer-revealing, so a peek makes the answer a supported one.
+  noteEvidence(curP,w||{zh:q.zh},'recognition',val===correct,
+    {supported:!!(speakUsed||pyPeekUsed),source:'gate-quiz-pinyin'});
   if(val===correct){
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
@@ -7030,6 +7062,45 @@ function exitQuiz(){
   releaseAnswerLock();
   saveState();
   goToHub();
+}
+
+/**
+ * Record retention evidence for one {word, skill} pair.
+ *
+ * Deliberately narrower than logWrong. logWrong counts every miss anywhere,
+ * including ones that say nothing about vocabulary — a mistimed tap in Rain, a
+ * mismatched flip in Match. Those are game mechanics, so they are not recorded
+ * here at all; only answers where the child was actually asked about the word.
+ *
+ * `supported` marks an answer reached with pinyin or a translation on screen.
+ * `sameSession` marks a retry straight after the answer was revealed. Neither
+ * advances the schedule: being told is not remembering.
+ */
+function noteEvidence(p,word,skill,correct,opts){
+  if(!p||!word||!word.zh)return;
+  if(typeof ReviewCore==='undefined')return;
+  const s=state[p];if(!s)return;
+  if(!s.reviewRecords)s.reviewRecords={};
+  const o=opts||{};
+  s.reviewRecords=ReviewCore.recordAttempt(s.reviewRecords,{
+    wordId:word.zh,skill,correct:!!correct,todayKey:todayKey(),
+    supported:!!o.supported,sameSession:!!o.sameSession,source:o.source||null,
+  });
+}
+
+/** What is due for review today, within the session budget. */
+function reviewDueToday(p,mode){
+  if(typeof ReviewCore==='undefined')return{items:[],dueTotal:0,remaining:0,summary:''};
+  const s=state[p];if(!s)return{items:[],dueTotal:0,remaining:0,summary:''};
+  const limit=mode==='focus'?ReviewCore.BUDGET.focusItems:ReviewCore.BUDGET.normalItems;
+  return ReviewCore.selectDue(s.reviewRecords||{},todayKey(),{limit});
+}
+
+/** The honest label for one {word, skill}: never "mastered", never "failed". */
+function reviewStatus(p,zh,skill){
+  if(typeof ReviewCore==='undefined')return'';
+  const s=state[p];if(!s)return'';
+  return ReviewCore.statusOf(ReviewCore.getRecord(s.reviewRecords||{},zh,skill));
 }
 
 function logWrong(p,zh,py,en){

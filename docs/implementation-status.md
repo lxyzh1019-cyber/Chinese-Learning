@@ -169,7 +169,56 @@ identity model and its migration (C01–C04), transactional sync with revisions
 (S02), lazy timer expiry detonating without warning, and the Rain/Trace
 per-round issues beyond callback cancellation.
 
-## Phases C–D
+## Phase C — content and retention
 
-Not started. Content repair (297 junk gate rows, 88 placeholder lessons, 44
-stories covering 88 gates) and the retention engine.
+| ID | Requirement | Status | Files | Evidence |
+|---|---|---|---|---|
+| T01 | Repair the vocabulary the games actually serve | verified | `scripts/vocab-overrides.js`, `scripts/repair_vocab.js`, `scripts/validate_curriculum.js` | 453 rows repaired from 126 curated overrides; ledger in `docs/vocab-repair-ledger.md`. `checkVocabQuality` now rejects surname readings, `variant of`, `abbr.` and empty glosses, so the class cannot return. |
+| T02 | Render the authored lesson passage and its real questions | verified | `index.html` (`renderGateLesson`) | 2 tests: the renderer no longer carries the three hard-coded English substitutes, and all 88 lesson files have the passage, questions and answers it now displays. |
+| R01 | Skill-specific evidence, only from interpretable answers | verified | `js/review-core.js`, `index.html` (`noteEvidence`) | 27 tests in `tests/review.test.cjs`. Evidence is per `{word, skill}` across `recognition`, `meaning`, `contextComprehension`, `writingRecall`; `tracePractice` is refused. Rain misses and Match mis-flips still reach `failedWords` and never reach the retention store. |
+| R02 | Next-day → +3 → +7 → +14 → +30, on unaided recall only | verified | `js/review-core.js` | Ladder walked step by step; a supported answer or a retry after the reveal never advances it; four taps in one sitting advance once; a miss returns to tomorrow without forfeiting past successes. Calendar arithmetic checked across a month end and a leap day. |
+| R03 | Bounded review, backlog retained, never a penalty | verified | `js/review-core.js` (`selectDue`, `budgetSpent`) | 8 items / 4 min normal, 16 / 8 min focus; a 30-item backlog serves 8 and keeps 22 due; one slot is reserved for something already recalled so review is not an unbroken run of failures; the summary states the backlog as fact. |
+| — | Assessment results as recommendation only | implemented | `js/review-core.js` (`targetsFromAssessment`) | Weak domains become suggestions carrying `provenance: "assessment"`; writing awaiting review is never counted as a weakness; calling it does not write to the review store. **Not yet surfaced in the UI** — the function exists and is tested, nothing shows it to a child or a parent. |
+
+### Where evidence is and is not collected
+
+Recorded: Listen (`recognition`), the gate quiz MCQ (`recognition` on reverse
+items, `meaning` otherwise, `supported` when audio or the pinyin hint was used),
+the gate quiz pinyin phase (`recognition`, `supported` on a chart peek), the
+story mini-quiz (`meaning`, with the second pass marked `sameSession`), Drill
+and Revenge (`meaning`).
+
+Deliberately not recorded: **Rain**, **Match** and **Trace**. A mistimed tap and
+a mismatched flip are game mechanics, not claims about whether a child knows a
+word, and tracing is practice rather than independent recall. Those still feed
+`failedWords`, which is the counter the app always had.
+
+Also not yet collected: `contextComprehension` and `writingRecall` have no
+source outside the assessment. The lesson comprehension questions print their
+own answers beside them, so they are reading material, not a check.
+
+### Verification output
+
+```
+npm run verify
+  parse_check: 1 inline script(s) parsed cleanly.
+  Curriculum validation passed.
+  assessment bank valid — 240 items, 0 warning(s).
+  tests 155 | pass 155 | fail 0 | todo 0
+```
+
+Browser run (Chromium 1194, local http server), no page errors:
+
+- A Listen round played through the real UI wrote exactly one
+  `{word, recognition}` record for the word asked, due the next day, labelled
+  "recalled independently"; a `logWrong` call in the same session wrote nothing
+  to the retention store; the record survived `savePlayer` into localStorage;
+  Jess's store stayed empty and no stars moved.
+- Twelve clicks through the boss quiz MCQ phase produced six records across both
+  skills — forward items as `meaning`, reverse items as `recognition` — and the
+  six clicks the answer lock refused produced no duplicate evidence.
+
+## Phase D
+
+Not started. 88 placeholder lessons (66 still ask 本关有几个生字), and 44 stories
+covering 88 gates, so decision **O05** is not met by content.

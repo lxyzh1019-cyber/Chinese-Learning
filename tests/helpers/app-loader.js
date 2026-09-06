@@ -204,7 +204,7 @@ function loadApp(opts = {}) {
     // Loaded before the inline script in index.html, so the app can rely on it.
     GateIdentity: require("../../js/gate-identity.js"),
     MergeState: require("../../js/merge-state.js"),
-    MergeState: require("../../js/merge-state.js"),
+    ReviewCore: require("../../js/review-core.js"),
     HanziWriter: { create: () => ({ animateCharacter() {}, quiz() {}, cancelQuiz() {}, hideCharacter() {} }) },
     // firebase intentionally undefined: initFirestore() bails, so no test can
     // reach the live chinese-adventure collection.
