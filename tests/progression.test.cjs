@@ -109,18 +109,21 @@ test(
   }
 );
 
-test(
-  "M-T11 / B02d: champion quizzes must generate their requested item counts",
-  { todo: "Phase B — buildMCQ:5775 and buildPYQ:5803 both cap at Math.min(n,20,...)" },
-  () => {
-    const a = app();
-    const vocab = Array.from({ length: 150 }, (_, i) => ({
-      zh: `字${i}`, py: `zi${i}`, en: `word${i}`,
-    }));
-    assert.equal(a.buildMCQ(vocab, 32).length, 32, "champion asks for 32 MCQ");
-    assert.equal(a.buildPYQ(vocab, 40).length, 40, "champion asks for 40 pinyin");
-  }
-);
+test("M-T11 / B02d: champion quizzes generate their requested item counts", () => {
+  const a = app();
+  const vocab = Array.from({ length: 150 }, (_, i) => ({
+    zh: `字${i}`, py: `zi${i}`, en: `word${i}`,
+  }));
+  assert.equal(a.buildMCQ(vocab, 32).length, 32, "champion asks for 32 MCQ");
+  assert.equal(a.buildPYQ(vocab, 40).length, 40, "champion asks for 40 pinyin");
+});
+
+test("B02d: the pool is still a real limit when it is smaller than the request", () => {
+  const a = app();
+  const vocab = Array.from({ length: 9 }, (_, i) => ({ zh: `字${i}`, py: `zi${i}`, en: `w${i}` }));
+  assert.equal(a.buildMCQ(vocab, 32).length, 9, "cannot invent items that do not exist");
+  assert.equal(a.buildPYQ(vocab, 40).length, 9);
+});
 
 /** Record every Firestore document write the app performs. */
 function captureWrites(a) {
@@ -185,4 +188,120 @@ test("S01: saving with no active player is a no-op, not a crash", () => {
   const writes = captureWrites(a);
   a.saveState();
   assert.deepEqual(writes, [], "nothing is written when no player is selected");
+});
+
+// ── B02a / B02b: Memory Match ──────────────────────────────────────────────
+
+test("B02a: Match deals only as many pairs as the pool can supply", () => {
+  const a = app();
+  F.installState(a, { jenn: F.tinyWipPool(a, 3) });
+  a.curGameTargetDid = 20;          // a late gate, which used to force 8 pairs
+  const words = Object.values(a.state.jenn.failedWords);
+
+  a.startMemoryMatch(words);
+
+  assert.equal(a.matchSt.pairCount, 3, "the target matches the 3 words available");
+  assert.equal(a.matchSt.cards.length, 6, "3 pairs dealt");
+  // The round must be winnable: matching every dealt pair reaches the target.
+  const dealtPairs = new Set(a.matchSt.cards.map((c) => c.pair)).size;
+  assert.ok(dealtPairs >= a.matchSt.pairCount, "every pair needed is on the board");
+});
+
+test("B02a: a large pool still uses the gate's cap", () => {
+  const a = app();
+  F.installState(a);
+  a.curGameTargetDid = 20;
+  const words = Array.from({ length: 30 }, (_, i) => ({ zh: `字${i}`, py: `zi${i}`, en: `w${i}` }));
+  a.startMemoryMatch(words);
+  assert.equal(a.matchSt.pairCount, 8, "capped at 8 for gates 15+");
+
+  a.curGameTargetDid = 3;
+  a.startMemoryMatch(words);
+  assert.equal(a.matchSt.pairCount, 6, "capped at 6 for early gates");
+});
+
+test("B02a: an old save with an impossible pair target resumes finishable", () => {
+  const a = app();
+  F.installState(a);
+  a.curP = "jenn";
+  // A session persisted before the fix: 3 pairs dealt, target of 6.
+  a.state.jenn.pendingSessions.match = {
+    cards: [0, 1, 2].flatMap((i) => [
+      { id: `a${i}`, pair: i, side: "zh", text: `字${i}`, w: {}, matched: false },
+      { id: `b${i}`, pair: i, side: "en", text: `w${i}`, w: {}, matched: false },
+    ]),
+    openIdxs: [], matched: 0, moves: 4, start: Date.now(), pairCount: 6, gameTargetDid: 1,
+  };
+  assert.equal(a.restoreMatch(), true);
+  assert.equal(a.matchSt.pairCount, 3, "target clamped to the board actually dealt");
+});
+
+test("B02b: a mismatched flip does not create a vocabulary failure", () => {
+  const a = app();
+  F.installState(a);
+  const words = [
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "山", py: "shān", en: "mountain" },
+  ];
+  a.startMemoryMatch(words);
+  // Flip two cards belonging to different pairs.
+  const i1 = a.matchSt.cards.findIndex((c) => c.pair === 0);
+  const i2 = a.matchSt.cards.findIndex((c) => c.pair === 1);
+  a.tapMatch(i1);
+  a.tapMatch(i2);
+
+  assert.equal(a.matchSt.moves, 1, "the move still counts");
+  assert.deepEqual(Object.keys(a.state.jenn.failedWords), [],
+    "a memory slip is not logged as a word the child does not know");
+});
+
+// ── B02e: story reading progress ───────────────────────────────────────────
+
+/** Count unique non-bonus study characters in a story, the way the reader does. */
+function studyChars(app, story, known = {}) {
+  const set = new Set();
+  story.sents.forEach((sent) => sent.forEach((t) => {
+    if (t.t === "c" && !t.bonus && !known[t.ch]) set.add(t.ch);
+  }));
+  return set;
+}
+
+test("M-T04 / B02e: exploring every study character reaches 100%, not 79%", () => {
+  const a = app();
+  F.installState(a);
+  const story = a.STORIES_MAP.xia;
+  const uniq = studyChars(a, story);
+
+  // Reproduce the reader's counters: the denominator must be the unique set.
+  a.newChars = new Set(uniq);
+  a.tapped = new Set(uniq);
+  a.updateProg();
+
+  const label = a.document.getElementById("prog-lbl").textContent;
+  assert.equal(label, "100%", `first story should finish at 100%, got ${label}`);
+});
+
+test("B02e: a story with a repeated character does not inflate the denominator", () => {
+  const a = app();
+  F.installState(a);
+  // 三 appears twice in the first story; unique count is what matters.
+  a.newChars = new Set(["水", "山", "人"]);
+  a.tapped = new Set(["水", "山"]);
+  a.updateProg();
+  assert.equal(a.document.getElementById("prog-lbl").textContent, "67%",
+    "2 of 3 unique characters");
+});
+
+test("B02e: an already-known story can still be finished on a re-read", () => {
+  const a = app();
+  F.installState(a);
+  // Every character known => no study characters remain to tap.
+  a.newChars = new Set();
+  a.tapped = new Set();
+  a.updateProg();
+  a.checkUnlock();
+
+  assert.equal(a.document.getElementById("prog-lbl").textContent, "100%");
+  assert.equal(a.document.getElementById("unlock-btn").disabled, false,
+    "the finish button must be reachable on a re-read");
 });

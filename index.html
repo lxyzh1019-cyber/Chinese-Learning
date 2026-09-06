@@ -3920,8 +3920,15 @@ function clearMatch(){if(curP)state[curP].pendingSessions.match=null;}
 
 function startMemoryMatch(words){
   const did=(curGameTargetDid||effectiveGameTargetDid()||1);
-  const pairCount=did>=15?8:6;
-  const pick=shuffleArr(words).slice(0,pairCount);
+  // The board size is capped by the gate, but it can never exceed the words
+  // actually available. Deriving it from the gate alone made a small
+  // Work-in-Progress pool unwinnable: with 3 words and a target of 6 the
+  // header read "Matched 3/6" forever, the round could not end, and because
+  // the unfinished session is persisted it also outranked every other
+  // activity on the resume button.
+  const cap=did>=15?8:6;
+  const pick=shuffleArr(words).slice(0,cap);
+  const pairCount=pick.length;
   const cards=[];
   pick.forEach((w,i)=>{
     cards.push({id:'a'+i,pair:i,side:'zh',text:w.zh,w:{...w},matched:false});
@@ -3982,9 +3989,12 @@ function tapMatch(idx){
       bumpCorrectCount(1);
       persistMatch();saveState();renderMemoryMatch();
     }else{
-      if(!consumeDynastyForgiveness('match')){
-        logWrong(curP,a.w&&a.w.zh||'',a.w&&a.w.py||'',a.w&&a.w.en||'');
-      }
+      // A mismatched flip is a memory miss, not evidence the child does not
+      // know the word — and the code only ever logged card `a`, so which word
+      // got blamed depended on flip order. It no longer feeds the practice
+      // queue; the move counter and the time-based star rule already capture
+      // how the round went. (This is what CLAUDE.md section 16.2 always
+      // claimed the game did.)
       persistMatch();saveState();renderMemoryMatch();
       laterCall('games',()=>{matchSt.openIdxs=[];persistMatch();saveState();renderMemoryMatch();},650);
     }
@@ -4332,7 +4342,14 @@ function restoreTrace(){
 
 function restoreMatch(){
   const ps=state[curP].pendingSessions.match;if(!ps||!ps.cards)return false;
-  matchSt={cards:ps.cards.map(c=>({...c})),openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount:ps.pairCount||8,gameTargetDid:ps.gameTargetDid||null};
+  const cards=ps.cards.map(c=>({...c}));
+  // A session saved before the pair-count fix can carry an impossible target
+  // (say 6 pairs on a 3-pair board). Derive it from the board that was
+  // actually dealt so an old save resumes into a finishable round rather than
+  // a permanent dead end.
+  const dealtPairs=new Set(cards.map(c=>c.pair)).size;
+  const pairCount=Math.min(ps.pairCount||dealtPairs,dealtPairs);
+  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount,gameTargetDid:ps.gameTargetDid||null};
   document.getElementById('games-overlay').classList.add('show');
   renderMemoryMatch();return true;
 }
@@ -5234,7 +5251,12 @@ function openStory(story,dynasty){
       // char (C or B — bonus taps optional for completion)
       const isBonus=!!tok.bonus;
       const known=!!state[curP].library[tok.ch];
-      if(!known&&!isBonus){totalNew++;newChars.add(tok.ch);}
+      // newChars is a Set of unique characters; totalNew used to count token
+      // OCCURRENCES, so a character appearing twice inflated the denominator
+      // and the bar stopped at 79% on the very first story even when every
+      // study character had been explored. Both sides now count unique
+      // characters, which is also what checkUnlock has always used.
+      if(!known&&!isBonus)newChars.add(tok.ch);
       const u=document.createElement('div');
       u.className='cu'+(known?' known revealed':'')+(isBonus?' bonus':'');
       u.innerHTML=`<div class="tap-ring"></div><div class="py">${tok.py}</div><div class="hz">${tok.ch}</div><div class="mtip">${tok.mn||''}</div><div class="thint">🔊</div>`;
@@ -5250,6 +5272,11 @@ function openStory(story,dynasty){
     }
     sc.appendChild(block);
   });
+  // Settle the bar and the finish button now that every token is placed.
+  // Without this, re-reading a story whose characters are all already known
+  // left the bar at 0% and the finish button disabled forever: tapChar returns
+  // early on a `known` character, so no tap could ever reach updateProg.
+  updateProg();checkUnlock();
   storyOpenTime=Date.now();
   showScreen('reader');
 }
@@ -5264,7 +5291,7 @@ function tapChar(u,tok){
 
 function updateProg(){
   const n=[...tapped].filter(c=>newChars.has(c)).length;
-  const pct=totalNew===0?100:Math.round(n/totalNew*100);
+  const pct=newChars.size===0?100:Math.round(n/newChars.size*100);
   document.getElementById('prog-fill').style.width=pct+'%';
   document.getElementById('prog-lbl').textContent=pct+'%';
 }
@@ -5730,11 +5757,14 @@ function startGateQuiz(did,opts){
   if(hard){mcqN=Math.min(10,mcqN+2);pyN=Math.min(12,pyN+2);}
   const recentStore=getRecentQuestionStore(curP);
   const recent=recentStore[`g-${did}`]||{mcq:[],py:[]};
+  const questions=buildMCQ(vocab,mcqN,recent.mcq);
+  const pyQ=buildPYQ(vocab,pyN,recent.py);
+  const sbPack=buildSBPack(did,false,sbN);
+  // Derived from what was actually built, never from what was requested.
+  mcqN=questions.length;pyN=pyQ.length;sbN=sbPack.length;
   const maxScore=mcqN*14+pyN*11+sbN*20;// 14 = base 10 + up to 4 bonus per MCQ
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
-    questions:buildMCQ(vocab,mcqN,recent.mcq),
-    pyQ:buildPYQ(vocab,pyN,recent.py),
-    sbPack:buildSBPack(did,false,sbN),
+    questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:false,hardMode:hard,mcqN,pyN,sbN,maxScore,noMcqAssistance:!hard,
     quizCorrect:0,quizAttempts:0};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];
@@ -5756,11 +5786,15 @@ function startChampionChallenge(group){
   if(lastBossQuizThemeIdx===2){mcqN=34;pyN=38;}
   const recentStore=getRecentQuestionStore(curP);
   const recent=recentStore[`c-${group}`]||{mcq:[],py:[]};
+  const questions=buildMCQ(vocab,mcqN,recent.mcq);
+  const pyQ=buildPYQ(vocab,pyN,recent.py);
+  const sbPack=buildSBPack(did,true,sbN);
+  // A champion used to display "/1088" for a round whose real maximum was 700,
+  // which also pinned the progress bar at ~64% on a flawless run.
+  mcqN=questions.length;pyN=pyQ.length;sbN=sbPack.length;
   const maxScore=mcqN*14+pyN*11+sbN*20;
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
-    questions:buildMCQ(vocab,mcqN,recent.mcq),
-    pyQ:buildPYQ(vocab,pyN,recent.py),
-    sbPack:buildSBPack(did,true,sbN),
+    questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
     quizCorrect:0,quizAttempts:0};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];
@@ -5910,7 +5944,10 @@ function buildQuizVocab(d,forChampion=false,didOverride){
 }
 
 function buildMCQ(vocab,n=8,avoidZh=[]){
-  n=Math.min(n,20,vocab.length);
+  // The literal 20 here silently truncated every champion round: a request for
+  // 32 MCQ and 40 pinyin became 20 and 20, while the score line still advertised
+  // the uncapped maximum. The pool size remains a genuine limit; the cap was not.
+  n=Math.min(n,vocab.length);
   const pool=pickBalancedVocab(vocab,n,avoidZh);
   const qs=[];
   for(let i=0;i<Math.min(n,pool.length);i++){
@@ -5938,7 +5975,10 @@ function buildMCQ(vocab,n=8,avoidZh=[]){
 }
 
 function buildPYQ(vocab,n=10,avoidZh=[]){
-  n=Math.min(n,20,vocab.length);
+  // The literal 20 here silently truncated every champion round: a request for
+  // 32 MCQ and 40 pinyin became 20 and 20, while the score line still advertised
+  // the uncapped maximum. The pool size remains a genuine limit; the cap was not.
+  n=Math.min(n,vocab.length);
   return pickBalancedVocab(vocab,n,avoidZh).map(w=>({zh:w.zh,correct:stripTones(w.py)}));
 }
 
@@ -6348,7 +6388,7 @@ function renderSBPhase(qc,scoreBar){
   const shuffled=[...words].sort(()=>Math.random()-.5);
   qc.innerHTML=scoreBar+`
   <div class="quiz-card">
-    <div class="q-phase-lbl">Phase 3: Sentence Builder · 句子排列 (${quizSt.sbRound+1}/3)</div>
+    <div class="q-phase-lbl">Phase 3: Sentence Builder · 句子排列 (${quizSt.sbRound+1}/${quizSt.sbN||3})</div>
     <div class="q-text">Arrange the words in the correct order:</div>
     <div class="q-prompt-row" style="justify-content:flex-start;margin:.4rem 0 .6rem;"><button type="button" class="q-speak" id="sb-speak-all" aria-label="Hear sentence hint">🔊</button><span style="font-size:.72rem;color:var(--muted);">Tap to hear all words out loud</span></div>
     <div class="sb-target" id="sb-target"></div>
