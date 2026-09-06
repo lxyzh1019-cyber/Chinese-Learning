@@ -218,7 +218,13 @@ Browser run (Chromium 1194, local http server), no page errors:
   skills — forward items as `meaning`, reverse items as `recognition` — and the
   six clicks the answer lock refused produced no duplicate evidence.
 
-## Phase D
+## Phase D — all 88 gates
 
-Not started. 88 placeholder lessons (66 still ask 本关有几个生字), and 44 stories
-covering 88 gates, so decision **O05** is not met by content.
+| ID | Requirement | Status | Files | Evidence |
+|---|---|---|---|---|
+| — | Measure what content actually exists behind the 88 gates | verified | `scripts/content_coverage.js`, `docs/content-coverage.md` | `npm run coverage:content`. Reads the real `STORIES_MAP` and `DYNASTIES` out of the inline script, so the numbers are the app's, not a re-derivation. Read-only. |
+| O05 | Texts increase in difficulty with the selected level | **blocked — owner decision** | — | Not met. 44 stories serve 88 gates: a dynasty carries `story`/`story2` with **no level dimension**, so `h1-g01` and `h4-g01` show the same text. Difficulty tracks the dynasty's position in history instead of the learner's level — 53 study characters per gate at gates 1–5 against 86 at gates 18–22 — and the HSK1 share of a gate's story characters swings from 36% to 85%. Four options with costs are in `docs/content-coverage.md`; recommendation is C then B. |
+| T05 | Real lesson passages for the remaining 66 gates | not started | `data/lessons/**` | 66 of 88 passages are the gate's vocabulary list wrapped in instructions, and their questions ask about the lesson rather than a text. The 22 HSK2 lessons are the exception and are the model. T02 made these visible rather than hidden, which is the right order. |
+
+Gate vocabulary is done: all four levels serve 793 rows each with no missing
+English, after T01 repaired 453 of them.
