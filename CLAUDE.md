@@ -6,7 +6,7 @@ or any similar language-learning project for kids).
 
 It has two parts:
 - **Part A** (§1–§10): Design and engineering rules — the "how we build"
-- **Part B** (§11–§22): Full app architecture — the "what we built"
+- **Part B** (§11–§29): Full app architecture — the "what we built"
 
 ---
 
@@ -307,8 +307,25 @@ function logWrong(p, zh, py, en){
 
 ## 11. Technology stack and project structure
 
-**Single-file HTML app.** The entire app is `index.html` (~6 700 lines). All
-CSS, JS, and inline data live in one file. No build step, no bundler.
+**Almost-single-file HTML app.** `index.html` holds the CSS, one inline
+`<script>` and the inline content tables. Six classic `<script src>` modules sit
+beside it — no build step, no bundler, no ES modules — each ending with a
+`module.exports` guard so tests can `require()` it directly:
+
+| Loaded **before** the inline script | |
+|---|---|
+| `js/gate-identity.js` | the 88-gate key model and its migration (§14) |
+| `js/merge-state.js` | event-sourced merge of divergent devices (§26) |
+| `js/review-core.js` | retention: evidence, schedule, labels, budget (§25) |
+
+| Loaded **after** the inline script (they reach `state`, `curP`, `savePlayer`, `showToast`, `speak`) | |
+|---|---|
+| `js/assessment-core.js` · `js/assessment-ui.js` · `js/player-store.js` | the assessment (§24) |
+
+Two traps in `index.html`: several functions are **defined twice** and the later
+definition silently wins, so a new global must be defined once; and colours must
+come from the `:root` custom properties, because `applySeasonTheme()` redeclares
+them and literal hex breaks under the seasonal themes.
 
 **External dependencies (CDN):**
 - Google Fonts: Ma Shan Zheng (decorative), Noto Serif SC (Chinese text),
@@ -342,24 +359,22 @@ state = { jenn: PlayerState, jess: PlayerState }
 The select screen shows both player cards. Tapping one sets `curP` (current
 player string) and calls `renderHub()`.
 
-### HSK level derivation
+### HSK level unlocking
 
-HSK level is derived automatically from gates completed — it is never stored:
+A level opens on gates cleared **inside the level below it**, not on a running
+total across all levels:
 
 ```javascript
-function getCurrentHSK(s){
-  if (s.gatesCompleted.length >= 17) return 4;
-  if (s.gatesCompleted.length >= 11) return 3;
-  if (s.gatesCompleted.length >= 5)  return 2;
-  return 1;
-}
+levelIsUnlocked(s, lv)   // lv === 1, or gatesClearedInLevel(s, lv - 1) >= 5
+gatesClearedInLevel(s, lv)  // counts keys matching `h{lv}-g..`
 ```
 
-HSK tabs on the hub are locked until the threshold is reached:
 - HSK 1: always open
-- HSK 2: ≥ 5 gates
-- HSK 3: ≥ 11 gates
-- HSK 4: ≥ 17 gates
+- HSK 2 / 3 / 4: ≥ 5 gates cleared in the level below
+
+The old `getCurrentHSK` derived a single "current level" from
+`gatesCompleted.length` at 5 / 11 / 17. That could not survive the 88-gate model
+— a total says nothing about *which* level the gates were in — and it is gone.
 
 ---
 
@@ -376,11 +391,14 @@ function defPlayer() {
     lastSaved: 0,           // ms timestamp of last save (used for conflict resolution)
 
     // ── Progress ──
-    gatesCompleted: [],     // array of dynasty gate IDs (1–22) that are cleared
+    schemaVersion: 2,       // 1 = legacy 22-gate ids; 2 = the 88-gate key model
+    gatesCompleted: [],     // gate KEYS, `h{level}-g{NN}` — see §14
     storiesCompleted: [],   // legacy story IDs — gates marked complete via old flow
-    gateStars: {},          // { dynastyId: 0|1|2|3 } best quiz stars per gate
-    gateGameStars: {},      // { "did": { trace, match, rain, listen: 0|1|2|3 } }
-    gateBestQuiz: {},       // { "did": { accPct, quizStars } }
+    legacyStoriesCompleted: [], // frozen snapshot taken when the read chain shipped
+    gateStars: {},          // { gateKey: 0|1|2|3 } best quiz stars per gate
+    gateGameStars: {},      // { gateKey: { trace, match, rain, listen: 0|1|2|3 } }
+    gateBestQuiz: {},       // { gateKey: { accPct, quizStars } }
+    gateAttemptHistory: {}, // { gateKey: [ last 10 attempts ] }
     championBestQuiz: {},   // { "grp": { accPct, quizStars } }
     championCleared: {},    // { grp: stars } — passed champion challenges
     lastGateQuizAttempt: null, // { did, isChampion, accPct, quizStars, atKey }
@@ -389,10 +407,17 @@ function defPlayer() {
     library: {},            // { zh: { py, mn } } — characters tapped in stories
     failedWords: {},        // { zh: { zh, py, en, failCount, lastFailed } }
     traceStars: {},         // { zh: 0|1|2|3 } — best trace stars per character
+    reviewRecords: {},      // { "zh::skill": record } — retention evidence, §25
+
+    // ── Sync ──
+    revision: 0,            // compare-and-set counter for the Firestore write
+    starLedger: [],         // star events with stable ids, §26
+    starsBaseline: 0,       // the total that predates the ledger
+    syncConflicts: [],      // divergences recorded rather than silently resolved (§26)
 
     // ── Reading gates (§3/§4) ──
     storyReadCount: {},     // { storyId: number } — dwell-validated read count
-    flashPassDone: {},      // { dynastyId: true } — completed flashcard deck
+    flashPassDone: {},      // { gateKey: true } — completed flashcard deck
 
     // ── Badges ──
     badges: [],             // array of badge IDs (see §18)
@@ -464,8 +489,35 @@ function defPlayer() {
 
 ## 14. Dynasty / gate curriculum
 
-22 dynasties, IDs 1–22, chronological order. Each dynasty maps to one "gate"
-that must be cleared to progress.
+**88 gates: 4 HSK levels × 22 dynasties.** A gate is a (level, dynasty) pair,
+identified by a key, never by a dynasty number alone:
+
+```
+gateKey(level, dynastyId) -> `h${level}-g${String(dynastyId).padStart(2,'0')}`
+  h1-g01 … h1-g22 · h2-g01 … h4-g22
+```
+
+Every gate record — `gatesCompleted`, `gateStars`, `gateGameStars`,
+`gateBestQuiz`, `gateTimers`, `flashPassDone` — is keyed this way. `js/gate-identity.js`
+owns the model: `gateKey`, `parseGateKey`, `nextGateKey`, `isGateOpen`,
+`championKey`, `levelUnlocked` and `migratePlayer`.
+
+**Why this is not a cosmetic change.** The app previously stored bare dynasty
+ids 1–22 and `ensureState` *discarded any id above 22*, so an 88-gate scheme was
+structurally impossible; and because nothing recorded the level, clearing gate 1
+showed as cleared on all four HSK tabs. The tabs only ever swapped lesson text.
+
+### Migration
+
+`migratePlayer` remaps a legacy document once. It is **shape-aware**: it detects
+numeric gate ids regardless of any `schemaVersion` stamp, because `defPlayer()`
+stamps version 2 and that stamp used to leak onto legacy documents through
+`Object.assign`, skipping migration and then silently filtering every completion
+away. Old completions map to the level of their historical dynasty group. It is
+idempotent, invents no completions for the other 66 identities, and redistributes
+no stars.
+
+The 22 dynasties themselves are unchanged, IDs 1–22, chronological order:
 
 ```javascript
 // Dynasty object shape
@@ -484,28 +536,46 @@ that must be cleared to progress.
 }
 ```
 
-### HSK groupings
-- HSK 1: Gates 1–5 (Xia → Qin)
-- HSK 2: Gates 6–11 (Western Han → Sui)
-- HSK 3: Gates 12–17 (Tang → Jin)
-- HSK 4: Gates 18–22 (Yuan → Republic)
+### Historical grouping
+
+The `hsk` field on a dynasty is its **historical** grouping, kept for content
+selection. It is no longer what decides a player's level:
+
+- Gates 1–5 (Xia → Qin) · 6–11 (Western Han → Sui) · 12–17 (Tang → Jin) ·
+  18–22 (Yuan → Republic)
 
 ### Gate unlock rule
-Gate N is available to read/play only after gate N−1 has been cleared (or N=1
-which is always open). `isStoryUnlockedForDynasty(did, s)` implements this:
-`did === 1 || s.gatesCompleted.includes(did - 1)`.
+Gate N of a level is available only after gate N−1 **of that same level** is
+cleared (N=1 is always open), and the level itself must be unlocked (§12).
+`isGateOpen(s, level, did)` implements it.
 
 ### Champion challenges
-One Champion Challenge per 5-gate group (groups 1–4). Unlocks only when all 5
-gates in the group are cleared. Champion quizzes draw vocabulary from all 5
-dynasties in the group. Passing awards `s.championCleared[grp] = quizStars`.
+One Champion Challenge per 5-gate group per level, keyed `championKey(level, grp)`.
+Unlocks only when all 5 gates in that group of that level are cleared.
+
+### Gate completion
+
+**One function pays out: `evaluateGateCompletion(did, level)`.** There used to be
+two completion sites that paid *differently* — clearing by quiz paid up to 220
+points plus mission credit, a mystery box and a badge; clearing by game paid a
+toast — and a cleared gate paid again on **every** boss replay, because the pass
+test read the stored best rather than the current attempt. Completion is now
+idempotent: a replay shows its round score and pays nothing.
+
+A gate clears when the best quiz reaches `accPct ≥ 90` **and** `quizStars === 3`,
+and all four games are at 3★.
 
 ### Gate timer
-When a player earns 3★ on any game for a gate, a countdown timer starts
-(`gateTimerDays = 5 + 2 * floor((gateId - 1) / 5)` days). If all games and
-quiz are not cleared before the deadline, gate progress is not wiped — but a
-warning modal appears on each login. Timers only apply to individual gates,
-not HSK / WIP scopes.
+When a player earns 3★ on any game for a gate, a countdown starts
+(`gateTimerDays = 5 + 2 * floor((gateId - 1) / 5)` days). Expiry is swept
+**eagerly on render** (`sweepExpiredGateTimers`). It used to be evaluated lazily
+and never called from the hub, so a lapsed timer reported "due today" indefinitely
+and then detonated mid-session the next time any game or quiz happened to finish.
+
+`resetGateProgress(s, did, level)` clears that gate's game stars, best quiz and
+pending quiz, and **archives** them first. `library`, `failedWords`,
+`reviewRecords` and stars are never touched: long-term learning records do not
+expire.
 
 ---
 
@@ -602,10 +672,14 @@ at natural end (all 10 answered).
 
 ### 16.2 Memory Match (🧠)
 
-Concentration-style flip-and-match. Pair count: 6 for gates 1–14, 8 for gates
-15–22. Cards show Chinese character on one side, English meaning on the other.
+Concentration-style flip-and-match. Pair count: `min(pool size, 6 for gates
+1–14 / 8 for gates 15–22)`. Deriving it from the gate id alone dealt an
+unwinnable board on a 1–5 word Work-in-Progress pool — "Matched 3/6" forever —
+and the stuck session then outranked everything else on resume. Cards show Chinese character on one side, English meaning on the other.
 **Wrong flip does not add to `failedWords`** (it would punish memory, not
-vocabulary knowledge).
+vocabulary knowledge). This document asserted that before it was true: `tapMatch`
+*did* call `logWrong`, and logged only card `a`, so which word got blamed
+depended on flip order. Removed.
 
 **State:** `matchSt = { cards, openIdxs, matched, moves, start, pairCount, gameTargetDid }`
 
@@ -747,6 +821,10 @@ visual strip on the select screen.
 
 ## 19. Practice and review system
 
+This section describes the **practice queue** — one counter per word, driving
+Drill, Revenge and the daily challenge. It is not the retention model; for what
+the app knows about a child per skill, and when it schedules a check, see §25.
+
 ### 19.1 Practice queue (failed words)
 
 `failedWords[zh]` accumulates when `logWrong(p, zh, py, en)` is called.
@@ -887,6 +965,7 @@ All other UI is **overlays** (CSS class `show`/`hide`):
 | `daily-word-overlay` | `openDailyWordChallenge()` |
 | `mystery-box-overlay` | `openMysteryBox()` |
 | `timer-modal-overlay` | Gate timer events |
+| `assessment-overlay` | `openAssessment()` — always available, §24 |
 | `timelock` | Session timer expiry |
 | `comp-overlay` | Legacy story completion (now replaced by mini-quiz) |
 
@@ -894,7 +973,179 @@ All other UI is **overlays** (CSS class `show`/`hide`):
 
 ---
 
-## 24. Adapting this blueprint for other languages
+## 24. Assessment (`Assessment · 学习评估`)
+
+A measurement instrument, deliberately outside the game economy. It is **always
+available** from the hub — no gate, no read count — and it awards no stars,
+starts no timers, clears no gates, touches no failure counters and consumes no
+forgiveness tokens. Nothing a child does in it changes anything a child does
+outside it.
+
+| File | Responsibility |
+|---|---|
+| `js/assessment-core.js` | Pure: item selection, per-band scoring, routing, comparison, the attempt state machine. No DOM, no globals. |
+| `js/assessment-ui.js` | Overlay, band transitions, save/resume, per-band report. |
+| `js/player-store.js` | Attempts at `chinese-adventure/{playerId}/assessments/{attemptId}`, revision compare-and-set, offline queue. |
+| `data/assessment/**` | Versioned frozen bank: 4 bands × 2 forms, 240 distinct items, 34 per form-band, 8 shared anchors per band, 12 passages. |
+| `scripts/validate_assessment.js` | Domain contract. `--audio` HEAD-checks all 108 clips. |
+
+**Bands, not a score.** Four custom bands C1–C4. A band is decided on that band's
+own evidence only — advance on recognition ≥6/8 **and** meaning ≥6/8 **and**
+comprehension ≥4/6. Supported decoding and writing never affect routing. Domains
+are **never pooled across bands**: a strong lower band cannot carry a weak higher
+one.
+
+**Honest reporting.** No overall "Chinese ability" percentage. The report gives
+`correct / submitted`, unanswered count, expected count, support condition and
+bank version, one block per band. Writing not yet reviewed reads
+`Not independently verified` — never zero, never an estimate. Every item carries
+`reviewerType: "model"`: **no educator has reviewed the bank**, and the release
+gate is truthful labelling, not a validity claim.
+
+**Unanswered ≠ wrong.** `I don't know` is wrong. Save & Exit, missing audio, a
+technical failure and a timeout are **unanswered**.
+
+**Audio.** Single-syllable targets use fixed MP3 clips, so unaided recognition —
+the one domain where cross-attempt comparison matters — is identical on every
+device. Everything else uses device `speechSynthesis`, and each presentation
+records `audioSource` and the resolved voice. Stated in the UI: the same item can
+sound different on another device, so audio-task changes are not comparable
+across devices. Missing audio pauses the domain; it is never scored wrong and
+never substituted with visible pinyin in an unaided section.
+
+---
+
+## 25. Retention (`js/review-core.js`)
+
+Evidence is per `{word, skill}`, stored in `reviewRecords` keyed `"zh::skill"`.
+Skills: `recognition`, `meaning`, `contextComprehension`, `writingRecall`.
+`tracePractice` is tracked apart and is refused by `recordAttempt`.
+
+`failedWords` still exists and is unchanged. It is a practice queue, not a
+measurement: one counter per word, bumped by any miss anywhere.
+
+**Only interpretable answers count.** `noteEvidence(p, word, skill, correct, opts)`
+is called from Listen, the gate quiz MCQ and pinyin phases, the story mini-quiz,
+Drill and Revenge. **Rain, Match and Trace are excluded on purpose** — a mistimed
+tap and a mismatched flip are game mechanics, not claims about whether a child
+knows a word, and tracing is practice rather than independent recall.
+
+**Only unaided success advances the schedule.** `supported` (pinyin or a
+translation on screen, the chart peeked) and `sameSession` (a retry straight after
+the answer was revealed) are both recorded and both leave the ladder where it was.
+Being told is not remembering. Answering the same item repeatedly in one sitting
+advances it once.
+
+```
+LADDER = [1, 3, 7, 14, 30]   // days, on successive unaided recalls
+```
+
+A miss returns the item to tomorrow and **keeps** the successes behind it.
+
+**Labels, not a mastery flag:** `encountered` → `practising` →
+`recalled independently` → `retained on later checks`. The strongest needs two
+independent successes on separate dates with at least one a week after teaching.
+A test asserts no label ever reads as mastery or failure.
+
+**Bounded review.** 8 items / 4 minutes normally, 16 / 8 in a focus session. The
+backlog is retained and reported as plain fact — "5 to review; 12 remain for
+later" — never deleted, never held over the child. One slot is reserved for
+something already recalled, so a struggling child does not meet an unbroken run
+of their own failures.
+
+`targetsFromAssessment` turns weak assessment domains into **suggestions** only,
+carrying `provenance: "assessment"`. Writing awaiting review is never counted as a
+weakness. Assessment results never write into the review store by themselves, and
+practice never writes back to the assessment record.
+
+---
+
+## 26. Persistence and sync
+
+**Saves are owner-scoped.** `savePlayer(pid)` stamps and writes **one** player;
+`saveState()` is `savePlayer(curP)` and returns early when `curP` is null. The
+three parent star/mystery mutators pass their own target, because the parent panel
+is normally opened from the select screen where `curP` is null. `clearAllProgress`
+is the one place a two-player write is correct.
+
+This matters more than it looks. `saveState` used to re-stamp `lastSaved` on
+**both** documents to the same `now` and `.set()` both — full replace, no merge,
+no transaction — from 89 call sites. Both live documents carried the identical
+timestamp, which is exactly the mechanism that let one device's stale copy of the
+*other* child win the last-writer-wins comparison. Leaving the un-stamped player
+alone is the repair: their old timestamp correctly loses.
+
+**Writes are compare-and-set.** `pushPlayer(pid)` runs a Firestore transaction
+against `revision`; a stale write is refused rather than landing.
+
+**Divergence is merged, not resolved by picking a winner** (`js/merge-state.js`).
+Stars are an event ledger with stable ids, so the merge is commutative and
+idempotent — the same award seen twice counts once, and merge order does not
+matter. Sets are unioned; counters are maxed; gate records respect `lastResetAt`;
+two genuinely different in-progress rounds are **both kept** under
+`conflictSessions` rather than one being discarded.
+
+**Firestore rules.** `firestore.rules` is a **merge fragment, not a publishable
+ruleset** — the Firebase project serves other apps whose paths are not visible
+from this repo, and deploying a whole ruleset authored here would lock them out.
+Paste it alongside the existing rules. `scripts/check_firestore_rules.js` probes
+read-only afterwards; it never writes, so a wrong ruleset cannot leave junk behind.
+
+---
+
+## 27. Deferred callbacks
+
+Every timer, animation frame and async continuation goes through a registry:
+`laterCall(scope, fn, ms)`, `repeatCall(scope, fn, ms)`, `drainScope(scope)`,
+`drainAllDeferred()`, and a monotonic `sessionGen` that `selectPlayer` and
+`goToSelect` bump.
+
+Scopes: `quiz`, `games`, `flash`, `listen`, `session`, `ui`. `exitQuiz` drains
+`quiz`; `closeGamesOverlay` drains `games`; a profile switch drains everything
+except the wall clock, confetti, the blob-URL revoke, the Firestore listeners and
+the `visibilitychange` handler.
+
+Three properties forced this shape:
+
+- **Handles come in sets.** Rain has roughly nine concurrent drop callbacks, each
+  of which calls `logWrong(curP, …)` when it fires. Registration appends to a Set.
+- **Two of the worst offenders are not timers.** HanziWriter quiz callbacks and
+  in-flight `await`s cannot be cancelled by handle, so they capture `sessionGen`
+  and bail when it is stale.
+- **Order matters.** `flushPlayTime` must run *before* `curP` is nulled, or the
+  last play-time delta is silently dropped.
+
+Without this, a pending `goNext` after a profile switch ran `renderQuizResult`
+against the other child's state.
+
+---
+
+## 28. Tooling
+
+```
+npm run check                 # inline-script parse guard (§9.1)
+npm run validate:curriculum   # gate/word quality, incl. the junk-gloss filter
+npm run validate:assessment   # bank contract; --audio HEAD-checks every clip
+npm test                      # node --test tests/*.test.cjs
+npm run verify                # all of the above, in that order
+```
+
+`tests/helpers/app-loader.js` loads the real inline script into a Node `vm` with
+stubbed browser globals, strips the trailing `init()`, and bridges the script's
+`let`/`const` bindings onto the context — so tests drive the actual app code, not
+a reimplementation. `firebase` is left undefined, so no test can reach the live
+collection. Fixtures are synthetic.
+
+`scripts/backup_players.js` exports the live documents before any migration;
+`backups/` is git-ignored and holds **real learner records** — never commit it.
+
+**Browser testing is not optional here.** Unit tests missed two production bugs
+that a real Chromium run caught, including a migration skip that would have
+silently erased every completion. Per §9.5: if you cannot run the UI, say so.
+
+---
+
+## 29. Adapting this blueprint for other languages
 
 When building **French Adventure** or **English Arts**, the following changes
 are required; everything else in §1–§22 can be reused as-is:
