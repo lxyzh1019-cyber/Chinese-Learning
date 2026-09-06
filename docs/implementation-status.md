@@ -42,14 +42,21 @@ behaviour. The tests are marked `todo`, so they run on every `npm test`, report
 loudly, and do not fail the suite until the fix lands. A row moves to `verified`
 when its todo marker is removed and the test passes.
 
-| Req ID | Defect | Test | Status |
-|---|---|---|---|
-| T03 / M-T03 | `storiesCompleted` bypasses the read/flashcard unlock chain for new users | `tests/progression.test.cjs` | todo — fails, all four games unlock |
-| T04 | `uniqueChars` gives every character its whole word's reading | `tests/progression.test.cjs` | todo — fails, 习 reads "xué xí" |
-| B02d / M-T11 | `buildMCQ`/`buildPYQ` cap champion rounds at 20 items | `tests/progression.test.cjs` | todo — fails, 32 → 20 and 40 → 20 |
+**The ledger is now empty — every row has been fixed and its test passes.**
 
-Resolved: **S01 / M-T16** (`saveState` writing both player documents) was fixed
-in this phase and its test now passes without a todo marker.
+| Req ID | Defect | Fixed in |
+|---|---|---|
+| S01 / M-T16 | `saveState` stamped and wrote **both** player documents | Phase A prerequisites |
+| A-T12 | Deferred callbacks credited whichever profile was selected when they fired | Phase A prerequisites |
+| B02a | Match dealt an unwinnable board on a 1–5 word pool, and the stuck session hijacked resume | Phase B |
+| B02b | A mismatched flip logged a vocabulary failure, blaming whichever card was flipped first | Phase B |
+| B02c / M-T10 | `checkPY` and `checkSB` had no answer lock: a double tap scored twice and skipped a question | Phase B |
+| B02d / M-T11 | Champion rounds capped at 20 items while advertising the uncapped maximum | Phase B |
+| B02e / M-T04 | Story progress divided unique taps by token occurrences (79% ceiling); a known-story re-read could never finish | Phase B |
+| B02f | Resume used fixed priority with no timestamps; closing Revenge discarded the round silently | Phase B |
+| G04 / M-T06 | Two completion sites paid differently, and a cleared gate paid again on every boss replay | Phase B |
+| T03 / M-T03 | Any `storiesCompleted` entry counted as pre-feature credit, so one skimmed story unlocked all four games | Phase B |
+| T04 | `uniqueChars` gave every character its whole word's reading and meaning | Phase B |
 
 Pinned (correct today, guarded against regression): `starsFromAccuracy`
 boundaries and its lack of a minimum sample size; the `gateTimerDays` formula;
@@ -136,6 +143,33 @@ errors in either:
    an attempt. A desktop Chromium run is not iPad validation.
 4. **No educator has reviewed the bank.** See `docs/content-review.md`.
 
-## Phases B–D
+## Phase B — deterministic repairs
 
-Not started. The three remaining `todo` tests are the Phase B entry points.
+| ID | Requirement | Status | Evidence |
+|---|---|---|---|
+| B02a/B02b | Match pair count and false failures | verified | 4 tests; browser run deals 2 pairs on a 2-word pool. |
+| B02c | Answer locks across all three quiz phases | verified | 3 tests; a triple tap scores once. |
+| B02d | Champion counts and max score derived from generated items | verified | 2 tests. |
+| B02e | Unique-target progress counting | verified | 3 tests; browser run reaches 100% after 29 taps and finishes a fully-known re-read. |
+| B02f | Session timestamps; Revenge saved on close | verified | 4 tests. |
+| G04 | One idempotent `evaluateGateCompletion` | verified | 4 tests, incl. equal payout in either completion order and no payout on replay. |
+| T03 | Legacy unlock exemption snapshot | verified | 3 tests; checked against the real backup — Jenn's 3 and Jess's 6 stories grandfathered, unlocked games unchanged. |
+| T04 | Per-character trace metadata | verified | 3 tests. |
+
+```
+npm run verify
+  parse_check: 1 inline script(s) parsed cleanly.
+  Curriculum validation passed.
+  assessment bank valid — 240 items, 0 warning(s).
+  tests 69 | pass 69 | fail 0 | todo 0
+```
+
+**Not attempted in Phase B** (still open from the audit): the 22→88 gate
+identity model and its migration (C01–C04), transactional sync with revisions
+(S02), lazy timer expiry detonating without warning, and the Rain/Trace
+per-round issues beyond callback cancellation.
+
+## Phases C–D
+
+Not started. Content repair (297 junk gate rows, 88 placeholder lessons, 44
+stories covering 88 gates) and the retention engine.

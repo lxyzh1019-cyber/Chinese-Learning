@@ -3546,6 +3546,35 @@ function gateGamesAllThree(s,did){
 
 let curGameTargetDid=null;
 
+/**
+ * Stamp a pending session with the moment it was last touched.
+ *
+ * resumeLastSession used a fixed priority chain with no timestamps, so "Resume
+ * last activity" returned whatever sat highest in that list rather than what
+ * the child was actually doing. Combined with a Match round that could not be
+ * finished, one stuck session outranked everything else indefinitely.
+ */
+function touchSession(kind){
+  if(!curP)return;
+  const ps=state[curP].pendingSessions;
+  if(ps&&ps[kind])ps[kind].updatedAt=Date.now();
+}
+
+/** The most recently touched resumable session, or null. */
+function mostRecentSession(){
+  if(!curP)return null;
+  const ps=state[curP].pendingSessions||{};
+  const kinds=['story','gate','champion','flash','match','rain','listen','trace','revenge'];
+  let best=null;
+  kinds.forEach(k=>{
+    const sess=ps[k];
+    if(!sess)return;
+    const at=sess.updatedAt||0;
+    if(!best||at>best.at)best={kind:k==='champion'?'gate':k,at};
+  });
+  return best;
+}
+
 function refreshOpenSummaries(){
   const parent=document.getElementById('overlay-parent');
   if(parent&&parent.classList.contains('show'))renderParentSummary();
@@ -3671,6 +3700,7 @@ function persistFlashSession(){
     did:flashSt.did,mode:flashSt.mode,sub:flashSt.sub,i:flashSt.i||0,flipped:!!flashSt.flipped,
     deck:flashSt.deck.map(w=>({zh:w.zh,py:w.py,en:w.en}))
   };
+  touchSession('flash');
 }
 
 function clearFlashSession(){if(curP&&state[curP]&&state[curP].pendingSessions)state[curP].pendingSessions.flash=null;}
@@ -4002,6 +4032,7 @@ function startMemoryMatch(words){
   });
   matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null};
   persistMatch();saveState();renderMemoryMatch();
+  touchSession('match');
 }
 
 function renderMemoryMatch(){
@@ -4074,6 +4105,7 @@ function persistRain(){
     rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,
     targetSeq:(rainSt.targetSeq||[]).map(w=>({...w})),targetIdx:rainSt.targetIdx||0,targetSeenCount:rainSt.targetSeenCount||0,
     spawnsSinceTarget:rainSt.spawnsSinceTarget||0,targetShownThisRound:!!rainSt.targetShownThisRound};
+  touchSession('rain');
 }
 function clearRainTimers(){
   if(rainSt.spawnIv)clearInterval(rainSt.spawnIv);
@@ -4215,7 +4247,7 @@ function startListen(words){
     return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
   });
   listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null};
-  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid};
+  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid};touchSession('listen');
   saveState();renderListen();
 }
 
@@ -4270,7 +4302,7 @@ function checkListen(btn,ok,q){
     if(!consumeDynastyForgiveness('listen'))logWrong(curP,q.w.zh,q.w.py,q.w.en);
   }
   listenSt.qi++;
-  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid};
+  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid};touchSession('listen');
   saveState();
   laterCall('listen',renderListen,800);
 }
@@ -4336,7 +4368,7 @@ function startTrace(words){
     :allChars;
   if(!chars.length){showToast('No characters to trace yet—learn a few more first!');return;}
   traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null,watchCount:0,quizActive:false};
-  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid};
+  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid};touchSession('trace');
   saveState();renderTrace();
 }
 
@@ -4419,7 +4451,7 @@ function startTraceQuiz(){
       const stars=mistakes===0?3:(mistakes<=4?2:1);
       const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
       traceSt.traceGood=(traceSt.traceGood||0)+(mistakes===0?1:0);
-      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid};
+      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid};touchSession('trace');
       const msgs=stars===3
         ?['Perfect! 🌟','Flawless! Amazing! ✨','No mistakes — you nailed it! 🏆']
         :stars===2
@@ -4441,7 +4473,7 @@ function exitTrace(){
 }
 
 function traceAnimate(){traceWatchAgain();}
-function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid};saveState();renderTrace();}
+function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid};touchSession('trace');saveState();renderTrace();}
 
 function restoreTrace(){
   const ps=state[curP].pendingSessions.trace;if(!ps||!ps.chars)return false;
@@ -4488,6 +4520,7 @@ function persistGateQuizState(){
     sbBuilt:[...(typeof sbBuilt!=='undefined'?sbBuilt:[])],speakUsed:!!speakUsed,pyHintUsed:!!pyHintUsed,pyPeekUsed:!!pyPeekUsed,
     quizCorrect:quizSt.quizCorrect||0,quizAttempts:quizSt.quizAttempts||0
   };
+  touchSession('gate');
 }
 
 function clearGateQuizPending(){
@@ -4537,6 +4570,10 @@ function resumeSession(type){
 function resumeLastSession(){
   if(!curP)return;
   const ps=state[curP].pendingSessions||{};
+  // Prefer whatever was actually touched last. The fixed priority order below
+  // is only the fallback for sessions saved before timestamps existed.
+  const recent=mostRecentSession();
+  if(recent&&recent.at>0&&resumeSession(recent.kind))return;
   if(ps.story&&resumeSession('story'))return;
   if((ps.gate||ps.champion)&&resumeSession('gate'))return;
   if(ps.flash&&resumeSession('flash'))return;
@@ -5462,6 +5499,7 @@ function persistMiniQuizState(){
     qi:miniQ.qi,score:miniQ.score,phase:miniQ.phase,
     wrongQueue:miniQ.wrongQueue.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]}))
   };
+  touchSession('story');
 }
 
 function restoreStoryMiniQuiz(){
@@ -5733,7 +5771,18 @@ function closeDrill(){
 let revengeSt={words:[],qi:0,correct:0};
 function closeRevengeRound(){
   const ov=document.getElementById('revenge-overlay');if(ov)ov.classList.remove('show');
-  if(curP&&state[curP].pendingSessions)state[curP].pendingSessions.revenge=null;
+  // Closing used to null the session outright, so shutting the overlay at
+  // question 3 of 6 discarded the whole round silently — and made the revenge
+  // branch of resumeLastSession unreachable except after a reload. It now
+  // saves like every other activity.
+  if(curP&&state[curP].pendingSessions&&revengeSt&&revengeSt.words&&revengeSt.words.length&&revengeSt.qi<revengeSt.words.length){
+    state[curP].pendingSessions.revenge={
+      words:revengeSt.words.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),
+      qi:revengeSt.qi,correct:revengeSt.correct,updatedAt:Date.now()};
+    showToast('Progress saved — finish the round to earn stars! ⚔️',2400);
+  }else if(curP&&state[curP].pendingSessions){
+    state[curP].pendingSessions.revenge=null;
+  }
   saveState();
 }
 function startRevengeRound(){

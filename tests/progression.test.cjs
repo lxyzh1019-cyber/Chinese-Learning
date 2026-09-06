@@ -477,3 +477,55 @@ test("B02c: leaving a quiz releases the lock", () => {
   a.exitQuiz();
   assert.equal(a.lockAnswer(), true, "exiting a quiz did not strand the lock");
 });
+
+// ── B02f: resume the most recent activity, and never discard a round ───────
+
+test("M-T? / B02f: resume returns the most recently touched activity", () => {
+  const a = app();
+  F.installState(a);
+  const ps = a.state.jenn.pendingSessions;
+  // Match sits highest in the old fixed priority chain; the child was last in
+  // a Listen round.
+  ps.match = { cards: [], openIdxs: [], matched: 0, moves: 2, start: 1, pairCount: 3, updatedAt: 1000 };
+  ps.listen = { questions: [], qi: 3, streak: 0, score: 0, updatedAt: 9000 };
+  ps.trace = { chars: [], i: 1, traceGood: 0, updatedAt: 5000 };
+
+  const recent = a.mostRecentSession();
+  assert.equal(recent.kind, "listen", "the newest session wins, not the highest-priority one");
+  assert.equal(recent.at, 9000);
+});
+
+test("B02f: sessions without timestamps fall back to the old order", () => {
+  const a = app();
+  F.installState(a);
+  const ps = a.state.jenn.pendingSessions;
+  ps.match = { cards: [], matched: 0, moves: 1, pairCount: 3 };   // pre-timestamp save
+  const recent = a.mostRecentSession();
+  assert.equal(recent.at, 0, "no timestamp recorded");
+  // resumeLastSession only trusts mostRecentSession when at > 0.
+});
+
+test("B02f: closing a part-finished Revenge round saves it instead of deleting it", () => {
+  const a = app();
+  F.installState(a);
+  a.revengeSt = {
+    words: Array.from({ length: 6 }, (_, i) => ({ zh: `字${i}`, py: `p${i}`, correct: `w${i}`, opts: ["a", "b"] })),
+    qi: 3, correct: 2,
+  };
+  a.closeRevengeRound();
+
+  const saved = a.state.jenn.pendingSessions.revenge;
+  assert.ok(saved, "the round survives being closed");
+  assert.equal(saved.qi, 3, "at the question the child had reached");
+  assert.equal(saved.correct, 2);
+  assert.equal(saved.words.length, 6);
+  assert.ok(saved.updatedAt > 0, "and it is timestamped for resume");
+});
+
+test("B02f: closing a finished Revenge round clears it", () => {
+  const a = app();
+  F.installState(a);
+  a.revengeSt = { words: [{ zh: "字", py: "p", correct: "w", opts: [] }], qi: 1, correct: 1 };
+  a.closeRevengeRound();
+  assert.equal(a.state.jenn.pendingSessions.revenge, null, "nothing left to resume");
+});

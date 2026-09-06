@@ -34,6 +34,7 @@ const BRIDGED = [
   "db", "engagementSettings", "selectedGateId", "curGameTargetDid",
   "flashSt", "matchSt", "rainSt", "listenSt", "traceSt", "miniQ",
   "tapped", "newChars", "totalNew", "storyOpenTime",
+  "revengeSt", "drillSt", "answerLocked",
   // Content tables. Also `const`, so also invisible without the bridge.
   "STORIES_MAP", "DYNASTIES", "HSK_VOCAB", "GATE_VOCAB", "GATE_SENTENCES",
 ];
