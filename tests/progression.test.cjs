@@ -529,3 +529,202 @@ test("B02f: closing a finished Revenge round clears it", () => {
   a.closeRevengeRound();
   assert.equal(a.state.jenn.pendingSessions.revenge, null, "nothing left to resume");
 });
+
+// ── G03: gate deadline expiry ──────────────────────────────────────────────
+
+/** A player mid-attempt at a gate whose deadline has already passed. */
+function lapsedGate(a, did = 1) {
+  F.installState(a);
+  const s = a.state.jenn;
+  const k = String(did);
+  s.gateGameStars = { [k]: { trace: 3, match: 3, rain: 3, listen: 0 } };
+  s.gateBestQuiz = { [k]: { accPct: 95, quizStars: 3, points: 200 } };
+  s.gateTimers = { [k]: { startKey: "2026-08-01", deadlineKey: "2026-08-06", active: true, days: 5, attemptId: "g1-old" } };
+  s.library = { 水: { py: "shuǐ", mn: "water" } };
+  s.failedWords = { 山: { zh: "山", py: "shān", en: "mountain", failCount: 2 } };
+  s.storyReadCount = { xia: 2 };
+  s.flashPassDone = { "1": true };
+  s.totalStars = 500;
+  return s;
+}
+
+test("G03: a lapsed timer is expired at render time, not silently later", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  const expired = a.sweepExpiredGateTimers(s);
+  assert.deepEqual(expired, [1], "the sweep finds and expires it");
+  assert.equal(s.gateTimers["1"].active, false);
+});
+
+test("G03: expiry clears the attempt but keeps everything learned", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  a.sweepExpiredGateTimers(s);
+
+  assert.deepEqual(s.gateGameStars["1"], { trace: 0, match: 0, rain: 0, listen: 0 }, "qualifying game stars cleared");
+  assert.equal(s.gateBestQuiz["1"], undefined, "qualifying quiz best cleared");
+
+  assert.deepEqual(Object.keys(s.library), ["水"], "learned characters kept");
+  assert.deepEqual(Object.keys(s.failedWords), ["山"], "practice queue kept");
+  assert.equal(s.storyReadCount.xia, 2, "reading credit kept");
+  assert.equal(s.flashPassDone["1"], true, "flashcard pass kept");
+  assert.equal(s.totalStars, 500, "stars already earned are not taken away");
+});
+
+test("G03: the expired attempt is archived, not erased", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  a.sweepExpiredGateTimers(s);
+
+  const hist = s.gateAttemptHistory["1"];
+  assert.equal(hist.length, 1);
+  assert.equal(hist[0].attemptId, "g1-old");
+  assert.equal(hist[0].reason, "deadline");
+  assert.deepEqual(hist[0].gameStars, { trace: 3, match: 3, rain: 3, listen: 0 }, "what was achieved is recorded");
+  assert.equal(hist[0].bestQuiz.accPct, 95);
+});
+
+test("G03: expiry happens once, however many times the hub renders", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  a.sweepExpiredGateTimers(s);
+  a.sweepExpiredGateTimers(s);
+  a.sweepExpiredGateTimers(s);
+  assert.equal(s.gateAttemptHistory["1"].length, 1, "no duplicate history entries");
+});
+
+test("M-T08 / G03: an old pending round cannot qualify the new attempt", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  s.pendingSessions.gate = { did: 1, phase: 1, score: 200, vocab: [], questions: [], pyQ: [], sbPack: [] };
+  a.sweepExpiredGateTimers(s);
+
+  assert.ok(s.pendingSessions.gate, "the round is not thrown away");
+  assert.equal(s.pendingSessions.gate.attemptExpired, true, "but it is flagged as belonging to the old attempt");
+});
+
+test("G03: a timer still inside its deadline is left alone", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  s.gateTimers["1"].deadlineKey = "2099-01-01";
+  assert.deepEqual(a.sweepExpiredGateTimers(s), [], "nothing expires");
+  assert.equal(s.gateTimers["1"].active, true);
+  assert.equal(s.gateBestQuiz["1"].accPct, 95, "progress untouched");
+});
+
+test("G03: each new timed attempt gets its own identity", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  a.startGateTimerIfNeeded(s, 1, 3);
+  const first = s.gateTimers["1"].attemptId;
+  assert.ok(first, "an attempt id is recorded");
+  s.gateTimers["1"].active = false;
+  a.startGateTimerIfNeeded(s, 1, 3);
+  assert.notEqual(s.gateTimers["1"].attemptId, first, "a fresh attempt is distinguishable from the old one");
+});
+
+// ── S02: revision-checked sync ─────────────────────────────────────────────
+
+/** Firestore stub with transaction support and a settable stored document. */
+function txDb(stored = null) {
+  const box = { doc: stored, writes: 0 };
+  const ref = {
+    get: async () => ({ exists: !!box.doc, data: () => box.doc }),
+    set: async (v) => { box.doc = JSON.parse(JSON.stringify(v)); box.writes++; },
+  };
+  return {
+    box,
+    collection: () => ({ doc: () => ref }),
+    runTransaction: (fn) => Promise.resolve(fn({
+      get: (r) => r.get(),
+      set: (r, v) => { box.doc = JSON.parse(JSON.stringify(v)); box.writes++; },
+    })),
+  };
+}
+
+const tick = () => new Promise((r) => setTimeout(r, 12));
+
+test("S02: every save advances the player's revision", () => {
+  const a = app();
+  F.installState(a);
+  assert.equal(a.state.jenn.revision, 0);
+  a.savePlayer("jenn");
+  a.savePlayer("jenn");
+  assert.equal(a.state.jenn.revision, 2, "revision counts local writes");
+});
+
+test("S02: a write lands and reports Synced when nobody else has written", async () => {
+  const a = app();
+  F.installState(a);
+  const db = txDb(null);
+  a.db = db;
+  a.savePlayer("jenn");
+  await tick();
+  assert.equal(db.box.writes, 1, "the document was written");
+  assert.equal(db.box.doc.revision, 1);
+  assert.equal(a.syncStatus.jenn, "synced");
+});
+
+test("S02: a stale write is refused instead of clobbering a newer device", async () => {
+  const a = app();
+  F.installState(a);
+  // Another device has already pushed revision 7.
+  const db = txDb({ revision: 7, lastSaved: 999, totalStars: 900, gatesCompleted: [1, 2, 3] });
+  a.db = db;
+  a.remoteBaseRevision.jenn = 0;          // this device never saw that write
+  a.state.jenn.totalStars = 10;
+
+  a.savePlayer("jenn");
+  await tick();
+
+  assert.equal(db.box.writes, 0, "the stale write did not overwrite the newer document");
+  assert.equal(db.box.doc.totalStars, 900, "the other device's data is intact");
+  assert.equal(a.syncStatus.jenn, "attention", "and it is surfaced, not swallowed");
+});
+
+test("S02: the divergence is recorded with both sides' shape", async () => {
+  const a = app();
+  F.installState(a);
+  const db = txDb({ revision: 7, lastSaved: 999, totalStars: 900, gatesCompleted: [1, 2, 3] });
+  a.db = db;
+  a.remoteBaseRevision.jenn = 0;
+  a.state.jenn.totalStars = 10;
+
+  a.savePlayer("jenn");
+  await tick();
+
+  const c = a.state.jenn.syncConflicts;
+  assert.equal(c.length, 1);
+  assert.equal(c[0].remoteRevision, 7);
+  assert.equal(c[0].remoteTotalStars, 900);
+  assert.equal(c[0].remoteGatesCompleted, 3);
+  assert.equal(c[0].localTotalStars, 10, "the local side is recorded too");
+});
+
+test("S02: after a conflict the next save is decisive rather than looping", async () => {
+  const a = app();
+  F.installState(a);
+  const db = txDb({ revision: 7, lastSaved: 999, totalStars: 900, gatesCompleted: [] });
+  a.db = db;
+  a.remoteBaseRevision.jenn = 0;
+
+  a.savePlayer("jenn");
+  await tick();
+  assert.equal(db.box.writes, 0, "first attempt refused");
+
+  a.savePlayer("jenn");
+  await tick();
+  assert.equal(db.box.writes, 1, "the retry succeeds");
+  assert.ok(db.box.doc.revision > 7, "having moved past the other device's revision");
+  assert.equal(a.syncStatus.jenn, "synced");
+});
+
+test("S02: the conflict log stays bounded", async () => {
+  const a = app();
+  F.installState(a);
+  for (let i = 0; i < 12; i++) {
+    a.noteSyncConflict("jenn", { revision: i, lastSaved: i, totalStars: i, gatesCompleted: [] }, i);
+  }
+  assert.equal(a.state.jenn.syncConflicts.length, 5, "a player document cannot grow without limit");
+});

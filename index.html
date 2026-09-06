@@ -2216,8 +2216,17 @@ function initFirestore(){
         const remote=snap.data();
         ensureState(pid);
         dbgLog('snapshot received',{pid,remoteLastSaved:(remote&&remote.lastSaved)||0,localLastSaved:(state[pid]&&state[pid].lastSaved)||0});
-        if((remote&&remote.lastSaved||0)>(state[pid].lastSaved||0)){
+        const remoteRev=(remote&&remote.revision)||0;
+        const localRev=(state[pid]&&state[pid].revision)||0;
+        // Revision decides when both sides have one; documents written before
+        // revisions existed still fall back to the timestamp.
+        const newer=(remoteRev||localRev)
+          ?remoteRev>localRev
+          :((remote&&remote.lastSaved||0)>(state[pid].lastSaved||0));
+        if(newer){
           state[pid]=mergePlayerState(state[pid],remote);
+          remoteBaseRevision[pid]=remoteRev;
+          setSyncStatus(pid,'synced');
           try{localStorage.setItem(SK,JSON.stringify(state));}catch(e){}
           ensureState(pid);
           dbgLog('snapshot applied',{pid,lastSaved:(state[pid]&&state[pid].lastSaved)||0});
@@ -2235,6 +2244,7 @@ const SENT_COLORS=['#C0392B','#D4A017','#27AE60','#E8445A','#3B82F6','#A78BFA'];
 
 function defPlayer(){
   return{totalStars:0,weekStars:0,lastPlayed:null,lastSaved:0,
+    revision:0,syncConflicts:[],
     gatesCompleted:[],storiesCompleted:[],legacyStoriesCompleted:[],gateStars:{},
     library:{},failedWords:{},
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
@@ -3064,15 +3074,91 @@ function bumpSessionGen(){
 // so correctly LOSES the `remote.lastSaved > local.lastSaved` comparison in the
 // onSnapshot handler, instead of overwriting a newer copy from another device.
 // localStorage holds both players in one blob, so it is always written whole.
+// ── Sync state ──────────────────────────────────────────────────────────────
+// The revision we last saw on the server for each player. A write is only
+// allowed if the stored revision still matches it; otherwise another device has
+// written since, and blindly overwriting would silently discard their work.
+const remoteBaseRevision={jenn:0,jess:0};
+const syncStatus={jenn:'local',jess:'local'};   // 'local' | 'synced' | 'attention'
+
+function setSyncStatus(pid,status){
+  if(!pid)return;
+  syncStatus[pid]=status;
+  const el=document.getElementById('sync-status-'+pid);
+  if(el)el.textContent=status==='synced'?'Synced':(status==='attention'?'Needs attention':'Saved on this device');
+}
+
+/**
+ * Record that another device wrote this player while we were behind.
+ *
+ * Only a bounded summary is kept — enough for a person to see that a
+ * divergence happened and roughly how big it was — not a copy of the other
+ * document, which would grow without limit.
+ */
+function noteSyncConflict(pid,remote,remoteRev){
+  const s=state[pid];
+  if(!s)return;
+  if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
+  s.syncConflicts.push({
+    at:Date.now(),
+    remoteRevision:remoteRev||0,
+    remoteLastSaved:(remote&&remote.lastSaved)||0,
+    remoteTotalStars:(remote&&remote.totalStars)||0,
+    remoteGatesCompleted:((remote&&remote.gatesCompleted)||[]).length,
+    localTotalStars:s.totalStars||0,
+    localGatesCompleted:(s.gatesCompleted||[]).length,
+  });
+  if(s.syncConflicts.length>5)s.syncConflicts=s.syncConflicts.slice(-5);
+  // Move ahead of the other device so the next write is decisive, having first
+  // recorded that the two diverged rather than pretending they did not.
+  s.revision=Math.max(s.revision||0,remoteRev||0)+1;
+  remoteBaseRevision[pid]=remoteRev||0;
+  setSyncStatus(pid,'attention');
+}
+
+/**
+ * Push one player with a compare-and-set on `revision`.
+ *
+ * The old code did an unconditional full-document .set(), and conflicts were
+ * resolved by comparing device clocks — so the same child on two devices could
+ * lose work to whichever clock happened to be later. A stale write is now
+ * refused rather than applied.
+ */
+function pushPlayer(pid){
+  if(!db||!state[pid])return;
+  const ref=db.collection('chinese-adventure').doc(pid);
+  const payload=JSON.parse(JSON.stringify(state[pid]));
+  const runner=(typeof db.runTransaction==='function')
+    ?db.runTransaction(tx=>Promise.resolve(tx.get(ref)).then(snap=>{
+        const remote=(snap&&snap.exists)?snap.data():null;
+        const remoteRev=(remote&&remote.revision)||0;
+        if(remote&&remoteRev>(remoteBaseRevision[pid]||0)){
+          const err=new Error('stale-write');
+          err.conflict=true;err.remote=remote;err.remoteRev=remoteRev;
+          throw err;
+        }
+        tx.set(ref,payload);
+      }))
+    : ref.set(payload);   // older SDK: behave as before rather than not saving
+  Promise.resolve(runner).then(()=>{
+    remoteBaseRevision[pid]=payload.revision||0;
+    setSyncStatus(pid,'synced');
+  }).catch(err=>{
+    if(err&&err.conflict)noteSyncConflict(pid,err.remote,err.remoteRev);
+    else setSyncStatus(pid,'local');
+  });
+}
+
 function savePlayer(pid){
   if(!pid||!state[pid])return;
   try{
-    state[pid].lastSaved=Date.now();
-    dbgLog('savePlayer',{pid,lastSaved:state[pid].lastSaved,curP:curP||null});
+    const s=state[pid];
+    s.lastSaved=Date.now();
+    s.revision=(s.revision||0)+1;
+    dbgLog('savePlayer',{pid,revision:s.revision,curP:curP||null});
     localStorage.setItem(SK,JSON.stringify(state));
-    if(db){
-      db.collection('chinese-adventure').doc(pid).set(state[pid]).catch(()=>{});
-    }
+    setSyncStatus(pid,'local');
+    if(db)pushPlayer(pid);
     refreshOpenSummaries();
   }catch(e){}
 }
@@ -3097,6 +3183,9 @@ function ensureState(p){
   if(!s.storiesCompleted)s.storiesCompleted=[];if(!s.gateStars)s.gateStars={};
   // Snapshot the stories finished before the read-chain gate shipped, once.
   // Anything completed from now on has to earn its unlocks the normal way.
+  if(!s.gateAttemptHistory)s.gateAttemptHistory={};
+  if(typeof s.revision!=='number')s.revision=0;
+  if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
   if(!Array.isArray(s.legacyStoriesCompleted)){
     s.legacyStoriesCompleted=s.storiesCompleted.slice();
   }
@@ -3392,12 +3481,43 @@ function focusGateTasks(did){
   renderHub();
 }
 
+/**
+ * End the current timed attempt at a gate and start a fresh one.
+ *
+ * The qualifying records are archived rather than deleted: the deliberate
+ * deadline reset is about the CHALLENGE, not about erasing what the child did.
+ * Reading counts, flashcard passes, vocabulary, the practice queue, total
+ * stars and assessment history are all untouched — only this attempt's
+ * qualifying bests are cleared.
+ */
 function resetGateProgress(s,did){
   const k=String(did);
+  const timer=(s.gateTimers&&s.gateTimers[k])||null;
+  if(!s.gateAttemptHistory)s.gateAttemptHistory={};
+  if(typeof s.revision!=='number')s.revision=0;
+  if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
+  if(!s.gateAttemptHistory[k])s.gateAttemptHistory[k]=[];
+  s.gateAttemptHistory[k].push({
+    attemptId:(timer&&timer.attemptId)||null,
+    startKey:(timer&&timer.startKey)||null,
+    deadlineKey:(timer&&timer.deadlineKey)||null,
+    endedKey:todayKey(),
+    reason:'deadline',
+    gameStars:Object.assign({trace:0,match:0,rain:0,listen:0},(s.gateGameStars&&s.gateGameStars[k])||{}),
+    bestQuiz:(s.gateBestQuiz&&s.gateBestQuiz[k])||null,
+  });
+  // Keep the history bounded so a player document cannot grow without limit.
+  if(s.gateAttemptHistory[k].length>10)s.gateAttemptHistory[k]=s.gateAttemptHistory[k].slice(-10);
+
   if(s.gateGameStars)s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
   if(s.gateBestQuiz)delete s.gateBestQuiz[k];
   if(s.lastGateQuizAttempt&&s.lastGateQuizAttempt.did===did)s.lastGateQuizAttempt=null;
-  if(s.pendingSessions&&s.pendingSessions.gate&&s.pendingSessions.gate.did===did)s.pendingSessions.gate=null;
+  // A quiz already in progress is NOT thrown away. It is flagged as belonging
+  // to the expired attempt so it can be finished as practice without
+  // qualifying the new one.
+  if(s.pendingSessions&&s.pendingSessions.gate&&s.pendingSessions.gate.did===did){
+    s.pendingSessions.gate.attemptExpired=true;
+  }
 }
 
 function startGateTimerIfNeeded(s,did,stars){
@@ -3410,7 +3530,8 @@ function startGateTimerIfNeeded(s,did,stars){
   const start=todayKey();
   const days=gateTimerDays(did);
   const deadline=dateAddDays(days);
-  s.gateTimers[k]={startKey:start,deadlineKey:deadline,active:true,days};
+  s.gateTimers[k]={startKey:start,deadlineKey:deadline,active:true,days,
+    attemptId:`g${did}-${start}-${Math.random().toString(36).slice(2,8)}`};
   showTimerModal({
     did,
     kind:'start',
@@ -3423,7 +3544,7 @@ function startGateTimerIfNeeded(s,did,stars){
   s.timerLastSeenAt[k]=start;
 }
 
-function expireGateTimerIfNeeded(s,did){
+function expireGateTimerIfNeeded(s,did,opts){
   if(!s||!did||!s.gateTimers)return false;
   const k=String(did);
   const t=s.gateTimers[k];
@@ -3431,6 +3552,7 @@ function expireGateTimerIfNeeded(s,did){
   if(!isDateAfter(todayKey(),t.deadlineKey))return false;
   resetGateProgress(s,did);
   t.active=false;
+  if(opts&&opts.silent)return true;
   showTimerModal({
     did,
     kind:'reset',
@@ -3440,6 +3562,33 @@ function expireGateTimerIfNeeded(s,did){
     onAction:()=>focusGateTasks(did)
   });
   return true;
+}
+
+/**
+ * Expire every lapsed gate timer, now.
+ *
+ * Expiry used to be lazy: it ran only from updateGateGameBest, renderQuizResult
+ * and My Day (for the next open gate alone). renderHub never called it, so a
+ * lapsed timer went on reporting "Final day: due today" indefinitely and then
+ * detonated without warning the next time the child happened to finish a game
+ * — wiping that gate's stars mid-session with no notice. Sweeping at render
+ * time means the reset is announced when it happens.
+ *
+ * Returns the gate ids that expired on this pass. Each expires once, because
+ * expireGateTimerIfNeeded clears the active flag.
+ */
+function sweepExpiredGateTimers(s){
+  if(!s||!s.gateTimers)return[];
+  const expired=[];
+  Object.keys(s.gateTimers).forEach(k=>{
+    const did=parseInt(k,10);
+    if(!Number.isFinite(did))return;
+    const t=s.gateTimers[k];
+    if(!t||!t.active)return;
+    if(!isDateAfter(todayKey(),t.deadlineKey))return;
+    if(expireGateTimerIfNeeded(s,did,{silent:expired.length>0}))expired.push(did);
+  });
+  return expired;
 }
 
 function gateTimerStatusLine(s,did){
@@ -4521,6 +4670,10 @@ function persistGateQuizState(){
     quizCorrect:quizSt.quizCorrect||0,quizAttempts:quizSt.quizAttempts||0
   };
   touchSession('gate');
+  if(quizSt&&quizSt.attemptExpired&&state[curP]&&state[curP].pendingSessions){
+    const slot=quizSt.isChampion?'champion':'gate';
+    if(state[curP].pendingSessions[slot])state[curP].pendingSessions[slot].attemptExpired=true;
+  }
 }
 
 function clearGateQuizPending(){
@@ -4544,7 +4697,8 @@ function restoreGateQuizSession(){
     sbRound:ps.sbRound||0,isDaddy:false,isChampion:!!ps.isChampion,champGroup:ps.champGroup||null,
     hardMode:!!ps.hardMode,
     mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:ps.noMcqAssistance!==false,
-    quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0
+    quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0,
+    attemptExpired:!!ps.attemptExpired
   };
   mcqAnswered=ps.mcqAnswered||0;pyAnswered=ps.pyAnswered||0;sbBuilt=[...(ps.sbBuilt||[])];
   speakUsed=!!ps.speakUsed;pyHintUsed=!!ps.pyHintUsed;pyPeekUsed=!!ps.pyPeekUsed;
@@ -4931,6 +5085,11 @@ function renderHub(){
   const prevHubScroll=hubMain?hubMain.scrollTop:0;
   dbgLog('renderHub begin',{curP,scrollTop:prevHubScroll});
   const s=state[curP];
+  // Announce any lapsed challenge here, rather than letting it fire silently
+  // the next time a game ends.
+  const expiredNow=sweepExpiredGateTimers(s);
+  if(expiredNow.length>1)showToast(`${expiredNow.length} gate challenges ran out of time — fresh attempts are ready.`,3200);
+  if(expiredNow.length)saveState();
   const nextDid=nextOpenGateId(s);
   if(nextDid)maybeShowGateTimerReminder(s,nextDid);
   document.getElementById('hub-avatar').textContent=curP==='jenn'?'🐥':'🦊';
@@ -6662,7 +6821,13 @@ function renderQuizResult(qc){
   const d=DYNASTIES.find(x=>x.id===quizSt.did);
   const s=state[curP];
   expireGateTimerIfNeeded(s,quizSt.did);
-  updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars,score);
+  // A quiz started under an attempt that has since run out of time can be
+  // finished — the child's work is not thrown away — but it does not qualify
+  // the new attempt. Otherwise an old pending round could resurrect credit the
+  // deadline reset deliberately cleared.
+  if(!quizSt.attemptExpired){
+    updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars,score);
+  }
   const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup);
   const gamesOk=gateGamesAllThree(s,quizSt.did);
   const quizPass=(bestQuiz.accPct||0)>=90&&(bestQuiz.quizStars||0)===3;
