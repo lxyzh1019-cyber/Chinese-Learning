@@ -28,6 +28,23 @@
     return { storage: window.localStorage, db: typeof db !== "undefined" ? db : null };
   }
 
+  /** Warn before the app's play-session cap lands, so a 34-item set is not
+   *  guillotined mid-question with no warning. The cap itself is deliberately
+   *  left alone — the assessment follows the same parent-extension policy as
+   *  everything else — but arriving at it by surprise is not a policy, it is an
+   *  omission. Nothing is lost either way: every answer is saved as it is given.
+   */
+  const SESSION_WARN_SECS = 180;
+  function sessionNotice() {
+    if (typeof timerSecs === "undefined" || typeof timerSecs !== "number") return "";
+    if (timerSecs <= 0 || timerSecs > SESSION_WARN_SECS) return "";
+    const mins = Math.max(1, Math.ceil(timerSecs / 60));
+    return `<div style="font-size:.7rem;line-height:1.5;text-align:center;margin-top:.6rem;padding:.4rem .5rem;
+      border:1px solid rgba(212,160,23,.28);border-radius:8px;background:rgba(212,160,23,.08);color:var(--ink);">
+      ⏳ About ${mins} minute${mins === 1 ? "" : "s"} of today's play time left. Your answers are saved as you go —
+      you can carry on after a grown-up unlocks more time, or stop here and finish later.</div>`;
+  }
+
   // ── entry ────────────────────────────────────────────────────────────────
   globalThis.openAssessment = async function openAssessment() {
     if (!curP) { showToast("Pick a profile first."); return; }
@@ -195,6 +212,7 @@
         <button class="btn-s" onclick="assessmentDontKnow()">I don't know</button>
         <button class="btn-s" onclick="closeAssessment()">Save &amp; exit</button>
       </div>
+      ${sessionNotice()}
       <div id="assessment-sync" style="font-size:.68rem;color:var(--muted);text-align:center;margin-top:.6rem;"></div>`;
   }
 
