@@ -849,3 +849,73 @@ test("C03: a fresh player is not put through the migration", () => {
   assert.equal(s.legacyCredit, undefined, "nothing to inherit");
   assert.deepEqual(s.gatesCompleted, []);
 });
+
+// ── T01: no distractor may read like the answer ────────────────────────────
+
+test("T01: a near-synonym never appears as a wrong option", () => {
+  const a = app();
+  F.installState(a);
+  // 他们 and 她们 are different words that share a gloss. Rendering both as
+  // "they" used to produce an unanswerable question.
+  const pool = [
+    { zh: "他们", py: "tā men", en: "they" },
+    { zh: "她们", py: "tā men", en: "they" },
+    { zh: "两", py: "liǎng", en: "two" },
+    { zh: "二", py: "èr", en: "two" },
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "山", py: "shān", en: "mountain" },
+    { zh: "火", py: "huǒ", en: "fire" },
+    { zh: "人", py: "rén", en: "person" },
+  ];
+  const answer = pool[0];
+  const wrong = a.pickDistractors(pool.filter((w) => w.zh !== answer.zh), answer, (w) => w.en, 3);
+  assert.ok(!wrong.some((w) => w.en === answer.en), "no option reads the same as the answer");
+  assert.equal(new Set(wrong.map((w) => w.en)).size, wrong.length, "and no two options read alike");
+});
+
+test("T01: every generated MCQ has four distinct readable options", () => {
+  const a = app();
+  F.installState(a);
+  const vocab = [
+    { zh: "他们", py: "tā men", en: "they" },
+    { zh: "她们", py: "tā men", en: "they" },
+    { zh: "两", py: "liǎng", en: "two" },
+    { zh: "二", py: "èr", en: "two" },
+    { zh: "已经", py: "yǐ jīng", en: "already" },
+    { zh: "已", py: "yǐ", en: "already" },
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "山", py: "shān", en: "mountain" },
+    { zh: "火", py: "huǒ", en: "fire" },
+    { zh: "人", py: "rén", en: "person" },
+    { zh: "大", py: "dà", en: "big" },
+    { zh: "小", py: "xiǎo", en: "small" },
+  ];
+  const qs = a.buildMCQ(vocab, 10);
+  qs.forEach((q) => {
+    assert.equal(new Set(q.opts).size, q.opts.length,
+      `question on ${q.zh} has a repeated option: ${JSON.stringify(q.opts)}`);
+    assert.ok(q.opts.includes(q.correct) || q.reverse, "the answer is among the options");
+  });
+});
+
+test("T01: the curriculum no longer teaches dictionary artefacts", () => {
+  const a = app();
+  const hsk1 = require("../data/hsk1.json");
+  const junk = /variant of|abbr\.|^\s*surname |old variant of|^\s*used in /i;
+  const bad = [];
+  hsk1.gates.forEach((g) => {
+    [...(g.newWords || []), ...(g.reviewWords || [])].forEach((w) => {
+      if (junk.test(w.en || "")) bad.push(`${w.zh}: ${w.en}`);
+    });
+  });
+  assert.deepEqual(bad, [], "the array the games actually serve is clean");
+
+  // Spot-check the fixtures the audit named.
+  const find = (zh) => hsk1.words.find((w) => w.zh === zh);
+  assert.equal(find("水").en, "water");
+  assert.equal(find("水").pinyin, "shuǐ");
+  assert.equal(find("家").en, "home; family");
+  assert.equal(find("书").en, "book");
+  assert.equal(find("里").en, "inside; in");
+  assert.equal(find("新").en, "new");
+});

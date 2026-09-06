@@ -3093,6 +3093,32 @@ function bumpSessionGen(){
 // The revision we last saw on the server for each player. A write is only
 // allowed if the stored revision still matches it; otherwise another device has
 // written since, and blindly overwriting would silently discard their work.
+/**
+ * Pick distractors that cannot be mistaken for the answer.
+ *
+ * The builders used to exclude the answer by Chinese spelling or array index
+ * and then render `.en`. With genuine near-synonyms in the curriculum — 他们
+ * and 她们 both "they", 两 and 二 both "two" — that produced questions where a
+ * wrong option read exactly like the right one, which no child could answer.
+ *
+ * @param pool   candidates to draw from
+ * @param answer the correct item
+ * @param render how an option is displayed; comparison happens on this
+ */
+function pickDistractors(pool,answer,render,n){
+  const answerText=String(render(answer)||'').trim();
+  const seen=new Set([answerText]);
+  const out=[];
+  shuffleArr(pool.slice()).forEach(c=>{
+    if(out.length>=n)return;
+    const text=String(render(c)||'').trim();
+    if(!text||seen.has(text))return;
+    seen.add(text);
+    out.push(c);
+  });
+  return out;
+}
+
 // ── Gate identity helpers ───────────────────────────────────────────────────
 // A gate is (level, dynasty), not a dynasty alone. `curHSK` is the active
 // level and is now authoritative rather than cosmetic: it decides which of the
@@ -4028,8 +4054,8 @@ function flashGotIt(){flashSt.i++;flashSt.flipped=false;persistFlashSession();sa
 
 function renderFlashQuiz(){
   const w=flashSt.deck[flashSt.i];
-  const pool=flashSt.deck.filter(x=>x.zh!==w.zh);
-  const wrong=shuffleArr(pool).slice(0,3);
+  const renderOpt=flashSt.mode==='zh2en'?(x=>x.en):(x=>x.zh);
+  const wrong=pickDistractors(flashSt.deck.filter(x=>x.zh!==w.zh),w,renderOpt,3);
   let answer='',opts=[];
   if(flashSt.mode==='en2zh'){answer=w.zh;opts=shuffleArr([w.zh,...wrong.map(x=>x.zh)]);}
   else if(flashSt.mode==='zh2en'){answer=w.en;opts=shuffleArr([w.en,...wrong.map(x=>x.en)]);}
@@ -4459,7 +4485,7 @@ function restoreRain(){
 function startListen(words){
   const pool=shuffleArr(words).filter(w=>w.zh);
   const qs=shuffleArr(pool).slice(0,10).map(w=>{
-    const wrong=shuffleArr(pool.filter(x=>x.zh!==w.zh)).slice(0,3);
+    const wrong=pickDistractors(pool.filter(x=>x.zh!==w.zh),w,x=>x.en,3);
     return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
   });
   listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
@@ -5776,7 +5802,7 @@ function buildMiniQuizQuestions(){
   const qs=[];
   for(let i=0;i<Math.min(4,pool.length);i++){
     const q=pool[i];
-    const distractors=pool.filter((_,j)=>j!==i).sort(()=>Math.random()-.5).slice(0,3);
+    const distractors=pickDistractors(pool.filter((_,j)=>j!==i),pool[i],x=>x.en,3);
     if(distractors.length<1)continue;
     const opts=[q,...distractors].sort(()=>Math.random()-.5).map(w=>w.en);
     qs.push({zh:q.zh,py:q.py,correct:q.en,opts});
@@ -6373,7 +6399,9 @@ function buildMCQ(vocab,n=8,avoidZh=[]){
       }
       qs.push({zh:correct.zh,py:correct.py,correct:correct.en,opts,reverse:true});
     }else{
-      const wrong=pool.filter(w=>w.zh!==correct.zh).sort(()=>Math.random()-.5).slice(0,3);
+      // Compared on the rendered meaning, so a near-synonym cannot appear as a
+      // wrong option that reads exactly like the right one.
+      const wrong=pickDistractors(pool.filter(w=>w.zh!==correct.zh),correct,w=>w.en,3);
       if(wrong.length<1)continue;
       const opts=[correct,...wrong].sort(()=>Math.random()-.5);
       qs.push({zh:correct.zh,py:correct.py,correct:correct.en,opts:opts.map(w=>w.en),reverse:false});
