@@ -95,7 +95,8 @@ acted on; both are recorded here for decision.
 | A06 | State machine, present-before-display, write-once | verified | `js/assessment-core.js` | A-T04, A-T05, A-T13. |
 | A09 | Repeat and comparison | verified | `js/assessment-core.js` | A-T06, A-T07, A-T08, A-T14. |
 | A10 | Attempt persistence, revision CAS, offline queue | verified | `js/player-store.js` | A-T11 plus queue/append tests. |
-| A03/A04 | Bank + contract | verified | `data/assessment/**`, `scripts/build_assessment_bank.js`, `scripts/validate_assessment.js` | 60 items, 34/form, 8 anchors; validator proven by injecting 3 defects; all 28 clips reachable. |
+| A03/A04 | Bank + contract, all four bands | verified | `data/assessment/**`, `scripts/assessment-content.js`, `scripts/build_assessment_bank.js`, `scripts/validate_assessment.js` | 240 distinct items, 34/form/band, 8 anchors/band (32 total), 12 passages all inside band length targets; validator proven by injecting 3 defects; all 108 clips reachable. |
+| A05 | Multi-band routing C1→C4 | verified | `js/assessment-core.js`, `js/assessment-ui.js` | Per-band scoring (bands never pooled); 6 routing tests incl. "a strong lower band cannot carry a weak higher one". Browser run climbed C1→C4 over 136 answers with 3 band transitions. |
 | — | Firestore rules | **blocked** | `firestore.rules`, `scripts/check_firestore_rules.js` | Cannot deploy from here. Probe currently reports the rules are still wide open — expected until the block is pasted into the console. |
 
 ### Verification output
@@ -108,10 +109,16 @@ npm run verify
   tests 39 | pass 36 | fail 0 | todo 3
 ```
 
-Browser walkthrough (Chromium 1194, 1024x768 @2x, local http server): profile
-select -> hub -> assessment opens -> baseline starts -> 34-question C1 form A ->
-answers advance -> save & exit -> resume offered -> stored attempt owned by
-`jenn`, status `paused`. No local resource failed to load.
+Browser walkthroughs (Chromium 1194, 1024x768 @2x, local http server), no page
+errors in either:
+
+- **Full climb.** Jenn, all answers correct: 136 answers, three "try the next
+  set" transitions accepted, final attempt spans `C1, C2, C3, C4`, status
+  `results_available`. Report renders one block per band.
+- **Partial stop.** Jess, deliberately poor answers plus one "I don't know":
+  13 responses, status `paused`, resume offered and landed on question 14 of 34
+  — the first unanswered item, not the start. Stars, gates and timers all still
+  zero afterwards.
 
 ### Blocked / not verified here
 

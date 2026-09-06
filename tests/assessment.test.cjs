@@ -353,3 +353,114 @@ test("A-T14: excluding a faulty anchor adjusts both denominators and keeps the o
   assert.ok(revised.anchors, "the comparison itself is still reported");
   assert.equal(a.responses.length > 0 && b.responses.length > 0, true, "raw records survive");
 });
+
+// ── multi-band routing (C1 → C4) ────────────────────────────────────────────
+
+/** Answer one band's domain: `correct` right, the rest wrong. */
+function answerBand(attempt, band, domain, correct) {
+  const items = C.selectItems(bank, forms, attempt.formId, band).filter((i) => i.domain === domain);
+  items.forEach((item, i) => {
+    C.present(attempt, item);
+    const wrongId = (item.options.find((o) => o.id !== item.acceptedOptionIds[0]) || {}).id;
+    C.respond(attempt, {
+      itemId: item.id,
+      selectedOptionId: i < correct ? item.acceptedOptionIds[0] : wrongId,
+      inputStatus: C.INPUT_SUBMITTED,
+    });
+  });
+}
+
+/** Clear a whole band's routing domains at full marks. */
+function clearBand(attempt, band) {
+  if (attempt.bands.indexOf(band) === -1) attempt.bands.push(band);
+  answerBand(attempt, band, "recognition_unaided", 8);
+  answerBand(attempt, band, "meaning_context", 8);
+  answerBand(attempt, band, "passage_comprehension", 6);
+}
+
+test("the bank carries all four bands with a complete form pair each", () => {
+  assert.deepEqual(manifest.bands, ["C1", "C2", "C3", "C4"]);
+  for (const band of manifest.bands) {
+    for (const formId of ["A", "B"]) {
+      assert.equal(C.selectItems(bank, forms, formId, band).length, 34,
+        `${formId}/${band} should hold 34 scored opportunities`);
+    }
+  }
+  assert.equal(bank.items.length, 240, "240 distinct authored prompts");
+});
+
+test("bands are scored separately, never pooled", () => {
+  const a = newAttempt();
+  clearBand(a, "C1");
+  a.bands.push("C2");
+  answerBand(a, "C2", "recognition_unaided", 2);   // weak in C2
+
+  const s = C.scoreAttempt(a, bank, forms);
+  assert.equal(s.byBand.C1.domains.recognition_unaided.correct, 8);
+  assert.equal(s.byBand.C1.domains.recognition_unaided.expected, 8, "C1 keeps its own denominator");
+  assert.equal(s.byBand.C2.domains.recognition_unaided.correct, 2);
+  assert.equal(s.byBand.C2.domains.recognition_unaided.expected, 8, "C2 keeps its own denominator");
+});
+
+test("a strong lower band cannot carry a weak higher one", () => {
+  const a = newAttempt();
+  clearBand(a, "C1");
+  a.bands.push("C2");
+  answerBand(a, "C2", "recognition_unaided", 2);
+  answerBand(a, "C2", "meaning_context", 2);
+  answerBand(a, "C2", "passage_comprehension", 1);
+
+  const s = C.scoreAttempt(a, bank, forms);
+  assert.equal(C.routeNextBand(s, "C1").advance, true, "C1 was cleared");
+  assert.equal(C.routeNextBand(s, "C2").advance, false, "C2 was not, despite a perfect C1");
+});
+
+test("a child can be routed all the way from C1 to the C4 ceiling", () => {
+  const a = newAttempt();
+  ["C1", "C2", "C3", "C4"].forEach((b) => clearBand(a, b));
+  const s = C.scoreAttempt(a, bank, forms);
+
+  assert.equal(C.routeNextBand(s, "C1").nextBand, "C2");
+  assert.equal(C.routeNextBand(s, "C2").nextBand, "C3");
+  assert.equal(C.routeNextBand(s, "C3").nextBand, "C4");
+
+  const top = C.routeNextBand(s, "C4");
+  assert.equal(top.advance, false);
+  assert.equal(top.atCeiling, true);
+  assert.match(top.note, /Highest available custom band sampled/);
+  assert.deepEqual(s.bands, ["C1", "C2", "C3", "C4"]);
+});
+
+test("supported decoding and writing never affect routing, in any band", () => {
+  const a = newAttempt();
+  clearBand(a, "C2");
+  answerBand(a, "C2", "decoding_supported", 0);   // total failure with pinyin help
+  // writing left entirely unreviewed
+  const r = C.routeNextBand(C.scoreAttempt(a, bank, forms), "C2");
+  assert.equal(r.advance, true, "leaning on pinyin does not block the next band");
+  assert.ok(!r.reasons.some((x) => x.startsWith("decoding_supported")));
+  assert.ok(!r.reasons.some((x) => x.startsWith("writing_recall")));
+});
+
+test("every band's recognition and decoding target sets stay disjoint", () => {
+  for (const band of manifest.bands) {
+    for (const formId of ["A", "B"]) {
+      const items = C.selectItems(bank, forms, formId, band);
+      const rec = new Set(items.filter((i) => i.domain === "recognition_unaided").flatMap((i) => i.targetWordIds));
+      const dec = new Set(items.filter((i) => i.domain === "decoding_supported").flatMap((i) => i.targetWordIds));
+      const overlap = [...rec].filter((t) => dec.has(t));
+      assert.deepEqual(overlap, [], `${formId}/${band}: pinyin support must not coach an unaided target`);
+    }
+  }
+});
+
+test("every audio item resolves to a fixed clip, never device speech", () => {
+  const audioDomains = ["recognition_unaided", "decoding_supported"];
+  bank.items.filter((i) => audioDomains.includes(i.domain)).forEach((item) => {
+    item.options.forEach((o) => {
+      assert.ok(o.audioAssetId, `${item.id}: option ${o.id} has no clip`);
+      assert.match(o.audioAssetId, /^[a-z]+[1-4]$/,
+        `${item.id}: ${o.audioAssetId} is not a toned syllable — a neutral tone would play the wrong reading`);
+    });
+  });
+});

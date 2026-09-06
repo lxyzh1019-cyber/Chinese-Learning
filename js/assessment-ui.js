@@ -16,8 +16,8 @@
   const S = globalThis.PlayerStore;
   if (!C || !S) { console.warn("assessment-ui: core modules missing"); return; }
 
-  const BAND = "C1";
-  let ui = null;   // { attempt, items, idx, bankData, gen }
+  const FIRST_BAND = "C1";
+  let ui = null;   // { attempt, band, items, idx, bankData, gen, owner }
 
   const el = (id) => document.getElementById(id);
   const body = () => el("assessment-body");
@@ -122,12 +122,13 @@
       bankVersion: ui.bankData.manifest.bankVersion,
       formId: formId || "A",
       mode: mode || "baseline",
-      bands: [BAND],
+      bands: [FIRST_BAND],
       comparisonAttemptId: comparisonAttemptId || null,
     });
     C.transition(attempt, "active");
     ui.attempt = attempt;
-    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, BAND);
+    ui.band = FIRST_BAND;
+    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, FIRST_BAND);
     ui.idx = 0;
     persist();
     renderItem();
@@ -138,10 +139,13 @@
     if (!attempt || attempt.playerId !== curP) { showToast("That assessment belongs to another profile."); return; }
     if (attempt.status === "paused") C.transition(attempt, "active");
     ui.attempt = attempt;
-    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, BAND);
+    // Resume in the furthest band the attempt reached, at its first unanswered
+    // item — not at the start of C1.
+    ui.band = attempt.bands[attempt.bands.length - 1] || FIRST_BAND;
+    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, ui.band);
     const answered = new Set(attempt.responses.map((r) => r.itemId));
-    ui.idx = Math.max(0, ui.items.findIndex((i) => !answered.has(i.id)));
-    if (ui.idx === -1) ui.idx = ui.items.length;
+    const next = ui.items.findIndex((i) => !answered.has(i.id));
+    ui.idx = next === -1 ? ui.items.length : next;
     renderItem();
   };
 
@@ -158,7 +162,7 @@
 
   function renderItem() {
     const a = ui.attempt;
-    if (ui.idx >= ui.items.length) return renderReview();
+    if (ui.idx >= ui.items.length) return renderBandEnd();
     const item = ui.items[ui.idx];
 
     // Persist the presentation BEFORE the item is on screen, so a reload cannot
@@ -233,13 +237,53 @@
     commit({ selectedOptionId: null, inputStatus: C.INPUT_DONT_KNOW });
   };
 
+  /**
+   * End of a band. Routing decides whether another set is offered — and it
+   * uses only the unaided domains, so leaning on pinyin or leaving handwriting
+   * unreviewed never opens or closes the next band.
+   */
+  function renderBandEnd() {
+    const a = ui.attempt;
+    const score = C.scoreAttempt(a, ui.bankData.bank, ui.bankData.forms);
+    const route = C.routeNextBand(score, ui.band);
+    const available = (ui.bankData.manifest.bands || []).indexOf(route.nextBand) !== -1;
+
+    if (!route.advance || !route.nextBand || !available) return renderReview(route);
+
+    body().innerHTML = `
+      <div class="dd-desc" style="text-align:left;line-height:1.6;">
+        That's the end of this set — nicely done. There is another set with
+        slightly harder words if you'd like to try it. You don't have to, and
+        stopping here does not change anything you've already done.
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.45rem;margin-top:.9rem;">
+        <button class="btn-g" onclick="assessmentNextBand()">Try the next set</button>
+        <button class="btn-s" onclick="assessmentSubmit()">Stop here and see my report</button>
+        <button class="btn-s" onclick="closeAssessment()">Save and finish later</button>
+      </div>`;
+  }
+
+  globalThis.assessmentNextBand = function assessmentNextBand() {
+    const a = ui.attempt;
+    const score = C.scoreAttempt(a, ui.bankData.bank, ui.bankData.forms);
+    const route = C.routeNextBand(score, ui.band);
+    if (!route.nextBand) return renderReview(route);
+    ui.band = route.nextBand;
+    if (a.bands.indexOf(ui.band) === -1) a.bands.push(ui.band);
+    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, a.formId, ui.band);
+    ui.idx = 0;
+    persist();
+    renderItem();
+  };
+
   // ── review / submit ──────────────────────────────────────────────────────
-  function renderReview() {
+  function renderReview(route) {
     const a = ui.attempt;
     const unanswered = ui.items.filter((i) => !a.responses.some((r) => r.itemId === i.id)).length;
     body().innerHTML = `
       <div class="dd-desc" style="text-align:left;line-height:1.6;">
-        That's the end of this set. ${unanswered ? `${unanswered} question${unanswered === 1 ? " was" : "s were"} left blank — that is fine, blanks are not counted as wrong.` : "Everything was answered."}
+        That's the end. ${unanswered ? `${unanswered} question${unanswered === 1 ? " was" : "s were"} left blank — that is fine, blanks are not counted as wrong.` : "Everything was answered."}
+        ${route && route.atCeiling ? " You reached the last set we have." : ""}
       </div>
       <button class="btn-g" style="margin-top:.8rem;width:100%;" onclick="assessmentSubmit()">Finish and see my report</button>
       <button class="btn-s" style="margin-top:.4rem;width:100%;" onclick="closeAssessment()">Not yet — save for later</button>`;
@@ -268,21 +312,33 @@
 
   function renderResult(attempt) {
     const score = C.scoreAttempt(attempt, ui.bankData.bank, ui.bankData.forms);
-    const route = C.routeNextBand(score, BAND);
-    const rows = Object.values(score.domains).map((d) => {
-      const detail = d.domain === "writing_recall" && d.awaitingReview
-        ? `<span style="color:var(--muted);">${d.awaitingReview} waiting for a grown-up to look at — not scored yet</span>`
-        : d.complete
-          ? `${d.correct} of ${d.expected} right`
-          : `${d.correct} of ${d.submitted} answered right · ${d.unanswered} not answered <span style="color:var(--muted);">(part of the set only)</span>`;
-      return `<div style="padding:.4rem 0;border-bottom:1px solid rgba(212,160,23,.14);text-align:left;">
-        <div style="font-size:.8rem;color:var(--ink);">${esc(DOMAIN_LABEL[d.domain] || d.domain)}</div>
-        <div style="font-size:.74rem;color:var(--gold);margin-top:.15rem;">${detail}</div>
+    const highest = attempt.bands[attempt.bands.length - 1] || FIRST_BAND;
+    const route = C.routeNextBand(score, highest);
+    // One block per band. Bands are never merged: "8 of 8" across four bands
+    // would hide both what was actually attempted and where it fell off.
+    const bandBlock = (bandId) => {
+      const entry = score.byBand[bandId];
+      if (!entry) return "";
+      const rows = Object.values(entry.domains).map((d) => {
+        const detail = d.domain === "writing_recall" && d.awaitingReview
+          ? `<span style="color:var(--muted);">${d.awaitingReview} waiting for a grown-up to look at — not scored yet</span>`
+          : d.complete
+            ? `${d.correct} of ${d.expected} right`
+            : `${d.correct} of ${d.submitted} answered right · ${d.unanswered} not answered <span style="color:var(--muted);">(part of the set only)</span>`;
+        return `<div style="padding:.35rem 0;border-bottom:1px solid rgba(212,160,23,.14);text-align:left;">
+          <div style="font-size:.78rem;color:var(--ink);">${esc(DOMAIN_LABEL[d.domain] || d.domain)}</div>
+          <div style="font-size:.72rem;color:var(--gold);margin-top:.12rem;">${detail}</div>
+        </div>`;
+      }).join("");
+      return `<div class="practice-box" style="text-align:left;margin-bottom:.6rem;">
+        <div style="font-size:.8rem;color:var(--gold-bright);margin-bottom:.25rem;">Set ${esc(bandId)}</div>
+        ${rows}
       </div>`;
-    }).join("");
+    };
+    const rows = attempt.bands.map(bandBlock).join("");
 
     body().innerHTML = `
-      <div class="dd-desc" style="text-align:left;">Assessment report · ${esc(String(attempt.createdAt).slice(0, 10))} · form ${esc(attempt.formId)}</div>
+      <div class="dd-desc" style="text-align:left;">Assessment report · ${esc(String(attempt.createdAt).slice(0, 10))} · form ${esc(attempt.formId)} · sets ${esc(attempt.bands.join(", "))}</div>
       <div style="margin:.7rem 0;">${rows}</div>
       <div class="practice-box" style="text-align:left;font-size:.74rem;line-height:1.6;">
         <strong style="color:var(--ink);">What this is</strong><br>

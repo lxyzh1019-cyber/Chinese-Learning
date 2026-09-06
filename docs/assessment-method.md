@@ -1,7 +1,7 @@
 # Assessment method
 
 What the assessment measures, how it scores, and — as importantly — what it
-cannot tell you. Version 1.0.0 of the bank, C1 band only.
+cannot tell you. Version 1.0.0 of the bank: bands C1–C4, forms A and B.
 
 ## What it is
 
@@ -47,23 +47,30 @@ product default, **not** a pass/fail diagnosis and not a statistical standard.
 A recommended band is provisional and should be confirmed by ordinary learning
 evidence over time.
 
-Only C1 exists in this bank. When C1 is passed the report says the ceiling has
-been reached rather than implying anything about untested harder material.
+All four bands exist. A child who clears C1 is offered C2, and so on to C4;
+each band is scored on **its own** items, so a strong C1 can never carry a weak
+C2. After C4 the report states the ceiling has been reached rather than
+implying anything beyond it.
+
+Stopping is always allowed. A child who declines the next set keeps a complete
+report for the bands they did finish.
 
 ## Audio, and its honest limit
 
 Unaided recognition and supported decoding use **fixed recorded clips**, keyed
 by tone-marked syllable, so those items sound identical on every device and
-every attempt. All 28 clips used by the C1 bank are checked for reachability by
-`npm run validate:assessment:audio`.
+every attempt — in every band, not just the easiest one. All 108 clips the bank
+references are checked for reachability by `npm run validate:assessment:audio`.
 
 Everything else falls back to the device's own speech synthesis, which differs
 between devices, browsers and installed voices. Where that applies, comparison
 across attempts carries a stated caveat and the report says so in plain words.
 
-Neutral-tone characters (的 了 地 呢 们) are **excluded** from audio items: the
-app's clip-key derivation currently forces a neutral tone to first tone, which
-would play a wrong reading. Tracked as B02i.
+Neutral-tone characters (的 了 地 呢 们) are **excluded** from audio items in
+every band: the app's clip-key derivation forces a neutral tone to first tone,
+which would play a wrong reading. Tracked as B02i. Polyphonic characters
+(都 还 行 长 重 …) are excluded too — a bare character gives no context to say
+which reading is being asked for.
 
 ## Comparing attempts
 
@@ -92,7 +99,6 @@ rather than producing a difference.
 
 ## Limitations of this release
 
-- **C1 only.** C2–C4 are not authored yet.
 - **Content is model-reviewed, not educator-certified.** Every item records
   `reviewerType: "model"`. That is a truthful label, not a validity claim.
 - **Cloud sync is unverified in practice.** The browser walkthrough ran with the

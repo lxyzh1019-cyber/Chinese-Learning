@@ -205,20 +205,26 @@
     return (item.acceptedOptionIds || []).indexOf(response.selectedOptionId) !== -1;
   }
 
+  /**
+   * Score an attempt, keeping every band separate.
+   *
+   * Bands must NOT be merged: routing asks "did this child get 6 of the 8
+   * recognition items in THIS band", and pooling C1 with C2 would both change
+   * the denominator and let strong performance in an easier band carry a
+   * weaker one.
+   */
   function scoreAttempt(attempt, bank, forms) {
     const byId = itemsById(bank);
     const byItem = {};
     attempt.responses.forEach((r) => { byItem[r.itemId] = r; });
 
-    const domains = {};
-    const bandsScored = attempt.bands.slice();
+    const byBand = {};
 
-    bandsScored.forEach((band) => {
-      const items = selectItems(bank, forms, attempt.formId, band);
-      items.forEach((item) => {
+    attempt.bands.forEach((band) => {
+      const domains = {};
+      selectItems(bank, forms, attempt.formId, band).forEach((item) => {
         const d = (domains[item.domain] = domains[item.domain] || {
-          domain: item.domain,
-          band: band,
+          domain: item.domain, band,
           expected: 0, submitted: 0, correct: 0, unanswered: 0, dontKnow: 0,
           awaitingReview: 0,
         });
@@ -228,8 +234,8 @@
         if (item.domain === "writing_recall") {
           // Writing is never auto-scored. Unreviewed writing is unassessed —
           // not zero, not an estimate (A02, A08).
-          const review = attempt.writingReviews.find((w) => w.itemId === item.id);
-          if (review && typeof review.rubricScore === "number") { d.submitted++; d.correct += review.rubricScore >= 2 ? 1 : 0; }
+          const rev = attempt.writingReviews.find((w) => w.itemId === item.id);
+          if (rev && typeof rev.rubricScore === "number") { d.submitted++; d.correct += rev.rubricScore >= 2 ? 1 : 0; }
           else d.awaitingReview++;
           return;
         }
@@ -237,14 +243,16 @@
         if (r.inputStatus === INPUT_DONT_KNOW) { d.dontKnow++; return; }
         if (isCorrect(byId[item.id], r)) d.correct++;
       });
-    });
 
-    Object.values(domains).forEach((d) => {
-      d.complete = d.submitted + d.dontKnow >= d.expected && d.unanswered === 0;
-      // A percentage is only meaningful over a completed domain. A partial
-      // domain reports accuracy over what was submitted, explicitly flagged.
-      d.accuracyOverSubmitted = d.submitted > 0 ? d.correct / d.submitted : null;
-      d.completedDomainPct = d.complete && d.expected > 0 ? d.correct / d.expected : null;
+      Object.values(domains).forEach((d) => {
+        d.complete = d.submitted + d.dontKnow >= d.expected && d.unanswered === 0;
+        // A percentage is only meaningful over a completed domain. A partial
+        // domain reports accuracy over what was submitted, explicitly flagged.
+        d.accuracyOverSubmitted = d.submitted > 0 ? d.correct / d.submitted : null;
+        d.completedDomainPct = d.complete && d.expected > 0 ? d.correct / d.expected : null;
+      });
+
+      byBand[band] = { band, domains };
     });
 
     return {
@@ -252,8 +260,11 @@
       playerId: attempt.playerId,
       bankVersion: attempt.bankVersion,
       formId: attempt.formId,
-      bands: bandsScored,
-      domains,
+      bands: attempt.bands.slice(),
+      byBand,
+      // Convenience view of the FIRST band, so single-band callers read
+      // naturally. Never a cross-band total.
+      domains: (byBand[attempt.bands[0]] || { domains: {} }).domains,
       // Deliberately no overall figure: there is no defensible single number
       // for "Chinese ability" from these samples (A08).
       overall: null,
@@ -265,9 +276,11 @@
     const idx = BANDS.indexOf(currentBand);
     const reasons = [];
     let advance = true;
+    // Route on THIS band's results only.
+    const domains = (score.byBand && score.byBand[currentBand] ? score.byBand[currentBand].domains : score.domains) || {};
 
     Object.keys(ROUTING_THRESHOLDS).forEach((domain) => {
-      const d = score.domains[domain];
+      const d = domains[domain];
       const need = ROUTING_THRESHOLDS[domain];
       if (!d || !d.complete) {
         advance = false;
