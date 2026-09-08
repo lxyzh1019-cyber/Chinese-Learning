@@ -2825,6 +2825,33 @@ function bumpSessionGen(){
 // The revision we last saw on the server for each player. A write is only
 // allowed if the stored revision still matches it; otherwise another device has
 // written since, and blindly overwriting would silently discard their work.
+/** Meanings compared as a child reads them, so "to play" and "To play." are the
+ *  same answer. Used wherever a wrong option must not be secretly right. */
+function normMeaning(en){
+  return String(en==null?'':en).toLowerCase().replace(/[^a-z0-9;]+/g,' ').trim();
+}
+
+/** The senses of a gloss, as a child would count them: "to ask; to inquire" is
+ *  two answers, not one string. */
+function meaningSenses(en){
+  return normMeaning(en).split(';').map(t=>t.trim()).filter(Boolean);
+}
+
+/**
+ * Do two glosses share any sense?
+ *
+ * Comparing whole glosses is not enough. 请 is "to ask" and 问 is
+ * "to ask; to inquire" — different strings, but a child shown the prompt
+ * "to ask; to inquire" and offered both characters is right either way, and
+ * the one they did not pick gets logged to their practice queue.
+ */
+function sharesSense(a,b){
+  const A=meaningSenses(a);
+  if(!A.length)return false;
+  const B=new Set(meaningSenses(b));
+  return A.some(s=>B.has(s));
+}
+
 /**
  * Pick distractors that cannot be mistaken for the answer.
  *
@@ -2833,16 +2860,15 @@ function bumpSessionGen(){
  * and 她们 both "they", 两 and 二 both "two" — that produced questions where a
  * wrong option read exactly like the right one, which no child could answer.
  *
+ * Rendered text alone is not enough. Whichever way round the question runs, a
+ * candidate whose gloss shares a sense with the answer's is a second right
+ * answer: as an option it reads "to ask; to inquire" beside "to ask", and as a
+ * character it is 问 beside 请 under the prompt "to ask". Both are rejected.
+ *
  * @param pool   candidates to draw from
  * @param answer the correct item
  * @param render how an option is displayed; comparison happens on this
  */
-/** Meanings compared as a child reads them, so "to play" and "To play." are the
- *  same answer. Used wherever a wrong option must not be secretly right. */
-function normMeaning(en){
-  return String(en==null?'':en).toLowerCase().replace(/[^a-z0-9;]+/g,' ').trim();
-}
-
 function pickDistractors(pool,answer,render,n){
   const answerText=String(render(answer)||'').trim();
   const seen=new Set([answerText]);
@@ -2851,6 +2877,7 @@ function pickDistractors(pool,answer,render,n){
     if(out.length>=n)return;
     const text=String(render(c)||'').trim();
     if(!text||seen.has(text))return;
+    if(sharesSense(c&&c.en,answer&&answer.en))return;
     seen.add(text);
     out.push(c);
   });
@@ -6303,7 +6330,7 @@ function buildMCQ(vocab,n=8,avoidZh=[]){
       // and a child picking a genuinely right option was marked wrong and had
       // the word logged to their practice queue.
       const sameMeaning=new Set(pool
-        .filter(w=>w.zh!==correct.zh&&normMeaning(w.en)===normMeaning(correct.en))
+        .filter(w=>w.zh!==correct.zh&&sharesSense(w.en,correct.en))
         .map(w=>w.zh));
       const usable=(c)=>c&&c!==correct.zh&&!sameMeaning.has(c);
       const L=(CHAR_LOOKALIKES[correct.zh]||[]).filter(usable);

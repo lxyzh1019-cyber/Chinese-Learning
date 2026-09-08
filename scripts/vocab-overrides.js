@@ -150,9 +150,8 @@ module.exports = {
   // word from every pool built from a story.
   "非":   { py: "fēi",    en: "not" },
   "第": { en: "(makes a number an order: 1st, 2nd)" },
-  "吧": { en: "(softens a suggestion: let's…)" },
+  "吧": { py: "ba", en: "(softens a suggestion: let's…)" },
   "玩": { en: "to play" },
-  "干": { en: "dry; to do" },
   "净": { en: "clean" },
   "课": { en: "lesson; class" },
   "等": { en: "to wait; a rank" },

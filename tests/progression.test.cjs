@@ -1439,31 +1439,63 @@ test("T-T13: every study word in the corpus reaches the pool it is taught from",
     `${dropped.size} distinct study words never reach a game or flashcard deck`);
 });
 
-test("T-T14: a meaning-to-character question never has two right answers", () => {
+test("T-T14: an MCQ never has two right answers, either way round", () => {
   const a = app();
   F.installState(a);
   // The reverse MCQ shows a MEANING and asks for the character, but picked its
   // wrong options without comparing English — so any character sharing the
   // meaning was a second correct answer, and a child choosing it was marked
   // wrong and had the word logged to their practice queue.
+  //
+  // Comparing whole glosses only half-fixed it: 请 "to ask" and 问
+  // "to ask; to inquire" are different strings that a child reads as the same
+  // answer. The comparison is per sense, and it applies in both directions —
+  // as a character option and as an English option.
   const pool = [
+    { zh: "请", py: "qǐng", en: "to ask" },
+    { zh: "问", py: "wèn", en: "to ask; to inquire" }, // shares one sense only
     { zh: "干", py: "gān", en: "clean" },
-    { zh: "净", py: "jìng", en: "clean" },   // same meaning as the target
+    { zh: "净", py: "jìng", en: "clean" },             // shares its whole gloss
     { zh: "山", py: "shān", en: "mountain" },
     { zh: "水", py: "shuǐ", en: "water" },
     { zh: "人", py: "rén", en: "person" },
     { zh: "大", py: "dà", en: "big" },
+    { zh: "小", py: "xiǎo", en: "small" },
+    { zh: "书", py: "shū", en: "book" },
   ];
-  for (let seed = 0; seed < 40; seed++) {
-    const qs = a.buildMCQ(pool, 6);
+  const glossOf = (zh) => (pool.find((w) => w.zh === zh) || {}).en;
+  // Computed here, not via the app's own helper: an assertion that calls the
+  // function under test moves with the defect and can never fail.
+  const senses = (en) =>
+    String(en || "").toLowerCase().split(";").map((t) => t.trim()).filter(Boolean);
+  const twoRightAnswers = (x, y) => {
+    const b = new Set(senses(y));
+    return senses(x).some((t) => b.has(t));
+  };
+  let reverseSeen = 0;
+  let forwardSeen = 0;
+  for (let seed = 0; seed < 60; seed++) {
+    const qs = a.buildMCQ(pool, 10);
     for (const q of qs) {
-      if (!q.reverse) continue;
-      const answer = pool.find((w) => w.zh === q.zh);
-      const alsoRight = q.opts.filter((c) => {
-        const w = pool.find((x) => x.zh === c);
-        return w && w.zh !== q.zh && a.normMeaning(w.en) === a.normMeaning(answer.en);
-      });
-      assert.deepEqual(alsoRight, [], `"${q.correct}" also matches ${alsoRight.join(",")}`);
+      const answerEn = glossOf(q.zh);
+      if (q.reverse) {
+        // Prompt is the meaning; options are characters.
+        reverseSeen++;
+        const alsoRight = q.opts.filter(
+          (c) => c !== q.zh && twoRightAnswers(glossOf(c), answerEn),
+        );
+        assert.deepEqual(alsoRight, [], `"${q.correct}" also matches ${alsoRight.join(",")}`);
+      } else {
+        // Prompt is the character; options are meanings.
+        forwardSeen++;
+        const alsoRight = q.opts.filter(
+          (en) => en !== q.correct && twoRightAnswers(en, answerEn),
+        );
+        assert.deepEqual(alsoRight, [], `${q.zh} "${q.correct}" also matches ${alsoRight.join(" / ")}`);
+      }
     }
   }
+  // A guard that never ran would pass this test silently.
+  assert.ok(reverseSeen > 0, "no reverse questions were built");
+  assert.ok(forwardSeen > 0, "no forward questions were built");
 });

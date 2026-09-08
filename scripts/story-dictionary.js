@@ -122,28 +122,55 @@ function fromCurriculum(dict) {
 }
 
 /** The curated corrections. Highest trust, so they override on conflict. */
-function fromOverrides(dict) {
+/**
+ * The curated corrections. Highest trust, so they override on conflict.
+ *
+ * An override may state only a gloss. Those used to be dropped outright — a
+ * gloss-only correction did nothing and nothing said so — so they are collected
+ * and applied after every other source has supplied the reading.
+ */
+function readOverrides() {
   const file = path.join(ROOT, "scripts", "vocab-overrides.js");
-  if (!fs.existsSync(file)) return 0;
-  const mod = require(file);
-  const rows = mod.OVERRIDES || mod.overrides || mod;
-  let n = 0;
+  if (!fs.existsSync(file)) return { full: {}, glossOnly: {} };
+  const rows = require(file);
+  const full = {}, glossOnly = {};
   Object.entries(rows || {}).forEach(([zh, v]) => {
     if (!v || typeof v !== "object") return;
     const py = v.pinyin || v.py;
-    if (!py) return;
-    dict[zh] = { zh, py: String(py).trim(), en: String(v.en || "").trim(), source: "override" };
+    if (py) full[zh] = { py: String(py).trim(), en: String(v.en || "").trim() };
+    else if (v.en) glossOnly[zh] = String(v.en).trim();
+  });
+  return { full, glossOnly };
+}
+
+function fromOverrides(dict, full) {
+  let n = 0;
+  Object.entries(full).forEach(([zh, v]) => {
+    dict[zh] = { zh, py: v.py, en: v.en, source: "override" };
     n++;
   });
   return n;
 }
 
+/** Apply gloss-only corrections to whatever reading the other sources gave. */
+function applyGlossOverrides(dict, glossOnly) {
+  const unused = [];
+  Object.entries(glossOnly).forEach(([zh, en]) => {
+    if (!dict[zh]) { unused.push(zh); return; }
+    dict[zh] = Object.assign({}, dict[zh], { en, source: `${dict[zh].source}+override` });
+  });
+  return unused;
+}
+
 function build() {
   const dict = {};
   const stats = {};
-  stats.overrides = fromOverrides(dict);
+  const { full, glossOnly } = readOverrides();
+  stats.overrides = fromOverrides(dict, full);
   stats.stories = fromStories(dict);
   stats.curriculum = fromCurriculum(dict);
+  stats.glossOverrides = Object.keys(glossOnly).length;
+  stats.unusedGlossOverrides = applyGlossOverrides(dict, glossOnly);
   stats.total = Object.keys(dict).length;
   stats.singleChar = Object.keys(dict).filter((k) => [...k].length === 1).length;
   return { dict, stats };
@@ -253,6 +280,10 @@ if (require.main === module) {
   const { stats } = build();
   console.log("story dictionary");
   console.log(`  from curated overrides : ${stats.overrides}`);
+  console.log(`  gloss-only corrections : ${stats.glossOverrides} applied` +
+    (stats.unusedGlossOverrides.length
+      ? `, ${stats.unusedGlossOverrides.length} matched nothing (${stats.unusedGlossOverrides.join(" ")})`
+      : ""));
   console.log(`  from authored stories  : ${stats.stories}`);
   console.log(`  from gate word lists   : ${stats.curriculum}`);
   console.log(`  total entries          : ${stats.total} (${stats.singleChar} single characters)`);
