@@ -821,6 +821,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
     </div>
     <div id="streak-cal"></div>
     <div class="daily-word-box" id="daily-word-box"></div>
+    <div class="daily-word-box" id="review-today-box" style="margin-top:.55rem;"></div>
     <div class="daily-word-box" id="daily-mission-box" style="margin-top:.55rem;"></div>
     <div class="daily-word-box" id="rivalry-coop-strip" style="margin-top:.55rem;"></div>
     <div id="hub-mystery-card" style="margin-top:.55rem;"></div>
@@ -1179,6 +1180,7 @@ const UI_LABELS=Object.freeze({
   daily:          {icon:'\ud83d\udcc6',en:'Daily',              zh:'\u6bcf\u65e5'},
   clearProgress:  {icon:'\ud83d\uddd1\ufe0f',en:'Clear All Progress',zh:'\u6e05\u9664\u6240\u6709\u8fdb\u5ea6'},
   resumeLast:     {icon:'\u25b6',en:'Resume last activity',zh:'\u7ee7\u7eed\u4e0a\u6b21'},
+  reviewToday:    {icon:'\ud83c\udf31',en:'Review today',zh:'\u4eca\u65e5\u590d\u4e60'},
   continueFlash:  {icon:'\u25b6',en:'Continue flash cards',zh:'\u7ee7\u7eed\u8bcd\u5361'},
   continueGate:   {icon:'\u25b6',en:'Continue gate quiz',zh:'\u7ee7\u7eed\u5173\u4e3b\u8003'},
   continueStory:  {icon:'\u25b6',en:'Continue story quiz',zh:'\u7ee7\u7eed\u6545\u4e8b\u8003'},
@@ -3694,7 +3696,7 @@ function touchSession(kind){
 function mostRecentSession(){
   if(!curP)return null;
   const ps=state[curP].pendingSessions||{};
-  const kinds=['story','gate','champion','flash','match','rain','listen','trace','revenge'];
+  const kinds=['story','gate','champion','flash','match','rain','listen','trace','revenge','review'];
   let best=null;
   kinds.forEach(k=>{
     const sess=ps[k];
@@ -4004,6 +4006,7 @@ function closeGamesOverlay(){
   // state[curP] — and award stars for a round the child abandoned.
   clearRainTimers();
   drainScope('games');
+  drainScope('review');
 }
 function setGamesFailedFocus(active){
   const ov=document.getElementById('games-overlay');
@@ -4071,11 +4074,30 @@ function gamePickerHtml(){
       ${gameRow('trace','✍️ Trace',!ul.trace,'Read story + finish flashcards 🃏',gs.trace||0)}
       ${gameRow('match','🧠 Match',!ul.match,'Read the story twice 📖📖',gs.match||0)}
       ${gameRow('rain','🌧️ Rain',!ul.rain,'Play Listen first 👂',gs.rain||0)}
+      ${reviewPickerRow()}
     </div>
     <div style="margin-top:.55rem;font-size:.7rem;line-height:1.5;color:var(--muted);text-align:center;">
       <b>${L('scopeDynasty',{icon:false})}</b> = words from the gate on your map ·
       <b>${L('scopeHsk',{icon:false})}</b> = words from your current HSK level ·
       <b>${L('scopeWip',{icon:false})}</b> = words you missed before (practice list)
+    </div>`;
+}
+
+/** The fifth row of the picker: today's review, always open, never required. */
+function reviewPickerRow(){
+  const s=curP?state[curP]:null;
+  const due=s?reviewDueToday(curP,'normal'):{dueTotal:0,summary:''};
+  const pending=!!(s&&s.pendingSessions&&s.pendingSessions.review);
+  const n=due.dueTotal||0;
+  const open=pending||n>0;
+  return `<div style="grid-column:1/-1;padding:.45rem;border:1px solid rgba(39,174,96,.28);border-radius:10px;background:rgba(39,174,96,.05);">
+      <div style="font-weight:800;margin-bottom:.2rem;text-align:center;">${L('reviewToday')}</div>
+      <div style="font-size:.7rem;color:var(--muted);text-align:center;margin-bottom:.3rem;">${pending?'A review is waiting to be finished':n?due.summary:'Nothing due today — come back tomorrow ✅'}</div>
+      <div style="display:flex;gap:.35rem;justify-content:center;">
+        ${open
+          ?`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="${pending?"resumeSession('review')":'startReviewRound()'}">${pending?'Continue':'Start'}</button>`
+          :`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;opacity:.4;cursor:default;" disabled>Start</button>`}
+      </div>
     </div>`;
 }
 
@@ -4740,6 +4762,7 @@ function resumeSession(type){
   if(type==='listen')return restoreListen();
   if(type==='trace')return restoreTrace();
   if(type==='revenge')return restoreRevengeRound();
+  if(type==='review')return restoreReviewRound();
   return false;
 }
 
@@ -4758,6 +4781,7 @@ function resumeLastSession(){
   if(ps.listen&&resumeSession('listen'))return;
   if(ps.trace&&resumeSession('trace'))return;
   if(ps.revenge&&resumeSession('revenge'))return;
+  if(ps.review&&resumeSession('review'))return;
   showToast('Nothing to resume right now—start a fresh challenge!');
 }
 
@@ -5264,6 +5288,7 @@ function renderHub(){
     maybeMascotToast('streak');
   }
   renderDailyWordBox(curP);
+  renderReviewTodayBox(curP);
   renderDailyMissionPanel(curP);
   renderRivalryCoopStrip();
   renderHubRulesBody();
@@ -5278,7 +5303,7 @@ function renderHub(){
     const failWords=Object.values(s.failedWords||{})
       .sort((a,b)=>b.failCount-a.failCount).slice(0,8);
     const ps=s.pendingSessions||{};
-    const resumeBtn=(ps.story||ps.gate||ps.champion||ps.flash||ps.match||ps.rain||ps.listen||ps.trace)
+    const resumeBtn=(ps.story||ps.gate||ps.champion||ps.flash||ps.match||ps.rain||ps.listen||ps.trace||ps.review)
       ?'<button class="drill-btn" style="margin-top:.45rem;" onclick="resumeLastSession()">'+L('resumeLast')+'</button>':'';
     if(failWords.length){
       practiceBox.innerHTML='<div class="practice-box-title">💪 Practice</div>'+
@@ -7195,6 +7220,248 @@ function reviewStatus(p,zh,skill){
   if(typeof ReviewCore==='undefined')return'';
   const s=state[p];if(!s)return'';
   return ReviewCore.statusOf(ReviewCore.getRecord(s.reviewRecords||{},zh,skill));
+}
+
+// ══════════════════════════════════════════════════════
+// REVIEW TODAY — the student-facing end of the retention schedule
+// ══════════════════════════════════════════════════════
+// The schedule was stored and never read back to a child: reviewDueToday and
+// ReviewCore.selectDue existed and were tested, and nothing in the app called
+// them (audit F05). A word answered correctly today was scheduled for a check
+// that never came. This is that check: a bounded round over what is due,
+// each item asked in the skill it is due for, first response recorded as
+// unaided and a retry after the reveal recorded as sameSession.
+//
+// It is outside the gate requirements — always open, never required — and
+// pays a small flat amount on natural completion regardless of accuracy,
+// so it is worth doing and never a score to fear. Early exit saves and pays
+// nothing (§2).
+let reviewSt=null;
+const REVIEW_STARS=5;
+/** Skills the round can serve. writingRecall has no producer in the app yet
+ *  (only the assessment asks for writing, and it never writes to the review
+ *  store), so a writing branch would serve an always-empty queue. */
+const REVIEW_SERVED_SKILLS=['recognition','meaning','contextComprehension'];
+
+/** {zh,py,en} for a review target, from whatever the app knows about it. */
+function reviewWordMeta(zh){
+  if(!zh)return null;
+  const s=curP&&state[curP];
+  const lib=s&&s.library&&s.library[zh];
+  const fw=s&&s.failedWords&&s.failedWords[zh];
+  let hit=null;
+  Object.values(HSK_VOCAB||{}).some(list=>(list||[]).some(w=>{if(w&&w.zh===zh){hit=w;return true;}return false;}));
+  if(!hit)Object.values(GATE_VOCAB||{}).some(list=>(list||[]).some(w=>{if(w&&w.zh===zh){hit=w;return true;}return false;}));
+  const meta=(!hit&&!lib&&!fw)?(getCharMeta()[zh]||null):null;
+  const py=(hit&&hit.py)||(lib&&lib.py)||(fw&&fw.py)||(meta&&meta.py)||'';
+  const en=(hit&&hit.en)||(lib&&lib.mn)||(fw&&fw.en)||(meta&&meta.en)||'';
+  if(!en&&!py)return null;
+  return{zh,py,en};
+}
+
+/** Every word the app could offer as a wrong option. */
+function reviewDistractorPool(){
+  const out=[];const seen=new Set();
+  const add=w=>{if(w&&w.zh&&w.en&&!seen.has(w.zh)){seen.add(w.zh);out.push({zh:w.zh,py:w.py||'',en:w.en});}};
+  Object.values(HSK_VOCAB||{}).forEach(list=>(list||[]).forEach(add));
+  const s=curP&&state[curP];
+  Object.entries((s&&s.library)||{}).forEach(([zh,e])=>add({zh,py:e.py,en:e.mn}));
+  return out;
+}
+
+/** A story sentence containing the word, with its translation, or null. */
+function reviewSentenceFor(zh){
+  for(const st of Object.values(STORIES_MAP||{})){
+    const sents=st.sents||[];
+    for(let i=0;i<sents.length;i++){
+      const toks=sents[i];
+      const hit=toks.some(t=>t&&((t.t==='c'&&t.ch===zh)||(t.t==='n'&&t.tx===zh)));
+      if(!hit)continue;
+      const text=toks.map(t=>{
+        if(!t)return'';
+        if((t.t==='c'&&t.ch===zh)||(t.t==='n'&&t.tx===zh))return'＿＿';
+        return t.ch||t.tx||'';
+      }).join('');
+      return{zh:text,en:(st.trans&&st.trans[i])||''};
+    }
+  }
+  return null;
+}
+
+/**
+ * Build today's round. Each due record becomes one item in the skill it is
+ * due for; a record the app cannot ask about yet (no word data, a skill with
+ * no exercise) stays due and is counted in "remain for later" rather than
+ * being dropped or asked as something else.
+ */
+function buildReviewRound(p,mode){
+  const due=reviewDueToday(p,mode);
+  const pool=reviewDistractorPool();
+  const items=[];let deferred=0;
+  (due.items||[]).forEach(r=>{
+    const skill=r.skill;
+    if(REVIEW_SERVED_SKILLS.indexOf(skill)===-1){deferred++;return;}
+    const w=reviewWordMeta(r.wordId);
+    if(!w||!w.en){deferred++;return;}
+    const others=pool.filter(x=>x.zh!==w.zh);
+    if(skill==='recognition'){
+      const wrong=pickDistractors(others,w,listenSound,3);
+      items.push({zh:w.zh,py:w.py,en:w.en,skill,kind:'audio',opts:shuffleArr([w,...wrong]).map(x=>x.zh),correct:w.zh});
+    }else if(skill==='meaning'){
+      const wrong=pickDistractors(others,w,x=>x.en,3);
+      items.push({zh:w.zh,py:w.py,en:w.en,skill,kind:'meaning',opts:shuffleArr([w,...wrong]).map(x=>x.en),correct:w.en});
+    }else{
+      const sent=reviewSentenceFor(w.zh);
+      if(!sent){deferred++;return;}
+      // Options are characters under a translated prompt, so what identifies
+      // the answer is its meaning (§9.6).
+      const wrong=pickDistractors(others,w,x=>x.en,3);
+      items.push({zh:w.zh,py:w.py,en:w.en,skill,kind:'context',sentence:sent.zh,sentenceEn:sent.en,opts:shuffleArr([w,...wrong]).map(x=>x.zh),correct:w.zh});
+    }
+  });
+  const remaining=(due.remaining||0)+deferred;
+  const summary=`${items.length} to review${remaining?`; ${remaining} remain for later`:''}`;
+  return{items,dueTotal:due.dueTotal||0,remaining,summary};
+}
+
+function persistReview(){
+  if(!curP||!reviewSt||!state[curP].pendingSessions)return;
+  state[curP].pendingSessions.review={
+    items:reviewSt.items.map(x=>({...x,opts:[...x.opts]})),qi:reviewSt.qi,correct:reviewSt.correct,
+    answered:reviewSt.answered,activeMs:reviewSt.activeMs,remaining:reviewSt.remaining,dueTotal:reviewSt.dueTotal,
+    startedAt:reviewSt.startedAt,mode:reviewSt.mode||'normal'};
+  touchSession('review');
+}
+
+function startReviewRound(mode){
+  if(!curP)return;
+  ensureState(curP);
+  const round=buildReviewRound(curP,mode||'normal');
+  if(!round.items.length){showToast('Nothing due today — come back tomorrow ✅',2400);return;}
+  reviewSt={items:round.items,qi:0,correct:0,answered:0,activeMs:0,remaining:round.remaining,dueTotal:round.dueTotal,
+    startedAt:Date.now(),shownAt:0,retry:false,mode:mode||'normal'};
+  persistReview();saveState();
+  const ov=document.getElementById('games-overlay');if(ov)ov.classList.add('show');
+  setGamesFailedFocus(false);
+  renderReviewRound();
+}
+
+function restoreReviewRound(){
+  const ps=state[curP].pendingSessions.review;if(!ps||!ps.items||!ps.items.length)return false;
+  reviewSt={items:ps.items.map(x=>({...x,opts:[...x.opts]})),qi:ps.qi||0,correct:ps.correct||0,answered:ps.answered||0,activeMs:ps.activeMs||0,
+    remaining:ps.remaining||0,dueTotal:ps.dueTotal||0,startedAt:ps.startedAt||Date.now(),shownAt:0,retry:false,mode:ps.mode||'normal'};
+  const ov=document.getElementById('games-overlay');if(ov)ov.classList.add('show');
+  renderReviewRound();return true;
+}
+
+function renderReviewRound(){
+  const body=document.getElementById('games-body');if(!body||!reviewSt)return;
+  const spent=typeof ReviewCore!=='undefined'&&ReviewCore.budgetSpent({activeMs:reviewSt.activeMs,answered:reviewSt.answered},reviewSt.mode);
+  if(reviewSt.qi>=reviewSt.items.length||spent){finishReviewRound();return;}
+  const it=reviewSt.items[reviewSt.qi];
+  reviewSt.shownAt=Date.now();
+  const prompt=it.kind==='audio'
+    ?`<div class="mq-question" style="text-align:center;">Listen · tap the character</div>
+       <div style="text-align:center;margin:.45rem 0;"><button class="q-speak" onclick="speak('${it.zh.replace(/'/g,"\\'")}')">🔊</button></div>`
+    :it.kind==='meaning'
+    ?`<div class="mq-hz" style="text-align:center;">${it.zh}</div>
+       <div class="mq-question" style="text-align:center;">What does this mean?</div>`
+    :`<div class="practice-box" style="font-family:var(--fzh);font-size:1.05rem;line-height:1.9;text-align:center;">${it.sentence}</div>
+       <div style="font-size:.74rem;color:var(--muted);text-align:center;margin:.3rem 0;">${it.sentenceEn}</div>
+       <div class="mq-question" style="text-align:center;">Which word fills the gap?</div>`;
+  body.innerHTML=`<div class="mq-progress">🌱 Review today · ${reviewSt.qi+1}/${reviewSt.items.length}${reviewSt.retry?' · one more try':''}</div>
+    ${prompt}
+    <div class="mq-opts" id="review-opts"></div><div class="mq-fb" id="review-fb"></div>
+    <div style="text-align:center;margin-top:.55rem;"><button class="btn-s" style="font-size:.75rem;opacity:.7;" onclick="exitReviewRound()">Save &amp; Exit</button></div>`;
+  if(it.kind==='audio')speak(it.zh);
+  const grid=document.getElementById('review-opts');
+  it.opts.forEach((o,i)=>{
+    const b=document.createElement('button');b.className='mcq-opt'+(it.kind==='meaning'?'':' zh-opt');b.textContent=o;
+    b.onclick=()=>answerReview(i);
+    grid.appendChild(b);
+  });
+}
+
+/**
+ * One tap. The first response on an item is unaided evidence; a miss shows the
+ * answer and asks the same item once more, and that second response is
+ * recorded as sameSession — being told is not remembering (§25).
+ */
+function answerReview(idx){
+  if(!reviewSt||!curP)return;
+  const it=reviewSt.items[reviewSt.qi];if(!it)return;
+  const picked=it.opts[idx];
+  const ok=picked===it.correct;
+  const grid=document.getElementById('review-opts');const fb=document.getElementById('review-fb');
+  if(grid)grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;if(b.textContent===it.correct)b.classList.add('correct');});
+  const w={zh:it.zh,py:it.py,en:it.en};
+  const retry=!!reviewSt.retry;
+  noteEvidence(curP,w,it.skill,ok,{source:'review',sameSession:retry});
+  if(!retry){
+    reviewSt.answered++;
+    reviewSt.activeMs+=Math.max(0,Math.min(10*60*1000,Date.now()-(reviewSt.shownAt||Date.now())));
+  }
+  if(ok){
+    if(!retry)reviewSt.correct++;
+    if(fb){fb.className='mq-fb ok';fb.textContent='✅';}
+    reviewSt.retry=false;reviewSt.qi++;
+    persistReview();saveState();
+    laterCall('review',renderReviewRound,700);
+    return;
+  }
+  if(fb){fb.className='mq-fb err';fb.textContent='❌ '+it.correct;}
+  if(!retry){
+    logWrong(curP,it.zh,it.py,it.en);
+    reviewSt.retry=true;
+    persistReview();saveState();
+    showCorrectRevealCard({zh:it.zh,py:it.py,en:it.en,onDone:()=>{if(reviewSt)renderReviewRound();}});
+    return;
+  }
+  // Missed the retry too: move on, the schedule already has it back tomorrow.
+  reviewSt.retry=false;reviewSt.qi++;
+  persistReview();saveState();
+  laterCall('review',renderReviewRound,900);
+}
+
+function exitReviewRound(){
+  if(!reviewSt)return;
+  persistReview();saveState();
+  showToast('Progress saved — finish the review to earn stars! 🌱',2400);
+  drainScope('review');
+  reviewSt=null;
+  openGamesHub();
+}
+
+function finishReviewRound(){
+  const body=document.getElementById('games-body');
+  const done=reviewSt?reviewSt.answered:0;
+  const right=reviewSt?reviewSt.correct:0;
+  const left=reviewSt?Math.max(0,reviewSt.remaining+(reviewSt.items.length-reviewSt.qi)):0;
+  clearPendingSession('review');
+  addEarnedStars(REVIEW_STARS);
+  reviewSt=null;
+  saveState();
+  if(body)body.innerHTML=`<div class="mq-title" style="text-align:center;">🌱 Review done!</div>
+    <div class="mq-question" style="text-align:center;">${done} reviewed · ${right} remembered first time · +${REVIEW_STARS}⭐</div>
+    <div style="font-size:.78rem;color:var(--muted);text-align:center;margin:.4rem 0 .7rem;">${left?`${left} remain for later — they will be here tomorrow.`:'Nothing else is due today.'}</div>
+    <div style="text-align:center;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
+  showToast(`🌱 Review done! +${REVIEW_STARS} stars for showing up.`,2600);
+  renderReviewTodayBox(curP);
+}
+
+/** The hub card: how much is due, and a way in. */
+function renderReviewTodayBox(p){
+  const el=document.getElementById('review-today-box');if(!el||!p||!state[p])return;
+  const due=reviewDueToday(p,'normal');
+  const pending=state[p].pendingSessions&&state[p].pendingSessions.review;
+  const n=due.dueTotal||0;
+  const label=pending?'Continue':n?'Review':'Done';
+  const line=pending?'A review is waiting to be finished':n?due.summary:'Nothing due today — come back tomorrow ✅';
+  el.innerHTML=`<div class="dwb-title">${L('reviewToday')}</div>
+    <div class="dwb-row">
+      <span class="dwb-done">${line}</span>
+      <button class="dwb-btn" onclick="${pending?"resumeSession('review')":'startReviewRound()'}" ${(!n&&!pending)?'disabled':''}>${label}</button>
+    </div>`;
 }
 
 function logWrong(p,zh,py,en){
