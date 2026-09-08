@@ -861,3 +861,172 @@ test("A-T34: the break is offered once per twenty minutes of answering", () => {
   assert.equal(C.shouldOfferBreak(a), true, "and again after the next twenty");
   assert.equal(newAttempt().breakOfferedAtMs, 0, "a fresh attempt carries the field");
 });
+
+// ── the 2026-09-08 audit: the assessment save lifecycle (A26-R01, A26-R02) ──
+// Both defects survived a green suite because every existing test awaits each
+// call, so no upload is ever in flight while the attempt changes underneath it.
+// These hold the write open on purpose.
+
+/** Like fakeDb, but every set() parks until release() is called. */
+function gatedDb(seed = {}) {
+  const docs = Object.assign({}, seed);
+  const gates = [];
+  const db = {
+    docs,
+    open: false,
+    pending: () => gates.length,
+    release() { gates.splice(0).forEach((g) => g()); },
+    collection: (c) => ({
+      doc: (a) => ({
+        collection: (s) => ({
+          doc: (b) => {
+            const key = `${c}/${a}/${s}/${b}`;
+            return {
+              get: async () => ({ exists: key in docs, data: () => docs[key] }),
+              set: (v) => new Promise((res) => {
+                const write = () => { docs[key] = JSON.parse(JSON.stringify(v)); res(); };
+                if (db.open) return write();
+                gates.push(write);
+              }),
+            };
+          },
+        }),
+      }),
+    }),
+  };
+  return db;
+}
+
+/** Let parked promises reach their gate. */
+const settle = () => new Promise((r) => setImmediate(r));
+
+test("A26-R02: a delayed acknowledgement never marks a revision the cloud never saw", async () => {
+  const storage = memStorage();
+  const db = gatedDb();
+  const ctx = { storage, db };
+  const a = newAttempt();
+  a.revision = 2;
+  S.saveAttempt(ctx, a);
+
+  const push = S.pushAttempt(ctx, a);
+  await settle();
+  // The child answers another question while the write is in flight.
+  a.revision = 3;
+  db.release();
+  assert.equal((await push).ok, true);
+
+  const key = `chinese-adventure/jenn/assessments/${a.attemptId}`;
+  assert.equal(db.docs[key].revision, 2, "the cloud holds the revision that was uploaded");
+  assert.equal(S.readLocal(storage).synced[a.attemptId], 2,
+    "the acknowledgement is the uploaded revision, not whatever the object became");
+  assert.equal(S.isSynced(ctx, a), false, "revision 3 is only on this device, and says so");
+});
+
+test("A26-R02: answering fast does not wedge one device into a permanent empty conflict", async () => {
+  const storage = memStorage();
+  const db = gatedDb();
+  const ctx = { storage, db };
+  const a = newAttempt();
+  a.revision = 2;
+  S.saveAttempt(ctx, a);
+
+  const first = S.pushAttempt(ctx, a);
+  await settle();
+  a.revision = 3;
+  S.saveAttempt(ctx, a);
+  const second = S.pushAttempt(ctx, a);
+  db.release();
+  await settle();
+  db.release();
+
+  assert.equal((await first).ok, true);
+  const r2 = await second;
+  assert.equal(r2.ok, true, "the follow-up upload is accepted, not refused as stale");
+  assert.equal(r2.conflict, undefined, "a single device never conflicts with itself");
+  assert.equal(S.isSynced(ctx, a), true, "and ends up genuinely synced");
+});
+
+test("A26-R02: a base that has run ahead of the cloud re-bases instead of jamming forever", async () => {
+  const storage = memStorage();
+  const db = fakeDb();
+  const ctx = { storage, db };
+  const a = newAttempt();
+  a.revision = 4;
+  S.saveAttempt(ctx, a);
+  assert.equal((await S.pushAttempt(ctx, a)).ok, true);
+
+  // Poison the acknowledged base the way the old pushAttempt did.
+  const blob = S.readLocal(storage);
+  blob.synced[a.attemptId] = 9;
+  storage.setItem("zh_adv_assess_v1", JSON.stringify(blob));
+
+  a.revision = 5;
+  const res = await S.pushAttempt(ctx, a);
+  assert.equal(res.ok, true, "no other writer can move the cloud backwards, so this is recoverable");
+  assert.equal(S.readLocal(storage).synced[a.attemptId], 5);
+});
+
+test("A26-R01: a save made during a flush is uploaded, not silently dropped", async () => {
+  const storage = memStorage();
+  const db = gatedDb();
+  const ctx = { storage, db };
+
+  const A = newAttempt({ attemptId: "att-A" });
+  A.revision = 1;
+  S.saveAttempt(ctx, A);
+
+  const flush = S.flushQueue(ctx);
+  await settle();
+  // While revision 1 is in flight: revision 2 of A, and a second assessment B.
+  A.revision = 2;
+  S.saveAttempt(ctx, A);
+  const B = newAttempt({ attemptId: "att-B" });
+  B.revision = 1;
+  S.saveAttempt(ctx, B);
+  db.release();
+  await settle();
+  db.release();
+  await flush;
+
+  const q = S.readLocal(storage).queue;
+  const ids = q.map((e) => e.attemptId).sort();
+  assert.deepEqual(ids, ["att-A", "att-B"],
+    "neither the newer revision of A nor the newly queued B may be discarded");
+  assert.equal(q.find((e) => e.attemptId === "att-A").baseRevision, 2);
+
+  // And a later flush delivers both.
+  db.open = true;
+  const again = await S.flushQueue(ctx);
+  assert.equal(again.pending, 0);
+  assert.equal(db.docs["chinese-adventure/jenn/assessments/att-A"].revision, 2);
+  assert.equal(db.docs["chinese-adventure/jenn/assessments/att-B"].revision, 1);
+});
+
+test("A26-R01: a failed upload keeps its queue entry; a genuine conflict is reported", async () => {
+  const storage = memStorage();
+  const a = newAttempt();
+  a.revision = 1;
+  S.saveAttempt({ storage, db: null }, a);
+
+  // Offline: nothing uploads, nothing is lost.
+  const off = await S.flushQueue({ storage, db: null });
+  assert.equal(off.pending, 1);
+
+  // Someone else has already written a different answer at a revision this
+  // device never acknowledged.
+  const item = C.selectItems(bank, forms, "A", "C1")[0];
+  const db = fakeDb({
+    [`chinese-adventure/jenn/assessments/${a.attemptId}`]: Object.assign(newAttempt(), {
+      revision: 7, responses: [{ itemId: item.id, selectedOptionId: "zzz" }],
+    }),
+  });
+  C.present(a, item);
+  C.respond(a, { itemId: item.id, selectedOptionId: item.acceptedOptionIds[0] });
+  S.saveAttempt({ storage, db }, a);
+
+  const res = await S.flushQueue({ storage, db });
+  assert.equal(res.conflicts.length, 1, "a real divergence is surfaced");
+  assert.equal(res.conflicts[0].conflictingItems.length, 1, "and names the item that differs");
+  assert.equal(res.status, S.SYNC_ATTENTION);
+  assert.equal(S.readLocal(storage).queue.length, 1, "the unsent answer stays queued");
+});
