@@ -1,7 +1,11 @@
 # Handoff — Chinese Adventure, after the baseline fixes
 
-Read this first in a new session. It is the working state, written to be the
-only file you need.
+> **Superseded.** Start at [`docs/STATUS-AND-BACKLOG.md`](STATUS-AND-BACKLOG.md),
+> which carries the current state and the ordered backlog. This file is kept as
+> the record of the session that took the baseline; its "Blocked on the owner or
+> on hardware" section is still accurate but is repeated there.
+
+Written as the working state at the time of the baseline sitting.
 
 ---
 
