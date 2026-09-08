@@ -1,0 +1,405 @@
+{
+  "id": "song",
+  "did": 14,
+  "level": 3,
+  "title": "中国的四大发明",
+  "en": "China's Four Great Inventions",
+  "names": {
+    "宋朝": {
+      "py": "Sòngcháo",
+      "en": "Song Dynasty"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "宋朝的人发明了活字印刷。",
+      "en": "Song Dynasty people invented movable-type printing.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "宋朝",
+          "py": "Sòngcháo",
+          "mn": "Song Dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "invent-"
+        },
+        {
+          "zh": "明",
+          "py": "míng",
+          "mn": "-invent"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL"
+        },
+        {
+          "zh": "活",
+          "py": "huó",
+          "mn": "move-"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "-type"
+        },
+        {
+          "zh": "印",
+          "py": "yìn",
+          "mn": "print-"
+        },
+        {
+          "zh": "刷",
+          "py": "shuā",
+          "mn": "-ing"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "这让书变得便宜，更多人可以读书了。",
+      "en": "This made books cheap, and more people could read.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "made"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "become"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "ADV"
+        },
+        {
+          "zh": "便",
+          "py": "pián",
+          "mn": "cheap-"
+        },
+        {
+          "zh": "宜",
+          "py": "yí",
+          "mn": "-cheap"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "more"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "could"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "able"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "read"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "now"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "中国人还发明了火药、指南针和造纸术。",
+      "en": "Chinese people also invented gunpowder, the compass, and paper-making.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "also"
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "invent-"
+        },
+        {
+          "zh": "明",
+          "py": "míng",
+          "mn": "-ed"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL"
+        },
+        {
+          "zh": "火",
+          "py": "huǒ",
+          "mn": "gun-"
+        },
+        {
+          "zh": "药",
+          "py": "yào",
+          "mn": "-powder"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "指",
+          "py": "zhǐ",
+          "mn": "com-"
+        },
+        {
+          "zh": "南",
+          "py": "nán",
+          "mn": "-pass"
+        },
+        {
+          "zh": "针",
+          "py": "zhēn",
+          "mn": "needle"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "造",
+          "py": "zào",
+          "mn": "make-"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "-paper"
+        },
+        {
+          "zh": "术",
+          "py": "shù",
+          "mn": "technique"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "指南针帮助水手在海上找到方向。",
+      "en": "The compass helped sailors find their direction at sea.",
+      "seg": [
+        {
+          "zh": "指",
+          "py": "zhǐ",
+          "mn": "com-"
+        },
+        {
+          "zh": "南",
+          "py": "nán",
+          "mn": "-pass"
+        },
+        {
+          "zh": "针",
+          "py": "zhēn",
+          "mn": "needle"
+        },
+        {
+          "zh": "帮",
+          "py": "bāng",
+          "mn": "helped"
+        },
+        {
+          "zh": "助",
+          "py": "zhù",
+          "mn": "assist"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "sea-"
+        },
+        {
+          "zh": "手",
+          "py": "shǒu",
+          "mn": "-sailor"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "海",
+          "py": "hǎi",
+          "mn": "sea"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "找",
+          "py": "zhǎo",
+          "mn": "find"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "reach"
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "direc-"
+        },
+        {
+          "zh": "向",
+          "py": "xiàng",
+          "mn": "-tion"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "这些发明改变了整个世界。",
+      "en": "These inventions changed the whole world.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "these"
+        },
+        {
+          "zh": "些",
+          "py": "xiē",
+          "mn": "CL-PL"
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "inven-"
+        },
+        {
+          "zh": "明",
+          "py": "míng",
+          "mn": "-tions"
+        },
+        {
+          "zh": "改",
+          "py": "gǎi",
+          "mn": "changed"
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "changed"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL"
+        },
+        {
+          "zh": "整",
+          "py": "zhěng",
+          "mn": "whole"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "CL"
+        },
+        {
+          "zh": "世",
+          "py": "shì",
+          "mn": "world-"
+        },
+        {
+          "zh": "界",
+          "py": "jiè",
+          "mn": "-world"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

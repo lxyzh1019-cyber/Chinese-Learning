@@ -3,7 +3,7 @@
   "did": 18,
   "level": 1,
   "title": "马可·波罗来华",
-  "en": "Marco Polo Visits China",
+  "en": "Marco Polo Comes to China",
   "names": {
     "元朝": {
       "py": "Yuáncháo",
@@ -36,474 +36,44 @@
   },
   "sents": [
     {
-      "zh": "元朝时候，忽必烈统治着当时世界上最大的帝国。",
-      "en": "During the Yuan Dynasty, Kublai Khan ruled the world's largest empire.",
-      "seg": [
-        {
-          "t": "n",
-          "zh": "元朝",
-          "py": "Yuáncháo",
-          "mn": "Yuan Dynasty"
-        },
-        {
-          "zh": "时",
-          "py": "shí",
-          "mn": "time"
-        },
-        {
-          "zh": "候",
-          "py": "hòu",
-          "mn": "period"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "t": "n",
-          "zh": "忽必烈",
-          "py": "Hūbìliè",
-          "mn": "Kublai Khan"
-        },
-        {
-          "zh": "统",
-          "py": "tǒng",
-          "mn": "rule-"
-        },
-        {
-          "zh": "治",
-          "py": "zhì",
-          "mn": "-rule"
-        },
-        {
-          "zh": "着",
-          "py": "zhe",
-          "mn": "ING"
-        },
-        {
-          "zh": "当",
-          "py": "dāng",
-          "mn": "at that"
-        },
-        {
-          "zh": "时",
-          "py": "shí",
-          "mn": "time"
-        },
-        {
-          "zh": "世",
-          "py": "shì",
-          "mn": "world"
-        },
-        {
-          "zh": "界",
-          "py": "jiè",
-          "mn": "world"
-        },
-        {
-          "zh": "上",
-          "py": "shàng",
-          "mn": "on"
-        },
-        {
-          "zh": "最",
-          "py": "zuì",
-          "mn": "most"
-        },
-        {
-          "zh": "大",
-          "py": "dà",
-          "mn": "large"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "DE"
-        },
-        {
-          "zh": "帝",
-          "py": "dì",
-          "mn": "em-"
-        },
-        {
-          "zh": "国",
-          "py": "guó",
-          "mn": "-pire"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "元朝的时候，中国很大。",
+      "en": "In the Yuan dynasty China was very large."
     },
     {
-      "zh": "马可·波罗从意大利来到中国，在大都住了十七年。",
-      "en": "Marco Polo came from Italy to China and lived in Dadu (Beijing) for 17 years.",
-      "seg": [
-        {
-          "t": "n",
-          "zh": "马可·波罗",
-          "py": "Mǎkě Bōluó",
-          "mn": "Marco Polo"
-        },
-        {
-          "zh": "从",
-          "py": "cóng",
-          "mn": "from"
-        },
-        {
-          "t": "n",
-          "zh": "意大利",
-          "py": "Yìdàlì",
-          "mn": "Italy"
-        },
-        {
-          "zh": "来",
-          "py": "lái",
-          "mn": "came"
-        },
-        {
-          "zh": "到",
-          "py": "dào",
-          "mn": "to"
-        },
-        {
-          "t": "n",
-          "zh": "中国",
-          "py": "Zhōngguó",
-          "mn": "China"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "在",
-          "py": "zài",
-          "mn": "stayed in"
-        },
-        {
-          "t": "n",
-          "zh": "大都",
-          "py": "Dàdū",
-          "mn": "Dadu/Beijing"
-        },
-        {
-          "zh": "住",
-          "py": "zhù",
-          "mn": "lived"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "CMPL"
-        },
-        {
-          "zh": "十",
-          "py": "shí",
-          "mn": "ten"
-        },
-        {
-          "zh": "七",
-          "py": "qī",
-          "mn": "seven"
-        },
-        {
-          "zh": "年",
-          "py": "nián",
-          "mn": "years"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "那时候的大王叫忽必烈。",
+      "en": "The great khan of that time was called Kublai."
     },
     {
-      "zh": "他对中国的繁荣感到十分惊讶。",
-      "en": "He was extremely astonished by China's prosperity.",
-      "seg": [
-        {
-          "zh": "他",
-          "py": "tā",
-          "mn": "he"
-        },
-        {
-          "zh": "对",
-          "py": "duì",
-          "mn": "towards"
-        },
-        {
-          "t": "n",
-          "zh": "中国",
-          "py": "Zhōngguó",
-          "mn": "China"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "DE"
-        },
-        {
-          "zh": "繁",
-          "py": "fán",
-          "mn": "pros-"
-        },
-        {
-          "zh": "荣",
-          "py": "róng",
-          "mn": "-perous"
-        },
-        {
-          "zh": "感",
-          "py": "gǎn",
-          "mn": "felt"
-        },
-        {
-          "zh": "到",
-          "py": "dào",
-          "mn": "reach"
-        },
-        {
-          "zh": "十",
-          "py": "shí",
-          "mn": "ex-"
-        },
-        {
-          "zh": "分",
-          "py": "fēn",
-          "mn": "-tremely"
-        },
-        {
-          "zh": "惊",
-          "py": "jīng",
-          "mn": "aston-"
-        },
-        {
-          "zh": "讶",
-          "py": "yà",
-          "mn": "-ished"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "有一个人从很远的地方来。",
+      "en": "A man came from a place very far away."
     },
     {
-      "zh": "他回到欧洲后，把自己的见闻写成了一本书。",
-      "en": "After returning to Europe, he wrote his experiences into a book.",
-      "seg": [
-        {
-          "zh": "他",
-          "py": "tā",
-          "mn": "he"
-        },
-        {
-          "zh": "回",
-          "py": "huí",
-          "mn": "return"
-        },
-        {
-          "zh": "到",
-          "py": "dào",
-          "mn": "to"
-        },
-        {
-          "t": "n",
-          "zh": "欧洲",
-          "py": "Ōuzhōu",
-          "mn": "Europe"
-        },
-        {
-          "zh": "后",
-          "py": "hòu",
-          "mn": "after"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "把",
-          "py": "bǎ",
-          "mn": "BA-marker"
-        },
-        {
-          "zh": "自",
-          "py": "zì",
-          "mn": "self"
-        },
-        {
-          "zh": "己",
-          "py": "jǐ",
-          "mn": "self"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "DE"
-        },
-        {
-          "zh": "见",
-          "py": "jiàn",
-          "mn": "see-"
-        },
-        {
-          "zh": "闻",
-          "py": "wén",
-          "mn": "-hear"
-        },
-        {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "write"
-        },
-        {
-          "zh": "成",
-          "py": "chéng",
-          "mn": "into"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "CMPL"
-        },
-        {
-          "zh": "一",
-          "py": "yī",
-          "mn": "a"
-        },
-        {
-          "zh": "本",
-          "py": "běn",
-          "mn": "CL-book"
-        },
-        {
-          "zh": "书",
-          "py": "shū",
-          "mn": "book"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "他叫马可·波罗，从意大利来。",
+      "en": "He was called Marco Polo, and he came from Italy."
     },
     {
-      "zh": "这本书让欧洲人第一次了解到了东方的奇妙世界。",
-      "en": "This book let Europeans understand the wonderful world of the East for the first time.",
-      "seg": [
-        {
-          "zh": "这",
-          "py": "zhè",
-          "mn": "this"
-        },
-        {
-          "zh": "本",
-          "py": "běn",
-          "mn": "CL-book"
-        },
-        {
-          "zh": "书",
-          "py": "shū",
-          "mn": "book"
-        },
-        {
-          "zh": "让",
-          "py": "ràng",
-          "mn": "let"
-        },
-        {
-          "zh": "欧",
-          "py": "Ōu",
-          "mn": "Eu-"
-        },
-        {
-          "zh": "洲",
-          "py": "zhōu",
-          "mn": "-rope"
-        },
-        {
-          "zh": "人",
-          "py": "rén",
-          "mn": "people"
-        },
-        {
-          "zh": "第",
-          "py": "dì",
-          "mn": "ord."
-        },
-        {
-          "zh": "一",
-          "py": "yī",
-          "mn": "first"
-        },
-        {
-          "zh": "次",
-          "py": "cì",
-          "mn": "time"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "CMPL"
-        },
-        {
-          "zh": "解",
-          "py": "jiě",
-          "mn": "understand"
-        },
-        {
-          "zh": "到",
-          "py": "dào",
-          "mn": "reach"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "CMPL"
-        },
-        {
-          "zh": "东",
-          "py": "dōng",
-          "mn": "East"
-        },
-        {
-          "zh": "方",
-          "py": "fāng",
-          "mn": "ern"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "DE"
-        },
-        {
-          "zh": "奇",
-          "py": "qí",
-          "mn": "wonder-"
-        },
-        {
-          "zh": "妙",
-          "py": "miào",
-          "mn": "-ful"
-        },
-        {
-          "zh": "世",
-          "py": "shì",
-          "mn": "world-"
-        },
-        {
-          "zh": "界",
-          "py": "jiè",
-          "mn": "-world"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "他走了三年才到中国。",
+      "en": "He travelled for three years before he reached China."
+    },
+    {
+      "zh": "他在大都住了十七年。",
+      "en": "He lived in Dadu for seventeen years."
+    },
+    {
+      "zh": "他看到很多城，也看到很多人。",
+      "en": "He saw many cities and many people."
+    },
+    {
+      "zh": "他说，中国的城比他家的城大很多。",
+      "en": "He said the cities of China were far bigger than his own."
+    },
+    {
+      "zh": "回国以后，他把看到的事写成了一本书。",
+      "en": "After going home, he wrote what he had seen into a book."
+    },
+    {
+      "zh": "欧洲人第一次知道了东边的世界。",
+      "en": "For the first time, people in Europe learned of the world to the east."
     }
   ]
 }

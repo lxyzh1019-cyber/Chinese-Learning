@@ -1,0 +1,448 @@
+{
+  "id": "rider2",
+  "did": 16,
+  "level": 3,
+  "title": "草原上的风",
+  "en": "Wind on the Grassland",
+  "names": {
+    "契丹": {
+      "py": "Qì Dān",
+      "en": "Khitan"
+    }
+  },
+  "sents": [
+    {
+      "zh": "北方的草原上，风吹得很大。",
+      "en": "On the northern grasslands, the wind blows very strongly.",
+      "seg": [
+        {
+          "zh": "北",
+          "py": "běi",
+          "mn": "north-",
+          "bonus": true
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "-ern",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "草",
+          "py": "cǎo",
+          "mn": "grass-",
+          "bonus": true
+        },
+        {
+          "zh": "原",
+          "py": "yuán",
+          "mn": "-land",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "风",
+          "py": "fēng",
+          "mn": "wind",
+          "bonus": true
+        },
+        {
+          "zh": "吹",
+          "py": "chuī",
+          "mn": "blows",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "ADV"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "契丹人的孩子们在草原上骑马奔跑。",
+      "en": "Khitan children galloped on horseback across the grasslands.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "契丹",
+          "py": "Qì Dān",
+          "mn": "Khitan"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "孩",
+          "py": "hái",
+          "mn": "chil-",
+          "bonus": true
+        },
+        {
+          "zh": "子",
+          "py": "zi",
+          "mn": "-dren",
+          "bonus": true
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "草",
+          "py": "cǎo",
+          "mn": "grass-",
+          "bonus": true
+        },
+        {
+          "zh": "原",
+          "py": "yuán",
+          "mn": "-land",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "骑",
+          "py": "qí",
+          "mn": "rode",
+          "bonus": true
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horses"
+        },
+        {
+          "zh": "奔",
+          "py": "bēn",
+          "mn": "gallop-",
+          "bonus": true
+        },
+        {
+          "zh": "跑",
+          "py": "pǎo",
+          "mn": "-ing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们学习射箭、骑马，为将来做准备。",
+      "en": "They studied archery and riding, preparing for the future.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "studied"
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "learn"
+        },
+        {
+          "zh": "射",
+          "py": "shè",
+          "mn": "arch-",
+          "bonus": true
+        },
+        {
+          "zh": "箭",
+          "py": "jiàn",
+          "mn": "-ery",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "骑",
+          "py": "qí",
+          "mn": "riding",
+          "bonus": true
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horses"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "为",
+          "py": "wèi",
+          "mn": "for",
+          "bonus": true
+        },
+        {
+          "zh": "将",
+          "py": "jiāng",
+          "mn": "the",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "future",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "make"
+        },
+        {
+          "zh": "准",
+          "py": "zhǔn",
+          "mn": "prepar-",
+          "bonus": true
+        },
+        {
+          "zh": "备",
+          "py": "bèi",
+          "mn": "-ation",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "草原的生活虽然艰苦，但是充满自由。",
+      "en": "Life on the grasslands was difficult but full of freedom.",
+      "seg": [
+        {
+          "zh": "草",
+          "py": "cǎo",
+          "mn": "grass-",
+          "bonus": true
+        },
+        {
+          "zh": "原",
+          "py": "yuán",
+          "mn": "-land",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "生",
+          "py": "shēng",
+          "mn": "life-"
+        },
+        {
+          "zh": "活",
+          "py": "huó",
+          "mn": "-life",
+          "bonus": true
+        },
+        {
+          "zh": "虽",
+          "py": "suī",
+          "mn": "although",
+          "bonus": true
+        },
+        {
+          "zh": "然",
+          "py": "rán",
+          "mn": "although",
+          "bonus": true
+        },
+        {
+          "zh": "艰",
+          "py": "jiān",
+          "mn": "diffi-",
+          "bonus": true
+        },
+        {
+          "zh": "苦",
+          "py": "kǔ",
+          "mn": "-cult",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "但",
+          "py": "dàn",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "充",
+          "py": "chōng",
+          "mn": "full of",
+          "bonus": true
+        },
+        {
+          "zh": "满",
+          "py": "mǎn",
+          "mn": "full of",
+          "bonus": true
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "free-"
+        },
+        {
+          "zh": "由",
+          "py": "yóu",
+          "mn": "-dom"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们热爱自己的土地和文化。",
+      "en": "They loved their own land and culture.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "mn": "loved",
+          "bonus": true
+        },
+        {
+          "zh": "爱",
+          "py": "ài",
+          "mn": "loved",
+          "bonus": true
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "own"
+        },
+        {
+          "zh": "己",
+          "py": "jǐ",
+          "mn": "self",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "土",
+          "py": "tǔ",
+          "mn": "land-"
+        },
+        {
+          "zh": "地",
+          "py": "dì",
+          "mn": "-land",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "文",
+          "py": "wén",
+          "mn": "cul-"
+        },
+        {
+          "zh": "化",
+          "py": "huà",
+          "mn": "-ture"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

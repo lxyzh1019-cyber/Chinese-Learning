@@ -1,0 +1,437 @@
+{
+  "id": "print",
+  "did": 13,
+  "level": 3,
+  "title": "印书的故事",
+  "en": "The Story of Printing Books",
+  "names": {
+    "五代": {
+      "py": "Wǔ Dài",
+      "en": "Five Dynasties"
+    }
+  },
+  "sents": [
+    {
+      "zh": "五代时候，人们开始用木刻字印书。",
+      "en": "During the Five Dynasties, people began printing books by carving wood.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "五代",
+          "py": "Wǔ Dài",
+          "mn": "Five Dynasties"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhòu",
+          "mn": "period"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "began",
+          "bonus": true
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "use",
+          "bonus": true
+        },
+        {
+          "zh": "木",
+          "py": "mù",
+          "mn": "wood",
+          "bonus": true
+        },
+        {
+          "zh": "刻",
+          "py": "kè",
+          "mn": "carved",
+          "bonus": true
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "zh": "印",
+          "py": "yìn",
+          "mn": "print",
+          "bonus": true
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "一块木上刻很多字，然后涂上墨水。",
+      "en": "They carved many characters on a block of wood, then applied ink.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "a",
+          "bonus": true
+        },
+        {
+          "zh": "块",
+          "py": "kuài",
+          "mn": "block of",
+          "bonus": true
+        },
+        {
+          "zh": "木",
+          "py": "mù",
+          "mn": "wood",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "刻",
+          "py": "kè",
+          "mn": "carved",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "然",
+          "py": "rán",
+          "mn": "then",
+          "bonus": true
+        },
+        {
+          "zh": "后",
+          "py": "hòu",
+          "mn": "after",
+          "bonus": true
+        },
+        {
+          "zh": "涂",
+          "py": "tú",
+          "mn": "apply",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "墨",
+          "py": "mò",
+          "mn": "ink"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "这样可以很快地印出很多书。",
+      "en": "This way, many books could be printed very quickly.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "样",
+          "py": "yàng",
+          "mn": "way",
+          "bonus": true
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "can"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "able"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "快",
+          "py": "kuài",
+          "mn": "quickly",
+          "bonus": true
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "ADV"
+        },
+        {
+          "zh": "印",
+          "py": "yìn",
+          "mn": "print"
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "out"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "书变得便宜了，更多人可以读书。",
+      "en": "Books became cheap and more people could read.",
+      "seg": [
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "became",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "ADV"
+        },
+        {
+          "zh": "便",
+          "py": "pián",
+          "mn": "cheap-"
+        },
+        {
+          "zh": "宜",
+          "py": "yí",
+          "mn": "-cheap"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "now",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "more"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "could"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "able"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "read"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "这个发明是世界印刷历史上的重要一步。",
+      "en": "This invention was an important step in the history of printing.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "CL",
+          "bonus": true
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "inven-",
+          "bonus": true
+        },
+        {
+          "zh": "明",
+          "py": "míng",
+          "mn": "-tion",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "zh": "世",
+          "py": "shì",
+          "mn": "world-"
+        },
+        {
+          "zh": "界",
+          "py": "jiè",
+          "mn": "-world"
+        },
+        {
+          "zh": "印",
+          "py": "yìn",
+          "mn": "print-"
+        },
+        {
+          "zh": "刷",
+          "py": "shuā",
+          "mn": "-ing"
+        },
+        {
+          "zh": "历",
+          "py": "lì",
+          "mn": "his-"
+        },
+        {
+          "zh": "史",
+          "py": "shǐ",
+          "mn": "-tory"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "in",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "重",
+          "py": "zhòng",
+          "mn": "im-"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "-portant"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "a",
+          "bonus": true
+        },
+        {
+          "zh": "步",
+          "py": "bù",
+          "mn": "step",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

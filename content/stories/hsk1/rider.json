@@ -24,400 +24,44 @@
   },
   "sents": [
     {
-      "zh": "辽国的契丹人住在中国北方的草原上。",
-      "en": "The Khitan people of the Liao Dynasty lived on the grasslands of northern China.",
-      "seg": [
-        {
-          "t": "n",
-          "zh": "辽国",
-          "py": "Liáo Guó",
-          "mn": "Liao Dynasty"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "DE"
-        },
-        {
-          "t": "n",
-          "zh": "契丹",
-          "py": "Qì Dān",
-          "mn": "Khitan"
-        },
-        {
-          "zh": "人",
-          "py": "rén",
-          "mn": "people"
-        },
-        {
-          "zh": "住",
-          "py": "zhù",
-          "mn": "lived",
-          "bonus": true
-        },
-        {
-          "zh": "在",
-          "py": "zài",
-          "mn": "in"
-        },
-        {
-          "t": "n",
-          "zh": "中国",
-          "py": "Zhōngguó",
-          "mn": "China"
-        },
-        {
-          "zh": "北",
-          "py": "běi",
-          "mn": "north",
-          "bonus": true
-        },
-        {
-          "zh": "方",
-          "py": "fāng",
-          "mn": "north",
-          "bonus": true
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "DE"
-        },
-        {
-          "zh": "草",
-          "py": "cǎo",
-          "mn": "grass-",
-          "bonus": true
-        },
-        {
-          "zh": "原",
-          "py": "yuán",
-          "mn": "-land",
-          "bonus": true
-        },
-        {
-          "zh": "上",
-          "py": "shàng",
-          "mn": "on"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "中国北边有很大的草地。",
+      "en": "In the north of China there is a great grassland."
     },
     {
-      "zh": "他们是很好的骑手，每天骑马。",
-      "en": "They were excellent horse riders, riding every day.",
-      "seg": [
-        {
-          "zh": "他",
-          "py": "tā",
-          "mn": "they"
-        },
-        {
-          "zh": "们",
-          "py": "men",
-          "mn": "PL"
-        },
-        {
-          "zh": "是",
-          "py": "shì",
-          "mn": "were"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "好",
-          "py": "hǎo",
-          "mn": "good"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "DE"
-        },
-        {
-          "zh": "骑",
-          "py": "qí",
-          "mn": "horse-",
-          "bonus": true
-        },
-        {
-          "zh": "手",
-          "py": "shǒu",
-          "mn": "-rider",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "每",
-          "py": "měi",
-          "mn": "every"
-        },
-        {
-          "zh": "天",
-          "py": "tiān",
-          "mn": "day"
-        },
-        {
-          "zh": "骑",
-          "py": "qí",
-          "mn": "rode",
-          "bonus": true
-        },
-        {
-          "zh": "马",
-          "py": "mǎ",
-          "mn": "horses"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "那里没有山，只有天和草。",
+      "en": "There are no mountains there, only sky and grass."
     },
     {
-      "zh": "他们建立了自己的文字和法律。",
-      "en": "They created their own script and laws.",
-      "seg": [
-        {
-          "zh": "他",
-          "py": "tā",
-          "mn": "they"
-        },
-        {
-          "zh": "们",
-          "py": "men",
-          "mn": "PL"
-        },
-        {
-          "zh": "建",
-          "py": "jiàn",
-          "mn": "created",
-          "bonus": true
-        },
-        {
-          "zh": "立",
-          "py": "lì",
-          "mn": "establish"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "CMPL",
-          "bonus": true
-        },
-        {
-          "zh": "自",
-          "py": "zì",
-          "mn": "own"
-        },
-        {
-          "zh": "己",
-          "py": "jǐ",
-          "mn": "self"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "DE"
-        },
-        {
-          "zh": "文",
-          "py": "wén",
-          "mn": "script-"
-        },
-        {
-          "zh": "字",
-          "py": "zì",
-          "mn": "-writing"
-        },
-        {
-          "zh": "和",
-          "py": "hé",
-          "mn": "and"
-        },
-        {
-          "zh": "法",
-          "py": "fǎ",
-          "mn": "law-",
-          "bonus": true
-        },
-        {
-          "zh": "律",
-          "py": "lǜ",
-          "mn": "-laws",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "很久以前，那里住着一些人。",
+      "en": "Long ago some people lived there."
     },
     {
-      "zh": "辽国和宋朝做买卖，交换各种商品。",
-      "en": "Liao and Song traded and exchanged various goods.",
-      "seg": [
-        {
-          "t": "n",
-          "zh": "辽国",
-          "py": "Liáo Guó",
-          "mn": "Liao Dynasty"
-        },
-        {
-          "zh": "和",
-          "py": "hé",
-          "mn": "and"
-        },
-        {
-          "t": "n",
-          "zh": "宋朝",
-          "py": "Sòngcháo",
-          "mn": "Song Dynasty"
-        },
-        {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "did"
-        },
-        {
-          "zh": "买",
-          "py": "mǎi",
-          "mn": "trade-"
-        },
-        {
-          "zh": "卖",
-          "py": "mài",
-          "mn": "-trade"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "交",
-          "py": "jiāo",
-          "mn": "ex-",
-          "bonus": true
-        },
-        {
-          "zh": "换",
-          "py": "huàn",
-          "mn": "-change",
-          "bonus": true
-        },
-        {
-          "zh": "各",
-          "py": "gè",
-          "mn": "various"
-        },
-        {
-          "zh": "种",
-          "py": "zhǒng",
-          "mn": "kinds of",
-          "bonus": true
-        },
-        {
-          "zh": "商",
-          "py": "shāng",
-          "mn": "goods-"
-        },
-        {
-          "zh": "品",
-          "py": "pǐn",
-          "mn": "-goods",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "他们叫契丹人。",
+      "en": "They were called the Khitan."
     },
     {
-      "zh": "契丹人的文化影响中国北方很久。",
-      "en": "Khitan culture influenced northern China for a long time.",
-      "seg": [
-        {
-          "t": "n",
-          "zh": "契丹",
-          "py": "Qì Dān",
-          "mn": "Khitan"
-        },
-        {
-          "zh": "人",
-          "py": "rén",
-          "mn": "people"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "DE"
-        },
-        {
-          "zh": "文",
-          "py": "wén",
-          "mn": "cul-"
-        },
-        {
-          "zh": "化",
-          "py": "huà",
-          "mn": "-ture"
-        },
-        {
-          "zh": "影",
-          "py": "yǐng",
-          "mn": "in-",
-          "bonus": true
-        },
-        {
-          "zh": "响",
-          "py": "xiǎng",
-          "mn": "-fluenced",
-          "bonus": true
-        },
-        {
-          "t": "n",
-          "zh": "中国",
-          "py": "Zhōngguó",
-          "mn": "China"
-        },
-        {
-          "zh": "北",
-          "py": "běi",
-          "mn": "north",
-          "bonus": true
-        },
-        {
-          "zh": "方",
-          "py": "fāng",
-          "mn": "north",
-          "bonus": true
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "for a"
-        },
-        {
-          "zh": "久",
-          "py": "jiǔ",
-          "mn": "long time",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "他们每天骑马，走很远的路。",
+      "en": "They rode horses every day and travelled far."
+    },
+    {
+      "zh": "他们的马很快，也很好。",
+      "en": "Their horses were fast and fine."
+    },
+    {
+      "zh": "他们也做了自己的字。",
+      "en": "They also made a writing of their own."
+    },
+    {
+      "zh": "他们和南边的宋朝做买卖。",
+      "en": "They traded with the Song in the south."
+    },
+    {
+      "zh": "他们卖马，买茶和布。",
+      "en": "They sold horses and bought tea and cloth."
+    },
+    {
+      "zh": "他们在北方住了很多年。",
+      "en": "They lived in the north for many years."
     }
   ]
 }

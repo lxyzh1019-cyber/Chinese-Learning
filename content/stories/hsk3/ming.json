@@ -1,0 +1,446 @@
+{
+  "id": "ming",
+  "did": 19,
+  "level": 3,
+  "title": "郑和下西洋",
+  "en": "Zheng He's Voyages",
+  "names": {
+    "明朝": {
+      "py": "Míngcháo",
+      "en": "Ming Dynasty"
+    },
+    "郑和": {
+      "py": "Zhèng Hé",
+      "en": "Zheng He"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "明朝的郑和率领着一支庞大的船队出发了。",
+      "en": "Ming Dynasty's Zheng He led a gigantic fleet and set sail.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "明朝",
+          "py": "Míngcháo",
+          "mn": "Ming Dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "t": "n",
+          "zh": "郑和",
+          "py": "Zhèng Hé",
+          "mn": "Zheng He"
+        },
+        {
+          "zh": "率",
+          "py": "shuài",
+          "mn": "lead"
+        },
+        {
+          "zh": "领",
+          "py": "lǐng",
+          "mn": "lead"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "ING"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "a"
+        },
+        {
+          "zh": "支",
+          "py": "zhī",
+          "mn": "CL-fleet"
+        },
+        {
+          "zh": "庞",
+          "py": "páng",
+          "mn": "gi-"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "-gantic"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "ship-"
+        },
+        {
+          "zh": "队",
+          "py": "duì",
+          "mn": "-fleet"
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "set out"
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "depart"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他的船队有超过三百艘大船。",
+      "en": "His fleet had more than three hundred large ships.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "ship-"
+        },
+        {
+          "zh": "队",
+          "py": "duì",
+          "mn": "-fleet"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "超",
+          "py": "chāo",
+          "mn": "over/more than"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "exceed"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "百",
+          "py": "bǎi",
+          "mn": "hundred"
+        },
+        {
+          "zh": "艘",
+          "py": "sōu",
+          "mn": "CL-ship"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "large"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "ships"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们到过东南亚、印度、阿拉伯还有非洲。",
+      "en": "They reached Southeast Asia, India, Arabia, and even Africa.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "reached"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "past"
+        },
+        {
+          "zh": "东",
+          "py": "dōng",
+          "mn": "South-"
+        },
+        {
+          "zh": "南",
+          "py": "nán",
+          "mn": "-east"
+        },
+        {
+          "zh": "亚",
+          "py": "yà",
+          "mn": "Asia"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "印",
+          "py": "Yìn",
+          "mn": "In-"
+        },
+        {
+          "zh": "度",
+          "py": "dù",
+          "mn": "-dia"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "阿",
+          "py": "Ā",
+          "mn": "A-"
+        },
+        {
+          "zh": "拉",
+          "py": "lā",
+          "mn": "-ra-"
+        },
+        {
+          "zh": "伯",
+          "py": "bó",
+          "mn": "-bia"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "even"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "and"
+        },
+        {
+          "zh": "非",
+          "py": "Fēi",
+          "mn": "Af-"
+        },
+        {
+          "zh": "洲",
+          "py": "zhōu",
+          "mn": "-rica"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们带去了中国的丝绸、瓷器和茶。",
+      "en": "They brought Chinese silk, porcelain, and tea.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "brought"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "along"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "丝",
+          "py": "sī",
+          "mn": "silk"
+        },
+        {
+          "zh": "绸",
+          "py": "chóu",
+          "mn": "silk"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "瓷",
+          "py": "cí",
+          "mn": "porce-"
+        },
+        {
+          "zh": "器",
+          "py": "qì",
+          "mn": "-lain"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "郑和的航行展现了中国的强大与友好。",
+      "en": "Zheng He's voyages showed China's greatness and friendship.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "郑和",
+          "py": "Zhèng Hé",
+          "mn": "Zheng He"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "航",
+          "py": "háng",
+          "mn": "voy-"
+        },
+        {
+          "zh": "行",
+          "py": "xíng",
+          "mn": "-age"
+        },
+        {
+          "zh": "展",
+          "py": "zhǎn",
+          "mn": "showed"
+        },
+        {
+          "zh": "现",
+          "py": "xiàn",
+          "mn": "showed"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "强",
+          "py": "qiáng",
+          "mn": "strong-"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "-great"
+        },
+        {
+          "zh": "与",
+          "py": "yǔ",
+          "mn": "and"
+        },
+        {
+          "zh": "友",
+          "py": "yǒu",
+          "mn": "friend-"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "-ly"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

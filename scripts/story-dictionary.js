@@ -37,20 +37,31 @@ function addEntry(dict, zh, py, en, source) {
   dict[key] = { zh: key, py: pinyin, en: gloss, source };
 }
 
-/** Readings taken from the authored stories, where they were written in context. */
+/**
+ * Readings taken from the authored sources, where they were written in context.
+ *
+ * Reads content/stories/, NOT data/stories/. The built corpus is this script's
+ * own downstream output: sourcing from it means rewriting a story silently
+ * shrinks the dictionary that the next build depends on, so an edit in one
+ * story can break an unrelated one. The authored sources are the stable input.
+ */
 function fromStories(dict) {
-  const file = path.join(ROOT, "data", "stories", "hsk1.json");
-  if (!fs.existsSync(file)) return 0;
-  const stories = JSON.parse(fs.readFileSync(file, "utf8")).stories || {};
+  const root = path.join(ROOT, "content", "stories");
+  if (!fs.existsSync(root)) return 0;
   let n = 0;
-  Object.values(stories).forEach((s) => {
-    (s.sents || []).forEach((sent) => {
-      sent.forEach((tok) => {
-        if (tok.t === "p") return;
-        const zh = tok.ch || tok.tx;
-        if (!zh || !tok.py) return;
-        if (!dict[zh]) n++;
-        addEntry(dict, zh, tok.py, tok.mn, "story");
+  fs.readdirSync(root).forEach((levelDir) => {
+    const dir = path.join(root, levelDir);
+    if (!fs.statSync(dir).isDirectory()) return;
+    fs.readdirSync(dir).filter((f) => f.endsWith(".json")).forEach((f) => {
+      const src = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+      (src.sents || []).forEach((sent) => {
+        (sent.seg || []).forEach((tok) => {
+          if (!tok || typeof tok !== "object" || tok.t === "p") return;
+          const zh = tok.zh;
+          if (!zh || !tok.py) return;
+          if (!dict[zh]) n++;
+          addEntry(dict, zh, tok.py, tok.mn, "story");
+        });
       });
     });
   });

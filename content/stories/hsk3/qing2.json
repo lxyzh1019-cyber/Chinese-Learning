@@ -1,0 +1,593 @@
+{
+  "id": "qing2",
+  "did": 20,
+  "level": 3,
+  "title": "故宫里的秘密",
+  "en": "Secrets of the Forbidden City",
+  "names": {
+    "北京": {
+      "py": "Běijīng",
+      "en": "Beijing"
+    },
+    "故宫": {
+      "py": "Gùgōng",
+      "en": "Forbidden City"
+    },
+    "明朝": {
+      "py": "Míngcháo",
+      "en": "Ming Dynasty"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "北京的故宫是世界上最大的古代宫殿建筑群。",
+      "en": "Beijing's Forbidden City is the world's largest ancient palace complex.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "北京",
+          "py": "Běijīng",
+          "mn": "Beijing"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "t": "n",
+          "zh": "故宫",
+          "py": "Gùgōng",
+          "mn": "Forbidden City"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "世",
+          "py": "shì",
+          "mn": "world-"
+        },
+        {
+          "zh": "界",
+          "py": "jiè",
+          "mn": "-world"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "in the"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "largest",
+          "bonus": true
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "large"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "古",
+          "py": "gǔ",
+          "mn": "ancient",
+          "bonus": true
+        },
+        {
+          "zh": "代",
+          "py": "dài",
+          "mn": "era"
+        },
+        {
+          "zh": "宫",
+          "py": "gōng",
+          "mn": "pal-",
+          "bonus": true
+        },
+        {
+          "zh": "殿",
+          "py": "diàn",
+          "mn": "-ace",
+          "bonus": true
+        },
+        {
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "archi-",
+          "bonus": true
+        },
+        {
+          "zh": "筑",
+          "py": "zhù",
+          "mn": "-tecture",
+          "bonus": true
+        },
+        {
+          "zh": "群",
+          "py": "qún",
+          "mn": "complex",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "它由明朝皇帝建造，有超过九千个房间。",
+      "en": "It was built by a Ming Dynasty emperor and has more than 9,000 rooms.",
+      "seg": [
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "由",
+          "py": "yóu",
+          "mn": "was built by",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "明朝",
+          "py": "Míngcháo",
+          "mn": "Ming Dynasty"
+        },
+        {
+          "zh": "皇",
+          "py": "huáng",
+          "mn": "em-",
+          "bonus": true
+        },
+        {
+          "zh": "帝",
+          "py": "dì",
+          "mn": "-peror",
+          "bonus": true
+        },
+        {
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "buil-",
+          "bonus": true
+        },
+        {
+          "zh": "造",
+          "py": "zào",
+          "mn": "-t",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "has"
+        },
+        {
+          "zh": "超",
+          "py": "chāo",
+          "mn": "more than",
+          "bonus": true
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "exceeded",
+          "bonus": true
+        },
+        {
+          "zh": "九",
+          "py": "jiǔ",
+          "mn": "nine",
+          "bonus": true
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "CL",
+          "bonus": true
+        },
+        {
+          "zh": "房",
+          "py": "fáng",
+          "mn": "room-",
+          "bonus": true
+        },
+        {
+          "zh": "间",
+          "py": "jiān",
+          "mn": "-room",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "皇帝在太和殿里接受百官朝拜，处理国家大事。",
+      "en": "The emperor received hundreds of officials in the Hall of Supreme Harmony and handled state affairs.",
+      "seg": [
+        {
+          "zh": "皇",
+          "py": "huáng",
+          "mn": "em-",
+          "bonus": true
+        },
+        {
+          "zh": "帝",
+          "py": "dì",
+          "mn": "-peror",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "Tai-",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "-He",
+          "bonus": true
+        },
+        {
+          "zh": "殿",
+          "py": "diàn",
+          "mn": "Hall",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "zh": "接",
+          "py": "jiē",
+          "mn": "receive",
+          "bonus": true
+        },
+        {
+          "zh": "受",
+          "py": "shòu",
+          "mn": "receive",
+          "bonus": true
+        },
+        {
+          "zh": "百",
+          "py": "bǎi",
+          "mn": "hundred",
+          "bonus": true
+        },
+        {
+          "zh": "官",
+          "py": "guān",
+          "mn": "official-",
+          "bonus": true
+        },
+        {
+          "zh": "朝",
+          "py": "cháo",
+          "mn": "morning",
+          "bonus": true
+        },
+        {
+          "zh": "拜",
+          "py": "bài",
+          "mn": "bowing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "处",
+          "py": "chǔ",
+          "mn": "handle",
+          "bonus": true
+        },
+        {
+          "zh": "理",
+          "py": "lǐ",
+          "mn": "handle",
+          "bonus": true
+        },
+        {
+          "zh": "国",
+          "py": "guó",
+          "mn": "nation"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "state",
+          "bonus": true
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "major"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "affairs"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "宫殿里的艺术品和珍宝展示了中国古代的辉煌成就。",
+      "en": "The artworks and treasures in the palace showed the glorious achievements of ancient China.",
+      "seg": [
+        {
+          "zh": "宫",
+          "py": "gōng",
+          "mn": "pal-",
+          "bonus": true
+        },
+        {
+          "zh": "殿",
+          "py": "diàn",
+          "mn": "-ace",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "艺",
+          "py": "yì",
+          "mn": "art-"
+        },
+        {
+          "zh": "术",
+          "py": "shù",
+          "mn": "-work"
+        },
+        {
+          "zh": "品",
+          "py": "pǐn",
+          "mn": "pieces",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "珍",
+          "py": "zhēn",
+          "mn": "trea-",
+          "bonus": true
+        },
+        {
+          "zh": "宝",
+          "py": "bǎo",
+          "mn": "-sure",
+          "bonus": true
+        },
+        {
+          "zh": "展",
+          "py": "zhǎn",
+          "mn": "show-",
+          "bonus": true
+        },
+        {
+          "zh": "示",
+          "py": "shì",
+          "mn": "-ed",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "古",
+          "py": "gǔ",
+          "mn": "ancient",
+          "bonus": true
+        },
+        {
+          "zh": "代",
+          "py": "dài",
+          "mn": "era"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "辉",
+          "py": "huī",
+          "mn": "glo-",
+          "bonus": true
+        },
+        {
+          "zh": "煌",
+          "py": "huáng",
+          "mn": "-rious",
+          "bonus": true
+        },
+        {
+          "zh": "成",
+          "py": "chéng",
+          "mn": "achie-",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "-vement",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "今天，故宫博物院每年接待数百万参观者。",
+      "en": "Today, the Palace Museum receives millions of visitors every year.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "now"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "故宫",
+          "py": "Gùgōng",
+          "mn": "Forbidden City"
+        },
+        {
+          "zh": "博",
+          "py": "bó",
+          "mn": "muse-",
+          "bonus": true
+        },
+        {
+          "zh": "物",
+          "py": "wù",
+          "mn": "-um",
+          "bonus": true
+        },
+        {
+          "zh": "院",
+          "py": "yuàn",
+          "mn": "institute",
+          "bonus": true
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "year"
+        },
+        {
+          "zh": "接",
+          "py": "jiē",
+          "mn": "receives",
+          "bonus": true
+        },
+        {
+          "zh": "待",
+          "py": "dài",
+          "mn": "receives",
+          "bonus": true
+        },
+        {
+          "zh": "数",
+          "py": "shù",
+          "mn": "hundreds of"
+        },
+        {
+          "zh": "百",
+          "py": "bǎi",
+          "mn": "hundred",
+          "bonus": true
+        },
+        {
+          "zh": "万",
+          "py": "wàn",
+          "mn": "million",
+          "bonus": true
+        },
+        {
+          "zh": "参",
+          "py": "cān",
+          "mn": "visi-",
+          "bonus": true
+        },
+        {
+          "zh": "观",
+          "py": "guān",
+          "mn": "-tors",
+          "bonus": true
+        },
+        {
+          "zh": "者",
+          "py": "zhě",
+          "mn": "visitors",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}
