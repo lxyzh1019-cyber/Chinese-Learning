@@ -40,7 +40,11 @@ const ROOT = path.resolve(__dirname, "..");
 function isJunkGloss(en) {
   const t = String(en == null ? "" : en).trim();
   if (!t) return true;
-  if (/^[-—]/.test(t)) return true;            // half of a longer word's English
+  if (/^[-—]/.test(t)) return true;            // trailing half: 学习 -> 习 "-tice"
+  // Leading half: 皇帝 "emperor" -> 皇 "em-", 丝绸 -> 丝 "silk-", 太阳 -> 太 "Tai-".
+  // One word ending in a hyphen and nothing else; a genuine gloss that uses a
+  // prefix ("not; non-") carries more than that single token.
+  if (/^[A-Za-z]+-$/.test(t)) return true;
   if (/^[A-Z]{2,5}$/.test(t)) return true;     // a grammar code
   if (/surname/i.test(t)) return true;         // the 水 "surname Shui" class
   return false;

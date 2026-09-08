@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_09",
   "level": "HSK2",
   "gateId": 9,
-  "title": "HSK2 Gate 9 Lesson",
-  "explanation": "This gate adds a small culture connection. Notice time words and places.",
-  "passage": "第9关：我们读一个小故事。春节时，家人一起吃团圆饭。然后，我们继续练习有用的句子。",
+  "title": "HSK2 Gate 9 · Western Jin",
+  "explanationEn": "Gate 9: Western Jin. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第9关：西晋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "中国人很早就觉得写字是一件很美的事。一千六百多年以前，有一个很有名的人。他的名字叫王羲之。他很小的时候就开始学写字。",
+  "passageEn": "Chinese people early on felt that writing was a beautiful thing. More than sixteen hundred years ago there was a very famous man. His name was Wang Xizhi. He began learning to write when he was very young.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "person"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "早",
+      "pinyin": "zǎo",
+      "en": "early; morning"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "觉得",
+      "pinyin": "jué de",
+      "en": "to think that ...; to feel that ..."
+    },
+    {
+      "zh": "写",
+      "pinyin": "xiě",
+      "en": "wrote"
+    },
+    {
+      "zh": "字",
+      "pinyin": "zì",
+      "en": "character; writing"
+    },
+    {
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
+    },
+    {
+      "zh": "件",
+      "pinyin": "jiàn",
+      "en": "item"
     }
   ],
   "comprehension": [
     {
-      "question": "What cultural idea appears in the passage?",
-      "answer": "A festival or family tradition mentioned in the text."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Chinese people early on felt that writing was a beautiful thing.",
+      "answer": "中国人很早就觉得写字是一件很美的事。"
     },
     {
-      "question": "What do we do after that moment in the story?",
-      "answer": "Continue practicing useful sentences."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "His name was Wang Xizhi.",
+      "answer": "他的名字叫王羲之。"
     },
     {
-      "question": "Find one place word or time word you recognize.",
-      "answer": "Answers vary with the passage."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Tell a parent one sentence in Chinese about a festival you like."
+  "speakingPromptEn": "Tell a grown-up about Western Jin in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说西晋。"
 }

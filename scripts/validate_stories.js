@@ -18,12 +18,18 @@ const ROOT = path.resolve(__dirname, "..");
 const LADDER = { 1: 10, 2: 15, 3: 20, 4: 25 };
 // Study tokens a child taps: the gold characters and words, bonus excluded.
 //
-// Derived from the built corpus rather than guessed: natural HSK1 prose runs a
-// median of 8.1 study tokens per sentence (min 57, median 81, max 104 across
-// the 44 ten-sentence stories), so the band is the sentence count times roughly
-// 6 to 10.5. The first version of this range was 45-85 and flagged a third of
-// the corpus, which said the range was wrong, not the writing.
-const STUDY = { 1: [55, 110], 2: [85, 165], 3: [115, 220], 4: [145, 275] };
+// Derived from the built corpus rather than guessed. Natural prose at these
+// levels runs a median of 8.1 study tokens per sentence at HSK1 (min 57, median
+// 81, max 104 over 44 ten-sentence stories) and 10.3 at HSK2 (min 136, median
+// 155, max 186 over 44 fifteen-sentence stories) — longer sentences carry more
+// per sentence as well as more sentences. So the band is the sentence count
+// times roughly 6 to 12.5.
+//
+// Both earlier versions of this range were estimates and both flagged a slice
+// of good writing, which each time said the range was wrong rather than the
+// prose. HSK3 and HSK4 stay estimates until their corpora exist, and should be
+// re-derived the same way once they do.
+const STUDY = { 1: [55, 110], 2: [90, 190], 3: [120, 250], 4: [150, 315] };
 
 let errors = 0, warnings = 0;
 const fail = (m) => { console.error(`  FAIL  ${m}`); errors++; };
@@ -75,7 +81,7 @@ function main() {
           // nine-year-old, and both were shown on every tap.
           const en = String(tok.mn).trim();
           if (!en) fail(`${at}: "${zh}" has an empty gloss`);
-          else if (/^[-—]/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a fragment of a longer word's English, not a meaning`);
+          else if (/^[-—]/.test(en) || /^[A-Za-z]+-$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a fragment of a longer word's English, not a meaning`);
           else if (/^[A-Z]{2,5}$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a grammar code; say what it does in plain words`);
           else if (/surname/i.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — the junk-gloss class this project has already been burned by`);
         });

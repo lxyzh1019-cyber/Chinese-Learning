@@ -14,7 +14,7 @@
     "build:stories": "node scripts/build_stories.js",
     "validate:stories": "node scripts/validate_stories.js",
     "validate:lessons": "node scripts/validate_lessons.js",
-    "build:lessons": "node scripts/build_hsk1_lessons.js"
+    "build:lessons": "node scripts/build_gate_lessons.js"
   },
   "engines": {
     "node": ">=20"

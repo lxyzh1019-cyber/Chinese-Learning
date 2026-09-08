@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_11",
   "level": "HSK2",
   "gateId": 11,
-  "title": "HSK2 Gate 11 Lesson",
-  "explanation": "This gate adds a small culture connection. Notice time words and places.",
-  "passage": "第11关：我们读一个小故事。端午节，我们可以吃粽子。然后，我们继续练习有用的句子。",
+  "title": "HSK2 Gate 11 · Sui Dynasty",
+  "explanationEn": "Gate 11: Sui Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第11关：隋朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "中国很大，北边和南边差得很远。北边天气冷，南边天气热。南边的田里可以种很多米。可是要把米送到北边去，非常不方便。",
+  "passageEn": "China is large, and the north and south are far apart. The north is cold and the south is hot. A great deal of rice can be grown in the southern fields. But getting that rice to the north was very inconvenient.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "大",
+      "pinyin": "dà",
+      "en": "great"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "北",
+      "pinyin": "běi",
+      "en": "north"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "边",
+      "pinyin": "biān",
+      "en": "side; edge"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "南",
+      "pinyin": "nán",
+      "en": "south"
+    },
+    {
+      "zh": "差",
+      "pinyin": "chā",
+      "en": "difference; discrepancy"
+    },
+    {
+      "zh": "得",
+      "pinyin": "de",
+      "en": "(before how it is done)"
+    },
+    {
+      "zh": "远",
+      "pinyin": "yuǎn",
+      "en": "far"
+    },
+    {
+      "zh": "天",
+      "pinyin": "tiān",
+      "en": "day; sky"
     }
   ],
   "comprehension": [
     {
-      "question": "What cultural idea appears in the passage?",
-      "answer": "A festival or family tradition mentioned in the text."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "China is large, and the north and south are far apart.",
+      "answer": "中国很大，北边和南边差得很远。"
     },
     {
-      "question": "What do we do after that moment in the story?",
-      "answer": "Continue practicing useful sentences."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "A great deal of rice can be grown in the southern fields.",
+      "answer": "南边的田里可以种很多米。"
     },
     {
-      "question": "Find one place word or time word you recognize.",
-      "answer": "Answers vary with the passage."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Tell a parent one sentence in Chinese about a festival you like."
+  "speakingPromptEn": "Tell a grown-up about Sui Dynasty in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说隋朝。"
 }

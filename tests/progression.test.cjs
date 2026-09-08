@@ -1088,8 +1088,13 @@ test("S-T02: a level with no text of its own falls back and says so", () => {
   assert.equal(own.id, "xia-h1");
   assert.ok(!own.shared, "level 1 has its own text");
 
-  const borrowed = a.storyForGate("xia", 2);
-  assert.equal(borrowed.id, "xia-h2", "served under the level's own id, so reads count for that level");
+  // HSK2 now has its own telling; HSK3 does not yet, so it is the fallback case.
+  const ownTwo = a.storyForGate("xia", 2);
+  assert.equal(ownTwo.id, "xia-h2");
+  assert.ok(!ownTwo.shared, "HSK2 has its own text too");
+
+  const borrowed = a.storyForGate("xia", 3);
+  assert.equal(borrowed.id, "xia-h3", "served under the level's own id, so reads count for that level");
   assert.equal(borrowed.shared, true, "and flagged, so the reader can say the text is shared");
   assert.deepEqual(borrowed.sents, own.sents, "it is level 1's text");
 });
@@ -1220,10 +1225,10 @@ test("A-T30: a mid-quiz story resume works on a level serving a shared text", ()
   // storyForGate — it carries that level's id but is never in STORIES_MAP.
   // Resolving through the map alone made "Continue story quiz" a dead button
   // on every level but 1.
-  assert.equal(a.STORIES_MAP["xia-h2"], undefined, "the shared story is not a map member");
-  const st = a.storyById("xia-h2");
+  assert.equal(a.STORIES_MAP["xia-h3"], undefined, "the shared story is not a map member");
+  const st = a.storyById("xia-h3");
   assert.ok(st, "but it still resolves");
-  assert.equal(st.id, "xia-h2");
+  assert.equal(st.id, "xia-h3");
   assert.equal(a.storyById("xia-h1").id, "xia-h1", "a real member resolves too");
   assert.equal(a.storyById("nope-h1"), null);
 });
@@ -1273,4 +1278,39 @@ test("A-T33: a character with no standalone reading is shown, never guessed at",
   // A single-character word keeps its own reading.
   const shui = a.uniqueChars([{ zh: "水", py: "shuǐ", en: "water" }])[0];
   assert.equal(shui.py, "shuǐ");
+});
+
+test("S-T05: both halves of a split word's English are refused as glosses", () => {
+  const a = app();
+  // The first repair caught only the TRAILING half — 学习 "practice" leaving 习
+  // as "-tice". The leading half was still shipping: 皇帝 "emperor" left 皇 as
+  // "em-", 丝绸 left 丝 as "silk-", 太阳 left 太 as "Tai-". 115 of those were
+  // reaching children across the built HSK1 and HSK2 corpora.
+  const bad = [];
+  for (const s of Object.values(a.STORIES_MAP)) {
+    for (const tok of s.sents.flat()) {
+      if (tok.t === "p") continue;
+      const en = String(tok.mn == null ? "" : tok.mn).trim();
+      const zh = tok.ch || tok.tx;
+      if (!en) bad.push(`${s.id}: ${zh} has no gloss`);
+      else if (/^[-—]/.test(en)) bad.push(`${s.id}: ${zh}="${en}" (trailing half)`);
+      else if (/^[A-Za-z]+-$/.test(en)) bad.push(`${s.id}: ${zh}="${en}" (leading half)`);
+      else if (/^[A-Z]{2,5}$/.test(en)) bad.push(`${s.id}: ${zh}="${en}" (grammar code)`);
+    }
+  }
+  assert.deepEqual(bad.slice(0, 10), [], `${bad.length} fragment glosses in the corpus`);
+});
+
+test("S-T06: every HSK2 story is on its own ladder", () => {
+  const a = app();
+  const h2 = Object.values(a.STORIES_MAP).filter((s) => s.level === 2);
+  assert.equal(h2.length, 44, "22 dynasties, two stories each");
+  for (const s of h2) {
+    assert.equal(s.sents.length, 15, `${s.id}: the HSK2 ladder is fifteen sentences`);
+    assert.equal(s.trans.filter((t) => t && t.trim()).length, 15, `${s.id}: every sentence needs its English`);
+  }
+  // And it is genuinely a different telling from HSK1, not the same text.
+  const one = a.STORIES_MAP["xia-h1"], two = a.STORIES_MAP["xia-h2"];
+  assert.notEqual(one.sents.length, two.sents.length);
+  assert.notDeepEqual(one.sents[0], two.sents[0], "the HSK2 telling is its own text");
 });

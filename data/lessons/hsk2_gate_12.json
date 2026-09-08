@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_12",
   "level": "HSK2",
   "gateId": 12,
-  "title": "HSK2 Gate 12 Lesson",
-  "explanation": "This gate adds a small culture connection. Notice time words and places.",
-  "passage": "第12关：我们读一个小故事。清明节，人们纪念祖先。然后，我们继续练习有用的句子。",
+  "title": "HSK2 Gate 12 · Tang Dynasty",
+  "explanationEn": "Gate 12: Tang Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第12关：唐朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "一千三百多年以前，中国有一个很大的朝代，叫唐朝。唐朝最大的城叫长安。那时候，它是世界上最大的城。城里住了一百多万人。",
+  "passageEn": "More than thirteen hundred years ago China had a great dynasty called the Tang. The Tang’s greatest city was Chang’an. At that time it was the largest city in the world. More than a million people lived in it.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "千",
+      "pinyin": "qiān",
+      "en": "thousand"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "三",
+      "pinyin": "sān",
+      "en": "three"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "百",
+      "pinyin": "bǎi",
+      "en": "hundred"
+    },
+    {
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
+    },
+    {
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "year"
+    },
+    {
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
+    },
+    {
+      "zh": "大",
+      "pinyin": "dà",
+      "en": "great"
     }
   ],
   "comprehension": [
     {
-      "question": "What cultural idea appears in the passage?",
-      "answer": "A festival or family tradition mentioned in the text."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "More than thirteen hundred years ago China had a great dynasty called the Tang.",
+      "answer": "一千三百多年以前，中国有一个很大的朝代，叫唐朝。"
     },
     {
-      "question": "What do we do after that moment in the story?",
-      "answer": "Continue practicing useful sentences."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "At that time it was the largest city in the world.",
+      "answer": "那时候，它是世界上最大的城。"
     },
     {
-      "question": "Find one place word or time word you recognize.",
-      "answer": "Answers vary with the passage."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Tell a parent one sentence in Chinese about a festival you like."
+  "speakingPromptEn": "Tell a grown-up about Tang Dynasty in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说唐朝。"
 }

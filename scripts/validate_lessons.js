@@ -85,7 +85,7 @@ function main() {
       const en = String(v.en || "").trim();
       if (!v.zh || !v.pinyin) return fail(`${at}: "${v.zh}" is missing a reading`);
       if (!en) fail(`${at}: "${v.zh}" has no meaning`);
-      else if (/^[-—]/.test(en)) fail(`${at}: "${v.zh}" is glossed "${en}" — a fragment, not a meaning`);
+      else if (/^[-—]/.test(en) || /^[A-Za-z]+-$/.test(en)) fail(`${at}: "${v.zh}" is glossed "${en}" — a fragment, not a meaning`);
       else if (/^[A-Z]{2,5}$/.test(en)) fail(`${at}: "${v.zh}" is glossed "${en}" — a grammar code`);
       if (v.zh && L.passage && !L.passage.includes(v.zh)) {
         warn(`${at}: key word "${v.zh}" does not appear in the passage`);

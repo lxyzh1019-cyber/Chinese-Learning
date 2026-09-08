@@ -2,40 +2,73 @@
   "lessonId": "hsk2_gate_01",
   "level": "HSK2",
   "gateId": 1,
-  "title": "HSK2 Gate 1 Lesson",
-  "explanation": "This is an early HSK2 gate. Read slowly and focus on clear patterns.",
-  "passage": "第1关：我们学习新词。今天天气很好，我和朋友一起学习中文。",
+  "title": "HSK2 Gate 1 · Xia Dynasty",
+  "explanationEn": "Gate 1: Xia Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第1关：夏朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "很久很久以前，中国下了很多天的雨。因为雨太多，所以水越来越大。水进了田里，也进了很多人的家。大家没有地方住，只能住到山上去。",
+  "passageEn": "Very long ago, it rained in China for many days. Because there was so much rain, the water rose higher and higher. The water came into the fields, and into many people’s homes. People had nowhere to live, and could only move up the mountains.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "久",
+      "pinyin": "jiǔ",
+      "en": "long time"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "下",
+      "pinyin": "xià",
+      "en": "below; to go down"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
+    },
+    {
+      "zh": "天",
+      "pinyin": "tiān",
+      "en": "day; sky"
+    },
+    {
+      "zh": "雨",
+      "pinyin": "yǔ",
+      "en": "rain"
+    },
+    {
+      "zh": "因为",
+      "pinyin": "yīn wèi",
+      "en": "because"
+    },
+    {
+      "zh": "太",
+      "pinyin": "tài",
+      "en": "too; very"
     }
   ],
   "comprehension": [
     {
-      "question": "What are we doing today?",
-      "answer": "Studying Chinese together."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Very long ago, it rained in China for many days.",
+      "answer": "很久很久以前，中国下了很多天的雨。"
     },
     {
-      "question": "How is the weather in the passage?",
-      "answer": "Very nice / good."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "The water came into the fields, and into many people’s homes.",
+      "answer": "水进了田里，也进了很多人的家。"
+    },
+    {
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Say two short sentences: who you are and what you like to do."
+  "speakingPromptEn": "Tell a grown-up about Xia Dynasty in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说夏朝。"
 }

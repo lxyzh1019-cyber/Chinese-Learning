@@ -2,40 +2,73 @@
   "lessonId": "hsk2_gate_06",
   "level": "HSK2",
   "gateId": 6,
-  "title": "HSK2 Gate 6 Lesson",
-  "explanation": "This is an early HSK2 gate. Read slowly and focus on clear patterns.",
-  "passage": "第6关：我们学习新词。今天天气很好，我和朋友一起学习中文。",
+  "title": "HSK2 Gate 6 · Western Han",
+  "explanationEn": "Gate 6: Western Han. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第6关：西汉。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "汉朝的时候，中国和西边的国家还很少来往。很多人不知道西边有什么。后来，皇帝让一些人向西走，看一看那里的情况。他们走了很多年才回来。",
+  "passageEn": "In the Han dynasty, China had little contact with the lands to the west. Many people did not know what lay to the west. Later the emperor sent men west to see what was there. They travelled for many years before returning.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "en": "period"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "西",
+      "pinyin": "xī",
+      "en": "west"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "边",
+      "pinyin": "biān",
+      "en": "side; edge"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "en": "country; nation; state"
+    },
+    {
+      "zh": "少",
+      "pinyin": "shǎo",
+      "en": "few"
+    },
+    {
+      "zh": "来",
+      "pinyin": "lái",
+      "en": "to come"
+    },
+    {
+      "zh": "往",
+      "pinyin": "wǎng",
+      "en": "to go (in a direction)"
+    },
+    {
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
     }
   ],
   "comprehension": [
     {
-      "question": "What are we doing today?",
-      "answer": "Studying Chinese together."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "In the Han dynasty, China had little contact with the lands to the west.",
+      "answer": "汉朝的时候，中国和西边的国家还很少来往。"
     },
     {
-      "question": "How is the weather in the passage?",
-      "answer": "Very nice / good."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "Later the emperor sent men west to see what was there.",
+      "answer": "后来，皇帝让一些人向西走，看一看那里的情况。"
+    },
+    {
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Say two short sentences: who you are and what you like to do."
+  "speakingPromptEn": "Tell a grown-up about Western Han in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说西汉。"
 }

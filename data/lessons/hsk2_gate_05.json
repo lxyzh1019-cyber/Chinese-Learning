@@ -2,40 +2,73 @@
   "lessonId": "hsk2_gate_05",
   "level": "HSK2",
   "gateId": 5,
-  "title": "HSK2 Gate 5 Lesson",
-  "explanation": "This is an early HSK2 gate. Read slowly and focus on clear patterns.",
-  "passage": "第5关：我们学习新词。今天天气很好，我和朋友一起学习中文。",
+  "title": "HSK2 Gate 5 · Qin Dynasty",
+  "explanationEn": "Gate 5: Qin Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第5关：秦朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "两千多年以前，中国有很多小国。这些国常常打来打去，大家都过得不好。后来有一个人把它们都放在一起。他就是秦始皇，中国的第一个皇帝。",
+  "passageEn": "More than two thousand years ago, China had many small states. These states fought one another constantly, and life was hard for everyone. Later one man brought them all together. He was Qin Shi Huang, China’s first emperor.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "两",
+      "pinyin": "liǎng",
+      "en": "two"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "千",
+      "pinyin": "qiān",
+      "en": "thousand"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "year"
+    },
+    {
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
+    },
+    {
+      "zh": "小",
+      "pinyin": "xiǎo",
+      "en": "little"
+    },
+    {
+      "zh": "国",
+      "pinyin": "guó",
+      "en": "kingdoms"
+    },
+    {
+      "zh": "这些",
+      "pinyin": "zhè xiē",
+      "en": "these"
     }
   ],
   "comprehension": [
     {
-      "question": "What are we doing today?",
-      "answer": "Studying Chinese together."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "More than two thousand years ago, China had many small states.",
+      "answer": "两千多年以前，中国有很多小国。"
     },
     {
-      "question": "How is the weather in the passage?",
-      "answer": "Very nice / good."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "Later one man brought them all together.",
+      "answer": "后来有一个人把它们都放在一起。"
+    },
+    {
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Say two short sentences: who you are and what you like to do."
+  "speakingPromptEn": "Tell a grown-up about Qin Dynasty in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说秦朝。"
 }

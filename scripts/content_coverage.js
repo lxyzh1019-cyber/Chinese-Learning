@@ -139,7 +139,10 @@ function main() {
   console.log(`- Study characters per story: min ${studies[0]}, median ${studies[studies.length >> 1]}, max ${studies[studies.length - 1]}`);
   console.log(`- Sentences per story: ${[...new Set(sr.stories.map((s) => s.sentences))].sort().join(", ")}`);
   const laddered = missing.length === 0;
-  console.log(`- Decision **O05**: ${laddered ? "met — every level has its own telling." : "partly met — stories carry a level and HSK1 is on its ladder; the levels listed above are still to be written."}\n`);
+  const done = [1, 2, 3, 4].filter((lv) => (perLevel[lv] || 0) >= 44).map((lv) => `HSK${lv}`);
+  console.log(`- Decision **O05**: ${laddered
+    ? "met — every level has its own telling."
+    : `partly met — stories carry a level and ${done.join(" and ")} ${done.length > 1 ? "are" : "is"} on the ladder; the levels above are still to be written.`}\n`);
 
   console.log("## Lessons");
   const wordList = lessons.filter((l) => l.isWordList);

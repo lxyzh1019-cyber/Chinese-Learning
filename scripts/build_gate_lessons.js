@@ -1,7 +1,16 @@
 const fs=require('fs');
 const path=require('path');
 const ROOT=path.resolve(__dirname,'..');
-const stories=require(path.join(ROOT,'data','stories','hsk1.json')).stories;
+// Which level to build. HSK1 and HSK2 have their own texts; a level without
+// one has nothing to draw a lesson from, and its lessons stay on the old
+// template until its stories are written.
+const LEVEL=Number(process.argv[2]||1);
+const storyFile=path.join(ROOT,'data','stories',`hsk${LEVEL}.json`);
+if(!fs.existsSync(storyFile)){
+  console.error(`HSK${LEVEL} has no stories yet — write them before its lessons.`);
+  process.exit(1);
+}
+const stories=require(storyFile).stories;
 const DYN=readDynasties();
 // Each lesson is built FROM its gate's own story: the passage is that story's
 // opening, the key words are words the child will actually meet in it, and the
@@ -21,7 +30,7 @@ function readDynasties(){
 
 let n=0;
 for(const d of DYN){
-  const st=stories[d.story+'-h1'];
+  const st=stories[`${d.story}-h${LEVEL}`];
   if(!st) { console.error('no story for gate',d.id); continue; }
   const line=(i)=>st.sents[i].map(t=>t.t==='p'?t.tx:(t.ch||t.tx)).join('');
   const passage=[0,1,2,3].map(line).join('');
@@ -50,9 +59,9 @@ for(const d of DYN){
   }
 
   const lesson={
-    lessonId:`hsk1_gate_${String(d.id).padStart(2,'0')}`,
-    level:'HSK1', gateId:d.id,
-    title:`HSK1 Gate ${d.id} · ${d.en}`,
+    lessonId:`hsk${LEVEL}_gate_${String(d.id).padStart(2,'0')}`,
+    level:`HSK${LEVEL}`, gateId:d.id,
+    title:`HSK${LEVEL} Gate ${d.id} · ${d.en}`,
     explanationEn:`Gate ${d.id}: ${d.en}. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.`,
     explanation:`第${d.id}关：${d.zh}。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。`,
     passage, passageEn,
@@ -75,8 +84,8 @@ for(const d of DYN){
     speakingPromptEn:`Tell a grown-up about ${d.en} in two or three short Chinese sentences. Use words from the list above.`,
     speakingPrompt:`用上面的词，跟家里的大人说两三句中文，说一说${d.zh}。`,
   };
-  fs.writeFileSync(path.join(ROOT,'data','lessons',`hsk1_gate_${String(d.id).padStart(2,'0')}.json`),
+  fs.writeFileSync(path.join(ROOT,'data','lessons',`hsk${LEVEL}_gate_${String(d.id).padStart(2,'0')}.json`),
     JSON.stringify(lesson,null,2)+'\n');
   n++;
 }
-console.log('rewrote',n,'HSK1 lessons from their own gate stories');
+console.log('rewrote',n,`HSK${LEVEL} lessons from their own gate stories`);

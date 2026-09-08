@@ -2,40 +2,73 @@
   "lessonId": "hsk2_gate_03",
   "level": "HSK2",
   "gateId": 3,
-  "title": "HSK2 Gate 3 Lesson",
-  "explanation": "This is an early HSK2 gate. Read slowly and focus on clear patterns.",
-  "passage": "第3关：我们学习新词。今天天气很好，我和朋友一起学习中文。",
+  "title": "HSK2 Gate 3 · Western Zhou",
+  "explanationEn": "Gate 3: Western Zhou. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第3关：西周。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "商朝以后，中国有了一个新的朝代，叫西周。西周的王想让大家都听他的话。所以他说了一句很有名的话。他说：“是天让我做王的。”",
+  "passageEn": "After the Shang, China had a new dynasty called the Western Zhou. The Western Zhou king wanted everyone to listen to him. So he said something that became very famous. He said: \"It is Heaven that made me king.\"",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "以后",
+      "pinyin": "yǐ hòu",
+      "en": "after"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "新",
+      "pinyin": "xīn",
+      "en": "new"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "朝",
+      "pinyin": "cháo",
+      "en": "dynasty; to face"
+    },
+    {
+      "zh": "代",
+      "pinyin": "dài",
+      "en": "generation"
+    },
+    {
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
+    },
+    {
+      "zh": "王",
+      "pinyin": "wáng",
+      "en": "king"
+    },
+    {
+      "zh": "想",
+      "pinyin": "xiǎng",
+      "en": "wanted"
     }
   ],
   "comprehension": [
     {
-      "question": "What are we doing today?",
-      "answer": "Studying Chinese together."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "After the Shang, China had a new dynasty called the Western Zhou.",
+      "answer": "商朝以后，中国有了一个新的朝代，叫西周。"
     },
     {
-      "question": "How is the weather in the passage?",
-      "answer": "Very nice / good."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "So he said something that became very famous.",
+      "answer": "所以他说了一句很有名的话。"
+    },
+    {
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Say two short sentences: who you are and what you like to do."
+  "speakingPromptEn": "Tell a grown-up about Western Zhou in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说西周。"
 }
