@@ -81,17 +81,34 @@ function checkVocabQuality(doc, name, problems) {
 }
 
 function checkLevel(doc, name) {
-  assert(doc.totalWords === 300, `${name}: totalWords must be 300`);
-  assert(Array.isArray(doc.words) && doc.words.length === 300, `${name}: words must be 300`);
+  // The level's size is no longer a magic 300: the ordinary-vocabulary
+  // supplement grew each level, and pinning the constant here is what would
+  // make adding a word look like a validation failure. The invariants that
+  // matter are that the three counts AGREE and that nothing is duplicated.
+  const total = doc.words.length;
+  assert(total > 0, `${name}: no words`);
+  assert(doc.totalWords === total, `${name}: totalWords ${doc.totalWords} != words ${total}`);
   assert(Array.isArray(doc.gates) && doc.gates.length === 22, `${name}: gates must be 22`);
   const uniq = new Set(doc.words.map((w) => w.zh));
-  assert(uniq.size === 300, `${name}: duplicate zh found inside level`);
+  assert(uniq.size === total, `${name}: duplicate zh found inside level`);
   const gateSum = doc.gates.reduce((a, g) => a + ((g.newWords && g.newWords.length) || 0), 0);
-  assert(gateSum === 300, `${name}: gate newWords sum must be 300`);
+  assert(gateSum === total, `${name}: gate newWords sum ${gateSum} != words ${total}`);
+  const gateWords = new Set();
+  for (const g of doc.gates) for (const w of g.newWords || []) gateWords.add(w.zh);
+  assert(gateWords.size === total, `${name}: gates teach ${gateWords.size} distinct words, level lists ${total}`);
 
   for (const w of doc.words) {
     const py = (w.pinyin || w.py || "").trim();
     const en = String(w.en || "");
+    // U+FFFD means text was decoded wrongly somewhere upstream. 并 "bìng"
+    // shipped to children as "b\ufffd\ufffdng" in three places because the
+    // curriculum fetch concatenated HTTP chunks without setting an encoding,
+    // splitting a multi-byte character. Nothing caught it.
+    for (const [field, val] of [["zh", w.zh], ["pinyin", py], ["en", en]]) {
+      assert(!String(val).includes("\uFFFD"),
+        `${name}: ${w.zh} has a corrupted ${field} "${val}" — decoded with the wrong encoding`);
+    }
+
     for (const rule of HOMOGRAPH_WARN) {
       if (w.zh !== rule.zh) continue;
       if (rule.skipIfEn && rule.skipIfEn.test(en)) continue;

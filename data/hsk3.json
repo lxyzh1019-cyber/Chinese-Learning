@@ -1,34 +1,35 @@
 {
   "level": "HSK3",
   "sourceStandard": "HSK 3.0 (customized kid track)",
-  "totalWords": 300,
+  "totalWords": 387,
   "totalGates": 22,
   "gateDistribution": [
-    13,
-    13,
-    13,
-    13,
-    13,
-    13,
-    13,
-    13,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14
+    17,
+    17,
+    17,
+    17,
+    17,
+    17,
+    17,
+    17,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    17
   ],
   "notes": [
-    "300-word custom level from HSK 3.0 new-3 list, excluding HSK2 borrowed entries"
+    "300-word custom level from HSK 3.0 new-3 list, excluding HSK2 borrowed entries",
+    "+87 ordinary words the 300-word frequency cut had dropped"
   ],
   "words": [
     {
@@ -4767,6 +4768,1311 @@
           "nr"
         ]
       }
+    },
+    {
+      "zh": "糖",
+      "pinyin": "táng",
+      "en": "sugar; sweets",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "汤",
+      "pinyin": "tāng",
+      "en": "soup",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "苹果",
+      "pinyin": "píng guǒ",
+      "en": "apple",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "甜",
+      "pinyin": "tián",
+      "en": "sweet",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "食品",
+      "pinyin": "shí pǐn",
+      "en": "foodstuff",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "卫生",
+      "pinyin": "wèi shēng",
+      "en": "hygiene",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "阳光",
+      "pinyin": "yáng guāng",
+      "en": "sunshine",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "桥",
+      "pinyin": "qiáo",
+      "en": "bridge",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "土",
+      "pinyin": "tǔ",
+      "en": "soil",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "石头",
+      "pinyin": "shí tou",
+      "en": "stone",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "温暖",
+      "pinyin": "wēn nuǎn",
+      "en": "warm",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "静",
+      "pinyin": "jìng",
+      "en": "still",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "村",
+      "pinyin": "cūn",
+      "en": "village",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "古",
+      "pinyin": "gǔ",
+      "en": "ancient",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "羊",
+      "pinyin": "yáng",
+      "en": "sheep",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "足球",
+      "pinyin": "zú qiú",
+      "en": "football",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "游",
+      "pinyin": "yóu",
+      "en": "to swim",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "舞台",
+      "pinyin": "wǔ tái",
+      "en": "stage",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "决赛",
+      "pinyin": "jué sài",
+      "en": "final match",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "胖",
+      "pinyin": "pán",
+      "en": "chubby",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "伤心",
+      "pinyin": "shāng xīn",
+      "en": "sad",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "坚强",
+      "pinyin": "jiān qiáng",
+      "en": "strong-willed",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "女子",
+      "pinyin": "nǚ zǐ",
+      "en": "woman",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "男子",
+      "pinyin": "nán zǐ",
+      "en": "man",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "主任",
+      "pinyin": "zhǔ rèn",
+      "en": "director",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "作者",
+      "pinyin": "zuò zhě",
+      "en": "author",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "人才",
+      "pinyin": "rén cái",
+      "en": "talented person",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "歌手",
+      "pinyin": "gē shǒu",
+      "en": "singer",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "课程",
+      "pinyin": "kè chéng",
+      "en": "course",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "基础",
+      "pinyin": "jī chǔ",
+      "en": "foundation",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "进步",
+      "pinyin": "jìn bù",
+      "en": "progress",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "指导",
+      "pinyin": "zhǐ dǎo",
+      "en": "to guide",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "成长",
+      "pinyin": "chéng zhǎng",
+      "en": "to grow up",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "体验",
+      "pinyin": "tǐ yàn",
+      "en": "to experience",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "话题",
+      "pinyin": "huà tí",
+      "en": "topic",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "机器",
+      "pinyin": "jī qì",
+      "en": "machine",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "铁",
+      "pinyin": "tiě",
+      "en": "iron",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "服装",
+      "pinyin": "fú zhuāng",
+      "en": "clothing",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "工具",
+      "pinyin": "gōng jù",
+      "en": "tool",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "现金",
+      "pinyin": "xiàn jīn",
+      "en": "cash",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "工厂",
+      "pinyin": "gōng chǎng",
+      "en": "factory",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "厂",
+      "pinyin": "hǎn",
+      "en": "works",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "公共",
+      "pinyin": "gōng gòng",
+      "en": "shared by everyone",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "国内",
+      "pinyin": "guó nèi",
+      "en": "domestic",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "各地",
+      "pinyin": "gè dì",
+      "en": "everywhere",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "大约",
+      "pinyin": "dà yuē",
+      "en": "roughly",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "提前",
+      "pinyin": "tí qián",
+      "en": "ahead of time",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "将来",
+      "pinyin": "jiāng lái",
+      "en": "the future",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "长期",
+      "pinyin": "cháng qī",
+      "en": "long term",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "至今",
+      "pinyin": "zhì jīn",
+      "en": "up to now",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "当初",
+      "pinyin": "dāng chū",
+      "en": "back then",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "搬",
+      "pinyin": "bān",
+      "en": "to move",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "赶",
+      "pinyin": "gǎn",
+      "en": "to hurry",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "存",
+      "pinyin": "cún",
+      "en": "to store",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "念",
+      "pinyin": "niàn",
+      "en": "to read aloud",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "造",
+      "pinyin": "zào",
+      "en": "to build",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "补",
+      "pinyin": "bǔ",
+      "en": "to mend",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "围",
+      "pinyin": "wéi",
+      "en": "to surround",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "订",
+      "pinyin": "dìng",
+      "en": "to book",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "争",
+      "pinyin": "zhēng",
+      "en": "to compete",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "吵",
+      "pinyin": "chǎo",
+      "en": "to quarrel",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "整理",
+      "pinyin": "zhěng lǐ",
+      "en": "to tidy up",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "庆祝",
+      "pinyin": "qìng zhù",
+      "en": "to celebrate",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "举办",
+      "pinyin": "jǔ bàn",
+      "en": "to hold an event",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "计算",
+      "pinyin": "jì suàn",
+      "en": "to calculate",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "开发",
+      "pinyin": "kāi fā",
+      "en": "to develop",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "打破",
+      "pinyin": "dǎ pò",
+      "en": "to break",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "紧急",
+      "pinyin": "jǐn jí",
+      "en": "urgent",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "积极",
+      "pinyin": "jī jí",
+      "en": "eager",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "强烈",
+      "pinyin": "qiáng liè",
+      "en": "intense",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "丰富",
+      "pinyin": "fēng fù",
+      "en": "abundant",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "完整",
+      "pinyin": "wán zhěng",
+      "en": "complete",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "深刻",
+      "pinyin": "shēn kè",
+      "en": "profound",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "全面",
+      "pinyin": "quán miàn",
+      "en": "all-round",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "明确",
+      "pinyin": "míng què",
+      "en": "clear-cut",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "现代",
+      "pinyin": "xiàn dài",
+      "en": "modern",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "类似",
+      "pinyin": "lèi sì",
+      "en": "alike",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "互相",
+      "pinyin": "hù xiāng",
+      "en": "each other",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "科技",
+      "pinyin": "kē jì",
+      "en": "technology",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "印象",
+      "pinyin": "yìn xiàng",
+      "en": "impression",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "形式",
+      "pinyin": "xíng shì",
+      "en": "form",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "现象",
+      "pinyin": "xiàn xiàng",
+      "en": "phenomenon",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "命运",
+      "pinyin": "mìng yùn",
+      "en": "fate",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "愿望",
+      "pinyin": "yuàn wàng",
+      "en": "wish",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "性格",
+      "pinyin": "xìng gé",
+      "en": "character",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "团结",
+      "pinyin": "tuán jié",
+      "en": "to unite",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "只好",
+      "pinyin": "zhǐ hǎo",
+      "en": "to have no choice but",
+      "sourceLevel": "new-3",
+      "sourceTag": "HSK3_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
     }
   ],
   "gates": [
@@ -4988,6 +6294,66 @@
               "n"
             ]
           }
+        },
+        {
+          "zh": "糖",
+          "pinyin": "táng",
+          "en": "sugar; sweets",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "女子",
+          "pinyin": "nǚ zǐ",
+          "en": "woman",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "各地",
+          "pinyin": "gè dì",
+          "en": "everywhere",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "打破",
+          "pinyin": "dǎ pò",
+          "en": "to break",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": []
@@ -5208,6 +6574,66 @@
               "d",
               "c"
             ]
+          }
+        },
+        {
+          "zh": "汤",
+          "pinyin": "tāng",
+          "en": "soup",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "男子",
+          "pinyin": "nán zǐ",
+          "en": "man",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "大约",
+          "pinyin": "dà yuē",
+          "en": "roughly",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "紧急",
+          "pinyin": "jǐn jí",
+          "en": "urgent",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -5636,6 +7062,66 @@
             "pos": [
               "n"
             ]
+          }
+        },
+        {
+          "zh": "苹果",
+          "pinyin": "píng guǒ",
+          "en": "apple",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "主任",
+          "pinyin": "zhǔ rèn",
+          "en": "director",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "提前",
+          "pinyin": "tí qián",
+          "en": "ahead of time",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "积极",
+          "pinyin": "jī jí",
+          "en": "eager",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -6238,6 +7724,66 @@
               "vn"
             ]
           }
+        },
+        {
+          "zh": "甜",
+          "pinyin": "tián",
+          "en": "sweet",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "作者",
+          "pinyin": "zuò zhě",
+          "en": "author",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "将来",
+          "pinyin": "jiāng lái",
+          "en": "the future",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "强烈",
+          "pinyin": "qiáng liè",
+          "en": "intense",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -6837,6 +8383,66 @@
               "v"
             ]
           }
+        },
+        {
+          "zh": "食品",
+          "pinyin": "shí pǐn",
+          "en": "foodstuff",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "人才",
+          "pinyin": "rén cái",
+          "en": "talented person",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "长期",
+          "pinyin": "cháng qī",
+          "en": "long term",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "丰富",
+          "pinyin": "fēng fù",
+          "en": "abundant",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -7435,6 +9041,66 @@
               "q"
             ]
           }
+        },
+        {
+          "zh": "卫生",
+          "pinyin": "wèi shēng",
+          "en": "hygiene",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "歌手",
+          "pinyin": "gē shǒu",
+          "en": "singer",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "至今",
+          "pinyin": "zhì jīn",
+          "en": "up to now",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "完整",
+          "pinyin": "wán zhěng",
+          "en": "complete",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -8027,6 +9693,66 @@
               "g",
               "nr"
             ]
+          }
+        },
+        {
+          "zh": "阳光",
+          "pinyin": "yáng guāng",
+          "en": "sunshine",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "课程",
+          "pinyin": "kè chéng",
+          "en": "course",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "当初",
+          "pinyin": "dāng chū",
+          "en": "back then",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "深刻",
+          "pinyin": "shēn kè",
+          "en": "profound",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -8626,6 +10352,66 @@
               "a",
               "an"
             ]
+          }
+        },
+        {
+          "zh": "桥",
+          "pinyin": "qiáo",
+          "en": "bridge",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "基础",
+          "pinyin": "jī chǔ",
+          "en": "foundation",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "搬",
+          "pinyin": "bān",
+          "en": "to move",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "全面",
+          "pinyin": "quán miàn",
+          "en": "all-round",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -9243,6 +11029,66 @@
               "n"
             ]
           }
+        },
+        {
+          "zh": "土",
+          "pinyin": "tǔ",
+          "en": "soil",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "进步",
+          "pinyin": "jìn bù",
+          "en": "progress",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "赶",
+          "pinyin": "gǎn",
+          "en": "to hurry",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "明确",
+          "pinyin": "míng què",
+          "en": "clear-cut",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -9855,6 +11701,66 @@
               "v",
               "vn"
             ]
+          }
+        },
+        {
+          "zh": "石头",
+          "pinyin": "shí tou",
+          "en": "stone",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "指导",
+          "pinyin": "zhǐ dǎo",
+          "en": "to guide",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "存",
+          "pinyin": "cún",
+          "en": "to store",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "现代",
+          "pinyin": "xiàn dài",
+          "en": "modern",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -10474,6 +12380,66 @@
               "n"
             ]
           }
+        },
+        {
+          "zh": "温暖",
+          "pinyin": "wēn nuǎn",
+          "en": "warm",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "成长",
+          "pinyin": "chéng zhǎng",
+          "en": "to grow up",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "念",
+          "pinyin": "niàn",
+          "en": "to read aloud",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "类似",
+          "pinyin": "lèi sì",
+          "en": "alike",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -11083,6 +13049,66 @@
               "a",
               "ad"
             ]
+          }
+        },
+        {
+          "zh": "静",
+          "pinyin": "jìng",
+          "en": "still",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "体验",
+          "pinyin": "tǐ yàn",
+          "en": "to experience",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "造",
+          "pinyin": "zào",
+          "en": "to build",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "互相",
+          "pinyin": "hù xiāng",
+          "en": "each other",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -11702,6 +13728,66 @@
               "n"
             ]
           }
+        },
+        {
+          "zh": "村",
+          "pinyin": "cūn",
+          "en": "village",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "话题",
+          "pinyin": "huà tí",
+          "en": "topic",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "补",
+          "pinyin": "bǔ",
+          "en": "to mend",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "科技",
+          "pinyin": "kē jì",
+          "en": "technology",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -12320,6 +14406,66 @@
               "n"
             ]
           }
+        },
+        {
+          "zh": "古",
+          "pinyin": "gǔ",
+          "en": "ancient",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "机器",
+          "pinyin": "jī qì",
+          "en": "machine",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "围",
+          "pinyin": "wéi",
+          "en": "to surround",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "印象",
+          "pinyin": "yìn xiàng",
+          "en": "impression",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -12931,6 +15077,66 @@
               "n",
               "nr"
             ]
+          }
+        },
+        {
+          "zh": "羊",
+          "pinyin": "yáng",
+          "en": "sheep",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "铁",
+          "pinyin": "tiě",
+          "en": "iron",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "订",
+          "pinyin": "dìng",
+          "en": "to book",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "形式",
+          "pinyin": "xíng shì",
+          "en": "form",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -13550,6 +15756,66 @@
               "n"
             ]
           }
+        },
+        {
+          "zh": "足球",
+          "pinyin": "zú qiú",
+          "en": "football",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "服装",
+          "pinyin": "fú zhuāng",
+          "en": "clothing",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "争",
+          "pinyin": "zhēng",
+          "en": "to compete",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "现象",
+          "pinyin": "xiàn xiàng",
+          "en": "phenomenon",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -14152,6 +16418,66 @@
             "pos": [
               "f"
             ]
+          }
+        },
+        {
+          "zh": "游",
+          "pinyin": "yóu",
+          "en": "to swim",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "工具",
+          "pinyin": "gōng jù",
+          "en": "tool",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "吵",
+          "pinyin": "chǎo",
+          "en": "to quarrel",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "命运",
+          "pinyin": "mìng yùn",
+          "en": "fate",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -14763,6 +17089,66 @@
             "pos": [
               "v"
             ]
+          }
+        },
+        {
+          "zh": "舞台",
+          "pinyin": "wǔ tái",
+          "en": "stage",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "现金",
+          "pinyin": "xiàn jīn",
+          "en": "cash",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "整理",
+          "pinyin": "zhěng lǐ",
+          "en": "to tidy up",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "愿望",
+          "pinyin": "yuàn wàng",
+          "en": "wish",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -15376,6 +17762,66 @@
               "a"
             ]
           }
+        },
+        {
+          "zh": "决赛",
+          "pinyin": "jué sài",
+          "en": "final match",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "工厂",
+          "pinyin": "gōng chǎng",
+          "en": "factory",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "庆祝",
+          "pinyin": "qìng zhù",
+          "en": "to celebrate",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "性格",
+          "pinyin": "xìng gé",
+          "en": "character",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -15975,6 +18421,66 @@
             "pos": [
               "n"
             ]
+          }
+        },
+        {
+          "zh": "胖",
+          "pinyin": "pán",
+          "en": "chubby",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "厂",
+          "pinyin": "hǎn",
+          "en": "works",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "举办",
+          "pinyin": "jǔ bàn",
+          "en": "to hold an event",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "团结",
+          "pinyin": "tuán jié",
+          "en": "to unite",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -16596,6 +19102,66 @@
               "b"
             ]
           }
+        },
+        {
+          "zh": "伤心",
+          "pinyin": "shāng xīn",
+          "en": "sad",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "公共",
+          "pinyin": "gōng gòng",
+          "en": "shared by everyone",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "计算",
+          "pinyin": "jì suàn",
+          "en": "to calculate",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "只好",
+          "pinyin": "zhǐ hǎo",
+          "en": "to have no choice but",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -17206,6 +19772,51 @@
               "v",
               "nr"
             ]
+          }
+        },
+        {
+          "zh": "坚强",
+          "pinyin": "jiān qiáng",
+          "en": "strong-willed",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "国内",
+          "pinyin": "guó nèi",
+          "en": "domestic",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "开发",
+          "pinyin": "kāi fā",
+          "en": "to develop",
+          "sourceLevel": "new-3",
+          "sourceTag": "HSK3_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
