@@ -1100,3 +1100,60 @@ test("A26: a same-form repeat is labelled as a repeat, not as new questions", ()
   const other = newAttempt({ attemptId: "s3", formId: "B", bands: ["C1"] });
   assert.equal(C.compareAttempts(before, other, bank, forms).sameForm, false);
 });
+
+// ── the 2026-09-08 audit: pacing on foreground time (A26 pacing) ───────────
+// Item time was measured as "how long it was on screen" and banked only when
+// an answer landed, so a hidden tab counted in full, an over-cap item counted
+// as nothing at all, and a part-answered item's time was lost on exit.
+
+test("A26: time while the page is hidden is not counted as thinking", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  C.pauseClock(clock, 60 * 1000);          // a minute answering, then hidden
+  C.resumeClock(clock, 10 * 60 * 1000);    // back nine minutes later
+  C.pauseClock(clock, 10.5 * 60 * 1000);   // another thirty seconds
+  C.flushClock(a, clock, 10.5 * 60 * 1000);
+  assert.equal(a.activeTimeMs, 90 * 1000, "only the two foreground stretches count");
+});
+
+test("A26: a part-answered item's time survives leaving", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  // No respond() at all — the child simply closed the overlay.
+  assert.equal(C.flushClock(a, clock, 45 * 1000), 45 * 1000);
+  assert.equal(a.activeTimeMs, 45 * 1000, "time on an unanswered item is not thrown away");
+});
+
+test("A26: an over-cap segment is dropped, but time banked before it is kept", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  C.pauseClock(clock, 2 * 60 * 1000);                 // two real minutes
+  C.resumeClock(clock, 2 * 60 * 1000);
+  C.pauseClock(clock, 2 * 60 * 1000 + C.ACTIVE_CAP_MS + 1000); // then the lid stays up
+  C.flushClock(a, clock, 0);
+  assert.equal(a.activeTimeMs, 2 * 60 * 1000,
+    "the old code dropped the whole item, so those two minutes were worth nothing");
+});
+
+test("A26: flushing twice banks the time once", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  C.flushClock(a, clock, 30 * 1000);
+  const once = a.activeTimeMs;
+  C.flushClock(a, clock, 30 * 1000);
+  assert.equal(a.activeTimeMs, once);
+  assert.equal(once, 30 * 1000);
+});
+
+test("A26: a flush keeps the clock running so the next stretch still counts", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  C.flushClock(a, clock, 10 * 1000);
+  C.flushClock(a, clock, 25 * 1000);
+  assert.equal(a.activeTimeMs, 25 * 1000, "10s then a further 15s");
+});

@@ -66,6 +66,38 @@
    * way to act. player-store's own comment says the caller must surface a
    * choice; this is that caller.
    */
+  /**
+   * Stop the clock and keep what it holds.
+   *
+   * Called whenever the child stops answering — the tab is hidden, the window
+   * loses focus, the overlay closes, a band ends. Partial time on an item the
+   * child never finished used to be dropped on the floor, because time was
+   * only banked when an answer landed.
+   */
+  function pauseTiming() {
+    if (!ui || !ui.attempt || !ui.clock) return;
+    C.flushClock(ui.attempt, ui.clock, Date.now());
+    C.pauseClock(ui.clock, Date.now());
+    persist();
+  }
+
+  // Registered once, on the assessment's own listeners rather than the hub's:
+  // index.html's visibilitychange handler is scoped to curP and the play
+  // timer, and the assessment deliberately spends no play time.
+  if (typeof window !== "undefined" && typeof window.addEventListener === "function") {
+    document.addEventListener("visibilitychange", () => {
+      if (!ui || !ui.attempt || ui.attempt.status !== "active" || !ui.clock) return;
+      if (document.hidden) pauseTiming(); else C.resumeClock(ui.clock, Date.now());
+    });
+    window.addEventListener("blur", pauseTiming);
+    window.addEventListener("pagehide", pauseTiming);
+    window.addEventListener("focus", () => {
+      if (ui && ui.attempt && ui.attempt.status === "active" && ui.clock && ui.idx < ui.items.length) {
+        C.resumeClock(ui.clock, Date.now());
+      }
+    });
+  }
+
   const conflicts = new Map();
   function noteConflict(c) { if (c && c.attemptId) conflicts.set(c.attemptId, c); }
   function noteFlush(res) { ((res && res.conflicts) || []).forEach(noteConflict); return res; }
@@ -121,6 +153,9 @@
     // Leaving mid-attempt is fine and costs nothing: there is no deadline, no
     // penalty and no expiry. Whatever was answered is already saved.
     if (ui && ui.attempt && ui.attempt.status === "active") {
+      // Bank the part-answered item's time before the attempt stops being active.
+      C.flushClock(ui.attempt, ui.clock, Date.now());
+      C.pauseClock(ui.clock, Date.now());
       C.transition(ui.attempt, "paused");
       persist();
       showToast("Assessment saved — you can carry on next time.", 2400);
@@ -377,7 +412,8 @@
     // reshuffle the options under a child who has already looked at them.
     const pres = C.present(a, item, { audioSource: item.options.some((o) => o.audioAssetId) ? "clip" : null });
     persist();
-    ui.shownAtMs = Date.now();
+    ui.clock = ui.clock || C.newClock(null);
+    C.resumeClock(ui.clock, Date.now());
 
     const order = pres.optionOrder.length ? pres.optionOrder : item.options.map((o) => o.id);
     const byId = {}; item.options.forEach((o) => { byId[o.id] = o; });
@@ -437,8 +473,8 @@
     C.respond(ui.attempt, Object.assign({ itemId: item.id }, input));
     // Time on the item lands with the answer, so a reload cannot lose it and
     // a closed lid cannot inflate it.
-    if (ui.shownAtMs) C.addActiveTime(ui.attempt, Date.now() - ui.shownAtMs);
-    ui.shownAtMs = 0;
+    C.flushClock(ui.attempt, ui.clock, Date.now());
+    C.pauseClock(ui.clock, Date.now());
     persist();
     ui.idx++;
     // A 20-minute sitting is the app's rhythm, and the assessment deliberately
@@ -454,6 +490,7 @@
   }
 
   function renderBreakOffer() {
+    pauseTiming();
     const mins = Math.round((ui.attempt.activeTimeMs || 0) / 60000);
     body().innerHTML = `
       <div class="dd-desc" style="text-align:left;line-height:1.6;">
@@ -481,6 +518,7 @@
    * unreviewed never opens or closes the next band.
    */
   function renderBandEnd() {
+    pauseTiming();
     const a = ui.attempt;
     const bank = runBank();
     const score = C.scoreAttempt(a, bank.bank, bank.forms);

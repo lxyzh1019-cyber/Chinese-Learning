@@ -219,6 +219,50 @@
     return attempt.activeTimeMs;
   }
 
+  /**
+   * A foreground clock.
+   *
+   * Time used to be measured as "how long the item was on screen", banked only
+   * when the child answered. So a hidden tab counted in full, an item left for
+   * longer than the cap counted as nothing at all rather than being clamped,
+   * and time spent on an item the child never finished was simply lost. The
+   * cap now applies per foreground segment, which is the only place it means
+   * anything: a segment can run long only while the page was actually visible.
+   */
+  const RUNNING = (c) => c && c.runningSince !== null && c.runningSince !== undefined;
+
+  function newClock(nowMs) {
+    return { accruedMs: 0, runningSince: typeof nowMs === "number" ? nowMs : null };
+  }
+
+  function resumeClock(clock, nowMs) {
+    if (clock && !RUNNING(clock)) clock.runningSince = Number(nowMs) || 0;
+    return clock;
+  }
+
+  function pauseClock(clock, nowMs, opts) {
+    if (!RUNNING(clock)) return clock;
+    const cap = (opts && opts.capMs) || ACTIVE_CAP_MS;
+    const seg = (Number(nowMs) || 0) - clock.runningSince;
+    // A segment longer than the cap is a screen left on, not thinking. Drop
+    // that segment only — whatever was banked before it stands.
+    if (seg > 0 && seg <= cap) clock.accruedMs += seg;
+    clock.runningSince = null;
+    return clock;
+  }
+
+  /** Bank what the clock holds onto the attempt, and keep running if it was. */
+  function flushClock(attempt, clock, nowMs, opts) {
+    if (!attempt || !clock) return 0;
+    const wasRunning = RUNNING(clock);
+    pauseClock(clock, nowMs, opts);
+    const banked = clock.accruedMs;
+    if (banked > 0) addActiveTime(attempt, banked, { capMs: Infinity });
+    clock.accruedMs = 0;
+    if (wasRunning) resumeClock(clock, nowMs);
+    return banked;
+  }
+
   /** Time for a gentle "save and continue later?" — once per threshold, never a lock. */
   function shouldOfferBreak(attempt, opts) {
     const threshold = (opts && opts.thresholdMs) || BREAK_AFTER_MS;
@@ -538,5 +582,6 @@
     selectItems, createAttempt, canTransition, transition, present, respond,
     nextPlannedBand, isCorrect, scoreAttempt, routeNextBand, compareAttempts,
     ACTIVE_CAP_MS, BREAK_AFTER_MS, addActiveTime, shouldOfferBreak, markBreakOffered,
+    newClock, resumeClock, pauseClock, flushClock,
   };
 });
