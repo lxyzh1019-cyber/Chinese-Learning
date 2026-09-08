@@ -361,20 +361,28 @@ player string) and calls `renderHub()`.
 
 ### HSK level unlocking
 
-A level opens on gates cleared **inside the level below it**, not on a running
-total across all levels:
+A level opens when the level below it is **finished** — all 22 of its gates —
+not on a running total across all levels:
 
 ```javascript
-levelIsUnlocked(s, lv)   // lv === 1, or gatesClearedInLevel(s, lv - 1) >= 5
-gatesClearedInLevel(s, lv)  // counts keys matching `h{lv}-g..`
+levelIsUnlocked(s, lv)      // lv === 1, or `h{lv-1}-g22` is in gatesCompleted
+gatesClearedInLevel(s, lv)  // counts keys matching `h{lv}-g..`; drives the toast
 ```
 
 - HSK 1: always open
-- HSK 2 / 3 / 4: ≥ 5 gates cleared in the level below
+- HSK 2 / 3 / 4: all 22 gates of the level below cleared
 
 The old `getCurrentHSK` derived a single "current level" from
 `gatesCompleted.length` at 5 / 11 / 17. That could not survive the 88-gate model
 — a total says nothing about *which* level the gates were in — and it is gone.
+
+`legacyLevelAccess` was a grandfather clause: the migration recorded which
+levels that 5/11/17 rule had opened, and `levelUnlocked` honoured them so no
+child lost a tab. It is **no longer consulted**. It let a child hold HSK2 on
+five cleared gates — not the rule the curriculum is built on, and invisible in
+the UI. `migratePlayer` still writes the field, as a record of what a child
+used to be able to reach; removing the *check* is what revokes the access, so a
+document already carrying the grant needs no migration.
 
 ---
 

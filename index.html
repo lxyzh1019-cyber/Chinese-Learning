@@ -3137,7 +3137,7 @@ function gateCleared(s,did,level){
 /** Is this level's tab available? Inherited access counts, per the migration. */
 function levelIsUnlocked(s,lv){
   if(!s)return lv===1;
-  return GateIdentity.levelUnlocked(lv,s.gatesCompleted||[],s.legacyLevelAccess||[]);
+  return GateIdentity.levelUnlocked(lv,s.gatesCompleted||[]);
 }
 
 const remoteBaseRevision={jenn:0,jess:0};
@@ -5266,13 +5266,19 @@ function renderHub(){
   // HSK tabs
   const tabs=document.getElementById('hsk-tabs');tabs.innerHTML='';
   [1,2,3,4].forEach(lv=>{
-    // A level opens when the previous level is finished, or when the child
-    // already had it under the old running-total rule.
+    // A level opens when the level below it is finished — all 22 gates.
     const unlocked=levelIsUnlocked(s,lv);
     const btn=document.createElement('button');
     btn.className='hsk-tab'+(lv===curHSK?' active':'')+(unlocked?'':' locked');
     btn.textContent='HSK '+lv+(unlocked?'':' 🔒');
-    btn.onclick=()=>{if(unlocked){curHSK=lv;renderHub();}else showToast('Complete a few more gates to unlock HSK '+lv+'!');};
+    btn.onclick=()=>{
+      if(unlocked){curHSK=lv;renderHub();return;}
+      // Say the real rule and where they are against it. The old copy promised
+      // "a few more gates", which was true under the running-total rule and has
+      // not been true since a level started requiring the whole level below it.
+      const done=gatesClearedInLevel(s,lv-1);
+      showToast(`Finish all ${GateIdentity.GATES_PER_LEVEL} HSK${lv-1} gates to open HSK${lv} (${done} of ${GateIdentity.GATES_PER_LEVEL} done).`,3200);
+    };
     tabs.appendChild(btn);
   });
   renderHubContent();

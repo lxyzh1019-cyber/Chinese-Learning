@@ -91,16 +91,22 @@
   /**
    * Which levels a child may open.
    *
-   * The new rule is strict: a level opens when the previous level's gate 22 is
-   * cleared. The old rule was a running total (5/11/17 gates), which was much
-   * looser — so migrating without care would TAKE AWAY a tab a child already
-   * had. `legacyLevelAccess` carries that earlier access forward. Access is not
-   * completion: an inherited tab is browsable, it is not credit.
+   * One rule, no exceptions: a level opens when the previous level's gate 22 is
+   * cleared.
+   *
+   * `legacyLevelAccess` used to grant a second route. The migration recorded the
+   * levels the old running-total rule (5/11/17 gates) had opened, and honoured
+   * them here so nobody lost a tab they already had. That grandfather clause is
+   * gone: it let a child hold HSK2 on five cleared gates, which is not the rule
+   * the curriculum is built on, and the discrepancy was invisible in the UI. The
+   * field is still WRITTEN by migratePlayer, because what a child used to be
+   * able to reach is worth keeping as a record — it just no longer opens
+   * anything. Removing the check is what revokes the access: a document that
+   * already carries the field needs no migration.
    */
-  function levelUnlocked(levelId, clearedKeys, legacyLevelAccess) {
+  function levelUnlocked(levelId, clearedKeys) {
     const lv = Number(levelId);
     if (lv === 1) return true;
-    if ((legacyLevelAccess || []).indexOf(lv) !== -1) return true;
     return (clearedKeys || []).indexOf(gateKey(lv - 1, GATES_PER_LEVEL)) !== -1;
   }
 

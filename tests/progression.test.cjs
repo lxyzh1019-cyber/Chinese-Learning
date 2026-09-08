@@ -812,7 +812,7 @@ test("C01: the level a child is on comes from real progress, not a running total
   assert.equal(a.gatesClearedInLevel(s, 2), 0);
 });
 
-test("C03: migrating a legacy save keeps both the credit and the access", () => {
+test("C03: migrating a legacy save keeps the credit, and no longer grants access", () => {
   const a = app();
   // A pre-migration document, exactly as it sits on disk today.
   const legacy = a.defPlayer();
@@ -829,9 +829,33 @@ test("C03: migrating a legacy save keeps both the credit and the access", () => 
   assert.equal(s.gateGameStars["h1-g05"].trace, 3, "so do game stars");
   assert.equal(s.totalStars, 2270, "and nothing else is disturbed");
   assert.deepEqual(s.legacyCredit.gatesCompleted, [1, 2, 3, 4, 5], "provenance kept");
-  assert.deepEqual(s.legacyLevelAccess, [1, 2], "the HSK2 tab they already had stays open");
-  assert.equal(a.levelIsUnlocked(s, 2), true);
-  assert.equal(a.levelIsUnlocked(s, 3), false, "but no tab they had not earned");
+
+  // The migration still RECORDS what the old running-total rule had opened,
+  // because it is worth knowing what a child used to be able to reach...
+  assert.deepEqual(s.legacyLevelAccess, [1, 2], "what the old rule opened is still recorded");
+
+  // ...but it no longer opens anything. Five cleared gates is not 22, so HSK2
+  // is shut, and a document that already carries the grant needs no migration
+  // to lose it — the rule simply stopped consulting the field.
+  assert.equal(a.levelIsUnlocked(s, 2), false,
+    "five gates does not open HSK2, grandfathered or not");
+  assert.equal(a.levelIsUnlocked(s, 3), false);
+  assert.equal(a.getCurrentHSK(s), 1, "and the child reads as HSK1");
+});
+
+test("C03b: only clearing all 22 gates of the level below opens a level", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  // The grant that used to be honoured, now inert.
+  s.legacyLevelAccess = [1, 2, 3, 4];
+
+  for (let g = 1; g <= 21; g++) s.gatesCompleted.push(`h1-g${String(g).padStart(2, "0")}`);
+  assert.equal(a.levelIsUnlocked(s, 2), false, "21 of 22 is still locked");
+
+  s.gatesCompleted.push("h1-g22");
+  assert.equal(a.levelIsUnlocked(s, 2), true, "the 22nd gate opens it");
+  assert.equal(a.levelIsUnlocked(s, 3), false, "and opens only the next one");
 });
 
 test("M-T18: re-running the migration through ensureState changes nothing", () => {
