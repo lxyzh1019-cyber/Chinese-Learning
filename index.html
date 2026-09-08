@@ -4939,6 +4939,76 @@ function getCurrentHSK(s){
   return top;
 }
 
+/**
+ * Gates cleared, per level.
+ *
+ * The parent panel printed `gatesCompleted.length + "/22"`. Since a gate became
+ * (level, dynasty) that array spans all 88, so a child with progress on two
+ * levels could read "24/22". It also said nothing about WHICH level the gates
+ * were in, which is the only thing the number is useful for.
+ */
+function gatesClearedSummary(s){
+  const per=[1,2,3,4].map(lv=>({lv,n:gatesClearedInLevel(s,lv)})).filter(x=>x.n>0);
+  if(!per.length)return '0/'+GateIdentity.GATES_PER_LEVEL;
+  return per.map(x=>`HSK${x.lv} ${x.n}/${GateIdentity.GATES_PER_LEVEL}`).join(' · ');
+}
+
+/**
+ * Levels this child has any progress in — cleared gates, game stars or reads.
+ * Used by the parent flags, which are opened from the SELECT screen where
+ * `curHSK` holds whatever the last play session left behind. Reading the
+ * ambient level there reports against a level the child may never have played.
+ */
+function levelsWithProgress(s){
+  const set=new Set();
+  ((s&&s.gatesCompleted)||[]).forEach(k=>{const p=GateIdentity.parseGateKey(k);if(p)set.add(p.levelId);});
+  Object.keys((s&&s.gateGameStars)||{}).forEach(k=>{const p=GateIdentity.parseGateKey(k);if(p)set.add(p.levelId);});
+  Object.keys((s&&s.storyReadCount)||{}).forEach(id=>{
+    const m=/-h([1-4])$/.exec(id); if(m)set.add(Number(m[1]));
+  });
+  return set.size?[...set].sort():[1];
+}
+
+/**
+ * "Played the games before reading the story twice" — informational, per §7:
+ * a flag for the family to talk about, never a block.
+ *
+ * Checked across every level the child has progress in rather than the ambient
+ * one, and reported with the level named, so a parent can tell HSK1 gate 3 from
+ * HSK2 gate 3.
+ */
+function playedBeforeReadingHtml(s){
+  const skipped=[];
+  levelsWithProgress(s).forEach(lv=>{
+    DYNASTIES.forEach(d=>{
+      const gg=(s.gateGameStars&&s.gateGameStars[GateIdentity.gateKey(lv,d.id)])||{};
+      const played=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);
+      if(!played)return;
+      const ids=[d.story,d.story2].filter(Boolean).map(b=>storyKeyFor(b,lv));
+      const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));
+      if(reads>=2)return;
+      if((s.gatesCompleted||[]).includes(GateIdentity.gateKey(lv,d.id)))return;
+      skipped.push(`HSK${lv} ${d.zh} (${d.en})`);
+    });
+  });
+  if(!skipped.length)return '';
+  return `<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span>`+
+    `<span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`;
+}
+
+/**
+ * Levels the old running-total rule had opened, which no longer open anything.
+ * migratePlayer still records them; without showing it, a tab quietly
+ * disappearing from a child's hub has no explanation anywhere.
+ */
+function inheritedAccessHtml(s){
+  const had=((s&&s.legacyLevelAccess)||[]).filter(lv=>lv>1&&!levelIsUnlocked(s,lv));
+  if(!had.length)return '';
+  return `<div class="psr" style="color:#9db4d0;"><span class="psr-lbl">ℹ️ Old rule access</span>`+
+    `<span class="psr-val" style="font-size:.7rem;">Could once open ${had.map(lv=>'HSK'+lv).join(', ')}; `+
+    `now needs all ${GateIdentity.GATES_PER_LEVEL} gates of the level below.</span></div>`;
+}
+
 /** How many of a level's 22 gates are cleared. */
 function gatesClearedInLevel(s,lv){
   return ((s&&s.gatesCompleted)||[]).filter(k=>{
@@ -7062,14 +7132,15 @@ function renderParentSummary(){
       <div class="psr"><span class="psr-lbl">📅 ${lbl} Stars</span><span class="psr-val" style="color:var(--gold)">${wkStars}</span></div>
       <div class="psr"><span class="psr-lbl">☀️ Today's Stars</span><span class="psr-val">${ts.stars||0}</span></div>
       ${isNow?`<div class="psr"><span class="psr-lbl">✅ Correct (week)</span><span class="psr-val">${correct}</span></div>`:''}
-      <div class="psr"><span class="psr-lbl">🏯 Gates Completed</span><span class="psr-val">${s.gatesCompleted.length}/22</span></div>
+      <div class="psr"><span class="psr-lbl">🏯 Gates Completed</span><span class="psr-val">${gatesClearedSummary(s)}</span></div>
       <div class="psr"><span class="psr-lbl">📖 Stories Read</span><span class="psr-val">${s.storiesCompleted.length}</span></div>
       <div class="psr"><span class="psr-lbl">📝 Characters Known</span><span class="psr-val">${Object.keys(s.library).length}</span></div>
       ${isNow?`<div class="psr"><span class="psr-lbl">⏱ Today's Time</span><span class="psr-val">${mins}m</span></div>`:''}
       <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} days</span></div>
       <div class="psr"><span class="psr-lbl">💪 Practice Queue</span><span class="psr-val">${Object.keys(s.failedWords||{}).length} words</span></div>
       ${Object.keys(s.championCleared||{}).length?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(Object.keys(s.championCleared).length)}</span></div>`:''}
-      ${(()=>{const skipped=DYNASTIES.filter(d=>{const gg=(s.gateGameStars&&s.gateGameStars[gateKeyOf(d.id)])||{};const gp=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);const ids=[d.story,d.story2].filter(Boolean).map(b=>storyKeyFor(b,curHSK));const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));return gp>0&&reads<2&&!gateCleared(s,d.id);}).map(d=>d.zh+' ('+d.en+')');return skipped.length?`<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span><span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`:'';})()}
+      ${playedBeforeReadingHtml(s)}
+      ${inheritedAccessHtml(s)}
     </div>`;
     if(isNow){
       const ww=Object.values(s.failedWords||{}).filter(w=>w.lastFailed&&w.lastFailed>=ws).sort((a,b)=>b.failCount-a.failCount);

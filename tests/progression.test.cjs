@@ -1156,3 +1156,57 @@ test("S-T04: HSK1 lessons are bilingual and drawn from their own gate's story", 
     });
   }
 });
+
+// ── Parent panel: level-aware flags ────────────────────────────────────────
+
+test("P-T01: gates cleared is reported per level, not as a bare count over 22", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  // A gate is (level, dynasty), so gatesCompleted spans all 88. The panel used
+  // to print `gatesCompleted.length + "/22"`, which reads "24/22" for a child
+  // with progress on two levels and says nothing about which level.
+  for (let g = 1; g <= 22; g++) s.gatesCompleted.push(`h1-g${String(g).padStart(2, "0")}`);
+  s.gatesCompleted.push("h2-g01", "h2-g02");
+  const out = a.gatesClearedSummary(s);
+  assert.match(out, /HSK1 22\/22/);
+  assert.match(out, /HSK2 2\/22/);
+  assert.ok(!/24\/22/.test(out), "never more cleared than the level holds");
+});
+
+test("P-T02: the read-count flag checks the levels played, not the ambient one", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  // Games played at HSK2 on gate 1, with no reads at that level.
+  s.gateGameStars = { "h2-g01": { trace: 3, match: 0, rain: 0, listen: 0 } };
+  s.storyReadCount = { "xia-h1": 2 };   // read twice, but at level 1
+
+  // The panel opens from the select screen, where curHSK holds whatever the
+  // last session left. Both settings must give the same answer.
+  a.curHSK = 1;
+  const atOne = a.playedBeforeReadingHtml(s);
+  a.curHSK = 4;
+  const atFour = a.playedBeforeReadingHtml(s);
+  assert.equal(atOne, atFour, "the flag must not depend on the ambient level");
+  assert.match(atOne, /HSK2/, "and it names the level the games were played at");
+
+  // Reading it twice AT THAT LEVEL clears the flag.
+  s.storyReadCount["xia-h2"] = 2;
+  assert.equal(a.playedBeforeReadingHtml(s), "", "two reads at that level clears it");
+});
+
+test("P-T03: a revoked inherited level is explained rather than vanishing", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  s.legacyLevelAccess = [1, 2];
+  s.gatesCompleted = ["h1-g01", "h1-g02"];
+  const html = a.inheritedAccessHtml(s);
+  assert.match(html, /HSK2/, "says which level they could once open");
+  assert.match(html, /22 gates/, "and what it now takes");
+
+  // Once earned properly there is nothing to explain.
+  for (let g = 3; g <= 22; g++) s.gatesCompleted.push(`h1-g${String(g).padStart(2, "0")}`);
+  assert.equal(a.inheritedAccessHtml(s), "", "no note once the level is genuinely open");
+});
