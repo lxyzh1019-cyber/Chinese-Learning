@@ -169,11 +169,14 @@
   function renderHome() {
     const past = S.listAttempts(storeCtx(), curP);
     const done = past.filter((a) => a.status === "results_available" || a.status === "submitted");
-    const open = past.find((a) => S.inProgress(a));
-    // In progress, but started on another device: it is continued there. Offering
-    // "Continue" here would put two devices on one attempt, which is the case the
-    // compare-and-set can only refuse, never reconcile.
-    const elsewhere = open && !S.resumableOn(open, DEV());
+    // The round to continue is the most recent one started HERE. One in
+    // progress on another device is continued there — offering "Continue" for
+    // it would put two devices on one attempt, the case the compare-and-set
+    // can only refuse, never reconcile — so it is named, not offered.
+    const inProgress = past.filter((a) => S.inProgress(a));
+    const open = inProgress.find((a) => S.resumableOn(a, DEV())) || null;
+    const away = inProgress.filter((a) => !S.resumableOn(a, DEV()));
+    const elsewhere = away.length > 0;
 
     const bands = (ui.bankData.manifest.bands) || [FIRST_BAND];
     const note = ui.bankData.manifest.bandNote || "";
@@ -184,14 +187,14 @@
         There are no stars and no timer — you can stop any time and finish later.
       </div>
       <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.9rem;">
-        ${open && !elsewhere
+        ${open
           ? `<button class="btn-g" onclick="assessmentResume('${esc(open.attemptId)}')">Continue assessment</button>`
           : `<button class="btn-g" onclick="assessmentStart('baseline')">Start at ${esc(bandName(FIRST_BAND))}</button>`}
-        ${elsewhere ? `<div class="practice-box" style="font-size:.72rem;line-height:1.5;">An assessment from ${esc(String(open.createdAt).slice(0, 10))} is in progress on another device — finish it there. Nothing is lost.</div>` : ""}
+        ${elsewhere ? `<div class="practice-box" style="font-size:.72rem;line-height:1.5;">An assessment from ${esc(String(away[0].createdAt).slice(0, 10))} is in progress on another device — finish it there. Nothing is lost.</div>` : ""}
         ${done.length ? `<button class="btn-s" onclick="assessmentHistory()">History &amp; compare (${done.length})</button>` : ""}
         <button class="btn-s" onclick="assessmentSets()">What the sets are · 各组说明</button>
       </div>
-      ${open && !elsewhere ? "" : `
+      ${open ? "" : `
         <div class="practice-box" style="text-align:left;margin-top:.8rem;">
           <div style="font-size:.72rem;color:var(--ink);margin-bottom:.35rem;">Start somewhere else</div>
           <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
