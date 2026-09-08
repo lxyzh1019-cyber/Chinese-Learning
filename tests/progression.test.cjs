@@ -987,3 +987,83 @@ test("T02: every lesson file has the content the renderer now needs", () => {
   });
   assert.deepEqual(missing, [], "nothing the renderer reads is absent");
 });
+
+// ── Bilingual UI labels ────────────────────────────────────────────────────
+
+test("UI-T01: every named feature has both languages, from one definition", () => {
+  const a = app();
+  const labels = a.UI_LABELS;
+  const keys = Object.keys(labels);
+  assert.ok(keys.length >= 30, "the registry covers the app's named features");
+
+  const cjk = /[一-鿿]/;
+  const latin = /[A-Za-z]{2,}/;
+  for (const k of keys) {
+    const d = labels[k];
+    assert.ok(latin.test(d.en), `${k}: needs an English name`);
+    assert.ok(cjk.test(d.zh), `${k}: needs a Chinese name`);
+    // The rendered form always carries both, so a control can never ship in
+    // one language the way the hub buttons used to.
+    const rendered = a.L(k);
+    assert.ok(latin.test(rendered) && cjk.test(rendered),
+      `${k}: rendered label must be bilingual, got ${rendered}`);
+    assert.ok(rendered.includes(" · "), `${k}: uses the ' · ' separator`);
+  }
+  assert.equal(a.L("flashCards", { icon: false }), "Flash Cards · 词卡");
+});
+
+test("UI-T02: no named feature ships in only one language", () => {
+  const fs = require("fs");
+  const path = require("path");
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  const a = app();
+
+  // The defect: the hub button said "📖 拼音表" while the overlay it opened said
+  // "拼音表 · Pinyin Chart"; "🏮 Culture Stories" opened
+  // "🏮 Culture Stories · 文化故事". Two hand-written copies, free to disagree,
+  // and half of them readable in only one language — which for these two
+  // readers means not readable at all.
+  //
+  // Every named feature now renders from UI_LABELS, so the regression to catch
+  // is a STATIC label that is one of those names in a single language.
+  const cjk = /[一-鿿]/;
+  const latin = /[A-Za-z]{2,}/;
+  const strip = (t) => t.replace(/[^\p{L}\p{N} ]/gu, " ").replace(/\s+/g, " ").trim().toLowerCase();
+
+  const names = new Map();
+  for (const [k, d] of Object.entries(a.UI_LABELS)) {
+    names.set(strip(d.en), k);
+    names.set(strip(d.zh), k);
+  }
+
+  const offenders = [];
+  for (const m of html.matchAll(/<(?:button|summary|div)\b[^>]*>([^<>{}`]{2,60})<\/(?:button|summary|div)>/g)) {
+    const raw = m[1].trim();
+    if (!raw) continue;
+    const key = names.get(strip(raw));
+    if (!key) continue;                       // not one of our feature names
+    if (cjk.test(raw) && latin.test(raw)) continue; // already bilingual
+    offenders.push(`${key}: ${raw}`);
+  }
+  assert.deepEqual(offenders, [],
+    "a named feature written straight into markup in one language");
+});
+
+test("UI-T03: the static markup carries no hand-written copy of a label", () => {
+  const fs = require("fs");
+  const path = require("path");
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  const a = app();
+
+  // A hand-written copy of the rendered form is how the two versions drifted
+  // apart in the first place, so the rendered string must appear nowhere but
+  // the registry that produces it.
+  const dupes = [];
+  for (const k of Object.keys(a.UI_LABELS)) {
+    const rendered = a.L(k);
+    for (const m of html.matchAll(/<(?:button|summary|div|span)\b[^>]*>([^<>{}`]+)<\//g)) {
+      if (m[1].trim() === rendered) dupes.push(`${k}: ${rendered}`);
+    }
+  }
+  assert.deepEqual(dupes, [], "labels must come from L() or data-ui-label");
+});

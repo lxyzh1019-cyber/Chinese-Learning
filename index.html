@@ -79,7 +79,18 @@ input{font-family:var(--fui);}
   align-items:center;padding:1.4rem .9rem;gap:.8rem;
   position:sticky;top:0;height:100vh;overflow-y:auto;}
 .hub-main{flex:1;padding:1.4rem 1.6rem;overflow-y:auto;max-height:100vh;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;}
-.sidebar-avatar{font-size:2.8rem;text-align:center;}
+/* The avatar and name ARE the profile switch. They used to be inert text that
+   looked tappable, with the real control ("Back to Profiles") as the LAST child
+   of a sidebar that scrolls internally — so on a short screen it sat below the
+   fold and read as a second, missing control. One button, at the top. */
+.sidebar-profile-chip{display:flex;flex-direction:column;align-items:center;gap:.1rem;
+  width:100%;background:var(--surface);border:1px solid var(--gold-dim);border-radius:14px;
+  padding:.5rem .6rem .45rem;cursor:pointer;transition:all .18s;}
+.sidebar-profile-chip:hover{background:var(--surface2);border-color:var(--gold);}
+.sidebar-profile-chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.sidebar-chip-switch{font-size:.62rem;font-weight:700;color:var(--muted);letter-spacing:.02em;}
+.sidebar-profile-chip:hover .sidebar-chip-switch{color:var(--gold);}
+.sidebar-avatar{font-size:2.8rem;text-align:center;line-height:1.1;}
 .sidebar-name{font-family:var(--fdec);font-size:1.35rem;color:var(--gold);text-align:center;}
 .sidebar-hsk-badge{font-size:.7rem;font-weight:700;color:var(--jade);text-align:center;
   padding:.22rem .7rem;background:var(--jade-dim);border-radius:20px;
@@ -757,23 +768,28 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
     </div>
     <div class="co-dots" id="co-dots"></div>
   </div>
-  <button class="parent-btn" onclick="showParentSummary()">📋 Parent Summary</button>
+  <button class="parent-btn" onclick="showParentSummary()" data-ui-label="parentSummary"></button>
 </div>
 
 <!-- ═══ HUB SCREEN ═══ -->
 <div class="screen" id="scr-hub">
   <div class="hub-sidebar">
+    <button type="button" class="sidebar-profile-chip" id="hub-profile-chip" onclick="goToSelect()"
+            title="Switch profile · 换人" aria-label="Switch profile">
+      <span class="sidebar-avatar" id="hub-avatar">🐥</span>
+      <span class="sidebar-name" id="hub-name">Jenn</span>
+      <span class="sidebar-chip-switch" data-ui-label="switchProfile"></span>
+    </button>
+    <div class="sidebar-hsk-badge" id="hub-hsk">HSK 1</div>
     <div class="mascot-wrap" id="mascot-wrap" style="display:none;">
       <div class="mascot-art" id="mascot-art" aria-hidden="true">
         <span class="mascot-hat" id="mascot-hat" style="display:none;"></span>
         <span class="mascot-face" id="mascot-face-emoji">🐼</span>
         <span class="mascot-bow" id="mascot-bow" style="display:none;">🎀</span>
       </div>
-      <button type="button" class="mascot-cos-btn" id="mascot-cos-btn" onclick="cycleMascotCosmetic()">Change look</button>
+      <button type="button" class="mascot-cos-btn" id="mascot-cos-btn"
+              onclick="cycleMascotCosmetic()" data-ui-label="mascotLook"></button>
     </div>
-    <div class="sidebar-avatar" id="hub-avatar">🐥</div>
-    <div class="sidebar-name" id="hub-name">Jenn</div>
-    <div class="sidebar-hsk-badge" id="hub-hsk">HSK 1</div>
     <div id="mascot-bubble" style="display:none;margin:.45rem auto 0;max-width:230px;padding:.45rem .55rem;background:rgba(39,174,96,.12);border:1px solid rgba(39,174,96,.35);border-radius:10px;font-size:.68rem;color:var(--ink);text-align:center;line-height:1.35;"></div>
     <div class="sidebar-clock" id="hub-clock">--:--</div>
     <div class="sidebar-date-small" id="hub-date"></div>
@@ -798,9 +814,8 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
       <div class="ts-row" id="ts-champ-row" style="display:none;"><span>🏆 Champion</span><span id="ts-champ">—</span></div>
     </div>
     <div class="badge-strip" id="badge-strip"></div>
-    <button type="button" class="drill-btn" style="margin-bottom:.45rem;" onclick="openStickerBook()">📒 Sticker book</button>
+    <button type="button" class="drill-btn" style="margin-bottom:.45rem;" onclick="openStickerBook()" data-ui-label="stickerBook"></button>
     <div class="practice-box" id="practice-box"></div>
-    <button class="sidebar-btn muted-btn" onclick="goToSelect()">← Back to Profiles</button>
   </div>
   <div class="hub-main">
     <div class="hub-title" id="hub-title">My Adventure</div>
@@ -816,9 +831,9 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
     <div class="reader-title" id="reader-title">Story</div>
   </div>
   <div class="toggle-row">
-    <button class="toggle-btn" id="btn-hide-py" onclick="togglePY()">🔤 Hide Pinyin</button>
-    <button class="toggle-btn" id="btn-hide-en" onclick="toggleEN()">🔡 Hide English</button>
-    <button class="toggle-btn" id="btn-nopy" onclick="toggleNoPY()">📝 Sentence Exercise</button>
+    <button class="toggle-btn" id="btn-hide-py" onclick="togglePY()" data-ui-label="hidePinyin"></button>
+    <button class="toggle-btn" id="btn-hide-en" onclick="toggleEN()" data-ui-label="hideEnglish"></button>
+    <button class="toggle-btn" id="btn-nopy" onclick="toggleNoPY()" data-ui-label="sentenceMode"></button>
   </div>
   <div class="prog-wrap">
     <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
@@ -852,10 +867,10 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="overlay" id="overlay-parent">
   <div class="ov-card">
     <button class="ov-close" onclick="closeParentSummary()">✕ Close</button>
-    <div class="ov-title">📋 Parent Summary</div>
+    <div class="ov-title" data-ui-label="parentSummary"></div>
     <div class="sum-tabs">
-      <button class="sum-tab active" id="tab-wk" onclick="setSumMode('weekly')">📅 Weekly</button>
-      <button class="sum-tab" id="tab-dy" onclick="setSumMode('daily')">📆 Daily</button>
+      <button class="sum-tab active" id="tab-wk" onclick="setSumMode('weekly')" data-ui-label="weekly"></button>
+      <button class="sum-tab" id="tab-dy" onclick="setSumMode('daily')" data-ui-label="daily"></button>
     </div>
     <div style="margin:.55rem 0 .9rem;padding:.55rem .65rem;border:1px solid rgba(212,160,23,.2);border-radius:10px;background:rgba(0,0,0,.12);font-size:.74rem;line-height:1.45;">
       <label style="display:flex;align-items:center;gap:.45rem;cursor:pointer;">
@@ -893,7 +908,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
     <div id="sum-wrong"></div>
     <!-- ── PARENT STAR & MYSTERY BOX CONTROLS ── -->
     <div class="divider"></div>
-    <div style="margin:.6rem 0 .4rem;font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.06em;">⭐ Star Manager &amp; 🎁 Mystery Box</div>
+    <div style="margin:.6rem 0 .4rem;font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.06em;">⭐ Star Manager · 星星管理 &amp; 🎁 Mystery Box · 神秘礼盒</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.7rem;" id="parent-star-controls">
       <!-- Jenn -->
       <div style="background:var(--surface);border:1px solid rgba(232,68,90,.25);border-radius:14px;padding:.8rem .9rem;">
@@ -929,7 +944,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
     <div id="parent-star-msg" style="font-size:.72rem;color:var(--jade);min-height:1.2rem;margin:.3rem 0;text-align:center;"></div>
     <div class="divider"></div>
     <div class="sum-reset-wrap">
-      <button class="btn-danger" onclick="clearAllProgressWithParentPwd()">🗑️ Clear All Progress</button>
+      <button class="btn-danger" onclick="clearAllProgressWithParentPwd()" data-ui-label="clearProgress"></button>
     </div>
   </div>
 </div>
@@ -957,7 +972,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="mini-quiz-overlay" id="drill-overlay">
   <div class="mini-quiz-card drill-card">
     <button type="button" class="mq-close" onclick="closeDrill()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title">💪 Word Drill · 生词练习</div>
+    <div class="mq-title" data-ui-label="wordDrill"></div>
     <div id="drill-body"></div>
   </div>
 </div>
@@ -966,7 +981,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="mini-quiz-overlay" id="revenge-overlay">
   <div class="mini-quiz-card drill-card">
     <button type="button" class="mq-close" onclick="closeRevengeRound()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title">Revenge round · 错题反击</div>
+    <div class="mq-title" data-ui-label="revengeRound"></div>
     <div id="revenge-body"></div>
   </div>
 </div>
@@ -984,7 +999,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="mini-quiz-overlay" id="myday-overlay">
   <div class="mini-quiz-card">
     <button type="button" class="mq-close" onclick="closeMyDay()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title">🌟 My Day · 今日进度</div>
+    <div class="mq-title" data-ui-label="myDay"></div>
     <div id="myday-body"></div>
   </div>
 </div>
@@ -993,7 +1008,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="mini-quiz-overlay" id="flash-overlay">
   <div class="mini-quiz-card">
     <button type="button" class="mq-close" onclick="closeFlashOverlay()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title">🎴 Flash Cards · 词卡</div>
+    <div class="mq-title" data-ui-label="flashCards"></div>
     <div id="flash-body"></div>
   </div>
 </div>
@@ -1002,7 +1017,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="mini-quiz-overlay" id="games-overlay">
   <div class="mini-quiz-card">
     <button type="button" class="mq-close" onclick="closeGamesOverlay()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title">🎮 Games · 游戏</div>
+    <div class="mq-title" data-ui-label="games"></div>
     <div id="games-body"></div>
   </div>
 </div>
@@ -1010,7 +1025,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="mini-quiz-overlay" id="culture-overlay">
   <div class="mini-quiz-card">
     <button type="button" class="mq-close" onclick="closeCultureStories()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title">🏮 Culture Stories · 文化故事</div>
+    <div class="mq-title" data-ui-label="cultureStories"></div>
     <div id="culture-body"></div>
   </div>
 </div>
@@ -1029,7 +1044,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="mini-quiz-overlay" id="sticker-overlay">
   <div class="mini-quiz-card">
     <button type="button" class="mq-close" onclick="closeStickerBook()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title">📒 Sticker book</div>
+    <div class="mq-title" data-ui-label="stickerBook"></div>
     <div id="sticker-body" class="dd-desc" style="text-align:center;">Collect stickers by clearing gates and culture stories!</div>
     <div class="sticker-grid" id="sticker-grid"></div>
     <button type="button" class="btn-g" onclick="closeStickerBook()">Close</button>
@@ -1039,7 +1054,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="mini-quiz-overlay" id="mystery-overlay">
   <div class="mini-quiz-card">
     <button type="button" class="mq-close" onclick="closeMysteryBoxOverlay()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title">Mystery box · 神秘礼盒</div>
+    <div class="mq-title" data-ui-label="mysteryBox"></div>
     <div id="mystery-body"></div>
   </div>
 </div>
@@ -1051,7 +1066,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
     <div id="timer-modal-body" style="font-size:.82rem;color:var(--muted);line-height:1.6;text-align:center;margin:.2rem 0 .6rem;"></div>
     <div id="timer-modal-status" style="font-size:.74rem;color:var(--gold);text-align:center;margin-bottom:.8rem;"></div>
     <div style="display:flex;justify-content:center;gap:.55rem;flex-wrap:wrap;">
-      <button class="btn-g" id="timer-modal-view-btn" onclick="timerModalViewTasks()">Let's Do My Tasks</button>
+      <button class="btn-g" id="timer-modal-view-btn" onclick="timerModalViewTasks()" data-ui-label="myTasks"></button>
       <button class="btn-s" onclick="closeTimerModal()">Maybe later</button>
     </div>
   </div>
@@ -1061,7 +1076,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="mini-quiz-overlay" id="assessment-overlay">
   <div class="mini-quiz-card">
     <button type="button" class="mq-close" onclick="closeAssessment()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title">📊 Assessment · 学习评估</div>
+    <div class="mq-title" data-ui-label="assessment"></div>
     <div id="assessment-body"></div>
   </div>
 </div>
@@ -1086,13 +1101,84 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 <div class="pinyin-chart-overlay" id="overlay-pinyin" onclick="if(event.target===this)closePinyinChart()">
   <div class="pinyin-chart-card" onclick="event.stopPropagation()">
     <button class="ov-close" onclick="closePinyinChart()">✕</button>
-    <div class="ov-title" style="margin-bottom:.8rem;">拼音表 · Pinyin Chart</div>
+    <div class="ov-title" data-ui-label="pinyinChart"></div>
     <div id="pinyin-chart-body"></div>
   </div>
 </div>
 <div class="correct-reveal-overlay" id="correct-reveal-overlay"></div>
 
 <script>
+
+// ══════════════════════════════════════════════════════
+//  BILINGUAL UI LABELS
+//  Every named feature has ONE definition. Before this, a feature's name was
+//  written wherever it was needed, so the hub button and the overlay it opened
+//  routinely disagreed and half of them were single-language: "\ud83d\udcd6 \u62fc\u97f3\u8868" opened
+//  "\u62fc\u97f3\u8868 \u00b7 Pinyin Chart", "\ud83c\udfae Culture Stories" opened "\ud83c\udfae Culture Stories \u00b7 \u6587\u5316\u6545\u4e8b",
+//  and "\ud83c\udfb4 Flash Cards" opened "\ud83c\udfb4 Flash Cards \u00b7 \u8bcd\u5361". The girls read English far
+//  better than Chinese, so a Chinese-only control is one they cannot use.
+//
+//  Scope is deliberately NAMES, not every word on screen. In-flow verbs
+//  ("Next", "Save", "Try again") stay short in one language; doubling those
+//  would bloat every button without naming anything.
+// ══════════════════════════════════════════════════════
+const UI_LABELS=Object.freeze({
+  flashCards:     {icon:'\ud83c\udfb4',en:'Flash Cards',        zh:'\u8bcd\u5361'},
+  cultureStories: {icon:'\ud83c\udfee',en:'Culture Stories',    zh:'\u6587\u5316\u5c0f\u6545\u4e8b'},
+  pinyinChart:    {icon:'\ud83d\udcd6',en:'Pinyin Chart',       zh:'\u62fc\u97f3\u8868'},
+  toneChart:      {icon:'\ud83c\udfb5',en:'Tone Chart',         zh:'\u8bed\u8c03\u8868'},
+  officialPinyin: {icon:'\ud83d\udccb',en:'Official Pinyin Table',zh:'\u5b98\u65b9\u62fc\u97f3\u8868'},
+  pronunciation:  {icon:'\ud83d\udde3',en:'Pronunciation Methods',zh:'\u53d1\u97f3\u65b9\u6cd5'},
+  stickerBook:    {icon:'\ud83d\udcd2',en:'Sticker Book',       zh:'\u8d34\u7eb8\u518c'},
+  parentSummary:  {icon:'\ud83d\udccb',en:'Parent Summary',     zh:'\u5bb6\u957f\u62a5\u544a'},
+  assessment:     {icon:'\ud83d\udcca',en:'Assessment',         zh:'\u5b66\u4e60\u8bc4\u4f30'},
+  games:          {icon:'\ud83c\udfae',en:'Games',              zh:'\u6e38\u620f'},
+  myDay:          {icon:'\ud83c\udf1f',en:'My Day',             zh:'\u4eca\u65e5\u8fdb\u5ea6'},
+  wordDrill:      {icon:'\ud83d\udcaa',en:'Word Drill',         zh:'\u751f\u8bcd\u7ec3\u4e60'},
+  revengeRound:   {icon:'\u2694\ufe0f',en:'Revenge Round',      zh:'\u9519\u9898\u53cd\u51fb'},
+  mysteryBox:     {icon:'\ud83c\udf81',en:'Mystery Box',        zh:'\u795e\u79d8\u793c\u76d2'},
+  sentenceMode:   {icon:'\ud83d\udcdd',en:'Sentence Exercise',  zh:'\u9020\u53e5\u7ec3\u4e60'},
+  hardBoss:       {icon:'\u26a1',en:'Hard Boss',          zh:'\u6311\u6218\u5173\u4e3b'},
+  drillAll:       {icon:'\u26a1',en:'Drill All',          zh:'\u5168\u90e8\u7ec3\u4e60'},
+  drillAgain:     {icon:'\u21ba',en:'Drill Again',        zh:'\u518d\u7ec3\u4e00\u6b21'},
+  scopeDynasty:   {icon:'',en:'Dynasty',            zh:'\u671d\u4ee3'},
+  scopeHsk:       {icon:'',en:'HSK',                zh:'\u7b49\u7ea7\u8bcd'},
+  scopeWip:       {icon:'',en:'Work in Progress',   zh:'\u590d\u4e60\u672c'},
+  weekly:         {icon:'\ud83d\udcc5',en:'Weekly',             zh:'\u6bcf\u5468'},
+  daily:          {icon:'\ud83d\udcc6',en:'Daily',              zh:'\u6bcf\u65e5'},
+  clearProgress:  {icon:'\ud83d\uddd1\ufe0f',en:'Clear All Progress',zh:'\u6e05\u9664\u6240\u6709\u8fdb\u5ea6'},
+  resumeLast:     {icon:'\u25b6',en:'Resume last activity',zh:'\u7ee7\u7eed\u4e0a\u6b21'},
+  continueFlash:  {icon:'\u25b6',en:'Continue flash cards',zh:'\u7ee7\u7eed\u8bcd\u5361'},
+  continueGate:   {icon:'\u25b6',en:'Continue gate quiz',zh:'\u7ee7\u7eed\u5173\u4e3b\u8003'},
+  continueStory:  {icon:'\u25b6',en:'Continue story quiz',zh:'\u7ee7\u7eed\u6545\u4e8b\u8003'},
+  startTracing:   {icon:'\u270f\ufe0f',en:'Start Tracing',      zh:'\u5f00\u59cb\u5199\u5b57'},
+  watchAgain:     {icon:'\ud83d\udc40',en:'Watch again',        zh:'\u518d\u770b\u4e00\u6b21'},
+  hideEnglish:    {icon:'\ud83d\udca1',en:'Hide English',       zh:'\u9690\u85cf\u82f1\u6587'},
+  hidePinyin:     {icon:'\ud83d\udd24',en:'Hide Pinyin',        zh:'\u9690\u85cf\u62fc\u97f3'},
+  myTasks:        {icon:'\u2705',en:"Let's do my tasks",zh:'\u5f00\u59cb\u4eca\u5929\u7684\u4efb\u52a1'},
+  switchProfile:  {icon:'\u21c4',en:'Switch profile',    zh:'\u6362\u4eba'},
+  mascotLook:     {icon:'\ud83d\udc3c',en:'Dress the mascot',   zh:'\u7ed9\u5b83\u6362\u88c5'},
+});
+
+/** One named feature, in both languages. `{icon:false}` drops the emoji. */
+function L(key,opts){
+  const d=UI_LABELS[key];
+  if(!d)return key;
+  const showIcon=!(opts&&opts.icon===false);
+  const body=`${d.en} \u00b7 ${d.zh}`;
+  return showIcon&&d.icon?`${d.icon} ${body}`:body;
+}
+
+/**
+ * Fill any element carrying data-ui-label. Static overlay titles use this so
+ * the title and the button that opens it cannot drift apart again.
+ */
+function applyUiLabels(root){
+  (root||document).querySelectorAll('[data-ui-label]').forEach(el=>{
+    el.textContent=L(el.getAttribute('data-ui-label'));
+  });
+}
+
 // ══════════════════════════════════════════════════════
 // DATA
 // ══════════════════════════════════════════════════════
@@ -2176,7 +2262,7 @@ const PANDA_PRONUN_URL='https://www.pandalearnchinese.com/pinyin/fayin';
 const PINYIN_LESSON_STEPS=[
   {title:'Four Tones · 四声',html:'<p>Mandarin uses <b>4 tones + neutral</b>. Same letters, different pitch = different meaning.<br><span style="color:#F8E6A8;">妈 mā</span> vs <span style="color:#9FF5D1;">马 mǎ</span>.</p>'},
   {title:'Tone Practice · 练四声',html:'<p>Tap each card and compare the pitch contour. Repeat until the shape feels natural.</p>'},
-  {title:'Great job!',html:'<p>Focus on tones first. In the chart, use <b>语调表</b> for focused practice and <b>官方拼音表</b> / <b>Pronunciation Methods</b> for reference.</p>'},
+  {title:'Great job!',html:'<p>Focus on tones first. In the chart, use <b>'+L('toneChart',{icon:false})+'</b> for focused practice and <b>'+L('officialPinyin',{icon:false})+'</b> / <b>'+L('pronunciation',{icon:false})+'</b> for reference.</p>'},
 ];
 
 // ══════════════════════════════════════════════════════
@@ -2681,7 +2767,7 @@ function renderMysteryHubCard(){
   const n=state[curP].mysteryPicksPending||0;
   if(n<1){wrap.innerHTML='';return;}
   wrap.innerHTML=`<div class="daily-word-box" style="margin-bottom:0;">
-    <div class="dwb-title">Mystery box · 神秘礼盒</div>
+    <div class="dwb-title">${L('mysteryBox')}</div>
     <div class="dwb-row" style="margin-top:.35rem;">
       <span class="dwb-done">${n} pick${n!==1?'s':''} waiting</span>
       <button type="button" class="dwb-btn" onclick="openMysteryBoxOverlay()">Open 🎁</button>
@@ -3967,7 +4053,7 @@ function openFlashPicker(){
     return `<button class="btn-s" style="opacity:${unlocked?1:.45}" ${unlocked?`onclick="openFlashCards(${d.id})"`:'disabled'}>${d.id}. ${d.zh}</button>`;
   }).join('');
   body.innerHTML=`<div style="font-size:.78rem;color:var(--muted);margin-bottom:.6rem;">Pick a dynasty · 选择朝代</div>
-    ${ps&&ps.did?`<button class="btn-p" style="width:100%;margin-bottom:.55rem;" onclick="resumeSession('flash')">▶ Continue flash cards</button>`:''}
+    ${ps&&ps.did?`<button class="btn-p" style="width:100%;margin-bottom:.55rem;" onclick="resumeSession('flash')">${L('continueFlash')}</button>`:''}
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;max-height:48vh;overflow-y:auto;">${rows}</div>`;
   document.getElementById('flash-overlay').classList.add('show');
 }
@@ -4157,8 +4243,8 @@ function gameUnlockForDid(did){
 
 function gameRow(game,label,dynastyLocked,lockMsg,stars){
   const dynastyBtn=dynastyLocked
-    ?`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;opacity:.4;cursor:default;" disabled>Dynasty 🔒</button>`
-    :`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','dynasty')">Dynasty</button>`;
+    ?`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;opacity:.4;cursor:default;" disabled>${L('scopeDynasty',{icon:false})} 🔒</button>`
+    :`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','dynasty')">${L('scopeDynasty',{icon:false})}</button>`;
   const st=Math.max(0,Math.min(3,stars|0));
   const starStrip=`<div style="text-align:center;font-size:.85rem;letter-spacing:.1em;margin-bottom:.25rem;color:${st>0?'#f5c542':'rgba(255,255,255,.25)'};" title="Best stars on this gate">${'★'.repeat(st)}${'☆'.repeat(3-st)}</div>`;
   return `<div style="padding:.45rem;border:1px solid rgba(212,160,23,.18);border-radius:10px;background:rgba(255,255,255,.02);">
@@ -4166,8 +4252,8 @@ function gameRow(game,label,dynastyLocked,lockMsg,stars){
       ${starStrip}
       <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
         ${dynastyBtn}
-        <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','hsk')">HSK</button>
-        <button class="btn-s game-picker-btn" style="padding:.25rem .5rem;font-size:.66rem;" onclick="startGame('${game}','failed')">Work in Progress</button>
+        <button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="startGame('${game}','hsk')">${L('scopeHsk',{icon:false})}</button>
+        <button class="btn-s game-picker-btn" style="padding:.25rem .5rem;font-size:.66rem;" onclick="startGame('${game}','failed')">${L('scopeWip',{icon:false})}</button>
       </div>
       ${dynastyLocked?`<div style="font-size:.68rem;color:var(--muted);text-align:center;margin-top:.3rem;">${lockMsg}</div>`:''}
     </div>`;
@@ -4189,9 +4275,9 @@ function gamePickerHtml(){
       ${gameRow('rain','🌧️ Rain',!ul.rain,'Play Listen first 👂',gs.rain||0)}
     </div>
     <div style="margin-top:.55rem;font-size:.7rem;line-height:1.5;color:var(--muted);text-align:center;">
-      <b>Dynasty</b> = words from the gate on your map ·
-      <b>HSK</b> = words from your current HSK level ·
-      <b>Work in Progress</b> = words you missed before (practice list)
+      <b>${L('scopeDynasty',{icon:false})}</b> = words from the gate on your map ·
+      <b>${L('scopeHsk',{icon:false})}</b> = words from your current HSK level ·
+      <b>${L('scopeWip',{icon:false})}</b> = words you missed before (practice list)
     </div>`;
 }
 
@@ -4292,7 +4378,7 @@ function renderMemoryMatch(){
     awardAltRound('match',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Brainy win!</div>
       <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
-      <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+      <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
     showStarEffect(stars,'Memory match');
     return;
   }
@@ -4460,7 +4546,7 @@ function endRain(fromUser){
     body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Progress saved!</div>
       <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra}</div>
       <div style="font-size:.85rem;color:var(--muted);text-align:center;margin:.4rem 0 .7rem;">Finish the round to earn stars ⭐</div>
-      <div style="text-align:center;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+      <div style="text-align:center;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
     return;
   }
   // Natural end (timer ran out) — full round completed, stars deserved
@@ -4470,7 +4556,7 @@ function endRain(fromUser){
   awardAltRound('rain',stars);
   body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Time is up!</div>
     <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
-    <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+    <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
   showStarEffect(stars,'Rain game');
   saveState();
 }
@@ -4510,7 +4596,7 @@ function renderListen(){
     awardAltRound('listen',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Listening complete!</div>
       <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
-      <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+      <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
     showStarEffect(stars,'Listen game');
     saveState();return;
   }
@@ -4635,7 +4721,7 @@ function renderTrace(){
     awardAltRound('trace',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
       <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
-      <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">Games</button></div>`;
+      <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
     showStarEffect(stars,'Trace game');
     saveState();return;
   }
@@ -4647,7 +4733,7 @@ function renderTrace(){
     <div style="text-align:center;font-size:.8rem;color:var(--muted);margin:.25rem 0;">Watch the stroke order, then trace it yourself!</div>
     <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.55rem;">
       <button id="trace-watch-btn" class="btn-s" style="padding:.8rem 1rem;font-size:.95rem;" onclick="traceWatchAgain()">👀 Watch again (3 left)</button>
-      <button id="trace-ready-btn" class="btn-g" style="padding:.8rem 1rem;font-size:.95rem;" onclick="startTraceQuiz()">✏️ Start Tracing!</button>
+      <button id="trace-ready-btn" class="btn-g" style="padding:.8rem 1rem;font-size:.95rem;" onclick="startTraceQuiz()">${L('startTracing')}</button>
     </div>
     <div style="text-align:center;margin-top:.45rem;"><button class="btn-s" style="font-size:.75rem;opacity:.7;" onclick="exitTrace()">Save &amp; Exit</button></div>`;
   if(window.HanziWriter){
@@ -5253,12 +5339,12 @@ function renderHub(){
       .sort((a,b)=>b.failCount-a.failCount).slice(0,8);
     const ps=s.pendingSessions||{};
     const resumeBtn=(ps.story||ps.gate||ps.champion||ps.flash||ps.match||ps.rain||ps.listen||ps.trace)
-      ?'<button class="drill-btn" style="margin-top:.45rem;" onclick="resumeLastSession()">▶ Resume last activity</button>':'';
+      ?'<button class="drill-btn" style="margin-top:.45rem;" onclick="resumeLastSession()">'+L('resumeLast')+'</button>':'';
     if(failWords.length){
       practiceBox.innerHTML='<div class="practice-box-title">💪 Practice</div>'+
         failWords.map(w=>`<div class="pw-row"><span class="pw-zh" onclick="speak('${w.zh}')">${w.zh}</span><span class="pw-py">${w.py}</span><span class="pw-cnt">✗${w.failCount}</span></div>`).join('')+
-        `<button class="drill-btn" onclick="startDrill()">⚡ Drill All · +2⭐ per correct</button>`+
-        `<button class="drill-btn" style="margin-top:.35rem;background:rgba(39,174,96,.12);border-color:rgba(39,174,96,.35);" onclick="startRevengeRound()">⚔️ Revenge round · 错题反击</button>`+resumeBtn;
+        `<button class="drill-btn" onclick="startDrill()">${L('drillAll')} · +2⭐</button>`+
+        `<button class="drill-btn" style="margin-top:.35rem;background:rgba(39,174,96,.12);border-color:rgba(39,174,96,.35);" onclick="startRevengeRound()">${L('revengeRound')}</button>`+resumeBtn;
     }else{
       practiceBox.innerHTML='<div class="practice-box-title">💪 Practice</div><div class="pw-empty">✅ All clear!</div>'+resumeBtn;
     }
@@ -5306,15 +5392,15 @@ function renderHubContent(){
       <div id="dynasty-detail-panel"></div>
       <div class="hub-play-strip">
         <div class="hub-play-btns">
-          <button type="button" class="btn-s hub-flash-btn" onclick="showMyDay()">🌟 My Day · 今日</button>
-          <button type="button" class="btn-s hub-flash-btn" onclick="showPinyinChart()">📖 拼音表</button>
+          <button type="button" class="btn-s hub-flash-btn" onclick="showMyDay()">${L('myDay')}</button>
+          <button type="button" class="btn-s hub-flash-btn" onclick="showPinyinChart()">${L('pinyinChart')}</button>
         </div>
         <div class="hub-play-btns">
-          <button type="button" class="btn-s hub-flash-btn" onclick="openFlashPicker()">🎴 Flash Cards</button>
-          <button type="button" class="btn-s hub-flash-btn" onclick="openCultureStories()">🏮 Culture Stories</button>
+          <button type="button" class="btn-s hub-flash-btn" onclick="openFlashPicker()">${L('flashCards')}</button>
+          <button type="button" class="btn-s hub-flash-btn" onclick="openCultureStories()">${L('cultureStories')}</button>
         </div>
         <div class="hub-play-btns">
-          <button type="button" class="btn-s hub-flash-btn" onclick="openAssessment()">📊 Assessment · 学习评估</button>
+          <button type="button" class="btn-s hub-flash-btn" onclick="openAssessment()">${L('assessment')}</button>
         </div>
         <div style="margin-top:.6rem;">
           ${gamePickerHtml()}
@@ -5476,14 +5562,14 @@ function renderDynastyDetail(d,s){
     ${DIM[d.id]?`<div class="dd-icon-meaning">${DIM[d.id]}</div>`:''}
     <div class="dd-desc">${d.desc}</div>
     <div class="dd-actions">
-      ${(s.pendingSessions&&s.pendingSessions.story&&s.pendingSessions.story.storyId&&((story&&s.pendingSessions.story.storyId===story.id)||(story2&&s.pendingSessions.story.storyId===story2.id)))?'<button class="btn-p" onclick="resumeSession(\'story\')">▶ Continue story quiz</button>':''}
-      ${(s.pendingSessions&&((s.pendingSessions.gate&&s.pendingSessions.gate.did===d.id)||(s.pendingSessions.champion&&s.pendingSessions.champion.did===d.id)))?'<button class="btn-p" onclick="resumeSession(\'gate\')">▶ Continue gate quiz</button>':''}
-      ${(s.pendingSessions&&s.pendingSessions.flash&&s.pendingSessions.flash.did===d.id)?'<button class="btn-p" onclick="resumeSession(\'flash\')">▶ Continue flash cards</button>':''}
+      ${(s.pendingSessions&&s.pendingSessions.story&&s.pendingSessions.story.storyId&&((story&&s.pendingSessions.story.storyId===story.id)||(story2&&s.pendingSessions.story.storyId===story2.id)))?'<button class="btn-p" onclick="resumeSession(\'story\')">'+L('continueStory')+'</button>':''}
+      ${(s.pendingSessions&&((s.pendingSessions.gate&&s.pendingSessions.gate.did===d.id)||(s.pendingSessions.champion&&s.pendingSessions.champion.did===d.id)))?'<button class="btn-p" onclick="resumeSession(\'gate\')">'+L('continueGate')+'</button>':''}
+      ${(s.pendingSessions&&s.pendingSessions.flash&&s.pendingSessions.flash.did===d.id)?'<button class="btn-p" onclick="resumeSession(\'flash\')">'+L('continueFlash')+'</button>':''}
       ${storyBtn(story,storyDone)}
       ${storyBtn(story2,story2Done)}
-      <button class="btn-s" onclick="openFlashCards(${d.id})">🎴 Flash Cards</button>
+      <button class="btn-s" onclick="openFlashCards(${d.id})">${L('flashCards')}</button>
       <button class="btn-g" onclick="startGateQuiz(${d.id})">${done?'⚔️ Try Boss Again':'⚔️ Boss Challenge'}</button>
-      <button class="btn-s" onclick="startGateQuiz(${d.id},{hardMode:true})">⚡ Hard boss</button>
+      <button class="btn-s" onclick="startGateQuiz(${d.id},{hardMode:true})">${L('hardBoss')}</button>
     </div>
     <div id="gate-lesson-box" style="margin-top:.8rem;"></div>
   </div>`;
@@ -6055,7 +6141,7 @@ function showDrillResult(){
       <div style="font-size:.78rem;color:rgba(212,160,23,.7);margin-bottom:1rem;">💪 ${cleared} words still in practice queue</div>
       <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;">
         <button class="btn-g" onclick="closeDrill()">✓ Done</button>
-        ${cleared?`<button class="btn-s" onclick="closeDrill();startDrill()">↺ Drill Again</button>`:''}
+        ${cleared?`<button class="btn-s" onclick="closeDrill();startDrill()">${L('drillAgain')}</button>`:''}
       </div>
     </div>`;
   if(pct===100)launchConfetti();
@@ -6187,7 +6273,7 @@ function toggleNoPY(){
   document.getElementById('btn-nopy').classList.toggle('on',noPYmode);
   document.body.classList.toggle('nopy-mode',noPYmode);
   if(noPYmode){
-    showToast('📝 Sentence Exercise Mode on! Pinyin is hidden for extra challenge!');
+    showToast(L('sentenceMode')+' on — pinyin is hidden for an extra challenge!');
     // Reset all reveals to hidden (visual exercise)
     document.querySelectorAll('.cu.revealed:not(.known)').forEach(cu=>{
       cu.classList.remove('revealed','tapped');
@@ -6688,9 +6774,9 @@ function showPinyinChart(){
     </div>
   </div>`).join('');
   const tabs=`<div class="py-chart-tabs">
-    <button type="button" class="py-tab${pinyinChartTab==='overview'?' active':''}" onclick="switchPinyinChartTab('overview')">语调表</button>
-    <button type="button" class="py-tab${pinyinChartTab==='official'?' active':''}" onclick="switchPinyinChartTab('official')">官方拼音表</button>
-    <button type="button" class="py-tab${pinyinChartTab==='pron'?' active':''}" onclick="switchPinyinChartTab('pron')">Pronunciation Methods</button>
+    <button type="button" class="py-tab${pinyinChartTab==='overview'?' active':''}" onclick="switchPinyinChartTab('overview')">${L('toneChart')}</button>
+    <button type="button" class="py-tab${pinyinChartTab==='official'?' active':''}" onclick="switchPinyinChartTab('official')">${L('officialPinyin')}</button>
+    <button type="button" class="py-tab${pinyinChartTab==='pron'?' active':''}" onclick="switchPinyinChartTab('pron')">${L('pronunciation')}</button>
   </div>`;
   const overview=`<div class="py-chart-section">
     <div class="py-chart-title">Tones · 四声 + neutral <span class="py-hint-label">tap any card to hear</span></div>
@@ -6699,8 +6785,8 @@ function showPinyinChart(){
     </div>
     <div class="tone-row">${toneRow}</div>
   </div>`;
-  const official=renderPandaEmbedPanel('official','Official Pinyin Table · 官方拼音表',PANDA_PINYIN_URL);
-  const pron=renderPandaEmbedPanel('pron','Pronunciation Methods',PANDA_PRONUN_URL);
+  const official=renderPandaEmbedPanel('official',L('officialPinyin'),PANDA_PINYIN_URL);
+  const pron=renderPandaEmbedPanel('pron',L('pronunciation'),PANDA_PRONUN_URL);
   body.innerHTML=tabs+(pinyinChartTab==='official'?official:(pinyinChartTab==='pron'?pron:overview));
   document.getElementById('overlay-pinyin').classList.add('show');
   const key=pinyinChartTab==='official'?'official':(pinyinChartTab==='pron'?'pron':'');
@@ -7613,6 +7699,7 @@ function showParentSummary(){
 // ══════════════════════════════════════════════════════
 function init(){
   dbgLog('init start',{search:window.location.search||''});
+  applyUiLabels();
   bindAudioUnlockHandlers();
   loadEngagementSettings();
   state=loadState();
