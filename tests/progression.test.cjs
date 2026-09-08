@@ -1886,3 +1886,58 @@ test("A-T32 / F04: loadAssessmentBank loads by version from the manifest and cac
   assert.equal(await a.loadAssessmentBank("1.0.0"), null, "a version the manifest no longer lists is null, not the current bank");
   assert.ok(await a.loadAssessmentBank(), "and asking for the current bank afterwards still works");
 });
+
+// ── F06: lesson comprehension is think-then-reveal ──────────────────────────
+
+test("F06: a lesson question hides its answer until the child reveals it", async () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  a.curriculumCache.lessons["x"] = {
+    level: "HSK1", gateId: 1, passage: "大禹治水。", passageEn: "Yu tamed the flood.",
+    comprehension: [{ question: "谁治水？", questionEn: "Who tamed the flood?", answer: "大禹。", answerEn: "Yu." }],
+  };
+  await a.renderGateLesson(1, "x");
+  const html = a.document.getElementById("gate-lesson-box").innerHTML;
+  assert.ok(html.includes("Who tamed the flood?"), "the question is shown");
+  assert.match(html, /id="lesson-ans-0" hidden/, "the answer element starts hidden");
+  assert.ok(html.includes("Reveal"), "a Reveal button is offered");
+  assert.ok(html.includes("lessonSelfCheck(1,0,'had')") && html.includes("lessonSelfCheck(1,0,'notyet')"), "both verdicts are offered after reveal");
+  // The answer text appears exactly once, inside the hidden element.
+  const idx = html.indexOf("Yu.");
+  assert.ok(idx > html.indexOf('id="lesson-ans-0"'), "the answer text is inside the hidden element");
+  assert.equal(html.indexOf("Yu.", idx + 1), -1, "and nowhere else");
+});
+
+test("F06: a self-report is stored per gate and question, never as evidence, never for stars", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  s.totalStars = 100;
+  a.lessonSelfCheck(1, 0, "notyet");
+  assert.equal(s.lessonSelfCheck["h1-g01"][0].result, "notyet");
+  assert.ok(/^\d{4}-\d{2}-\d{2}$/.test(s.lessonSelfCheck["h1-g01"][0].at));
+  assert.deepEqual(s.reviewRecords, {}, "a self-report is not unaided evidence");
+  assert.equal(s.totalStars, 100, "and it pays nothing");
+  a.lessonSelfCheck(1, 0, "had");
+  assert.equal(s.lessonSelfCheck["h1-g01"][0].result, "had", "the child can change their mind");
+  a.lessonSelfCheck(1, 0, "maybe");
+  assert.equal(s.lessonSelfCheck["h1-g01"][0].result, "had", "only the two verdicts are accepted");
+});
+
+test("F06: a prior self-report renders the answer open with the verdict", async () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  a.state.jenn.lessonSelfCheck = { "h1-g01": { 0: { result: "had", at: "2026-09-01" } } };
+  a.curriculumCache.lessons["x"] = {
+    level: "HSK1", gateId: 1, passage: "大禹治水。",
+    comprehension: [{ question: "谁治水？", questionEn: "Who?", answer: "大禹。", answerEn: "Yu." }],
+  };
+  await a.renderGateLesson(1, "x");
+  const html = a.document.getElementById("gate-lesson-box").innerHTML;
+  assert.doesNotMatch(html, /id="lesson-ans-0" hidden/, "already answered: the answer is open");
+  assert.ok(html.includes("You said: I had it"));
+  assert.ok(!html.includes("Reveal 👀"), "no reveal button to press again");
+});

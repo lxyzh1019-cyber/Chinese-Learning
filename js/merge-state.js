@@ -259,6 +259,21 @@
     return out;
   }
 
+  function mergeLessonSelfCheck(a, b) {
+    const out = {};
+    new Set([...Object.keys(a || {}), ...Object.keys(b || {})]).forEach((gate) => {
+      const x = (a || {})[gate] || {}, y = (b || {})[gate] || {};
+      out[gate] = {};
+      new Set([...Object.keys(x), ...Object.keys(y)]).forEach((q) => {
+        const p = x[q], r = y[q];
+        if (!p) { out[gate][q] = r; return; }
+        if (!r) { out[gate][q] = p; return; }
+        out[gate][q] = String(r.at || "") > String(p.at || "") ? r : p;
+      });
+    });
+    return out;
+  }
+
   /**
    * Merge two copies of one player.
    *
@@ -320,6 +335,8 @@
     // Retention evidence is long-term learning history; it survives resets and
     // must survive a sync.
     out.reviewRecords = mergeReviewRecords(a.reviewRecords, b.reviewRecords, o.mergeReviewRecord);
+    // Lesson self-checks: per gate per question, the later verdict wins.
+    out.lessonSelfCheck = mergeLessonSelfCheck(a.lessonSelfCheck, b.lessonSelfCheck);
 
     // Two different rounds in progress cannot be merged. Keep both. A slot that
     // is null here is either never filled or deliberately cleared; the clear
@@ -360,6 +377,6 @@
     MAX_LEDGER, newEventId, ensureLedger, recordStarEvent, trimLedger,
     totalFromLedger, weekFromLedger, mergePlayers,
     unionArray, unionById, maxNumericMap, mergeFailedWords, lastResetAt,
-    resetMarker, resetNewer, mergeGateRecords, mergeGateTimers, mergeReviewRecords,
+    resetMarker, resetNewer, mergeGateRecords, mergeGateTimers, mergeReviewRecords, mergeLessonSelfCheck,
   };
 });

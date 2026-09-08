@@ -263,3 +263,13 @@ test("the merged copy is ahead of both inputs so it is the one that gets written
   const m = M.mergePlayers(a, b).player;
   assert.ok(m.revision > 9, "otherwise the write would be refused again");
 });
+
+test("F06: lesson self-checks merge per question, later verdict wins", () => {
+  const local = player({ lessonSelfCheck: { "h1-g01": { 0: { result: "notyet", at: "2026-09-01" }, 1: { result: "had", at: "2026-09-03" } } } });
+  const remote = player({ lessonSelfCheck: { "h1-g01": { 0: { result: "had", at: "2026-09-02" } }, "h1-g02": { 0: { result: "had", at: "2026-09-02" } } } });
+  const m = M.mergePlayers(local, remote).player.lessonSelfCheck;
+  assert.equal(m["h1-g01"][0].result, "had", "the later verdict on question 0");
+  assert.equal(m["h1-g01"][1].result, "had", "local-only question kept");
+  assert.equal(m["h1-g02"][0].result, "had", "remote-only gate kept");
+  assert.deepEqual(M.mergePlayers(remote, local).player.lessonSelfCheck, m, "order does not matter");
+});

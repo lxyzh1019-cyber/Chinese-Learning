@@ -5582,10 +5582,29 @@ async function renderGateLesson(did,lessonRef){
   // gate?" — with the real question demoted to a parenthetical and the real
   // answer never rendered at all. On 22 of the 88 lessons the substitute did
   // not even match the question it replaced.
-  const qs=(lesson.comprehension||[]).map(q=>`<li style="margin:.45rem 0;">
+  //
+  // The answer is hidden until the child has had a go (audit F06). Printing it
+  // beside the question made these worked examples; a child could read the
+  // answer without ever reading the passage. Think, tap Reveal, then say
+  // whether you had it — a self-report, recorded as one, never as unaided
+  // evidence and never for stars.
+  const gk=gateKeyOf(gate,curHSK)||String(gate);
+  const prior=((state[curP]&&state[curP].lessonSelfCheck)||{})[gk]||{};
+  const qs=(lesson.comprehension||[]).map((q,i)=>{
+    const said=prior[i]&&prior[i].result;
+    const verdict=said
+      ?`<div style="font-size:.7rem;color:var(--muted);margin-top:.2rem;">You said: ${said==='had'?'I had it 🌟':'Not yet 🌱'} — <button class="btn-s" style="font-size:.66rem;padding:.15rem .45rem;" onclick="lessonSelfCheck(${Number(gate)},${i},'${said==='had'?'notyet':'had'}')">change</button></div>`
+      :`<div id="lesson-check-${i}" hidden style="display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.25rem;">
+          <button class="btn-s" style="font-size:.7rem;" onclick="lessonSelfCheck(${Number(gate)},${i},'had')">I had it 🌟</button>
+          <button class="btn-s" style="font-size:.7rem;" onclick="lessonSelfCheck(${Number(gate)},${i},'notyet')">Not yet 🌱</button>
+        </div>`;
+    return `<li style="margin:.45rem 0;">
       <span style="color:var(--ink);">${bi(q.questionEn,q.question)}</span>
-      <span style="color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;">→ ${bi(q.answerEn,q.answer)}</span>
-    </li>`).join('');
+      ${said?'':`<button id="lesson-reveal-${i}" class="btn-s" style="font-size:.7rem;margin-top:.2rem;" onclick="lessonRevealAnswer(${i})">Reveal 👀</button>`}
+      <span id="lesson-ans-${i}" ${said?'':'hidden'} style="color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;">→ ${bi(q.answerEn,q.answer)}</span>
+      ${verdict}
+    </li>`;
+  }).join('');
 
   const speaking=(lesson.speakingPromptEn||lesson.speakingPrompt)
     ? `<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;line-height:1.6;"><strong>🗣 Speaking · 口语</strong><br>${bi(lesson.speakingPromptEn,lesson.speakingPrompt)}</div>`
@@ -5597,6 +5616,38 @@ async function renderGateLesson(did,lessonRef){
     ${passage}
     ${qs?`<div class="dd-desc"><strong>✅ 读一读，想一想 · Check understanding</strong><ol style="margin:.35rem 0 .1rem 1.1rem;line-height:1.7;">${qs}</ol></div>`:''}
     ${speaking}`;
+}
+
+/** Show a lesson answer after the child has thought about it. */
+function lessonRevealAnswer(i){
+  const ans=document.getElementById('lesson-ans-'+i);
+  const btn=document.getElementById('lesson-reveal-'+i);
+  const chk=document.getElementById('lesson-check-'+i);
+  if(ans)ans.hidden=false;
+  if(btn)btn.hidden=true;
+  if(chk)chk.hidden=false;
+}
+
+/**
+ * The child's own verdict on a lesson question. Stored per gate per question;
+ * it is a self-report, so it never enters reviewRecords (which hold unaided
+ * evidence only) and never pays stars.
+ */
+function lessonSelfCheck(did,i,result){
+  if(!curP||!state[curP])return;
+  if(result!=='had'&&result!=='notyet')return;
+  const s=state[curP];
+  const gk=gateKeyOf(did,curHSK)||String(did);
+  if(!s.lessonSelfCheck)s.lessonSelfCheck={};
+  if(!s.lessonSelfCheck[gk])s.lessonSelfCheck[gk]={};
+  s.lessonSelfCheck[gk][i]={result,at:todayKey()};
+  saveState();
+  const chk=document.getElementById('lesson-check-'+i);
+  if(chk){
+    chk.hidden=false;
+    chk.innerHTML=`<span style="font-size:.7rem;color:var(--muted);">You said: ${result==='had'?'I had it 🌟':'Not yet 🌱'} — <button class="btn-s" style="font-size:.66rem;padding:.15rem .45rem;" onclick="lessonSelfCheck(${Number(did)},${i},'${result==='had'?'notyet':'had'}')">change</button></span>`;
+  }
+  showToast(result==='had'?'Nice — you had it! 🌟':'Good try — now you know it 🌱',1600);
 }
 
 function closeCultureStories(){
