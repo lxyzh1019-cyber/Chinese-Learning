@@ -323,7 +323,7 @@
       "en": "The cat went home, and the mouse stayed on the mountain."
     },
     {
-      "zh": "它说：\"这里很好，我不下山了！\"",
+      "zh": "它说：“这里很好，我不下山了！”",
       "en": "It said: \"This is great — I'm not going back down!\"",
       "seg": [
         {
@@ -338,7 +338,7 @@
         },
         {
           "t": "p",
-          "tx": "：\""
+          "tx": "：“"
         },
         {
           "zh": "这",
@@ -394,7 +394,7 @@
         },
         {
           "t": "p",
-          "tx": "！\""
+          "tx": "！”"
         }
       ]
     }

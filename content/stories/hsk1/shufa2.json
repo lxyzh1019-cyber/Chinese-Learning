@@ -120,7 +120,11 @@
       ]
     },
     {
-      "zh": "我练习写\"水\"和\"山\"，写了很多遍。",
+      "zh": "她说，坐得直，字才好看。",
+      "en": "She said that if you sit up straight, your characters look better."
+    },
+    {
+      "zh": "我练习写“水”和“山”，写了很多遍。",
       "en": "I practiced writing \"water\" and \"mountain\" many times.",
       "seg": [
         {
@@ -146,7 +150,7 @@
         },
         {
           "t": "p",
-          "tx": "\""
+          "tx": "“"
         },
         {
           "zh": "水",
@@ -155,7 +159,7 @@
         },
         {
           "t": "p",
-          "tx": "\""
+          "tx": "”"
         },
         {
           "zh": "和",
@@ -164,7 +168,7 @@
         },
         {
           "t": "p",
-          "tx": "\""
+          "tx": "“"
         },
         {
           "zh": "山",
@@ -173,7 +177,7 @@
         },
         {
           "t": "p",
-          "tx": "\""
+          "tx": "”"
         },
         {
           "t": "p",
@@ -211,6 +215,10 @@
           "tx": "。"
         }
       ]
+    },
+    {
+      "zh": "一个字有很多笔，先写哪一笔很重要。",
+      "en": "A character has many strokes, and which one comes first matters."
     },
     {
       "zh": "刚开始写得不好，但是慢慢地变好了。",
@@ -302,6 +310,18 @@
           "tx": "。"
         }
       ]
+    },
+    {
+      "zh": "老师看了说：“比昨天好。”",
+      "en": "The teacher looked and said: \"Better than yesterday.\""
+    },
+    {
+      "zh": "我把写好的字给妈妈看。",
+      "en": "I showed the finished characters to my mother."
+    },
+    {
+      "zh": "她说很好看，就放在她的房间里。",
+      "en": "She said they looked lovely and put them up in her room."
     },
     {
       "zh": "现在我很喜欢写汉字，每个字都很美。",

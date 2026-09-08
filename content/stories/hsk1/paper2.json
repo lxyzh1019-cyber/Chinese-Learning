@@ -67,6 +67,10 @@
       ]
     },
     {
+      "zh": "我的房间里有很多书。",
+      "en": "There are many books in my room."
+    },
+    {
       "zh": "书里有很多有趣的故事。",
       "en": "Books contain many interesting stories.",
       "seg": [
@@ -128,6 +132,14 @@
           "tx": "。"
         }
       ]
+    },
+    {
+      "zh": "有的书说的是很久以前的事。",
+      "en": "Some books are about things from long ago."
+    },
+    {
+      "zh": "有的书说的是天上和水里的动物。",
+      "en": "Some are about the animals of the sky and the water."
     },
     {
       "zh": "我读书的时候，可以去到很远的地方。",
@@ -222,7 +234,7 @@
       ]
     },
     {
-      "zh": "妈妈说：\"读书让你变得更聪明。\"",
+      "zh": "妈妈说：“读书让你变得更聪明。”",
       "en": "Mum said: \"Reading makes you smarter.\"",
       "seg": [
         {
@@ -244,7 +256,7 @@
         },
         {
           "t": "p",
-          "tx": "：\""
+          "tx": "：“"
         },
         {
           "zh": "读",
@@ -297,9 +309,17 @@
         },
         {
           "t": "p",
-          "tx": "。\""
+          "tx": "。”"
         }
       ]
+    },
+    {
+      "zh": "她也说，不懂的字可以问她。",
+      "en": "She also said I can ask her about any character I do not know."
+    },
+    {
+      "zh": "每天晚上，我都要看书。",
+      "en": "I read every evening."
     },
     {
       "zh": "我已经读了很多书，我想读更多。",

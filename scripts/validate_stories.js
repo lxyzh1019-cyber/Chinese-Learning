@@ -63,6 +63,18 @@ function main() {
         });
       });
 
+      // An opening quote with no closing one shipped in gate 9 for as long as
+      // the story existed: 人们说他是"书圣，意思是... Nothing checked punctuation,
+      // and a reader does not notice a missing mark in a language they are
+      // still learning.
+      const text = s.sents.map((sent) => sent.map((t) => (t.t === "p" ? t.tx : (t.ch || t.tx))).join("")).join("");
+      [["\u201c", "\u201d"], ["\u2018", "\u2019"], ["\uff08", "\uff09"], ["\u300a", "\u300b"]].forEach(([open, close]) => {
+        const a = (text.match(new RegExp(open, "g")) || []).length;
+        const b = (text.match(new RegExp(close, "g")) || []).length;
+        if (a !== b) fail(`${at}: ${a} ${open} against ${b} ${close} — unbalanced punctuation`);
+      });
+      if (/["']/.test(text)) fail(`${at}: uses a straight quote; Chinese text takes \u201c \u201d`);
+
       const study = s.sents.flat().filter((t) => t.t === "c" && !t.bonus).length;
       if (skip.has(key)) return;
       laddered++;

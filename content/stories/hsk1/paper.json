@@ -20,6 +20,93 @@
   },
   "sents": [
     {
+      "zh": "以前，人们在竹子上写字，很重。",
+      "en": "Before, people wrote on bamboo sticks — very heavy.",
+      "seg": [
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "be-",
+          "bonus": true
+        },
+        {
+          "zh": "前",
+          "py": "qián",
+          "mn": "-fore",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "竹",
+          "py": "zhú",
+          "mn": "bamboo",
+          "bonus": true
+        },
+        {
+          "zh": "子",
+          "py": "zi",
+          "mn": "sticks",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "wrote"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "重",
+          "py": "zhòng",
+          "mn": "heavy",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "一本书要用很多竹子，一个人拿不动。",
+      "en": "One book took a great deal of bamboo — one person could not carry it."
+    },
+    {
       "zh": "东汉时候，一位叫蔡伦的人发现可以用树皮做纸。",
       "en": "During the Eastern Han, Cai Lun discovered he could make paper from tree bark.",
       "seg": [
@@ -124,6 +211,61 @@
       ]
     },
     {
+      "zh": "他用树皮、旧布和水，做出了纸。",
+      "en": "He used tree bark, old cloth and water to make paper."
+    },
+    {
+      "zh": "纸很轻，也很便宜。",
+      "en": "Paper is light and also cheap.",
+      "seg": [
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "轻",
+          "py": "qīng",
+          "mn": "light",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "便",
+          "py": "pián",
+          "mn": "cheap-"
+        },
+        {
+          "zh": "宜",
+          "py": "yí",
+          "mn": "-cheap"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
       "zh": "有了纸，人们可以写很多字。",
       "en": "With paper, people could write many characters.",
       "seg": [
@@ -195,138 +337,16 @@
       ]
     },
     {
-      "zh": "以前，人们在竹子上写字，很重。",
-      "en": "Before, people wrote on bamboo sticks — very heavy.",
-      "seg": [
-        {
-          "zh": "以",
-          "py": "yǐ",
-          "mn": "be-",
-          "bonus": true
-        },
-        {
-          "zh": "前",
-          "py": "qián",
-          "mn": "-fore",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "人",
-          "py": "rén",
-          "mn": "people"
-        },
-        {
-          "zh": "们",
-          "py": "men",
-          "mn": "PL"
-        },
-        {
-          "zh": "在",
-          "py": "zài",
-          "mn": "on"
-        },
-        {
-          "zh": "竹",
-          "py": "zhú",
-          "mn": "bamboo",
-          "bonus": true
-        },
-        {
-          "zh": "子",
-          "py": "zi",
-          "mn": "sticks",
-          "bonus": true
-        },
-        {
-          "zh": "上",
-          "py": "shàng",
-          "mn": "on"
-        },
-        {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "wrote"
-        },
-        {
-          "zh": "字",
-          "py": "zì",
-          "mn": "characters"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "重",
-          "py": "zhòng",
-          "mn": "heavy",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "学生可以带着书上学，老师可以写下课文。",
+      "en": "Students could carry books to school, and teachers could write out lessons."
     },
     {
-      "zh": "纸很轻，也很便宜。",
-      "en": "Paper is light and also cheap.",
-      "seg": [
-        {
-          "zh": "纸",
-          "py": "zhǐ",
-          "mn": "paper",
-          "bonus": true
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "轻",
-          "py": "qīng",
-          "mn": "light",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "也",
-          "py": "yě",
-          "mn": "also"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "便",
-          "py": "pián",
-          "mn": "cheap-"
-        },
-        {
-          "zh": "宜",
-          "py": "yí",
-          "mn": "-cheap"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "后来，纸从中国到了别的国家。",
+      "en": "Later, paper travelled from China to other countries."
+    },
+    {
+      "zh": "世界上很多人开始用纸写字。",
+      "en": "Many people around the world began writing on paper."
     },
     {
       "zh": "蔡伦的发明改变中国和世界。",
