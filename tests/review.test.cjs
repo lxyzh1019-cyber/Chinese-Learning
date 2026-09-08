@@ -11,6 +11,7 @@
 const { test } = require("node:test");
 const assert = require("node:assert");
 const R = require("../js/review-core.js");
+const clone = (x) => JSON.parse(JSON.stringify(x));
 
 const DAY = "2026-09-06";
 
@@ -402,13 +403,87 @@ test("F02: merging a record with itself changes nothing, and legacy entries do n
   assert.equal(m.dueOn, "2026-09-07");
 });
 
-test("F02: at the history bound the fuller copy is kept whole rather than under-replayed", () => {
-  const full = { wordId: "人", skill: "meaning", stage: 5, dueOn: "2026-10-01", lastSeenOn: DAY,
-    attempts: Array.from({ length: R.MAX_ATTEMPTS }, (_, i) => ({ id: `f${i}`, on: DAY, correct: true })) };
-  const small = { wordId: "人", skill: "meaning", stage: 1, dueOn: "2026-09-07", lastSeenOn: DAY,
-    attempts: [{ id: "s1", on: DAY, correct: true }] };
-  assert.equal(R.mergeRecords(full, small).stage, 5);
-  assert.equal(R.mergeRecords(small, full).stage, 5);
+// Past the history bound, trimming folds the shed attempts into a checkpoint
+// instead of discarding them, so the merge can keep replaying. It used to give
+// up and keep one whole record, which made the result depend on argument order
+// and dropped the other device's evidence outright (audit A26-R04).
+
+/** A record with `n` unaided successes on consecutive days, oldest first. */
+function longHistory(days, over) {
+  let store = {};
+  for (let i = 0; i < days; i++) {
+    store = R.recordAttempt(store, {
+      wordId: "人", skill: "meaning", correct: true,
+      todayKey: R.addDays("2026-01-01", i), id: `h${i}`, at: i,
+    });
+  }
+  return Object.assign(store["人::meaning"], over || {});
+}
+
+test("F02: past the bound, the folded prefix is kept as a checkpoint, not dropped", () => {
+  const rec = longHistory(R.MAX_ATTEMPTS + 10);
+  assert.equal(rec.attempts.length, R.MAX_ATTEMPTS, "the history is still bounded");
+  assert.ok(rec.checkpoint, "and what fell off the front is accounted for");
+  assert.equal(rec.checkpoint.count, 10);
+  assert.equal(rec.checkpoint.firstTaughtOn, "2026-01-01",
+    "when this word was first taught survives the fold - statusOf needs it");
+  assert.equal(rec.firstTaughtOn, "2026-01-01");
+});
+
+test("A26-R04: past the bound the merge is order-independent and idempotent", () => {
+  const base = longHistory(R.MAX_ATTEMPTS);
+  // Two devices, each with one attempt the other has never seen, both still at
+  // the bound because the oldest entry is trimmed as the new one lands.
+  const older = R.applyAttempt(clone(base), { id: "x-old", on: "2026-03-01", at: 900, correct: true });
+  const newer = R.applyAttempt(clone(base), { id: "x-new", on: "2026-03-01", at: 901, correct: false });
+  assert.equal(older.attempts.length, R.MAX_ATTEMPTS);
+  assert.equal(newer.attempts.length, R.MAX_ATTEMPTS);
+
+  const ab = R.mergeRecords(clone(older), clone(newer));
+  const ba = R.mergeRecords(clone(newer), clone(older));
+  assert.deepEqual(ab, ba, "which device merged first must not change the schedule");
+
+  const ids = ab.attempts.map((e) => e.id);
+  assert.ok(ids.indexOf("x-new") !== -1, "the new miss is not discarded");
+  assert.ok(ids.indexOf("x-old") !== -1, "nor the other device's new success");
+  // A miss returns the target to tomorrow, whichever order the merge ran in.
+  assert.equal(ab.stage, 0);
+  assert.equal(ab.dueOn, R.addDays("2026-03-01", 1));
+
+  assert.deepEqual(R.mergeRecords(clone(ab), clone(ab)), ab, "merging again changes nothing");
+});
+
+test("A26-R04: a fresh device's misses are not thrown away by a longer history", () => {
+  const long = longHistory(R.MAX_ATTEMPTS + 5);
+  let store = {};
+  ["2026-03-01", "2026-03-02", "2026-03-03"].forEach((d, i) => {
+    store = R.recordAttempt(store, { wordId: "\u4eba", skill: "meaning", correct: false, todayKey: d, id: `m${i}`, at: i });
+  });
+  const fresh = store["\u4eba::meaning"];
+
+  const merged = R.mergeRecords(clone(long), clone(fresh));
+  const ids = merged.attempts.map((e) => e.id);
+  ["m0", "m1", "m2"].forEach((id) => assert.ok(ids.indexOf(id) !== -1, `${id} survives`));
+  assert.deepEqual(merged, R.mergeRecords(clone(fresh), clone(long)));
+  assert.equal(merged.stage, 0, "three recent misses put the target back at the start");
+});
+
+test("A26-R04: a fold does not cost the child their retained label", () => {
+  // Taught in January, recalled unaided again well over a week later, then
+  // drilled enough that the early evidence is folded away.
+  let store = {};
+  store = R.recordAttempt(store, { wordId: "\u4eba", skill: "meaning", correct: true, todayKey: "2026-01-01", id: "a", at: 1 });
+  store = R.recordAttempt(store, { wordId: "\u4eba", skill: "meaning", correct: true, todayKey: "2026-02-01", id: "b", at: 2 });
+  assert.equal(R.statusOf(store["\u4eba::meaning"]), R.LABELS.RETAINED);
+
+  let rec = store["\u4eba::meaning"];
+  for (let i = 0; i < R.MAX_ATTEMPTS + 5; i++) {
+    rec = R.applyAttempt(rec, { id: `f${i}`, on: "2026-03-01", at: i, correct: true, sameSession: true });
+  }
+  assert.ok(rec.checkpoint.count > 0, "the January evidence has been folded");
+  assert.equal(R.statusOf(rec), R.LABELS.RETAINED,
+    "practising a word many times in one sitting must not demote what it already proved");
+  assert.deepEqual(R.mergeRecords(clone(rec), clone(rec)), rec);
 });
 
 // ── F05: the review reaches a child ────────────────────────────────────────

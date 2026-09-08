@@ -1242,6 +1242,23 @@ replayed, so merge order does not change the schedule. Before this there was no
 rule at all: the whole object came from the local copy, and a device with an
 empty store erased the other's history on first sync.
 
+**Past the history bound, the fold is what keeps the union honest.** `attempts`
+is capped at `MAX_ATTEMPTS` (40). Trimming used to discard the overflow, so a
+replay would have understated the record and `mergeRecords` gave up and kept one
+whole copy instead — which made the result depend on argument order (both call
+sites pass local first, so local always won and two devices never converged),
+and dropped the other side's evidence: a device with 40 old entries beat a
+fresher one carrying three real misses. A record at 40 stays at exactly 40, so
+that branch, once entered, was permanent for that word.
+
+Trimming now folds the shed attempts into `record.checkpoint`
+(`{count, stage, firstTaughtOn, successes}`) — what a replay cannot recompute.
+Every field commutes (max, min, set union), so two views of the same folded
+prefix merge to the same seed, and `mergeRecords` always unions and replays.
+Replaying an attempt the other side had already folded is harmless: an
+independent success advances the ladder once per date and the seed already
+carries that date. `pickFuller` is gone.
+
 **A null slot is not "nothing here".** Every slot is initialised to `null`, so a
 plain object merge wrote a device's null over the other's live round. A null
 slot now adopts the other round unless `pendingSessionClearedAt[slot]` says this

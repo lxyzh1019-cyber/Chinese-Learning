@@ -52,6 +52,10 @@
       firstTaughtOn: null,
       lastSeenOn: null,
       unresolvedRuns: 0,        // consecutive same-session failures
+      // What the attempts that have fallen off the front still prove. Trimming
+      // used to discard them outright, which is why a merge past the bound had
+      // to abandon replay and pick one whole record instead.
+      checkpoint: null,
     };
   }
 
@@ -111,7 +115,11 @@
     const correct = !!entry.correct;
     const supported = !!entry.supported;
     const sameSession = !!entry.sameSession;
-    rec.attempts = (rec.attempts || []).concat([entry]).slice(-MAX_ATTEMPTS);
+    const history = (rec.attempts || []).concat([entry]);
+    if (history.length > MAX_ATTEMPTS) {
+      rec.checkpoint = foldInto(rec.checkpoint, history.slice(0, history.length - MAX_ATTEMPTS), prev);
+    }
+    rec.attempts = history.slice(-MAX_ATTEMPTS);
     rec.lastSeenOn = todayKey;
     if (!rec.firstTaughtOn) rec.firstTaughtOn = todayKey;
     rec.independentSuccesses = rec.independentSuccesses || [];
@@ -142,6 +150,56 @@
     return rec;
   }
 
+  /**
+   * Carry what is about to be trimmed away into the checkpoint.
+   *
+   * Only what a later replay cannot recompute: when this target was first
+   * taught, and which dates it was recalled unaided on. The stage comes from
+   * the record as it stood before this entry — it is a floor, and any miss in
+   * the surviving tail resets it during replay.
+   */
+  function foldInto(cp, shed, prev) {
+    const out = {
+      count: (cp && cp.count) || 0,
+      stage: Math.max((cp && cp.stage) || 0, (prev && prev.stage) || 0),
+      firstTaughtOn: (cp && cp.firstTaughtOn) || (prev && prev.firstTaughtOn) || null,
+      successes: ((cp && cp.successes) || []).slice(),
+    };
+    shed.forEach((e) => {
+      out.count++;
+      if (e.on && (!out.firstTaughtOn || e.on < out.firstTaughtOn)) out.firstTaughtOn = e.on;
+      if (e.correct && !e.supported && !e.sameSession && out.successes.indexOf(e.on) === -1) {
+        out.successes.push(e.on);
+      }
+    });
+    out.successes = out.successes.sort().slice(-20);
+    return out;
+  }
+
+  /** Two views of the same folded prefix. Every field commutes. */
+  function mergeCheckpoints(a, b) {
+    if (!a && !b) return null;
+    const A = a || {}, B = b || {};
+    const taught = [A.firstTaughtOn, B.firstTaughtOn].filter(Boolean).sort();
+    return {
+      count: Math.max(A.count || 0, B.count || 0),
+      stage: Math.max(A.stage || 0, B.stage || 0),
+      firstTaughtOn: taught.length ? taught[0] : null,
+      successes: [...new Set([...(A.successes || []), ...(B.successes || [])])].sort().slice(-20),
+    };
+  }
+
+  /** A record to replay onto: blank, plus whatever the checkpoint still proves. */
+  function seedFrom(cp, wordId, skill) {
+    const rec = blankRecord(wordId, skill);
+    if (!cp) return rec;
+    rec.checkpoint = cp;
+    rec.stage = cp.stage || 0;
+    rec.firstTaughtOn = cp.firstTaughtOn || null;
+    rec.independentSuccesses = (cp.successes || []).slice();
+    return rec;
+  }
+
   /** Identity of one attempt entry; entries saved before ids existed are keyed by content. */
   function attemptKey(e) {
     if (e && e.id) return `id:${e.id}`;
@@ -152,18 +210,19 @@
    * Merge two copies of one record, losslessly where the histories allow it.
    *
    * The attempts are unioned by id, ordered by (study date, arrival), and
-   * replayed through applyAttempt from a blank record; because the fold is
-   * pure, merge(a, b) and merge(b, a) land on the same schedule, and merging
-   * a record with itself changes nothing. When either side has hit the
-   * history bound, older attempts have already been dropped and a replay
-   * would understate the record, so the fuller copy is kept whole instead.
+   * replayed through applyAttempt from a seed carrying the merged checkpoints;
+   * because the fold is pure and every checkpoint field commutes, merge(a, b)
+   * and merge(b, a) land on the same schedule, and merging a record with
+   * itself changes nothing.
+   *
+   * Replaying an attempt the other side had already folded is harmless: an
+   * independent success only advances the ladder once per date, and the seed
+   * already carries that date.
    */
   function mergeRecords(a, b) {
     if (!a) return b || null;
     if (!b) return a;
     const la = a.attempts || [], lb = b.attempts || [];
-    const bounded = la.length >= MAX_ATTEMPTS || lb.length >= MAX_ATTEMPTS;
-    if (bounded) return pickFuller(a, b);
     const seen = new Map();
     [...la, ...lb].forEach((e) => { const k = attemptKey(e); if (!seen.has(k)) seen.set(k, e); });
     const entries = [...seen.values()].map((e, i) => ({ e, i }));
@@ -175,17 +234,10 @@
       const kx = attemptKey(x.e), ky = attemptKey(y.e);
       return kx < ky ? -1 : kx > ky ? 1 : x.i - y.i;
     });
-    let rec = blankRecord(a.wordId || b.wordId, a.skill || b.skill);
+    let rec = seedFrom(mergeCheckpoints(a.checkpoint, b.checkpoint),
+      a.wordId || b.wordId, a.skill || b.skill);
     entries.forEach(({ e }) => { rec = applyAttempt(rec, e); });
     return rec;
-  }
-
-  /** The copy with more evidence; on a tie, the one seen more recently, then `a`. */
-  function pickFuller(a, b) {
-    const na = (a.attempts || []).length, nb = (b.attempts || []).length;
-    if (nb > na) return b;
-    if (na > nb) return a;
-    return String(b.lastSeenOn || "") > String(a.lastSeenOn || "") ? b : a;
   }
 
   /**
@@ -271,7 +323,7 @@
   return {
     SKILLS, PRACTICE_SKILLS, LADDER, LABELS, BUDGET,
     key, blankRecord, getRecord, addDays, isDue,
-    recordAttempt, applyAttempt, mergeRecords, pickFuller, MAX_ATTEMPTS,
+    recordAttempt, applyAttempt, mergeRecords, mergeCheckpoints, MAX_ATTEMPTS,
     statusOf, selectDue, budgetSpent, targetsFromAssessment,
   };
 });
