@@ -570,3 +570,104 @@ test("F05: the hub card and the games picker both show the queue and a way in", 
   assert.match(box.innerHTML, /startReviewRound\(\)/);
   assert.match(app.gamePickerHtml(), /Review today[\s\S]*8 to review; 4 remain for later[\s\S]*startReviewRound\(\)/);
 });
+
+// ── the 2026-09-08 audit: a reveal must survive an interruption (A26-R03) ───
+// The retry flag was never persisted and restoreReviewRound hardcoded it to
+// false, so being shown the answer, leaving, and coming back turned supported
+// practice into apparent independent recall. F05's existing tests covered the
+// retry path and the resume path but never crossed them, which is why a green
+// suite missed it.
+
+/** Miss the current item so the reveal is showing, then return the record. */
+function missCurrent(app) {
+  const it = app.reviewSt.items[app.reviewSt.qi];
+  const wrong = it.opts.findIndex((o) => o !== it.correct);
+  app.answerReview(wrong);
+  return it;
+}
+
+test("A26-R03: the answer a child was shown is still supported after Save & Exit", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "meaning");
+  app.startReviewRound("normal");
+
+  const it = missCurrent(app);
+  assert.equal(app.reviewSt.retry, true, "the reveal is showing");
+  assert.equal(app.state.jenn.pendingSessions.review.retry, true,
+    "and the saved round remembers it — the miss itself persists the round");
+
+  app.exitReviewRound();
+  assert.equal(app.resumeSession("review"), true);
+  assert.equal(app.reviewSt.retry, true, "resuming lands back on the retry, not a fresh ask");
+
+  const before = JSON.parse(JSON.stringify(app.state.jenn.reviewRecords[`${it.zh}::meaning`]));
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.indexOf(cur.correct));
+
+  const rec = app.state.jenn.reviewRecords[`${it.zh}::meaning`];
+  const last = rec.attempts[rec.attempts.length - 1];
+  assert.equal(last.correct, true);
+  assert.equal(last.sameSession, true, "being told, then leaving and coming back, is still being told");
+  assert.equal(rec.stage, before.stage, "the ladder does not move");
+  assert.deepEqual(rec.independentSuccesses, before.independentSuccesses,
+    "and no independent success is invented");
+});
+
+test("A26-R03: the same holds across a reload, with no Save & Exit at all", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "meaning");
+  app.startReviewRound("normal");
+  const it = missCurrent(app);
+
+  // A reload, a tab kill or a profile switch: nothing tidies up, the round is
+  // simply read back from what the miss already wrote.
+  app.reviewSt = null;
+  assert.equal(app.resumeSession("review"), true);
+  assert.equal(app.reviewSt.retry, true);
+
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.indexOf(cur.correct));
+  const rec = app.state.jenn.reviewRecords[`${it.zh}::meaning`];
+  assert.equal(rec.attempts[rec.attempts.length - 1].sameSession, true);
+  assert.equal(rec.independentSuccesses.length, 0);
+});
+
+test("A26-R03: a resumed retry is not counted as a second item", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 4, "meaning");
+  app.startReviewRound("normal");
+  missCurrent(app);
+  const answered = app.reviewSt.answered, correct = app.reviewSt.correct;
+
+  app.exitReviewRound();
+  app.resumeSession("review");
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.indexOf(cur.correct));
+
+  assert.equal(app.reviewSt.answered, answered, "the retry does not spend a second slot of the budget");
+  assert.equal(app.reviewSt.correct, correct, "nor count as remembered first time");
+});
+
+test("A26-R03: a second miss then an interruption is still supported", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "recognition");
+  app.startReviewRound("normal");
+  const it = missCurrent(app);
+  app.exitReviewRound();
+  app.resumeSession("review");
+
+  // Miss the retry too. The round moves on; the word is already back tomorrow.
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.findIndex((o) => o !== cur.correct));
+  assert.equal(app.reviewSt.retry, false, "a missed retry ends the item");
+
+  const rec = app.state.jenn.reviewRecords[`${it.zh}::recognition`];
+  const last = rec.attempts[rec.attempts.length - 1];
+  assert.equal(last.correct, false);
+  assert.equal(last.sameSession, true, "the second miss is still the same, told, sitting");
+  assert.equal(rec.independentSuccesses.length, 0);
+});

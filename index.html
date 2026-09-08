@@ -7380,7 +7380,12 @@ function persistReview(){
   state[curP].pendingSessions.review={
     items:reviewSt.items.map(x=>({...x,opts:[...x.opts]})),qi:reviewSt.qi,correct:reviewSt.correct,
     answered:reviewSt.answered,activeMs:reviewSt.activeMs,remaining:reviewSt.remaining,dueTotal:reviewSt.dueTotal,
-    startedAt:reviewSt.startedAt,mode:reviewSt.mode||'normal'};
+    startedAt:reviewSt.startedAt,mode:reviewSt.mode||'normal',
+    // Without this the reveal is forgotten across a save: the child comes back,
+    // taps the answer they were just shown, and it is recorded as independent
+    // recall (§25). persistReview runs on the miss itself, so a reload or a
+    // profile switch reproduced it without anyone pressing Save & Exit.
+    retry:!!reviewSt.retry};
   touchSession('review');
 }
 
@@ -7400,7 +7405,10 @@ function startReviewRound(mode){
 function restoreReviewRound(){
   const ps=state[curP].pendingSessions.review;if(!ps||!ps.items||!ps.items.length)return false;
   reviewSt={items:ps.items.map(x=>({...x,opts:[...x.opts]})),qi:ps.qi||0,correct:ps.correct||0,answered:ps.answered||0,activeMs:ps.activeMs||0,
-    remaining:ps.remaining||0,dueTotal:ps.dueTotal||0,startedAt:ps.startedAt||Date.now(),shownAt:0,retry:false,mode:ps.mode||'normal'};
+    remaining:ps.remaining||0,dueTotal:ps.dueTotal||0,startedAt:ps.startedAt||Date.now(),shownAt:0,
+    // A round saved before this was tracked has no flag; treat it as a first
+    // ask rather than guessing that the child had already been told.
+    retry:!!ps.retry,mode:ps.mode||'normal'};
   const ov=document.getElementById('games-overlay');if(ov)ov.classList.add('show');
   renderReviewRound();return true;
 }
