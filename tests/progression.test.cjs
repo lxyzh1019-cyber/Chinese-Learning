@@ -1499,3 +1499,73 @@ test("T-T14: an MCQ never has two right answers, either way round", () => {
   assert.ok(reverseSeen > 0, "no reverse questions were built");
   assert.ok(forwardSeen > 0, "no forward questions were built");
 });
+
+test("T-T15: a Listen question never offers two options that sound the same", () => {
+  const a = app();
+  F.installState(a);
+  // The question is a sound. Distractors were chosen by comparing ENGLISH, so
+  // a homophone could stand as a wrong option — 向 and 像 are both xiàng, 美
+  // and 每 are both měi. A child hearing the clip could not tell them apart,
+  // and the tap they did not make was logged to their practice queue.
+  const sound = (py) => String(py || "").toLowerCase().replace(/\s+/g, "");
+  const pool = [
+    { zh: "向", py: "xiàng", en: "towards" },
+    { zh: "像", py: "xiàng", en: "to resemble" }, // same sound, different word
+    { zh: "美", py: "měi", en: "beautiful" },
+    { zh: "每", py: "měi", en: "every" },
+    { zh: "山", py: "shān", en: "mountain" },
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "人", py: "rén", en: "person" },
+    { zh: "书", py: "shū", en: "book" },
+  ];
+  const pyOf = (zh) => (pool.find((w) => w.zh === zh) || {}).py;
+  let seen = 0;
+  for (let round = 0; round < 40; round++) {
+    a.startListen(pool);
+    for (const q of a.listenSt.questions) {
+      seen++;
+      assert.equal(new Set(q.opts).size, q.opts.length, `duplicate option in [${q.opts}]`);
+      const alike = q.opts.filter((z) => z !== q.w.zh && sound(pyOf(z)) === sound(q.w.py));
+      assert.deepEqual(alike, [], `${q.w.zh} (${q.w.py}) sounds like ${alike.join(",")}`);
+    }
+  }
+  assert.ok(seen > 0, "no Listen questions were built");
+});
+
+test("T-T16: a Match board never shows two cards a child cannot tell apart", () => {
+  const a = app();
+  F.installState(a);
+  // Cards pair by index, so two words sharing a gloss put two cards reading the
+  // same thing on the table and the correct-looking flip is scored wrong.
+  const senses = (en) =>
+    String(en || "").toLowerCase().split(";").map((t) => t.trim()).filter(Boolean);
+  const collides = (x, y) => {
+    const b = new Set(senses(y));
+    return senses(x).some((t) => b.has(t));
+  };
+  const pool = [
+    { zh: "儿子", py: "érzi", en: "son" },
+    { zh: "子", py: "zǐ", en: "son" },              // identical gloss
+    { zh: "法", py: "fǎ", en: "law; method" },
+    { zh: "法律", py: "fǎlǜ", en: "law" },          // one shared sense
+    { zh: "山", py: "shān", en: "mountain" },
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "人", py: "rén", en: "person" },
+    { zh: "书", py: "shū", en: "book" },
+    { zh: "大", py: "dà", en: "big" },
+  ];
+  for (let round = 0; round < 40; round++) {
+    a.startMemoryMatch(pool);
+    const en = a.matchSt.cards.filter((c) => c.side === "en").map((c) => c.text);
+    const zh = a.matchSt.cards.filter((c) => c.side === "zh").map((c) => c.text);
+    assert.equal(new Set(zh).size, zh.length, `duplicate character card: ${zh}`);
+    for (let i = 0; i < en.length; i++) {
+      for (let j = i + 1; j < en.length; j++) {
+        assert.ok(!collides(en[i], en[j]), `"${en[i]}" and "${en[j]}" read the same`);
+      }
+    }
+    // Dropping ambiguous words must not leave a board that cannot be finished.
+    assert.equal(a.matchSt.cards.length, a.matchSt.pairCount * 2);
+    assert.ok(a.matchSt.pairCount >= 4, `board shrank to ${a.matchSt.pairCount} pairs`);
+  }
+});

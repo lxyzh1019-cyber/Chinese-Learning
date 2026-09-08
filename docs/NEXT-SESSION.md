@@ -75,7 +75,7 @@ bilingual throughout.
    does not teach. Then HSK3 (22 seeds already in `content/stories/hsk3/`) and
    HSK4.
 2. **66 lessons** still on the old template. The 22 HSK1 ones are the model;
-   `scripts/build_hsk1_lessons.js` shows the shape.
+   `scripts/build_gate_lessons.js` shows the shape.
 3. **A fresh assessment sitting on bank 1.1.0**, and enter the girls' 3-of-4
    handwriting against it.
 

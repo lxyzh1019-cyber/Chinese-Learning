@@ -4038,7 +4038,19 @@ function startMemoryMatch(words){
   // the unfinished session is persisted it also outranked every other
   // activity on the resume button.
   const cap=did>=15?8:6;
-  const pick=shuffleArr(words).slice(0,cap);
+  // Two cards a child cannot tell apart make the board a guess. Both sides
+  // matter: two words glossed "son" put two identical cards on the table, and
+  // 法 "law; method" beside 法律 "law" is the same problem one sense down —
+  // either way the correct-looking flip is scored wrong. Taking fewer pairs is
+  // the right trade; `pairCount` follows the pick, so the round still ends.
+  const pick=[];
+  const seenZh=new Set(),seenSense=[];
+  for(const w of shuffleArr(words)){
+    if(pick.length>=cap)break;
+    if(!w||!w.zh||seenZh.has(w.zh))continue;
+    if(seenSense.some(en=>sharesSense(en,w.en)))continue;
+    seenZh.add(w.zh);seenSense.push(w.en);pick.push(w);
+  }
   const pairCount=pick.length;
   const cards=[];
   pick.forEach((w,i)=>{
@@ -4255,10 +4267,22 @@ function restoreRain(){
   renderRain();runRain();return true;
 }
 
+/** What a Listen option sounds like. Falls back to the spelling so a word with
+ *  no pinyin is still usable as a distractor rather than silently dropped. */
+function listenSound(w){
+  const py=String((w&&w.py)||'').toLowerCase().replace(/\s+/g,'');
+  return py||String((w&&w.zh)||'');
+}
+
 function startListen(words){
   const pool=shuffleArr(words).filter(w=>w.zh);
   const qs=shuffleArr(pool).slice(0,10).map(w=>{
-    const wrong=pickDistractors(pool.filter(x=>x.zh!==w.zh),w,x=>x.en,3);
+    // The question is a sound, so the distractors must differ by SOUND. They
+    // were chosen by English, which let a homophone stand as a wrong option —
+    // 向 and 像 are both xiàng, 美 and 每 are both měi. A child hearing the clip
+    // could not tell them apart, and the tap they did not make was logged to
+    // their practice queue.
+    const wrong=pickDistractors(pool.filter(x=>x.zh!==w.zh),w,listenSound,3);
     return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
   });
   listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
