@@ -84,6 +84,11 @@ function main() {
           else if (/^[-—]/.test(en) || /^[A-Za-z.]+-$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a fragment of a longer word's English, not a meaning`);
           else if (/^[A-Z]{2,5}$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a grammar code; say what it does in plain words`);
           else if (/surname/i.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — the junk-gloss class this project has already been burned by`);
+          // A gloss that merely ENDS in a hyphen passes the fragment test above
+          // ("again; once more; re-" is not one token) but is still refused by
+          // isCleanMeaning, so the word is shown in the reader and dropped from
+          // every game and flashcard deck built from the story.
+          else if (/-$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a trailing hyphen drops it from the word pools`);
         });
       });
 

@@ -1403,3 +1403,38 @@ test("T-T11: a trailing hyphen never silently drops a word from its pool", () =>
   }
   assert.deepEqual(dropped.slice(0, 8), [], `${dropped.length} words dropped from their pool by a trailing hyphen`);
 });
+
+test("T-T12: a grammar-code filter must not swallow ordinary English words", () => {
+  const a = app();
+  // isCleanMeaning tested the codes as PREFIXES of the uppercased gloss, which
+  // is a trap: "CL" matches CLOTH, CLASS, CLEAN, CLEVER; "BA" matches BAMBOO,
+  // BAG, BALL, BATTLE; "OF" matches OFTEN and OFFICIAL; "PL" matches PLAYED.
+  // 23 ordinary words were dropped from every flashcard deck and all four
+  // games — taught in the reader and nowhere else.
+  for (const word of ["cloth", "class", "clean", "clever", "climbs", "bamboo",
+                      "bag; to wrap", "ball", "battle", "often; usual", "official",
+                      "played", "plan", "ordinal prefix", "clothes; to serve"]) {
+    assert.equal(a.isCleanMeaning(word), true, `"${word}" is a meaning, not a code`);
+  }
+  // The codes themselves, and their compounds, are still refused.
+  for (const code of ["DE", "PL", "BA", "ADV", "CMPL", "ING", "SUF", "CL", "OF",
+                      "ORD", "CL-PL", "CL-person"]) {
+    assert.equal(a.isCleanMeaning(code), false, `"${code}" is a code, not a meaning`);
+  }
+});
+
+test("T-T13: every study word in the corpus reaches the pool it is taught from", () => {
+  const a = app();
+  // The reader and the games must teach the same set. A word shown on tap but
+  // filtered out of extractStoryVocab is taught in one place and nowhere else.
+  const dropped = new Map();
+  for (const s of Object.values(a.STORIES_MAP)) {
+    const pool = new Set(a.extractStoryVocab(s).map((w) => w.zh));
+    for (const tok of s.sents.flat()) {
+      if (tok.t !== "c" || tok.bonus) continue;
+      if (!pool.has(tok.ch)) dropped.set(`${tok.ch}="${tok.mn}"`, (dropped.get(`${tok.ch}="${tok.mn}"`) || 0) + 1);
+    }
+  }
+  assert.deepEqual([...dropped.keys()].slice(0, 10), [],
+    `${dropped.size} distinct study words never reach a game or flashcard deck`);
+});

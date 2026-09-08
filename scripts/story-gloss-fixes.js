@@ -179,4 +179,5 @@ module.exports = {
   "非": "not",
   "再": "again; once more",
   "先": "first; before",
+  "位": "(counting word for people, polite)",
 };

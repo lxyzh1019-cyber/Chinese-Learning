@@ -146,7 +146,14 @@ module.exports = {
   "时代": { py: "shí dài", en: "era; age" },
   "保":   { py: "bǎo",    en: "to protect; to keep" },
   "和平": { py: "hé píng", en: "peace" },
-  "非":   { py: "fēi",    en: "not; non-" },
+  // No trailing hyphen: isCleanMeaning refuses one, which silently drops the
+  // word from every pool built from a story.
+  "非":   { py: "fēi",    en: "not" },
+  "再":   { py: "zài",    en: "again; once more" },
+  "先":   { py: "xiān",   en: "first; before" },
+  "位":   { py: "wèi",    en: "(counting word for people, polite)" },
+  "地":   { py: "de",     en: "(before how it is done)" },
+  "超级": { py: "chāo jí", en: "super; extra" },
   "网络": { py: "wǎng luò", en: "network; the internet" },
   "资源": { py: "zī yuán", en: "resources" },
   "诗":   { py: "shī",    en: "poem; poetry" },

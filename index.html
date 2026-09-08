@@ -6146,9 +6146,15 @@ function startChampionChallenge(group){
 function isCleanMeaning(mn){
   if(!mn||mn.length<2)return false;
   if(mn.startsWith('-')||mn.endsWith('-'))return false;
-  const grammar=['DE','PL','BA','ADV','CMPL','ING','SUF','CL','OF','ORD','CL-PL','CL-'];
+  // Grammar codes, matched EXACTLY (or as a `CODE-...` compound). They used to
+  // be matched as prefixes against the UPPERCASED gloss, which is a trap: "CL"
+  // matches CLOTH, CLASS, CLEAN, CLEVER; "BA" matches BAMBOO, BAG, BALL,
+  // BATTLE; "OF" matches OFTEN and OFFICIAL; "PL" matches PLAYED. 23 ordinary
+  // words were being dropped from every flashcard deck and all four games —
+  // taught in the reader and nowhere else.
+  const grammar=['DE','PL','BA','ADV','CMPL','ING','SUF','CL','OF','ORD','CL-PL'];
   const up=mn.toUpperCase();
-  if(grammar.some(g=>up===g||up.startsWith(g)))return false;
+  if(grammar.some(g=>up===g||up.startsWith(g+'-')))return false;
   if(mn===mn.toUpperCase()&&mn.length<=4)return false;
   return true;
 }
