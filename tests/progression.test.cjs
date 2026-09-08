@@ -1569,3 +1569,99 @@ test("T-T16: a Match board never shows two cards a child cannot tell apart", () 
     assert.ok(a.matchSt.pairCount >= 4, `board shrank to ${a.matchSt.pairCount} pairs`);
   }
 });
+
+test("T-T17: the practice-queue rounds never offer a second right answer", () => {
+  const a = app();
+  F.installState(a);
+  a.curP = "jenn";
+  // Drill and Revenge excluded distractors by CHINESE spelling only, so a
+  // different character carrying the same sense stood as a wrong option. These
+  // are the queue rounds: being scored wrong here is exactly what keeps a word
+  // stuck in the queue the round exists to clear.
+  const senses = (en) =>
+    String(en || "").toLowerCase().split(";").map((t) => t.trim()).filter(Boolean);
+  const twoRightAnswers = (x, y) => {
+    const b = new Set(senses(y));
+    return senses(x).some((t) => b.has(t));
+  };
+  // 方向 "direction" is in HSK_VOCAB, so it reaches the distractor pool; 向
+  // "towards; direction" is the word the child is being asked about.
+  const stuck = [
+    { zh: "向", py: "xiàng", en: "towards; direction" },
+    { zh: "朝", py: "cháo", en: "dynasty; to face" },
+    { zh: "国家", py: "guójiā", en: "country; nation; state" },
+  ];
+  const s = a.state.jenn;
+  s.failedWords = {};
+  for (const w of stuck) {
+    s.failedWords[w.zh] = { ...w, failCount: 3, lastFailed: "2026-09-01" };
+  }
+  for (const [start, st] of [["startDrill", "drillSt"], ["startRevengeRound", "revengeSt"]]) {
+    let seen = 0;
+    for (let round = 0; round < 25; round++) {
+      a[start]();
+      for (const q of a[st].words) {
+        seen++;
+        assert.equal(new Set(q.opts).size, q.opts.length, `duplicate option in [${q.opts}]`);
+        const alsoRight = q.opts.filter((o) => o !== q.correct && twoRightAnswers(o, q.correct));
+        assert.deepEqual(alsoRight, [], `${start}: ${q.zh} "${q.correct}" also matches ${alsoRight.join(" / ")}`);
+      }
+    }
+    assert.ok(seen > 0, `${start} built no questions`);
+  }
+});
+
+test("T-T18: the daily challenge never offers a second right answer", () => {
+  const a = app();
+  F.installState(a);
+  a.curP = "jenn";
+  // The day's word comes from the child's own library and the options are raw
+  // English from HSK_VOCAB, checked by exact string — so the target and an
+  // option can be the SAME word glossed two ways, on the once-a-day challenge
+  // worth five stars.
+  const senses = (en) =>
+    String(en || "").toLowerCase().split(";").map((t) => t.trim()).filter(Boolean);
+  const twoRightAnswers = (x, y) => {
+    const b = new Set(senses(y));
+    return senses(x).some((t) => b.has(t));
+  };
+  // Every curriculum word whose gloss shares a sense with something in
+  // HSK_VOCAB. Three options are drawn at random from ~96, so one sitting only
+  // surfaces a collision about 3% of the time — sweeping every target once
+  // passes with the bug still in. Each of these is presented many times.
+  const colliding = [];
+  const options = [];
+  for (const lv of [1, 2, 3, 4]) for (const w of a.HSK_VOCAB[lv] || []) options.push(w);
+  assert.ok(options.length > 0, "HSK_VOCAB is empty");
+  for (const lv of [1, 2, 3, 4]) {
+    for (const g of require(`../data/hsk${lv}.json`).gates) {
+      for (const w of g.newWords || []) {
+        if (colliding.some((x) => x.zh === w.zh)) continue;
+        if (options.some((o) => o.en !== w.en && twoRightAnswers(o.en, w.en))) {
+          colliding.push({ zh: w.zh, py: w.pinyin, en: w.en });
+        }
+      }
+    }
+  }
+  assert.ok(colliding.length > 0, "no colliding targets found to test with");
+
+  let seen = 0;
+  for (const w of colliding) {
+    for (let sitting = 0; sitting < 250; sitting++) {
+      const s = a.state.jenn;
+      s.library = { [w.zh]: { py: w.py, mn: w.en } };
+      s.dailyWordSolved = null;
+      // The real overlay rebuilds its body, which destroys the option row; the
+      // stub keeps one element per id, so clear it or options accumulate.
+      a.document.getElementById("dw-opts").children.length = 0;
+      a.openDailyWordChallenge();
+      const opts = (a.document.getElementById("dw-opts").children || []).map((c) => c.textContent);
+      seen++;
+      assert.equal(opts.length, 4, `${w.zh} "${w.en}" got ${opts.length} options`);
+      assert.equal(new Set(opts).size, opts.length, `duplicate option in [${opts}]`);
+      const alsoRight = opts.filter((o) => o !== w.en && twoRightAnswers(o, w.en));
+      assert.deepEqual(alsoRight, [], `${w.zh} "${w.en}" also matches ${alsoRight.join(" / ")}`);
+    }
+  }
+  assert.equal(seen, colliding.length * 250);
+});

@@ -2638,11 +2638,17 @@ function openDailyWordChallenge(){
   ensureState(curP);
   if(state[curP].dailyWordSolved===todayKey()){showToast('Great job—you already solved this today!');return;}
   const w=getDailyWordEntry();
+  // Options are raw English, and the answer is checked by exact string. A
+  // gloss that shares a sense with the target is therefore a second right
+  // answer scored wrong — and the day's word comes from the practice queue, so
+  // the pair can be the SAME word glossed two ways ("city; town" against
+  // "city"). Sense-sharing options are excluded, not just identical ones.
+  const ok=(x)=>x&&x.en&&!sharesSense(x.en,w.en);
   const pool=[];
-  [1,2,3,4].forEach(lv=>{(HSK_VOCAB[lv]||[]).forEach(x=>{if(x.en&&x.en!==w.en)pool.push(x.en);});});
-  let wrong=[...new Set(pool)].sort(()=>Math.random()-.5).filter(e=>e!==w.en).slice(0,3);
+  [1,2,3,4].forEach(lv=>{(HSK_VOCAB[lv]||[]).forEach(x=>{if(ok(x))pool.push(x.en);});});
+  let wrong=[...new Set(pool)].sort(()=>Math.random()-.5).slice(0,3);
   let k=0;while(wrong.length<3&&k<40){
-    const x=HSK_VOCAB[1][k++];if(x&&x.en&&x.en!==w.en&&!wrong.includes(x.en))wrong.push(x.en);
+    const x=HSK_VOCAB[1][k++];if(ok(x)&&!wrong.includes(x.en))wrong.push(x.en);
   }
   const opts=[w.en,...wrong].sort(()=>Math.random()-.5);
   document.getElementById('daily-word-overlay').classList.add('show');
@@ -5913,7 +5919,10 @@ function startDrill(){
   });
   // Build MCQ questions from all failed words
   const qs=failed.map(w=>{
-    const distractors=[...hskPool].sort(()=>Math.random()-.5).slice(0,3);
+    // Drawn through the shared picker, so an option cannot read as a second
+    // right answer — these are the queue rounds, where being scored wrong is
+    // exactly what keeps a word stuck in the queue.
+    const distractors=pickDistractors(hskPool,w,x=>x.en,3);
     const opts=[w,...distractors].sort(()=>Math.random()-.5).map(x=>x.en);
     return {zh:w.zh,py:w.py,correct:w.en,opts,failCount:w.failCount};
   }).sort(()=>Math.random()-.5);
@@ -6031,7 +6040,10 @@ function startRevengeRound(){
     if(HSK_VOCAB[lv])HSK_VOCAB[lv].forEach(w=>{if(!failed.find(f=>f.zh===w.zh))hskPool.push(w);});
   });
   const qs=failed.map(w=>{
-    const distractors=[...hskPool].sort(()=>Math.random()-.5).slice(0,3);
+    // Drawn through the shared picker, so an option cannot read as a second
+    // right answer — these are the queue rounds, where being scored wrong is
+    // exactly what keeps a word stuck in the queue.
+    const distractors=pickDistractors(hskPool,w,x=>x.en,3);
     const opts=[w,...distractors].sort(()=>Math.random()-.5).map(x=>x.en);
     return {zh:w.zh,py:w.py,correct:w.en,opts};
   }).sort(()=>Math.random()-.5);
