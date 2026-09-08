@@ -1,35 +1,36 @@
 {
   "level": "HSK2",
   "sourceStandard": "HSK 3.0 (customized kid track)",
-  "totalWords": 300,
+  "totalWords": 393,
   "totalGates": 22,
   "gateDistribution": [
-    13,
-    13,
-    13,
-    13,
-    13,
-    13,
-    13,
-    13,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14,
-    14
+    18,
+    18,
+    18,
+    18,
+    18,
+    17,
+    17,
+    17,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18
   ],
   "notes": [
     "300-word custom level",
-    "Includes 103 borrowed words from HSK3"
+    "Includes 103 borrowed words from HSK3",
+    "+93 ordinary words the 300-word frequency cut had dropped"
   ],
   "words": [
     {
@@ -3231,7 +3232,7 @@
     },
     {
       "zh": "并",
-      "pinyin": "b��ng",
+      "pinyin": "bìng",
       "en": "and",
       "sourceLevel": "new-3",
       "sourceTag": "HSK3_borrowed_for_HSK2",
@@ -4773,6 +4774,1401 @@
           "v"
         ]
       }
+    },
+    {
+      "zh": "脚",
+      "pinyin": "jiǎo",
+      "en": "foot",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "嘴",
+      "pinyin": "zuǐ",
+      "en": "mouth",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "腿",
+      "pinyin": "tuǐ",
+      "en": "leg",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "头发",
+      "pinyin": "tóu fa",
+      "en": "hair",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "猫",
+      "pinyin": "māo",
+      "en": "cat",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "鸡",
+      "pinyin": "jī",
+      "en": "chicken",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "鸟",
+      "pinyin": "diǎo",
+      "en": "bird",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "鱼",
+      "pinyin": "yú",
+      "en": "fish",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "动物",
+      "pinyin": "dòng wù",
+      "en": "animal",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "蛋",
+      "pinyin": "dàn",
+      "en": "egg",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "油",
+      "pinyin": "yóu",
+      "en": "oil",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "食物",
+      "pinyin": "shí wù",
+      "en": "food",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "味道",
+      "pinyin": "wèi dao",
+      "en": "flavour",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "太阳",
+      "pinyin": "tài yang",
+      "en": "the sun",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "雪",
+      "pinyin": "xuě",
+      "en": "snow",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "空气",
+      "pinyin": "kōng qì",
+      "en": "air",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "地球",
+      "pinyin": "dì qiú",
+      "en": "the Earth",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "河",
+      "pinyin": "hé",
+      "en": "river",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "夜",
+      "pinyin": "yè",
+      "en": "night",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "安静",
+      "pinyin": "ān jìng",
+      "en": "quiet",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "春天",
+      "pinyin": "chūn tiān",
+      "en": "spring",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "夏天",
+      "pinyin": "xià tiān",
+      "en": "summer",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "秋天",
+      "pinyin": "qiū tiān",
+      "en": "autumn",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "冬天",
+      "pinyin": "dōng tiān",
+      "en": "winter",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "颜色",
+      "pinyin": "yán sè",
+      "en": "colour",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "红色",
+      "pinyin": "hóng sè",
+      "en": "red",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "黄",
+      "pinyin": "huáng",
+      "en": "yellow",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "蓝",
+      "pinyin": "lán",
+      "en": "blue",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "笔",
+      "pinyin": "bǐ",
+      "en": "pen",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "纸",
+      "pinyin": "zhǐ",
+      "en": "paper",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "鞋",
+      "pinyin": "xié",
+      "en": "shoe",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "灯",
+      "pinyin": "dēng",
+      "en": "lamp",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "网",
+      "pinyin": "wǎng",
+      "en": "net",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "瓶",
+      "pinyin": "píng",
+      "en": "bottle",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "船",
+      "pinyin": "chuán",
+      "en": "boat",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "办公室",
+      "pinyin": "bàn gōng shì",
+      "en": "office",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "hard",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "公园",
+      "pinyin": "gōng yuán",
+      "en": "park",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "街",
+      "pinyin": "jiē",
+      "en": "street",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "酒店",
+      "pinyin": "jiǔ diàn",
+      "en": "hotel",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "高中",
+      "pinyin": "gāo zhōng",
+      "en": "high school",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "周末",
+      "pinyin": "zhōu mò",
+      "en": "weekend",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "刚才",
+      "pinyin": "gāng cái",
+      "en": "just now",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "后来",
+      "pinyin": "hòu lái",
+      "en": "later on",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "日子",
+      "pinyin": "rì zi",
+      "en": "a day",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "多久",
+      "pinyin": "duō jiǔ",
+      "en": "how long",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "出生",
+      "pinyin": "chū shēng",
+      "en": "to be born",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "漂亮",
+      "pinyin": "piào liang",
+      "en": "pretty",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "健康",
+      "pinyin": "jiàn kāng",
+      "en": "healthy",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "年轻",
+      "pinyin": "nián qīng",
+      "en": "young",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "短",
+      "pinyin": "duǎn",
+      "en": "short",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "低",
+      "pinyin": "dī",
+      "en": "low",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "急",
+      "pinyin": "jí",
+      "en": "in a hurry",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "疼",
+      "pinyin": "téng",
+      "en": "sore",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "舒服",
+      "pinyin": "shū fu",
+      "en": "comfortable",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "满意",
+      "pinyin": "mǎn yì",
+      "en": "pleased",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "可怕",
+      "pinyin": "kě pà",
+      "en": "frightening",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "方便",
+      "pinyin": "fāng biàn",
+      "en": "convenient",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "合适",
+      "pinyin": "hé shì",
+      "en": "suitable",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "哭",
+      "pinyin": "kū",
+      "en": "to cry",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "怕",
+      "pinyin": "pà",
+      "en": "to be afraid",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "爬",
+      "pinyin": "pá",
+      "en": "to climb",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "骑",
+      "pinyin": "jì",
+      "en": "to ride",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "练",
+      "pinyin": "liàn",
+      "en": "to practise",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "借",
+      "pinyin": "jiè",
+      "en": "to borrow; to lend",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "养",
+      "pinyin": "yǎng",
+      "en": "to raise",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "喊",
+      "pinyin": "hǎn",
+      "en": "to shout",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "画",
+      "pinyin": "huà",
+      "en": "to draw",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "长大",
+      "pinyin": "zhǎng dà",
+      "en": "to grow up",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "想起",
+      "pinyin": "xiǎng qǐ",
+      "en": "to think of",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "照顾",
+      "pinyin": "zhào gu",
+      "en": "to look after",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "听说",
+      "pinyin": "tīng shuō",
+      "en": "to hear that",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "提高",
+      "pinyin": "tí gāo",
+      "en": "to improve",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "出发",
+      "pinyin": "chū fā",
+      "en": "to set off",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "小心",
+      "pinyin": "xiǎo xīn",
+      "en": "to be careful",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "关心",
+      "pinyin": "guān xīn",
+      "en": "to care about",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "数",
+      "pinyin": "shǔ",
+      "en": "to count",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "千",
+      "pinyin": "qiān",
+      "en": "thousand",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "好多",
+      "pinyin": "hǎo duō",
+      "en": "a great many",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "差不多",
+      "pinyin": "chà bu duō",
+      "en": "about the same",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "hard",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "经常",
+      "pinyin": "jīng cháng",
+      "en": "often",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "许多",
+      "pinyin": "xǔ duō",
+      "en": "many",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "不少",
+      "pinyin": "bù shǎo",
+      "en": "quite a few",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "越来越",
+      "pinyin": "yuè lái yuè",
+      "en": "more and more",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "hard",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "晚安",
+      "pinyin": "wǎn ān",
+      "en": "good night",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "喂",
+      "pinyin": "wéi",
+      "en": "hello (on the phone)",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "easy",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "怎么样",
+      "pinyin": "zěn me yàng",
+      "en": "how about it",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "hard",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "怎么办",
+      "pinyin": "zěn me bàn",
+      "en": "what should we do",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "hard",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "不行",
+      "pinyin": "bù xíng",
+      "en": "that won't do",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "意思",
+      "pinyin": "yì si",
+      "en": "meaning",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "习惯",
+      "pinyin": "xí guàn",
+      "en": "habit",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "方向",
+      "pinyin": "fāng xiàng",
+      "en": "direction",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "成绩",
+      "pinyin": "chéng jì",
+      "en": "result",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
+    },
+    {
+      "zh": "语言",
+      "pinyin": "yǔ yán",
+      "en": "language",
+      "sourceLevel": "new-2",
+      "sourceTag": "HSK2_ordinary",
+      "tags": [
+        "ordinary"
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "frequency": null,
+        "pos": []
+      }
     }
   ],
   "gates": [
@@ -4987,6 +6383,81 @@
             "pos": [
               "n"
             ]
+          }
+        },
+        {
+          "zh": "脚",
+          "pinyin": "jiǎo",
+          "en": "foot",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "秋天",
+          "pinyin": "qiū tiān",
+          "en": "autumn",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "多久",
+          "pinyin": "duō jiǔ",
+          "en": "how long",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "画",
+          "pinyin": "huà",
+          "en": "to draw",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "意思",
+          "pinyin": "yì si",
+          "en": "meaning",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -5207,6 +6678,81 @@
             "pos": [
               "v"
             ]
+          }
+        },
+        {
+          "zh": "嘴",
+          "pinyin": "zuǐ",
+          "en": "mouth",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "冬天",
+          "pinyin": "dōng tiān",
+          "en": "winter",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "出生",
+          "pinyin": "chū shēng",
+          "en": "to be born",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "长大",
+          "pinyin": "zhǎng dà",
+          "en": "to grow up",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "习惯",
+          "pinyin": "xí guàn",
+          "en": "habit",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -5627,6 +7173,81 @@
               "v",
               "q"
             ]
+          }
+        },
+        {
+          "zh": "腿",
+          "pinyin": "tuǐ",
+          "en": "leg",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "颜色",
+          "pinyin": "yán sè",
+          "en": "colour",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "漂亮",
+          "pinyin": "piào liang",
+          "en": "pretty",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "想起",
+          "pinyin": "xiǎng qǐ",
+          "en": "to think of",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "方向",
+          "pinyin": "fāng xiàng",
+          "en": "direction",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -6223,6 +7844,81 @@
             "pos": [
               "r"
             ]
+          }
+        },
+        {
+          "zh": "头发",
+          "pinyin": "tóu fa",
+          "en": "hair",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "红色",
+          "pinyin": "hóng sè",
+          "en": "red",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "健康",
+          "pinyin": "jiàn kāng",
+          "en": "healthy",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "照顾",
+          "pinyin": "zhào gu",
+          "en": "to look after",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "成绩",
+          "pinyin": "chéng jì",
+          "en": "result",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -6830,6 +8526,81 @@
               "d"
             ]
           }
+        },
+        {
+          "zh": "猫",
+          "pinyin": "māo",
+          "en": "cat",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "黄",
+          "pinyin": "huáng",
+          "en": "yellow",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "年轻",
+          "pinyin": "nián qīng",
+          "en": "young",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "听说",
+          "pinyin": "tīng shuō",
+          "en": "to hear that",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "语言",
+          "pinyin": "yǔ yán",
+          "en": "language",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -7423,6 +9194,66 @@
             "pos": [
               "v"
             ]
+          }
+        },
+        {
+          "zh": "鸡",
+          "pinyin": "jī",
+          "en": "chicken",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "蓝",
+          "pinyin": "lán",
+          "en": "blue",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "短",
+          "pinyin": "duǎn",
+          "en": "short",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "提高",
+          "pinyin": "tí gāo",
+          "en": "to improve",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -8023,6 +9854,66 @@
               "v",
               "b"
             ]
+          }
+        },
+        {
+          "zh": "鸟",
+          "pinyin": "diǎo",
+          "en": "bird",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "笔",
+          "pinyin": "bǐ",
+          "en": "pen",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "低",
+          "pinyin": "dī",
+          "en": "low",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "出发",
+          "pinyin": "chū fā",
+          "en": "to set off",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -8625,6 +10516,66 @@
               "d",
               "a"
             ]
+          }
+        },
+        {
+          "zh": "鱼",
+          "pinyin": "yú",
+          "en": "fish",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "纸",
+          "pinyin": "zhǐ",
+          "en": "paper",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "急",
+          "pinyin": "jí",
+          "en": "in a hurry",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "小心",
+          "pinyin": "xiǎo xīn",
+          "en": "to be careful",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -9240,6 +11191,66 @@
               "a"
             ]
           }
+        },
+        {
+          "zh": "动物",
+          "pinyin": "dòng wù",
+          "en": "animal",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "鞋",
+          "pinyin": "xié",
+          "en": "shoe",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "疼",
+          "pinyin": "téng",
+          "en": "sore",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "关心",
+          "pinyin": "guān xīn",
+          "en": "to care about",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -9844,6 +11855,66 @@
             "pos": [
               "n"
             ]
+          }
+        },
+        {
+          "zh": "蛋",
+          "pinyin": "dàn",
+          "en": "egg",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "灯",
+          "pinyin": "dēng",
+          "en": "lamp",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "舒服",
+          "pinyin": "shū fu",
+          "en": "comfortable",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "数",
+          "pinyin": "shǔ",
+          "en": "to count",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -10461,6 +12532,66 @@
               "v"
             ]
           }
+        },
+        {
+          "zh": "油",
+          "pinyin": "yóu",
+          "en": "oil",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "网",
+          "pinyin": "wǎng",
+          "en": "net",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "满意",
+          "pinyin": "mǎn yì",
+          "en": "pleased",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "千",
+          "pinyin": "qiān",
+          "en": "thousand",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -11071,6 +13202,66 @@
             "pos": [
               "n"
             ]
+          }
+        },
+        {
+          "zh": "食物",
+          "pinyin": "shí wù",
+          "en": "food",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "瓶",
+          "pinyin": "píng",
+          "en": "bottle",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "可怕",
+          "pinyin": "kě pà",
+          "en": "frightening",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "好多",
+          "pinyin": "hǎo duō",
+          "en": "a great many",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -11684,6 +13875,66 @@
               "q"
             ]
           }
+        },
+        {
+          "zh": "味道",
+          "pinyin": "wèi dao",
+          "en": "flavour",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "船",
+          "pinyin": "chuán",
+          "en": "boat",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "方便",
+          "pinyin": "fāng biàn",
+          "en": "convenient",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "差不多",
+          "pinyin": "chà bu duō",
+          "en": "about the same",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "hard",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -12292,6 +14543,66 @@
               "ad",
               "u"
             ]
+          }
+        },
+        {
+          "zh": "太阳",
+          "pinyin": "tài yang",
+          "en": "the sun",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "办公室",
+          "pinyin": "bàn gōng shì",
+          "en": "office",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "hard",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "合适",
+          "pinyin": "hé shì",
+          "en": "suitable",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "经常",
+          "pinyin": "jīng cháng",
+          "en": "often",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -12906,6 +15217,66 @@
               "vn"
             ]
           }
+        },
+        {
+          "zh": "雪",
+          "pinyin": "xuě",
+          "en": "snow",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "公园",
+          "pinyin": "gōng yuán",
+          "en": "park",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "哭",
+          "pinyin": "kū",
+          "en": "to cry",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "许多",
+          "pinyin": "xǔ duō",
+          "en": "many",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -13316,7 +15687,7 @@
         },
         {
           "zh": "并",
-          "pinyin": "b��ng",
+          "pinyin": "bìng",
           "en": "and",
           "sourceLevel": "new-3",
           "sourceTag": "HSK3_borrowed_for_HSK2",
@@ -13522,6 +15893,66 @@
             "pos": [
               "n"
             ]
+          }
+        },
+        {
+          "zh": "空气",
+          "pinyin": "kōng qì",
+          "en": "air",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "街",
+          "pinyin": "jiē",
+          "en": "street",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "怕",
+          "pinyin": "pà",
+          "en": "to be afraid",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "不少",
+          "pinyin": "bù shǎo",
+          "en": "quite a few",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -14140,6 +16571,66 @@
               "v"
             ]
           }
+        },
+        {
+          "zh": "地球",
+          "pinyin": "dì qiú",
+          "en": "the Earth",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "酒店",
+          "pinyin": "jiǔ diàn",
+          "en": "hotel",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "爬",
+          "pinyin": "pá",
+          "en": "to climb",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "越来越",
+          "pinyin": "yuè lái yuè",
+          "en": "more and more",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "hard",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -14321,7 +16812,7 @@
         },
         {
           "zh": "并",
-          "pinyin": "b��ng",
+          "pinyin": "bìng",
           "en": "and",
           "sourceLevel": "new-3",
           "sourceTag": "HSK3_borrowed_for_HSK2",
@@ -14765,6 +17256,66 @@
             "pos": [
               "n"
             ]
+          }
+        },
+        {
+          "zh": "河",
+          "pinyin": "hé",
+          "en": "river",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "高中",
+          "pinyin": "gāo zhōng",
+          "en": "high school",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "骑",
+          "pinyin": "jì",
+          "en": "to ride",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "晚安",
+          "pinyin": "wǎn ān",
+          "en": "good night",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -15389,6 +17940,66 @@
               "n"
             ]
           }
+        },
+        {
+          "zh": "夜",
+          "pinyin": "yè",
+          "en": "night",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "周末",
+          "pinyin": "zhōu mò",
+          "en": "weekend",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "练",
+          "pinyin": "liàn",
+          "en": "to practise",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "喂",
+          "pinyin": "wéi",
+          "en": "hello (on the phone)",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -16006,6 +18617,66 @@
             "pos": [
               "n"
             ]
+          }
+        },
+        {
+          "zh": "安静",
+          "pinyin": "ān jìng",
+          "en": "quiet",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "刚才",
+          "pinyin": "gāng cái",
+          "en": "just now",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "借",
+          "pinyin": "jiè",
+          "en": "to borrow; to lend",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "怎么样",
+          "pinyin": "zěn me yàng",
+          "en": "how about it",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "hard",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],
@@ -16629,6 +19300,66 @@
               "p"
             ]
           }
+        },
+        {
+          "zh": "春天",
+          "pinyin": "chūn tiān",
+          "en": "spring",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "后来",
+          "pinyin": "hòu lái",
+          "en": "later on",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "养",
+          "pinyin": "yǎng",
+          "en": "to raise",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "怎么办",
+          "pinyin": "zěn me bàn",
+          "en": "what should we do",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "hard",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
         }
       ],
       "reviewWords": [
@@ -17245,6 +19976,66 @@
             "pos": [
               "v"
             ]
+          }
+        },
+        {
+          "zh": "夏天",
+          "pinyin": "xià tiān",
+          "en": "summer",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "日子",
+          "pinyin": "rì zi",
+          "en": "a day",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "喊",
+          "pinyin": "hǎn",
+          "en": "to shout",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "easy",
+          "meta": {
+            "frequency": null,
+            "pos": []
+          }
+        },
+        {
+          "zh": "不行",
+          "pinyin": "bù xíng",
+          "en": "that won't do",
+          "sourceLevel": "new-2",
+          "sourceTag": "HSK2_ordinary",
+          "tags": [
+            "ordinary"
+          ],
+          "difficulty": "medium",
+          "meta": {
+            "frequency": null,
+            "pos": []
           }
         }
       ],

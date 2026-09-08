@@ -1665,3 +1665,49 @@ test("T-T18: the daily challenge never offers a second right answer", () => {
   }
   assert.equal(seen, colliding.length * 250);
 });
+
+test("T-T19: the ordinary vocabulary a child needs is actually taught", () => {
+  const a = app();
+  F.installState(a);
+  // The curriculum took the top 300 words per level from an adult, news-heavy
+  // frequency list. It kept 法官 "judge" and 武器 "weapon" and dropped 姐姐,
+  // 天气, 再见, 星期, 九 and 零 — so the app could not teach them anywhere:
+  // not in a story, not in a game, not in a quiz. Story authoring hit it as a
+  // wall, and these are the words those rejections named.
+  const required = [
+    "星期", "石头", "安静", "夏天", "怕", "旁边", "一会儿",
+    "姐姐", "哥哥", "弟弟", "妹妹", "爷爷", "奶奶",
+    "天气", "下雨", "树", "九", "零", "百",
+    "再见", "对不起", "没关系", "请问",
+    "米饭", "面包", "鸡蛋", "牛奶", "水果",
+    "上学", "下课", "汉字", "图书馆", "书包",
+    "左边", "右边", "里边", "外边",
+  ];
+  // Taught = in some gate's word list, which is what feeds the games, the gate
+  // quiz, the flashcard deck and the story dictionary.
+  const taught = new Map();
+  for (const lv of [1, 2, 3, 4]) {
+    for (const g of require(`../data/hsk${lv}.json`).gates) {
+      for (const w of g.newWords || []) taught.set(w.zh, { lv, gate: g.gateId, w });
+    }
+  }
+  const missing = required.filter((zh) => !taught.has(zh));
+  assert.deepEqual(missing, [], `not taught anywhere: ${missing.join(" ")}`);
+
+  // A word that is taught but carries a junk gloss teaches the wrong thing —
+  // upstream's first meaning for 怕 is "surname Pa" and for 鸟 an obscenity.
+  // Case matters here. A single /.../i covering both would make `^[A-Z]{2,5}$`
+  // match "week", "stone" and "bread" — the same mistake that let a prefix
+  // check on `CL` swallow CLOTH and CLEAN out of every game pool.
+  const grammarCode = /^[A-Z]{2,5}$/;                    // DE, CMPL, CL
+  const junk = /^[-—]|[A-Za-z.]+-$|surname|variant of|used in/i;
+  const bad = required
+    .map((zh) => taught.get(zh))
+    .filter((t) => t && (!t.w.en || junk.test(t.w.en) || grammarCode.test(t.w.en)));
+  assert.deepEqual(bad.map((t) => `${t.w.zh}="${t.w.en}"`), [], "junk gloss reaching a child");
+
+  // And nothing may carry text decoded with the wrong encoding.
+  for (const [zh, t] of taught) {
+    assert.ok(!`${zh}${t.w.pinyin}${t.w.en}`.includes("\uFFFD"), `${zh} carries corrupted text`);
+  }
+});

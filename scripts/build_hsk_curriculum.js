@@ -25,6 +25,9 @@ function fetchJson(url) {
           reject(new Error(`Fetch failed ${url}: ${res.statusCode}`));
           return;
         }
+        // Without this, a chunk boundary inside a multi-byte character corrupts
+        // it: 并 "b\u00ecng" shipped as "b\ufffd\ufffdng" in data/hsk2.json.
+        res.setEncoding("utf8");
         let data = "";
         res.on("data", (c) => {
           data += c;
