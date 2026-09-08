@@ -1,0 +1,547 @@
+{
+  "id": "reform",
+  "did": 21,
+  "level": 1,
+  "title": "改变的时代",
+  "en": "An Age of Change",
+  "names": {
+    "清朝": {
+      "py": "Qīngcháo",
+      "en": "Qing Dynasty"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "清朝末年，中国面临着来自西方的巨大压力。",
+      "en": "In the late Qing Dynasty, China faced enormous pressure from the West.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "清朝",
+          "py": "Qīngcháo",
+          "mn": "Qing Dynasty"
+        },
+        {
+          "zh": "末",
+          "py": "mò",
+          "mn": "late",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "面",
+          "py": "miàn",
+          "mn": "fa-",
+          "bonus": true
+        },
+        {
+          "zh": "临",
+          "py": "lín",
+          "mn": "-cing",
+          "bonus": true
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "ING"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "from",
+          "bonus": true
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "from"
+        },
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "Western"
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "West",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "巨",
+          "py": "jù",
+          "mn": "enorm-",
+          "bonus": true
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "-ous",
+          "bonus": true
+        },
+        {
+          "zh": "压",
+          "py": "yā",
+          "mn": "pres-",
+          "bonus": true
+        },
+        {
+          "zh": "力",
+          "py": "lì",
+          "mn": "-sure",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "年轻的改革者希望学习西方的科学和技术。",
+      "en": "Young reformers hoped to learn Western science and technology.",
+      "seg": [
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "young-",
+          "bonus": true
+        },
+        {
+          "zh": "轻",
+          "py": "qīng",
+          "mn": "-young",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "改",
+          "py": "gǎi",
+          "mn": "re-",
+          "bonus": true
+        },
+        {
+          "zh": "革",
+          "py": "gé",
+          "mn": "-form",
+          "bonus": true
+        },
+        {
+          "zh": "者",
+          "py": "zhě",
+          "mn": "-ers",
+          "bonus": true
+        },
+        {
+          "zh": "希",
+          "py": "xī",
+          "mn": "ho-",
+          "bonus": true
+        },
+        {
+          "zh": "望",
+          "py": "wàng",
+          "mn": "-ped",
+          "bonus": true
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "learn"
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "learning"
+        },
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "Western"
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "West",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "科",
+          "py": "kē",
+          "mn": "sci-"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "-ence"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "技",
+          "py": "jì",
+          "mn": "tech-"
+        },
+        {
+          "zh": "术",
+          "py": "shù",
+          "mn": "-nology"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "一些官员认为中国需要建立现代学校和军队。",
+      "en": "Some officials believed China needed to establish modern schools and armies.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "some",
+          "bonus": true
+        },
+        {
+          "zh": "些",
+          "py": "xiē",
+          "mn": "some",
+          "bonus": true
+        },
+        {
+          "zh": "官",
+          "py": "guān",
+          "mn": "off-",
+          "bonus": true
+        },
+        {
+          "zh": "员",
+          "py": "yuán",
+          "mn": "-icials",
+          "bonus": true
+        },
+        {
+          "zh": "认",
+          "py": "rèn",
+          "mn": "belie-",
+          "bonus": true
+        },
+        {
+          "zh": "为",
+          "py": "wéi",
+          "mn": "-ved",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "需",
+          "py": "xū",
+          "mn": "need-"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "-ed to"
+        },
+        {
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "build"
+        },
+        {
+          "zh": "立",
+          "py": "lì",
+          "mn": "establish"
+        },
+        {
+          "zh": "现",
+          "py": "xiàn",
+          "mn": "mod-"
+        },
+        {
+          "zh": "代",
+          "py": "dài",
+          "mn": "-ern"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "school-"
+        },
+        {
+          "zh": "校",
+          "py": "xiào",
+          "mn": "-schools",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "军",
+          "py": "jūn",
+          "mn": "army",
+          "bonus": true
+        },
+        {
+          "zh": "队",
+          "py": "duì",
+          "mn": "forces",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "改革的道路非常困难，但人们没有放弃。",
+      "en": "The path of reform was very difficult, but people did not give up.",
+      "seg": [
+        {
+          "zh": "改",
+          "py": "gǎi",
+          "mn": "re-",
+          "bonus": true
+        },
+        {
+          "zh": "革",
+          "py": "gé",
+          "mn": "-form",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "道",
+          "py": "dào",
+          "mn": "road"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "path"
+        },
+        {
+          "zh": "非",
+          "py": "fēi",
+          "mn": "ex-"
+        },
+        {
+          "zh": "常",
+          "py": "cháng",
+          "mn": "-tremely"
+        },
+        {
+          "zh": "困",
+          "py": "kùn",
+          "mn": "diffi-",
+          "bonus": true
+        },
+        {
+          "zh": "难",
+          "py": "nán",
+          "mn": "-cult",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "但",
+          "py": "dàn",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "没",
+          "py": "méi",
+          "mn": "did not",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "have"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "give",
+          "bonus": true
+        },
+        {
+          "zh": "弃",
+          "py": "qì",
+          "mn": "-up",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "这个时代的精神影响中国后来的历史发展。",
+      "en": "The spirit of this era influenced China's later historical development.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "CL"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "this"
+        },
+        {
+          "zh": "代",
+          "py": "dài",
+          "mn": "era"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "精",
+          "py": "jīng",
+          "mn": "spir-"
+        },
+        {
+          "zh": "神",
+          "py": "shén",
+          "mn": "-it",
+          "bonus": true
+        },
+        {
+          "zh": "影",
+          "py": "yǐng",
+          "mn": "in-",
+          "bonus": true
+        },
+        {
+          "zh": "响",
+          "py": "xiǎng",
+          "mn": "-fluenced",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "后",
+          "py": "hòu",
+          "mn": "later",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "coming"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "历",
+          "py": "lì",
+          "mn": "hist-"
+        },
+        {
+          "zh": "史",
+          "py": "shǐ",
+          "mn": "-ory"
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "devel-",
+          "bonus": true
+        },
+        {
+          "zh": "展",
+          "py": "zhǎn",
+          "mn": "-opment",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

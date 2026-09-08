@@ -1,0 +1,399 @@
+{
+  "id": "shufa2",
+  "did": 9,
+  "level": 1,
+  "title": "学写汉字",
+  "en": "Learning to Write Chinese Characters",
+  "names": {
+    "老师": {
+      "py": "lǎoshī",
+      "en": "teacher"
+    }
+  },
+  "sents": [
+    {
+      "zh": "我开始学习写汉字了。",
+      "en": "I started learning to write Chinese characters.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "started",
+          "bonus": true
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "learn"
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "learning"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "write"
+        },
+        {
+          "zh": "汉",
+          "py": "Hàn",
+          "mn": "Chinese-"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "-characters"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "now",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "老师教我握笔的方法。",
+      "en": "The teacher taught me how to hold a pen.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "zh": "教",
+          "py": "jiào",
+          "mn": "taught",
+          "bonus": true
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "me"
+        },
+        {
+          "zh": "握",
+          "py": "wò",
+          "mn": "hold",
+          "bonus": true
+        },
+        {
+          "zh": "笔",
+          "py": "bǐ",
+          "mn": "pen",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "meth-",
+          "bonus": true
+        },
+        {
+          "zh": "法",
+          "py": "fǎ",
+          "mn": "-od",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我练习写\"水\"和\"山\"，写了很多遍。",
+      "en": "I practiced writing \"water\" and \"mountain\" many times.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "练",
+          "py": "liàn",
+          "mn": "prac-",
+          "bonus": true
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "-tice"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "write"
+        },
+        {
+          "t": "p",
+          "tx": "\""
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "t": "p",
+          "tx": "\""
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "t": "p",
+          "tx": "\""
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "t": "p",
+          "tx": "\""
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "wrote"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "遍",
+          "py": "biàn",
+          "mn": "times",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "刚开始写得不好，但是慢慢地变好了。",
+      "en": "At first my writing wasn't good, but slowly it got better.",
+      "seg": [
+        {
+          "zh": "刚",
+          "py": "gāng",
+          "mn": "just",
+          "bonus": true
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "start",
+          "bonus": true
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "write"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "ADV"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "但",
+          "py": "dàn",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "慢",
+          "py": "màn",
+          "mn": "slowly",
+          "bonus": true
+        },
+        {
+          "zh": "慢",
+          "py": "màn",
+          "mn": "slowly",
+          "bonus": true
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "ADV"
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "became",
+          "bonus": true
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "better"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "现在我很喜欢写汉字，每个字都很美。",
+      "en": "Now I love writing Chinese characters; every character is beautiful.",
+      "seg": [
+        {
+          "zh": "现",
+          "py": "xiàn",
+          "mn": "now-"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "-now"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "喜",
+          "py": "xǐ",
+          "mn": "like-",
+          "bonus": true
+        },
+        {
+          "zh": "欢",
+          "py": "huān",
+          "mn": "-like",
+          "bonus": true
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "write"
+        },
+        {
+          "zh": "汉",
+          "py": "Hàn",
+          "mn": "Chinese-"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "-characters"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "CL"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "美",
+          "py": "měi",
+          "mn": "beautiful",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

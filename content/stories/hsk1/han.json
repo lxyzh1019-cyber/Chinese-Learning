@@ -1,0 +1,394 @@
+{
+  "id": "han",
+  "did": 6,
+  "level": 1,
+  "title": "丝绸之路",
+  "en": "The Silk Road",
+  "names": {
+    "汉朝": {
+      "py": "Hàncháo",
+      "en": "Han Dynasty"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    },
+    "丝绸之路": {
+      "py": "Sīchóu Zhī Lù",
+      "en": "Silk Road"
+    }
+  },
+  "sents": [
+    {
+      "zh": "汉朝的人向西走了很远。",
+      "en": "Han Dynasty people walked very far towards the west.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "汉朝",
+          "py": "Hàncháo",
+          "mn": "Han Dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "向",
+          "py": "xiàng",
+          "mn": "towards"
+        },
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "west"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "walked"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们带着中国的丝绸去做买卖。",
+      "en": "They carried Chinese silk to trade.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "carried"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "with"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "丝",
+          "py": "sī",
+          "mn": "silk-"
+        },
+        {
+          "zh": "绸",
+          "py": "chóu",
+          "mn": "-cloth"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "go"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "do"
+        },
+        {
+          "zh": "买",
+          "py": "mǎi",
+          "mn": "buy-"
+        },
+        {
+          "zh": "卖",
+          "py": "mài",
+          "mn": "-sell"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "西方的商人带来了金子，和很多好东西。",
+      "en": "Western merchants brought gold and many good things.",
+      "seg": [
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "west"
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "direction"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "商",
+          "py": "shāng",
+          "mn": "merchant-"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "-person"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "brought"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "came"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL"
+        },
+        {
+          "zh": "金",
+          "py": "jīn",
+          "mn": "gold"
+        },
+        {
+          "zh": "子",
+          "py": "zi",
+          "mn": "SUF"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many",
+          "bonus": true
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good",
+          "bonus": true
+        },
+        {
+          "zh": "东",
+          "py": "dōng",
+          "mn": "things-",
+          "bonus": true
+        },
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "-things",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "两边的人通过这条路认识了彼此。",
+      "en": "People on both sides got to know each other through this road.",
+      "seg": [
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "边",
+          "py": "biān",
+          "mn": "side"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "通",
+          "py": "tōng",
+          "mn": "through"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "pass"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "mn": "CL-road"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "zh": "认",
+          "py": "rèn",
+          "mn": "know-"
+        },
+        {
+          "zh": "识",
+          "py": "shí",
+          "mn": "-know"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL"
+        },
+        {
+          "zh": "彼",
+          "py": "bǐ",
+          "mn": "each-"
+        },
+        {
+          "zh": "此",
+          "py": "cǐ",
+          "mn": "-other"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "丝绸之路让中国和世界连在一起。",
+      "en": "The Silk Road connected China and the world together.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "丝绸之路",
+          "py": "Sīchóu Zhī Lù",
+          "mn": "Silk Road"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "made"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "世",
+          "py": "shì",
+          "mn": "world-"
+        },
+        {
+          "zh": "界",
+          "py": "jiè",
+          "mn": "-world"
+        },
+        {
+          "zh": "连",
+          "py": "lián",
+          "mn": "connect"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "together"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "yīqǐ",
+          "bonus": true
+        },
+        {
+          "zh": "起",
+          "py": "qǐ",
+          "mn": "together",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

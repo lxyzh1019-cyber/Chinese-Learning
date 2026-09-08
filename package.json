@@ -7,10 +7,12 @@
     "check": "node scripts/parse_check.js",
     "validate:curriculum": "node scripts/validate_curriculum.js",
     "test": "node --test tests/*.test.cjs",
-    "verify": "npm run check && npm run validate:curriculum && npm run validate:assessment && npm test",
+    "verify": "npm run check && npm run validate:curriculum && npm run validate:stories && npm run validate:assessment && npm test",
     "validate:assessment": "node scripts/validate_assessment.js",
     "coverage:content": "node scripts/content_coverage.js",
-    "validate:assessment:audio": "node scripts/validate_assessment.js --audio"
+    "validate:assessment:audio": "node scripts/validate_assessment.js --audio",
+    "build:stories": "node scripts/build_stories.js",
+    "validate:stories": "node scripts/validate_stories.js"
   },
   "engines": {
     "node": ">=20"

@@ -1,0 +1,386 @@
+{
+  "id": "tao2",
+  "did": 10,
+  "level": 1,
+  "title": "下雨天",
+  "en": "Rainy Day",
+  "names": {},
+  "sents": [
+    {
+      "zh": "今天下雨了，我不能出去玩了。",
+      "en": "Today it's raining; I cannot go out to play.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "today"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "it's",
+          "bonus": true
+        },
+        {
+          "zh": "雨",
+          "py": "yǔ",
+          "mn": "raining",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "now",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "cannot"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "go",
+          "bonus": true
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "out"
+        },
+        {
+          "zh": "玩",
+          "py": "wán",
+          "mn": "play",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "now",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我坐在窗边，看着外面的雨。",
+      "en": "I sat by the window and watched the rain outside.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "sat",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "窗",
+          "py": "chuāng",
+          "mn": "win-",
+          "bonus": true
+        },
+        {
+          "zh": "边",
+          "py": "biān",
+          "mn": "-dow",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "watched"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "ING",
+          "bonus": true
+        },
+        {
+          "zh": "外",
+          "py": "wài",
+          "mn": "out-",
+          "bonus": true
+        },
+        {
+          "zh": "面",
+          "py": "miàn",
+          "mn": "-side",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "雨",
+          "py": "yǔ",
+          "mn": "rain",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "雨打在地上，发出好听的声音。",
+      "en": "The rain hitting the ground makes a nice sound.",
+      "seg": [
+        {
+          "zh": "雨",
+          "py": "yǔ",
+          "mn": "rain",
+          "bonus": true
+        },
+        {
+          "zh": "打",
+          "py": "dǎ",
+          "mn": "hit",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "地",
+          "py": "dì",
+          "mn": "ground"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "makes",
+          "bonus": true
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "out"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "nice"
+        },
+        {
+          "zh": "听",
+          "py": "tīng",
+          "mn": "listen",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "声",
+          "py": "shēng",
+          "mn": "sound-",
+          "bonus": true
+        },
+        {
+          "zh": "音",
+          "py": "yīn",
+          "mn": "-sound",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我决定在家看书，喝热茶。",
+      "en": "I decided to read books at home and drink hot tea.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "决",
+          "py": "jué",
+          "mn": "deci-",
+          "bonus": true
+        },
+        {
+          "zh": "定",
+          "py": "dìng",
+          "mn": "-ded",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "read"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "drink",
+          "bonus": true
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "mn": "hot",
+          "bonus": true
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "下雨天也有它美丽的地方。",
+      "en": "Rainy days have their beautiful aspects too.",
+      "seg": [
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "rainy-",
+          "bonus": true
+        },
+        {
+          "zh": "雨",
+          "py": "yǔ",
+          "mn": "-rain",
+          "bonus": true
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "has"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "its"
+        },
+        {
+          "zh": "美",
+          "py": "měi",
+          "mn": "beauti-",
+          "bonus": true
+        },
+        {
+          "zh": "丽",
+          "py": "lì",
+          "mn": "-ful",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "地",
+          "py": "dì",
+          "mn": "place-",
+          "bonus": true
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "-part",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

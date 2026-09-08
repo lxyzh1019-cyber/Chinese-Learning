@@ -1,0 +1,358 @@
+{
+  "id": "xia2",
+  "did": 1,
+  "level": 1,
+  "title": "小龙学游泳",
+  "en": "Little Dragon Learns to Swim",
+  "names": {},
+  "sents": [
+    {
+      "zh": "有一条小龙，它不会游泳。",
+      "en": "There was a little dragon who couldn't swim.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "a",
+          "bonus": true
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "mn": "CL",
+          "bonus": true
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "little"
+        },
+        {
+          "zh": "龙",
+          "py": "lóng",
+          "mn": "dragon",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "could not"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "able to",
+          "bonus": true
+        },
+        {
+          "zh": "游",
+          "py": "yóu",
+          "mn": "swim-",
+          "bonus": true
+        },
+        {
+          "zh": "泳",
+          "py": "yǒng",
+          "mn": "-ming",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "它每天看别的龙在水里玩。",
+      "en": "Every day it watched the other dragons playing in the water."
+    },
+    {
+      "zh": "它去河里，水很大，很冷。",
+      "en": "It went into the river; the water was very big and cold.",
+      "seg": [
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "went to"
+        },
+        {
+          "zh": "河",
+          "py": "hé",
+          "mn": "river",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "冷",
+          "py": "lěng",
+          "mn": "cold",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "它不想下水，只想看别人游。",
+      "en": "It did not want to go in; it only wanted to watch the others swim."
+    },
+    {
+      "zh": "它妈妈说：\"你可以！来！\"",
+      "en": "Its mother said: \"You can do it! Come!\"",
+      "seg": [
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "its"
+        },
+        {
+          "zh": "妈",
+          "py": "māmā",
+          "mn": "mo-",
+          "bonus": true
+        },
+        {
+          "zh": "妈",
+          "py": "māmā",
+          "mn": "-ther",
+          "bonus": true
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "：\""
+        },
+        {
+          "zh": "你",
+          "py": "nǐ",
+          "mn": "you"
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "can"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "do it"
+        },
+        {
+          "t": "p",
+          "tx": "！"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "come"
+        },
+        {
+          "t": "p",
+          "tx": "！\""
+        }
+      ]
+    },
+    {
+      "zh": "妈妈说：“你先看我，我教你。”",
+      "en": "Mother said: \"Watch me first — I will teach you.\""
+    },
+    {
+      "zh": "小龙学了一次，两次，三次。",
+      "en": "The little dragon tried once, twice, three times."
+    },
+    {
+      "zh": "小龙游了很久，学会了。",
+      "en": "The little dragon swam for a long time and learned.",
+      "seg": [
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "little"
+        },
+        {
+          "zh": "龙",
+          "py": "lóng",
+          "mn": "dragon",
+          "bonus": true
+        },
+        {
+          "zh": "游",
+          "py": "yóu",
+          "mn": "swam",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "learn-",
+          "bonus": true
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "-ed",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "妈妈说：“你做得很好。”",
+      "en": "Mother said: \"You did very well.\""
+    },
+    {
+      "zh": "今天，小龙在水里很开心。",
+      "en": "Today, the little dragon is very happy in the water.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "now"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "little"
+        },
+        {
+          "zh": "龙",
+          "py": "lóng",
+          "mn": "dragon",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "开",
+          "py": "kāi",
+          "mn": "hap-"
+        },
+        {
+          "zh": "心",
+          "py": "xīn",
+          "mn": "-py"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

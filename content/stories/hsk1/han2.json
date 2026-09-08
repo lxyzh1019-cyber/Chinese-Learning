@@ -1,0 +1,404 @@
+{
+  "id": "han2",
+  "did": 6,
+  "level": 1,
+  "title": "我的小猫",
+  "en": "My Little Cat",
+  "names": {},
+  "sents": [
+    {
+      "zh": "我有一只小猫，名字叫小白。",
+      "en": "I have a little cat named Little White.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "have"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "a",
+          "bonus": true
+        },
+        {
+          "zh": "只",
+          "py": "zhī",
+          "mn": "CL",
+          "bonus": true
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "little"
+        },
+        {
+          "zh": "猫",
+          "py": "māo",
+          "mn": "cat",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "名",
+          "py": "míng",
+          "mn": "name-",
+          "bonus": true
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "-name"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called",
+          "bonus": true
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "little",
+          "bonus": true
+        },
+        {
+          "zh": "白",
+          "py": "bái",
+          "mn": "white",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "它每天早上叫我起床。",
+      "en": "It wakes me up every morning.",
+      "seg": [
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "早",
+          "py": "zǎo",
+          "mn": "morning-",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "morning"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "calls",
+          "bonus": true
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "me"
+        },
+        {
+          "zh": "起",
+          "py": "qǐ",
+          "mn": "get",
+          "bonus": true
+        },
+        {
+          "zh": "床",
+          "py": "chuáng",
+          "mn": "up from bed",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "它很喜欢吃鱼，也很喜欢玩球。",
+      "en": "It loves to eat fish and also loves to play with a ball.",
+      "seg": [
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "喜",
+          "py": "xǐ",
+          "mn": "like-",
+          "bonus": true
+        },
+        {
+          "zh": "欢",
+          "py": "huān",
+          "mn": "-like",
+          "bonus": true
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "eat"
+        },
+        {
+          "zh": "鱼",
+          "py": "yú",
+          "mn": "fish",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "喜",
+          "py": "xǐ",
+          "mn": "like-",
+          "bonus": true
+        },
+        {
+          "zh": "欢",
+          "py": "huān",
+          "mn": "-like",
+          "bonus": true
+        },
+        {
+          "zh": "玩",
+          "py": "wán",
+          "mn": "play",
+          "bonus": true
+        },
+        {
+          "zh": "球",
+          "py": "qiú",
+          "mn": "ball",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "有时候它爬到我的书包上睡觉。",
+      "en": "Sometimes it climbs onto my school bag to sleep.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "some-"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "times"
+        },
+        {
+          "zh": "候",
+          "py": "hòu",
+          "mn": "period"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "爬",
+          "py": "pá",
+          "mn": "climbs",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "my"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "zh": "包",
+          "py": "bāo",
+          "mn": "bag",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on top"
+        },
+        {
+          "zh": "睡",
+          "py": "shuì",
+          "mn": "sleep-",
+          "bonus": true
+        },
+        {
+          "zh": "觉",
+          "py": "jiào",
+          "mn": "-ing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我非常爱我的小猫，它是我最好的朋友。",
+      "en": "I love my little cat very much; it is my best friend.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "非",
+          "py": "fēi",
+          "mn": "ex-"
+        },
+        {
+          "zh": "常",
+          "py": "cháng",
+          "mn": "-tremely"
+        },
+        {
+          "zh": "爱",
+          "py": "ài",
+          "mn": "love",
+          "bonus": true
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "my"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "little"
+        },
+        {
+          "zh": "猫",
+          "py": "māo",
+          "mn": "cat",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "my"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "best",
+          "bonus": true
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "朋",
+          "py": "péng",
+          "mn": "fri-",
+          "bonus": true
+        },
+        {
+          "zh": "友",
+          "py": "yǒu",
+          "mn": "-end",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

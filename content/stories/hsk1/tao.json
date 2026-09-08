@@ -1,0 +1,432 @@
+{
+  "id": "tao",
+  "did": 10,
+  "level": 1,
+  "title": "田里的诗人",
+  "en": "The Poet in the Fields",
+  "names": {
+    "东晋": {
+      "py": "Dōng Jìn",
+      "en": "Eastern Jin"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "东晋有一位诗人，他很喜欢在田里工作。",
+      "en": "Eastern Jin had a poet who loved working in the fields.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "东晋",
+          "py": "Dōng Jìn",
+          "mn": "Eastern Jin"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "a",
+          "bonus": true
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "person",
+          "bonus": true
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "po-",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "-et",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "喜",
+          "py": "xǐ",
+          "mn": "like-",
+          "bonus": true
+        },
+        {
+          "zh": "欢",
+          "py": "huān",
+          "mn": "-like",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "田",
+          "py": "tián",
+          "mn": "fields",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in",
+          "bonus": true
+        },
+        {
+          "zh": "工",
+          "py": "gōng",
+          "mn": "work-"
+        },
+        {
+          "zh": "作",
+          "py": "zuò",
+          "mn": "-work"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他种花，种菜，每天很开心。",
+      "en": "He grew flowers and vegetables, happy every day.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "grew",
+          "bonus": true
+        },
+        {
+          "zh": "花",
+          "py": "huā",
+          "mn": "flowers",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "grew",
+          "bonus": true
+        },
+        {
+          "zh": "菜",
+          "py": "cài",
+          "mn": "vegetables",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "开",
+          "py": "kāi",
+          "mn": "hap-"
+        },
+        {
+          "zh": "心",
+          "py": "xīn",
+          "mn": "-py"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他写诗说：\"在田里，心里很自由。\"",
+      "en": "He wrote poems saying: \"In the fields, my heart feels free.\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "wrote"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poems",
+          "bonus": true
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "saying"
+        },
+        {
+          "t": "p",
+          "tx": "：\""
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "田",
+          "py": "tián",
+          "mn": "fields",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "心",
+          "py": "xīn",
+          "mn": "heart"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "free-"
+        },
+        {
+          "zh": "由",
+          "py": "yóu",
+          "mn": "-dom"
+        },
+        {
+          "t": "p",
+          "tx": "。\""
+        }
+      ]
+    },
+    {
+      "zh": "他不喜欢做大官，他只爱大自然。",
+      "en": "He didn't want to be a big official — he only loved nature.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "喜",
+          "py": "xǐ",
+          "mn": "like-",
+          "bonus": true
+        },
+        {
+          "zh": "欢",
+          "py": "huān",
+          "mn": "-like",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "be"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "官",
+          "py": "guān",
+          "mn": "official",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "只",
+          "py": "zhǐ",
+          "mn": "only",
+          "bonus": true
+        },
+        {
+          "zh": "爱",
+          "py": "ài",
+          "mn": "loved",
+          "bonus": true
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "great",
+          "bonus": true
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "na-",
+          "bonus": true
+        },
+        {
+          "zh": "然",
+          "py": "rán",
+          "mn": "-ture",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他的诗很美，中国人都喜欢他。",
+      "en": "His poems are beautiful; all Chinese people love him.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poems",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "美",
+          "py": "měi",
+          "mn": "beautiful",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "喜",
+          "py": "xǐ",
+          "mn": "like-",
+          "bonus": true
+        },
+        {
+          "zh": "欢",
+          "py": "huān",
+          "mn": "-like",
+          "bonus": true
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

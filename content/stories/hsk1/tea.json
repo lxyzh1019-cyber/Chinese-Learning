@@ -1,0 +1,415 @@
+{
+  "id": "tea",
+  "did": 15,
+  "level": 1,
+  "title": "一杯好茶",
+  "en": "A Good Cup of Tea",
+  "names": {
+    "南宋": {
+      "py": "Nán Sòng",
+      "en": "Southern Song"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "南宋的人非常喜欢喝茶。",
+      "en": "Southern Song people extremely loved drinking tea.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "南宋",
+          "py": "Nán Sòng",
+          "mn": "Southern Song"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "非",
+          "py": "fēi",
+          "mn": "ex-"
+        },
+        {
+          "zh": "常",
+          "py": "cháng",
+          "mn": "-tremely"
+        },
+        {
+          "zh": "喜",
+          "py": "xǐ",
+          "mn": "like-",
+          "bonus": true
+        },
+        {
+          "zh": "欢",
+          "py": "huān",
+          "mn": "-like",
+          "bonus": true
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "drink"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们把喝茶变成了一种艺术。",
+      "en": "They turned tea-drinking into an art form.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "BA"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "drinking"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea",
+          "bonus": true
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "turned",
+          "bonus": true
+        },
+        {
+          "zh": "成",
+          "py": "chéng",
+          "mn": "into"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "a",
+          "bonus": true
+        },
+        {
+          "zh": "种",
+          "py": "zhǒng",
+          "mn": "kind of",
+          "bonus": true
+        },
+        {
+          "zh": "艺",
+          "py": "yì",
+          "mn": "art-"
+        },
+        {
+          "zh": "术",
+          "py": "shù",
+          "mn": "-form"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "茶馆是人们见面聊天的地方。",
+      "en": "Teahouses were places where people met and chatted.",
+      "seg": [
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea",
+          "bonus": true
+        },
+        {
+          "zh": "馆",
+          "py": "guǎn",
+          "mn": "house",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "见",
+          "py": "jiàn",
+          "mn": "meet",
+          "bonus": true
+        },
+        {
+          "zh": "面",
+          "py": "miàn",
+          "mn": "face",
+          "bonus": true
+        },
+        {
+          "zh": "聊",
+          "py": "liáo",
+          "mn": "chat",
+          "bonus": true
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "talk",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "地",
+          "py": "dì",
+          "mn": "place-",
+          "bonus": true
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "-place",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "好茶要用干净的水和正确的温度。",
+      "en": "Good tea needs clean water and the correct temperature.",
+      "seg": [
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea",
+          "bonus": true
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "needs",
+          "bonus": true
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "use",
+          "bonus": true
+        },
+        {
+          "zh": "干",
+          "py": "gān",
+          "mn": "clean",
+          "bonus": true
+        },
+        {
+          "zh": "净",
+          "py": "jìng",
+          "mn": "clean",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "正",
+          "py": "zhèng",
+          "mn": "cor-",
+          "bonus": true
+        },
+        {
+          "zh": "确",
+          "py": "què",
+          "mn": "-rect",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "温",
+          "py": "wēn",
+          "mn": "tem-",
+          "bonus": true
+        },
+        {
+          "zh": "度",
+          "py": "dù",
+          "mn": "-perature",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "今天，喝茶仍然是中国文化的重要部分。",
+      "en": "Today, drinking tea is still an important part of Chinese culture.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "now"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "drinking"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea",
+          "bonus": true
+        },
+        {
+          "zh": "仍",
+          "py": "réng",
+          "mn": "still",
+          "bonus": true
+        },
+        {
+          "zh": "然",
+          "py": "rán",
+          "mn": "still",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "文",
+          "py": "wén",
+          "mn": "cul-"
+        },
+        {
+          "zh": "化",
+          "py": "huà",
+          "mn": "-ture"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "重",
+          "py": "zhòng",
+          "mn": "im-"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "-portant"
+        },
+        {
+          "zh": "部",
+          "py": "bù",
+          "mn": "part-",
+          "bonus": true
+        },
+        {
+          "zh": "分",
+          "py": "fèn",
+          "mn": "-part",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

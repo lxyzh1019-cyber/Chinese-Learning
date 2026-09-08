@@ -1,0 +1,389 @@
+{
+  "id": "canal",
+  "did": 11,
+  "level": 1,
+  "title": "大运河",
+  "en": "The Grand Canal",
+  "names": {
+    "隋朝": {
+      "py": "Suícháo",
+      "en": "Sui Dynasty"
+    },
+    "大运河": {
+      "py": "Dà Yùnhé",
+      "en": "Grand Canal"
+    }
+  },
+  "sents": [
+    {
+      "zh": "隋朝的皇帝想建一条很长的河。",
+      "en": "The Sui Dynasty emperor wanted to build a very long canal.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "隋朝",
+          "py": "Suícháo",
+          "mn": "Sui Dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "皇",
+          "py": "huáng",
+          "mn": "em-",
+          "bonus": true
+        },
+        {
+          "zh": "帝",
+          "py": "dì",
+          "mn": "-peror",
+          "bonus": true
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "wanted",
+          "bonus": true
+        },
+        {
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "build",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "a",
+          "bonus": true
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "mn": "CL",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "河",
+          "py": "hé",
+          "mn": "canal",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "很多人一起工作，建了大运河。",
+      "en": "Many people worked together and built the Grand Canal.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "to-",
+          "bonus": true
+        },
+        {
+          "zh": "起",
+          "py": "qǐ",
+          "mn": "-gether",
+          "bonus": true
+        },
+        {
+          "zh": "工",
+          "py": "gōng",
+          "mn": "work-"
+        },
+        {
+          "zh": "作",
+          "py": "zuò",
+          "mn": "-work"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "built",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "大运河",
+          "py": "Dà Yùnhé",
+          "mn": "the Grand Canal"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "大运河从北方到南方，很长很长。",
+      "en": "The Grand Canal goes from north to south — very, very long.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "大运河",
+          "py": "Dà Yùnhé",
+          "mn": "Grand Canal"
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "北",
+          "py": "běi",
+          "mn": "north",
+          "bonus": true
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "north",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "南",
+          "py": "nán",
+          "mn": "south",
+          "bonus": true
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "south",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "商人坐船在大运河上运送货物。",
+      "en": "Merchants sailed boats on the Canal to transport goods.",
+      "seg": [
+        {
+          "zh": "商",
+          "py": "shāng",
+          "mn": "merchant-"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "-people"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "sat on",
+          "bonus": true
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boats",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "t": "n",
+          "zh": "大运河",
+          "py": "Dà Yùnhé",
+          "mn": "Grand Canal"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "运",
+          "py": "yùn",
+          "mn": "trans-",
+          "bonus": true
+        },
+        {
+          "zh": "送",
+          "py": "sòng",
+          "mn": "-port",
+          "bonus": true
+        },
+        {
+          "zh": "货",
+          "py": "huò",
+          "mn": "goods-",
+          "bonus": true
+        },
+        {
+          "zh": "物",
+          "py": "wù",
+          "mn": "-goods",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "今天，大运河还在，人们还在用它。",
+      "en": "Today, the Canal still exists and people are still using it.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "now"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "大运河",
+          "py": "Dà Yùnhé",
+          "mn": "Grand Canal"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "exists"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "are"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "using",
+          "bonus": true
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

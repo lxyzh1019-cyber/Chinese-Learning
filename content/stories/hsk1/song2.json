@@ -1,0 +1,441 @@
+{
+  "id": "song2",
+  "did": 14,
+  "level": 1,
+  "title": "纸钱的魔力",
+  "en": "The Magic of Paper Money",
+  "names": {
+    "宋朝": {
+      "py": "Sòngcháo",
+      "en": "Song Dynasty"
+    }
+  },
+  "sents": [
+    {
+      "zh": "宋朝时候，人们发明了用纸做的钱。",
+      "en": "During the Song Dynasty, people invented paper money.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "宋朝",
+          "py": "Sòngcháo",
+          "mn": "Song Dynasty"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "at that"
+        },
+        {
+          "zh": "候",
+          "py": "hòu",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "发明",
+          "py": "fāmíng",
+          "mn": "invented",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "use",
+          "bonus": true
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "make"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "以前，人们用很重的铜钱做交易。",
+      "en": "Before, people used heavy copper coins for trading.",
+      "seg": [
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "be-",
+          "bonus": true
+        },
+        {
+          "zh": "前",
+          "py": "qián",
+          "mn": "-fore",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "used",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "重",
+          "py": "zhòng",
+          "mn": "heavy",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "铜",
+          "py": "tóng",
+          "mn": "copper",
+          "bonus": true
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "do"
+        },
+        {
+          "zh": "交",
+          "py": "jiāo",
+          "mn": "trad-",
+          "bonus": true
+        },
+        {
+          "zh": "易",
+          "py": "yì",
+          "mn": "-ing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "有了纸钱，商人可以更方便地做买卖。",
+      "en": "With paper money, merchants could trade more conveniently.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "with"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper",
+          "bonus": true
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "商",
+          "py": "shāng",
+          "mn": "merchant-"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "-people"
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "could"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "able"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "more"
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "conve-",
+          "bonus": true
+        },
+        {
+          "zh": "便",
+          "py": "biàn",
+          "mn": "-nient",
+          "bonus": true
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "ADV"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "do"
+        },
+        {
+          "zh": "买",
+          "py": "mǎi",
+          "mn": "trade-"
+        },
+        {
+          "zh": "卖",
+          "py": "mài",
+          "mn": "-trade"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "这个发明让商业变得更加发达。",
+      "en": "This invention made commerce even more developed.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "CL",
+          "bonus": true
+        },
+        {
+          "zh": "发明",
+          "py": "fāmíng",
+          "mn": "invention",
+          "bonus": true
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "made",
+          "bonus": true
+        },
+        {
+          "zh": "商",
+          "py": "shāng",
+          "mn": "commer-"
+        },
+        {
+          "zh": "业",
+          "py": "yè",
+          "mn": "-cial",
+          "bonus": true
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "became",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "ADV"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "more"
+        },
+        {
+          "zh": "加",
+          "py": "jiā",
+          "mn": "even more",
+          "bonus": true
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "devel-",
+          "bonus": true
+        },
+        {
+          "zh": "达",
+          "py": "dá",
+          "mn": "-oped",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "纸钱的发明改变了人们的经济生活。",
+      "en": "The invention of paper money changed people's economic life.",
+      "seg": [
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper",
+          "bonus": true
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "发明",
+          "py": "fāmíng",
+          "mn": "invention",
+          "bonus": true
+        },
+        {
+          "zh": "改",
+          "py": "gǎi",
+          "mn": "changed"
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "changed"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "PL"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "经",
+          "py": "jīng",
+          "mn": "eco-"
+        },
+        {
+          "zh": "济",
+          "py": "jì",
+          "mn": "-nomics",
+          "bonus": true
+        },
+        {
+          "zh": "生",
+          "py": "shēng",
+          "mn": "life-",
+          "bonus": true
+        },
+        {
+          "zh": "活",
+          "py": "huó",
+          "mn": "-life",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

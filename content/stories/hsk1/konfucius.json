@@ -1,0 +1,295 @@
+{
+  "id": "konfucius",
+  "did": 4,
+  "level": 1,
+  "title": "孔子的学生",
+  "en": "Confucius's Students",
+  "names": {
+    "孔子": {
+      "py": "Kǒngzǐ",
+      "en": "Confucius"
+    },
+    "老师": {
+      "py": "lǎoshī",
+      "en": "teacher"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "两千多年以前，中国有一位老师，叫孔子。",
+      "en": "More than two thousand years ago there was a teacher in China called Confucius."
+    },
+    {
+      "zh": "孔子是一位好老师。",
+      "en": "Confucius was a good teacher.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "孔子",
+          "py": "Kǒngzǐ",
+          "mn": "Confucius"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "a",
+          "bonus": true
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "great",
+          "bonus": true
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "n",
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他有很多学生。",
+      "en": "He had many students.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "stu-",
+          "bonus": true
+        },
+        {
+          "zh": "生",
+          "py": "shēng",
+          "mn": "-dents",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他的学生有的大，有的小。",
+      "en": "Some of his students were older, some younger."
+    },
+    {
+      "zh": "他们一起看书，一起说话。",
+      "en": "They read together and talked together."
+    },
+    {
+      "zh": "他说：\"每天学习，很好。\"",
+      "en": "He said: \"Studying every day is very good.\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "：\""
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "study"
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "learn",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "p",
+          "tx": "。\""
+        }
+      ]
+    },
+    {
+      "zh": "他也说：“不知道就问，这很好。”",
+      "en": "He also said: \"If you do not know, ask — that is good.\""
+    },
+    {
+      "zh": "学生很爱孔子。",
+      "en": "The students loved Confucius.",
+      "seg": [
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "stu-",
+          "bonus": true
+        },
+        {
+          "zh": "生",
+          "py": "shēng",
+          "mn": "-dents",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "爱",
+          "py": "ài",
+          "mn": "loved",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "孔子",
+          "py": "Kǒngzǐ",
+          "mn": "Confucius"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他走了以后，学生把他的话写下来。",
+      "en": "After he died, his students wrote his words down."
+    },
+    {
+      "zh": "今天，中国人都记得孔子的话。",
+      "en": "Today, Chinese people all remember Confucius's words.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "now"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "记",
+          "py": "jì",
+          "mn": "remem-",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "-ber",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "孔子",
+          "py": "Kǒngzǐ",
+          "mn": "Confucius"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

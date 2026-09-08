@@ -1,0 +1,386 @@
+{
+  "id": "paper2",
+  "did": 7,
+  "level": 1,
+  "title": "书里的世界",
+  "en": "World Inside Books",
+  "names": {},
+  "sents": [
+    {
+      "zh": "我最喜欢的东西是书。",
+      "en": "My favourite thing is books.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most",
+          "bonus": true
+        },
+        {
+          "zh": "喜",
+          "py": "xǐ",
+          "mn": "like-",
+          "bonus": true
+        },
+        {
+          "zh": "欢",
+          "py": "huān",
+          "mn": "-like",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "东",
+          "py": "dōng",
+          "mn": "thing-",
+          "bonus": true
+        },
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "-thing",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "书里有很多有趣的故事。",
+      "en": "Books contain many interesting stories.",
+      "seg": [
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "have"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "inter-"
+        },
+        {
+          "zh": "趣",
+          "py": "qù",
+          "mn": "-esting"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "故",
+          "py": "gù",
+          "mn": "sto-",
+          "bonus": true
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "-ry",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我读书的时候，可以去到很远的地方。",
+      "en": "When I read books, I can go to faraway places.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "read"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "time"
+        },
+        {
+          "zh": "候",
+          "py": "hòu",
+          "mn": "period"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "can"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "able"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "go to"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "reach"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "DE"
+        },
+        {
+          "zh": "地",
+          "py": "dì",
+          "mn": "place-",
+          "bonus": true
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "-place",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "妈妈说：\"读书让你变得更聪明。\"",
+      "en": "Mum said: \"Reading makes you smarter.\"",
+      "seg": [
+        {
+          "zh": "妈",
+          "py": "māmā",
+          "mn": "mo-",
+          "bonus": true
+        },
+        {
+          "zh": "妈",
+          "py": "māmā",
+          "mn": "-ther",
+          "bonus": true
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "：\""
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "read"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "makes",
+          "bonus": true
+        },
+        {
+          "zh": "你",
+          "py": "nǐ",
+          "mn": "you"
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "become",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "ADV"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "more"
+        },
+        {
+          "zh": "聪",
+          "py": "cōng",
+          "mn": "intelli-",
+          "bonus": true
+        },
+        {
+          "zh": "明",
+          "py": "míng",
+          "mn": "-gent",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。\""
+        }
+      ]
+    },
+    {
+      "zh": "我已经读了很多书，我想读更多。",
+      "en": "I have already read many books; I want to read even more.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "已",
+          "py": "yǐ",
+          "mn": "al-"
+        },
+        {
+          "zh": "经",
+          "py": "jīng",
+          "mn": "-ready"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "read"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "want",
+          "bonus": true
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "read"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "even"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}
