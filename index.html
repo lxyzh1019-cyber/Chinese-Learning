@@ -5268,13 +5268,19 @@ async function renderGateLesson(did,lessonRef){
 
   // The authored passage. It was written for every one of the 88 gates and then
   // never displayed — `lesson.passage` was referenced nowhere in the app.
+  // The passage stays Chinese — it is the reading practice — but its English
+  // sits behind a toggle. Everything ELSE in a lesson is an instruction, and an
+  // instruction the child cannot read is not an instruction.
   const passage=lesson.passage
     ? `<div class="practice-box" style="text-align:left;font-family:var(--fzh);font-size:1.02rem;line-height:1.95;margin:.5rem 0;">${esc(lesson.passage)}</div>`
+      +(lesson.passageEn?`<button class="btn-s" style="font-size:.7rem;" onclick="const b=this.nextElementSibling;b.hidden=!b.hidden;">English · 英文</button>`
+        +`<div class="dd-desc" hidden style="text-align:left;line-height:1.6;">${esc(lesson.passageEn)}</div>`:'')
     : '';
 
   // The lesson's own explanation, likewise never shown.
-  const intro=lesson.explanation
-    ? `<div class="dd-desc" style="background:rgba(39,174,96,.07);border:1px solid rgba(39,174,96,.2);border-radius:8px;padding:.5rem .7rem;margin:.3rem 0;line-height:1.65;">${esc(lesson.explanation)}</div>`
+  const bi=(en,zh)=>(en&&zh)?`${esc(en)}<br><span style="opacity:.8;">${esc(zh)}</span>`:esc(en||zh||'');
+  const intro=(lesson.explanationEn||lesson.explanation)
+    ? `<div class="dd-desc" style="background:rgba(39,174,96,.07);border:1px solid rgba(39,174,96,.2);border-radius:8px;padding:.5rem .7rem;margin:.3rem 0;line-height:1.65;">${bi(lesson.explanationEn,lesson.explanation)}</div>`
     : '';
 
   // The authored questions and THEIR answers. Three hard-coded English
@@ -5282,13 +5288,13 @@ async function renderGateLesson(did,lessonRef){
   // gate?" — with the real question demoted to a parenthetical and the real
   // answer never rendered at all. On 22 of the 88 lessons the substitute did
   // not even match the question it replaced.
-  const qs=(lesson.comprehension||[]).map(q=>`<li style="margin:.35rem 0;">
-      <span style="color:var(--ink);">${esc(q.question||'')}</span>
-      <span style="color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;">→ ${esc(q.answer||'')}</span>
+  const qs=(lesson.comprehension||[]).map(q=>`<li style="margin:.45rem 0;">
+      <span style="color:var(--ink);">${bi(q.questionEn,q.question)}</span>
+      <span style="color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;">→ ${bi(q.answerEn,q.answer)}</span>
     </li>`).join('');
 
-  const speaking=lesson.speakingPrompt
-    ? `<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;line-height:1.6;"><strong>🗣 Speaking · 口语：</strong> ${esc(lesson.speakingPrompt)}</div>`
+  const speaking=(lesson.speakingPromptEn||lesson.speakingPrompt)
+    ? `<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;line-height:1.6;"><strong>🗣 Speaking · 口语</strong><br>${bi(lesson.speakingPromptEn,lesson.speakingPrompt)}</div>`
     : '';
 
   box.innerHTML=`<div class="dd-icon-meaning"><strong>📖 Lesson · 课程 — ${esc(lvl)} Gate ${esc(gate)}</strong></div>

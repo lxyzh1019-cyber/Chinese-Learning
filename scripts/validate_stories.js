@@ -65,7 +65,19 @@ function main() {
           const zh = tok.ch || tok.tx;
           if (!zh) return fail(`${at}: a token with no text`);
           if (!tok.py) fail(`${at}: "${zh}" has no pinyin`);
-          if (tok.mn === undefined || tok.mn === null) fail(`${at}: "${zh}" has no gloss`);
+          if (tok.mn === undefined || tok.mn === null) return fail(`${at}: "${zh}" has no gloss`);
+
+          // A gloss the child actually reads when they tap the character.
+          // 96 of these were shipping: a longer word's English split across its
+          // characters (学习 "practice" leaving 习 as "-tice", 朋友 "friend"
+          // leaving 友 as "-end") and linguists' codes for the grammar
+          // (的 "DE", 了 "CMPL", 个 "CL", 把 "BA"). Neither says anything to a
+          // nine-year-old, and both were shown on every tap.
+          const en = String(tok.mn).trim();
+          if (!en) fail(`${at}: "${zh}" has an empty gloss`);
+          else if (/^[-—]/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a fragment of a longer word's English, not a meaning`);
+          else if (/^[A-Z]{2,5}$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a grammar code; say what it does in plain words`);
+          else if (/surname/i.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — the junk-gloss class this project has already been burned by`);
         });
       });
 

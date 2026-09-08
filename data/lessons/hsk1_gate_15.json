@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_15",
   "level": "HSK1",
   "gateId": 15,
-  "title": "HSK1 Gate 15 Lesson",
-  "explanation": "HSK1 Gate 15：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第15关：今天的新词有：电影、间、哪、跑、回家、昨天、晚、书、五、先生……等（共14个生字）。复习字有：早、身上、干、认识、睡、喝、明天、回来……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 15 · Southern Song",
+  "explanationEn": "Gate 15: Southern Song. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第15关：南宋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "中国人很早就开始喝茶。宋朝的人非常喜欢喝茶。茶是用山上的一种树做的。他们先把水烧开。",
+  "passageEn": "Chinese people began drinking tea very early. Song people loved tea very much. Tea is made from a plant that grows on the hills. First they boiled the water.",
   "keyVocab": [
     {
-      "zh": "电影",
-      "pinyin": "diàn yǐng",
-      "en": "movie; film"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "person"
     },
     {
-      "zh": "间",
-      "pinyin": "jiān",
-      "en": "between"
+      "zh": "早",
+      "pinyin": "zǎo",
+      "en": "morning-"
     },
     {
-      "zh": "哪",
-      "pinyin": "nǎ",
-      "en": "how"
+      "zh": "开始",
+      "pinyin": "kāishǐ",
+      "en": "started"
     },
     {
-      "zh": "跑",
-      "pinyin": "páo",
-      "en": "(of an animal) to paw (the ground)"
+      "zh": "喝",
+      "pinyin": "hē",
+      "en": "drink"
     },
     {
-      "zh": "回家",
-      "pinyin": "huí jiā",
-      "en": "to return home"
+      "zh": "茶",
+      "pinyin": "chá",
+      "en": "tea"
     },
     {
-      "zh": "昨天",
-      "pinyin": "zuó tiān",
-      "en": "yesterday"
+      "zh": "宋朝",
+      "pinyin": "Sòngcháo",
+      "en": "Song Dynasty"
     },
     {
-      "zh": "晚",
-      "pinyin": "wǎn",
-      "en": "evening"
+      "zh": "非常",
+      "pinyin": "fēi cháng",
+      "en": "very; really"
     },
     {
-      "zh": "书",
-      "pinyin": "Shū",
-      "en": "abbr. for 书经"
-    },
-    {
-      "zh": "五",
-      "pinyin": "wǔ",
-      "en": "five"
-    },
-    {
-      "zh": "先生",
-      "pinyin": "xiān sheng",
-      "en": "teacher"
-    },
-    {
-      "zh": "动",
-      "pinyin": "dòng",
-      "en": "(of sth) to move"
-    },
-    {
-      "zh": "医院",
-      "pinyin": "yī yuàn",
-      "en": "hospital"
-    },
-    {
-      "zh": "重",
-      "pinyin": "chóng",
-      "en": "to repeat"
-    },
-    {
-      "zh": "真的",
-      "pinyin": "zhēn de",
-      "en": "really, truly, indeed"
+      "zh": "喜欢",
+      "pinyin": "xǐ huan",
+      "en": "to like; to be fond of"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "14个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Chinese people began drinking tea very early.",
+      "answer": "中国人很早就开始喝茶。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：早 和 身上（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "Tea is made from a plant that grows on the hills.",
+      "answer": "茶是用山上的一种树做的。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「电影」「间」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Southern Song in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说南宋。"
 }

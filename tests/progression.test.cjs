@@ -1067,3 +1067,92 @@ test("UI-T03: the static markup carries no hand-written copy of a label", () => 
   }
   assert.deepEqual(dupes, [], "labels must come from L() or data-ui-label");
 });
+
+// ── Stories and lessons ────────────────────────────────────────────────────
+
+test("S-T01: a story's reads count against the level that served it", () => {
+  const a = app();
+  F.installState(a);
+  // The same dynasty at two levels is two different reading gates. Before
+  // stories carried a level, reading 夏朝 on HSK1 unlocked the games on h2-g01
+  // as well, because reads were keyed by dynasty alone.
+  assert.equal(a.storyKeyFor("xia", 1), "xia-h1");
+  assert.equal(a.storyKeyFor("xia", 2), "xia-h2");
+  assert.equal(a.storyKeyFor("xia-h1", 3), "xia-h3", "an already-suffixed id is re-levelled, not doubled");
+});
+
+test("S-T02: a level with no text of its own falls back and says so", () => {
+  const a = app();
+  F.installState(a);
+  const own = a.storyForGate("xia", 1);
+  assert.equal(own.id, "xia-h1");
+  assert.ok(!own.shared, "level 1 has its own text");
+
+  const borrowed = a.storyForGate("xia", 2);
+  assert.equal(borrowed.id, "xia-h2", "served under the level's own id, so reads count for that level");
+  assert.equal(borrowed.shared, true, "and flagged, so the reader can say the text is shared");
+  assert.deepEqual(borrowed.sents, own.sents, "it is level 1's text");
+});
+
+test("S-T03: every HSK1 story is on the ladder and fully glossed", () => {
+  const a = app();
+  const stories = Object.values(a.STORIES_MAP).filter((s) => s.level === 1);
+  assert.equal(stories.length, 44, "22 dynasties, two stories each");
+  for (const s of stories) {
+    assert.equal(s.sents.length, 10, `${s.id}: the HSK1 ladder is ten sentences`);
+    assert.equal(s.trans.length, 10, `${s.id}: every sentence needs its English`);
+    for (const tok of s.sents.flat()) {
+      if (tok.t === "p") continue;
+      const zh = tok.ch || tok.tx;
+      assert.ok(tok.py, `${s.id}: "${zh}" has no reading`);
+      const en = String(tok.mn == null ? "" : tok.mn).trim();
+      assert.ok(en, `${s.id}: "${zh}" has no meaning`);
+      // The child sees this string when they tap the character. 96 of these
+      // were a longer word's English cut in half ("-tice" for 习) or a
+      // linguist's code ("DE" for 的).
+      assert.ok(!/^[-—]/.test(en), `${s.id}: "${zh}" is glossed "${en}" — a fragment`);
+      assert.ok(!/^[A-Z]{2,5}$/.test(en), `${s.id}: "${zh}" is glossed "${en}" — a grammar code`);
+    }
+  }
+});
+
+test("S-T04: HSK1 lessons are bilingual and drawn from their own gate's story", () => {
+  const fs = require("fs");
+  const path = require("path");
+  const a = app();
+  const dir = path.join(__dirname, "..", "data", "lessons");
+
+  for (let g = 1; g <= 22; g++) {
+    const id = `hsk1_gate_${String(g).padStart(2, "0")}`;
+    const L = JSON.parse(fs.readFileSync(path.join(dir, `${id}.json`), "utf8"));
+
+    // An instruction the child cannot read is not an instruction.
+    for (const [en, zh, what] of [
+      [L.explanationEn, L.explanation, "explanation"],
+      [L.speakingPromptEn, L.speakingPrompt, "speaking prompt"],
+    ]) {
+      assert.match(en || "", /[A-Za-z]{3,}/, `${id}: ${what} has no English`);
+      assert.match(zh || "", /[一-鿿]/, `${id}: ${what} has no Chinese`);
+    }
+    assert.match(L.passageEn || "", /[A-Za-z]{3,}/, `${id}: the passage has no English`);
+
+    // The passage used to be the gate's word list wrapped in instructions,
+    // with questions about the lesson rather than about a text.
+    assert.ok(!/生字|本关有几个|复习字/.test(L.passage), `${id}: the passage is a word list`);
+    L.comprehension.forEach((q, i) => {
+      assert.ok(!/生字|本关有几个/.test(q.question), `${id} q${i + 1}: asks about the lesson`);
+      assert.match(q.questionEn || "", /[A-Za-z]{3,}/, `${id} q${i + 1}: no English`);
+      assert.ok(String(q.answer || "").trim(), `${id} q${i + 1}: no answer`);
+    });
+
+    // And it must come from THIS gate's story, not a free-standing topic.
+    const dyn = a.DYNASTIES.find((d) => d.id === g);
+    const story = a.STORIES_MAP[`${dyn.story}-h1`];
+    const opening = story.sents.slice(0, 4)
+      .map((s) => s.map((t) => (t.t === "p" ? t.tx : (t.ch || t.tx))).join("")).join("");
+    assert.equal(L.passage, opening, `${id}: the passage is not this gate's story`);
+    L.keyVocab.forEach((v) => {
+      assert.ok(L.passage.includes(v.zh), `${id}: key word "${v.zh}" is not in the passage`);
+    });
+  }
+});

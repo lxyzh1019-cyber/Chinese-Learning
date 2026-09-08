@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_05",
   "level": "HSK1",
   "gateId": 5,
-  "title": "HSK1 Gate 5 Lesson",
-  "explanation": "HSK1 Gate 5：本关有 13 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第5关：今天的新词有：两、等、天、出、太、最、再、吧、次、小……等（共13个生字）。复习字有：去、她、着、想、给、没有、能、那……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 5 · Qin Dynasty",
+  "explanationEn": "Gate 5: Qin Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第5关：秦朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "秦始皇是中国第一个大王。他让中国的字都一样。北边有人常常来，所以他很想做一件事。他要做一个很大的长城。",
+  "passageEn": "Qin Shi Huang was China's first great king. He made the characters of China all the same. People often came from the north, so he wanted very much to do one thing. He wanted to build a very large Great Wall.",
   "keyVocab": [
     {
-      "zh": "两",
-      "pinyin": "liǎng",
-      "en": "two"
+      "zh": "大",
+      "pinyin": "dà",
+      "en": "great"
     },
     {
-      "zh": "等",
-      "pinyin": "děng",
-      "en": "class"
+      "zh": "王",
+      "pinyin": "wáng",
+      "en": "king"
     },
     {
-      "zh": "天",
-      "pinyin": "tiān",
-      "en": "day"
+      "zh": "让",
+      "pinyin": "ràng",
+      "en": "made"
     },
     {
-      "zh": "出",
-      "pinyin": "chū",
-      "en": "to go out"
+      "zh": "字",
+      "pinyin": "zì",
+      "en": "character; writing"
     },
     {
-      "zh": "太",
-      "pinyin": "tài",
-      "en": "highest"
+      "zh": "一样",
+      "pinyin": "yī yàng",
+      "en": "same"
     },
     {
-      "zh": "最",
-      "pinyin": "zuì",
-      "en": "variant of 最"
+      "zh": "北",
+      "pinyin": "běi",
+      "en": "north"
     },
     {
-      "zh": "再",
-      "pinyin": "zài",
-      "en": "again; once more; re-"
+      "zh": "边",
+      "pinyin": "biān",
+      "en": "side; edge"
     },
     {
-      "zh": "吧",
-      "pinyin": "bā",
-      "en": "bar (loanword) (serving drinks, or providing Internet access etc)"
-    },
-    {
-      "zh": "次",
-      "pinyin": "cì",
-      "en": "next in sequence"
-    },
-    {
-      "zh": "小",
-      "pinyin": "xiǎo",
-      "en": "small"
-    },
-    {
-      "zh": "知道",
-      "pinyin": "zhī dào",
-      "en": "to know; to become aware of"
-    },
-    {
-      "zh": "时候",
-      "pinyin": "shí hou",
-      "en": "time"
-    },
-    {
-      "zh": "走",
-      "pinyin": "zǒu",
-      "en": "to walk"
-    },
-    {
-      "zh": "去",
-      "pinyin": "qù",
-      "en": "to go"
+      "zh": "有人",
+      "pinyin": "yǒu rén",
+      "en": "someone"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "13个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Qin Shi Huang was China's first great king.",
+      "answer": "秦始皇是中国第一个大王。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：去 和 她（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "People often came from the north, so he wanted very much to do one thing.",
+      "answer": "北边有人常常来，所以他很想做一件事。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「两」「等」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Qin Dynasty in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说秦朝。"
 }

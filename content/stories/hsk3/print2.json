@@ -44,12 +44,12 @@
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "we"
+          "mn": "I; me"
         },
         {
           "zh": "们",
           "py": "men",
-          "mn": "PL"
+          "mn": "(more than one)"
         },
         {
           "zh": "去",
@@ -59,7 +59,7 @@
         {
           "zh": "了",
           "py": "le",
-          "mn": "CMPL",
+          "mn": "(shows it is finished)",
           "bonus": true
         },
         {
@@ -166,7 +166,7 @@
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I"
+          "mn": "I; me"
         },
         {
           "zh": "找",
@@ -177,18 +177,18 @@
         {
           "zh": "到",
           "py": "dào",
-          "mn": "CMPL"
+          "mn": "to arrive"
         },
         {
           "zh": "了",
           "py": "le",
-          "mn": "CMPL",
+          "mn": "(shows it is finished)",
           "bonus": true
         },
         {
           "zh": "一",
           "py": "yī",
-          "mn": "a",
+          "mn": "one",
           "bonus": true
         },
         {
@@ -228,7 +228,7 @@
         {
           "zh": "的",
           "py": "de",
-          "mn": "DE"
+          "mn": "of; belonging to"
         },
         {
           "zh": "故",
@@ -239,7 +239,7 @@
         {
           "zh": "事",
           "py": "shì",
-          "mn": "-ry",
+          "mn": "matter; thing",
           "bonus": true
         },
         {
@@ -260,12 +260,12 @@
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I"
+          "mn": "I; me"
         },
         {
           "zh": "在",
           "py": "zài",
-          "mn": "at"
+          "mn": "at; in"
         },
         {
           "zh": "图",
@@ -299,7 +299,7 @@
         {
           "zh": "了",
           "py": "le",
-          "mn": "CMPL",
+          "mn": "(shows it is finished)",
           "bonus": true
         },
         {
@@ -311,7 +311,7 @@
         {
           "zh": "个",
           "py": "gè",
-          "mn": "CL",
+          "mn": "(counting word)",
           "bonus": true
         },
         {
@@ -333,7 +333,7 @@
         {
           "zh": "忘",
           "py": "wàng",
-          "mn": "forgot",
+          "mn": "to forget",
           "bonus": true
         },
         {
@@ -345,7 +345,7 @@
         {
           "zh": "了",
           "py": "le",
-          "mn": "CMPL",
+          "mn": "(shows it is finished)",
           "bonus": true
         },
         {
@@ -372,7 +372,7 @@
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I"
+          "mn": "I; me"
         },
         {
           "zh": "借",
@@ -383,7 +383,7 @@
         {
           "zh": "了",
           "py": "le",
-          "mn": "CMPL",
+          "mn": "(shows it is finished)",
           "bonus": true
         },
         {
@@ -442,7 +442,7 @@
         {
           "zh": "地",
           "py": "de",
-          "mn": "ADV"
+          "mn": "(before how it is done)"
         },
         {
           "zh": "想",
@@ -453,7 +453,7 @@
         {
           "zh": "把",
           "py": "bǎ",
-          "mn": "BA",
+          "mn": "(puts the object first)",
           "bonus": true
         },
         {
@@ -464,7 +464,7 @@
         {
           "zh": "们",
           "py": "men",
-          "mn": "PL"
+          "mn": "(more than one)"
         },
         {
           "zh": "读",

@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_21",
   "level": "HSK1",
   "gateId": 21,
-  "title": "HSK1 Gate 21 Lesson",
-  "explanation": "HSK1 Gate 21：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第21关：今天的新词有：飞机、早上、回答、记、关、哥、爸、风、回去、累……等（共14个生字）。复习字有：白、去年、热、试、来到、睡觉、电脑、票……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 21 · Late Qing",
+  "explanationEn": "Gate 21: Late Qing. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第21关：清后期。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "清朝快要过去的时候，中国有很多难事。西边的国家有新的船和新的东西。他们的船很快，也很大。很多中国人开始想：我们要学新的东西。",
+  "passageEn": "As the Qing dynasty was ending, China had many difficulties. Countries to the west had new ships and new things. Their ships were fast and large. Many Chinese began to think: we must learn new things.",
   "keyVocab": [
     {
-      "zh": "飞机",
-      "pinyin": "fēi jī",
-      "en": "airplane"
+      "zh": "快",
+      "pinyin": "kuài",
+      "en": "fast"
     },
     {
-      "zh": "早上",
-      "pinyin": "zǎo shang",
-      "en": "early morning"
+      "zh": "过去",
+      "pinyin": "guò qù",
+      "en": "(in the) past"
     },
     {
-      "zh": "回答",
-      "pinyin": "huí dá",
-      "en": "to reply; to answer"
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "en": "period"
     },
     {
-      "zh": "记",
-      "pinyin": "jì",
-      "en": "to record"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
     },
     {
-      "zh": "关",
-      "pinyin": "guān",
-      "en": "to close; to shut; to turn off; pass"
+      "zh": "难",
+      "pinyin": "nán",
+      "en": "unfor-"
     },
     {
-      "zh": "哥",
-      "pinyin": "gē",
-      "en": "elder brother"
+      "zh": "事",
+      "pinyin": "shì",
+      "en": "matter; thing"
     },
     {
-      "zh": "爸",
-      "pinyin": "bà",
-      "en": "father"
+      "zh": "西",
+      "pinyin": "xī",
+      "en": "west"
     },
     {
-      "zh": "风",
-      "pinyin": "fēng",
-      "en": "wind"
-    },
-    {
-      "zh": "回去",
-      "pinyin": "huí qu",
-      "en": "to return"
-    },
-    {
-      "zh": "累",
-      "pinyin": "lěi",
-      "en": "to accumulate"
-    },
-    {
-      "zh": "打开",
-      "pinyin": "dǎ kāi",
-      "en": "to open"
-    },
-    {
-      "zh": "病人",
-      "pinyin": "bìng rén",
-      "en": "sick person"
-    },
-    {
-      "zh": "肉",
-      "pinyin": "ròu",
-      "en": "meat"
-    },
-    {
-      "zh": "打电话",
-      "pinyin": "dǎ diàn huà",
-      "en": "to make a telephone call"
+      "zh": "边",
+      "pinyin": "biān",
+      "en": "side; edge"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "14个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "As the Qing dynasty was ending, China had many difficulties.",
+      "answer": "清朝快要过去的时候，中国有很多难事。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：白 和 去年（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "Their ships were fast and large.",
+      "answer": "他们的船很快，也很大。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「飞机」「早上」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Late Qing in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说清后期。"
 }

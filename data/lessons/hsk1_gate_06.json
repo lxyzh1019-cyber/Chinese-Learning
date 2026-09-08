@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_06",
   "level": "HSK1",
   "gateId": 6,
-  "title": "HSK1 Gate 6 Lesson",
-  "explanation": "HSK1 Gate 6：本关有 13 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第6关：今天的新词有：从、工作、事、后、吗、家、你们、前、时间、怎么……等（共13个生字）。复习字有：过、没、大、下、中、里、真、现在……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 6 · Western Han",
+  "explanationEn": "Gate 6: Western Han. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第6关：西汉。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "汉朝的时候，中国和西边很少来往。汉朝的人向西走了很远。路很长，走一次要很多个月。他们带着中国的丝绸去做买卖。",
+  "passageEn": "In the Han dynasty, China and the lands to the west had little contact. Han Dynasty people walked very far towards the west. The road was long; one journey took many months. They carried Chinese silk to trade.",
   "keyVocab": [
     {
-      "zh": "从",
-      "pinyin": "cóng",
-      "en": "variant of 从"
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "en": "period"
     },
     {
-      "zh": "工作",
-      "pinyin": "gōng zuò",
-      "en": "to work"
+      "zh": "西",
+      "pinyin": "xī",
+      "en": "west"
     },
     {
-      "zh": "事",
-      "pinyin": "shì",
-      "en": "matter"
+      "zh": "边",
+      "pinyin": "biān",
+      "en": "side; edge"
     },
     {
-      "zh": "后",
-      "pinyin": "hòu",
-      "en": "behind; after; later"
+      "zh": "少",
+      "pinyin": "shǎo",
+      "en": "few"
     },
     {
-      "zh": "吗",
-      "pinyin": "má",
-      "en": "(coll.) what?"
+      "zh": "来",
+      "pinyin": "lái",
+      "en": "to come"
     },
     {
-      "zh": "家",
-      "pinyin": "jiā",
-      "en": "home; family; house"
+      "zh": "往",
+      "pinyin": "wǎng",
+      "en": "to go (in a direction)"
     },
     {
-      "zh": "你们",
-      "pinyin": "nǐ men",
-      "en": "you (plural)"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "person"
     },
     {
-      "zh": "前",
-      "pinyin": "qián",
-      "en": "front"
-    },
-    {
-      "zh": "时间",
-      "pinyin": "shí jiān",
-      "en": "time"
-    },
-    {
-      "zh": "怎么",
-      "pinyin": "zěn me",
-      "en": "how?"
-    },
-    {
-      "zh": "爱",
-      "pinyin": "ài",
-      "en": "to love; to be fond of; to like"
-    },
-    {
-      "zh": "地",
-      "pinyin": "de",
-      "en": "-ly"
-    },
-    {
-      "zh": "这些",
-      "pinyin": "zhè xiē",
-      "en": "these"
-    },
-    {
-      "zh": "过",
-      "pinyin": "guò",
-      "en": "to pass; to go through; (past action marker)"
+      "zh": "向",
+      "pinyin": "xiàng",
+      "en": "towards"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "13个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "In the Han dynasty, China and the lands to the west had little contact.",
+      "answer": "汉朝的时候，中国和西边很少来往。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：过 和 没（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "The road was long; one journey took many months.",
+      "answer": "路很长，走一次要很多个月。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「从」「工作」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Western Han in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说西汉。"
 }
