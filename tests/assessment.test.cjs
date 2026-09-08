@@ -618,3 +618,151 @@ test("A-T28: a domain at chance is flagged rather than read as a result", () => 
   assert.equal(d.atChance, true);
   assert.equal(typeof d.medianSecs, "number", "answer pace comes from data already stored");
 });
+
+// ── F03: device lock, cloud discovery, transactional compare-and-set ────────
+// Audit finding F03. The cloud is a stub throughout: the sandbox blocks the
+// Firebase CDN, so no test here can reach Firestore.
+
+/** Firestore stub with a transaction and a collection listing. */
+function txFakeDb(seed = {}) {
+  const docs = Object.assign({}, seed);
+  const docRef = (key) => ({
+    get: async () => ({ exists: key in docs, data: () => docs[key] }),
+    set: async (v) => { docs[key] = JSON.parse(JSON.stringify(v)); },
+    _key: key,
+  });
+  const db = {
+    docs, transactions: 0,
+    collection: (c) => ({
+      doc: (a) => ({
+        collection: (s) => ({
+          doc: (b) => docRef(`${c}/${a}/${s}/${b}`),
+          get: async () => ({
+            docs: Object.keys(docs).filter((k) => k.startsWith(`${c}/${a}/${s}/`)).map((k) => ({ data: () => docs[k] })),
+          }),
+        }),
+      }),
+    }),
+    runTransaction: async (fn) => {
+      db.transactions++;
+      const tx = {
+        get: (ref) => ref.get(),
+        set: (ref, v) => { docs[ref._key] = JSON.parse(JSON.stringify(v)); },
+      };
+      return fn(tx);
+    },
+  };
+  return db;
+}
+
+test("F03: a push is accepted only when the cloud still holds the acknowledged base revision", async () => {
+  const storage = memStorage();
+  const db = txFakeDb();
+  const ctx = { storage, db };
+  const a = newAttempt();
+  a.revision = 5;
+  assert.equal((await S.pushAttempt(ctx, a)).ok, true, "first write lands");
+  assert.equal(S.readLocal(storage).synced["att-1"], 5, "revision 5 is the acknowledged base");
+  assert.equal(db.transactions, 1, "inside a transaction");
+
+  a.revision = 9;
+  assert.equal((await S.pushAttempt(ctx, a)).ok, true, "same device advancing from its own base");
+  assert.equal(S.readLocal(storage).synced["att-1"], 9);
+
+  // Another device wrote revision 10 meanwhile; this device is still based on 9.
+  db.docs[S.attemptPath("jenn", "att-1")].revision = 10;
+  a.revision = 12;
+  const res = await S.pushAttempt(ctx, a);
+  assert.equal(res.ok, false, "refused even though 12 > 10 — the old strictly-greater rule accepted this");
+  assert.equal(res.status, S.SYNC_ATTENTION);
+  assert.equal(res.conflict.remoteRevision, 10);
+  assert.equal(db.docs[S.attemptPath("jenn", "att-1")].revision, 10, "the cloud copy was not overwritten");
+});
+
+test("F03: a different answer at the SAME revision is refused, not silently written over", async () => {
+  const item = C.selectItems(bank, forms, "A", "C1")[0];
+  const cloud = newAttempt();
+  C.present(cloud, item);
+  C.respond(cloud, { itemId: item.id, selectedOptionId: item.acceptedOptionIds[0] });   // revision 2
+  const db = txFakeDb({ [S.attemptPath("jenn", "att-1")]: JSON.parse(JSON.stringify(cloud)) });
+
+  const other = newAttempt();
+  C.present(other, item);
+  C.respond(other, { itemId: item.id, selectedOptionId: item.options[2].id });           // also revision 2
+  const res = await S.pushAttempt({ storage: memStorage(), db }, other);
+  assert.equal(res.ok, false);
+  assert.equal(res.conflict.conflictingItems.length, 1, "the disputed answer is named");
+  assert.equal(db.docs[S.attemptPath("jenn", "att-1")].responses[0].selectedOptionId, item.acceptedOptionIds[0], "answer A survives");
+});
+
+test("F03: each device has one stable id, and two storages get different ones", () => {
+  const s1 = memStorage(), s2 = memStorage();
+  const a = S.deviceId(s1);
+  assert.ok(/^d-/.test(a));
+  assert.equal(S.deviceId(s1), a, "stable across calls");
+  assert.notEqual(S.deviceId(s2), a);
+});
+
+test("F03: hydrating adopts what the cloud has, but never a copy of a round this device is playing", async () => {
+  const storage = memStorage();
+  const me = "dev-A";
+  // Cloud: a finished attempt this device has never seen, a newer copy of a
+  // finished one it has, and a newer copy of one it is playing right now.
+  const finishedElsewhere = newAttempt({ attemptId: "cloud-only" });
+  finishedElsewhere.status = "results_available"; finishedElsewhere.revision = 40;
+  const finishedHere = newAttempt({ attemptId: "old-here" });
+  finishedHere.status = "results_available"; finishedHere.revision = 3;
+  const finishedHereNewer = JSON.parse(JSON.stringify(finishedHere)); finishedHereNewer.revision = 7;
+  const mine = newAttempt({ attemptId: "mine", deviceId: me });
+  mine.status = "active"; mine.revision = 2;
+  const mineCloud = JSON.parse(JSON.stringify(mine)); mineCloud.revision = 50;
+
+  S.saveAttempt({ storage, db: null }, finishedHere);
+  S.saveAttempt({ storage, db: null }, mine);
+  const db = txFakeDb({
+    [S.attemptPath("jenn", "cloud-only")]: finishedElsewhere,
+    [S.attemptPath("jenn", "old-here")]: finishedHereNewer,
+    [S.attemptPath("jenn", "mine")]: mineCloud,
+  });
+
+  const out = await S.hydrateFromCloud({ storage, db }, "jenn", me);
+  assert.deepEqual(out.adopted.sort(), ["cloud-only", "old-here"]);
+  assert.deepEqual(out.kept, ["mine"]);
+  const local = S.readLocal(storage);
+  assert.equal(local.attempts["cloud-only"].revision, 40, "a second device can now see the first's assessment");
+  assert.equal(local.attempts["old-here"].revision, 7, "the newer finished copy replaces the older");
+  assert.equal(local.attempts["mine"].revision, 2, "this device is the authority on its own live round");
+  assert.equal(local.synced["cloud-only"], 40, "adopted copies are the acknowledged base");
+  assert.equal(local.queue.length, 2, "hydration queues nothing for upload");
+});
+
+test("F03: an attempt in progress on another device is visible but not resumable here", async () => {
+  const storage = memStorage();
+  const theirs = newAttempt({ attemptId: "theirs", deviceId: "dev-B" });
+  theirs.status = "paused"; theirs.revision = 4;
+  const db = txFakeDb({ [S.attemptPath("jenn", "theirs")]: theirs });
+  await S.hydrateFromCloud({ storage, db }, "jenn", "dev-A");
+  const seen = S.listAttempts({ storage, db }, "jenn");
+  assert.equal(seen.length, 1, "history sees it");
+  assert.equal(S.resumableOn(seen[0], "dev-A"), false);
+  assert.equal(S.resumableOn(seen[0], "dev-B"), true);
+  const legacy = newAttempt({ attemptId: "legacy" }); legacy.status = "paused";
+  assert.equal(S.resumableOn(legacy, "dev-A"), true, "an attempt saved before device ids existed can be continued anywhere");
+  const done = newAttempt({ attemptId: "done", deviceId: "dev-A" }); done.status = "results_available";
+  assert.equal(S.resumableOn(done, "dev-A"), false, "finished attempts are not resumed");
+});
+
+test("F03: offline saves collapse to one queue entry and flush once the cloud is back", async () => {
+  const storage = memStorage();
+  const a = newAttempt();
+  for (let i = 0; i < 3; i++) { a.revision = i + 1; S.saveAttempt({ storage, db: null }, a); }
+  assert.equal(S.readLocal(storage).queue.length, 1, "one entry per attempt, not per save");
+  const db = txFakeDb();
+  const out = await S.flushQueue({ storage, db });
+  assert.equal(out.pending, 0);
+  assert.equal(S.readLocal(storage).queue.length, 0);
+  assert.equal(S.readLocal(storage).synced["att-1"], 3);
+  assert.equal(S.isSynced({ storage, db }, a), true);
+  a.revision = 4;
+  assert.equal(S.isSynced({ storage, db }, a), false, "a newer local revision is 'Saved on this device' again");
+});

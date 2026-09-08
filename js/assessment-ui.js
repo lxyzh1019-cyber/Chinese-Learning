@@ -47,6 +47,13 @@
   function storeCtx() {
     return { storage: window.localStorage, db: typeof db !== "undefined" ? db : null };
   }
+  const DEV = () => S.deviceId(window.localStorage);
+
+  // Anything saved while offline is pushed when the connection returns. The
+  // queue used to be written on every save and drained by nothing.
+  if (typeof window !== "undefined" && typeof window.addEventListener === "function") {
+    window.addEventListener("online", () => { S.flushQueue(storeCtx()).catch(() => {}); });
+  }
 
   /** Warn before the app's play-session cap lands, so a 34-item set is not
    *  guillotined mid-question with no warning. The cap itself is deliberately
@@ -85,6 +92,11 @@
       body().innerHTML = '<div class="dd-desc">The assessment is unavailable right now. Nothing has been lost — try again later.</div>';
       return;
     }
+    // Bring down what other devices have uploaded, then push anything this
+    // device still owes. Both are no-ops offline.
+    try { await S.hydrateFromCloud(storeCtx(), owner, DEV()); } catch (e) { /* offline */ }
+    try { await S.flushQueue(storeCtx()); } catch (e) { /* offline */ }
+    if (gen !== sessionGen || curP !== owner) return;
     ui = { bankData: data, attempt: null, items: [], idx: 0, gen, owner };
     renderHome();
   };
@@ -106,19 +118,32 @@
   function persist() {
     if (!ui || !ui.attempt) return;
     const res = S.saveAttempt(storeCtx(), ui.attempt);
+    const badge = el("assessment-sync");
+    if (badge) badge.textContent = res.status;
     S.pushAttempt(storeCtx(), ui.attempt).then((r) => {
+      // Only a push the cloud accepted may say "Synced". A refused or offline
+      // push leaves the local-save status standing.
       const status = r.ok ? S.SYNC_OK : (r.conflict ? S.SYNC_ATTENTION : res.status);
-      const badge = el("assessment-sync");
-      if (badge) badge.textContent = status;
+      const b = el("assessment-sync");
+      if (b) b.textContent = status;
     }).catch(() => {});
     return res;
+  }
+
+  /** "Synced" or "Saved on this device", from what the cloud actually acknowledged. */
+  function syncLabel(attempt) {
+    return S.isSynced(storeCtx(), attempt) ? S.SYNC_OK : S.SYNC_LOCAL;
   }
 
   // ── home / history ───────────────────────────────────────────────────────
   function renderHome() {
     const past = S.listAttempts(storeCtx(), curP);
     const done = past.filter((a) => a.status === "results_available" || a.status === "submitted");
-    const open = past.find((a) => a.status === "active" || a.status === "paused");
+    const open = past.find((a) => S.inProgress(a));
+    // In progress, but started on another device: it is continued there. Offering
+    // "Continue" here would put two devices on one attempt, which is the case the
+    // compare-and-set can only refuse, never reconcile.
+    const elsewhere = open && !S.resumableOn(open, DEV());
 
     const bands = (ui.bankData.manifest.bands) || [FIRST_BAND];
     const note = ui.bankData.manifest.bandNote || "";
@@ -129,13 +154,14 @@
         There are no stars and no timer — you can stop any time and finish later.
       </div>
       <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.9rem;">
-        ${open
+        ${open && !elsewhere
           ? `<button class="btn-g" onclick="assessmentResume('${esc(open.attemptId)}')">Continue assessment</button>`
           : `<button class="btn-g" onclick="assessmentStart('baseline')">Start at ${esc(bandName(FIRST_BAND))}</button>`}
+        ${elsewhere ? `<div class="practice-box" style="font-size:.72rem;line-height:1.5;">An assessment from ${esc(String(open.createdAt).slice(0, 10))} is in progress on another device — finish it there. Nothing is lost.</div>` : ""}
         ${done.length ? `<button class="btn-s" onclick="assessmentHistory()">History &amp; compare (${done.length})</button>` : ""}
         <button class="btn-s" onclick="assessmentSets()">What the sets are · 各组说明</button>
       </div>
-      ${open ? "" : `
+      ${open && !elsewhere ? "" : `
         <div class="practice-box" style="text-align:left;margin-top:.8rem;">
           <div style="font-size:.72rem;color:var(--ink);margin-bottom:.35rem;">Start somewhere else</div>
           <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
@@ -184,7 +210,7 @@
           <div class="practice-box" style="text-align:left;">
             <div style="font-size:.78rem;color:var(--ink);">${esc(typeof playerName === "function" ? playerName(a.playerId) : a.playerId)} · ${esc(String(a.createdAt).slice(0, 10))} · form ${esc(a.formId)}</div>
             <div style="font-size:.7rem;color:var(--gold);">${esc(a.bands.map(bandName).join(", "))}</div>
-            <div style="font-size:.68rem;color:var(--muted);margin-top:.2rem;">bank ${esc(a.bankVersion)}</div>
+            <div style="font-size:.68rem;color:var(--muted);margin-top:.2rem;">bank ${esc(a.bankVersion)} · ${esc(syncLabel(a))}</div>
             <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.45rem;">
               <button class="btn-s" onclick="assessmentShowResult('${esc(a.attemptId)}')">See report</button>
               <button class="btn-s" onclick="assessmentRepeat('${esc(a.attemptId)}','same')">Repeat same questions</button>
@@ -211,6 +237,7 @@
       mode: mode || "baseline",
       bands: [band],
       comparisonAttemptId: comparisonAttemptId || null,
+      deviceId: DEV(),
     });
     C.transition(attempt, "active");
     ui.attempt = attempt;
@@ -224,6 +251,7 @@
   globalThis.assessmentResume = function assessmentResume(attemptId) {
     const attempt = S.loadAttempt(storeCtx(), attemptId);
     if (!attempt || attempt.playerId !== curP) { showToast("That assessment belongs to another profile."); return; }
+    if (!S.resumableOn(attempt, DEV())) { showToast("That assessment is in progress on another device — finish it there."); return; }
     if (attempt.status === "paused") C.transition(attempt, "active");
     ui.attempt = attempt;
     // Resume in the furthest band the attempt reached, at its first unanswered

@@ -21,6 +21,7 @@
 
   const COLLECTION = "chinese-adventure";
   const LOCAL_KEY = "zh_adv_assess_v1";
+  const DEVICE_KEY = "zh_adv_device_v1";
 
   const SYNC_LOCAL = "Saved on this device";
   const SYNC_OK = "Synced";
@@ -36,14 +37,51 @@
     return `${playerId}-${t}-${r}`;
   }
 
+  /**
+   * This device's id, minted once and kept in localStorage.
+   *
+   * An attempt in progress is resumable only on the device that started it.
+   * Two devices working the same attempt sat at identical revisions most of the
+   * time, which is exactly the case the old compare-and-set let through; the
+   * lock removes the case rather than adjudicating it. Finished and paused
+   * attempts are still visible everywhere for history and comparison.
+   */
+  function deviceId(storage) {
+    try {
+      const cur = storage.getItem(DEVICE_KEY);
+      if (cur) return cur;
+      const id = `d-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+      storage.setItem(DEVICE_KEY, id);
+      return id;
+    } catch (e) {
+      return "d-unknown";
+    }
+  }
+
+  const IN_PROGRESS = ["active", "paused"];
+  const inProgress = (a) => !!a && IN_PROGRESS.indexOf(a.status) !== -1;
+
+  /** Can this attempt be continued here? An attempt saved before device ids existed can. */
+  function resumableOn(attempt, thisDeviceId) {
+    if (!inProgress(attempt)) return false;
+    if (!attempt.deviceId) return true;
+    return attempt.deviceId === thisDeviceId;
+  }
+
   // ── local mirror ─────────────────────────────────────────────────────────
   function readLocal(storage) {
     try {
       const raw = storage.getItem(LOCAL_KEY);
       const parsed = raw ? JSON.parse(raw) : null;
-      return parsed && typeof parsed === "object" ? parsed : { attempts: {}, queue: [] };
+      const blob = parsed && typeof parsed === "object" ? parsed : {};
+      if (!blob.attempts || typeof blob.attempts !== "object") blob.attempts = {};
+      if (!Array.isArray(blob.queue)) blob.queue = [];
+      // The cloud revision each attempt was last acknowledged at: the base the
+      // next compare-and-set is made against.
+      if (!blob.synced || typeof blob.synced !== "object") blob.synced = {};
+      return blob;
     } catch (e) {
-      return { attempts: {}, queue: [] };
+      return { attempts: {}, queue: [], synced: {} };
     }
   }
   function writeLocal(storage, blob) {
@@ -85,43 +123,128 @@
   }
 
   // ── cloud ────────────────────────────────────────────────────────────────
+  function attemptRef(ctx, playerId, attemptId) {
+    return ctx.db.collection(COLLECTION).doc(playerId).collection("assessments").doc(attemptId);
+  }
+
+  function conflictOf(attempt, remote) {
+    return {
+      attemptId: attempt.attemptId,
+      localRevision: attempt.revision,
+      remoteRevision: remote.revision,
+      local: attempt,
+      remote,
+      // Raw responses are immutable, so a genuine divergence means two
+      // devices answered the same item. Both are kept for the owner to
+      // resolve; neither is discarded on a timestamp.
+      conflictingItems: conflictingItems(attempt, remote),
+    };
+  }
+
   /**
    * Push one attempt with a compare-and-set on `revision`.
    *
-   * Returns `{ok:false, conflict:{...}}` when the stored revision has moved,
-   * i.e. another device wrote this attempt. The caller must surface a choice —
-   * both records are preserved. Nothing is merged on a clock.
+   * The write is refused unless the cloud still holds the revision this device
+   * last acknowledged for the attempt (or nothing at all). It used to be a
+   * get() followed by a set() that refused only a strictly GREATER remote
+   * revision — so a different answer at the same revision overwrote the cloud
+   * and reported "Synced", and a writer landing between the two calls was
+   * never seen. Inside a transaction, with equality on the base, both are
+   * caught; on an SDK without transactions the same check runs unguarded,
+   * which is still stricter than before.
+   *
+   * Returns `{ok:false, conflict:{...}}` on a refusal. The caller must surface
+   * a choice — both records are preserved. Nothing is merged on a clock.
    */
   async function pushAttempt(ctx, attempt) {
     if (!ctx.db) return { ok: false, reason: "offline", status: SYNC_LOCAL };
-    const ref = ctx.db.collection(COLLECTION).doc(attempt.playerId)
-      .collection("assessments").doc(attempt.attemptId);
-    try {
-      const snap = await ref.get();
-      if (snap && snap.exists) {
-        const remote = snap.data();
-        if ((remote.revision || 0) > (attempt.revision || 0)) {
-          return {
-            ok: false, status: SYNC_ATTENTION,
-            conflict: {
-              attemptId: attempt.attemptId,
-              localRevision: attempt.revision,
-              remoteRevision: remote.revision,
-              local: attempt,
-              remote,
-              // Raw responses are immutable, so a genuine divergence means two
-              // devices answered the same item. Both are kept for the owner to
-              // resolve; neither is discarded on a timestamp.
-              conflictingItems: conflictingItems(attempt, remote),
-            },
-          };
-        }
+    const ref = attemptRef(ctx, attempt.playerId, attempt.attemptId);
+    const blob = readLocal(ctx.storage);
+    const base = Number(blob.synced[attempt.attemptId] || 0);
+    const check = (snap) => {
+      const remote = (snap && snap.exists) ? snap.data() : null;
+      if (remote && Number(remote.revision || 0) !== base) {
+        const err = new Error("stale-write");
+        err.conflict = conflictOf(attempt, remote);
+        throw err;
       }
-      await ref.set(attempt);
+    };
+    try {
+      if (typeof ctx.db.runTransaction === "function") {
+        await ctx.db.runTransaction((tx) => Promise.resolve(tx.get(ref)).then((snap) => {
+          check(snap);
+          tx.set(ref, attempt);
+        }));
+      } else {
+        check(await ref.get());
+        await ref.set(attempt);
+      }
+      const after = readLocal(ctx.storage);
+      after.synced[attempt.attemptId] = attempt.revision;
+      writeLocal(ctx.storage, after);
       return { ok: true, status: SYNC_OK };
     } catch (e) {
+      if (e && e.conflict) return { ok: false, status: SYNC_ATTENTION, conflict: e.conflict };
       return { ok: false, reason: String((e && e.message) || e), status: SYNC_ATTENTION };
     }
+  }
+
+  /** Every attempt the cloud holds for a player. Empty when offline or on error. */
+  async function listCloudAttempts(ctx, playerId) {
+    if (!ctx.db || !playerId) return [];
+    try {
+      const snap = await ctx.db.collection(COLLECTION).doc(playerId).collection("assessments").get();
+      const docs = (snap && snap.docs) || [];
+      return docs.map((d) => (typeof d.data === "function" ? d.data() : d)).filter((a) => a && a.attemptId);
+    } catch (e) {
+      return [];
+    }
+  }
+
+  /**
+   * Bring the cloud's attempts into the local mirror.
+   *
+   * History and resume read the local mirror only, so before this a second
+   * device could not see an assessment the first had uploaded. Rules: a
+   * cloud attempt this device has never seen is adopted; an attempt in
+   * progress on THIS device is never overwritten by the cloud, whatever the
+   * revision (this device is its authority); anything else is adopted when
+   * the cloud copy is newer. Nothing here is queued for upload.
+   */
+  async function hydrateFromCloud(ctx, playerId, thisDeviceId) {
+    const cloud = await listCloudAttempts(ctx, playerId);
+    const blob = readLocal(ctx.storage);
+    const adopted = [], kept = [];
+    cloud.forEach((remote) => {
+      if (remote.playerId !== playerId) return;
+      const local = blob.attempts[remote.attemptId];
+      if (!local) {
+        blob.attempts[remote.attemptId] = remote;
+        blob.synced[remote.attemptId] = remote.revision || 0;
+        adopted.push(remote.attemptId);
+        return;
+      }
+      if (inProgress(local) && local.deviceId && local.deviceId === thisDeviceId) {
+        kept.push(remote.attemptId);
+        return;
+      }
+      if (Number(remote.revision || 0) > Number(local.revision || 0)) {
+        blob.attempts[remote.attemptId] = remote;
+        blob.synced[remote.attemptId] = remote.revision || 0;
+        adopted.push(remote.attemptId);
+      } else {
+        kept.push(remote.attemptId);
+      }
+    });
+    if (adopted.length) writeLocal(ctx.storage, blob);
+    return { adopted, kept };
+  }
+
+  /** Has this attempt's latest local revision been acknowledged by the cloud? */
+  function isSynced(ctx, attempt) {
+    if (!attempt) return false;
+    const blob = readLocal(ctx.storage);
+    return Number(blob.synced[attempt.attemptId] || 0) === Number(attempt.revision || 0);
   }
 
   function conflictingItems(local, remote) {
@@ -145,8 +268,11 @@
       if (res.conflict) conflicts.push(res.conflict);
       remaining.push(entry);
     }
-    blob.queue = remaining;
-    writeLocal(ctx.storage, blob);
+    // Re-read before writing: each accepted push recorded its acknowledged
+    // revision in `synced`, and writing the blob read at the top would erase it.
+    const fresh = readLocal(ctx.storage);
+    fresh.queue = remaining;
+    writeLocal(ctx.storage, fresh);
     return {
       pending: remaining.length,
       conflicts,
@@ -167,9 +293,10 @@
   }
 
   return {
-    COLLECTION, LOCAL_KEY, SYNC_LOCAL, SYNC_OK, SYNC_ATTENTION,
-    attemptPath, newAttemptId,
+    COLLECTION, LOCAL_KEY, DEVICE_KEY, SYNC_LOCAL, SYNC_OK, SYNC_ATTENTION,
+    attemptPath, newAttemptId, deviceId, resumableOn, inProgress,
     readLocal, writeLocal, saveAttempt, loadAttempt, listAttempts,
-    pushAttempt, flushQueue, conflictingItems, excludeItems,
+    pushAttempt, listCloudAttempts, hydrateFromCloud, isSynced,
+    flushQueue, conflictingItems, excludeItems,
   };
 });

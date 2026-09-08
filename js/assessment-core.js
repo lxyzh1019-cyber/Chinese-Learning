@@ -120,6 +120,9 @@
       formId: opts.formId,
       mode: opts.mode || "baseline",
       comparisonAttemptId: opts.comparisonAttemptId || null,
+      // The device that started it. An attempt in progress is continued only
+      // there; every device can still read it for history and comparison.
+      deviceId: opts.deviceId || null,
       status: "created",
       revision: 1,
       createdAt: opts.createdAt || new Date().toISOString(),
