@@ -1030,3 +1030,73 @@ test("A26-R01: a failed upload keeps its queue entry; a genuine conflict is repo
   assert.equal(res.status, S.SYNC_ATTENTION);
   assert.equal(S.readLocal(storage).queue.length, 1, "the unsent answer stays queued");
 });
+
+// ── the 2026-09-08 audit: honest comparison reporting ──────────────────────
+// compareAttempts returned a fixed "not compared" string for writing whatever
+// the attempts held, so a grown-up who had marked every character still saw
+// nothing. It is still refused where it cannot be scored honestly.
+
+/** An attempt with every writing item in `band` marked at `score`. */
+function markedWriting(formId, band, score, rubricId) {
+  const a = newAttempt({ attemptId: `w-${formId}-${score}`, formId, bands: [band] });
+  a.writingReviews = C.selectItems(bank, forms, formId, band)
+    .filter((i) => i.domain === "writing_recall")
+    .map((i) => ({ itemId: i.id, rubricId: rubricId || "writing-recall-v1", rubricScore: score }));
+  return a;
+}
+
+test("A26: writing is not compared when only one sitting has been marked", () => {
+  const before = markedWriting("A", "C1", 1);
+  const after = newAttempt({ attemptId: "w-none", formId: "A", bands: ["C1"] });
+  const cmp = C.compareAttempts(before, after, bank, forms);
+  assert.equal(cmp.writing.compared, false);
+  assert.match(cmp.writing.reason, /only reported when both attempts have a reviewed score/);
+});
+
+test("A26: writing is not compared across two different rubrics", () => {
+  const before = markedWriting("A", "C1", 1);
+  const after = markedWriting("A", "C1", 2, "some-other-rubric-v9");
+  const cmp = C.compareAttempts(before, after, bank, forms);
+  assert.equal(cmp.writing.compared, false);
+  assert.match(cmp.writing.reason, /different writing rubrics/);
+});
+
+test("A26: writing marked under one rubric in both sittings is compared", () => {
+  const before = markedWriting("A", "C1", 1);
+  const after = markedWriting("A", "C1", 2);
+  const cmp = C.compareAttempts(before, after, bank, forms);
+  assert.equal(cmp.writing.compared, true);
+  assert.equal(cmp.writing.rubricId, "writing-recall-v1");
+
+  // Expectation computed here, from the bank and the rubric — not by calling
+  // the function under test (CLAUDE.md §9.6).
+  const items = C.selectItems(bank, forms, "A", "C1").filter((i) => i.domain === "writing_recall");
+  const top = Math.max(...bank.rubrics["writing-recall-v1"].levels.map((l) => l.score));
+  assert.equal(cmp.writing.all.before, `${items.length * 1}/${items.length * top}`);
+  assert.equal(cmp.writing.all.after, `${items.length * 2}/${items.length * top}`);
+  assert.equal(cmp.writing.all.pointDifference,
+    Math.round((2 / top - 1 / top) * 100), "the gain is computed from the rubric, not guessed");
+
+  const anchors = items.filter((i) => i.anchorGroupId);
+  assert.equal(cmp.writing.anchors.sampleSize.before, anchors.length,
+    "anchors are reported apart — they are the same character both times");
+});
+
+test("A26: an unmarked character is never counted as a zero", () => {
+  const before = markedWriting("A", "C1", 2);
+  const after = markedWriting("A", "C1", 2);
+  after.writingReviews = after.writingReviews.slice(0, 1);
+  const cmp = C.compareAttempts(before, after, bank, forms);
+  assert.equal(cmp.writing.compared, true);
+  assert.equal(cmp.writing.all.sampleSize.after, 1, "only what was marked is counted");
+  assert.equal(cmp.writing.all.after, `2/${Math.max(...bank.rubrics["writing-recall-v1"].levels.map((l) => l.score))}`);
+  assert.equal(cmp.writing.all.pointDifference, 0, "the same standard, on a smaller sample, is not a fall");
+});
+
+test("A26: a same-form repeat is labelled as a repeat, not as new questions", () => {
+  const before = newAttempt({ attemptId: "s1", formId: "A", bands: ["C1"] });
+  const after = newAttempt({ attemptId: "s2", formId: "A", bands: ["C1"] });
+  assert.equal(C.compareAttempts(before, after, bank, forms).sameForm, true);
+  const other = newAttempt({ attemptId: "s3", formId: "B", bands: ["C1"] });
+  assert.equal(C.compareAttempts(before, other, bank, forms).sameForm, false);
+});

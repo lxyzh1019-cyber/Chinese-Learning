@@ -802,19 +802,31 @@
         <div style="font-size:.72rem;color:var(--gold);">${esc(d.before)} → ${esc(d.after)}${delta}</div>
       </div>`;
     }).join("") || `<div style="font-size:.7rem;color:var(--muted);">nothing answered in both sittings</div>`;
+    // On a same-form repeat every question was seen before, anchor or not, so
+    // calling the rest "new to this sitting" was simply untrue.
+    const freshHeading = cmp.sameForm
+      ? "The rest of the same questions, seen again"
+      : "Questions new to this sitting";
     const bands = cmp.bands.map((b) => {
       const x = cmp.byBand[b];
       return `<div class="practice-box" style="text-align:left;margin-bottom:.6rem;">
         <div style="font-size:.8rem;color:var(--gold-bright);">${esc(bandName(b))}</div>
         <div style="font-size:.7rem;color:var(--muted);margin:.3rem 0 .15rem;">Questions seen in both sittings</div>${rows(x.anchors)}
-        <div style="font-size:.7rem;color:var(--muted);margin:.45rem 0 .15rem;">Questions new to this sitting</div>${rows(x.fresh)}
+        <div style="font-size:.7rem;color:var(--muted);margin:.45rem 0 .15rem;">${esc(freshHeading)}</div>${rows(x.fresh)}
       </div>`;
     }).join("");
     body().innerHTML = `${head}
       <div class="practice-box" style="text-align:left;font-size:.7rem;line-height:1.6;margin:.6rem 0;">${esc(cmp.label)}</div>
       ${bands}
       ${cmp.bandSetsDiffer ? `<div class="practice-box" style="text-align:left;font-size:.7rem;line-height:1.6;">Not compared: ${esc(cmp.notCompared.map(bandName).join(", "))} — only tested in one of the two sittings.</div>` : ""}
-      <div style="font-size:.68rem;color:var(--muted);line-height:1.5;margin-top:.5rem;text-align:left;">${esc(cmp.writing)}</div>
+      ${cmp.writing && cmp.writing.compared
+        ? `<div class="practice-box" style="text-align:left;margin-top:.6rem;">
+             <div style="font-size:.8rem;color:var(--gold-bright);">Handwriting · marked by a grown-up</div>
+             ${rows({ "Characters written in both sittings": cmp.writing.anchors,
+                      "All marked characters": cmp.writing.all })}
+             <div style="font-size:.66rem;color:var(--muted);margin-top:.35rem;line-height:1.5;">${esc(cmp.writing.note)}</div>
+           </div>`
+        : `<div style="font-size:.68rem;color:var(--muted);line-height:1.5;margin-top:.5rem;text-align:left;">${esc((cmp.writing || {}).reason || "")}</div>`}
       ${back}`;
   };
 

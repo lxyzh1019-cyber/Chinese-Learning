@@ -457,7 +457,77 @@
         : "matched-form, provisional — forms are designed to match, not statistically equated",
       anchors: diff(A.anchor, B.anchor),
       fresh: diff(A.fresh, B.fresh),
-      writing: "not compared — writing improvement is only reported when both attempts have a reviewed score",
+      writing: compareWriting(a, b, bank, forms, sharedBands),
+    };
+  }
+
+  /**
+   * Handwriting, before and after — but only where a grown-up has actually
+   * marked both sittings against the same rubric.
+   *
+   * This used to be an unconditional "not compared" string, so a parent who
+   * had marked every character still saw nothing. It is still refused rather
+   * than estimated in three cases, because none of them can be scored
+   * honestly: an unreviewed answer is not a zero (§24), and two different
+   * rubrics are not one scale.
+   */
+  function compareWriting(a, b, bank, forms, sharedBands) {
+    const NONE = { compared: false, reason: "not compared — writing improvement is only reported when both attempts have a reviewed score" };
+    const marks = (attempt) => {
+      const m = {};
+      (attempt.writingReviews || []).forEach((w) => {
+        if (w && w.itemId && typeof w.rubricScore === "number") m[w.itemId] = w;
+      });
+      return m;
+    };
+    const ma = marks(a), mb = marks(b);
+    if (!Object.keys(ma).length || !Object.keys(mb).length) return NONE;
+
+    const rubrics = [...new Set([...Object.values(ma), ...Object.values(mb)].map((w) => w.rubricId))];
+    if (rubrics.length !== 1) {
+      return { compared: false, reason: "not compared — the two sittings were marked with different writing rubrics" };
+    }
+    const rubricId = rubrics[0];
+    const levels = ((bank.rubrics || {})[rubricId] || {}).levels;
+    if (!levels || !levels.length) {
+      return { compared: false, reason: `not compared — the rubric these were marked with (${rubricId}) is not in this bank` };
+    }
+    const top = Math.max(...levels.map((l) => Number(l.score) || 0));
+
+    // Anchors are the same character in both sittings, so they are the only
+    // truly like-for-like writing evidence; everything else is reported apart.
+    const tally = (attempt, marked, bands) => {
+      const out = { anchors: { points: 0, max: 0, marked: 0 }, all: { points: 0, max: 0, marked: 0 } };
+      bands.forEach((band) => {
+        selectItems(bank, forms, attempt.formId, band).forEach((item) => {
+          if (item.domain !== "writing_recall") return;
+          const w = marked[item.id];
+          if (!w) return; // never imputed as zero
+          const add = (d) => { d.points += Number(w.rubricScore) || 0; d.max += top; d.marked++; };
+          add(out.all);
+          if (item.anchorGroupId) add(out.anchors);
+        });
+      });
+      return out;
+    };
+    const row = (x, y) => ({
+      before: `${x.points}/${x.max}`,
+      after: `${y.points}/${y.max}`,
+      pointDifference: x.max && y.max ? Math.round((y.points / y.max - x.points / x.max) * 100) : null,
+      sampleSize: { before: x.marked, after: y.marked },
+    });
+    const byBand = {};
+    sharedBands.forEach((band) => {
+      const x = tally(a, ma, [band]), y = tally(b, mb, [band]);
+      if (!x.all.marked && !y.all.marked) return;
+      byBand[band] = { anchors: row(x.anchors, y.anchors), all: row(x.all, y.all) };
+    });
+    if (!Object.keys(byBand).length) return NONE;
+    const A = tally(a, ma, sharedBands), B = tally(b, mb, sharedBands);
+    return {
+      compared: true, rubricId, byBand,
+      anchors: row(A.anchors, B.anchors), all: row(A.all, B.all),
+      note: "Marked by a grown-up against the same rubric, not by the app.",
     };
   }
 
