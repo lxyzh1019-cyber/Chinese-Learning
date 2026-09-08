@@ -89,6 +89,15 @@ function main() {
           // isCleanMeaning, so the word is shown in the reader and dropped from
           // every game and flashcard deck built from the story.
           else if (/-$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a trailing hyphen drops it from the word pools`);
+          // The last two shapes isCleanMeaning refuses. A story carrying one is
+          // taught in the reader and in no game — 位 "CL-person" was exactly
+          // that, and the HSK3 drafts still hold 支 "CL-fleet", 艘 "CL-ship"
+          // and 些 "CL-PL".
+          else if (/^(DE|PL|BA|ADV|CMPL|ING|SUF|CL|OF|ORD)-/i.test(en)) {
+            fail(`${at}: "${zh}" is glossed "${en}" — a grammar code with a word stuck on it`);
+          } else if (en.length < 2) {
+            fail(`${at}: "${zh}" is glossed "${en}" — too short to be a meaning`);
+          }
         });
       });
 

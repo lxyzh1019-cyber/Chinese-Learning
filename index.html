@@ -2837,6 +2837,12 @@ function bumpSessionGen(){
  * @param answer the correct item
  * @param render how an option is displayed; comparison happens on this
  */
+/** Meanings compared as a child reads them, so "to play" and "To play." are the
+ *  same answer. Used wherever a wrong option must not be secretly right. */
+function normMeaning(en){
+  return String(en==null?'':en).toLowerCase().replace(/[^a-z0-9;]+/g,' ').trim();
+}
+
 function pickDistractors(pool,answer,render,n){
   const answerText=String(render(answer)||'').trim();
   const seen=new Set([answerText]);
@@ -6291,15 +6297,25 @@ function buildMCQ(vocab,n=8,avoidZh=[]){
   for(let i=0;i<Math.min(n,pool.length);i++){
     const correct=pool[i];
     if(i%2===1&&correct.zh.length===1){
-      const L=CHAR_LOOKALIKES[correct.zh];
-      let wrongZh=L&&L.length>=3?L.slice(0,3):pool.filter(w=>w.zh!==correct.zh&&w.zh.length===1).sort(()=>Math.random()-.5).slice(0,3).map(w=>w.zh);
-      const poolSingles=pool.filter(w=>w.zh.length===1&&w.zh!==correct.zh).map(w=>w.zh);
+      // The prompt is the MEANING and the options are characters, so any
+      // character sharing this meaning is a second correct answer. The forward
+      // branch below already compares on the rendered English; this one did not,
+      // and a child picking a genuinely right option was marked wrong and had
+      // the word logged to their practice queue.
+      const sameMeaning=new Set(pool
+        .filter(w=>w.zh!==correct.zh&&normMeaning(w.en)===normMeaning(correct.en))
+        .map(w=>w.zh));
+      const usable=(c)=>c&&c!==correct.zh&&!sameMeaning.has(c);
+      const L=(CHAR_LOOKALIKES[correct.zh]||[]).filter(usable);
+      let wrongZh=L.length>=3?L.slice(0,3)
+        :pool.filter(w=>w.zh.length===1&&usable(w.zh)).sort(()=>Math.random()-.5).slice(0,3).map(w=>w.zh);
+      const poolSingles=pool.filter(w=>w.zh.length===1&&usable(w.zh)).map(w=>w.zh);
       while(wrongZh.length<3&&poolSingles.length)wrongZh.push(poolSingles.pop());
-      wrongZh=wrongZh.filter((c,j,a)=>a.indexOf(c)===j).slice(0,3);
+      wrongZh=wrongZh.filter((c,j,a)=>a.indexOf(c)===j&&usable(c)).slice(0,3);
       let opts=[correct.zh,...wrongZh];
       opts=[...new Set(opts)].sort(()=>Math.random()-.5);
       if(opts.length<4){
-        for(const w of pool){if(w.zh!==correct.zh&&!opts.includes(w.zh)){opts.push(w.zh);if(opts.length>=4)break;}}
+        for(const w of pool){if(usable(w.zh)&&!opts.includes(w.zh)){opts.push(w.zh);if(opts.length>=4)break;}}
       }
       qs.push({zh:correct.zh,py:correct.py,correct:correct.en,opts,reverse:true});
     }else{

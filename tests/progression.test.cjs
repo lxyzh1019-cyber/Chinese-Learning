@@ -1438,3 +1438,32 @@ test("T-T13: every study word in the corpus reaches the pool it is taught from",
   assert.deepEqual([...dropped.keys()].slice(0, 10), [],
     `${dropped.size} distinct study words never reach a game or flashcard deck`);
 });
+
+test("T-T14: a meaning-to-character question never has two right answers", () => {
+  const a = app();
+  F.installState(a);
+  // The reverse MCQ shows a MEANING and asks for the character, but picked its
+  // wrong options without comparing English — so any character sharing the
+  // meaning was a second correct answer, and a child choosing it was marked
+  // wrong and had the word logged to their practice queue.
+  const pool = [
+    { zh: "干", py: "gān", en: "clean" },
+    { zh: "净", py: "jìng", en: "clean" },   // same meaning as the target
+    { zh: "山", py: "shān", en: "mountain" },
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "人", py: "rén", en: "person" },
+    { zh: "大", py: "dà", en: "big" },
+  ];
+  for (let seed = 0; seed < 40; seed++) {
+    const qs = a.buildMCQ(pool, 6);
+    for (const q of qs) {
+      if (!q.reverse) continue;
+      const answer = pool.find((w) => w.zh === q.zh);
+      const alsoRight = q.opts.filter((c) => {
+        const w = pool.find((x) => x.zh === c);
+        return w && w.zh !== q.zh && a.normMeaning(w.en) === a.normMeaning(answer.en);
+      });
+      assert.deepEqual(alsoRight, [], `"${q.correct}" also matches ${alsoRight.join(",")}`);
+    }
+  }
+});
