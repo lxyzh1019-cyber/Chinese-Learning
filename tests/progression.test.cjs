@@ -1855,3 +1855,34 @@ test("F01: clearing a slot stamps when it was cleared", () => {
   assert.equal(s.pendingSessions.listen, null);
   assert.ok(s.pendingSessionClearedAt.listen > 0);
 });
+
+// ── F04: the bank loader serves a frozen version, or says it cannot ──────────
+
+test("A-T32 / F04: loadAssessmentBank loads by version from the manifest and caches it", async () => {
+  const a = app();
+  const fs = require("fs");
+  const path = require("path");
+  const DIR = path.join(__dirname, "..", "data", "assessment");
+  const manifest = JSON.parse(fs.readFileSync(path.join(DIR, "manifest.json"), "utf8"));
+  let calls = 0;
+  a.fetch = (url) => {
+    calls++;
+    const rel = String(url).replace(/^data\/assessment\//, "");
+    const abs = path.join(DIR, rel);
+    if (!fs.existsSync(abs)) return Promise.resolve({ ok: false, status: 404 });
+    return Promise.resolve({ ok: true, json: () => Promise.resolve(JSON.parse(fs.readFileSync(abs, "utf8"))) });
+  };
+
+  const current = await a.loadAssessmentBank();
+  assert.ok(current && current.bank && current.forms, "the current bank loads with no version given");
+  assert.equal(current.bankVersion, manifest.bankVersion);
+
+  const byVersion = await a.loadAssessmentBank(manifest.bankVersion);
+  assert.equal(byVersion.bankVersion, manifest.bankVersion);
+  const before = calls;
+  await a.loadAssessmentBank(manifest.bankVersion);
+  assert.equal(calls, before, "a second request for the same version is served from cache");
+
+  assert.equal(await a.loadAssessmentBank("1.0.0"), null, "a version the manifest no longer lists is null, not the current bank");
+  assert.ok(await a.loadAssessmentBank(), "and asking for the current bank afterwards still works");
+});

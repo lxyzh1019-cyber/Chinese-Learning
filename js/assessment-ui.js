@@ -135,6 +135,36 @@
     return S.isSynced(storeCtx(), attempt) ? S.SYNC_OK : S.SYNC_LOCAL;
   }
 
+  /**
+   * The bank an attempt was taken with. Reports used to be scored on whatever
+   * bank was loaded, so a bank edit silently re-interpreted every old answer.
+   * A version the manifest no longer ships returns null and the caller says so.
+   */
+  async function bankFor(version) {
+    if (!ui || !ui.bankData) return null;
+    if (!version || version === ui.bankData.manifest.bankVersion) return ui.bankData;
+    if (typeof loadAssessmentBank !== "function") return null;
+    return await loadAssessmentBank(version);
+  }
+  /** The bank the running attempt is drawn from (a repeat may run on an older version). */
+  const runBank = () => (ui && ui.runBank) || ui.bankData;
+
+  function unavailableBank(attempt) {
+    const who = typeof playerName === "function" ? playerName(attempt.playerId) : attempt.playerId;
+    return `
+      <div class="dd-desc" style="text-align:left;">
+        <strong style="color:var(--gold);">${esc(who)}</strong> · assessment report<br>
+        ${esc(String(attempt.createdAt).slice(0, 10))} · form ${esc(attempt.formId)} ·
+        ${esc((attempt.bands || []).map(bandName).join(", "))} · ${esc((attempt.responses || []).length)} answers
+      </div>
+      <div class="practice-box" style="text-align:left;font-size:.74rem;line-height:1.6;margin-top:.7rem;">
+        This report was taken on bank ${esc(attempt.bankVersion || "?")}, which is no longer
+        available, so it cannot be scored again here. The answers are kept unchanged;
+        they are just not re-marked against a different set of questions.
+      </div>
+      <button class="btn-s" style="margin-top:.8rem;" onclick="assessmentHome()">Done</button>`;
+  }
+
   // ── home / history ───────────────────────────────────────────────────────
   function renderHome() {
     const past = S.listAttempts(storeCtx(), curP);
@@ -215,6 +245,7 @@
               <button class="btn-s" onclick="assessmentShowResult('${esc(a.attemptId)}')">See report</button>
               <button class="btn-s" onclick="assessmentRepeat('${esc(a.attemptId)}','same')">Repeat same questions</button>
               <button class="btn-s" onclick="assessmentRepeat('${esc(a.attemptId)}','matched')">Try the matched set</button>
+              ${a.comparisonAttemptId ? `<button class="btn-s" onclick="assessmentCompare('${esc(a.attemptId)}')">Before &amp; after</button>` : ""}
             </div>
           </div>`).join("")}
       </div>
@@ -223,55 +254,73 @@
   globalThis.assessmentHome = renderHome;
 
   // ── running an attempt ───────────────────────────────────────────────────
-  globalThis.assessmentStart = function assessmentStart(mode, formId, comparisonAttemptId, startBand) {
+  globalThis.assessmentStart = function assessmentStart(mode, formId, comparisonAttemptId, startBand, extra) {
     // The starting set was hardcoded, so a child plainly past the first set had
     // to sit 34 easy items to prove it. createAttempt already took `bands`; the
     // UI simply never passed one.
-    const available = (ui.bankData.manifest.bands) || [FIRST_BAND];
+    const x = extra || {};
+    ui.runBank = x.bank || null;
+    const bank = runBank();
+    const available = (bank.manifest.bands) || [FIRST_BAND];
     const band = available.indexOf(startBand) !== -1 ? startBand : FIRST_BAND;
     const attempt = C.createAttempt({
       attemptId: S.newAttemptId(curP),
       playerId: curP,                 // fixed here; never re-read from a later global
-      bankVersion: ui.bankData.manifest.bankVersion,
+      bankVersion: bank.bankVersion || bank.manifest.bankVersion,
       formId: formId || "A",
       mode: mode || "baseline",
       bands: [band],
       comparisonAttemptId: comparisonAttemptId || null,
       deviceId: DEV(),
+      optionSeedAttemptId: x.optionSeedAttemptId || null,
+      bandPath: x.bandPath || null,
     });
     C.transition(attempt, "active");
     ui.attempt = attempt;
     ui.band = band;
-    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, band);
+    ui.items = C.selectItems(bank.bank, bank.forms, attempt.formId, band);
     ui.idx = 0;
     persist();
     renderItem();
   };
 
-  globalThis.assessmentResume = function assessmentResume(attemptId) {
+  globalThis.assessmentResume = async function assessmentResume(attemptId) {
     const attempt = S.loadAttempt(storeCtx(), attemptId);
     if (!attempt || attempt.playerId !== curP) { showToast("That assessment belongs to another profile."); return; }
     if (!S.resumableOn(attempt, DEV())) { showToast("That assessment is in progress on another device — finish it there."); return; }
     if (attempt.status === "paused") C.transition(attempt, "active");
+    const bank = await bankFor(attempt.bankVersion);
+    if (!bank) { showToast("That assessment was taken on a bank that is no longer available, so it cannot be continued."); return; }
+    ui.runBank = bank === ui.bankData ? null : bank;
     ui.attempt = attempt;
     // Resume in the furthest band the attempt reached, at its first unanswered
     // item — not at the start of C1.
     ui.band = attempt.bands[attempt.bands.length - 1] || FIRST_BAND;
-    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, ui.band);
+    ui.items = C.selectItems(bank.bank, bank.forms, attempt.formId, ui.band);
     const answered = new Set(attempt.responses.map((r) => r.itemId));
     const next = ui.items.findIndex((i) => !answered.has(i.id));
     ui.idx = next === -1 ? ui.items.length : next;
     renderItem();
   };
 
-  globalThis.assessmentRepeat = function assessmentRepeat(attemptId, kind) {
+  globalThis.assessmentRepeat = async function assessmentRepeat(attemptId, kind) {
     const prev = S.loadAttempt(storeCtx(), attemptId);
     if (!prev) return;
+    // Both kinds start where the first sitting started. Repeat used to default
+    // to the first set, so a child who had started at Set 3 re-sat two easier
+    // sets first, and "same questions" reshuffled every option under a fresh id.
+    const startBand = (prev.bands && prev.bands[0]) || FIRST_BAND;
     if (kind === "same") {
+      const bank = await bankFor(prev.bankVersion);
+      if (!bank) { showToast(`That assessment was taken on bank ${prev.bankVersion}, which is no longer available, so the same questions cannot be repeated.`, 3600); return; }
       showToast("Same questions as before — scores can rise just from seeing them again.", 3200);
-      assessmentStart("repeat", prev.formId, attemptId);
+      assessmentStart("repeat", prev.formId, attemptId, startBand, {
+        bank: bank === ui.bankData ? null : bank,
+        optionSeedAttemptId: prev.optionSeedAttemptId || prev.attemptId,
+        bandPath: (prev.bands || [startBand]).slice(),
+      });
     } else {
-      assessmentStart("matched", prev.formId === "A" ? "B" : "A", attemptId);
+      assessmentStart("matched", prev.formId === "A" ? "B" : "A", attemptId, startBand);
     }
   };
 
@@ -287,7 +336,7 @@
 
     const order = pres.optionOrder.length ? pres.optionOrder : item.options.map((o) => o.id);
     const byId = {}; item.options.forEach((o) => { byId[o.id] = o; });
-    const passage = item.passageId ? ui.bankData.bank.passages[item.passageId] : null;
+    const passage = item.passageId ? runBank().bank.passages[item.passageId] : null;
 
     body().innerHTML = `
       <div class="mq-progress">${esc(bandName(ui.band))} · set ${esc(bandOrdinal(ui.band))}</div>
@@ -361,9 +410,27 @@
    */
   function renderBandEnd() {
     const a = ui.attempt;
-    const score = C.scoreAttempt(a, ui.bankData.bank, ui.bankData.forms);
+    const bank = runBank();
+    const score = C.scoreAttempt(a, bank.bank, bank.forms);
     const route = C.routeNextBand(score, ui.band);
-    const available = (ui.bankData.manifest.bands || []).indexOf(route.nextBand) !== -1;
+    // A same-questions repeat follows the original sitting's band sequence
+    // rather than re-routing on today's answers, so the two are comparable.
+    const planned = C.nextPlannedBand(a, ui.band);
+    if (planned !== undefined) {
+      if (!planned) return renderReview(route);
+      body().innerHTML = `
+        <div class="dd-desc" style="text-align:left;line-height:1.6;">
+          That's the end of this set. Last time you went on to ${esc(bandName(planned))} —
+          the same questions are here again if you'd like to. Stopping here is fine.
+        </div>
+        <div style="display:flex;flex-direction:column;gap:.45rem;margin-top:.9rem;">
+          <button class="btn-g" onclick="assessmentNextBand()">Next set — same as last time</button>
+          <button class="btn-s" onclick="assessmentSubmit()">Stop here and see my report</button>
+          <button class="btn-s" onclick="closeAssessment()">Save and finish later</button>
+        </div>`;
+      return;
+    }
+    const available = (bank.manifest.bands || []).indexOf(route.nextBand) !== -1;
 
     if (!route.advance || !route.nextBand || !available) return renderReview(route);
 
@@ -382,12 +449,15 @@
 
   globalThis.assessmentNextBand = function assessmentNextBand() {
     const a = ui.attempt;
-    const score = C.scoreAttempt(a, ui.bankData.bank, ui.bankData.forms);
+    const bank = runBank();
+    const score = C.scoreAttempt(a, bank.bank, bank.forms);
     const route = C.routeNextBand(score, ui.band);
-    if (!route.nextBand) return renderReview(route);
-    ui.band = route.nextBand;
+    const planned = C.nextPlannedBand(a, ui.band);
+    const next = planned !== undefined ? planned : route.nextBand;
+    if (!next) return renderReview(route);
+    ui.band = next;
     if (a.bands.indexOf(ui.band) === -1) a.bands.push(ui.band);
-    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, a.formId, ui.band);
+    ui.items = C.selectItems(bank.bank, bank.forms, a.formId, ui.band);
     ui.idx = 0;
     persist();
     renderItem();
@@ -411,12 +481,15 @@
     if (a.status === "active") C.transition(a, "submitted");
     if (a.status === "submitted") C.transition(a, "results_available");
     persist();
-    renderResult(a);
+    renderResult(a, runBank());
   };
 
-  globalThis.assessmentShowResult = function (attemptId) {
+  globalThis.assessmentShowResult = async function (attemptId) {
     const a = S.loadAttempt(storeCtx(), attemptId);
-    if (a && a.playerId === curP) renderResult(a);
+    if (!a || a.playerId !== curP) return;
+    const bank = await bankFor(a.bankVersion);
+    if (!bank) { body().innerHTML = unavailableBank(a); return; }
+    renderResult(a, bank);
   };
 
   /**
@@ -461,8 +534,9 @@
     writing_recall: "Writing from memory",
   };
 
-  function renderResult(attempt) {
-    const score = C.scoreAttempt(attempt, ui.bankData.bank, ui.bankData.forms);
+  function renderResult(attempt, bankData) {
+    const bd = bankData || ui.bankData;
+    const score = C.scoreAttempt(attempt, bd.bank, bd.forms);
     const highest = attempt.bands[attempt.bands.length - 1] || FIRST_BAND;
     const route = C.routeNextBand(score, highest);
     // One block per band. Bands are never merged: "8 of 8" across four bands
@@ -524,8 +598,63 @@
         <button class="btn-s" onclick="assessmentHome()">Done</button>
         <button class="btn-s" onclick="assessmentReviewWriting('${esc(attempt.attemptId)}')">✍️ Grown-up: mark the writing</button>
         <button class="btn-s" onclick="assessmentExport('${esc(attempt.attemptId)}')">⬇ Save report</button>
+        ${attempt.comparisonAttemptId ? `<button class="btn-s" onclick="assessmentCompare('${esc(attempt.attemptId)}')">Before &amp; after</button>` : ""}
       </div>`;
   }
+
+  // ── comparison ───────────────────────────────────────────────────────────
+  /**
+   * Before and after, one row per band per domain, anchors apart from fresh
+   * items. compareAttempts has existed since the engine shipped; nothing in the
+   * app ever called it, so "History & compare" offered no comparison.
+   */
+  globalThis.assessmentCompare = async function assessmentCompare(attemptId) {
+    const after = S.loadAttempt(storeCtx(), attemptId);
+    if (!after || after.playerId !== curP) return;
+    const before = after.comparisonAttemptId ? S.loadAttempt(storeCtx(), after.comparisonAttemptId) : null;
+    const back = `<button class="btn-s" style="margin-top:.8rem;" onclick="assessmentHistory()">Back</button>`;
+    if (!before) {
+      body().innerHTML = `<div class="dd-desc" style="text-align:left;">The earlier sitting this one repeats is not on this device, so there is nothing to compare it with yet.</div>${back}`;
+      return;
+    }
+    const bank = await bankFor(after.bankVersion);
+    const cmp = bank ? C.compareAttempts(before, after, bank.bank, bank.forms)
+      : { comparable: false, reason: `Not comparable — bank ${after.bankVersion} is no longer available.` };
+    const who = typeof playerName === "function" ? playerName(after.playerId) : after.playerId;
+    const head = `
+      <div class="dd-desc" style="text-align:left;">
+        <strong style="color:var(--gold);">${esc(who)}</strong> · before &amp; after<br>
+        ${esc(String(before.createdAt).slice(0, 10))} (form ${esc(before.formId)}) →
+        ${esc(String(after.createdAt).slice(0, 10))} (form ${esc(after.formId)})
+      </div>`;
+    if (!cmp.comparable) {
+      body().innerHTML = `${head}
+        <div class="practice-box" style="text-align:left;font-size:.74rem;line-height:1.6;margin-top:.7rem;">${esc(cmp.reason)}</div>${back}`;
+      return;
+    }
+    const rows = (block) => Object.keys(block).map((dom) => {
+      const d = block[dom];
+      const delta = d.pointDifference == null ? "" : ` <span style="color:var(--muted);">(${d.pointDifference > 0 ? "+" : ""}${d.pointDifference} points)</span>`;
+      return `<div style="padding:.3rem 0;border-bottom:1px solid rgba(212,160,23,.14);text-align:left;">
+        <div style="font-size:.76rem;color:var(--ink);">${esc(DOMAIN_LABEL[dom] || dom)}</div>
+        <div style="font-size:.72rem;color:var(--gold);">${esc(d.before)} → ${esc(d.after)}${delta}</div>
+      </div>`;
+    }).join("") || `<div style="font-size:.7rem;color:var(--muted);">nothing answered in both sittings</div>`;
+    const bands = cmp.bands.map((b) => {
+      const x = cmp.byBand[b];
+      return `<div class="practice-box" style="text-align:left;margin-bottom:.6rem;">
+        <div style="font-size:.8rem;color:var(--gold-bright);">${esc(bandName(b))}</div>
+        <div style="font-size:.7rem;color:var(--muted);margin:.3rem 0 .15rem;">Questions seen in both sittings</div>${rows(x.anchors)}
+        <div style="font-size:.7rem;color:var(--muted);margin:.45rem 0 .15rem;">Questions new to this sitting</div>${rows(x.fresh)}
+      </div>`;
+    }).join("");
+    body().innerHTML = `${head}
+      <div class="practice-box" style="text-align:left;font-size:.7rem;line-height:1.6;margin:.6rem 0;">${esc(cmp.label)}</div>
+      ${bands}
+      ${cmp.bandSetsDiffer ? `<div class="practice-box" style="text-align:left;font-size:.7rem;line-height:1.6;">Not compared: ${esc(cmp.notCompared.map(bandName).join(", "))} — only tested in one of the two sittings.</div>` : ""}
+      <div style="font-size:.68rem;color:var(--muted);line-height:1.5;margin-top:.5rem;text-align:left;">${esc(cmp.writing)}</div>
+      ${back}`;
+  };
 
   // ── handwriting review ───────────────────────────────────────────────────
   /**
@@ -548,22 +677,26 @@
     if (!ok) return;
     const a = S.loadAttempt(storeCtx(), attemptId);
     if (!a) return;
-    renderWritingReview(a);
+    bankFor(a.bankVersion).then((bank) => {
+      if (!bank) { body().innerHTML = unavailableBank(a); return; }
+      renderWritingReview(a, bank);
+    });
   };
 
-  function writingItemsOf(attempt) {
+  function writingItemsOf(attempt, bd) {
     const out = [];
     attempt.bands.forEach((b) => {
-      C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, b)
+      C.selectItems(bd.bank, bd.forms, attempt.formId, b)
         .filter((it) => it.domain === "writing_recall")
         .forEach((it) => out.push(it));
     });
     return out;
   }
 
-  function renderWritingReview(attempt) {
-    const items = writingItemsOf(attempt);
-    const rubric = (ui.bankData.bank.rubrics || {})["writing-recall-v1"] || { levels: [] };
+  function renderWritingReview(attempt, bd) {
+    ui.reviewBank = bd;
+    const items = writingItemsOf(attempt, bd);
+    const rubric = (bd.bank.rubrics || {})["writing-recall-v1"] || { levels: [] };
     const answered = new Set(attempt.responses.map((r) => r.itemId));
     const scoreOf = (id) => {
       const r = attempt.writingReviews.find((w) => w.itemId === id);
@@ -620,17 +753,19 @@
     S.saveAttempt(storeCtx(), a);
     S.pushAttempt(storeCtx(), a).catch(() => {});
     if (ui && ui.attempt && ui.attempt.attemptId === attemptId) ui.attempt = a;
-    renderWritingReview(a);
+    renderWritingReview(a, ui.reviewBank || ui.bankData);
   };
 
   // ── export ───────────────────────────────────────────────────────────────
   /** Save one report as JSON. The two baseline reports were told apart by the
    *  screenshot filename; a file named for the child fixes that at the source. */
-  globalThis.assessmentExport = function assessmentExport(attemptId) {
+  globalThis.assessmentExport = async function assessmentExport(attemptId) {
     const a = S.loadAttempt(storeCtx(), attemptId);
     if (!a) return;
+    const bd = await bankFor(a.bankVersion);
+    if (!bd) { showToast(`Bank ${a.bankVersion} is no longer available, so this report cannot be scored for export.`, 3200); return; }
     const who = typeof playerName === "function" ? playerName(a.playerId) : a.playerId;
-    const score = C.scoreAttempt(a, ui.bankData.bank, ui.bankData.forms);
+    const score = C.scoreAttempt(a, bd.bank, bd.forms);
     const payload = {
       player: who, playerId: a.playerId, attemptId: a.attemptId,
       createdAt: a.createdAt, submittedAt: a.submittedAt,

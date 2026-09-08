@@ -2013,20 +2013,34 @@ async function loadCultureCurriculum(){
 // needed to render the hub, and a slow fetch must not delay the child getting
 // into the app. Same contract as the curriculum loaders — never throws,
 // shape-validates before caching, returns null on failure.
-async function loadAssessmentBank(){
-  if(curriculumCache.assessment)return curriculumCache.assessment;
+async function loadAssessmentBank(version){
+  // No version: the current bank, cached in the slot callers have always used.
+  // A version: that frozen bank, so an old report is scored on the bank it was
+  // taken with rather than re-interpreted by whatever shipped since. A version
+  // the manifest no longer lists returns null; the report says so instead of
+  // rescoring.
+  if(!version&&curriculumCache.assessment)return curriculumCache.assessment;
+  if(!curriculumCache.assessmentByVersion)curriculumCache.assessmentByVersion={};
+  if(version&&curriculumCache.assessmentByVersion[version])return curriculumCache.assessmentByVersion[version];
   try{
-    const manifest=await fetchJsonSafe('data/assessment/manifest.json');
+    const manifest=curriculumCache.assessmentManifest||await fetchJsonSafe('data/assessment/manifest.json');
     if(!manifest||!manifest.files)return null;
+    curriculumCache.assessmentManifest=manifest;
+    const want=version||manifest.bankVersion;
+    const files=(want===manifest.bankVersion)?manifest.files:((manifest.versions||{})[want]||{}).files;
+    if(!files||!files.items||!files.forms)return null;
     const [items,forms]=await Promise.all([
-      fetchJsonSafe('data/assessment/'+manifest.files.items),
-      fetchJsonSafe('data/assessment/'+manifest.files.forms),
+      fetchJsonSafe('data/assessment/'+files.items),
+      fetchJsonSafe('data/assessment/'+files.forms),
     ]);
     if(items&&Array.isArray(items.items)&&forms&&forms.forms){
-      curriculumCache.assessment={manifest,bank:items,forms};
+      const data={manifest,bank:items,forms,bankVersion:want};
+      curriculumCache.assessmentByVersion[want]=data;
+      if(want===manifest.bankVersion)curriculumCache.assessment=data;
+      return data;
     }
   }catch(e){dbgLog('loadAssessmentBank failed',String(e&&e.message||e));}
-  return curriculumCache.assessment||null;
+  return version?null:(curriculumCache.assessment||null);
 }
 /**
  * Stories, per level.

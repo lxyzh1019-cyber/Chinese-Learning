@@ -766,3 +766,69 @@ test("F03: offline saves collapse to one queue entry and flush once the cloud is
   a.revision = 4;
   assert.equal(S.isSynced({ storage, db }, a), false, "a newer local revision is 'Saved on this device' again");
 });
+
+// ── F04: faithful repeat, per-band comparison, versioned banks ──────────────
+
+test("A-T29 / F04: a same-questions repeat reproduces the original option order", () => {
+  const items = C.selectItems(bank, forms, "A", "C1").filter((i) => i.options.length >= 4).slice(0, 5);
+  const original = newAttempt({ attemptId: "att-1" });
+  const repeat = newAttempt({ attemptId: "att-2", optionSeedAttemptId: "att-1" });
+  const unseeded = newAttempt({ attemptId: "att-3" });
+  let differs = 0;
+  items.forEach((item) => {
+    const o = C.present(original, item).optionOrder;
+    const r = C.present(repeat, item).optionOrder;
+    const u = C.present(unseeded, item).optionOrder;
+    assert.deepEqual(r, o, `${item.id}: the repeat shows the options in the same order`);
+    if (u.join() !== o.join()) differs++;
+  });
+  assert.ok(differs > 0, "a fresh attempt id really does reshuffle — the seed indirection is doing the work");
+});
+
+test("A-T30 / F04: a planned band path is followed, and its absence means 'route normally'", () => {
+  const planned = newAttempt({ bandPath: ["C1", "C2"] });
+  assert.equal(C.nextPlannedBand(planned, "C1"), "C2");
+  assert.equal(C.nextPlannedBand(planned, "C2"), null, "the plan ends where the first sitting stopped");
+  assert.equal(C.nextPlannedBand(newAttempt(), "C1"), undefined);
+});
+
+test("A-T31 / F04: comparison reports each band on its own and names what it could not compare", () => {
+  const a = newAttempt({ attemptId: "a", bands: ["C1", "C2"] });
+  const b = newAttempt({ attemptId: "b", bands: ["C1"] });
+  // Answer C1 recognition on both, tallying the expected counts by hand.
+  const rec = C.selectItems(bank, forms, "A", "C1").filter((i) => i.domain === "recognition_unaided");
+  let aRight = 0, bRight = 0;
+  rec.forEach((item, i) => {
+    C.present(a, item); C.present(b, item);
+    const aOk = i < 3, bOk = i < 6;
+    C.respond(a, { itemId: item.id, selectedOptionId: aOk ? item.acceptedOptionIds[0] : item.options.find((o) => item.acceptedOptionIds.indexOf(o.id) === -1).id });
+    C.respond(b, { itemId: item.id, selectedOptionId: bOk ? item.acceptedOptionIds[0] : item.options.find((o) => item.acceptedOptionIds.indexOf(o.id) === -1).id });
+    if (aOk) aRight++; if (bOk) bRight++;
+  });
+  const cmp = C.compareAttempts(a, b, bank, forms);
+  assert.equal(cmp.comparable, true);
+  assert.deepEqual(Object.keys(cmp.byBand), ["C1"]);
+  assert.deepEqual(cmp.notCompared, ["C2"]);
+  assert.equal(cmp.bandSetsDiffer, true);
+  const anchors = cmp.byBand.C1.anchors.recognition_unaided || { before: "0/0", after: "0/0" };
+  const fresh = cmp.byBand.C1.fresh.recognition_unaided || { before: "0/0", after: "0/0" };
+  const sum = (s) => s.split("/").map(Number);
+  const [ab, at] = sum(anchors.before), [fb, ft] = sum(fresh.before);
+  const [ab2, at2] = sum(anchors.after), [fb2, ft2] = sum(fresh.after);
+  assert.equal(ab + fb, aRight, "before: anchors + fresh add up to the hand count");
+  assert.equal(ab2 + fb2, bRight, "after: likewise");
+  assert.equal(at + ft, rec.length);
+  assert.equal(at2 + ft2, rec.length);
+});
+
+test("F04: the manifest lists every bank version it ships, and the current one is the one it serves", () => {
+  assert.ok(manifest.versions && manifest.versions[manifest.bankVersion], "the current version is listed");
+  assert.deepEqual(manifest.versions[manifest.bankVersion].files, manifest.files);
+  Object.entries(manifest.versions).forEach(([v, entry]) => {
+    ["items", "forms"].forEach((k) => {
+      const abs = path.join(DIR, entry.files[k]);
+      assert.ok(fs.existsSync(abs), `${v}: ${entry.files[k]} exists`);
+      assert.equal(JSON.parse(fs.readFileSync(abs, "utf8")).bankVersion, v);
+    });
+  });
+});

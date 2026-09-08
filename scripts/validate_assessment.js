@@ -61,6 +61,25 @@ function main() {
   if (bank.bankVersion !== manifest.bankVersion) fail("manifest and items disagree on bankVersion");
   if (forms.bankVersion !== manifest.bankVersion) fail("manifest and forms disagree on bankVersion");
 
+  // Versioned banks: every listed version must exist on disk, agree with its
+  // own directory, and the current version must be the one `files` points at.
+  const versions = manifest.versions || {};
+  if (!versions[manifest.bankVersion]) fail(`manifest.versions has no entry for the current bank ${manifest.bankVersion}`);
+  Object.entries(versions).forEach(([v, entry]) => {
+    ["items", "forms"].forEach((k) => {
+      const rel = entry && entry.files && entry.files[k];
+      if (!rel) return fail(`versions.${v}.files.${k} missing`);
+      const abs = path.join(DIR, rel);
+      if (!fs.existsSync(abs)) return fail(`versions.${v}.files.${k} points at a missing file ${rel}`);
+      const doc = JSON.parse(fs.readFileSync(abs, "utf8"));
+      if (doc.bankVersion !== v) fail(`versions.${v}.files.${k}: file says bankVersion ${doc.bankVersion}`);
+    });
+  });
+  const cur = versions[manifest.bankVersion] && versions[manifest.bankVersion].files;
+  if (cur && (cur.items !== manifest.files.items || cur.forms !== manifest.files.forms)) {
+    fail("manifest.files and manifest.versions disagree on the current bank");
+  }
+
   const byId = {};
   bank.items.forEach((it) => {
     if (byId[it.id]) fail(`duplicate item id ${it.id}`);
