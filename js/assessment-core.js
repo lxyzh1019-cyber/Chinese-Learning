@@ -133,6 +133,7 @@
       createdAt: opts.createdAt || new Date().toISOString(),
       submittedAt: null,
       activeTimeMs: 0,
+      breakOfferedAtMs: 0,
       bands: (opts.bands || ["C1"]).slice(),
       presentations: [],
       responses: [],
@@ -201,6 +202,32 @@
     attempt.responses.push(rec);
     attempt.revision++;
     return { response: rec, committed: true };
+  }
+
+  // ── pacing ───────────────────────────────────────────────────────────────
+  /** Time on one item counts up to this; a longer gap is a closed lid, not thinking. */
+  const ACTIVE_CAP_MS = 10 * 60 * 1000;
+  /** The assessment spends no play time and arms no lock, so this is the only pacing it has. */
+  const BREAK_AFTER_MS = 20 * 60 * 1000;
+
+  /** Add the time an item was on screen. activeTimeMs was initialised and never written. */
+  function addActiveTime(attempt, ms, opts) {
+    const cap = (opts && opts.capMs) || ACTIVE_CAP_MS;
+    const n = Number(ms) || 0;
+    if (n <= 0 || n > cap) return attempt.activeTimeMs || 0;
+    attempt.activeTimeMs = (attempt.activeTimeMs || 0) + n;
+    return attempt.activeTimeMs;
+  }
+
+  /** Time for a gentle "save and continue later?" — once per threshold, never a lock. */
+  function shouldOfferBreak(attempt, opts) {
+    const threshold = (opts && opts.thresholdMs) || BREAK_AFTER_MS;
+    return ((attempt.activeTimeMs || 0) - (attempt.breakOfferedAtMs || 0)) >= threshold;
+  }
+
+  function markBreakOffered(attempt) {
+    attempt.breakOfferedAtMs = attempt.activeTimeMs || 0;
+    return attempt;
   }
 
   /**
@@ -440,5 +467,6 @@
     mulberry32, hashString, shuffled, itemsById,
     selectItems, createAttempt, canTransition, transition, present, respond,
     nextPlannedBand, isCorrect, scoreAttempt, routeNextBand, compareAttempts,
+    ACTIVE_CAP_MS, BREAK_AFTER_MS, addActiveTime, shouldOfferBreak, markBreakOffered,
   };
 });

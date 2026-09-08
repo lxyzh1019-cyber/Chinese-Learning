@@ -832,3 +832,32 @@ test("F04: the manifest lists every bank version it ships, and the current one i
     });
   });
 });
+
+// ── Pacing: the assessment keeps its own time and offers a break ────────────
+
+test("A-T33: item time adds up, and a closed lid does not count", () => {
+  const a = newAttempt();
+  assert.equal(a.activeTimeMs, 0);
+  C.addActiveTime(a, 30 * 1000);
+  C.addActiveTime(a, 45 * 1000);
+  assert.equal(a.activeTimeMs, 75 * 1000);
+  C.addActiveTime(a, 3 * 60 * 60 * 1000, {});
+  assert.equal(a.activeTimeMs, 75 * 1000, "a three-hour gap is a closed lid, not thinking");
+  C.addActiveTime(a, -5);
+  assert.equal(a.activeTimeMs, 75 * 1000);
+});
+
+test("A-T34: the break is offered once per twenty minutes of answering", () => {
+  const a = newAttempt();
+  a.activeTimeMs = 19 * 60 * 1000 + 59 * 1000;
+  assert.equal(C.shouldOfferBreak(a), false);
+  a.activeTimeMs = 20 * 60 * 1000;
+  assert.equal(C.shouldOfferBreak(a), true);
+  C.markBreakOffered(a);
+  assert.equal(C.shouldOfferBreak(a), false, "not again straight away");
+  a.activeTimeMs = 39 * 60 * 1000;
+  assert.equal(C.shouldOfferBreak(a), false);
+  a.activeTimeMs = 40 * 60 * 1000;
+  assert.equal(C.shouldOfferBreak(a), true, "and again after the next twenty");
+  assert.equal(newAttempt().breakOfferedAtMs, 0, "a fresh attempt carries the field");
+});

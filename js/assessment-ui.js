@@ -333,6 +333,7 @@
     // reshuffle the options under a child who has already looked at them.
     const pres = C.present(a, item, { audioSource: item.options.some((o) => o.audioAssetId) ? "clip" : null });
     persist();
+    ui.shownAtMs = Date.now();
 
     const order = pres.optionOrder.length ? pres.optionOrder : item.options.map((o) => o.id);
     const byId = {}; item.options.forEach((o) => { byId[o.id] = o; });
@@ -390,11 +391,38 @@
   function commit(input) {
     const item = ui.items[ui.idx];
     C.respond(ui.attempt, Object.assign({ itemId: item.id }, input));
+    // Time on the item lands with the answer, so a reload cannot lose it and
+    // a closed lid cannot inflate it.
+    if (ui.shownAtMs) C.addActiveTime(ui.attempt, Date.now() - ui.shownAtMs);
+    ui.shownAtMs = 0;
     persist();
     ui.idx++;
+    // A 20-minute sitting is the app's rhythm, and the assessment deliberately
+    // runs outside the play timer. So it paces itself: a soft prompt, once per
+    // twenty minutes of answering, with no lock and nothing to unlock.
+    if (C.shouldOfferBreak(ui.attempt)) {
+      C.markBreakOffered(ui.attempt);
+      persist();
+      return renderBreakOffer();
+    }
     // No correctness reveal, no streak, no reward — just the next question.
     renderItem();
   }
+
+  function renderBreakOffer() {
+    const mins = Math.round((ui.attempt.activeTimeMs || 0) / 60000);
+    body().innerHTML = `
+      <div class="dd-desc" style="text-align:left;line-height:1.6;">
+        Nice work — that's about ${mins} minutes of careful reading. Everything so
+        far is saved. You can keep going, or stop here and pick up exactly where
+        you left off another day.
+      </div>
+      <div style="display:flex;flex-direction:column;gap:.45rem;margin-top:.9rem;">
+        <button class="btn-g" onclick="assessmentContinueAfterBreak()">Keep going</button>
+        <button class="btn-s" onclick="closeAssessment()">Save and continue later</button>
+      </div>`;
+  }
+  globalThis.assessmentContinueAfterBreak = function () { if (ui && ui.attempt) renderItem(); };
   globalThis.assessmentAnswer = function (optionId) {
     commit({ selectedOptionId: optionId, inputStatus: C.INPUT_SUBMITTED,
       writingRef: optionId === null ? "paper" : null });
