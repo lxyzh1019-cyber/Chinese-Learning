@@ -219,6 +219,28 @@
     next.legacyLevelAccess = legacyLevelsFor(cleared.length);
     report.legacyLevelAccess = next.legacyLevelAccess;
 
+    // Stories became per-level, so their ids gained a level suffix ("xia" ->
+    // "xia-h1"). Without this remap a child who had read a story twice would
+    // read as never having read it, and §3's chain would silently re-lock
+    // Listen, Match and Rain — the same class of defect as the flashPassDone
+    // remap that only a browser run caught. Legacy reads belong to level 1,
+    // which is the level the existing corpus was written for.
+    const suffixStory = (id) => (/-h[1-4]$/.test(String(id)) ? String(id) : `${id}-h1`);
+    if (Array.isArray(next.storiesCompleted)) {
+      next.storiesCompleted = [...new Set(next.storiesCompleted.map(suffixStory))];
+    }
+    if (next.storyReadCount && typeof next.storyReadCount === "object") {
+      const reads = {};
+      Object.entries(next.storyReadCount).forEach(([id, n]) => {
+        const k = suffixStory(id);
+        reads[k] = Math.max(reads[k] || 0, Number(n) || 0);
+      });
+      next.storyReadCount = reads;
+    }
+    if (Array.isArray(next.legacyStoriesCompleted)) {
+      next.legacyStoriesCompleted = [...new Set(next.legacyStoriesCompleted.map(suffixStory))];
+    }
+
     // The evidence that these came from the old model, kept for provenance.
     next.legacyCredit = {
       migratedAt: new Date().toISOString(),

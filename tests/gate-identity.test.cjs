@@ -142,7 +142,20 @@ test("learning history is carried through untouched", () => {
   assert.deepEqual(Object.keys(player.library), ["水"]);
   assert.deepEqual(Object.keys(player.failedWords), ["山"]);
   assert.deepEqual(player.badges, ["first_story"]);
-  assert.equal(player.storyReadCount.xia, 2);
+  // Stories became per-level, so the read count moves to the level-1 key rather
+  // than staying under the bare id. It must MOVE, not reset: a lost read count
+  // silently re-locks Listen, Match and Rain through the §3 chain.
+  assert.equal(player.storyReadCount["xia-h1"], 2, "reads follow the story to its level key");
+  assert.equal(player.storyReadCount.xia, undefined, "and are not left behind under the old id");
+});
+
+test("re-running the story remap does not double-suffix or lose a count", () => {
+  const once = G.migratePlayer({ gatesCompleted: [1], storyReadCount: { xia: 2 },
+    storiesCompleted: ["xia", "shang"] }).player;
+  const twice = G.migratePlayer(once).player;
+  assert.equal(twice.storyReadCount["xia-h1"], 2);
+  assert.deepEqual(Object.keys(twice.storyReadCount), ["xia-h1"]);
+  assert.deepEqual(twice.storiesCompleted, ["xia-h1", "shang-h1"]);
 });
 
 test("provenance is recorded so migrated credit is never mistaken for fresh", () => {

@@ -14,7 +14,7 @@ function freshPlayer(app) {
  * A player who has just finished their first story mini-quiz but has NOT met
  * the read/flashcard chain. Pins the `storiesCompleted` bypass (§1.1).
  */
-function newUserAfterMiniQuiz(app, storyId = "xia") {
+function newUserAfterMiniQuiz(app, storyId = "xia-h1") {
   const p = app.defPlayer();
   p.storiesCompleted = [storyId];
   p.storyReadCount = {}; // dwell gate never satisfied
@@ -23,14 +23,14 @@ function newUserAfterMiniQuiz(app, storyId = "xia") {
 }
 
 /** A player who legitimately read once: Listen should unlock, nothing else. */
-function oneQualifyingRead(app, storyId = "xia") {
+function oneQualifyingRead(app, storyId = "xia-h1") {
   const p = app.defPlayer();
   p.storyReadCount = { [storyId]: 1 };
   return p;
 }
 
 /** A player who read twice and cleared a Listen round: all four should unlock. */
-function twoReadsPlusListen(app, storyId = "xia", did = 1, level = 1) {
+function twoReadsPlusListen(app, storyId = "xia-h1", did = 1, level = 1) {
   const p = app.defPlayer();
   const key = `h${level}-g${String(did).padStart(2, "0")}`;
   p.storyReadCount = { [storyId]: 2 };
@@ -45,7 +45,7 @@ function gateFullyQualified(app, did = 1, level = 1) {
   const k = `h${level}-g${String(did).padStart(2, "0")}`;
   p.gateGameStars = { [k]: { trace: 3, match: 3, rain: 3, listen: 3 } };
   p.gateBestQuiz = { [k]: { accPct: 95, quizStars: 3 } };
-  p.storyReadCount = { xia: 2 };
+  p.storyReadCount = { "xia-h1": 2 };
   return p;
 }
 

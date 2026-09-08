@@ -1315,483 +1315,33 @@ const DYNASTIES=[
 
 // ── STORIES ──
 // HSK 1 ── Gate 1: Xia Dynasty
-const S_XIA={id:'xia',did:1,hsk:1,title:'大禹治水',en:'Dayu Controls the Floods',
-  sents:[
-    [N('大禹','Dà Yǔ','hero Dayu'),C('是','shì','is/was'),B('一','yī','one'),B('位','wèi','measure word (people)'),C('好','hǎo','good'),C('人','rén','person'),P('。')],
-    [C('水','shuǐ','water'),C('很','hěn','very'),C('大','dà','big'),P('，'),C('很','hěn','very'),C('多','duō','many'),C('人','rén','people'),C('没','méi','no'),C('有','yǒu','have'),C('家','jiā','home'),P('。')],
-    [N('大禹','Dà Yǔ','Dayu'),C('去','qù','went to'),C('山','shān','mountain'),C('上','shàng','up/on'),C('工','gōng','work'),C('作','zuò','work'),P('。')],
-    [C('他','tā','he'),C('三','sān','three'),C('十','shí','ten'),C('年','nián','years'),C('不','bù','not'),C('回','huí','return'),C('家','jiā','home'),P('。')],
-    [N('中国','Zhōngguó','China'),C('人','rén','people'),C('都','dōu','all'),C('说','shuō','say'),N('大禹','Dà Yǔ','Dayu'),C('很','hěn','very'),C('好','hǎo','good'),P('。')],
-  ],
-  trans:['Dayu was a good person.','The water was very big; many people had no home.','Dayu went to work on the mountains.','He did not return home for thirty years.','All Chinese people said Dayu was very good.'],
-};
-// HSK 1 ── Gate 5: Qin Dynasty
-const S_QIN={id:'qin',did:5,hsk:1,title:'万里长城',en:'The Great Wall',
-  sents:[
-    [N('秦始皇','Qín Shǐhuáng','First Emperor Qin'),C('是','shì','is/was'),N('中国','Zhōngguó','China'),B('第','dì','ordinal prefix'),B('一','yī','first'),B('个','gè','measure word'),C('大','dà','great'),C('王','wáng','king'),P('。')],
-    [C('他','tā','he'),C('要','yào','wanted'),C('做','zuò','build'),B('一','yī','one'),B('个','gè','measure word'),B('很','hěn','very'),B('大','dà','big'),B('的','de','modifier'),N('长城','Chángchéng','Great Wall'),P('。')],
-    [C('很','hěn','very'),C('多','duō','many'),C('人','rén','people'),C('来','lái','came'),C('做','zuò','do'),C('这','zhè','this'),C('个','gè','CL'),C('工','gōng','work-'),C('作','zuò','-work'),P('。')],
-    [N('长城','Chángchéng','Great Wall'),C('在','zài','is at'),C('山','shān','mountain'),C('上','shàng','top'),P('，'),C('很','hěn','very'),C('长','cháng','long'),P('。')],
-    [C('今','jīn','today/now'),C('天','tiān','day'),P('，'),C('人','rén','people'),C('们','men','PL'),C('还','hái','still'),C('可','kě','can-'),C('以','yǐ','-can'),C('看','kàn','see'),C('它','tā','it'),P('。')],
-  ],
-  trans:['Qin Shi Huang was China\'s first great king.','He wanted to build a very large Great Wall.','Many people came to do this work.','The Great Wall is on the mountains, very long.','Today, people can still see it.'],
-};
-// HSK 2 ── Gate 6: Han / Silk Road
-const S_HAN={id:'han',did:6,hsk:2,title:'丝绸之路',en:'The Silk Road',
-  sents:[
-    [N('汉朝','Hàncháo','Han Dynasty'),C('的','de','DE'),C('人','rén','people'),C('向','xiàng','towards'),C('西','xī','west'),C('走','zǒu','walked'),C('了','le','CMPL'),C('很','hěn','very'),C('远','yuǎn','far'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),C('带','dài','carried'),C('着','zhe','with'),N('中国','Zhōngguó','China'),C('的','de','DE'),C('丝','sī','silk-'),C('绸','chóu','-cloth'),C('去','qù','go'),C('做','zuò','do'),C('买','mǎi','buy-'),C('卖','mài','-sell'),P('。')],
-    [C('西','xī','west'),C('方','fāng','direction'),C('的','de','DE'),C('商','shāng','merchant-'),C('人','rén','-person'),C('带','dài','brought'),C('来','lái','came'),C('了','le','CMPL'),C('金','jīn','gold'),C('子','zi','SUF'),P('，'),B('和','hé','and'),B('很','hěn','very'),B('多','duō','many'),B('好','hǎo','good'),B('东','dōng','things-'),B('西','xī','-things'),P('。')],
-    [C('两','liǎng','two'),C('边','biān','side'),C('的','de','DE'),C('人','rén','people'),C('通','tōng','through'),C('过','guò','pass'),C('这','zhè','this'),C('条','tiáo','CL-road'),C('路','lù','road'),C('认','rèn','know-'),C('识','shí','-know'),C('了','le','CMPL'),C('彼','bǐ','each-'),C('此','cǐ','-other'),P('。')],
-    [N('丝绸之路','Sīchóu Zhī Lù','Silk Road'),C('让','ràng','made'),N('中国','Zhōngguó','China'),C('和','hé','and'),C('世','shì','world-'),C('界','jiè','-world'),C('连','lián','connect'),C('在','zài','together'),B('一','yī','yīqǐ'),B('起','qǐ','together'),P('。')],
-  ],
-  trans:['Han Dynasty people walked very far towards the west.','They carried Chinese silk to trade.','Western merchants brought gold and many good things.','People on both sides got to know each other through this road.','The Silk Road connected China and the world together.'],
-};
-// HSK 2 ── Gate 8: Three Kingdoms
-const S_SANGUO={id:'sanguo',did:8,hsk:2,title:'诸葛亮的智慧',en:'Zhuge Liang\'s Wisdom',
-  sents:[
-    [N('三国','Sānguó','Three Kingdoms'),C('时','shí','time'),C('候','hòu','period'),P('，'),N('中国','Zhōngguó','China'),C('有','yǒu','had'),C('三','sān','three'),C('个','gè','CL'),C('国','guó','kingdoms'),P('。')],
-    [N('诸葛亮','Zhūgě Liàng','Zhuge Liang'),C('是','shì','was'),C('一','yī','a'),C('位','wèi','CL-person'),C('很','hěn','very'),C('有','yǒu','have'),C('智','zhì','wisdom-'),C('慧','huì','-wisdom'),C('的','de','DE'),C('人','rén','person'),P('。')],
-    [C('他','tā','he'),C('帮','bāng','helped'),N('刘备','Liú Bèi','Liu Bei'),C('打','dǎ','fight'),C('了','le','CMPL'),C('很','hěn','very'),C('多','duō','many'),C('次','cì','times'),C('胜','shèng','win'),C('仗','zhàng','battle'),P('。')],
-    [C('有','yǒu','one time'),C('一','yī','a'),C('次','cì','time'),C('他','tā','he'),C('用','yòng','used'),C('一','yī','a'),C('个','gè','CL'),C('好','hǎo','clever'),C('计','jì','plan'),P('，'),C('敌','dí','enemy'),C('人','rén','people'),C('都','dōu','all'),C('跑','pǎo','ran'),C('了','le','away'),P('。')],
-    [C('他','tā','his'),C('的','de','DE'),C('故','gù','story-'),C('事','shì','-story'),C('到','dào','until'),C('今','jīn','today'),C('天','tiān','day'),C('还','hái','still'),C('让','ràng','makes'),C('人','rén','people'),C('感','gǎn','feel-'),C('动','dòng','-moved'),P('。')],
-  ],
-  trans:['During the Three Kingdoms period, China had three kingdoms.','Zhuge Liang was a person of great wisdom.','He helped Liu Bei win many battles.','One time he used a clever plan and all the enemies ran away.','His story still moves people today.'],
-};
-// HSK 3 ── Gate 12: Tang Dynasty
-const S_TANG={id:'tang',did:12,hsk:3,title:'长安的繁华',en:'The Glory of Chang\'an',
-  sents:[
-    [N('唐朝','Tángcháo','Tang Dynasty'),C('的','de','DE'),C('首','shǒu','capital-'),C('都','dū','-capital'),N('长安','Cháng\'ān','Chang\'an'),C('是','shì','was'),C('当','dāng','at that'),C('时','shí','time'),C('世','shì','world'),C('界','jiè','world'),C('上','shàng','on'),C('最','zuì','most'),C('大','dà','large'),C('的','de','DE'),C('城','chéng','city-'),C('市','shì','-city'),P('。')],
-    [C('来','lái','came'),C('自','zì','from'),C('不','bù','not-'),C('同','tóng','-same'),C('国','guó','country'),C('家','jiā','home/country'),C('的','de','DE'),C('商','shāng','merchant'),C('人','rén','person'),C('在','zài','at'),C('这','zhè','this'),C('里','lǐ','place'),C('做','zuò','do'),C('生','shēng','trade-'),C('意','yì','-trade'),P('。')],
-    [C('大','dà','great'),C('诗','shī','poet'),C('人','rén','person'),N('李白','Lǐ Bái','Li Bai'),C('写','xiě','wrote'),C('了','le','CMPL'),C('很','hěn','many'),C('多','duō','many'),C('美','měi','beautiful'),C('丽','lì','beautiful'),C('的','de','DE'),C('诗','shī','poems'),P('。')],
-    [C('那','nà','that'),C('时','shí','time'),C('候','hòu','period'),P('，'),C('女','nǚ','women'),C('人','rén','people'),C('可','kě','could'),C('以','yǐ','able'),C('骑','qí','ride'),C('马','mǎ','horse'),P('，'),C('学','xué','study'),C('习','xí','learn'),P('，'),C('自','zì','free-'),C('由','yóu','-free'),C('地','de','ADV'),C('生','shēng','live-'),C('活','huó','-live'),P('。')],
-    [N('唐朝','Tángcháo','Tang Dynasty'),C('是','shì','was'),N('中国','Zhōngguó','China'),C('最','zuì','most'),C('辉','huī','glo-'),C('煌','huáng','-rious'),C('的','de','DE'),C('时','shí','time'),C('代','dài','era'),C('之','zhī','OF'),C('一','yī','one'),P('。')],
-  ],
-  trans:['The Tang capital Chang\'an was the world\'s largest city at that time.','Merchants from different countries came here to do business.','The great poet Li Bai wrote many beautiful poems.','At that time, women could ride horses, study, and live freely.','The Tang Dynasty was one of China\'s most glorious eras.'],
-};
-// HSK 3 ── Gate 14: Northern Song / Four Inventions
-const S_SONG={id:'song',did:14,hsk:3,title:'中国的四大发明',en:'China\'s Four Great Inventions',
-  sents:[
-    [N('宋朝','Sòngcháo','Song Dynasty'),C('的','de','DE'),C('人','rén','people'),C('发','fā','invent-'),C('明','míng','-invent'),C('了','le','CMPL'),C('活','huó','move-'),C('字','zì','-type'),C('印','yìn','print-'),C('刷','shuā','-ing'),P('。')],
-    [C('这','zhè','this'),C('让','ràng','made'),C('书','shū','books'),C('变','biàn','become'),C('得','de','ADV'),C('便','pián','cheap-'),C('宜','yí','-cheap'),P('，'),C('更','gèng','more'),C('多','duō','many'),C('人','rén','people'),C('可','kě','could'),C('以','yǐ','able'),C('读','dú','read'),C('书','shū','books'),C('了','le','now'),P('。')],
-    [N('中国','Zhōngguó','China'),C('人','rén','people'),C('还','hái','also'),C('发','fā','invent-'),C('明','míng','-ed'),C('了','le','CMPL'),C('火','huǒ','gun-'),C('药','yào','-powder'),P('、'),C('指','zhǐ','com-'),C('南','nán','-pass'),C('针','zhēn','needle'),C('和','hé','and'),C('造','zào','make-'),C('纸','zhǐ','-paper'),C('术','shù','technique'),P('。')],
-    [C('指','zhǐ','com-'),C('南','nán','-pass'),C('针','zhēn','needle'),C('帮','bāng','helped'),C('助','zhù','assist'),C('水','shuǐ','sea-'),C('手','shǒu','-sailor'),C('在','zài','in'),C('海','hǎi','sea'),C('上','shàng','on'),C('找','zhǎo','find'),C('到','dào','reach'),C('方','fāng','direc-'),C('向','xiàng','-tion'),P('。')],
-    [C('这','zhè','these'),C('些','xiē','CL-PL'),C('发','fā','inven-'),C('明','míng','-tions'),C('改','gǎi','changed'),C('变','biàn','changed'),C('了','le','CMPL'),C('整','zhěng','whole'),C('个','gè','CL'),C('世','shì','world-'),C('界','jiè','-world'),P('。')],
-  ],
-  trans:['Song Dynasty people invented movable-type printing.','This made books cheap, and more people could read.','Chinese people also invented gunpowder, the compass, and paper-making.','The compass helped sailors find their direction at sea.','These inventions changed the whole world.'],
-};
-// HSK 4 ── Gate 18: Yuan / Marco Polo
-const S_YUAN={id:'yuan',did:18,hsk:4,title:'马可·波罗来华',en:'Marco Polo Visits China',
-  sents:[
-    [N('元朝','Yuáncháo','Yuan Dynasty'),C('时','shí','time'),C('候','hòu','period'),P('，'),N('忽必烈','Hūbìliè','Kublai Khan'),C('统','tǒng','rule-'),C('治','zhì','-rule'),C('着','zhe','ING'),C('当','dāng','at that'),C('时','shí','time'),C('世','shì','world'),C('界','jiè','world'),C('上','shàng','on'),C('最','zuì','most'),C('大','dà','large'),C('的','de','DE'),C('帝','dì','em-'),C('国','guó','-pire'),P('。')],
-    [N('马可·波罗','Mǎkě Bōluó','Marco Polo'),C('从','cóng','from'),N('意大利','Yìdàlì','Italy'),C('来','lái','came'),C('到','dào','to'),N('中国','Zhōngguó','China'),P('，'),C('在','zài','stayed in'),N('大都','Dàdū','Dadu/Beijing'),C('住','zhù','lived'),C('了','le','CMPL'),C('十','shí','ten'),C('七','qī','seven'),C('年','nián','years'),P('。')],
-    [C('他','tā','he'),C('对','duì','towards'),N('中国','Zhōngguó','China'),C('的','de','DE'),C('繁','fán','pros-'),C('荣','róng','-perous'),C('感','gǎn','felt'),C('到','dào','reach'),C('十','shí','ex-'),C('分','fēn','-tremely'),C('惊','jīng','aston-'),C('讶','yà','-ished'),P('。')],
-    [C('他','tā','he'),C('回','huí','return'),C('到','dào','to'),N('欧洲','Ōuzhōu','Europe'),C('后','hòu','after'),P('，'),C('把','bǎ','BA-marker'),C('自','zì','self'),C('己','jǐ','self'),C('的','de','DE'),C('见','jiàn','see-'),C('闻','wén','-hear'),C('写','xiě','write'),C('成','chéng','into'),C('了','le','CMPL'),C('一','yī','a'),C('本','běn','CL-book'),C('书','shū','book'),P('。')],
-    [C('这','zhè','this'),C('本','běn','CL-book'),C('书','shū','book'),C('让','ràng','let'),C('欧','Ōu','Eu-'),C('洲','zhōu','-rope'),C('人','rén','people'),C('第','dì','ord.'),C('一','yī','first'),C('次','cì','time'),C('了','le','CMPL'),C('解','jiě','understand'),C('到','dào','reach'),C('了','le','CMPL'),C('东','dōng','East'),C('方','fāng','ern'),C('的','de','DE'),C('奇','qí','wonder-'),C('妙','miào','-ful'),C('世','shì','world-'),C('界','jiè','-world'),P('。')],
-  ],
-  trans:['During the Yuan Dynasty, Kublai Khan ruled the world\'s largest empire.','Marco Polo came from Italy to China and lived in Dadu (Beijing) for 17 years.','He was extremely astonished by China\'s prosperity.','After returning to Europe, he wrote his experiences into a book.','This book let Europeans understand the wonderful world of the East for the first time.'],
-};
-// HSK 4 ── Gate 19: Ming / Zheng He
-const S_MING={id:'ming',did:19,hsk:4,title:'郑和下西洋',en:'Zheng He\'s Voyages',
-  sents:[
-    [N('明朝','Míngcháo','Ming Dynasty'),C('的','de','DE'),N('郑和','Zhèng Hé','Zheng He'),C('率','shuài','lead'),C('领','lǐng','lead'),C('着','zhe','ING'),C('一','yī','a'),C('支','zhī','CL-fleet'),C('庞','páng','gi-'),C('大','dà','-gantic'),C('的','de','DE'),C('船','chuán','ship-'),C('队','duì','-fleet'),C('出','chū','set out'),C('发','fā','depart'),C('了','le','CMPL'),P('。')],
-    [C('他','tā','his'),C('的','de','DE'),C('船','chuán','ship-'),C('队','duì','-fleet'),C('有','yǒu','had'),C('超','chāo','over/more than'),C('过','guò','exceed'),C('三','sān','three'),C('百','bǎi','hundred'),C('艘','sōu','CL-ship'),C('大','dà','large'),C('船','chuán','ships'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),C('到','dào','reached'),C('过','guò','past'),C('东','dōng','South-'),C('南','nán','-east'),C('亚','yà','Asia'),P('、'),C('印','Yìn','In-'),C('度','dù','-dia'),P('、'),C('阿','Ā','A-'),C('拉','lā','-ra-'),C('伯','bó','-bia'),C('还','hái','even'),C('有','yǒu','and'),C('非','Fēi','Af-'),C('洲','zhōu','-rica'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),C('带','dài','brought'),C('去','qù','along'),C('了','le','CMPL'),N('中国','Zhōngguó','China'),C('的','de','DE'),C('丝','sī','silk'),C('绸','chóu','silk'),P('、'),C('瓷','cí','porce-'),C('器','qì','-lain'),C('和','hé','and'),C('茶','chá','tea'),P('。')],
-    [N('郑和','Zhèng Hé','Zheng He'),C('的','de','DE'),C('航','háng','voy-'),C('行','xíng','-age'),C('展','zhǎn','showed'),C('现','xiàn','showed'),C('了','le','CMPL'),N('中国','Zhōngguó','China'),C('的','de','DE'),C('强','qiáng','strong-'),C('大','dà','-great'),C('与','yǔ','and'),C('友','yǒu','friend-'),C('好','hǎo','-ly'),P('。')],
-  ],
-  trans:['Ming Dynasty\'s Zheng He led a gigantic fleet and set sail.','His fleet had more than three hundred large ships.','They reached Southeast Asia, India, Arabia, and even Africa.','They brought Chinese silk, porcelain, and tea.','Zheng He\'s voyages showed China\'s greatness and friendship.'],
-};
-// HSK 4 ── Gate 20: Early Qing / Kangxi
-const S_QING={id:'qing',did:20,hsk:4,title:'康熙皇帝',en:'Emperor Kangxi',
-  sents:[
-    [N('清朝','Qīngcháo','Qing Dynasty'),C('的','de','DE'),N('康熙','Kāngxī','Kangxi'),C('皇','huáng','em-'),C('帝','dì','-peror'),C('统','tǒng','rule-'),C('治','zhì','-rule'),N('中国','Zhōngguó','China'),C('长','cháng','for a long'),C('达','dá','as long as'),C('六','liù','six'),C('十','shí','ten'),C('一','yī','one'),C('年','nián','years'),P('。')],
-    [C('他','tā','he'),C('是','shì','was'),C('一','yī','a'),C('位','wèi','CL-person'),C('非','fēi','ex-'),C('常','cháng','-tremely'),C('勤','qín','hard-'),C('奋','fèn','-working'),C('的','de','DE'),C('皇','huáng','em-'),C('帝','dì','-peror'),P('。')],
-    [C('他','tā','he'),C('亲','qīn','person-'),C('自','zì','-ally'),C('学','xué','studied'),C('习','xí','learn'),C('数','shù','math-'),C('学','xué','-ematics'),P('、'),C('音','yīn','mu-'),C('乐','yuè','-sic'),C('和','hé','and'),C('西','xī','West-'),C('方','fāng','-ern'),C('科','kē','sci-'),C('学','xué','-ence'),P('。')],
-    [C('在','zài','during'),C('他','tā','his'),C('的','de','DE'),C('统','tǒng','rule'),C('治','zhì','rule'),C('下','xià','under'),P('，'),N('中国','Zhōngguó','China'),C('的','de','DE'),C('领','lǐng','terri-'),C('土','tǔ','-tory'),C('达','dá','reached'),C('到','dào','to'),C('最','zuì','most'),C('大','dà','large'),P('。')],
-    [C('他','tā','he'),C('被','bèi','passive'),C('认','rèn','re-'),C('为','wéi','-garded'),C('是','shì','as'),N('中国','Zhōngguó','China'),C('历','lì','hist-'),C('史','shǐ','-ory'),C('上','shàng','in'),C('最','zuì','most'),C('伟','wěi','great-'),C('大','dà','-great'),C('的','de','DE'),C('皇','huáng','em-'),C('帝','dì','-perors'),C('之','zhī','OF'),C('一','yī','one'),P('。')],
-  ],
-  trans:['The Qing Dynasty\'s Emperor Kangxi ruled China for 61 years.','He was an extremely hardworking emperor.','He personally studied mathematics, music, and Western science.','Under his rule, China\'s territory reached its greatest extent.','He is regarded as one of the greatest emperors in Chinese history.'],
-};
+/**
+ * Stories, populated at runtime from data/stories/hsk{lv}.json.
+ *
+ * This held 44 story objects inline — about 450 lines of hand-tokenized text —
+ * keyed by dynasty with no level dimension, which is why every HSK tab served
+ * the same reading. Keys are now `<base>-h<level>`.
+ *
+ * It stays a plain object because the flashcards, the game word pools and
+ * mergeVocabFromDynasties all read it synchronously; preloadCurriculum fills it
+ * before the first hub render.
+ */
+let STORIES_MAP={};
 
-// ── NEW PRIMARY STORIES (previously missing gates) ──
-const S_SHANG={id:'shang',did:2,hsk:1,title:'骨头上的字',en:'Writing on Bones',
-  sents:[
-    [N('商朝','Shāngcháo','Shang Dynasty'),C('的','de','DE'),C('人','rén','people'),C('在','zài','on'),B('骨','gǔ','bone'),B('头','tou','(bone)'),C('上','shàng','on top'),C('写','xiě','wrote'),C('字','zì','characters'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),B('用','yòng','used'),C('这','zhè','these'),C('字','zì','characters'),C('问','wèn','asked'),B('神','shén','gods'),P('："'),B('今','jīn','this'),C('天','tiān','day'),C('好','hǎo','good'),B('吗','ma','?'),P('"')],
-    [C('这','zhè','these'),C('是','shì','are'),N('中国','Zhōngguó','China'),B('最','zuì','most'),B('早','zǎo','earliest'),C('的','de','DE'),C('字','zì','characters'),P('。')],
-    [C('字','zì','characters'),C('很','hěn','very'),C('小','xiǎo','small'),P('，'),C('很','hěn','very'),B('美','měi','beautiful'),P('。')],
-    [C('今','jīn','now'),C('天','tiān','today'),P('，'),C('我','wǒ','we'),C('们','men','PL'),B('还','hái','still'),C('能','néng','can'),C('看','kàn','see'),C('到','dào','reach'),C('这','zhè','these'),C('字','zì','characters'),P('。')],
-  ],
-  trans:['Shang Dynasty people wrote characters on bones.','They used characters to ask the gods: "Is today good?"','These are China\'s earliest characters.','The characters are small and beautiful.','Today, we can still see these characters.'],
-};
-const S_ZHOU={id:'zhou',did:3,hsk:1,title:'天命的故事',en:'The Mandate of Heaven',
-  sents:[
-    [N('西周','Xī Zhōu','Western Zhou'),C('的','de','DE'),C('王','wáng','king'),C('说','shuō','said'),P('："'),B('天','tiān','Heaven'),B('让','ràng','lets'),C('我','wǒ','me'),C('做','zuò','be'),C('王','wáng','king'),P('。"')],
-    [C('王','wáng','king'),C('要','yào','must'),B('爱','ài','love'),C('人','rén','people'),P('，'),C('人','rén','people'),C('也','yě','also'),C('要','yào','must'),B('爱','ài','love'),C('王','wáng','king'),P('。')],
-    [C('王','wáng','king'),C('有','yǒu','had'),C('很','hěn','very'),C('多','duō','many'),C('好','hǎo','good'),B('士','shì','sol-'),B('兵','bīng','-dier'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),C('每','měi','every'),C('天','tiān','day'),C('去','qù','went to'),C('山','shān','mountain'),C('上','shàng','top'),B('练','liàn','prac-'),B('习','xí','-tice'),P('。')],
-    [C('那','nà','at that'),C('时','shí','time'),P('，'),N('中国','Zhōngguó','China'),C('很','hěn','very'),C('大','dà','big'),P('，'),C('很','hěn','very'),B('美','měi','beautiful'),P('。')],
-  ],
-  trans:['The Western Zhou king said: "Heaven lets me be king."','The king must love the people; the people must also love the king.','The king had many good soldiers.','They trained in the mountains every day.','At that time, China was very big and beautiful.'],
-};
-const S_KONFUCIUS={id:'konfucius',did:4,hsk:1,title:'孔子的学生',en:"Confucius's Students",
-  sents:[
-    [N('孔子','Kǒngzǐ','Confucius'),C('是','shì','was'),B('一','yī','a'),B('位','wèi','great'),C('好','hǎo','good'),N('老师','lǎoshī','teacher'),P('。')],
-    [C('他','tā','he'),C('有','yǒu','had'),C('很','hěn','very'),C('多','duō','many'),B('学','xué','stu-'),B('生','shēng','-dents'),P('。')],
-    [C('他','tā','he'),C('说','shuō','said'),P('："'),C('每','měi','every'),C('天','tiān','day'),C('学','xué','study'),B('习','xí','learn'),P('，'),C('很','hěn','very'),C('好','hǎo','good'),P('。"')],
-    [B('学','xué','stu-'),B('生','shēng','-dents'),C('很','hěn','very'),B('爱','ài','loved'),N('孔子','Kǒngzǐ','Confucius'),P('。')],
-    [C('今','jīn','now'),C('天','tiān','today'),P('，'),N('中国','Zhōngguó','China'),C('人','rén','people'),C('都','dōu','all'),B('记','jì','remem-'),B('得','de','-ber'),N('孔子','Kǒngzǐ','Confucius'),C('的','de','DE'),C('话','huà','words'),P('。')],
-  ],
-  trans:['Confucius was a good teacher.','He had many students.','He said: "Studying every day is very good."','The students loved Confucius.','Today, Chinese people all remember Confucius\'s words.'],
-};
-const S_PAPER={id:'paper',did:7,hsk:2,title:'纸的故事',en:'The Story of Paper',
-  sents:[
-    [N('东汉','Dōng Hàn','Eastern Han'),C('时候','shíhòu','period'),P('，'),B('一','yī','a'),B('位','wèi','person'),B('叫','jiào','named'),N('蔡伦','Cài Lún','Cai Lun'),C('的','de','DE'),C('人','rén','man'),B('发现','fāxiàn','discovered'),C('可','kě','could'),C('以','yǐ','able'),B('用','yòng','use'),B('树','shù','tree'),B('皮','pí','bark'),C('做','zuò','make'),B('纸','zhǐ','paper'),P('。')],
-    [C('有','yǒu','with'),B('了','le','CMPL'),B('纸','zhǐ','paper'),P('，'),C('人','rén','people'),C('们','men','PL'),C('可','kě','can'),C('以','yǐ','able'),C('写','xiě','write'),C('很','hěn','many'),C('多','duō','many'),C('字','zì','characters'),P('。')],
-    [B('以','yǐ','be-'),B('前','qián','-fore'),P('，'),C('人','rén','people'),C('们','men','PL'),C('在','zài','on'),B('竹','zhú','bamboo'),B('子','zi','sticks'),C('上','shàng','on'),C('写','xiě','wrote'),C('字','zì','characters'),P('，'),C('很','hěn','very'),B('重','zhòng','heavy'),P('。')],
-    [B('纸','zhǐ','paper'),C('很','hěn','very'),B('轻','qīng','light'),P('，'),C('也','yě','also'),C('很','hěn','very'),C('便','pián','cheap-'),C('宜','yí','-cheap'),P('。')],
-    [N('蔡伦','Cài Lún','Cai Lun'),C('的','de','DE'),B('发明','fāmíng','invention'),C('改','gǎi','changed'),C('变','biàn','changed'),N('中国','Zhōngguó','China'),C('和','hé','and'),C('世','shì','world-'),C('界','jiè','-world'),P('。')],
-  ],
-  trans:['During the Eastern Han, Cai Lun discovered he could make paper from tree bark.','With paper, people could write many characters.','Before, people wrote on bamboo sticks — very heavy.','Paper is light and also cheap.','Cai Lun\'s invention changed China and the world.'],
-};
-const S_SHUFA={id:'shufa',did:9,hsk:2,title:'写字高手',en:'Master of Calligraphy',
-  sents:[
-    [N('西晋','Xī Jìn','Western Jin'),C('有','yǒu','had'),B('一','yī','a'),B('位','wèi','person'),C('很','hěn','very'),B('有','yǒu','have'),B('名','míng','famous'),C('的','de','DE'),C('人','rén','person'),P('，'),B('叫','jiào','named'),N('王羲之','Wáng Xīzhī','Wang Xizhi'),P('。')],
-    [C('他','tā','he'),C('每','měi','every'),C('天','tiān','day'),B('练','liàn','prac-'),B('习','xí','-tice'),C('写','xiě','write'),C('字','zì','characters'),P('，'),B('从','cóng','never'),C('不','bù','not'),B('停','tíng','stop'),P('。')],
-    [C('他','tā','his'),C('的','de','DE'),C('字','zì','characters'),C('写','xiě','written'),C('得','de','ADV'),C('非','fēi','ex-'),C('常','cháng','-tremely'),B('美','měi','beautiful'),P('。')],
-    [C('人','rén','people'),C('们','men','PL'),C('说','shuō','called'),C('他','tā','him'),B('是','shì','is'),B('"书','shū','script'),B('圣','shèng','saint"'),P('，'),C('意','yì','means'),C('思','si','meaning'),C('是','shì','is'),C('写','xiě','write'),C('字','zì','character'),C('的','de','DE'),C('圣','shèng','saint'),C('人','rén','person'),P('。')],
-    [C('今','jīn','now'),C('天','tiān','today'),P('，'),C('人','rén','people'),C('们','men','PL'),B('还','hái','still'),C('学','xué','study'),C('习','xí','learn'),C('他','tā','his'),C('写','xiě','writing'),C('字','zì','characters'),B('方','fāng','meth-'),B('法','fǎ','-od'),P('。')],
-  ],
-  trans:['Western Jin had a very famous person named Wang Xizhi.','He practiced writing every day, never stopping.','His characters were written extremely beautifully.','People called him "Sage of Calligraphy" — meaning a saint of writing.','Today, people still learn his method of writing.'],
-};
-const S_TAO={id:'tao',did:10,hsk:2,title:'田里的诗人',en:'The Poet in the Fields',
-  sents:[
-    [N('东晋','Dōng Jìn','Eastern Jin'),C('有','yǒu','had'),B('一','yī','a'),B('位','wèi','person'),B('诗','shī','po-'),B('人','rén','-et'),P('，'),C('他','tā','he'),C('很','hěn','very'),B('喜','xǐ','like-'),B('欢','huān','-like'),C('在','zài','in'),B('田','tián','fields'),B('里','lǐ','in'),C('工','gōng','work-'),C('作','zuò','-work'),P('。')],
-    [C('他','tā','he'),B('种','zhòng','grew'),B('花','huā','flowers'),P('，'),B('种','zhòng','grew'),B('菜','cài','vegetables'),P('，'),C('每','měi','every'),C('天','tiān','day'),C('很','hěn','very'),C('开','kāi','hap-'),C('心','xīn','-py'),P('。')],
-    [C('他','tā','he'),C('写','xiě','wrote'),B('诗','shī','poems'),C('说','shuō','saying'),P('："'),C('在','zài','in'),B('田','tián','fields'),B('里','lǐ','in'),P('，'),C('心','xīn','heart'),B('里','lǐ','inside'),C('很','hěn','very'),C('自','zì','free-'),C('由','yóu','-dom'),P('。"')],
-    [C('他','tā','he'),C('不','bù','not'),B('喜','xǐ','like-'),B('欢','huān','-like'),C('做','zuò','be'),C('大','dà','big'),B('官','guān','official'),P('，'),C('他','tā','he'),B('只','zhǐ','only'),B('爱','ài','loved'),B('大','dà','great'),B('自','zì','na-'),B('然','rán','-ture'),P('。')],
-    [C('他','tā','his'),C('的','de','DE'),B('诗','shī','poems'),C('很','hěn','very'),B('美','měi','beautiful'),P('，'),N('中国','Zhōngguó','China'),C('人','rén','people'),C('都','dōu','all'),B('喜','xǐ','like-'),B('欢','huān','-like'),C('他','tā','him'),P('。')],
-  ],
-  trans:['Eastern Jin had a poet who loved working in the fields.','He grew flowers and vegetables, happy every day.','He wrote poems saying: "In the fields, my heart feels free."','He didn\'t want to be a big official — he only loved nature.','His poems are beautiful; all Chinese people love him.'],
-};
-const S_CANAL={id:'canal',did:11,hsk:2,title:'大运河',en:'The Grand Canal',
-  sents:[
-    [N('隋朝','Suícháo','Sui Dynasty'),C('的','de','DE'),B('皇','huáng','em-'),B('帝','dì','-peror'),B('想','xiǎng','wanted'),B('建','jiàn','build'),B('一','yī','a'),B('条','tiáo','CL'),C('很','hěn','very'),C('长','cháng','long'),C('的','de','DE'),B('河','hé','canal'),P('。')],
-    [C('很','hěn','very'),C('多','duō','many'),C('人','rén','people'),B('一','yī','to-'),B('起','qǐ','-gether'),C('工','gōng','work-'),C('作','zuò','-work'),P('，'),B('建','jiàn','built'),B('了','le','CMPL'),N('大运河','Dà Yùnhé','the Grand Canal'),P('。')],
-    [N('大运河','Dà Yùnhé','Grand Canal'),C('从','cóng','from'),B('北','běi','north'),B('方','fāng','north'),C('到','dào','to'),B('南','nán','south'),B('方','fāng','south'),P('，'),C('很','hěn','very'),C('长','cháng','long'),C('很','hěn','very'),C('长','cháng','long'),P('。')],
-    [C('商','shāng','merchant-'),C('人','rén','-people'),B('坐','zuò','sat on'),B('船','chuán','boats'),C('在','zài','on'),N('大运河','Dà Yùnhé','Grand Canal'),C('上','shàng','on'),B('运','yùn','trans-'),B('送','sòng','-port'),B('货','huò','goods-'),B('物','wù','-goods'),P('。')],
-    [C('今','jīn','now'),C('天','tiān','today'),P('，'),N('大运河','Dà Yùnhé','Grand Canal'),B('还','hái','still'),C('在','zài','exists'),P('，'),C('人','rén','people'),C('们','men','PL'),B('还','hái','still'),C('在','zài','are'),B('用','yòng','using'),C('它','tā','it'),P('。')],
-  ],
-  trans:['The Sui Dynasty emperor wanted to build a very long canal.','Many people worked together and built the Grand Canal.','The Grand Canal goes from north to south — very, very long.','Merchants sailed boats on the Canal to transport goods.','Today, the Canal still exists and people are still using it.'],
-};
-const S_PRINT={id:'print',did:13,hsk:3,title:'印书的故事',en:'The Story of Printing Books',
-  sents:[
-    [N('五代','Wǔ Dài','Five Dynasties'),C('时候','shíhòu','period'),P('，'),C('人','rén','people'),C('们','men','PL'),B('开始','kāishǐ','began'),B('用','yòng','use'),B('木','mù','wood'),B('刻','kè','carved'),C('字','zì','characters'),B('印','yìn','print'),C('书','shū','books'),P('。')],
-    [B('一','yī','a'),B('块','kuài','block of'),B('木','mù','wood'),C('上','shàng','on'),B('刻','kè','carved'),C('很','hěn','very'),C('多','duō','many'),C('字','zì','characters'),P('，'),B('然','rán','then'),B('后','hòu','after'),B('涂','tú','apply'),C('上','shàng','on'),C('墨','mò','ink'),B('水','shuǐ','water'),P('。')],
-    [C('这','zhè','this'),B('样','yàng','way'),C('可','kě','can'),C('以','yǐ','able'),C('很','hěn','very'),B('快','kuài','quickly'),C('地','de','ADV'),C('印','yìn','print'),C('出','chū','out'),C('很','hěn','very'),C('多','duō','many'),C('书','shū','books'),P('。')],
-    [C('书','shū','books'),B('变','biàn','became'),C('得','de','ADV'),C('便','pián','cheap-'),C('宜','yí','-cheap'),B('了','le','now'),P('，'),C('更','gèng','more'),C('多','duō','many'),C('人','rén','people'),C('可','kě','could'),C('以','yǐ','able'),C('读','dú','read'),C('书','shū','books'),P('。')],
-    [C('这','zhè','this'),B('个','gè','CL'),B('发','fā','inven-'),B('明','míng','-tion'),C('是','shì','was'),C('世','shì','world-'),C('界','jiè','-world'),C('印','yìn','print-'),C('刷','shuā','-ing'),C('历','lì','his-'),C('史','shǐ','-tory'),B('上','shàng','in'),C('的','de','DE'),C('重','zhòng','im-'),C('要','yào','-portant'),B('一','yī','a'),B('步','bù','step'),P('。')],
-  ],
-  trans:['During the Five Dynasties, people began printing books by carving wood.','They carved many characters on a block of wood, then applied ink.','This way, many books could be printed very quickly.','Books became cheap and more people could read.','This invention was an important step in the history of printing.'],
-};
-const S_TEA={id:'tea',did:15,hsk:3,title:'一杯好茶',en:'A Good Cup of Tea',
-  sents:[
-    [N('南宋','Nán Sòng','Southern Song'),C('的','de','DE'),C('人','rén','people'),C('非','fēi','ex-'),C('常','cháng','-tremely'),B('喜','xǐ','like-'),B('欢','huān','-like'),C('喝','hē','drink'),B('茶','chá','tea'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),C('把','bǎ','BA'),C('喝','hē','drinking'),B('茶','chá','tea'),B('变','biàn','turned'),C('成','chéng','into'),B('了','le','CMPL'),B('一','yī','a'),B('种','zhǒng','kind of'),C('艺','yì','art-'),C('术','shù','-form'),P('。')],
-    [B('茶','chá','tea'),B('馆','guǎn','house'),C('是','shì','was'),C('人','rén','people'),C('们','men','PL'),B('见','jiàn','meet'),B('面','miàn','face'),B('聊','liáo','chat'),B('天','tiān','talk'),C('的','de','DE'),B('地','dì','place-'),B('方','fāng','-place'),P('。')],
-    [C('好','hǎo','good'),B('茶','chá','tea'),B('要','yào','needs'),B('用','yòng','use'),B('干','gān','clean'),B('净','jìng','clean'),C('的','de','DE'),C('水','shuǐ','water'),C('和','hé','and'),B('正','zhèng','cor-'),B('确','què','-rect'),C('的','de','DE'),B('温','wēn','tem-'),B('度','dù','-perature'),P('。')],
-    [C('今','jīn','now'),C('天','tiān','today'),P('，'),C('喝','hē','drinking'),B('茶','chá','tea'),B('仍','réng','still'),B('然','rán','still'),C('是','shì','is'),N('中国','Zhōngguó','China'),C('文','wén','cul-'),C('化','huà','-ture'),C('的','de','DE'),C('重','zhòng','im-'),C('要','yào','-portant'),B('部','bù','part-'),B('分','fèn','-part'),P('。')],
-  ],
-  trans:['Southern Song people extremely loved drinking tea.','They turned tea-drinking into an art form.','Teahouses were places where people met and chatted.','Good tea needs clean water and the correct temperature.','Today, drinking tea is still an important part of Chinese culture.'],
-};
-const S_RIDER={id:'rider',did:16,hsk:3,title:'草原骑手',en:'Riders of the Grassland',
-  sents:[
-    [N('辽国','Liáo Guó','Liao Dynasty'),C('的','de','DE'),N('契丹','Qì Dān','Khitan'),C('人','rén','people'),B('住','zhù','lived'),C('在','zài','in'),N('中国','Zhōngguó','China'),B('北','běi','north'),B('方','fāng','north'),C('的','de','DE'),B('草','cǎo','grass-'),B('原','yuán','-land'),C('上','shàng','on'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),C('是','shì','were'),C('很','hěn','very'),C('好','hǎo','good'),C('的','de','DE'),B('骑','qí','horse-'),B('手','shǒu','-rider'),P('，'),C('每','měi','every'),C('天','tiān','day'),B('骑','qí','rode'),C('马','mǎ','horses'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),B('建','jiàn','created'),C('立','lì','establish'),B('了','le','CMPL'),C('自','zì','own'),C('己','jǐ','self'),C('的','de','DE'),C('文','wén','script-'),C('字','zì','-writing'),C('和','hé','and'),B('法','fǎ','law-'),B('律','lǜ','-laws'),P('。')],
-    [N('辽国','Liáo Guó','Liao Dynasty'),C('和','hé','and'),N('宋朝','Sòngcháo','Song Dynasty'),C('做','zuò','did'),C('买','mǎi','trade-'),C('卖','mài','-trade'),P('，'),B('交','jiāo','ex-'),B('换','huàn','-change'),C('各','gè','various'),B('种','zhǒng','kinds of'),C('商','shāng','goods-'),B('品','pǐn','-goods'),P('。')],
-    [N('契丹','Qì Dān','Khitan'),C('人','rén','people'),C('的','de','DE'),C('文','wén','cul-'),C('化','huà','-ture'),B('影','yǐng','in-'),B('响','xiǎng','-fluenced'),N('中国','Zhōngguó','China'),B('北','běi','north'),B('方','fāng','north'),C('很','hěn','for a'),B('久','jiǔ','long time'),P('。')],
-  ],
-  trans:['The Khitan people of the Liao Dynasty lived on the grasslands of northern China.','They were excellent horse riders, riding every day.','They created their own script and laws.','Liao and Song traded and exchanged various goods.','Khitan culture influenced northern China for a long time.'],
-};
-const S_SCHOLAR={id:'scholar',did:17,hsk:3,title:'勤学的年轻人',en:'The Hard-Working Student',
-  sents:[
-    [N('金朝','Jīncháo','Jin Dynasty'),C('的','de','DE'),B('年','nián','young-'),B('轻','qīng','-young'),C('人','rén','people'),B('努','nǔ','hard-'),B('力','lì','-ly'),C('学','xué','study'),C('习','xí','learn'),C('汉','Hàn','Chinese-'),C('字','zì','-characters'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),C('去','qù','went to'),C('学','xué','school-'),B('校','xiào','-school'),C('读','dú','read'),C('书','shū','books'),P('，'),C('每','měi','every'),C('天','tiān','day'),B('练','liàn','prac-'),C('习','xí','-tice'),C('写','xiě','write'),C('字','zì','characters'),P('。')],
-    [C('学','xué','learn'),C('好','hǎo','good/well'),B('了','le','CMPL'),C('汉','Hàn','Chinese-'),C('字','zì','-characters'),P('，'),C('就','jiù','then'),C('可','kě','can'),C('以','yǐ','able'),C('做','zuò','be'),B('官','guān','official'),B('或','huò','or'),C('者','zhě','or'),C('经','jīng','do'),C('商','shāng','business'),P('。')],
-    [C('这','zhè','these'),C('些','xiē','some'),C('学','xué','scho-'),B('者','zhě','-lars'),C('把','bǎ','put'),N('女真','Nǚzhēn','Jurchen'),C('文','wén','script'),C('字','zì','writing'),C('和','hé','and'),C('汉','Hàn','Chinese-'),C('字','zì','-characters'),B('一','yī','toge-'),B('起','qǐ','-ther'),B('研','yán','stu-'),B('究','jiū','-dy'),P('。')],
-    [B('知','zhī','know-'),B('识','shí','-ledge'),B('让','ràng','makes'),C('人','rén','people'),C('们','men','PL'),C('更','gèng','more'),C('有','yǒu','have'),C('力','lì','power-'),C('量','liàng','-power'),P('，'),C('任','rèn','any-'),C('何','hé','-time'),C('时','shí','time-'),C('代','dài','-era'),C('都','dōu','always'),C('是','shì','is'),C('这','zhè','this'),B('样','yàng','way'),P('。')],
-  ],
-  trans:['Jin Dynasty young people worked hard to learn Chinese characters.','They went to school to read books, practicing writing every day.','If you mastered Chinese characters, you could become an official or merchant.','These scholars studied Jurchen script and Chinese characters together.','Knowledge makes people more powerful — always true in any era.'],
-};
-const S_REFORM={id:'reform',did:21,hsk:4,title:'改变的时代',en:'An Age of Change',
-  sents:[
-    [N('清朝','Qīngcháo','Qing Dynasty'),B('末','mò','late'),B('年','nián','years'),P('，'),N('中国','Zhōngguó','China'),B('面','miàn','fa-'),B('临','lín','-cing'),C('着','zhe','ING'),B('来','lái','from'),C('自','zì','from'),C('西','xī','Western'),B('方','fāng','West'),C('的','de','DE'),B('巨','jù','enorm-'),B('大','dà','-ous'),B('压','yā','pres-'),B('力','lì','-sure'),P('。')],
-    [B('年','nián','young-'),B('轻','qīng','-young'),C('的','de','DE'),B('改','gǎi','re-'),B('革','gé','-form'),B('者','zhě','-ers'),B('希','xī','ho-'),B('望','wàng','-ped'),C('学','xué','learn'),C('习','xí','learning'),C('西','xī','Western'),B('方','fāng','West'),C('的','de','DE'),C('科','kē','sci-'),C('学','xué','-ence'),C('和','hé','and'),C('技','jì','tech-'),C('术','shù','-nology'),P('。')],
-    [B('一','yī','some'),B('些','xiē','some'),B('官','guān','off-'),B('员','yuán','-icials'),B('认','rèn','belie-'),B('为','wéi','-ved'),N('中国','Zhōngguó','China'),C('需','xū','need-'),C('要','yào','-ed to'),C('建','jiàn','build'),C('立','lì','establish'),C('现','xiàn','mod-'),C('代','dài','-ern'),C('学','xué','school-'),B('校','xiào','-schools'),C('和','hé','and'),B('军','jūn','army'),B('队','duì','forces'),P('。')],
-    [B('改','gǎi','re-'),B('革','gé','-form'),C('的','de','DE'),C('道','dào','road'),C('路','lù','path'),C('非','fēi','ex-'),C('常','cháng','-tremely'),B('困','kùn','diffi-'),B('难','nán','-cult'),P('，'),B('但','dàn','but'),C('人','rén','people'),C('们','men','PL'),B('没','méi','did not'),C('有','yǒu','have'),B('放','fàng','give'),B('弃','qì','-up'),P('。')],
-    [C('这','zhè','this'),C('个','gè','CL'),C('时','shí','this'),C('代','dài','era'),C('的','de','DE'),C('精','jīng','spir-'),B('神','shén','-it'),B('影','yǐng','in-'),B('响','xiǎng','-fluenced'),N('中国','Zhōngguó','China'),B('后','hòu','later'),C('来','lái','coming'),C('的','de','DE'),C('历','lì','hist-'),C('史','shǐ','-ory'),B('发','fā','devel-'),B('展','zhǎn','-opment'),P('。')],
-  ],
-  trans:['In the late Qing Dynasty, China faced enormous pressure from the West.','Young reformers hoped to learn Western science and technology.','Some officials believed China needed to establish modern schools and armies.','The path of reform was very difficult, but people did not give up.','The spirit of this era influenced China\'s later historical development.'],
-};
-const S_REPUBLIC={id:'republic',did:22,hsk:4,title:'新中国的梦',en:'Dream of a New China',
-  sents:[
-    [N('孙中山','Sūn Zhōngshān','Sun Yat-sen'),B('先','xiān','Mr.-'),B('生','shēng','-sir'),B('提','tí','put'),B('出','chū','forward'),B('了','le','CMPL'),B('民','mín','demo-'),B('主','zhǔ','-cracy'),P('、'),B('民','mín','civil'),B('权','quán','rights'),P('、'),B('民','mín','people\'s'),B('生','shēng','livelihood'),C('的','de','DE'),B('理','lǐ','ide-'),B('想','xiǎng','-als'),P('。')],
-    [C('他','tā','he'),B('相','xiāng','be-'),B('信','xìn','-lieve'),N('中国','Zhōngguó','China'),C('人','rén','people'),C('有','yǒu','have'),B('能','néng','abil-'),B('力','lì','-ity'),C('建','jiàn','build'),C('立','lì','establish'),B('一','yī','a'),C('个','gè','CL'),C('现','xiàn','mod-'),C('代','dài','-ern'),B('国','guó','state-'),B('家','jiā','-state'),P('。')],
-    [B('经','jīng','af-'),B('过','guò','-ter'),C('多','duō','many'),C('年','nián','years'),C('的','de','DE'),B('努','nǔ','ef-'),B('力','lì','-fort'),P('，'),N('中华民国','Zhōnghuá Mínguó','Republic of China'),B('在','zài','in'),C('一','yī','1'),B('九','jiǔ','9'),B('一','yī','1'),B('二','èr','2'),C('年','nián','year'),B('成','chéng','estab-'),C('立','lì','-lished'),B('了','le','CMPL'),P('。')],
-    [C('新','xīn','new'),B('政','zhèng','gov-'),B('府','fǔ','-ernment'),C('建','jiàn','built'),C('立','lì','establish'),B('了','le','CMPL'),C('现','xiàn','mod-'),C('代','dài','-ern'),B('教','jiào','edu-'),B('育','yù','-cation'),C('系','xì','sys-'),B('统','tǒng','-tem'),P('。')],
-    [B('虽','suī','although'),B('然','rán','although'),C('道','dào','road'),C('路','lù','path'),B('充','chōng','full of'),B('满','mǎn','full'),B('挑','tiāo','chal-'),B('战','zhàn','-lenges'),P('，'),B('但','dàn','but'),C('人','rén','people'),C('们','men','PL'),C('对','duì','toward'),B('未','wèi','fu-'),B('来','lái','-ture'),B('充','chōng','full of'),B('满','mǎn','full of'),B('希','xī','ho-'),B('望','wàng','-pe'),P('。')],
-  ],
-  trans:['Sun Yat-sen put forward the ideals of democracy, civil rights, and people\'s livelihood.','He believed the Chinese people had the ability to build a modern state.','After years of effort, the Republic of China was established in 1912.','The new government established a modern education system.','Although the road was full of challenges, people were full of hope for the future.'],
-};
+/** Refill STORIES_MAP from the cache. Every level's stories live in it at once,
+ *  under their own keys, so a word pool can be built for any level without a
+ *  second fetch. */
+function rebuildStoriesMap(){
+  const next={};
+  [1,2,3,4].forEach(lv=>{
+    const lvl=curriculumCache.stories[lv];
+    if(!lvl)return;
+    Object.keys(lvl).forEach(k=>{next[k]=lvl[k];});
+  });
+  STORIES_MAP=next;
+  return STORIES_MAP;
+}
 
-// ── SECONDARY / FUN STORIES (one per gate) ──
-const S_XIA2={id:'xia2',did:1,hsk:1,title:'小龙学游泳',en:'Little Dragon Learns to Swim',
-  sents:[
-    [C('有','yǒu','there was'),B('一','yī','a'),B('条','tiáo','CL'),C('小','xiǎo','little'),B('龙','lóng','dragon'),P('，'),C('它','tā','it'),C('不','bù','could not'),B('会','huì','able to'),B('游','yóu','swim-'),B('泳','yǒng','-ming'),P('。')],
-    [C('它','tā','it'),C('去','qù','went to'),B('河','hé','river'),B('里','lǐ','in'),P('，'),C('水','shuǐ','water'),C('很','hěn','very'),C('大','dà','big'),P('，'),C('很','hěn','very'),B('冷','lěng','cold'),P('。')],
-    [C('它','tā','its'),B('妈','māmā','mo-'),B('妈','māmā','-ther'),C('说','shuō','said'),P('："'),C('你','nǐ','you'),C('可','kě','can'),C('以','yǐ','do it'),P('！'),C('来','lái','come'),P('！"')],
-    [C('小','xiǎo','little'),B('龙','lóng','dragon'),B('游','yóu','swam'),B('了','le','CMPL'),C('很','hěn','very'),B('久','jiǔ','long'),P('，'),B('学','xué','learn-'),B('会','huì','-ed'),B('了','le','CMPL'),P('。')],
-    [C('今','jīn','now'),C('天','tiān','today'),P('，'),C('小','xiǎo','little'),B('龙','lóng','dragon'),C('在','zài','in'),C('水','shuǐ','water'),B('里','lǐ','inside'),C('很','hěn','very'),C('开','kāi','hap-'),C('心','xīn','-py'),P('。')],
-  ],
-  trans:['There was a little dragon who couldn\'t swim.','It went into the river; the water was very big and cold.','Its mother said: "You can do it! Come!"','The little dragon swam for a long time and learned.','Today, the little dragon is very happy in the water.'],
-};
-const S_SHANG2={id:'shang2',did:2,hsk:1,title:'市场的一天',en:'A Day at the Market',
-  sents:[
-    [C('今','jīn','today'),C('天','tiān','day'),C('是','shì','is'),B('市','shì','mar-'),B('场','chǎng','-ket'),C('的','de','DE'),B('日','rì','day'),B('子','zi','SUF'),P('。')],
-    [C('有','yǒu','there are'),C('人','rén','people'),B('卖','mài','selling'),B('水','shuǐ','fruit'),B('果','guǒ','fruit'),P('，'),C('有','yǒu','there are'),C('人','rén','people'),B('卖','mài','selling'),B('鱼','yú','fish'),P('。')],
-    [C('我','wǒ','I'),B('买','mǎi','bought'),B('了','le','CMPL'),C('三','sān','three'),B('个','gè','CL'),B('苹','píng','ap-'),B('果','guǒ','-ple'),P('，'),C('很','hěn','very'),C('好','hǎo','good'),C('吃','chī','eat'),P('。')],
-    [B('妈','māmā','mo-'),B('妈','māmā','-ther'),B('买','mǎi','bought'),B('了','le','CMPL'),C('很','hěn','very'),C('多','duō','many'),B('东','dōng','things-'),B('西','xī','-things'),P('。')],
-    [C('我','wǒ','we'),C('们','men','PL'),B('一','yī','to-'),B('起','qǐ','-gether'),B('回','huí','returned'),C('家','jiā','home'),C('吃','chī','eat'),B('饭','fàn','food/meal'),P('。')],
-  ],
-  trans:['Today is market day.','Some people sell fruit; some people sell fish.','I bought three apples — very delicious.','Mum bought many things.','We went home together to eat.'],
-};
-const S_ZHOU2={id:'zhou2',did:3,hsk:1,title:'大树下的朋友',en:'Friends Under the Big Tree',
-  sents:[
-    [C('学','xué','school'),B('校','xiào','-school'),C('门','mén','gate'),B('口','kǒu','entrance'),C('有','yǒu','there is'),B('一','yī','a'),B('棵','kē','CL'),C('大','dà','big'),B('树','shù','tree'),P('。')],
-    [C('我','wǒ','I'),C('和','hé','and'),C('我','wǒ','my'),C('的','de','DE'),B('朋','péng','fri-'),B('友','yǒu','-end'),C('每','měi','every'),C('天','tiān','day'),C('在','zài','at'),C('大','dà','big'),B('树','shù','tree'),B('下','xià','under'),B('玩','wán','play'),P('。')],
-    [C('我','wǒ','we'),C('们','men','PL'),B('做','zuò','play'),B('游','yóu','game-'),B('戏','xì','-games'),P('，'),C('说','shuō','tell'),B('故','gù','sto-'),B('事','shì','-ry'),P('，'),C('很','hěn','very'),B('快','kuài','hap-'),B('乐','lè','-py'),P('。')],
-    [N('老师','lǎoshī','teacher'),C('来','lái','came'),P('，'),C('说','shuō','said'),P('："'),C('要','yào','time to'),B('上','shàng','go to'),B('课','kè','class'),B('了','le','now'),P('！"')],
-    [C('我','wǒ','we'),C('们','men','PL'),B('跑','pǎo','ran'),B('进','jìn','into'),B('教','jiào','class-'),B('室','shì','-room'),P('，'),C('开','kāi','start'),B('始','shǐ','begin'),C('学','xué','study'),C('习','xí','learn'),P('。')],
-  ],
-  trans:['There is a big tree at the school gate.','My friends and I play under the big tree every day.','We play games, tell stories, and are very happy.','The teacher came and said: "Time for class!"','We ran into the classroom and started studying.'],
-};
-const S_DONGZHOU2={id:'dongzhou2',did:4,hsk:1,title:'猫和老鼠',en:'Cat and Mouse',
-  sents:[
-    [C('有','yǒu','there was'),B('一','yī','a'),B('只','zhī','CL'),B('猫','māo','cat'),C('和','hé','and'),B('一','yī','a'),B('只','zhī','CL'),B('老','lǎo','mou-'),B('鼠','shǔ','-use'),P('。')],
-    [B('猫','māo','cat'),C('要','yào','wanted to'),C('吃','chī','eat'),B('老','lǎo','mou-'),B('鼠','shǔ','-use'),P('，'),B('老','lǎo','mou-'),B('鼠','shǔ','-use'),B('跑','pǎo','ran'),C('得','de','ADV'),C('很','hěn','very'),B('快','kuài','fast'),P('。')],
-    [B('老','lǎo','mou-'),B('鼠','shǔ','-use'),B('跑','pǎo','ran to'),C('到','dào','to'),C('山','shān','mountain'),C('上','shàng','on top'),P('，'),B('猫','māo','cat'),C('没','méi','did not'),C('有','yǒu','have'),B('追','zhuī','chase'),C('到','dào','reach'),P('。')],
-    [B('老','lǎo','mou-'),B('鼠','shǔ','-use'),C('在','zài','on'),C('山','shān','mountain'),C('上','shàng','top'),C('找','zhǎo','found'),C('到','dào','CMPL'),C('很','hěn','very'),C('多','duō','many'),C('好','hǎo','good'),C('吃','chī','eat'),C('的','de','DE'),B('东','dōng','things-'),B('西','xī','-things'),P('。')],
-    [C('它','tā','it'),C('说','shuō','said'),P('："'),C('这','zhè','here'),B('里','lǐ','inside'),C('很','hěn','very'),C('好','hǎo','good'),P('，'),C('我','wǒ','I'),C('不','bù','not'),B('下','xià','go down'),C('山','shān','mountain'),B('了','le','now'),P('！"')],
-  ],
-  trans:['There was a cat and a mouse.','The cat wanted to eat the mouse; the mouse ran very fast.','The mouse ran to the mountain and the cat couldn\'t catch it.','On the mountain the mouse found many delicious things.','It said: "This is great — I\'m not going back down!"'],
-};
-const S_QIN2={id:'qin2',did:5,hsk:1,title:'爬山的孩子',en:'Children Climbing the Mountain',
-  sents:[
-    [C('今','jīn','today'),C('天','tiān','day'),P('，'),C('我','wǒ','we'),C('们','men','PL'),C('去','qù','go'),B('爬','pá','climb'),C('山','shān','mountain'),P('。')],
-    [C('山','shān','mountain'),C('很','hěn','very'),C('大','dà','big'),P('，'),C('我','wǒ','we'),C('们','men','PL'),B('走','zǒu','walked'),B('了','le','CMPL'),C('很','hěn','very'),B('久','jiǔ','long time'),P('。')],
-    [C('我','wǒ','I'),B('累','lèi','tired'),B('了','le','now'),P('，'),C('说','shuō','said'),P('："'),C('不','bù','not'),B('想','xiǎng','want'),B('走','zǒu','walk'),B('了','le','now'),P('。"')],
-    [B('朋','péng','fri-'),B('友','yǒu','-end'),C('说','shuō','said'),P('："'),B('快','kuài','almost'),C('到','dào','arrived'),B('了','le','already'),P('！'),B('加','jiā','add'),B('油','yóu','oil'),P('！"')],
-    [C('到','dào','arrived at'),B('了','le','CMPL'),C('山','shān','mountain'),B('顶','dǐng','top'),P('，'),C('我','wǒ','we'),C('们','men','PL'),C('很','hěn','very'),C('高','gāo','hap-'),B('兴','xìng','-py'),P('，'),C('大','dà','loudly'),C('声','shēng','sound'),C('说','shuō','said'),P('："'),C('我','wǒ','we'),C('们','men','PL'),C('做','zuò','did'),C('到','dào','it'),B('了','le','CMPL'),P('！"')],
-  ],
-  trans:['Today, we went to climb the mountain.','The mountain was very big; we walked for a long time.','I was tired and said: "I don\'t want to walk anymore."','A friend said: "Almost there! Keep going!"','We reached the top and happily shouted: "We did it!"'],
-};
-const S_HAN2={id:'han2',did:6,hsk:2,title:'我的小猫',en:'My Little Cat',
-  sents:[
-    [C('我','wǒ','I'),C('有','yǒu','have'),B('一','yī','a'),B('只','zhī','CL'),C('小','xiǎo','little'),B('猫','māo','cat'),P('，'),B('名','míng','name-'),C('字','zì','-name'),B('叫','jiào','called'),B('小','xiǎo','little'),B('白','bái','white'),P('。')],
-    [C('它','tā','it'),C('每','měi','every'),C('天','tiān','day'),B('早','zǎo','morning-'),C('上','shàng','morning'),B('叫','jiào','calls'),C('我','wǒ','me'),B('起','qǐ','get'),B('床','chuáng','up from bed'),P('。')],
-    [C('它','tā','it'),C('很','hěn','very'),B('喜','xǐ','like-'),B('欢','huān','-like'),C('吃','chī','eat'),B('鱼','yú','fish'),P('，'),C('也','yě','also'),C('很','hěn','very'),B('喜','xǐ','like-'),B('欢','huān','-like'),B('玩','wán','play'),B('球','qiú','ball'),P('。')],
-    [C('有','yǒu','some-'),C('时','shí','times'),C('候','hòu','period'),C('它','tā','it'),B('爬','pá','climbs'),C('到','dào','to'),C('我','wǒ','my'),C('的','de','DE'),C('书','shū','book'),B('包','bāo','bag'),C('上','shàng','on top'),B('睡','shuì','sleep-'),B('觉','jiào','-ing'),P('。')],
-    [C('我','wǒ','I'),C('非','fēi','ex-'),C('常','cháng','-tremely'),B('爱','ài','love'),C('我','wǒ','my'),C('的','de','DE'),C('小','xiǎo','little'),B('猫','māo','cat'),P('，'),C('它','tā','it'),C('是','shì','is'),C('我','wǒ','my'),B('最','zuì','best'),C('好','hǎo','good'),C('的','de','DE'),B('朋','péng','fri-'),B('友','yǒu','-end'),P('。')],
-  ],
-  trans:['I have a little cat named Little White.','It wakes me up every morning.','It loves to eat fish and also loves to play with a ball.','Sometimes it climbs onto my school bag to sleep.','I love my little cat very much; it is my best friend.'],
-};
-const S_PAPER2={id:'paper2',did:7,hsk:2,title:'书里的世界',en:'World Inside Books',
-  sents:[
-    [C('我','wǒ','I'),B('最','zuì','most'),B('喜','xǐ','like-'),B('欢','huān','-like'),C('的','de','DE'),B('东','dōng','thing-'),B('西','xī','-thing'),C('是','shì','is'),C('书','shū','books'),P('。')],
-    [C('书','shū','books'),B('里','lǐ','inside'),C('有','yǒu','have'),C('很','hěn','very'),C('多','duō','many'),C('有','yǒu','inter-'),C('趣','qù','-esting'),C('的','de','DE'),B('故','gù','sto-'),B('事','shì','-ry'),P('。')],
-    [C('我','wǒ','I'),C('读','dú','read'),C('书','shū','books'),C('的','de','DE'),C('时','shí','time'),C('候','hòu','period'),P('，'),C('可','kě','can'),C('以','yǐ','able'),C('去','qù','go to'),C('到','dào','reach'),C('很','hěn','very'),B('远','yuǎn','far'),C('的','de','DE'),B('地','dì','place-'),B('方','fāng','-place'),P('。')],
-    [B('妈','māmā','mo-'),B('妈','māmā','-ther'),C('说','shuō','said'),P('："'),C('读','dú','read'),C('书','shū','books'),B('让','ràng','makes'),C('你','nǐ','you'),B('变','biàn','become'),C('得','de','ADV'),C('更','gèng','more'),B('聪','cōng','intelli-'),B('明','míng','-gent'),P('。"')],
-    [C('我','wǒ','I'),C('已','yǐ','al-'),C('经','jīng','-ready'),C('读','dú','read'),B('了','le','CMPL'),C('很','hěn','very'),C('多','duō','many'),C('书','shū','books'),P('，'),C('我','wǒ','I'),B('想','xiǎng','want'),C('读','dú','read'),C('更','gèng','even'),C('多','duō','more'),P('。')],
-  ],
-  trans:['My favourite thing is books.','Books contain many interesting stories.','When I read books, I can go to faraway places.','Mum said: "Reading makes you smarter."','I have already read many books; I want to read even more.'],
-};
-const S_SANGUO2={id:'sanguo2',did:8,hsk:2,title:'好朋友的力量',en:'The Power of Good Friends',
-  sents:[
-    [C('我','wǒ','I'),C('有','yǒu','have'),C('三','sān','three'),B('个','gè','CL'),C('很','hěn','very'),C('好','hǎo','good'),B('的','de','DE'),B('朋','péng','fri-'),B('友','yǒu','-ends'),P('。')],
-    [C('我','wǒ','we'),C('们','men','PL'),B('一','yī','to-'),B('起','qǐ','-gether'),C('学','xué','study'),C('习','xí','learn'),P('，'),B('一','yī','to-'),B('起','qǐ','-gether'),C('吃','chī','eat'),B('饭','fàn','food'),P('，'),B('一','yī','to-'),B('起','qǐ','-gether'),B('玩','wán','play'),P('。')],
-    [C('有','yǒu','one time'),B('一','yī','a'),C('次','cì','time'),P('，'),C('我','wǒ','I'),B('生','shēng','get'),B('病','bìng','sick'),B('了','le','CMPL'),P('，'),B('朋','péng','fri-'),B('友','yǒu','-ends'),C('来','lái','came'),C('看','kàn','see/visit'),C('我','wǒ','me'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),B('带','dài','brought'),C('来','lái','CMPL'),B('了','le','CMPL'),B('食','shí','food-'),B('物','wù','-food'),C('和','hé','and'),C('书','shū','books'),P('，'),B('陪','péi','keep'),C('我','wǒ','me'),C('说','shuō','talk'),B('话','huà','words'),P('。')],
-    [C('好','hǎo','good'),B('朋','péng','fri-'),B('友','yǒu','-ends'),C('的','de','DE'),B('力','lì','power-'),B('量','liàng','-power'),B('让','ràng','made'),C('我','wǒ','me'),C('很','hěn','very'),B('快','kuài','quickly'),B('就','jiù','then'),C('好','hǎo','well'),B('了','le','CMPL'),P('。')],
-  ],
-  trans:['I have three very good friends.','We study, eat, and play together.','One time I got sick and my friends came to visit.','They brought food and books and kept me company.','The power of good friends made me get well very quickly.'],
-};
-const S_SHUFA2={id:'shufa2',did:9,hsk:2,title:'学写汉字',en:'Learning to Write Chinese Characters',
-  sents:[
-    [C('我','wǒ','I'),B('开始','kāishǐ','started'),C('学','xué','learn'),C('习','xí','learning'),C('写','xiě','write'),C('汉','Hàn','Chinese-'),C('字','zì','-characters'),B('了','le','now'),P('。')],
-    [N('老师','lǎoshī','teacher'),B('教','jiào','taught'),C('我','wǒ','me'),B('握','wò','hold'),B('笔','bǐ','pen'),C('的','de','DE'),B('方','fāng','meth-'),B('法','fǎ','-od'),P('。')],
-    [C('我','wǒ','I'),B('练','liàn','prac-'),C('习','xí','-tice'),C('写','xiě','write'),P('"'),C('水','shuǐ','water'),P('"'),C('和','hé','and'),P('"'),C('山','shān','mountain'),P('"'),P('，'),C('写','xiě','wrote'),B('了','le','CMPL'),C('很','hěn','very'),C('多','duō','many'),B('遍','biàn','times'),P('。')],
-    [B('刚','gāng','just'),B('开始','kāishǐ','start'),C('写','xiě','write'),C('得','de','ADV'),C('不','bù','not'),C('好','hǎo','well'),P('，'),B('但','dàn','but'),C('是','shì','is'),B('慢','màn','slowly'),B('慢','màn','slowly'),C('地','de','ADV'),B('变','biàn','became'),C('好','hǎo','better'),B('了','le','CMPL'),P('。')],
-    [C('现','xiàn','now-'),C('在','zài','-now'),C('我','wǒ','I'),C('很','hěn','very'),B('喜','xǐ','like-'),B('欢','huān','-like'),C('写','xiě','write'),C('汉','Hàn','Chinese-'),C('字','zì','-characters'),P('，'),C('每','měi','every'),C('个','gè','CL'),C('字','zì','character'),C('都','dōu','all'),C('很','hěn','very'),B('美','měi','beautiful'),P('。')],
-  ],
-  trans:['I started learning to write Chinese characters.','The teacher taught me how to hold a pen.','I practiced writing "water" and "mountain" many times.','At first my writing wasn\'t good, but slowly it got better.','Now I love writing Chinese characters; every character is beautiful.'],
-};
-const S_TAO2={id:'tao2',did:10,hsk:2,title:'下雨天',en:'Rainy Day',
-  sents:[
-    [C('今','jīn','today'),C('天','tiān','day'),B('下','xià','it\'s'),B('雨','yǔ','raining'),B('了','le','now'),P('，'),C('我','wǒ','I'),C('不','bù','cannot'),C('能','néng','can'),B('出','chū','go'),C('去','qù','out'),B('玩','wán','play'),B('了','le','now'),P('。')],
-    [C('我','wǒ','I'),B('坐','zuò','sat'),C('在','zài','at'),B('窗','chuāng','win-'),B('边','biān','-dow'),P('，'),C('看','kàn','watched'),B('着','zhe','ING'),B('外','wài','out-'),B('面','miàn','-side'),C('的','de','DE'),B('雨','yǔ','rain'),P('。')],
-    [B('雨','yǔ','rain'),B('打','dǎ','hit'),C('在','zài','on'),C('地','dì','ground'),C('上','shàng','on'),P('，'),B('发','fā','makes'),C('出','chū','out'),C('好','hǎo','nice'),B('听','tīng','listen'),C('的','de','DE'),B('声','shēng','sound-'),B('音','yīn','-sound'),P('。')],
-    [C('我','wǒ','I'),B('决','jué','deci-'),B('定','dìng','-ded'),C('在','zài','at'),C('家','jiā','home'),C('看','kàn','read'),C('书','shū','books'),P('，'),B('喝','hē','drink'),B('热','rè','hot'),B('茶','chá','tea'),P('。')],
-    [B('下','xià','rainy-'),B('雨','yǔ','-rain'),C('天','tiān','day'),C('也','yě','also'),C('有','yǒu','has'),C('它','tā','its'),B('美','měi','beauti-'),B('丽','lì','-ful'),C('的','de','DE'),B('地','dì','place-'),B('方','fāng','-part'),P('。')],
-  ],
-  trans:['Today it\'s raining; I cannot go out to play.','I sat by the window and watched the rain outside.','The rain hitting the ground makes a nice sound.','I decided to read books at home and drink hot tea.','Rainy days have their beautiful aspects too.'],
-};
-const S_CANAL2={id:'canal2',did:11,hsk:2,title:'坐船游玩',en:'Boat Trip Fun',
-  sents:[
-    [B('暑','shǔ','summer-'),B('假','jià','-holiday'),P('，'),B('爸','bābā','fa-'),B('爸','bābā','-ther'),B('带','dài','took'),C('我','wǒ','me'),C('去','qù','go'),B('坐','zuò','ride'),B('船','chuán','boat'),P('。')],
-    [B('船','chuán','boat'),C('在','zài','in'),C('水','shuǐ','water'),C('上','shàng','on'),B('慢','màn','slowly'),B('慢','màn','slowly'),C('地','de','ADV'),C('走','zǒu','moved'),P('，'),C('很','hěn','very'),B('舒','shū','com-'),B('服','fù','-fortable'),P('。')],
-    [C('我','wǒ','I'),C('看','kàn','saw'),C('到','dào','CMPL'),B('了','le','CMPL'),C('很','hěn','very'),C('多','duō','many'),B('鱼','yú','fish'),C('和','hé','and'),B('鸟','niǎo','birds'),P('。')],
-    [B('妈','māmā','mo-'),B('妈','māmā','-ther'),B('给','gěi','prepared'),C('我','wǒ','we'),C('们','men','PL'),B('准','zhǔn','prepar-'),B('备','bèi','-ed'),C('好','hǎo','good'),C('吃','chī','eat'),C('的','de','DE'),B('午','wǔ','lunch-'),B('饭','fàn','-meal'),P('。')],
-    [C('这','zhè','this'),B('一','yī','a'),C('天','tiān','day'),P('，'),C('我','wǒ','I'),B('玩','wán','played'),C('得','de','ADV'),C('很','hěn','very'),C('开','kāi','hap-'),C('心','xīn','-py'),P('，'),C('很','hěn','very'),B('难','nán','unfor-'),B('忘','wàng','-gettable'),P('。')],
-  ],
-  trans:['During summer holiday, Dad took me for a boat ride.','The boat moved slowly on the water — very comfortable.','I saw many fish and birds.','Mum prepared a delicious lunch for us.','That day I had so much fun — very unforgettable.'],
-};
-const S_TANG2={id:'tang2',did:12,hsk:3,title:'诗人看月亮',en:'The Poet Looks at the Moon',
-  sents:[
-    [N('唐朝','Tángcháo','Tang Dynasty'),C('大','dà','great'),B('诗','shī','po-'),B('人','rén','-et'),N('李白','Lǐ Bái','Li Bai'),C('很','hěn','very'),B('喜','xǐ','liked-'),B('欢','huān','-like'),C('看','kàn','watch'),B('月','yuè','moon-'),B('亮','liàng','-bright'),P('。')],
-    [C('他','tā','he'),B('一','yī','alone'),B('个','gè','one'),C('人','rén','person'),B('喝','hē','drank'),B('酒','jiǔ','wine'),P('，'),C('看','kàn','watching'),B('着','zhe','ING'),B('夜','yè','night-'),B('空','kōng','-sky'),C('中','zhōng','in'),C('的','de','DE'),B('月','yuè','moon-'),B('亮','liàng','-bright'),P('。')],
-    [C('他','tā','he'),B('思','sī','miss-'),B('念','niàn','-ing'),B('远','yuǎn','faraway'),B('方','fāng','place'),C('的','de','DE'),C('家','jiā','family'),B('人','rén','members'),P('，'),C('心','xīn','heart'),B('里','lǐ','inside'),C('很','hěn','very'),B('难','nán','sad'),B('过','guò','sad'),P('。')],
-    [C('他','tā','he'),C('写','xiě','wrote'),C('下','xià','down'),B('了','le','CMPL'),B('著','zhù','famous'),B('名','míng','famous'),C('的','de','DE'),B('诗','shī','poem'),P('："'),B('床','chuáng','bed'),B('前','qián','before'),B('明','míng','bright'),B('月','yuè','moon'),B('光','guāng','light'),P('，'),B('疑','yí','seems like'),C('是','shì','is'),C('地','dì','ground'),C('上','shàng','on'),B('霜','shuāng','frost'),P('。"')],
-    [C('这','zhè','this'),B('首','shǒu','CL-poem'),B('诗','shī','poem'),B('让','ràng','made'),C('很','hěn','very'),C('多','duō','many'),B('离','lí','away from'),C('家','jiā','home'),C('的','de','DE'),C('人','rén','people'),B('感','gǎn','felt'),C('到','dào','CMPL'),B('安','ān','com-'),B('慰','wèi','-fort'),P('。')],
-  ],
-  trans:['The great Tang poet Li Bai loved watching the moon.','He drank wine alone, watching the moon in the night sky.','He missed his family far away; his heart felt very sad.','He wrote the famous poem: "Before my bed the bright moonlight gleams — I thought it was frost on the ground."','This poem brought comfort to many people away from home.'],
-};
-const S_PRINT2={id:'print2',did:13,hsk:3,title:'图书馆的一天',en:'A Day at the Library',
-  sents:[
-    [C('今','jīn','today'),C('天','tiān','day'),N('老师','lǎoshī','teacher'),B('带','dài','took'),C('我','wǒ','we'),C('们','men','PL'),C('去','qù','to'),B('了','le','CMPL'),B('图','tú','libr-'),B('书','shū','-ary'),B('馆','guǎn','library'),P('。')],
-    [B('图','tú','libr-'),B('书','shū','-ary'),B('馆','guǎn','library'),B('里','lǐ','inside'),C('有','yǒu','has'),B('成','chéng','thous-'),B('千','qiān','-ands'),B('上','shàng','upon'),B('万','wàn','ten-thousand'),C('本','běn','CL-book'),C('书','shū','books'),P('。')],
-    [C('我','wǒ','I'),B('找','zhǎo','found'),C('到','dào','CMPL'),B('了','le','CMPL'),B('一','yī','a'),C('本','běn','CL-book'),B('关','guān','about'),B('于','yú','about'),B('古','gǔ','ancient'),C('代','dài','era'),N('中国','Zhōngguó','China'),C('的','de','DE'),B('故','gù','sto-'),B('事','shì','-ry'),C('书','shū','book'),P('。')],
-    [C('我','wǒ','I'),C('在','zài','at'),B('图','tú','libr-'),B('书','shū','-ary'),B('馆','guǎn','library'),B('里','lǐ','inside'),C('读','dú','read'),B('了','le','CMPL'),B('两','liǎng','two'),B('个','gè','CL'),B('小','xiǎo','smal-'),B('时','shí','-hours'),P('，'),B('忘','wàng','forgot'),B('记','jì','CMPL'),B('了','le','CMPL'),C('时','shí','time'),B('间','jiān','time'),P('。')],
-    [C('我','wǒ','I'),B('借','jiè','borrowed'),B('了','le','CMPL'),C('三','sān','three'),C('本','běn','CL'),C('书','shū','books'),B('回','huí','to go'),C('家','jiā','home'),P('，'),B('迫','pò','can\'t'),B('不','bù','wait'),B('及','jí','wait'),C('待','dài','wait'),C('地','de','ADV'),B('想','xiǎng','wanted'),B('把','bǎ','BA'),C('它','tā','them'),C('们','men','PL'),C('读','dú','read'),B('完','wán','finish'),P('。')],
-  ],
-  trans:['Today the teacher took us to the library.','The library has thousands and thousands of books.','I found a story book about ancient China.','I read for two hours in the library and forgot about time.','I borrowed three books to take home, eager to finish reading them.'],
-};
-const S_SONG2={id:'song2',did:14,hsk:3,title:'纸钱的魔力',en:'The Magic of Paper Money',
-  sents:[
-    [N('宋朝','Sòngcháo','Song Dynasty'),C('时','shí','at that'),C('候','hòu','time'),P('，'),C('人','rén','people'),C('们','men','PL'),B('发明','fāmíng','invented'),B('了','le','CMPL'),B('用','yòng','use'),B('纸','zhǐ','paper'),C('做','zuò','make'),C('的','de','DE'),B('钱','qián','money'),P('。')],
-    [B('以','yǐ','be-'),B('前','qián','-fore'),P('，'),C('人','rén','people'),C('们','men','PL'),B('用','yòng','used'),C('很','hěn','very'),B('重','zhòng','heavy'),C('的','de','DE'),B('铜','tóng','copper'),B('钱','qián','money'),C('做','zuò','do'),B('交','jiāo','trad-'),B('易','yì','-ing'),P('。')],
-    [C('有','yǒu','with'),B('了','le','CMPL'),B('纸','zhǐ','paper'),B('钱','qián','money'),P('，'),C('商','shāng','merchant-'),C('人','rén','-people'),C('可','kě','could'),C('以','yǐ','able'),C('更','gèng','more'),B('方','fāng','conve-'),B('便','biàn','-nient'),C('地','de','ADV'),C('做','zuò','do'),C('买','mǎi','trade-'),C('卖','mài','-trade'),P('。')],
-    [C('这','zhè','this'),B('个','gè','CL'),B('发明','fāmíng','invention'),B('让','ràng','made'),C('商','shāng','commer-'),B('业','yè','-cial'),B('变','biàn','became'),C('得','de','ADV'),C('更','gèng','more'),B('加','jiā','even more'),B('发','fā','devel-'),B('达','dá','-oped'),P('。')],
-    [B('纸','zhǐ','paper'),B('钱','qián','money'),C('的','de','DE'),B('发明','fāmíng','invention'),C('改','gǎi','changed'),C('变','biàn','changed'),B('了','le','CMPL'),C('人','rén','people'),C('们','men','PL'),C('的','de','DE'),C('经','jīng','eco-'),B('济','jì','-nomics'),B('生','shēng','life-'),B('活','huó','-life'),P('。')],
-  ],
-  trans:['During the Song Dynasty, people invented paper money.','Before, people used heavy copper coins for trading.','With paper money, merchants could trade more conveniently.','This invention made commerce even more developed.','The invention of paper money changed people\'s economic life.'],
-};
-const S_TEA2={id:'tea2',did:15,hsk:3,title:'茶馆的故事',en:'Stories in the Teahouse',
-  sents:[
-    [N('南宋','Nán Sòng','Southern Song'),C('时','shí','at that'),C('候','hòu','time'),N('临安','Lín\'ān','Lin\'an'),C('城','chéng','city-'),B('里','lǐ','in'),C('有','yǒu','had'),C('很','hěn','very'),C('多','duō','many'),B('著','zhù','famou-'),B('名','míng','-s'),C('的','de','DE'),B('茶','chá','tea-'),B('馆','guǎn','-house'),P('。')],
-    [C('人','rén','people'),C('们','men','PL'),C('在','zài','in'),B('茶','chá','tea-'),B('馆','guǎn','-house'),B('里','lǐ','inside'),C('喝','hē','drink'),B('茶','chá','tea'),P('、'),B('聊','liáo','chat-'),B('天','tiān','-chat'),P('，'),B('分','fēn','share'),B('享','xiǎng','share'),B('新','xīn','new-'),B('闻','wén','-news'),P('。')],
-    [B('艺','yì','art-'),B('人','rén','-ist'),C('在','zài','in'),B('茶','chá','tea-'),B('馆','guǎn','-house'),B('里','lǐ','inside'),B('表','biǎo','per-'),B('演','yǎn','-form'),P('，'),B('讲','jiǎng','tell'),B('故','gù','sto-'),B('事','shì','-ry'),B('给','gěi','to'),C('客','kè','guest-'),B('人','rén','-people'),B('听','tīng','hear'),P('。')],
-    [B('茶','chá','tea-'),B('馆','guǎn','-house'),C('不','bù','not only'),B('仅','jǐn','only'),C('是','shì','was'),C('喝','hē','drink'),B('茶','chá','tea'),C('的','de','DE'),B('地','dì','place-'),B('方','fāng','-place'),P('，'),C('也','yě','also'),C('是','shì','was'),C('文','wén','cul-'),C('化','huà','-tural'),B('交','jiāo','ex-'),B('流','liú','-change'),C('的','de','DE'),B('中','zhōng','cen-'),B('心','xīn','-ter'),P('。')],
-    [C('今','jīn','now'),C('天','tiān','today'),P('，'),C('我','wǒ','we'),C('们','men','PL'),B('还','hái','still'),C('能','néng','can'),C('看','kàn','see'),C('到','dào','CMPL'),C('这','zhè','this'),B('种','zhǒng','kind of'),B('传','chuán','tradi-'),B('统','tǒng','-tional'),C('的','de','DE'),B('茶','chá','tea-'),B('馆','guǎn','-house'),C('文','wén','cul-'),C('化','huà','-ture'),P('。')],
-  ],
-  trans:['During the Southern Song, Lin\'an City had many famous teahouses.','People chatted, drank tea, and shared news in teahouses.','Artists performed in teahouses, telling stories to guests.','Teahouses were not just places to drink tea — they were cultural exchange centres.','Today, we can still see this kind of traditional teahouse culture.'],
-};
-const S_RIDER2={id:'rider2',did:16,hsk:3,title:'草原上的风',en:'Wind on the Grassland',
-  sents:[
-    [B('北','běi','north-'),B('方','fāng','-ern'),C('的','de','DE'),B('草','cǎo','grass-'),B('原','yuán','-land'),C('上','shàng','on'),P('，'),B('风','fēng','wind'),B('吹','chuī','blows'),C('得','de','ADV'),C('很','hěn','very'),C('大','dà','big'),P('。')],
-    [N('契丹','Qì Dān','Khitan'),C('人','rén','people'),C('的','de','DE'),B('孩','hái','chil-'),B('子','zi','-dren'),C('们','men','PL'),C('在','zài','on'),B('草','cǎo','grass-'),B('原','yuán','-land'),C('上','shàng','on'),B('骑','qí','rode'),C('马','mǎ','horses'),B('奔','bēn','gallop-'),B('跑','pǎo','-ing'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),C('学','xué','studied'),C('习','xí','learn'),B('射','shè','arch-'),B('箭','jiàn','-ery'),P('、'),B('骑','qí','riding'),C('马','mǎ','horses'),P('，'),B('为','wèi','for'),B('将','jiāng','the'),B('来','lái','future'),C('做','zuò','make'),B('准','zhǔn','prepar-'),B('备','bèi','-ation'),P('。')],
-    [B('草','cǎo','grass-'),B('原','yuán','-land'),C('的','de','DE'),C('生','shēng','life-'),B('活','huó','-life'),B('虽','suī','although'),B('然','rán','although'),B('艰','jiān','diffi-'),B('苦','kǔ','-cult'),P('，'),B('但','dàn','but'),C('是','shì','is'),B('充','chōng','full of'),B('满','mǎn','full of'),C('自','zì','free-'),C('由','yóu','-dom'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),B('热','rè','loved'),B('爱','ài','loved'),C('自','zì','own'),B('己','jǐ','self'),C('的','de','DE'),C('土','tǔ','land-'),B('地','dì','-land'),C('和','hé','and'),C('文','wén','cul-'),C('化','huà','-ture'),P('。')],
-  ],
-  trans:['On the northern grasslands, the wind blows very strongly.','Khitan children galloped on horseback across the grasslands.','They studied archery and riding, preparing for the future.','Life on the grasslands was difficult but full of freedom.','They loved their own land and culture.'],
-};
-const S_SCHOLAR2={id:'scholar2',did:17,hsk:3,title:'学者的笔记',en:"The Scholar's Notes",
-  sents:[
-    [N('金朝','Jīncháo','Jin Dynasty'),C('有','yǒu','had'),B('一','yī','a'),B('位','wèi','CL'),B('努','nǔ','hard-'),B('力','lì','-working'),C('的','de','DE'),B('学','xué','scho-'),B('者','zhě','-lar'),P('，'),C('每','měi','every'),C('天','tiān','day'),C('读','dú','read'),C('很','hěn','many'),C('多','duō','many'),C('书','shū','books'),P('。')],
-    [C('他','tā','he'),B('把','bǎ','put'),C('自','zì','self'),B('己','jǐ','self'),C('学','xué','lear-'),B('到','dào','-ned'),C('的','de','DE'),B('东','dōng','things-'),B('西','xī','-things'),C('都','dōu','all'),C('写','xiě','wrote'),C('在','zài','in'),B('笔','bǐ','note-'),B('记','jì','-book'),B('本','běn','book'),B('里','lǐ','inside'),P('。')],
-    [C('他','tā','he'),B('研','yán','stu-'),B('究','jiū','-dy'),C('历','lì','hist-'),C('史','shǐ','-ory'),P('、'),C('文','wén','liter-'),B('学','xué','-ature'),C('和','hé','and'),B('哲','zhé','philos-'),B('学','xué','-ophy'),P('，'),B('知','zhī','know-'),B('识','shí','-ledge'),C('非','fēi','ex-'),C('常','cháng','-tremely'),B('丰','fēng','rich-'),B('富','fù','-rich'),P('。')],
-    [C('他','tā','his'),C('的','de','DE'),B('笔','bǐ','note-'),B('记','jì','-book'),B('被','bèi','were'),B('后','hòu','later'),C('来','lái','coming'),C('的','de','DE'),B('学','xué','scho-'),B('者','zhě','-lars'),B('当','dāng','treated as'),B('作','zuò','as'),B('珍','zhēn','preci-'),B('贵','guì','-ous'),C('的','de','DE'),B('资','zī','mate-'),B('料','liào','-rials'),P('。')],
-    [C('他','tā','his'),C('的','de','DE'),B('故','gù','sto-'),B('事','shì','-ry'),B('告','gào','tells'),B('诉','sù','tells'),C('我','wǒ','we'),C('们','men','PL'),P('：'),B('勤','qín','dilig-'),B('奋','fèn','-ent'),C('学','xué','study'),C('习','xí','learn'),P('，'),B('知','zhī','know-'),B('识','shí','-ledge'),C('就','jiù','is'),C('是','shì','is'),C('力','lì','power-'),C('量','liàng','-power'),P('。')],
-  ],
-  trans:['Jin Dynasty had a hard-working scholar who read many books every day.','He wrote everything he learned in his notebook.','He studied history, literature, and philosophy — very knowledgeable.','His notes were treated as precious materials by later scholars.','His story tells us: study diligently, and knowledge is power.'],
-};
-const S_YUAN2={id:'yuan2',did:18,hsk:4,title:'元朝的美食',en:'Yuan Dynasty Food Journey',
-  sents:[
-    [N('元朝','Yuáncháo','Yuan Dynasty'),C('时','shí','at that'),C('候','hòu','time'),B('蒙','Méng','Mon-'),B('古','gǔ','-gol'),C('人','rén','people'),B('带','dài','brought'),C('来','lái','CMPL'),B('了','le','CMPL'),C('很','hěn','many'),C('多','duō','many'),C('来','lái','from'),B('自','zì','from'),C('不','bù','dif-'),C('同','tóng','-ferent'),B('地','dì','place-'),B('方','fāng','-place'),C('的','de','DE'),B('食','shí','food-'),B('物','wù','-food'),P('。')],
-    [B('奶','nǎi','cheese-'),B('酪','lào','-cheese'),P('、'),B('羊','yáng','lamb-'),B('肉','ròu','-meat'),C('和','hé','and'),B('奶','nǎi','milk-'),B('茶','chá','-tea'),B('成','chéng','became'),B('为','wéi','became'),B('了','le','CMPL'),B('北','běi','north-'),B('方','fāng','-ern'),C('的','de','DE'),C('流','liú','popular'),B('行','xíng','fashion'),B('食','shí','food-'),B('物','wù','-food'),P('。')],
-    [C('来','lái','coming from'),B('自','zì','from'),B('中','zhōng','Cen-'),B('亚','yà','-tral Asia'),C('的','de','DE'),B('香','xiāng','spic-'),B('料','liào','-es'),C('使','shǐ','made'),N('中国','Zhōngguó','China'),C('的','de','DE'),C('烹','pēng','cook-'),B('饪','rèn','-ing'),B('变','biàn','became'),C('得','de','ADV'),C('更','gèng','more'),B('加','jiā','even more'),C('多','duō','di-'),B('样','yàng','-verse'),B('化','huà','diversified'),P('。')],
-    [N('马可·波罗','Mǎkě Bōluó','Marco Polo'),B('记','jì','recorded'),B('录','lù','recorded'),B('下','xià','down'),B('了','le','CMPL'),C('他','tā','he'),C('在','zài','in'),N('中国','Zhōngguó','China'),B('品','pǐn','tast-'),B('尝','cháng','-ing'),C('到','dào','CMPL'),C('的','de','DE'),C('各','gè','various'),B('种','zhǒng','kinds'),B('美','měi','deli-'),B('食','shí','-cious food'),P('。')],
-    [C('不','bù','dif-'),C('同','tóng','-ferent'),C('文','wén','cul-'),C('化','huà','-tures'),B('之','zhī','between'),B('间','jiān','between'),C('的','de','DE'),B('食','shí','food'),B('物','wù','food'),B('交','jiāo','ex-'),B('流','liú','-change'),B('丰','fēng','enrich-'),B('富','fù','-ed'),N('中国','Zhōngguó','China'),C('的','de','DE'),B('饮','yǐn','dining'),B('食','shí','food'),C('文','wén','cul-'),C('化','huà','-ture'),P('。')],
-  ],
-  trans:['During the Yuan Dynasty, the Mongols brought many foods from different places.','Cheese, lamb, and milk tea became popular foods in the north.','Spices from Central Asia made Chinese cooking even more diverse.','Marco Polo recorded the various delicacies he tasted in China.','Food exchange between different cultures enriched Chinese food culture.'],
-};
-const S_MING2={id:'ming2',did:19,hsk:4,title:'奇妙的发现',en:'Wonderful Discoveries',
-  sents:[
-    [N('明朝','Míngcháo','Ming Dynasty'),C('时','shí','at that'),C('候','hòu','time'),P('，'),N('李时珍','Lǐ Shízhēn','Li Shizhen'),B('花','huā','spent'),B('了','le','CMPL'),B('近','jìn','nearly'),C('三','sān','thirty'),C('十','shí','ten'),C('年','nián','years'),B('写','xiě','writing'),B('成','chéng','into'),B('了','le','CMPL'),P('《'),B('本','běn','Compend-'),B('草','cǎo','-ium of'),B('纲','gāng','Mater-'),B('目','mù','ia Medica'),P('》。')],
-    [C('这','zhè','this'),C('本','běn','CL-book'),C('书','shū','book'),B('记','jì','recorded'),B('录','lù','recorded'),B('了','le','CMPL'),B('近','jìn','nearly'),C('两','liǎng','two'),B('千','qiān','thousand'),B('种','zhǒng','kinds of'),B('植','zhí','plant-'),B('物','wù','-plants'),C('和','hé','and'),B('药','yào','medi-'),B('物','wù','-cine'),P('，'),C('非','fēi','ex-'),C('常','cháng','-tremely'),B('珍','zhēn','preci-'),B('贵','guì','-ous'),P('。')],
-    [N('徐霞客','Xú Xiákè','Xu Xiake'),B('走','zǒu','traveled through'),B('遍','biàn','all over'),B('了','le','CMPL'),N('中国','Zhōngguó','China'),C('的','de','DE'),B('名','míng','famous'),C('山','shān','mountains'),C('大','dà','great'),B('川','chuān','rivers'),P('，'),B('记','jì','recorded'),B('录','lù','recorded'),B('下','xià','down'),B('了','le','CMPL'),C('地','dì','geo-'),B('理','lǐ','-graphy'),B('考','kǎo','explor-'),B('察','chá','-ation'),B('结','jié','re-'),B('果','guǒ','-sults'),P('。')],
-    [C('这','zhè','these'),B('些','xiē','some'),C('科','kē','sci-'),B('学','xué','-entists'),C('的','de','DE'),C('精','jīng','spir-'),B('神','shén','-it'),B('激','jī','in-'),B('励','lì','-spired'),C('着','zhe','ING'),C('后','hòu','later'),C('来','lái','coming'),B('一','yī','one after'),B('代','dài','generation'),B('又','yòu','after'),B('一','yī','one'),B('代','dài','generation'),C('的','de','DE'),B('探','tàn','explo-'),B('索','suǒ','-rers'),P('。')],
-    [B('科','kē','sci-'),B('学','xué','-ence'),C('的','de','DE'),B('精','jīng','spir-'),B('神','shén','-it'),C('是','shì','is'),B('勇','yǒng','cour-'),B('于','yú','-ageously'),B('探','tàn','explo-'),B('索','suǒ','-re'),P('，'),B('永','yǒng','never-'),B('不','bù','not'),B('停','tíng','stop'),B('止','zhǐ','-stop'),P('。')],
-  ],
-  trans:['During the Ming Dynasty, Li Shizhen spent nearly 30 years writing the Compendium of Materia Medica.','This book recorded nearly 2,000 kinds of plants and medicines — extremely precious.','Xu Xiake traveled all over China\'s famous mountains and rivers, recording geographic explorations.','The spirit of these scientists inspired generation after generation of explorers.','The spirit of science is to explore courageously, never stopping.'],
-};
-const S_QING2={id:'qing2',did:20,hsk:4,title:'故宫里的秘密',en:'Secrets of the Forbidden City',
-  sents:[
-    [N('北京','Běijīng','Beijing'),C('的','de','DE'),N('故宫','Gùgōng','Forbidden City'),C('是','shì','is'),C('世','shì','world-'),C('界','jiè','-world'),C('上','shàng','in the'),B('最','zuì','largest'),C('大','dà','large'),C('的','de','DE'),B('古','gǔ','ancient'),C('代','dài','era'),B('宫','gōng','pal-'),B('殿','diàn','-ace'),B('建','jiàn','archi-'),B('筑','zhù','-tecture'),B('群','qún','complex'),P('。')],
-    [C('它','tā','it'),B('由','yóu','was built by'),N('明朝','Míngcháo','Ming Dynasty'),B('皇','huáng','em-'),B('帝','dì','-peror'),B('建','jiàn','buil-'),B('造','zào','-t'),P('，'),C('有','yǒu','has'),B('超','chāo','more than'),B('过','guò','exceeded'),B('九','jiǔ','nine'),B('千','qiān','thousand'),B('个','gè','CL'),B('房','fáng','room-'),B('间','jiān','-room'),P('。')],
-    [B('皇','huáng','em-'),B('帝','dì','-peror'),C('在','zài','in'),B('太','tài','Tai-'),B('和','hé','-He'),B('殿','diàn','Hall'),B('里','lǐ','inside'),B('接','jiē','receive'),B('受','shòu','receive'),B('百','bǎi','hundred'),B('官','guān','official-'),B('朝','cháo','morning'),B('拜','bài','bowing'),P('，'),B('处','chǔ','handle'),B('理','lǐ','handle'),C('国','guó','nation'),B('家','jiā','state'),C('大','dà','major'),C('事','shì','affairs'),P('。')],
-    [B('宫','gōng','pal-'),B('殿','diàn','-ace'),B('里','lǐ','in'),C('的','de','DE'),C('艺','yì','art-'),C('术','shù','-work'),B('品','pǐn','pieces'),C('和','hé','and'),B('珍','zhēn','trea-'),B('宝','bǎo','-sure'),B('展','zhǎn','show-'),B('示','shì','-ed'),B('了','le','CMPL'),N('中国','Zhōngguó','China'),B('古','gǔ','ancient'),C('代','dài','era'),C('的','de','DE'),B('辉','huī','glo-'),B('煌','huáng','-rious'),B('成','chéng','achie-'),B('就','jiù','-vement'),P('。')],
-    [C('今','jīn','now'),C('天','tiān','today'),P('，'),N('故宫','Gùgōng','Forbidden City'),B('博','bó','muse-'),B('物','wù','-um'),B('院','yuàn','institute'),C('每','měi','every'),C('年','nián','year'),B('接','jiē','receives'),B('待','dài','receives'),C('数','shù','hundreds of'),B('百','bǎi','hundred'),B('万','wàn','million'),B('参','cān','visi-'),B('观','guān','-tors'),B('者','zhě','visitors'),P('。')],
-  ],
-  trans:['Beijing\'s Forbidden City is the world\'s largest ancient palace complex.','It was built by a Ming Dynasty emperor and has more than 9,000 rooms.','The emperor received hundreds of officials in the Hall of Supreme Harmony and handled state affairs.','The artworks and treasures in the palace showed the glorious achievements of ancient China.','Today, the Palace Museum receives millions of visitors every year.'],
-};
-const S_REFORM2={id:'reform2',did:21,hsk:4,title:'变化中的上海',en:'Changing Shanghai',
-  sents:[
-    [C('十','shí','nine-'),B('九','jiǔ','-teenth'),C('世','shì','cen-'),B('纪','jì','-tury'),C('末','mò','end of'),P('，'),N('上海','Shànghǎi','Shanghai'),B('发','fā','devel-'),B('展','zhǎn','-oped into'),B('成','chéng','became'),B('为','wéi','became'),N('中国','Zhōngguó','China'),B('最','zuì','most'),C('现','xiàn','mod-'),C('代','dài','-ern'),C('化','huà','-ized'),C('的','de','DE'),C('城','chéng','city-'),B('市','shì','-city'),P('。')],
-    [C('来','lái','coming from'),B('自','zì','from'),C('世','shì','world-'),C('界','jiè','-world'),C('各','gè','all'),B('地','dì','places'),C('的','de','DE'),C('商','shāng','merchant-'),C('人','rén','-people'),C('在','zài','here'),C('此','cǐ','here'),B('居','jū','lived'),B('住','zhù','lived'),P('，'),B('带','dài','brought'),C('来','lái','CMPL'),B('了','le','CMPL'),B('新','xīn','new'),C('的','de','DE'),B('思','sī','ideas'),B('想','xiǎng','ideas'),C('和','hé','and'),C('技','jì','tech-'),C('术','shù','-nology'),P('。')],
-    [B('新','xīn','new'),B('式','shì','style'),C('学','xué','school-'),B('校','xiào','-schools'),P('、'),B('报','bào','news-'),B('纸','zhǐ','-paper'),C('和','hé','and'),B('工','gōng','fact-'),B('厂','chǎng','-ory'),C('在','zài','in'),N('上海','Shànghǎi','Shanghai'),B('迅','xùn','rapid-'),B('速','sù','-ly'),B('发','fā','devel-'),B('展','zhǎn','-oped'),B('起','qǐ','grew up'),C('来','lái','came about'),P('。')],
-    [B('传','chuán','tradi-'),B('统','tǒng','-tional'),C('的','de','DE'),N('中国','Zhōngguó','Chinese'),C('文','wén','cul-'),C('化','huà','-ture'),C('与','yǔ','and'),C('西','xī','Western'),B('方','fāng','West'),C('的','de','DE'),C('现','xiàn','mod-'),C('代','dài','-ern'),C('文','wén','civ-'),B('明','míng','-ilization'),C('在','zài','in'),C('这','zhè','here'),B('里','lǐ','here'),B('相','xiāng','each-'),B('互','hù','-other'),B('碰','pèng','col-'),B('撞','zhuàng','-lide'),P('。')],
-    [N('上海','Shànghǎi','Shanghai'),C('的','de','DE'),B('变','biàn','change'),B('化','huà','change'),B('反','fǎn','reflect-'),B('映','yìng','-ed'),B('了','le','CMPL'),B('整','zhěng','entire'),C('个','gè','CL'),N('中国','Zhōngguó','China'),C('在','zài','in'),B('近','jìn','modern'),C('代','dài','era'),C('化','huà','-isation'),C('过','guò','pro-'),B('程','chéng','-cess'),B('中','zhōng','during'),C('的','de','DE'),B('挣','zhèng','strug-'),B('扎','zhā','-gle'),C('与','yǔ','and'),B('努','nǔ','ef-'),B('力','lì','-fort'),P('。')],
-  ],
-  trans:['At the end of the 19th century, Shanghai developed into China\'s most modern city.','Merchants from around the world lived there, bringing new ideas and technology.','New-style schools, newspapers, and factories rapidly developed in Shanghai.','Traditional Chinese culture and Western modern civilization collided here.','Shanghai\'s transformation reflected all of China\'s struggle and effort in modernization.'],
-};
-const S_REPUBLIC2={id:'republic2',did:22,hsk:4,title:'新时代的年轻人',en:'Youth of the New Era',
-  sents:[
-    [N('民国','Mínguó','Republic'),C('时','shí','at that'),C('候','hòu','time'),P('，'),N('中国','Zhōngguó','China'),B('出','chū','produced'),B('现','xiàn','appeared'),B('了','le','CMPL'),B('一','yī','a'),B('代','dài','generation'),B('充','chōng','full of'),B('满','mǎn','full of'),B('理','lǐ','ide-'),B('想','xiǎng','-als'),C('的','de','DE'),B('年','nián','young-'),B('轻','qīng','-young'),C('人','rén','people'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),B('接','jiē','received'),B('受','shòu','received'),B('了','le','CMPL'),B('新','xīn','new'),B('式','shì','style'),B('教','jiào','edu-'),B('育','yù','-cation'),P('，'),C('学','xué','studied'),C('习','xí','learning'),C('科','kē','sci-'),C('学','xué','-ence'),P('、'),B('民','mín','demo-'),B('主','zhǔ','-cracy'),C('和','hé','and'),C('现','xiàn','mod-'),C('代','dài','-ern'),C('文','wén','cul-'),C('化','huà','-ture'),P('。')],
-    [C('很','hěn','many'),C('多','duō','many'),C('人','rén','people'),B('出','chū','went a-'),B('国','guó','-broad'),B('留','liú','stay'),B('学','xué','study'),P('，'),B('回','huí','returned'),C('来','lái','CMPL'),B('后','hòu','after'),B('为','wèi','for'),N('中国','Zhōngguó','China'),C('的','de','DE'),B('发','fā','devel-'),B('展','zhǎn','-opment'),C('做','zuò','make'),C('出','chū','CMPL'),B('贡','gòng','contri-'),B('献','xiàn','-bution'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),B('创','chuàng','created'),B('作','zuò','created'),B('新','xīn','new'),C('文','wén','liter-'),B('学','xué','-ature'),P('，'),B('研','yán','re-'),B('究','jiū','-search'),B('新','xīn','new'),C('科','kē','sci-'),C('学','xué','-ence'),P('，'),B('推','tuī','drove'),B('动','dòng','pushed'),B('社','shè','soc-'),B('会','huì','-iety'),B('进','jìn','for-'),B('步','bù','-ward'),P('。')],
-    [C('他','tā','they'),C('们','men','PL'),B('相','xiāng','be-'),B('信','xìn','-lieved'),B('教','jiào','edu-'),B('育','yù','-cation'),C('和','hé','and'),B('知','zhī','know-'),B('识','shí','-ledge'),C('是','shì','are'),B('改','gǎi','chang-'),B('变','biàn','-ing'),C('国','guó','nation-'),B('家','jiā','-state'),B('命','mìng','des-'),B('运','yùn','-tiny'),C('的','de','DE'),B('关','guān','key-'),B('键','jiàn','-key'),P('。')],
-  ],
-  trans:['During the Republic era, China produced a generation of young people full of ideals.','They received new-style education, studying science, democracy, and modern culture.','Many went abroad to study and returned to contribute to China\'s development.','They created new literature, researched new science, and pushed society forward.','They believed education and knowledge were the key to changing the nation\'s destiny.'],
-};
-
-const STORIES_MAP={
-  xia:S_XIA,xia2:S_XIA2,
-  shang:S_SHANG,shang2:S_SHANG2,
-  zhou:S_ZHOU,zhou2:S_ZHOU2,
-  konfucius:S_KONFUCIUS,dongzhou2:S_DONGZHOU2,
-  qin:S_QIN,qin2:S_QIN2,
-  han:S_HAN,han2:S_HAN2,
-  paper:S_PAPER,paper2:S_PAPER2,
-  sanguo:S_SANGUO,sanguo2:S_SANGUO2,
-  shufa:S_SHUFA,shufa2:S_SHUFA2,
-  tao:S_TAO,tao2:S_TAO2,
-  canal:S_CANAL,canal2:S_CANAL2,
-  tang:S_TANG,tang2:S_TANG2,
-  print:S_PRINT,print2:S_PRINT2,
-  song:S_SONG,song2:S_SONG2,
-  tea:S_TEA,tea2:S_TEA2,
-  rider:S_RIDER,rider2:S_RIDER2,
-  scholar:S_SCHOLAR,scholar2:S_SCHOLAR2,
-  yuan:S_YUAN,yuan2:S_YUAN2,
-  ming:S_MING,ming2:S_MING2,
-  qing:S_QING,qing2:S_QING2,
-  reform:S_REFORM,reform2:S_REFORM2,
-  republic:S_REPUBLIC,republic2:S_REPUBLIC2,
-};
 
 // ── HSK VOCABULARY FOR QUIZZES ──
 const HSK_VOCAB={
@@ -2420,7 +1970,7 @@ let playTimeIv=null,lastTimeMark=0;
 let sumMode='weekly',sumOffset=0;
 let hidePY=false,hideEN=false,noPYmode=false;
 let tapped=new Set(),newChars=new Set(),totalNew=0,storyOpenTime=0;
-const curriculumCache={levels:{},culture:null,lessons:{},assessment:null};
+const curriculumCache={levels:{},culture:null,lessons:{},assessment:null,stories:{}};
 let curriculumLoading=false;
 
 function fetchJsonSafe(url){
@@ -2461,10 +2011,64 @@ async function loadAssessmentBank(){
   }catch(e){dbgLog('loadAssessmentBank failed',String(e&&e.message||e));}
   return curriculumCache.assessment||null;
 }
+/**
+ * Stories, per level.
+ *
+ * They used to be 44 objects inline in this file, keyed by dynasty alone, so
+ * `h1-g01` and `h4-g01` served the same 大禹治水 and the level tabs changed only
+ * the vocabulary, the lesson and the quiz. Four levels x 22 dynasties x 2
+ * stories is 176 texts, which cannot live inline.
+ *
+ * A level file may be absent or incomplete while its texts are still being
+ * written. That is not an error: the gate falls back to the level-1 text and
+ * SAYS SO in the reader, which is the honest form of "the story is shared".
+ * Silently serving another level's text as if it were this level's is the
+ * defect being fixed, not the fallback.
+ */
+async function loadLevelStories(lv){
+  if(curriculumCache.stories[lv])return curriculumCache.stories[lv];
+  try{
+    const data=await fetchJsonSafe(`data/stories/hsk${lv}.json`);
+    if(data&&data.stories&&typeof data.stories==='object')curriculumCache.stories[lv]=data.stories;
+  }catch(e){dbgLog('loadLevelStories failed',{lv,msg:String(e&&e.message||e)});}
+  return curriculumCache.stories[lv]||null;
+}
+
+/** Per-level story id. Reads and completions are counted under this, so a level
+ *  earns its own reading gate rather than inheriting level 1's. */
+function storyKeyFor(baseId,level){
+  if(!baseId)return null;
+  const lv=Number(level||curHSK||1);
+  return `${String(baseId).replace(/-h[1-4]$/,'')}-h${lv}`;
+}
+
+/**
+ * The story a gate serves at a level, or null.
+ * `shared:true` means this level has no text of its own yet and is showing
+ * level 1's — the reader states that rather than implying the text was written
+ * for this level.
+ */
+function storyForGate(baseId,level){
+  if(!baseId)return null;
+  const lv=Number(level||curHSK||1);
+  const want=storyKeyFor(baseId,lv);
+  const own=(curriculumCache.stories[lv]||{})[want];
+  if(own)return own;
+  const base=(curriculumCache.stories[1]||{})[storyKeyFor(baseId,1)];
+  if(!base)return null;
+  return Object.assign({},base,{id:want,level:lv,shared:lv!==1,sharedFrom:1});
+}
+
 async function preloadCurriculum(){
   if(curriculumLoading)return;
   curriculumLoading=true;
   await Promise.all([1,2,3,4].map(loadLevelCurriculum));
+  // Level 1 must be present before anything reads a story: it is the fallback
+  // every other level leans on, and the game word pools read STORIES_MAP
+  // synchronously.
+  await loadLevelStories(1);
+  await Promise.all([2,3,4].map(loadLevelStories));
+  rebuildStoriesMap();
   await loadCultureCurriculum();
   curriculumLoading=false;
 }
@@ -4042,8 +3646,8 @@ let flashSt={did:null,mode:null,sub:'review',deck:[],i:0,flipped:false};
 function buildFlashDeckForDynasty(did){
   const d=DYNASTIES.find(x=>x.id===did);if(!d)return[];
   const seen=new Set();const rows=[];
-  [d.story,d.story2].forEach(sid=>{
-    const st=sid&&STORIES_MAP[sid];
+  [d.story,d.story2].forEach(baseId=>{
+    const st=storyForGate(baseId,curHSK);
     if(!st)return;
     extractStoryVocab(st).forEach(w=>{
       if(w&&w.zh&&!seen.has(w.zh)){seen.add(w.zh);rows.push({zh:w.zh,py:w.py||'',en:w.en||''});}
@@ -4260,7 +3864,7 @@ function gameUnlockForDid(did){
   if(gateCleared(s,did))return{listen:true,trace:true,match:true,rain:true};
   const dynasty=DYNASTIES.find(d=>d.id===did);
   if(!dynasty)return{listen:true,trace:true,match:true,rain:true};
-  const storyIds=[dynasty.story,dynasty.story2].filter(Boolean);
+  const storyIds=[dynasty.story,dynasty.story2].filter(Boolean).map(b=>storyKeyFor(b,curHSK));
   // Legacy exemption, for children who finished a story BEFORE the read chain
   // existed. It reads legacyStoriesCompleted — a one-time snapshot taken by
   // ensureState — not the live list. The live list is still written today by
@@ -5602,8 +5206,8 @@ function renderDynastyDetail(d,s){
   const done=gateCleared(s,d.id);
   const stars=s.gateStars&&s.gateStars[gateKeyOf(d.id)]||0;
   const starsStr=done?'★'.repeat(stars)+'☆'.repeat(3-stars):'';
-  const story=d.story&&STORIES_MAP[d.story];
-  const story2=d.story2&&STORIES_MAP[d.story2];
+  const story=storyForGate(d.story,curHSK);
+  const story2=storyForGate(d.story2,curHSK);
   const storyDone=story&&s.storiesCompleted.includes(story.id);
   const story2Done=story2&&s.storiesCompleted.includes(story2.id);
   const storyUnlocked=isStoryUnlockedForDynasty(d.id,s);
@@ -5612,7 +5216,7 @@ function renderDynastyDetail(d,s){
   function storyBtn(st,isDone){
     if(!st)return '';
     if(storyUnlocked)
-      return `<button class="btn-s" onclick="openStory(STORIES_MAP['${st.id}'],DYNASTIES.find(x=>x.id==${d.id}))">${isDone?'📖 Re-read':'📖 Read'}: ${st.title}</button>`;
+      return `<button class="btn-s" onclick="openStory(STORIES_MAP['${st.id}']||storyForGate('${st.id}',curHSK),DYNASTIES.find(x=>x.id==${d.id}))">${isDone?'📖 Re-read':'📖 Read'}: ${st.title}${st.shared?' <span style="opacity:.6;font-size:.9em;">· shared text</span>':''}</button>`;
     return `<button class="btn-s" disabled style="opacity:.45;cursor:not-allowed">🔒 ${st.title}</button>`;
   }
 
@@ -5813,7 +5417,15 @@ function openStory(story,dynasty){
   curStory=story;curDynasty=dynasty;
   tapped=new Set();newChars=new Set();totalNew=0;
   document.getElementById('reader-title').textContent=story.title+' · '+story.en;
-  document.getElementById('reader-desc').innerHTML='<strong>'+dynasty.zh+' · '+dynasty.en+'</strong> ('+dynasty.period+')<br>'+dynasty.desc;
+  // When a level has no text of its own yet, say so. Serving level 1's text
+  // silently is what made the four HSK tabs look like the same reading.
+  const sharedNote=story.shared
+    ?'<div style="margin-top:.5rem;padding:.4rem .55rem;border:1px solid rgba(212,160,23,.28);border-radius:8px;font-size:.72rem;color:var(--muted);line-height:1.5;">'
+      +'This is the HSK1 telling of the story — the HSK'+(story.level||curHSK)+' version is still being written. '
+      +'The words, the lesson and the quiz on this tab are HSK'+(story.level||curHSK)+'.<br>'
+      +'这是 HSK1 版本的课文，本级课文还在编写中。'
+      +'</div>':'';
+  document.getElementById('reader-desc').innerHTML='<strong>'+dynasty.zh+' · '+dynasty.en+'</strong> ('+dynasty.period+')<br>'+dynasty.desc+sharedNote;
   document.getElementById('prog-fill').style.width='0%';
   document.getElementById('prog-lbl').textContent='0%';
   document.getElementById('unlock-btn').disabled=true;
@@ -6469,14 +6081,14 @@ function mergeVocabFromDynasties(gateIds,reviewPrevGates){
   };
   gateIds.forEach(dyId=>{
     const dyn=DYNASTIES.find(x=>x.id===dyId);if(!dyn)return;
-    [dyn.story,dyn.story2].forEach(sid=>addFromStory(sid&&STORIES_MAP[sid]));
+    [dyn.story,dyn.story2].forEach(baseId=>addFromStory(storyForGate(baseId,curHSK)));
   });
   if(reviewPrevGates){
     const did=gateIds[gateIds.length-1];
     for(let i=Math.max(1,did-2);i<did;i++){
       const dyn=DYNASTIES.find(x=>x.id===i);if(!dyn)continue;
-      [dyn.story,dyn.story2].forEach(sid=>{
-        const st=sid&&STORIES_MAP[sid];
+      [dyn.story,dyn.story2].forEach(baseId=>{
+        const st=storyForGate(baseId,curHSK);
         if(st)extractStoryVocab(st).slice(0,4).forEach(w=>{
           if(!seen.has(w.zh)){seen.add(w.zh);primary.push(w);}
         });
@@ -7451,7 +7063,7 @@ function renderParentSummary(){
       <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} days</span></div>
       <div class="psr"><span class="psr-lbl">💪 Practice Queue</span><span class="psr-val">${Object.keys(s.failedWords||{}).length} words</span></div>
       ${Object.keys(s.championCleared||{}).length?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(Object.keys(s.championCleared).length)}</span></div>`:''}
-      ${(()=>{const skipped=DYNASTIES.filter(d=>{const gg=(s.gateGameStars&&s.gateGameStars[gateKeyOf(d.id)])||{};const gp=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);const ids=[d.story,d.story2].filter(Boolean);const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));return gp>0&&reads<2&&!gateCleared(s,d.id);}).map(d=>d.zh+' ('+d.en+')');return skipped.length?`<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span><span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`:'';})()}
+      ${(()=>{const skipped=DYNASTIES.filter(d=>{const gg=(s.gateGameStars&&s.gateGameStars[gateKeyOf(d.id)])||{};const gp=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);const ids=[d.story,d.story2].filter(Boolean).map(b=>storyKeyFor(b,curHSK));const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));return gp>0&&reads<2&&!gateCleared(s,d.id);}).map(d=>d.zh+' ('+d.en+')');return skipped.length?`<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span><span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`:'';})()}
     </div>`;
     if(isNow){
       const ww=Object.values(s.failedWords||{}).filter(w=>w.lastFailed&&w.lastFailed>=ws).sort((a,b)=>b.failCount-a.failCount);

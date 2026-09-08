@@ -96,10 +96,10 @@ test("M-T03 / T03: a new user's mini-quiz does not bypass the read chain", () =>
 
 test("T03: an existing child keeps the access they already had", () => {
   const a = app();
-  const p = F.newUserAfterMiniQuiz(a, "xia");
+  const p = F.newUserAfterMiniQuiz(a, "xia-h1");
   delete p.legacyStoriesCompleted;      // pre-migration save
   F.installState(a, { jenn: p });       // ensureState takes the snapshot
-  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia"],
+  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia-h1"],
     "stories finished before the gate shipped are grandfathered");
   const u = a.gameUnlockForDid(1);
   assert.equal(u.rain, true, "previously reachable games stay reachable");
@@ -107,13 +107,13 @@ test("T03: an existing child keeps the access they already had", () => {
 
 test("T03: the snapshot is taken once and does not grow", () => {
   const a = app();
-  const p = F.newUserAfterMiniQuiz(a, "xia");
+  const p = F.newUserAfterMiniQuiz(a, "xia-h1");
   delete p.legacyStoriesCompleted;
   F.installState(a, { jenn: p });
   // A story finished today must not join the legacy list.
-  a.state.jenn.storiesCompleted.push("shang");
+  a.state.jenn.storiesCompleted.push("shang-h1");
   a.ensureState("jenn");
-  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia"],
+  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia-h1"],
     "re-running ensureState does not re-snapshot");
   assert.equal(a.gameUnlockForDid(2).rain, false, "the new story earns no bypass");
 });
@@ -304,7 +304,7 @@ function studyChars(app, story, known = {}) {
 test("M-T04 / B02e: exploring every study character reaches 100%, not 79%", () => {
   const a = app();
   F.installState(a);
-  const story = a.STORIES_MAP.xia;
+  const story = a.STORIES_MAP["xia-h1"];
   const uniq = studyChars(a, story);
 
   // Reproduce the reader's counters: the denominator must be the unique set.
