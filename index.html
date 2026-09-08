@@ -1866,6 +1866,16 @@ function dbgLog(tag,data){
   else console.log('[DBG '+ts+'] '+tag,data);
 }
 function isObj(v){return !!v&&typeof v==='object'&&!Array.isArray(v);}
+/** Options for MergeState.mergePlayers: the week key and the per-record
+ *  review-evidence merger. Passed explicitly — merge-state is a pure module
+ *  and must not reach for ReviewCore as a global. */
+function mergeOptsFor(s){
+  return{
+    weekKey:(s&&s.weekStart)||null,
+    mergeReviewRecord:(typeof ReviewCore!=='undefined'&&ReviewCore.mergeRecords)||null,
+  };
+}
+
 function mergePlayerState(base,loaded){
   const b=isObj(base)?base:defPlayer();
   const src=isObj(loaded)?loaded:{};
@@ -1901,7 +1911,7 @@ function initFirestore(){
           // A shallow assign would drop anything this device did that the
           // other has not seen. Merge the two histories instead.
           try{
-            state[pid]=MergeState.mergePlayers(state[pid],remote,{weekKey:state[pid].weekStart||null}).player;
+            state[pid]=MergeState.mergePlayers(state[pid],remote,mergeOptsFor(state[pid])).player;
           }catch(e){
             state[pid]=mergePlayerState(state[pid],remote);
           }
@@ -2943,7 +2953,7 @@ function noteSyncConflict(pid,remote,remoteRev){
   // round in progress on both devices is kept twice with the choice surfaced.
   if(remote){
     try{
-      const merged=MergeState.mergePlayers(s,remote,{weekKey:s.weekStart||null});
+      const merged=MergeState.mergePlayers(s,remote,mergeOptsFor(s));
       Object.keys(merged.player).forEach(k=>{s[k]=merged.player[k];});
       if(merged.notes.length)showToast(merged.notes[0],3200);
     }catch(e){dbgLog('merge failed',String(e&&e.message||e));}
@@ -7153,7 +7163,7 @@ function noteEvidence(p,word,skill,correct,opts){
   if(!s.reviewRecords)s.reviewRecords={};
   const o=opts||{};
   s.reviewRecords=ReviewCore.recordAttempt(s.reviewRecords,{
-    wordId:word.zh,skill,correct:!!correct,todayKey:todayKey(),
+    wordId:word.zh,skill,correct:!!correct,todayKey:todayKey(),at:Date.now(),
     supported:!!o.supported,sameSession:!!o.sameSession,source:o.source||null,
   });
 }

@@ -96,10 +96,16 @@ test("a best quiz record is taken whole, never assembled from two attempts", () 
 });
 
 test("M-T17: a deadline reset is not undone by a late score from the dead attempt", () => {
-  // This device reset the gate today.
+  // This device reset the gate today. The fixture is the shape resetGateProgress
+  // actually writes: game stars become a ZEROS OBJECT (the key stays), the best
+  // quiz is deleted, and the reset counter advances. An earlier version of this
+  // test used `gateGameStars: {}`, which the app never produces, and passed
+  // while production resurrected all four threes (audit F02).
+  const zeros = { trace: 0, match: 0, rain: 0, listen: 0 };
   const local = player({
     gateAttemptHistory: { "h1-g01": [{ attemptId: "old", endedKey: "2026-09-05", reason: "deadline" }] },
-    gateGameStars: {},
+    gateGameStars: { "h1-g01": { ...zeros } },
+    gateResetSeq: { "h1-g01": 1 },
   });
   // The other device was offline and still holds the expired attempt's stars.
   const remote = player({
@@ -109,9 +115,107 @@ test("M-T17: a deadline reset is not undone by a late score from the dead attemp
   });
 
   const m = M.mergePlayers(local, remote).player;
-  assert.equal(m.gateGameStars["h1-g01"], undefined, "expired credit does not come back");
+  assert.deepEqual(m.gateGameStars["h1-g01"], zeros, "expired credit does not come back");
   assert.equal(m.gateBestQuiz["h1-g01"], undefined);
   assert.equal(m.gateAttemptHistory["h1-g01"].length, 1, "the archive is kept");
+  assert.equal(m.gateResetSeq["h1-g01"], 1);
+
+  const back = M.mergePlayers(remote, local).player;
+  assert.deepEqual(back.gateGameStars["h1-g01"], zeros, "whichever device merges");
+  assert.equal(back.gateBestQuiz["h1-g01"], undefined);
+});
+
+test("F02: two same-day resets are told apart by attempt, not by date", () => {
+  // Both devices reset the gate on the same day. Remote then earned a new 3★
+  // under its replacement attempt; local's later reset (a second archived id
+  // remote has never seen) supersedes it.
+  const zeros = { trace: 0, match: 0, rain: 0, listen: 0 };
+  const local = player({
+    gateAttemptHistory: { "h1-g01": [
+      { attemptId: "a1", endedKey: "2026-09-05", reason: "deadline" },
+      { attemptId: "a2", endedKey: "2026-09-05", reason: "deadline" },
+    ] },
+    gateGameStars: { "h1-g01": { ...zeros } },
+    gateResetSeq: { "h1-g01": 2 },
+  });
+  const remote = player({
+    gateAttemptHistory: { "h1-g01": [{ attemptId: "a1", endedKey: "2026-09-05", reason: "deadline" }] },
+    gateGameStars: { "h1-g01": { trace: 0, match: 3, rain: 0, listen: 0 } },
+    gateResetSeq: { "h1-g01": 1 },
+  });
+  assert.deepEqual(M.mergePlayers(local, remote).player.gateGameStars["h1-g01"], zeros);
+  assert.deepEqual(M.mergePlayers(remote, local).player.gateGameStars["h1-g01"], zeros);
+});
+
+test("F02: without a reset on either side, game stars still take the best of both", () => {
+  const a = player({ gateGameStars: { "h1-g01": { trace: 3, match: 0, rain: 0, listen: 0 } } });
+  const b = player({ gateGameStars: { "h1-g01": { trace: 0, match: 2, rain: 0, listen: 0 } } });
+  assert.deepEqual(M.mergePlayers(a, b).player.gateGameStars["h1-g01"], { trace: 3, match: 2, rain: 0, listen: 0 });
+});
+
+test("F02: the live timer wins over one whose attempt is archived", () => {
+  const dead = { startKey: "2026-08-01", deadlineKey: "2026-08-06", active: true, days: 5, attemptId: "g1-old" };
+  const live = { startKey: "2026-09-06", deadlineKey: "2026-09-11", active: true, days: 5, attemptId: "g1-new" };
+  const local = player({ gateTimers: { "h1-g01": dead } });
+  const remote = player({
+    gateTimers: { "h1-g01": live },
+    gateAttemptHistory: { "h1-g01": [{ attemptId: "g1-old", endedKey: "2026-09-06", reason: "deadline" }] },
+  });
+  assert.deepEqual(M.mergePlayers(local, remote).player.gateTimers["h1-g01"], live);
+  assert.deepEqual(M.mergePlayers(remote, local).player.gateTimers["h1-g01"], live);
+});
+
+test("F02: review evidence from both devices is kept, key by key", () => {
+  const local = player({ reviewRecords: { "水::meaning": { wordId: "水", skill: "meaning", attempts: [{ on: "2026-09-01", correct: true }], lastSeenOn: "2026-09-01" } } });
+  const remote = player({ reviewRecords: { "山::recognition": { wordId: "山", skill: "recognition", attempts: [{ on: "2026-09-02", correct: false }], lastSeenOn: "2026-09-02" } } });
+  const m = M.mergePlayers(local, remote).player;
+  assert.deepEqual(Object.keys(m.reviewRecords).sort(), ["山::recognition", "水::meaning"]);
+  const empty = player({ reviewRecords: {} });
+  assert.deepEqual(Object.keys(M.mergePlayers(empty, remote).player.reviewRecords), ["山::recognition"],
+    "an empty local store no longer erases the other device's history");
+});
+
+test("F02: without a record merger, the copy with more evidence is kept", () => {
+  const two = { wordId: "水", skill: "meaning", attempts: [{ on: "2026-09-01" }, { on: "2026-09-02" }], lastSeenOn: "2026-09-02", stage: 2 };
+  const three = { wordId: "水", skill: "meaning", attempts: [{ on: "2026-09-01" }, { on: "2026-09-02" }, { on: "2026-09-03" }], lastSeenOn: "2026-09-03", stage: 3 };
+  const m = M.mergePlayers(player({ reviewRecords: { "水::meaning": two } }), player({ reviewRecords: { "水::meaning": three } })).player;
+  assert.equal(m.reviewRecords["水::meaning"].stage, 3);
+});
+
+test("F02: an injected record merger is used and its result is order-independent", () => {
+  const R = require("../js/review-core.js");
+  const day1 = "2026-09-01", day2 = "2026-09-03";
+  // Device A saw an unaided success on day 1; device B saw one on day 3.
+  const a = R.recordAttempt({}, { wordId: "水", skill: "meaning", correct: true, todayKey: day1, id: "e1" });
+  const b = R.recordAttempt({}, { wordId: "水", skill: "meaning", correct: true, todayKey: day2, id: "e2" });
+  const opts = { mergeReviewRecord: R.mergeRecords };
+  const ab = M.mergePlayers(player({ reviewRecords: a }), player({ reviewRecords: b }), opts).player.reviewRecords["水::meaning"];
+  const ba = M.mergePlayers(player({ reviewRecords: b }), player({ reviewRecords: a }), opts).player.reviewRecords["水::meaning"];
+  // Two unaided successes on separate dates: stage 2, due 3 days after the second.
+  assert.equal(ab.attempts.length, 2, "both attempts survive");
+  assert.equal(ab.stage, 2);
+  assert.equal(ab.dueOn, "2026-09-06");
+  assert.deepEqual(ab.independentSuccesses, [day1, day2]);
+  assert.deepEqual(ba, ab, "merge order does not change the schedule");
+});
+
+test("F02: a round the other device is still playing is adopted into an empty slot", () => {
+  const theirs = { matched: 2, moves: 5, updatedAt: 200 };
+  const local = player({ pendingSessions: { match: null } });
+  const remote = player({ pendingSessions: { match: theirs } });
+  const { player: m, notes } = M.mergePlayers(local, remote);
+  assert.deepEqual(m.pendingSessions.match, theirs);
+  assert.equal(m.conflictSessions.length, 0);
+  assert.deepEqual(notes, []);
+});
+
+test("F02: a slot this device cleared after the other's save stays cleared", () => {
+  const theirs = { matched: 2, moves: 5, updatedAt: 200 };
+  const local = player({ pendingSessions: { match: null }, pendingSessionClearedAt: { match: 300 } });
+  const remote = player({ pendingSessions: { match: theirs } });
+  const m = M.mergePlayers(local, remote).player;
+  assert.equal(m.pendingSessions.match, null, "the child finished that round here");
+  assert.equal(m.pendingSessionClearedAt.match, 300);
 });
 
 test("two different rounds in progress are both kept, with the choice surfaced", () => {

@@ -361,3 +361,52 @@ test("app: a wrong Listen answer is evidence, and still reaches the practice que
   assert.equal(rec.dueOn, "2026-09-07", "back tomorrow");
   assert.equal(app.state.jenn.failedWords["书"].failCount, 1, "both systems, one answer");
 });
+
+// ── F02: replayable evidence ───────────────────────────────────────────────
+
+test("F02: every recorded attempt carries a stable id", () => {
+  const store = play([{ wordId: "水", skill: "meaning", correct: true, todayKey: DAY }]);
+  const rec = R.getRecord(store, "水", "meaning");
+  assert.ok(rec.attempts[0].id, "an id is minted");
+  const again = R.recordAttempt(store, { wordId: "水", skill: "meaning", correct: false, todayKey: DAY, id: "given" });
+  assert.equal(R.getRecord(again, "水", "meaning").attempts[1].id, "given", "a caller's id is kept");
+});
+
+test("F02: replaying a union of two histories reproduces the hand-computed schedule", () => {
+  // Day 1 unaided success (A), day 2 miss (B), day 4 unaided success (A).
+  // Ladder: 1 -> success stage 1 due +1; miss -> stage 0 due +1; success -> stage 1 due +1 = day 5.
+  const a = play([
+    { wordId: "火", skill: "recognition", correct: true, todayKey: "2026-09-01", id: "a1" },
+    { wordId: "火", skill: "recognition", correct: true, todayKey: "2026-09-04", id: "a2" },
+  ]);
+  const b = play([{ wordId: "火", skill: "recognition", correct: false, todayKey: "2026-09-02", id: "b1" }]);
+  const m = R.mergeRecords(R.getRecord(a, "火", "recognition"), R.getRecord(b, "火", "recognition"));
+  assert.equal(m.attempts.length, 3);
+  assert.deepEqual(m.attempts.map((e) => e.id), ["a1", "b1", "a2"], "in study-date order");
+  assert.equal(m.stage, 1);
+  assert.equal(m.dueOn, "2026-09-05");
+  assert.equal(m.unresolvedRuns, 0);
+  assert.deepEqual(m.independentSuccesses, ["2026-09-01", "2026-09-04"]);
+  assert.equal(m.firstTaughtOn, "2026-09-01");
+});
+
+test("F02: merging a record with itself changes nothing, and legacy entries do not duplicate", () => {
+  const legacy = {
+    wordId: "山", skill: "meaning", stage: 1, dueOn: "2026-09-07",
+    attempts: [{ on: DAY, correct: true, supported: false, sameSession: false, source: "listen" }],
+    independentSuccesses: [DAY], firstTaughtOn: DAY, lastSeenOn: DAY, unresolvedRuns: 0,
+  };
+  const m = R.mergeRecords(legacy, JSON.parse(JSON.stringify(legacy)));
+  assert.equal(m.attempts.length, 1, "the same id-less attempt seen on both devices counts once");
+  assert.equal(m.stage, 1);
+  assert.equal(m.dueOn, "2026-09-07");
+});
+
+test("F02: at the history bound the fuller copy is kept whole rather than under-replayed", () => {
+  const full = { wordId: "人", skill: "meaning", stage: 5, dueOn: "2026-10-01", lastSeenOn: DAY,
+    attempts: Array.from({ length: R.MAX_ATTEMPTS }, (_, i) => ({ id: `f${i}`, on: DAY, correct: true })) };
+  const small = { wordId: "人", skill: "meaning", stage: 1, dueOn: "2026-09-07", lastSeenOn: DAY,
+    attempts: [{ id: "s1", on: DAY, correct: true }] };
+  assert.equal(R.mergeRecords(full, small).stage, 5);
+  assert.equal(R.mergeRecords(small, full).stage, 5);
+});

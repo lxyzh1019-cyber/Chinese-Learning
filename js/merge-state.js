@@ -118,34 +118,115 @@
     return Object.assign({}, b || {}, a || {});
   }
 
-  /** The most recent deadline reset recorded for a gate, or 0. */
-  function lastResetAt(s, gateKey) {
+  /** What one side knows about a gate's deadline resets. */
+  function resetMarker(s, gateKey) {
     const hist = ((s.gateAttemptHistory || {})[gateKey]) || [];
-    return hist.reduce((m, h) => Math.max(m, Date.parse(h.endedKey || "") || 0), 0);
+    return {
+      ids: new Set(hist.map((h) => h && h.attemptId).filter(Boolean)),
+      day: hist.reduce((m, h) => Math.max(m, Date.parse((h && h.endedKey) || "") || 0), 0),
+      seq: Number(((s.gateResetSeq || {})[gateKey]) || 0),
+    };
+  }
+
+  /** The most recent deadline reset recorded for a gate, or 0. Kept for callers that want a date. */
+  function lastResetAt(s, gateKey) {
+    return resetMarker(s, gateKey).day;
+  }
+
+  /**
+   * Has `x` reset this gate more recently than `y`?
+   *
+   * By attempt identity first: an archived attempt id that the other side has
+   * never seen is a reset it does not know about. Dates come second because
+   * they are day-granular — two resets on one day are indistinguishable by
+   * date — and the monotonic counter breaks the remaining ties.
+   */
+  function resetNewer(x, y) {
+    const xOnly = [...x.ids].some((id) => !y.ids.has(id));
+    const yOnly = [...y.ids].some((id) => !x.ids.has(id));
+    if (xOnly && !yOnly) return true;
+    if (yOnly && !xOnly) return false;
+    if (x.day !== y.day) return x.day > y.day;
+    return x.seq > y.seq;
   }
 
   /**
    * Best-per-gate, refusing scores from an attempt that has since been reset.
    *
    * "Gate-reset events cannot be undone by a late old-attempt score": if one
-   * side has reset a gate more recently than the other side's record was made,
-   * that record belongs to the dead attempt and is dropped.
+   * side has reset a gate more recently than the other, the other side's
+   * record belongs to the dead attempt. The resetting side's record is taken
+   * WHOLE — a zeros object counts, because that is what resetGateProgress
+   * writes for game stars. The old rule only dropped a stale record when the
+   * resetting side held nothing at all, so a reset that wrote zeros lost to a
+   * stale copy's threes through the per-field max.
    */
   function mergeGateRecords(local, remote, field, pick) {
-    const out = Object.assign({}, local[field] || {});
-    Object.entries(remote[field] || {}).forEach(([gateKey, remoteRec]) => {
-      const localResetAt = lastResetAt(local, gateKey);
-      const remoteResetAt = lastResetAt(remote, gateKey);
-      if (localResetAt > remoteResetAt) return;      // remote's record predates our reset
-      const mine = out[gateKey];
-      out[gateKey] = mine === undefined ? remoteRec : pick(mine, remoteRec);
-    });
-    // Anything we hold that predates the OTHER side's newer reset must go too.
-    Object.keys(out).forEach((gateKey) => {
-      if (lastResetAt(remote, gateKey) > lastResetAt(local, gateKey) &&
-          (remote[field] || {})[gateKey] === undefined) {
-        delete out[gateKey];
+    const out = {};
+    const mine = local[field] || {}, theirs = remote[field] || {};
+    const keys = new Set([...Object.keys(mine), ...Object.keys(theirs)]);
+    keys.forEach((gateKey) => {
+      const ml = resetMarker(local, gateKey), mr = resetMarker(remote, gateKey);
+      if (resetNewer(mr, ml)) {                       // their reset is the newer one
+        if (theirs[gateKey] !== undefined) out[gateKey] = theirs[gateKey];
+        return;
       }
+      if (resetNewer(ml, mr)) {                       // ours is
+        if (mine[gateKey] !== undefined) out[gateKey] = mine[gateKey];
+        return;
+      }
+      if (mine[gateKey] === undefined) { if (theirs[gateKey] !== undefined) out[gateKey] = theirs[gateKey]; return; }
+      if (theirs[gateKey] === undefined) { out[gateKey] = mine[gateKey]; return; }
+      out[gateKey] = pick(mine[gateKey], theirs[gateKey]);
+    });
+    return out;
+  }
+
+  /**
+   * One timer per gate. Prefer the one whose attempt is still live — not
+   * archived on either side — then the later start, then local.
+   */
+  function mergeGateTimers(local, remote) {
+    const out = {};
+    const mine = local.gateTimers || {}, theirs = remote.gateTimers || {};
+    const archived = new Set();
+    [local, remote].forEach((s) => Object.values(s.gateAttemptHistory || {}).forEach((hist) =>
+      (hist || []).forEach((h) => { if (h && h.attemptId) archived.add(h.attemptId); })));
+    new Set([...Object.keys(mine), ...Object.keys(theirs)]).forEach((k) => {
+      const a = mine[k], b = theirs[k];
+      if (!a) { out[k] = b; return; }
+      if (!b) { out[k] = a; return; }
+      const aLive = a.attemptId && !archived.has(a.attemptId);
+      const bLive = b.attemptId && !archived.has(b.attemptId);
+      if (aLive !== bLive) { out[k] = aLive ? a : b; return; }
+      if (String(a.startKey || "") !== String(b.startKey || "")) {
+        out[k] = String(b.startKey || "") > String(a.startKey || "") ? b : a; return;
+      }
+      out[k] = a;
+    });
+    return out;
+  }
+
+  /**
+   * Learning evidence from both devices, key by key.
+   *
+   * There was no rule for this at all: the whole object came from the local
+   * copy, so a device with an empty store erased the other's history on the
+   * first sync. `mergeRecord` (ReviewCore.mergeRecords) replays the union of
+   * both histories; without it the copy with more evidence is kept.
+   */
+  function mergeReviewRecords(a, b, mergeRecord) {
+    const out = {};
+    const keys = new Set([...Object.keys(a || {}), ...Object.keys(b || {})]);
+    keys.forEach((k) => {
+      const x = (a || {})[k], y = (b || {})[k];
+      if (!x) { out[k] = y; return; }
+      if (!y) { out[k] = x; return; }
+      if (typeof mergeRecord === "function") { out[k] = mergeRecord(x, y); return; }
+      const nx = (x.attempts || []).length, ny = (y.attempts || []).length;
+      if (ny > nx) { out[k] = y; return; }
+      if (nx > ny) { out[k] = x; return; }
+      out[k] = String(y.lastSeenOn || "") > String(x.lastSeenOn || "") ? y : x;
     });
     return out;
   }
@@ -228,19 +309,36 @@
       });
       return merged;
     })();
+    out.gateResetSeq = maxNumericMap(a.gateResetSeq, b.gateResetSeq);
     out.gateStars = mergeGateRecords(a, b, "gateStars", (x, y) => Math.max(x, y));
     out.gateGameStars = mergeGateRecords(a, b, "gateGameStars", bestGameStars);
     out.gateBestQuiz = mergeGateRecords(a, b, "gateBestQuiz", bestQuiz);
     out.championBestQuiz = mergeGateRecords(a, b, "championBestQuiz", bestQuiz);
     out.championCleared = maxNumericMap(a.championCleared, b.championCleared);
+    out.gateTimers = mergeGateTimers(a, b);
 
-    // Two different rounds in progress cannot be merged. Keep both.
-    out.pendingSessions = Object.assign({}, b.pendingSessions || {}, a.pendingSessions || {});
+    // Retention evidence is long-term learning history; it survives resets and
+    // must survive a sync.
+    out.reviewRecords = mergeReviewRecords(a.reviewRecords, b.reviewRecords, o.mergeReviewRecord);
+
+    // Two different rounds in progress cannot be merged. Keep both. A slot that
+    // is null here is either never filled or deliberately cleared; the clear
+    // stamp tells the two apart, so a round the other device is still playing
+    // is adopted unless this device cleared that slot after it was last saved.
+    out.pendingSessionClearedAt = maxNumericMap(a.pendingSessionClearedAt, b.pendingSessionClearedAt);
+    out.pendingSessions = Object.assign({}, a.pendingSessions || {});
     out.conflictSessions = Array.isArray(a.conflictSessions) ? a.conflictSessions.slice() : [];
     Object.keys(b.pendingSessions || {}).forEach((slot) => {
       const mine = (a.pendingSessions || {})[slot];
       const theirs = (b.pendingSessions || {})[slot];
-      if (!mine || !theirs) return;
+      if (!theirs) { if (mine === undefined) out.pendingSessions[slot] = theirs; return; }
+      if (!mine) {
+        const clearedAt = Number(((a.pendingSessionClearedAt || {})[slot]) || 0);
+        const savedAt = Number(theirs.updatedAt || 0);
+        if (savedAt > clearedAt || (!clearedAt && !savedAt)) out.pendingSessions[slot] = theirs;
+        else out.pendingSessions[slot] = null;
+        return;
+      }
       if (JSON.stringify(mine) === JSON.stringify(theirs)) return;
       out.conflictSessions.push({ slot, at: Date.now(), other: theirs });
       notes.push(`two different ${slot} rounds were in progress; both kept`);
@@ -262,5 +360,6 @@
     MAX_LEDGER, newEventId, ensureLedger, recordStarEvent, trimLedger,
     totalFromLedger, weekFromLedger, mergePlayers,
     unionArray, unionById, maxNumericMap, mergeFailedWords, lastResetAt,
+    resetMarker, resetNewer, mergeGateRecords, mergeGateTimers, mergeReviewRecords,
   };
 });

@@ -76,19 +76,45 @@
    * shown the answer — that is teaching, not retrieval, so it never advances
    * the schedule.
    */
+  /** Bounded history per record. Older entries fall off the front. */
+  const MAX_ATTEMPTS = 40;
+
+  function newAttemptId(todayKey) {
+    return `${todayKey}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  }
+
   function recordAttempt(store, opts) {
     const { wordId, skill, correct, todayKey } = opts;
     if (!wordId || SKILLS.indexOf(skill) === -1) return store;
-    const supported = !!opts.supported;
-    const sameSession = !!opts.sameSession;
-
-    const rec = Object.assign({}, getRecord(store, wordId, skill));
-    rec.attempts = rec.attempts.concat([{
-      on: todayKey, correct: !!correct, supported, sameSession,
+    const entry = {
+      // Stable id and an ordering hint, so two devices' histories can be
+      // unioned and replayed rather than one being kept and the other lost.
+      id: opts.id || newAttemptId(todayKey),
+      at: typeof opts.at === "number" ? opts.at : null,
+      on: todayKey, correct: !!correct, supported: !!opts.supported, sameSession: !!opts.sameSession,
       source: opts.source || null,
-    }]).slice(-40);
+    };
+    const rec = applyAttempt(getRecord(store, wordId, skill), entry);
+    const out = Object.assign({}, store);
+    out[key(wordId, skill)] = rec;
+    return out;
+  }
+
+  /**
+   * Fold one attempt into a record. Pure: the result depends only on the
+   * record and the entry, which is what lets a merge replay a union of two
+   * devices' attempts and land on the same schedule either way round.
+   */
+  function applyAttempt(prev, entry) {
+    const rec = Object.assign({}, prev);
+    const todayKey = entry.on;
+    const correct = !!entry.correct;
+    const supported = !!entry.supported;
+    const sameSession = !!entry.sameSession;
+    rec.attempts = (rec.attempts || []).concat([entry]).slice(-MAX_ATTEMPTS);
     rec.lastSeenOn = todayKey;
     if (!rec.firstTaughtOn) rec.firstTaughtOn = todayKey;
+    rec.independentSuccesses = rec.independentSuccesses || [];
 
     const independent = correct && !supported && !sameSession;
 
@@ -113,10 +139,53 @@
       // check again tomorrow without advancing.
       rec.dueOn = rec.dueOn && rec.dueOn > todayKey ? rec.dueOn : addDays(todayKey, LADDER[0]);
     }
+    return rec;
+  }
 
-    const out = Object.assign({}, store);
-    out[key(wordId, skill)] = rec;
-    return out;
+  /** Identity of one attempt entry; entries saved before ids existed are keyed by content. */
+  function attemptKey(e) {
+    if (e && e.id) return `id:${e.id}`;
+    return `legacy:${JSON.stringify([e.on, !!e.correct, !!e.supported, !!e.sameSession, e.source || null])}`;
+  }
+
+  /**
+   * Merge two copies of one record, losslessly where the histories allow it.
+   *
+   * The attempts are unioned by id, ordered by (study date, arrival), and
+   * replayed through applyAttempt from a blank record; because the fold is
+   * pure, merge(a, b) and merge(b, a) land on the same schedule, and merging
+   * a record with itself changes nothing. When either side has hit the
+   * history bound, older attempts have already been dropped and a replay
+   * would understate the record, so the fuller copy is kept whole instead.
+   */
+  function mergeRecords(a, b) {
+    if (!a) return b || null;
+    if (!b) return a;
+    const la = a.attempts || [], lb = b.attempts || [];
+    const bounded = la.length >= MAX_ATTEMPTS || lb.length >= MAX_ATTEMPTS;
+    if (bounded) return pickFuller(a, b);
+    const seen = new Map();
+    [...la, ...lb].forEach((e) => { const k = attemptKey(e); if (!seen.has(k)) seen.set(k, e); });
+    const entries = [...seen.values()].map((e, i) => ({ e, i }));
+    entries.sort((x, y) => {
+      const d = String(x.e.on || "").localeCompare(String(y.e.on || ""));
+      if (d) return d;
+      const ax = typeof x.e.at === "number" ? x.e.at : 0, ay = typeof y.e.at === "number" ? y.e.at : 0;
+      if (ax !== ay) return ax - ay;
+      const kx = attemptKey(x.e), ky = attemptKey(y.e);
+      return kx < ky ? -1 : kx > ky ? 1 : x.i - y.i;
+    });
+    let rec = blankRecord(a.wordId || b.wordId, a.skill || b.skill);
+    entries.forEach(({ e }) => { rec = applyAttempt(rec, e); });
+    return rec;
+  }
+
+  /** The copy with more evidence; on a tie, the one seen more recently, then `a`. */
+  function pickFuller(a, b) {
+    const na = (a.attempts || []).length, nb = (b.attempts || []).length;
+    if (nb > na) return b;
+    if (na > nb) return a;
+    return String(b.lastSeenOn || "") > String(a.lastSeenOn || "") ? b : a;
   }
 
   /**
@@ -202,6 +271,7 @@
   return {
     SKILLS, PRACTICE_SKILLS, LADDER, LABELS, BUDGET,
     key, blankRecord, getRecord, addDays, isDue,
-    recordAttempt, statusOf, selectDue, budgetSpent, targetsFromAssessment,
+    recordAttempt, applyAttempt, mergeRecords, pickFuller, MAX_ATTEMPTS,
+    statusOf, selectDue, budgetSpent, targetsFromAssessment,
   };
 });
