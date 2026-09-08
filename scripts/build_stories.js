@@ -29,8 +29,17 @@ function sourceDir(lv) { return path.join(ROOT, "content", "stories", `hsk${lv}`
 function buildLevel(lv, dict) {
   const dir = sourceDir(lv);
   if (!fs.existsSync(dir)) return null;
-  const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
-  if (!files.length) return null;
+  const all = fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
+  // A draft is a seed, not a finished text — staged material for a level still
+  // being written. Building it emitted a corpus that then failed validation,
+  // which made `npm run build:stories` with no argument exit 1 on a clean tree.
+  const drafts = [];
+  const files = all.filter((f) => {
+    const d = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+    if (d.draft) { drafts.push(f); return false; }
+    return true;
+  });
+  if (!files.length) return { stories: null, problems: [], drafts };
 
   const stories = {};
   const problems = [];
@@ -62,7 +71,7 @@ function buildLevel(lv, dict) {
     };
   });
 
-  return { stories, problems };
+  return { stories, problems, drafts };
 }
 
 function main() {
@@ -74,6 +83,10 @@ function main() {
   for (const lv of only) {
     const built = buildLevel(lv, dict);
     if (!built) { console.log(`  HSK${lv}: no sources yet — the level falls back to HSK1 at runtime`); continue; }
+    if (!built.stories) {
+      console.log(`  HSK${lv}: ${built.drafts.length} draft source(s), none finished — the level falls back to HSK1 at runtime`);
+      continue;
+    }
     if (built.problems.length) {
       failed = true;
       console.error(`\n  HSK${lv}: ${built.problems.length} problem(s) — nothing written for this level`);
@@ -84,6 +97,7 @@ function main() {
     const out = path.join(ROOT, "data", "stories", `hsk${lv}.json`);
     fs.mkdirSync(path.dirname(out), { recursive: true });
     fs.writeFileSync(out, JSON.stringify({ level: lv, stories: built.stories }, null, 1) + "\n");
+    if (built.drafts.length) console.log(`  HSK${lv}: ${built.drafts.length} draft source(s) skipped`);
     const n = Object.keys(built.stories).length;
     const sents = Object.values(built.stories).map((s) => s.sents.length);
     const study = Object.values(built.stories)

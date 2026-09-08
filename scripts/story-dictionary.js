@@ -27,12 +27,32 @@ const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
 
+/**
+ * A gloss this dictionary will not carry.
+ *
+ * The point of the dictionary is that the build never invents a meaning, so it
+ * must not launder one either. Staged sources — the HSK3 seeds are 22 files of
+ * pre-repair text — still hold 218 fragment glosses (史 "-tory", 治 "-rule"),
+ * and admitting them would feed exactly the class of defect the corpus was just
+ * cleaned of back into the next story built. Filtering on the GLOSS rather than
+ * on which file it came from is the invariant that actually holds.
+ */
+function isJunkGloss(en) {
+  const t = String(en == null ? "" : en).trim();
+  if (!t) return true;
+  if (/^[-—]/.test(t)) return true;            // half of a longer word's English
+  if (/^[A-Z]{2,5}$/.test(t)) return true;     // a grammar code
+  if (/surname/i.test(t)) return true;         // the 水 "surname Shui" class
+  return false;
+}
+
 function addEntry(dict, zh, py, en, source) {
   if (!zh || !py) return;
   const key = String(zh).trim();
   const pinyin = String(py).trim();
   const gloss = String(en == null ? "" : en).trim();
   if (!key || !pinyin) return;
+  if (isJunkGloss(gloss)) return;
   if (dict[key]) return;                 // first source wins
   dict[key] = { zh: key, py: pinyin, en: gloss, source };
 }
@@ -49,10 +69,17 @@ function fromStories(dict) {
   const root = path.join(ROOT, "content", "stories");
   if (!fs.existsSync(root)) return 0;
   let n = 0;
-  fs.readdirSync(root).forEach((levelDir) => {
+  // Deterministic order, lowest level first. `readdirSync` does not promise an
+  // order, and first-source-wins means the order DECIDES the gloss wherever two
+  // levels gloss the same span differently — so an unsorted read made the built
+  // corpus depend on the filesystem, contradicting the reproducibility this
+  // whole toolchain exists to give.
+  const levelDirs = fs.readdirSync(root)
+    .filter((d) => fs.statSync(path.join(root, d)).isDirectory())
+    .sort((a, b) => (parseInt(a.replace(/\D/g, ""), 10) || 99) - (parseInt(b.replace(/\D/g, ""), 10) || 99));
+  levelDirs.forEach((levelDir) => {
     const dir = path.join(root, levelDir);
-    if (!fs.statSync(dir).isDirectory()) return;
-    fs.readdirSync(dir).filter((f) => f.endsWith(".json")).forEach((f) => {
+    fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort().forEach((f) => {
       const src = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
       (src.sents || []).forEach((sent) => {
         (sent.seg || []).forEach((tok) => {
@@ -211,7 +238,7 @@ function tokenizeSegmented(seg, dict, names, bonus) {
   return { tokens, unknown };
 }
 
-module.exports = { build, tokenize, tokenizeSegmented, PUNCT };
+module.exports = { build, tokenize, tokenizeSegmented, isJunkGloss, PUNCT };
 
 if (require.main === module) {
   const { stats } = build();

@@ -1210,3 +1210,67 @@ test("P-T03: a revoked inherited level is explained rather than vanishing", () =
   for (let g = 3; g <= 22; g++) s.gatesCompleted.push(`h1-g${String(g).padStart(2, "0")}`);
   assert.equal(a.inheritedAccessHtml(s), "", "no note once the level is genuinely open");
 });
+
+// ── Self-audit findings ────────────────────────────────────────────────────
+
+test("A-T30: a mid-quiz story resume works on a level serving a shared text", () => {
+  const a = app();
+  F.installState(a);
+  // A level with no text of its own is served a story SYNTHESIZED by
+  // storyForGate — it carries that level's id but is never in STORIES_MAP.
+  // Resolving through the map alone made "Continue story quiz" a dead button
+  // on every level but 1.
+  assert.equal(a.STORIES_MAP["xia-h2"], undefined, "the shared story is not a map member");
+  const st = a.storyById("xia-h2");
+  assert.ok(st, "but it still resolves");
+  assert.equal(st.id, "xia-h2");
+  assert.equal(a.storyById("xia-h1").id, "xia-h1", "a real member resolves too");
+  assert.equal(a.storyById("nope-h1"), null);
+});
+
+test("A-T31: a stored story id finds its dynasty despite the level suffix", () => {
+  const a = app();
+  F.installState(a);
+  // `DYNASTIES.find(d => d.story === ps.storyId)` compared a suffixed id
+  // against bare base ids, so it could never match and the caller fell through
+  // to DYNASTIES[0] — drawing the mini-quiz word pool from the Xia gate.
+  for (const lv of [1, 2, 3, 4]) {
+    assert.equal(a.dynastyForStoryId(`qin-h${lv}`).id, 5, `qin-h${lv} is gate 5`);
+    assert.equal(a.dynastyForStoryId(`qin2-h${lv}`).id, 5, "the second story too");
+  }
+  assert.equal(a.dynastyForStoryId("nope-h1"), null);
+});
+
+test("A-T32: the character index is rebuilt when the stories are", () => {
+  const a = app();
+  F.installState(a);
+  // Stories are fetched now, so a call before the fetch lands cached an empty
+  // index forever — and Trace reads it.
+  a.curriculumCache.stories[1] = {};
+  a.rebuildStoriesMap();
+  assert.equal(Object.keys(a.getCharMeta()).length > 0, true,
+    "vocabulary still fills it even with no stories");
+  const empty = Object.keys(a.getCharMeta()).length;
+
+  a.curriculumCache.stories[1] = JSON.parse(
+    require("fs").readFileSync(require("path").join(__dirname, "..", "data", "stories", "hsk1.json"), "utf8")).stories;
+  a.rebuildStoriesMap();
+  assert.ok(Object.keys(a.getCharMeta()).length > empty,
+    "and the index picks the stories up once they arrive");
+});
+
+test("A-T33: a character with no standalone reading is shown, never guessed at", () => {
+  const a = app();
+  F.installState(a);
+  // Word-level tokens leave 34 characters appearing only inside a word.
+  const out = a.uniqueChars([{ zh: "房间", py: "fángjiān", en: "room" }]);
+  const fang = out.find((c) => c.zh === "房");
+  assert.ok(fang, "the character is still offered for tracing");
+  assert.equal(fang.py, "", "with no invented syllable");
+  assert.equal(fang.fromWord, "房间", "and the word it came from recorded");
+  assert.equal(fang.fromWordPy, "fángjiān", "so the card is not blank");
+
+  // A single-character word keeps its own reading.
+  const shui = a.uniqueChars([{ zh: "水", py: "shuǐ", en: "water" }])[0];
+  assert.equal(shui.py, "shuǐ");
+});

@@ -204,3 +204,44 @@ test("C03: flashcard passes follow their gate through the migration", () => {
   assert.equal(player.flashPassDone["h2-g06"], true, "or Trace would silently re-lock");
   assert.equal(player.flashPassDone["6"], undefined);
 });
+
+test("a save from the PREVIOUS release still gets the story remap", () => {
+  // This is the population the last release created: gate ids are already
+  // `h{level}-g{NN}` and schemaVersion is 2, but story ids are still bare.
+  // Gating both repairs on one version stamp skipped this remap entirely —
+  // the same mistake as the flashPassDone remap, which only a browser caught.
+  const doc = {
+    schemaVersion: 2,
+    gatesCompleted: ["h1-g01", "h1-g02"],
+    gateStars: { "h1-g01": 3 },
+    flashPassDone: { "h1-g01": true },
+    storyReadCount: { xia: 2, xia2: 2 },
+    storiesCompleted: ["xia"],
+  };
+  const { player, report } = G.migratePlayer(doc);
+
+  assert.equal(report.alreadyMigrated, false, "there is still work to do on this save");
+  assert.equal(report.migratedGates, false, "the gate keys are already correct");
+  assert.equal(report.migratedStories, true, "the story ids are not");
+
+  // The gate phase must NOT run: parseInt("h1-g01") is NaN, so running it would
+  // filter every completion away.
+  assert.deepEqual(player.gatesCompleted, ["h1-g01", "h1-g02"], "completions survive untouched");
+  assert.equal(player.gateStars["h1-g01"], 3);
+  assert.equal(player.flashPassDone["h1-g01"], true);
+
+  assert.equal(player.storyReadCount["xia-h1"], 2, "reads move to the level key");
+  assert.equal(player.storyReadCount.xia, undefined);
+  assert.deepEqual(player.storiesCompleted, ["xia-h1"]);
+  assert.equal(player.schemaVersion, G.SCHEMA_VERSION);
+});
+
+test("the two migration phases are independent and both idempotent", () => {
+  const legacy = { gatesCompleted: [1, 2], gateStars: { 1: 3 }, storyReadCount: { xia: 2 } };
+  const once = G.migratePlayer(legacy).player;
+  const twice = G.migratePlayer(once);
+  assert.equal(twice.report.alreadyMigrated, true, "nothing left to do the second time");
+  assert.deepEqual(twice.player.gatesCompleted, ["h1-g01", "h1-g02"]);
+  assert.equal(twice.player.storyReadCount["xia-h1"], 2);
+  assert.deepEqual(Object.keys(twice.player.storyReadCount), ["xia-h1"], "no double suffix");
+});

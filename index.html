@@ -1339,6 +1339,10 @@ function rebuildStoriesMap(){
     Object.keys(lvl).forEach(k=>{next[k]=lvl[k];});
   });
   STORIES_MAP=next;
+  // The character index is derived from STORIES_MAP and was memoized forever.
+  // Stories are fetched now, so a first call before or during the fetch cached
+  // an empty index permanently — and Trace reads it.
+  charMetaIndex=null;
   return STORIES_MAP;
 }
 
@@ -4331,7 +4335,11 @@ function uniqueChars(words){
       const info=meta[ch];
       if(info){m[ch]={zh:ch,py:info.py,en:info.en||''};return;}
       // No standalone reading known: show the source word instead of guessing.
-      m[ch]={zh:ch,py:'',en:`in ${w.zh}${w.en?' — '+w.en:''}`,fromWord:w.zh};
+      // Word-level tokens mean 34 characters now appear only inside a word, and
+      // 25 of those have no standalone reading anywhere in the curriculum.
+      // Show the word they come from rather than inventing a syllable for them.
+      m[ch]={zh:ch,py:'',en:`in ${w.zh}${w.en?' — '+w.en:''}`,
+             fromWord:w.zh,fromWordPy:w.py||''};
     });
   });
   return Object.values(m);
@@ -4371,7 +4379,7 @@ function renderTrace(){
   traceSt.watchCount=0;traceSt.quizActive=false;
   body.innerHTML=`<div class="mq-progress" style="font-size:.95rem;">${traceSt.i+1}/${traceSt.chars.length}</div>
     <div id="${traceSt.targetId}" style="width:364px;height:364px;max-width:100%;margin:0 auto;border-radius:12px;background:rgba(255,255,255,.04);"></div>
-    <div class="mq-question" style="text-align:center;margin-top:.45rem;font-size:1.1rem;">${c.zh} · ${c.py} · <span style="color:var(--muted);font-size:.9rem;">${c.en||''}</span></div>
+    <div class="mq-question" style="text-align:center;margin-top:.45rem;font-size:1.1rem;">${[c.zh,c.py||(c.fromWord?c.fromWord+(c.fromWordPy?' '+c.fromWordPy:''):'')].filter(Boolean).join(' · ')}${c.en?` · <span style="color:var(--muted);font-size:.9rem;">${c.en}</span>`:''}</div>
     <div style="text-align:center;font-size:.8rem;color:var(--muted);margin:.25rem 0;">Watch the stroke order, then trace it yourself!</div>
     <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.55rem;">
       <button id="trace-watch-btn" class="btn-s" style="padding:.8rem 1rem;font-size:.95rem;" onclick="traceWatchAgain()">👀 Watch again (3 left)</button>
@@ -4920,7 +4928,7 @@ function renderSelectBadges(){
     const hsk=getCurrentHSK(s);
     document.getElementById(p+'-hsk-badge').textContent='HSK '+hsk;
     document.getElementById(p+'-stats').textContent=
-      '⭐ '+s.totalStars+' pts · 🏯 Gate '+s.gatesCompleted.length+'/22';
+      '⭐ '+s.totalStars+' pts · 🏯 '+gatesClearedSummary(s);
   });
 }
 
@@ -5043,7 +5051,11 @@ function renderHub(){
   const ts=getTS(curP);
   document.getElementById('ts-stars').textContent=ts.stars||0;
   document.getElementById('ts-correct').textContent=ts.correct||0;
-  document.getElementById('ts-gates').textContent=s.gatesCompleted.length+' / 22';
+  // Cleared gates IN THE LEVEL ON SCREEN. `gatesCompleted` spans all 88 since a
+  // gate became (level, dynasty), so the old bare count over 22 could read
+  // "24 / 22" and never said which level it meant.
+  document.getElementById('ts-gates').textContent=
+    gatesClearedInLevel(s,curHSK)+' / '+GateIdentity.GATES_PER_LEVEL;
   document.getElementById('ts-stories').textContent=s.storiesCompleted.length;
   // Champion trophies
   const champMap=s.championCleared||{};
@@ -5286,7 +5298,7 @@ function renderDynastyDetail(d,s){
   function storyBtn(st,isDone){
     if(!st)return '';
     if(storyUnlocked)
-      return `<button class="btn-s" onclick="openStory(STORIES_MAP['${st.id}']||storyForGate('${st.id}',curHSK),DYNASTIES.find(x=>x.id==${d.id}))">${isDone?'📖 Re-read':'📖 Read'}: ${st.title}${st.shared?' <span style="opacity:.6;font-size:.9em;">· shared text</span>':''}</button>`;
+      return `<button class="btn-s" onclick="openStory(storyById('${st.id}'),DYNASTIES.find(x=>x.id==${d.id}))">${isDone?'📖 Re-read':'📖 Read'}: ${st.title}${st.shared?' <span style="opacity:.6;font-size:.9em;">· shared text</span>':''}</button>`;
     return `<button class="btn-s" disabled style="opacity:.45;cursor:not-allowed">🔒 ${st.title}</button>`;
   }
 
@@ -5633,13 +5645,39 @@ function persistMiniQuizState(){
   touchSession('story');
 }
 
+/**
+ * Resolve a saved per-level story id back to a story.
+ *
+ * A gate on a level with no text of its own is served a story SYNTHESIZED by
+ * storyForGate — it carries the level's id but is never a member of
+ * STORIES_MAP. Looking the id up in the map alone therefore fails for every
+ * level but 1, which silently turned "Continue story quiz" into a dead button.
+ */
+function storyById(storyId){
+  if(!storyId)return null;
+  const direct=STORIES_MAP[storyId];
+  if(direct)return direct;
+  const m=/^(.*)-h([1-4])$/.exec(String(storyId));
+  if(!m)return null;
+  return storyForGate(m[1],Number(m[2]));
+}
+
+/** The dynasty a story id belongs to, ignoring its level suffix. */
+function dynastyForStoryId(storyId){
+  const base=String(storyId||'').replace(/-h[1-4]$/,'');
+  return DYNASTIES.find(d=>d.story===base||d.story2===base)||null;
+}
+
 function restoreStoryMiniQuiz(){
   if(!curP||!state[curP].pendingSessions||!state[curP].pendingSessions.story)return false;
   const ps=state[curP].pendingSessions.story;
   if(!ps||!ps.storyId)return false;
-  const st=STORIES_MAP[ps.storyId];if(!st)return false;
+  const st=storyById(ps.storyId);if(!st)return false;
   curStory=st;
-  const dyn=DYNASTIES.find(d=>d.id===ps.dynastyId)||DYNASTIES.find(d=>d.story===ps.storyId||d.story2===ps.storyId);
+  // The stored id carries a level suffix, so a bare-id comparison can never
+  // match; the fallback silently landed on DYNASTIES[0] and drew the word pool
+  // from the Xia gate.
+  const dyn=DYNASTIES.find(d=>d.id===ps.dynastyId)||dynastyForStoryId(ps.storyId);
   if(dyn)curDynasty=dyn;
   sessionQuizCorrect=0;quizCelebrate={c3:false,c6:false};
   miniQ={
@@ -5658,7 +5696,7 @@ function restoreStoryMiniQuiz(){
 }
 
 function buildMiniQuizQuestions(){
-  const dynForStory=curDynasty||DYNASTIES.find(d=>d.story===curStory.id||d.story2===curStory.id)||DYNASTIES[0];
+  const dynForStory=curDynasty||dynastyForStoryId(curStory.id)||DYNASTIES[0];
   const pool=buildQuizVocab(dynForStory).sort(()=>Math.random()-.5);
   const qs=[];
   for(let i=0;i<Math.min(4,pool.length);i++){
