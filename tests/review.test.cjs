@@ -746,3 +746,61 @@ test("A26-R03: a second miss then an interruption is still supported", (t) => {
   assert.equal(last.sameSession, true, "the second miss is still the same, told, sitting");
   assert.equal(rec.independentSuccesses.length, 0);
 });
+
+// ── the 2026-09-08 audit: name each measured task accurately ────────────────
+
+test("A26: a context item asks unaided first and only then shows the translation", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  // contextComprehension had no producer at all, so this branch was
+  // unreachable; seed a record directly the way a producer will.
+  const w = app.HSK_VOCAB[1][0];
+  app.noteEvidence("jenn", { zh: w.zh }, "contextComprehension", false, {});
+  Object.values(app.state.jenn.reviewRecords).forEach((r) => { r.dueOn = "2026-09-01"; });
+  app.startReviewRound("normal");
+  const it = app.reviewSt.items.find((x) => x.kind === "context");
+  if (!it) return; // no story sentence for this word in the fixture corpus
+
+  const body = () => app.document.getElementById("games-body").innerHTML;
+  assert.ok(body().indexOf(it.sentenceEn) === -1,
+    "the English names the missing word, so the first ask must not show it");
+  app.answerReview(it.opts.findIndex((o) => o !== it.correct));
+  assert.equal(app.reviewSt.retry, true);
+  app.renderReviewRound();
+  assert.ok(body().indexOf(it.sentenceEn) !== -1, "the retry gets the translation");
+
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.indexOf(cur.correct));
+  const rec = app.state.jenn.reviewRecords[`${it.zh}::contextComprehension`];
+  const last = rec.attempts[rec.attempts.length - 1];
+  assert.equal(last.supported, true, "answered with the translation on screen");
+  assert.equal(last.sameSession, true);
+  assert.equal(rec.independentSuccesses.length, 0, "neither flag may advance the ladder");
+});
+
+test("A26: hearing a word and reading one are different records", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  const w = app.HSK_VOCAB[1][0];
+  app.noteEvidence("jenn", { zh: w.zh }, "recognition", true, {});
+  app.noteEvidence("jenn", { zh: w.zh }, "decoding", true, {});
+  const recs = app.state.jenn.reviewRecords;
+  assert.ok(recs[`${w.zh}::recognition`], "Listen: heard it, picked the character");
+  assert.ok(recs[`${w.zh}::decoding`], "pinyin phase: saw the character, produced the reading");
+  assert.notEqual(recs[`${w.zh}::recognition`], recs[`${w.zh}::decoding`],
+    "proving one must not schedule the other as if it were already known");
+});
+
+test("A26: a decoding record is asked as a reading, not as a sound", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "decoding");
+  app.startReviewRound("normal");
+  const it = app.reviewSt.items[0];
+  assert.equal(it.kind, "decode");
+  assert.equal(it.correct, it.py, "the answer is the reading");
+  it.opts.forEach((o) => assert.ok(typeof o === "string" && o.length));
+  // §9.6: options are readings, so no option may sound like the answer.
+  const same = it.opts.filter((o) => o === it.correct);
+  assert.equal(same.length, 1, "exactly one option is the right sound");
+});

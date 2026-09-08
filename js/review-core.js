@@ -20,7 +20,12 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
 
   /** Skills are tracked separately because they are genuinely different. */
-  const SKILLS = ["recognition", "meaning", "contextComprehension", "writingRecall"];
+  // One skill per task, because the ladder is per {word, skill} and pooling
+  // different tasks under one name means a child who proved they can type a
+  // reading gets re-checked by ear. `recognition` is hearing a word and
+  // picking the character; `decoding` is seeing the character and producing
+  // the reading. They used to be the same record.
+  const SKILLS = ["recognition", "decoding", "meaning", "contextComprehension", "writingRecall"];
   /** Tracing is practice, not independent recall, so it is kept apart. */
   const PRACTICE_SKILLS = ["tracePractice"];
 

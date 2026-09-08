@@ -1139,8 +1139,19 @@ never substituted with visible pinyin in an unaided section.
 ## 25. Retention (`js/review-core.js`)
 
 Evidence is per `{word, skill}`, stored in `reviewRecords` keyed `"zh::skill"`.
-Skills: `recognition`, `meaning`, `contextComprehension`, `writingRecall`.
-`tracePractice` is tracked apart and is refused by `recordAttempt`.
+Skills: `recognition`, `decoding`, `meaning`, `contextComprehension`,
+`writingRecall`. `tracePractice` is tracked apart and is refused by
+`recordAttempt`.
+
+**One skill per task.** `recognition` is hearing a word and picking the
+character (Listen, and the review round's audio item). `decoding` is seeing the
+character and producing the reading (the gate quiz's pinyin phase). Both used to
+be `recognition`, so a child who had proved they could type a reading was
+re-checked by ear on the same record. The gate quiz's reverse MCQ — English
+shown, character chosen — is `meaning`: the same character-to-meaning link as the
+forward direction, and nothing in it is heard; `source` keeps the direction
+recoverable. Records written under the old grouping keep their key and decay
+naturally; there is no migration.
 
 `failedWords` still exists and is unchanged. It is a practice queue, not a
 measurement: one counter per word, bumped by any miss anywhere.
@@ -1178,13 +1189,18 @@ of their own failures.
 `startReviewRound`, `answerReview` in `index.html`; slot `pendingSessions.review`;
 scope `review`). It is reached from a hub card and the fifth row of the games
 picker, is always open and never a gate requirement. Each due record is asked
-in its own skill: `recognition` is heard and a character tapped; `meaning` shows
-the character and asks the English; `contextComprehension` shows a story
-sentence with the word blanked and its translation. The first response is
-unaided evidence; a miss shows the reveal card and asks once more, recorded
-`sameSession`. Early exit saves and pays nothing (§2); natural completion pays a
-flat `REVIEW_STARS` (5) whatever the answers. `writingRecall` records are counted
-as remaining, not asked — nothing in the app produces them yet.
+in its own skill: `recognition` is heard and a character tapped; `decoding` shows
+the character and asks for the reading; `meaning` shows the character and asks
+the English; `contextComprehension` shows a story sentence with the word blanked.
+That sentence's translation names the missing word's meaning, so it appears
+**only on the retry**, after the unaided ask — and the retry is recorded
+`supported` as well as `sameSession`. The first response is unaided evidence; a
+miss shows the reveal card and asks once more, recorded `sameSession`. Early exit
+saves and pays nothing (§2); natural completion pays a flat `REVIEW_STARS` (5)
+whatever the answers. `writingRecall` records are counted as remaining, not asked
+— nothing in the app produces them yet, and until the lesson checks land nothing
+produces `contextComprehension` either: that branch is built and tested but
+unreachable.
 
 **Lesson self-checks are not evidence.** A lesson question hides its answer until
 Reveal; the child's "I had it" / "Not yet" goes to `lessonSelfCheck`, never to
