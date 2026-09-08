@@ -1940,13 +1940,16 @@ function defPlayer(){
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
     weekStart:weekStart(),
     badges:[],totalWrongAnswers:0,storyReadCount:{},flashPassDone:{},dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
-    pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null},
+    pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null,review:null},
     traceStars:{},
     libraryCountAtDayStart:{},
     gateGameStars:{},
     gateBestQuiz:{},
     championBestQuiz:{},
     gateTimers:{},
+    gateResetSeq:{},
+    pendingSessionClearedAt:{},
+    lessonSelfCheck:{},
     lastGateQuizAttempt:null,
     altRoundProgress:{trace:0,match:0,rain:0,listen:0,total:0},
     forgivenessProgress:{trace:0,match:0,rain:0,listen:0},
@@ -3061,8 +3064,12 @@ function ensureState(p){
   if(s.dailyWordTotal===undefined)s.dailyWordTotal=0;
   if(s.pinyinIntroDone===undefined)s.pinyinIntroDone=false;
   if(s.lastSaved===undefined)s.lastSaved=0;
-  if(!s.pendingSessions)s.pendingSessions={gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null};
+  if(!s.pendingSessions)s.pendingSessions={gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null,review:null};
   if(s.pendingSessions&&s.pendingSessions.revenge===undefined)s.pendingSessions.revenge=null;
+  if(s.pendingSessions&&s.pendingSessions.review===undefined)s.pendingSessions.review=null;
+  if(!s.gateResetSeq)s.gateResetSeq={};
+  if(!s.pendingSessionClearedAt)s.pendingSessionClearedAt={};
+  if(!s.lessonSelfCheck)s.lessonSelfCheck={};
   if(!s.traceStars)s.traceStars={};
   if(!s.libraryCountAtDayStart)s.libraryCountAtDayStart={};
   if(!s.gateGameStars)s.gateGameStars={};
@@ -3159,15 +3166,29 @@ function traceStarsFromAccuracy(correct,total,did){
   return 0;
 }
 
-function updateGateGameBest(did,gameKey,stars,level){
-  if(!curP||!did||!gameKey)return;
+/**
+ * Bank a finished game round's stars against its gate.
+ *
+ * `binding` is what gateAttemptBinding returned when the round STARTED. It is
+ * optional for legacy callers; when given, a round that no longer matches the
+ * gate's current attempt (the deadline passed and reset it mid-round) writes
+ * nothing and reports `{qualified:false}` so the caller can present it as
+ * practice. Without this, the reset that expireGateTimerIfNeeded performs on
+ * the line below was immediately undone by the very round that outlived it.
+ */
+function updateGateGameBest(did,gameKey,stars,level,binding){
+  if(!curP||!did||!gameKey)return{qualified:false};
   ensureState(curP);
   const s=state[curP];
   const lv=Number(level||curHSK||1);
   expireGateTimerIfNeeded(s,did,{level:lv});
   if(!s.gateGameStars)s.gateGameStars={};
   const k=gateKeyOf(did,lv);
-  if(!k)return;
+  if(!k)return{qualified:false};
+  if(binding!==undefined&&!gateSessionQualifies(s,binding,did,lv)){
+    saveState();
+    return{qualified:false};
+  }
   if(!s.gateGameStars[k])s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
   const prev=s.gateGameStars[k][gameKey]||0;
   if(stars>prev){
@@ -3177,6 +3198,7 @@ function updateGateGameBest(did,gameKey,stars,level){
     evaluateGateCompletion(did,lv);
   }
   saveState();
+  return{qualified:true};
 }
 
 function starsText(n){
@@ -3377,6 +3399,12 @@ function resetGateProgress(s,did,level){
 
   if(s.gateGameStars)s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
   if(s.gateBestQuiz)delete s.gateBestQuiz[k];
+  // A monotonic per-gate counter. The history above is capped at ten entries
+  // and its dates are day-granular, so neither can say "a reset happened
+  // between when this round started and now". Sessions carry the value they
+  // started under (gateAttemptBinding) and compare it at the qualifying write.
+  if(!s.gateResetSeq)s.gateResetSeq={};
+  s.gateResetSeq[k]=(s.gateResetSeq[k]||0)+1;
   if(s.lastGateQuizAttempt&&s.lastGateQuizAttempt.did===did)s.lastGateQuizAttempt=null;
   // A quiz already in progress is NOT thrown away. It is flagged as belonging
   // to the expired attempt so it can be finished as practice without
@@ -3384,6 +3412,63 @@ function resetGateProgress(s,did,level){
   if(s.pendingSessions&&s.pendingSessions.gate&&s.pendingSessions.gate.did===did){
     s.pendingSessions.gate.attemptExpired=true;
   }
+}
+
+/**
+ * The attempt a gate-scoped round is starting under.
+ *
+ * A round used to carry only its gate id. A deadline reset then had no way to
+ * tell a round begun under the dead attempt from one begun under the new
+ * one, so a Listen game or boss quiz that ran past the deadline banked its
+ * stars into the replacement attempt — exactly the credit the reset had just
+ * cleared. The quiz path had a boolean for this, but it lived on the SAVED
+ * copy and the live quiz never read it.
+ *
+ * `attemptId` is the timer's id when a timer exists (active or not: a round
+ * that finishes just after the gate clears still matches), or null before the
+ * first 3★ round mints one. `resetSeq` is the gate's reset counter.
+ */
+function gateAttemptBinding(s,did,level){
+  if(!s||!did)return null;
+  const k=gateKeyOf(did,level);if(!k)return null;
+  const t=(s.gateTimers&&s.gateTimers[k])||null;
+  return{playerId:curP||null,gateKey:k,attemptId:(t&&t.attemptId)||null,resetSeq:((s.gateResetSeq||{})[k])||0};
+}
+
+/**
+ * Does a round started under `binding` still qualify for this gate's current
+ * attempt? A missing binding is a round saved before bindings existed; it keeps
+ * the behaviour it had (CLAUDE §8), which for the quiz is the attemptExpired
+ * flag checked by the caller.
+ */
+function gateSessionQualifies(s,binding,did,level){
+  if(!binding)return true;
+  const live=gateAttemptBinding(s,did,level);
+  if(!live||live.gateKey!==binding.gateKey)return false;
+  if(binding.playerId&&live.playerId&&binding.playerId!==live.playerId)return false;
+  if((binding.resetSeq||0)!==(live.resetSeq||0))return false;
+  // A round begun before any timer existed may see one minted after it (the
+  // round's own 3★ can be what mints it). It qualifies as long as no reset
+  // separates the two, which resetSeq has already established.
+  if(binding.attemptId==null)return true;
+  return binding.attemptId===live.attemptId;
+}
+
+const LATE_ROUND_MSG='This round was practice — the challenge restarted, so let\'s go again! 🌱';
+
+/**
+ * Null a resumable slot and remember when. The merge treats a null slot as
+ * "nothing here" and used to let a device that had merely finished a round
+ * overwrite another device's live one; the timestamp lets it tell a deliberate
+ * clear from an absence.
+ */
+function clearPendingSession(kind){
+  if(!curP||!kind)return;
+  const s=state[curP];
+  if(!s.pendingSessions)return;
+  s.pendingSessions[kind]=null;
+  if(!s.pendingSessionClearedAt)s.pendingSessionClearedAt={};
+  s.pendingSessionClearedAt[kind]=Date.now();
 }
 
 function startGateTimerIfNeeded(s,did,stars,level){
@@ -3724,7 +3809,7 @@ function persistFlashSession(){
   touchSession('flash');
 }
 
-function clearFlashSession(){if(curP&&state[curP]&&state[curP].pendingSessions)state[curP].pendingSessions.flash=null;}
+function clearFlashSession(){clearPendingSession('flash');}
 
 function closeFlashOverlay(){
   document.getElementById('flash-overlay').classList.remove('show');
@@ -4032,8 +4117,8 @@ function startGame(game,scope){
   else if(game==='trace')startTrace(words);
 }
 
-function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null,gameTargetLevel:matchSt.gameTargetLevel||null};}
-function clearMatch(){if(curP)state[curP].pendingSessions.match=null;}
+function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null,gameTargetLevel:matchSt.gameTargetLevel||null,gateAttempt:matchSt.gateAttempt||null};}
+function clearMatch(){clearPendingSession('match');}
 
 function startMemoryMatch(words){
   const did=(curGameTargetDid||effectiveGameTargetDid()||1);
@@ -4063,7 +4148,8 @@ function startMemoryMatch(words){
     cards.push({id:'a'+i,pair:i,side:'zh',text:w.zh,w:{...w},matched:false});
     cards.push({id:'b'+i,pair:i,side:'en',text:w.en,w:{...w},matched:false});
   });
-  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
+  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,
+    gateAttempt:curGameTargetDid&&curP?gateAttemptBinding(state[curP],curGameTargetDid,curGameTargetLevel||curHSK||1):null};
   persistMatch();saveState();renderMemoryMatch();
   touchSession('match');
 }
@@ -4075,12 +4161,13 @@ function renderMemoryMatch(){
     const sec=(Date.now()-matchSt.start)/1000;
     const stars=sec<120?3:sec<180?2:sec<240?1:0;
     const tid=matchSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'match',stars,matchSt.gameTargetLevel);
+    const res=tid?updateGateGameBest(tid,'match',stars,matchSt.gameTargetLevel,matchSt.gateAttempt||null):null;
+    const late=!!(res&&res.qualified===false);
     awardAltRound('match',stars);
-    body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Brainy win!</div>
-      <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">${late?'🧠 Practice round done!':'🧠 Brainy win!'}</div>
+      <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
-    showStarEffect(stars,'Memory match');
+    if(late)showToast(LATE_ROUND_MSG,2800);else showStarEffect(stars,'Memory match');
     return;
   }
   const cols=matchSt.pairCount<=6?3:4;
@@ -4135,7 +4222,7 @@ function persistRain(){
   if(!curP)return;
   state[curP].pendingSessions.rain={pool:rainSt.pool.map(w=>({...w})),target:rainSt.target?{...rainSt.target}:null,
     score:rainSt.score,combo:rainSt.combo,bestCombo:rainSt.bestCombo,timeLeft:rainSt.timeLeft,
-    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,gameTargetLevel:rainSt.gameTargetLevel||null,
+    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,gameTargetLevel:rainSt.gameTargetLevel||null,gateAttempt:rainSt.gateAttempt||null,
     targetSeq:(rainSt.targetSeq||[]).map(w=>({...w})),targetIdx:rainSt.targetIdx||0,targetSeenCount:rainSt.targetSeenCount||0,
     spawnsSinceTarget:rainSt.spawnsSinceTarget||0,targetShownThisRound:!!rainSt.targetShownThisRound};
   touchSession('rain');
@@ -4146,7 +4233,7 @@ function clearRainTimers(){
   if(rainSt.targetIv)clearInterval(rainSt.targetIv);
   rainSt.spawnIv=rainSt.tickIv=rainSt.targetIv=null;
 }
-function clearRainSession(){clearRainTimers();if(curP)state[curP].pendingSessions.rain=null;}
+function clearRainSession(){clearRainTimers();clearPendingSession('rain');}
 
 function startRain(words){
   clearRainSession();
@@ -4154,7 +4241,9 @@ function startRain(words){
   words.filter(w=>w.zh&&w.en).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);uniq.push(w);}});
   if(uniq.length<5){showToast('Rain needs at least 5 words. Try Dynasty or HSK to build your word pool!');return;}
   rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0,
+    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,
+    gateAttempt:curGameTargetDid&&curP?gateAttemptBinding(state[curP],curGameTargetDid,curGameTargetLevel||curHSK||1):null,
+    targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0,
     spawnsSinceTarget:0,targetShownThisRound:false};
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
@@ -4253,12 +4342,13 @@ function endRain(fromUser){
   // Natural end (timer ran out) — full round completed, stars deserved
   clearRainSession();
   const stars=starsFromAccuracy(rh,ra);
-  if(tid)updateGateGameBest(tid,'rain',stars,rainSt.gameTargetLevel);
+  const res=tid?updateGateGameBest(tid,'rain',stars,rainSt.gameTargetLevel,rainSt.gateAttempt||null):null;
+  const late=!!(res&&res.qualified===false);
   awardAltRound('rain',stars);
   body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Time is up!</div>
-    <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+    <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
     <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
-  showStarEffect(stars,'Rain game');
+  if(late)showToast(LATE_ROUND_MSG,2800);else showStarEffect(stars,'Rain game');
   saveState();
 }
 
@@ -4267,7 +4357,7 @@ function restoreRain(){
   clearRainSession();
   const seq=(ps.targetSeq&&ps.targetSeq.length)?ps.targetSeq.map(w=>({...w})):shuffleArr(ps.pool.map(w=>({...w})));
   rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0,
+    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0,
     spawnsSinceTarget:ps.spawnsSinceTarget||0,targetShownThisRound:!!ps.targetShownThisRound};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
@@ -4291,8 +4381,9 @@ function startListen(words){
     const wrong=pickDistractors(pool.filter(x=>x.zh!==w.zh),w,listenSound,3);
     return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
   });
-  listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
-  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null};touchSession('listen');
+  listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,
+    gateAttempt:curGameTargetDid&&curP?gateAttemptBinding(state[curP],curGameTargetDid,curGameTargetLevel||curHSK||1):null};
+  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null,gateAttempt:listenSt.gateAttempt||null};touchSession('listen');
   saveState();renderListen();
 }
 
@@ -4300,17 +4391,18 @@ function renderListen(){
   const body=document.getElementById('games-body');if(!body)return;
   const q=listenSt.questions[listenSt.qi];
   if(!q){
-    if(curP)state[curP].pendingSessions.listen=null;
+    clearPendingSession('listen');
     const tot=listenSt.questions.length;
     const cc=listenSt.correctCount||0;
     const stars=starsFromAccuracy(cc,tot);
     const tid=listenSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'listen',stars,listenSt.gameTargetLevel);
+    const res=tid?updateGateGameBest(tid,'listen',stars,listenSt.gameTargetLevel,listenSt.gateAttempt||null):null;
+    const late=!!(res&&res.qualified===false);
     awardAltRound('listen',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Listening complete!</div>
-      <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
-    showStarEffect(stars,'Listen game');
+    if(late)showToast(LATE_ROUND_MSG,2800);else showStarEffect(stars,'Listen game');
     saveState();return;
   }
   body.innerHTML=`<div class="mq-progress">${listenSt.qi+1}/${listenSt.questions.length} · score ${listenSt.score}</div>
@@ -4349,7 +4441,7 @@ function checkListen(btn,ok,q){
   // Audio to character with no pinyin on screen: unaided recognition.
   noteEvidence(curP,q.w,'recognition',ok,{source:'listen'});
   listenSt.qi++;
-  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null};touchSession('listen');
+  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null,gateAttempt:listenSt.gateAttempt||null};touchSession('listen');
   saveState();
   laterCall('listen',renderListen,800);
 }
@@ -4418,8 +4510,9 @@ function startTrace(words){
     ?shuffleArr(allChars).slice(0,traceTargetLimitForGate(curGameTargetDid))
     :allChars;
   if(!chars.length){showToast('No characters to trace yet—learn a few more first!');return;}
-  traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null,watchCount:0,quizActive:false};
-  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');
+  traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,watchCount:0,quizActive:false,
+    gateAttempt:curGameTargetDid&&curP?gateAttemptBinding(state[curP],curGameTargetDid,curGameTargetLevel||curHSK||1):null};
+  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null,gateAttempt:traceSt.gateAttempt||null};touchSession('trace');
   saveState();renderTrace();
 }
 
@@ -4427,19 +4520,20 @@ function renderTrace(){
   const body=document.getElementById('games-body');if(!body)return;
   const c=traceSt.chars[traceSt.i];
   if(!c){
-    if(curP)state[curP].pendingSessions.trace=null;
+    clearPendingSession('trace');
     const tot=traceSt.chars.length;
     const tg=traceSt.traceGood||0;
     const stars=traceSt.gameTargetDid
       ?traceStarsFromAccuracy(tg,tot,traceSt.gameTargetDid)
       :starsFromAccuracy(tg,tot);
     const tid=traceSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'trace',stars,traceSt.gameTargetLevel);
+    const res=tid?updateGateGameBest(tid,'trace',stars,traceSt.gameTargetLevel,traceSt.gateAttempt||null):null;
+    const late=!!(res&&res.qualified===false);
     awardAltRound('trace',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
-      <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
-    showStarEffect(stars,'Trace game');
+    if(late)showToast(LATE_ROUND_MSG,2800);else showStarEffect(stars,'Trace game');
     saveState();return;
   }
   traceSt.targetId='trace-'+Date.now();
@@ -4502,7 +4596,7 @@ function startTraceQuiz(){
       const stars=mistakes===0?3:(mistakes<=4?2:1);
       const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
       traceSt.traceGood=(traceSt.traceGood||0)+(mistakes===0?1:0);
-      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');
+      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null,gateAttempt:traceSt.gateAttempt||null};touchSession('trace');
       const msgs=stars===3
         ?['Perfect! 🌟','Flawless! Amazing! ✨','No mistakes — you nailed it! 🏆']
         :stars===2
@@ -4524,11 +4618,11 @@ function exitTrace(){
 }
 
 function traceAnimate(){traceWatchAgain();}
-function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');saveState();renderTrace();}
+function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null,gateAttempt:traceSt.gateAttempt||null};touchSession('trace');saveState();renderTrace();}
 
 function restoreTrace(){
   const ps=state[curP].pendingSessions.trace;if(!ps||!ps.chars)return false;
-  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:'',traceGood:ps.traceGood||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
+  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:'',traceGood:ps.traceGood||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null};
   document.getElementById('games-overlay').classList.add('show');
   renderTrace();return true;
 }
@@ -4542,14 +4636,14 @@ function restoreMatch(){
   // a permanent dead end.
   const dealtPairs=new Set(cards.map(c=>c.pair)).size;
   const pairCount=Math.min(ps.pairCount||dealtPairs,dealtPairs);
-  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
+  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null};
   document.getElementById('games-overlay').classList.add('show');
   renderMemoryMatch();return true;
 }
 
 function restoreListen(){
   const ps=state[curP].pendingSessions.listen;if(!ps||!ps.questions)return false;
-  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0,correctCount:ps.correctCount||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
+  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0,correctCount:ps.correctCount||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null};
   document.getElementById('games-overlay').classList.add('show');
   renderListen();return true;
 }
@@ -4569,7 +4663,8 @@ function persistGateQuizState(){
     mcqN:quizSt.mcqN,pyN:quizSt.pyN,sbN:quizSt.sbN,maxScore:quizSt.maxScore,noMcqAssistance:!!quizSt.noMcqAssistance,
     mcqAnswered:typeof mcqAnswered==='number'?mcqAnswered:0,pyAnswered:typeof pyAnswered==='number'?pyAnswered:0,
     sbBuilt:[...(typeof sbBuilt!=='undefined'?sbBuilt:[])],speakUsed:!!speakUsed,pyHintUsed:!!pyHintUsed,pyPeekUsed:!!pyPeekUsed,
-    quizCorrect:quizSt.quizCorrect||0,quizAttempts:quizSt.quizAttempts||0
+    quizCorrect:quizSt.quizCorrect||0,quizAttempts:quizSt.quizAttempts||0,
+    gateAttempt:quizSt.gateAttempt?{...quizSt.gateAttempt}:null
   };
   touchSession('gate');
   if(quizSt&&quizSt.attemptExpired&&state[curP]&&state[curP].pendingSessions){
@@ -4580,8 +4675,8 @@ function persistGateQuizState(){
 
 function clearGateQuizPending(){
   if(!curP||!state[curP].pendingSessions)return;
-  state[curP].pendingSessions.gate=null;
-  state[curP].pendingSessions.champion=null;
+  clearPendingSession('gate');
+  clearPendingSession('champion');
 }
 
 function restoreGateQuizSession(){
@@ -4600,7 +4695,8 @@ function restoreGateQuizSession(){
     hardMode:!!ps.hardMode,
     mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:ps.noMcqAssistance!==false,
     quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0,
-    attemptExpired:!!ps.attemptExpired
+    attemptExpired:!!ps.attemptExpired,
+    gateAttempt:ps.gateAttempt?{...ps.gateAttempt}:null
   };
   mcqAnswered=ps.mcqAnswered||0;pyAnswered=ps.pyAnswered||0;sbBuilt=[...(ps.sbBuilt||[])];
   speakUsed=!!ps.speakUsed;pyHintUsed=!!ps.pyHintUsed;pyPeekUsed=!!ps.pyPeekUsed;
@@ -5697,7 +5793,7 @@ function closeComplete(){
 // ── STORY MINI-QUIZ ──
 let miniQ={questions:[],qi:0,score:0,wrongQueue:[],phase:'main',attemptedStoryId:null,attemptedDynastyId:null,storyCompletedNow:false};
 
-function clearStoryPending(){if(curP&&state[curP].pendingSessions)state[curP].pendingSessions.story=null;}
+function clearStoryPending(){clearPendingSession('story');}
 
 function persistMiniQuizState(){
   if(!curP||!state[curP].pendingSessions)return;
@@ -6025,7 +6121,7 @@ function closeRevengeRound(){
       qi:revengeSt.qi,correct:revengeSt.correct,updatedAt:Date.now()};
     showToast('Progress saved — finish the round to earn stars! ⚔️',2400);
   }else if(curP&&state[curP].pendingSessions){
-    state[curP].pendingSessions.revenge=null;
+    clearPendingSession('revenge');
   }
   saveState();
 }
@@ -6175,7 +6271,8 @@ function startGateQuiz(did,opts){
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
     questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:false,hardMode:hard,mcqN,pyN,sbN,maxScore,noMcqAssistance:!hard,
-    quizCorrect:0,quizAttempts:0};
+    quizCorrect:0,quizAttempts:0,
+    gateAttempt:curP?gateAttemptBinding(state[curP],did,curHSK||1):null};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
   recentStore[`g-${did}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
@@ -6205,7 +6302,8 @@ function startChampionChallenge(group){
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
     questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
-    quizCorrect:0,quizAttempts:0};
+    quizCorrect:0,quizAttempts:0,
+    gateAttempt:curP?gateAttemptBinding(state[curP],did,curHSK||1):null};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
   recentStore[`c-${group}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
@@ -6933,19 +7031,29 @@ function renderQuizResult(qc){
   // finished — the child's work is not thrown away — but it does not qualify
   // the new attempt. Otherwise an old pending round could resurrect credit the
   // deadline reset deliberately cleared.
-  if(!quizSt.attemptExpired){
+  //
+  // `attemptExpired` is the legacy flag: it is set on the SAVED copy by the
+  // reset and only reaches the live quiz through a restore. The binding taken
+  // at start is what catches a quiz that runs past its own deadline in one
+  // sitting — the reset on the line above happens in the middle of this
+  // function, and the flag never learns of it.
+  const qualifies=!quizSt.attemptExpired&&gateSessionQualifies(s,quizSt.gateAttempt||null,quizSt.did,curHSK||1);
+  if(qualifies){
     updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars,score);
   }
   const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup);
   const gamesOk=gateGamesAllThree(s,quizSt.did);
   const quizPass=(bestQuiz.accPct||0)>=90&&(bestQuiz.quizStars||0)===3;
-  const fullPass=quizPass&&gamesOk;
+  const fullPass=qualifies&&quizPass&&gamesOk;
   const passedGate=!quizSt.isChampion&&fullPass;
   const passedChampion=!!quizSt.isChampion&&fullPass;
-  s.lastGateQuizAttempt={
+  if(qualifies)s.lastGateQuizAttempt={
     did:quizSt.did,isChampion:!!quizSt.isChampion,accPct,quizStars,atKey:todayKey()
   };
-  if(quizSt.isChampion){
+  if(!qualifies){
+    // Practice: evidence and the practice queue were recorded per answer;
+    // nothing else is paid or judged.
+  }else if(quizSt.isChampion){
     const grp=quizSt.champGroup;
     if(passedChampion){
       // Champion trophies pay once too. The old code ran addEarnedStars on
@@ -6971,7 +7079,7 @@ function renderQuizResult(qc){
   }
   clearGateQuizPending();
   saveState();
-  checkBadges(curP,{speedGate:!!quizSt.noMcqAssistance&&!quizSt.isChampion});
+  if(qualifies)checkBadges(curP,{speedGate:!!quizSt.noMcqAssistance&&!quizSt.isChampion});
   saveState();
   const gateLabel=quizSt.isChampion?`👑 Champion · Group ${quizSt.champGroup}`:`Gate ${quizSt.did}`;
   const cleared=quizSt.isChampion?passedChampion:passedGate;
@@ -6994,8 +7102,9 @@ function renderQuizResult(qc){
   qc.innerHTML=`
   <div class="quiz-result">
     <div class="quiz-prog-bar"><div class="quiz-prog-fill" style="width:${pctPts}%"></div></div>
-    <div class="qr-stars">${starsStr}</div>
-    <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':'Almost there!'}</div>
+    <div class="qr-stars">${qualifies?starsStr:'🌱'}</div>
+    <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':qualifies?'Almost there!':'Practice round'}</div>
+    ${qualifies?'':`<div class="qr-msg">${LATE_ROUND_MSG}</div>`}
     ${quizSt.isChampion&&passedChampion?'<div class="champion-badge">🏆 Champion Trophy Earned! Amazing work!</div>':''}
     <div class="qr-msg">${d.zh} · ${d.en}\n\nThis try: ${accPct}% (${qcOk}/${qa}) · ${quizStars}★\nBest score: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★\nPoints: ${score}/${mx} (${pctPts}%)\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}\nGames at 3★ for this gate: ${g3}/4</div>
     ${lockMsg}
@@ -7004,7 +7113,8 @@ function renderQuizResult(qc){
       ${quizSt.isChampion?`<button class="btn-s" onclick="startChampionChallenge(${quizSt.champGroup})">↺ Retry</button>`:`<button class="btn-s" onclick="startGateQuiz(${quizSt.did},{hardMode:${!!quizSt.hardMode}})">↺ Retry</button>`}
     </div>
   </div>`;
-  showStarEffect(quizStars,quizSt.isChampion?'Champion quiz':'Gate quiz');
+  if(qualifies)showStarEffect(quizStars,quizSt.isChampion?'Champion quiz':'Gate quiz');
+  else showToast(LATE_ROUND_MSG,2800);
 }
 
 function exitQuiz(){

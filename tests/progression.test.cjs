@@ -1711,3 +1711,147 @@ test("T-T19: the ordinary vocabulary a child needs is actually taught", () => {
     assert.ok(!`${zh}${t.w.pinyin}${t.w.en}`.includes("\uFFFD"), `${zh} carries corrupted text`);
   }
 });
+
+// ── F01: a round is bound to the attempt it started under ─────────────────
+// Audit finding F01. The deadline reset marked only the SAVED quiz copy, so a
+// quiz finishing after its deadline still wrote a qualifying best, and the four
+// games had no check at all. Every expected value below is written out by
+// hand; none is read back from the function under test.
+
+test("F01: a game round begun under a lapsed attempt banks nothing and mints no timer", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  const binding = { playerId: "jenn", gateKey: "h1-g01", attemptId: "g1-old", resetSeq: 0 };
+  const res = a.updateGateGameBest(1, "listen", 3, 1, binding);
+
+  assert.deepEqual(res, { qualified: false });
+  assert.deepEqual(s.gateGameStars["h1-g01"], { trace: 0, match: 0, rain: 0, listen: 0 }, "the reset stands");
+  assert.equal(s.gateTimers["h1-g01"].attemptId, "g1-old", "no replacement timer was minted");
+  assert.equal(s.gateTimers["h1-g01"].active, false);
+  assert.equal(s.gateAttemptHistory["h1-g01"].length, 1, "one archived attempt");
+  assert.equal(s.gateResetSeq["h1-g01"], 1, "the reset counter advanced once");
+  assert.equal(s.totalStars, 500, "nothing was paid");
+});
+
+test("F01: a round begun before any timer qualifies once its own 3★ mints one", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  const b = a.gateAttemptBinding(s, 1, 1);
+  assert.equal(b.attemptId, null, "no timer yet");
+  assert.equal(b.resetSeq, 0);
+  assert.equal(b.gateKey, "h1-g01");
+
+  const res = a.updateGateGameBest(1, "match", 3, 1, b);
+  assert.deepEqual(res, { qualified: true });
+  assert.equal(s.gateGameStars["h1-g01"].match, 3);
+  assert.ok(s.gateTimers["h1-g01"] && s.gateTimers["h1-g01"].active, "the round's 3★ started the challenge");
+});
+
+test("F01: a pre-timer round does not qualify once a reset separates it from now", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  const b = a.gateAttemptBinding(s, 1, 1);
+  a.resetGateProgress(s, 1, 1);
+  assert.equal(s.gateResetSeq["h1-g01"], 1);
+
+  const res = a.updateGateGameBest(1, "match", 3, 1, b);
+  assert.deepEqual(res, { qualified: false });
+  assert.equal((s.gateGameStars["h1-g01"] || {}).match || 0, 0);
+});
+
+test("F01: a session saved before bindings existed keeps its old behaviour", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  s.pendingSessions.listen = {
+    questions: [{ w: { zh: "水", py: "shuǐ", en: "water" }, opts: ["水", "山", "人", "大"] }],
+    qi: 0, streak: 0, score: 0, correctCount: 0, gameTargetDid: 1, gameTargetLevel: 1,
+  };
+  assert.equal(a.restoreListen(), true);
+  assert.equal(a.listenSt.gateAttempt, null, "no binding is invented for an old save");
+
+  const res = a.updateGateGameBest(1, "listen", 3, 1, null);
+  assert.deepEqual(res, { qualified: true });
+  assert.equal(s.gateGameStars["h1-g01"].listen, 3);
+});
+
+test("F01: a Listen round carries its binding through save and restore", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  a.curGameTargetDid = 1;
+  a.curGameTargetLevel = 1;
+  const s = a.state.jenn;
+  s.gateTimers = { "h1-g01": { startKey: "2026-09-01", deadlineKey: "2099-01-01", active: true, days: 5, attemptId: "g1-live" } };
+  const words = Array.from({ length: 6 }, (_, i) => ({ zh: `字${i}`, py: `zi${i}`, en: `w${i}` }));
+  a.startListen(words);
+
+  const expected = { playerId: "jenn", gateKey: "h1-g01", attemptId: "g1-live", resetSeq: 0 };
+  assert.deepEqual(a.listenSt.gateAttempt, expected);
+  assert.deepEqual(s.pendingSessions.listen.gateAttempt, expected, "the saved copy carries it");
+
+  a.listenSt = null;
+  assert.equal(a.restoreListen(), true);
+  assert.deepEqual(a.listenSt.gateAttempt, expected, "and it survives a restore");
+});
+
+test("F01: the quiz result pays nothing to an attempt that lapsed mid-quiz", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  // Games are all at 3★ on the dead attempt, so a qualifying 100% quiz would
+  // have cleared the gate outright.
+  s.gateGameStars["h1-g01"] = { trace: 3, match: 3, rain: 3, listen: 3 };
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === 1);
+  a.quizSt = {
+    did: 1, phase: 3, score: 220, maxScore: 220, phaseScores: [100, 60, 60],
+    vocab: [], questions: [], pyQ: [], sbPack: [], isChampion: false,
+    mcqN: 8, pyN: 10, sbN: 3, noMcqAssistance: true,
+    quizCorrect: 20, quizAttempts: 20,
+    gateAttempt: { playerId: "jenn", gateKey: "h1-g01", attemptId: "g1-old", resetSeq: 0 },
+  };
+  const qc = { innerHTML: "" };
+  a.renderQuizResult(qc);
+
+  assert.equal(s.gateBestQuiz["h1-g01"], undefined, "no qualifying best was written to the new attempt");
+  assert.deepEqual(s.gatesCompleted, [], "the gate did not clear");
+  assert.equal(s.totalStars, 500, "no stars were paid");
+  assert.equal(s.lastGateQuizAttempt, null);
+  assert.ok(qc.innerHTML.includes("Practice round"), "the child is told this was practice");
+  assert.equal(s.gateAttemptHistory["h1-g01"].length, 1, "the lapsed attempt is archived once");
+});
+
+test("F01: the quiz result still pays a round begun under the live attempt", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  s.gateTimers = { "h1-g01": { startKey: "2026-09-01", deadlineKey: "2099-01-01", active: true, days: 5, attemptId: "g1-live" } };
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === 1);
+  a.launchConfetti = () => {}; // the 3★ celebration draws on a canvas the stub lacks
+  a.quizSt = {
+    did: 1, phase: 3, score: 200, maxScore: 220, phaseScores: [100, 60, 40],
+    vocab: [], questions: [], pyQ: [], sbPack: [], isChampion: false,
+    mcqN: 8, pyN: 10, sbN: 3, noMcqAssistance: true,
+    quizCorrect: 19, quizAttempts: 20,
+    gateAttempt: { playerId: "jenn", gateKey: "h1-g01", attemptId: "g1-live", resetSeq: 0 },
+  };
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.gateBestQuiz["h1-g01"].accPct, 95);
+  assert.equal(s.gateBestQuiz["h1-g01"].quizStars, 3);
+  assert.equal(s.gateBestQuiz["h1-g01"].points, 200);
+});
+
+test("F01: clearing a slot stamps when it was cleared", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  s.pendingSessions.listen = { questions: [], qi: 0 };
+  a.clearPendingSession("listen");
+  assert.equal(s.pendingSessions.listen, null);
+  assert.ok(s.pendingSessionClearedAt.listen > 0);
+});
