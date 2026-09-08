@@ -2365,6 +2365,13 @@ function initFirestore(){
   }catch(e){console.warn('Firestore init',e);}
 }
 const PARENT_PWD='1234';
+/** Ask for the parent PIN before something a child must not do alone. */
+function askParentPwd(why){
+  const pin=prompt((why?why+'\n\n':'')+'Enter parent password:');
+  if(pin===null)return false;
+  if(pin!==PARENT_PWD){showToast('That password is not right.',2000);return false;}
+  return true;
+}
 const SESSION_MINS=20;
 const SENT_COLORS=['#C0392B','#D4A017','#27AE60','#E8445A','#3B82F6','#A78BFA'];
 
@@ -7348,12 +7355,7 @@ function showParentSummary(){
 
 function closeParentSummary(){document.getElementById('overlay-parent').classList.remove('show');}
 function clearAllProgressWithParentPwd(){
-  const pin=prompt('Enter parent password to clear all progress:');
-  if(pin===null)return;
-  if(pin!==PARENT_PWD){
-    showToast('That parent password does not match.');
-    return;
-  }
+  if(!askParentPwd('This clears all progress for Jenn and Jess.'))return;
   const ok=confirm('This will permanently reset all progress for Jenn and Jess. Continue?');
   if(!ok)return;
   state={jenn:defPlayer(),jess:defPlayer()};
