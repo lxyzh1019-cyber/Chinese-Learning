@@ -97,6 +97,53 @@ function main() {
     }
   });
 
+  // ── guessing routes ─────────────────────────────────────────────────────
+  // The bank shipped 1.0.0 with distractors taken as "the first three other
+  // words in list order", so an item's wrong options were earlier items' RIGHT
+  // answers. 40 of 128 audio items could be answered by elimination, without
+  // reading the character — which is why unaided recognition scored near
+  // perfect beside meaning scores at chance. These three checks are what stop
+  // that returning.
+  const AUDIO_DOMAINS = ["recognition_unaided", "decoding_supported"];
+  const targetSounds = new Set();
+  (bank.items || []).filter((it) => AUDIO_DOMAINS.includes(it.domain)).forEach((it) => {
+    const ok = (it.options || []).find((o) => o.id === (it.acceptedOptionIds || [])[0]);
+    if (ok && ok.audioAssetId) targetSounds.add(ok.audioAssetId);
+  });
+  (bank.items || []).filter((it) => AUDIO_DOMAINS.includes(it.domain)).forEach((it) => {
+    (it.options || []).forEach((o) => {
+      if (o.id === (it.acceptedOptionIds || [])[0]) return;
+      if (targetSounds.has(o.audioAssetId)) {
+        fail(`item ${it.id}: distractor "${o.audioAssetId}" is a target sound elsewhere in the bank — it can be eliminated`);
+      }
+    });
+  });
+
+  Object.entries(forms.forms).forEach(([formId, bands]) => {
+    Object.entries(bands).forEach(([band, list]) => {
+      AUDIO_DOMAINS.forEach((domain) => {
+        const items = list.map((id) => byId[id]).filter((it) => it && it.domain === domain);
+        const answered = new Set();
+        const sets = new Set();
+        items.forEach((it) => {
+          const ok = (it.options || []).find((o) => o.id === (it.acceptedOptionIds || [])[0]);
+          const wrong = (it.options || []).filter((o) => o.id !== (it.acceptedOptionIds || [])[0])
+            .map((o) => o.audioAssetId);
+          if (wrong.length && wrong.every((w) => answered.has(w))) {
+            fail(`form ${formId} ${band} ${domain}: ${it.id} is answerable by elimination from earlier answers`);
+          }
+          sets.add(wrong.slice().sort().join(","));
+          if (ok) answered.add(ok.audioAssetId);
+        });
+        // A section offering the same three wrong sounds throughout reads as one
+        // question asked eight times, whether or not it is solvable.
+        if (items.length >= 4 && sets.size < Math.ceil(items.length / 2)) {
+          fail(`form ${formId} ${band} ${domain}: only ${sets.size} distinct distractor sets across ${items.length} items`);
+        }
+      });
+    });
+  });
+
   // ── passages ──
   Object.values(bank.passages || {}).forEach((p) => {
     const range = PASSAGE_LEN[p.band];

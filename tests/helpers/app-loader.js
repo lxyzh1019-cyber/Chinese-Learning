@@ -38,7 +38,7 @@ const BRIDGED = [
   "curGameTargetLevel",
   // Content tables. Also `const`, so also invisible without the bridge.
   "STORIES_MAP", "DYNASTIES", "HSK_VOCAB", "GATE_VOCAB", "GATE_SENTENCES",
-  "UI_LABELS",
+  "UI_LABELS", "timerSecs", "timerIv",
 ];
 
 /** Minimal element stub: enough for the app's rendering calls to be no-ops. */

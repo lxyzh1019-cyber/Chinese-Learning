@@ -1,5 +1,5 @@
 {
-  "bankVersion": "1.0.0",
+  "bankVersion": "1.1.0",
   "bands": [
     "C1",
     "C2",
@@ -31,26 +31,26 @@
     "c1p1": {
       "id": "c1p1",
       "band": "C1",
-      "zh": "早上，妈妈在家。她说：“今天天很好，我们上山去。”我很爱上山。山上有花，花很白。我笑了。",
-      "charCount": 33
+      "zh": "早上，妈妈在家。她说：“今天天气很好，我们去爬山吧。”我很喜欢爬山。山上有很多花，花是白的。我笑了。",
+      "charCount": 39
     },
     "c1p2": {
       "id": "c1p2",
       "band": "C1",
-      "zh": "爸爸有一本书。书里有山，有水，也有花。他很爱看这本书。晚上，他在家看书。我也看。",
-      "charCount": 32
+      "zh": "爸爸有一本书。书里有山，有水，也有花。他很喜欢看这本书。晚上，他在家看书，我也跟他一起看。",
+      "charCount": 37
     },
     "c1p3": {
       "id": "c1p3",
       "band": "C1",
-      "zh": "今天很冷。我和哥哥走到山下。山上有水，水很冷。哥哥说：“早点回家吧。”我们就走了。",
-      "charCount": 32
+      "zh": "今天很冷。我和哥哥走到山下。山上有水，水很冷。哥哥说：“早点回家吧。”我们就回家了。",
+      "charCount": 33
     },
     "c2p1": {
       "id": "c2p1",
       "band": "C2",
-      "zh": "小明有一只狗，它的名字叫小白。每天早上，小明都带小白去外面走一走。路上有很多人，也有别的狗。小白最爱和它们一起玩。回家以后，小明给小白一些米和水，小白很高兴。",
-      "charCount": 69
+      "zh": "小明有一只狗，它的名字叫小白。每天早上，小明都带小白去外面走一走。路上有很多人，也有别的狗。小白最爱和它们一起玩。回家以后，小明给小白一些米饭和水，小白很高兴。",
+      "charCount": 70
     },
     "c2p2": {
       "id": "c2p2",
@@ -104,7 +104,7 @@
   "items": [
     {
       "id": "as-v1-C1-rec-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -130,19 +130,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "mao1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "da4",
+          "audioAssetId": "qu4",
           "audioSource": "clip"
         }
       ],
@@ -171,7 +171,7 @@
     },
     {
       "id": "as-v1-C1-rec-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -197,19 +197,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "qu4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "shi2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "da4",
+          "audioAssetId": "kan4",
           "audioSource": "clip"
         }
       ],
@@ -238,7 +238,7 @@
     },
     {
       "id": "as-v1-C1-rec-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -264,19 +264,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "san1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "qu4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "da4",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         }
       ],
@@ -305,7 +305,7 @@
     },
     {
       "id": "as-v1-C1-rec-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -331,19 +331,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "mao1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "shi2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "san1",
           "audioSource": "clip"
         }
       ],
@@ -372,7 +372,7 @@
     },
     {
       "id": "as-v1-C1-rec-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -398,19 +398,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "hui2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "lai2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "shi2",
           "audioSource": "clip"
         }
       ],
@@ -439,7 +439,7 @@
     },
     {
       "id": "as-v1-C1-rec-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -465,19 +465,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "kan4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "shi2",
           "audioSource": "clip"
         }
       ],
@@ -506,7 +506,7 @@
     },
     {
       "id": "as-v1-C1-rec-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -532,19 +532,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "mao1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "ta1",
           "audioSource": "clip"
         }
       ],
@@ -573,7 +573,7 @@
     },
     {
       "id": "as-v1-C1-rec-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -599,19 +599,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "qu4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "hui2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         }
       ],
@@ -640,7 +640,7 @@
     },
     {
       "id": "as-v1-C1-rec-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -666,19 +666,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "shi2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "lai2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "hen3",
           "audioSource": "clip"
         }
       ],
@@ -707,7 +707,7 @@
     },
     {
       "id": "as-v1-C1-rec-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -733,19 +733,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "ge1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "hui2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "qu4",
           "audioSource": "clip"
         }
       ],
@@ -774,7 +774,7 @@
     },
     {
       "id": "as-v1-C1-rec-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -800,19 +800,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "lai2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "san1",
           "audioSource": "clip"
         }
       ],
@@ -841,7 +841,7 @@
     },
     {
       "id": "as-v1-C1-rec-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -867,19 +867,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "kan4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "hen3",
           "audioSource": "clip"
         }
       ],
@@ -908,7 +908,7 @@
     },
     {
       "id": "as-v1-C1-rec-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -934,19 +934,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "ge1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "qu4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "hen3",
           "audioSource": "clip"
         }
       ],
@@ -975,7 +975,7 @@
     },
     {
       "id": "as-v1-C1-rec-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -1001,19 +1001,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "shui3",
+          "audioAssetId": "hui2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "shan1",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "ren2",
+          "audioAssetId": "hen3",
           "audioSource": "clip"
         }
       ],
@@ -1042,7 +1042,7 @@
     },
     {
       "id": "as-v1-C1-dec-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1069,19 +1069,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "shi2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "san1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "shuo1",
+          "audioAssetId": "ta1",
           "audioSource": "clip"
         }
       ],
@@ -1110,7 +1110,7 @@
     },
     {
       "id": "as-v1-C1-dec-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1137,19 +1137,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "san1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "shuo1",
+          "audioAssetId": "zai4",
           "audioSource": "clip"
         }
       ],
@@ -1178,7 +1178,7 @@
     },
     {
       "id": "as-v1-C1-dec-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1205,19 +1205,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "san1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "mao1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "shuo1",
+          "audioAssetId": "ge1",
           "audioSource": "clip"
         }
       ],
@@ -1246,7 +1246,7 @@
     },
     {
       "id": "as-v1-C1-dec-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1273,19 +1273,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "lai2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "hui2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "ge1",
           "audioSource": "clip"
         }
       ],
@@ -1314,7 +1314,7 @@
     },
     {
       "id": "as-v1-C1-dec-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1341,19 +1341,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "mao1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "hen3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "ta1",
           "audioSource": "clip"
         }
       ],
@@ -1382,7 +1382,7 @@
     },
     {
       "id": "as-v1-C1-dec-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1409,19 +1409,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "ge1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "ta1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         }
       ],
@@ -1450,7 +1450,7 @@
     },
     {
       "id": "as-v1-C1-dec-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1477,19 +1477,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "zai4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "kan4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "san1",
           "audioSource": "clip"
         }
       ],
@@ -1518,7 +1518,7 @@
     },
     {
       "id": "as-v1-C1-dec-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1545,19 +1545,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "lai2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "kan4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "hui2",
           "audioSource": "clip"
         }
       ],
@@ -1586,7 +1586,7 @@
     },
     {
       "id": "as-v1-C1-dec-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1613,19 +1613,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "san1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "mao1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "qu4",
           "audioSource": "clip"
         }
       ],
@@ -1654,7 +1654,7 @@
     },
     {
       "id": "as-v1-C1-dec-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1681,19 +1681,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "lai2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "xia4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "hui2",
           "audioSource": "clip"
         }
       ],
@@ -1722,7 +1722,7 @@
     },
     {
       "id": "as-v1-C1-dec-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1749,19 +1749,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "hen3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "lai2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "mao1",
           "audioSource": "clip"
         }
       ],
@@ -1790,7 +1790,7 @@
     },
     {
       "id": "as-v1-C1-dec-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1817,19 +1817,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "ge1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "hui2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "qu4",
           "audioSource": "clip"
         }
       ],
@@ -1858,7 +1858,7 @@
     },
     {
       "id": "as-v1-C1-dec-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1885,19 +1885,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "ta1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "san1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "kan4",
           "audioSource": "clip"
         }
       ],
@@ -1926,7 +1926,7 @@
     },
     {
       "id": "as-v1-C1-dec-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -1953,19 +1953,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "chi1",
+          "audioAssetId": "shi2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "zou3",
+          "audioAssetId": "ge1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "he1",
+          "audioAssetId": "kan4",
           "audioSource": "clip"
         }
       ],
@@ -1994,7 +1994,7 @@
     },
     {
       "id": "as-v1-C1-mean-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2058,7 +2058,7 @@
     },
     {
       "id": "as-v1-C1-mean-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2122,7 +2122,7 @@
     },
     {
       "id": "as-v1-C1-mean-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2186,17 +2186,17 @@
     },
     {
       "id": "as-v1-C1-mean-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
-        "C1:月"
+        "C1:月亮"
       ],
       "passageId": null,
       "prompt": {
-        "zh": "天上有月。",
-        "highlight": "月",
-        "enInstruction": "In this sentence, what does 「月」 mean?"
+        "zh": "天上有月亮。",
+        "highlight": "月亮",
+        "enInstruction": "In this sentence, what does 「月亮」 mean?"
       },
       "support": {
         "targetPinyin": false,
@@ -2233,7 +2233,7 @@
       "reference": {
         "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
         "entries": [
-          "月"
+          "月亮"
         ]
       },
       "review": {
@@ -2250,7 +2250,7 @@
     },
     {
       "id": "as-v1-C1-mean-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2258,7 +2258,7 @@
       ],
       "passageId": null,
       "prompt": {
-        "zh": "山上有花。",
+        "zh": "山上有很多花。",
         "highlight": "花",
         "enInstruction": "In this sentence, what does 「花」 mean?"
       },
@@ -2314,7 +2314,7 @@
     },
     {
       "id": "as-v1-C1-mean-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2378,7 +2378,7 @@
     },
     {
       "id": "as-v1-C1-mean-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2442,7 +2442,7 @@
     },
     {
       "id": "as-v1-C1-mean-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2506,7 +2506,7 @@
     },
     {
       "id": "as-v1-C1-mean-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2514,7 +2514,7 @@
       ],
       "passageId": null,
       "prompt": {
-        "zh": "天很热。",
+        "zh": "今天很热。",
         "highlight": "热",
         "enInstruction": "In this sentence, what does 「热」 mean?"
       },
@@ -2570,7 +2570,7 @@
     },
     {
       "id": "as-v1-C1-mean-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2578,7 +2578,7 @@
       ],
       "passageId": null,
       "prompt": {
-        "zh": "哥哥走得早。",
+        "zh": "哥哥走得很早。",
         "highlight": "早",
         "enInstruction": "In this sentence, what does 「早」 mean?"
       },
@@ -2634,7 +2634,7 @@
     },
     {
       "id": "as-v1-C1-mean-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2698,7 +2698,7 @@
     },
     {
       "id": "as-v1-C1-mean-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2706,7 +2706,7 @@
       ],
       "passageId": null,
       "prompt": {
-        "zh": "门前有车。",
+        "zh": "门前有一辆车。",
         "highlight": "前",
         "enInstruction": "In this sentence, what does 「前」 mean?"
       },
@@ -2762,7 +2762,7 @@
     },
     {
       "id": "as-v1-C1-mean-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2826,7 +2826,7 @@
     },
     {
       "id": "as-v1-C1-mean-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -2890,7 +2890,7 @@
     },
     {
       "id": "as-v1-C1-pass-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -2949,7 +2949,7 @@
     },
     {
       "id": "as-v1-C1-pass-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3008,7 +3008,7 @@
     },
     {
       "id": "as-v1-C1-pass-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3025,7 +3025,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "Because they are happy going up the mountain",
+          "text": "Because they are happy to be climbing the mountain",
           "audioAssetId": null
         },
         {
@@ -3067,7 +3067,7 @@
     },
     {
       "id": "as-v1-C1-pass-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3126,7 +3126,7 @@
     },
     {
       "id": "as-v1-C1-pass-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3185,7 +3185,7 @@
     },
     {
       "id": "as-v1-C1-pass-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3244,7 +3244,7 @@
     },
     {
       "id": "as-v1-C1-pass-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3303,7 +3303,7 @@
     },
     {
       "id": "as-v1-C1-pass-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3362,7 +3362,7 @@
     },
     {
       "id": "as-v1-C1-pass-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3421,7 +3421,7 @@
     },
     {
       "id": "as-v1-C1-pass-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3480,7 +3480,7 @@
     },
     {
       "id": "as-v1-C1-pass-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -3539,7 +3539,7 @@
     },
     {
       "id": "as-v1-C1-writ-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -3580,7 +3580,7 @@
     },
     {
       "id": "as-v1-C1-writ-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -3621,7 +3621,7 @@
     },
     {
       "id": "as-v1-C1-writ-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -3662,7 +3662,7 @@
     },
     {
       "id": "as-v1-C1-writ-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -3703,7 +3703,7 @@
     },
     {
       "id": "as-v1-C1-writ-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -3744,7 +3744,7 @@
     },
     {
       "id": "as-v1-C1-writ-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -3785,7 +3785,7 @@
     },
     {
       "id": "as-v1-C1-writ-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C1",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -3826,7 +3826,7 @@
     },
     {
       "id": "as-v1-C2-rec-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -3852,19 +3852,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "jiao4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "peng2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "yao4",
+          "audioAssetId": "fan4",
           "audioSource": "clip"
         }
       ],
@@ -3893,7 +3893,7 @@
     },
     {
       "id": "as-v1-C2-rec-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -3919,19 +3919,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "song4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "yao4",
+          "audioAssetId": "peng2",
           "audioSource": "clip"
         }
       ],
@@ -3960,7 +3960,7 @@
     },
     {
       "id": "as-v1-C2-rec-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -3986,19 +3986,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "peng2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "zuo4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "yao4",
+          "audioAssetId": "di4",
           "audioSource": "clip"
         }
       ],
@@ -4027,7 +4027,7 @@
     },
     {
       "id": "as-v1-C2-rec-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4053,19 +4053,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "jiao4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         }
       ],
@@ -4094,7 +4094,7 @@
     },
     {
       "id": "as-v1-C2-rec-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4120,19 +4120,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "zuo4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         }
       ],
@@ -4161,7 +4161,7 @@
     },
     {
       "id": "as-v1-C2-rec-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4187,19 +4187,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "duo1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "fan4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "wan3",
           "audioSource": "clip"
         }
       ],
@@ -4228,7 +4228,7 @@
     },
     {
       "id": "as-v1-C2-rec-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4254,19 +4254,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "song4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "zuo4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "di4",
           "audioSource": "clip"
         }
       ],
@@ -4295,7 +4295,7 @@
     },
     {
       "id": "as-v1-C2-rec-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4321,19 +4321,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "di4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "wan3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         }
       ],
@@ -4362,7 +4362,7 @@
     },
     {
       "id": "as-v1-C2-rec-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4388,19 +4388,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "peng2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "fan4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "jiao4",
           "audioSource": "clip"
         }
       ],
@@ -4429,7 +4429,7 @@
     },
     {
       "id": "as-v1-C2-rec-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4455,19 +4455,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "duo1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "zuo4",
           "audioSource": "clip"
         }
       ],
@@ -4496,7 +4496,7 @@
     },
     {
       "id": "as-v1-C2-rec-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4522,19 +4522,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "song4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "duo1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "wan3",
           "audioSource": "clip"
         }
       ],
@@ -4563,7 +4563,7 @@
     },
     {
       "id": "as-v1-C2-rec-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4589,19 +4589,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "yang2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "duo1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "wan3",
           "audioSource": "clip"
         }
       ],
@@ -4630,7 +4630,7 @@
     },
     {
       "id": "as-v1-C2-rec-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4656,19 +4656,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "duo1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "zuo4",
           "audioSource": "clip"
         }
       ],
@@ -4697,7 +4697,7 @@
     },
     {
       "id": "as-v1-C2-rec-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -4723,19 +4723,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gou3",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "ma3",
+          "audioAssetId": "qian2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "mi3",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         }
       ],
@@ -4764,7 +4764,7 @@
     },
     {
       "id": "as-v1-C2-dec-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -4791,19 +4791,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "qian2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "jie1",
+          "audioAssetId": "jiao4",
           "audioSource": "clip"
         }
       ],
@@ -4832,7 +4832,7 @@
     },
     {
       "id": "as-v1-C2-dec-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -4859,19 +4859,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "wan3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "jie1",
+          "audioAssetId": "qian2",
           "audioSource": "clip"
         }
       ],
@@ -4900,7 +4900,7 @@
     },
     {
       "id": "as-v1-C2-dec-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -4927,19 +4927,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "jiao4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "song4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "jie1",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         }
       ],
@@ -4968,7 +4968,7 @@
     },
     {
       "id": "as-v1-C2-dec-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -4995,19 +4995,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "peng2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "song4",
           "audioSource": "clip"
         }
       ],
@@ -5036,7 +5036,7 @@
     },
     {
       "id": "as-v1-C2-dec-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5063,19 +5063,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "duo1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "jiao4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "peng2",
           "audioSource": "clip"
         }
       ],
@@ -5104,7 +5104,7 @@
     },
     {
       "id": "as-v1-C2-dec-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5131,19 +5131,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "jiao4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "duo1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "peng2",
           "audioSource": "clip"
         }
       ],
@@ -5172,7 +5172,7 @@
     },
     {
       "id": "as-v1-C2-dec-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5199,19 +5199,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "qian2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "song4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         }
       ],
@@ -5240,7 +5240,7 @@
     },
     {
       "id": "as-v1-C2-dec-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5267,19 +5267,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "qian2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "yang2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "song4",
           "audioSource": "clip"
         }
       ],
@@ -5308,7 +5308,7 @@
     },
     {
       "id": "as-v1-C2-dec-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5335,19 +5335,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "jiao4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "wan3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         }
       ],
@@ -5376,7 +5376,7 @@
     },
     {
       "id": "as-v1-C2-dec-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5403,19 +5403,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "di4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "yang2",
           "audioSource": "clip"
         }
       ],
@@ -5444,7 +5444,7 @@
     },
     {
       "id": "as-v1-C2-dec-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5471,19 +5471,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "di4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "wen4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "wan3",
           "audioSource": "clip"
         }
       ],
@@ -5512,7 +5512,7 @@
     },
     {
       "id": "as-v1-C2-dec-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5539,19 +5539,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "wan3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "fan4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         }
       ],
@@ -5580,7 +5580,7 @@
     },
     {
       "id": "as-v1-C2-dec-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5607,19 +5607,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "peng2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "duo1",
           "audioSource": "clip"
         }
       ],
@@ -5648,7 +5648,7 @@
     },
     {
       "id": "as-v1-C2-dec-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -5675,19 +5675,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "rang4",
+          "audioAssetId": "xie3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dai4",
+          "audioAssetId": "wan3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "wan2",
+          "audioAssetId": "zuo4",
           "audioSource": "clip"
         }
       ],
@@ -5716,7 +5716,7 @@
     },
     {
       "id": "as-v1-C2-mean-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -5780,7 +5780,7 @@
     },
     {
       "id": "as-v1-C2-mean-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -5844,7 +5844,7 @@
     },
     {
       "id": "as-v1-C2-mean-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -5908,7 +5908,7 @@
     },
     {
       "id": "as-v1-C2-mean-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -5972,7 +5972,7 @@
     },
     {
       "id": "as-v1-C2-mean-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -6036,7 +6036,7 @@
     },
     {
       "id": "as-v1-C2-mean-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -6100,7 +6100,7 @@
     },
     {
       "id": "as-v1-C2-mean-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -6164,7 +6164,7 @@
     },
     {
       "id": "as-v1-C2-mean-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -6228,7 +6228,7 @@
     },
     {
       "id": "as-v1-C2-mean-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -6292,17 +6292,17 @@
     },
     {
       "id": "as-v1-C2-mean-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
-        "C2:名"
+        "C2:名字"
       ],
       "passageId": null,
       "prompt": {
         "zh": "你叫什么名字？",
-        "highlight": "名",
-        "enInstruction": "In this sentence, what does 「名」 mean?"
+        "highlight": "名字",
+        "enInstruction": "In this sentence, what does 「名字」 mean?"
       },
       "support": {
         "targetPinyin": false,
@@ -6339,7 +6339,7 @@
       "reference": {
         "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
         "entries": [
-          "名"
+          "名字"
         ]
       },
       "review": {
@@ -6356,7 +6356,7 @@
     },
     {
       "id": "as-v1-C2-mean-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -6420,17 +6420,17 @@
     },
     {
       "id": "as-v1-C2-mean-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
-        "C2:米"
+        "C2:米饭"
       ],
       "passageId": null,
       "prompt": {
         "zh": "我们吃米饭。",
-        "highlight": "米",
-        "enInstruction": "In this sentence, what does 「米」 mean?"
+        "highlight": "米饭",
+        "enInstruction": "In this sentence, what does 「米饭」 mean?"
       },
       "support": {
         "targetPinyin": false,
@@ -6467,7 +6467,7 @@
       "reference": {
         "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
         "entries": [
-          "米"
+          "米饭"
         ]
       },
       "review": {
@@ -6484,7 +6484,7 @@
     },
     {
       "id": "as-v1-C2-mean-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -6548,7 +6548,7 @@
     },
     {
       "id": "as-v1-C2-mean-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -6612,7 +6612,7 @@
     },
     {
       "id": "as-v1-C2-pass-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -6671,7 +6671,7 @@
     },
     {
       "id": "as-v1-C2-pass-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -6730,7 +6730,7 @@
     },
     {
       "id": "as-v1-C2-pass-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -6789,7 +6789,7 @@
     },
     {
       "id": "as-v1-C2-pass-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -6848,7 +6848,7 @@
     },
     {
       "id": "as-v1-C2-pass-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -6907,7 +6907,7 @@
     },
     {
       "id": "as-v1-C2-pass-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -6966,7 +6966,7 @@
     },
     {
       "id": "as-v1-C2-pass-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -7025,7 +7025,7 @@
     },
     {
       "id": "as-v1-C2-pass-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -7084,7 +7084,7 @@
     },
     {
       "id": "as-v1-C2-pass-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -7143,7 +7143,7 @@
     },
     {
       "id": "as-v1-C2-pass-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -7202,7 +7202,7 @@
     },
     {
       "id": "as-v1-C2-pass-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -7261,7 +7261,7 @@
     },
     {
       "id": "as-v1-C2-writ-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -7302,7 +7302,7 @@
     },
     {
       "id": "as-v1-C2-writ-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -7343,7 +7343,7 @@
     },
     {
       "id": "as-v1-C2-writ-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -7384,7 +7384,7 @@
     },
     {
       "id": "as-v1-C2-writ-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -7425,7 +7425,7 @@
     },
     {
       "id": "as-v1-C2-writ-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -7466,7 +7466,7 @@
     },
     {
       "id": "as-v1-C2-writ-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -7507,7 +7507,7 @@
     },
     {
       "id": "as-v1-C2-writ-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C2",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -7548,7 +7548,7 @@
     },
     {
       "id": "as-v1-C3-rec-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -7574,19 +7574,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "guo2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "pao3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "zhu1",
+          "audioAssetId": "tui1",
           "audioSource": "clip"
         }
       ],
@@ -7615,7 +7615,7 @@
     },
     {
       "id": "as-v1-C3-rec-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -7641,19 +7641,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "se4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "yan2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "zhu1",
+          "audioAssetId": "tui1",
           "audioSource": "clip"
         }
       ],
@@ -7682,7 +7682,7 @@
     },
     {
       "id": "as-v1-C3-rec-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -7708,19 +7708,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "deng3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "zhu1",
+          "audioAssetId": "tang1",
           "audioSource": "clip"
         }
       ],
@@ -7749,7 +7749,7 @@
     },
     {
       "id": "as-v1-C3-rec-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -7775,19 +7775,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "guo2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "cai4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         }
       ],
@@ -7816,7 +7816,7 @@
     },
     {
       "id": "as-v1-C3-rec-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -7842,19 +7842,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "tang1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "guo2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "zhan4",
           "audioSource": "clip"
         }
       ],
@@ -7883,7 +7883,7 @@
     },
     {
       "id": "as-v1-C3-rec-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -7909,19 +7909,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "tang1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "rou4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "li3",
           "audioSource": "clip"
         }
       ],
@@ -7950,7 +7950,7 @@
     },
     {
       "id": "as-v1-C3-rec-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -7976,19 +7976,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "rou4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "tui1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "li3",
           "audioSource": "clip"
         }
       ],
@@ -8017,7 +8017,7 @@
     },
     {
       "id": "as-v1-C3-rec-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -8043,19 +8043,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "deng3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "rou4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "cai4",
           "audioSource": "clip"
         }
       ],
@@ -8084,7 +8084,7 @@
     },
     {
       "id": "as-v1-C3-rec-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -8110,19 +8110,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "pao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "deng3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "guo2",
           "audioSource": "clip"
         }
       ],
@@ -8151,7 +8151,7 @@
     },
     {
       "id": "as-v1-C3-rec-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -8177,19 +8177,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "pao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "rou4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "cai4",
           "audioSource": "clip"
         }
       ],
@@ -8218,7 +8218,7 @@
     },
     {
       "id": "as-v1-C3-rec-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -8244,19 +8244,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "tang1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "li3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "se4",
           "audioSource": "clip"
         }
       ],
@@ -8285,7 +8285,7 @@
     },
     {
       "id": "as-v1-C3-rec-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -8311,19 +8311,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "zhan4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "pao3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         }
       ],
@@ -8352,7 +8352,7 @@
     },
     {
       "id": "as-v1-C3-rec-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -8378,19 +8378,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "zhan4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "cai4",
           "audioSource": "clip"
         }
       ],
@@ -8419,7 +8419,7 @@
     },
     {
       "id": "as-v1-C3-rec-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -8445,19 +8445,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "niu2",
+          "audioAssetId": "tui1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "huo3",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "dao1",
+          "audioAssetId": "guo2",
           "audioSource": "clip"
         }
       ],
@@ -8486,7 +8486,7 @@
     },
     {
       "id": "as-v1-C3-dec-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -8513,19 +8513,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "tui1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "zhui1",
+          "audioAssetId": "zhan4",
           "audioSource": "clip"
         }
       ],
@@ -8554,7 +8554,7 @@
     },
     {
       "id": "as-v1-C3-dec-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -8581,19 +8581,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "zhan4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "se4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "zhui1",
+          "audioAssetId": "cai4",
           "audioSource": "clip"
         }
       ],
@@ -8622,7 +8622,7 @@
     },
     {
       "id": "as-v1-C3-dec-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -8649,19 +8649,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "guo2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "zhui1",
+          "audioAssetId": "tang1",
           "audioSource": "clip"
         }
       ],
@@ -8690,7 +8690,7 @@
     },
     {
       "id": "as-v1-C3-dec-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -8717,19 +8717,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "se4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "cai4",
           "audioSource": "clip"
         }
       ],
@@ -8758,7 +8758,7 @@
     },
     {
       "id": "as-v1-C3-dec-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -8785,19 +8785,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "pao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "se4",
           "audioSource": "clip"
         }
       ],
@@ -8826,7 +8826,7 @@
     },
     {
       "id": "as-v1-C3-dec-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -8853,19 +8853,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "tui1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "se4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "tang1",
           "audioSource": "clip"
         }
       ],
@@ -8894,7 +8894,7 @@
     },
     {
       "id": "as-v1-C3-dec-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -8921,19 +8921,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "pao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "guo2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "yan2",
           "audioSource": "clip"
         }
       ],
@@ -8962,7 +8962,7 @@
     },
     {
       "id": "as-v1-C3-dec-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -8989,19 +8989,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "cai4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "pao3",
           "audioSource": "clip"
         }
       ],
@@ -9030,7 +9030,7 @@
     },
     {
       "id": "as-v1-C3-dec-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -9057,19 +9057,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "yan2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "li3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "tang1",
           "audioSource": "clip"
         }
       ],
@@ -9098,7 +9098,7 @@
     },
     {
       "id": "as-v1-C3-dec-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -9125,19 +9125,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "guo2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "tui1",
           "audioSource": "clip"
         }
       ],
@@ -9166,7 +9166,7 @@
     },
     {
       "id": "as-v1-C3-dec-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -9193,19 +9193,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "pao3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "tang1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "guo2",
           "audioSource": "clip"
         }
       ],
@@ -9234,7 +9234,7 @@
     },
     {
       "id": "as-v1-C3-dec-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -9261,19 +9261,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "cai4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "pao3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         }
       ],
@@ -9302,7 +9302,7 @@
     },
     {
       "id": "as-v1-C3-dec-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -9329,19 +9329,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "li3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "cai4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "rou4",
           "audioSource": "clip"
         }
       ],
@@ -9370,7 +9370,7 @@
     },
     {
       "id": "as-v1-C3-dec-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -9397,19 +9397,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "zhua1",
+          "audioAssetId": "tang1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "gua4",
+          "audioAssetId": "zhao3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "tiao4",
+          "audioAssetId": "li3",
           "audioSource": "clip"
         }
       ],
@@ -9438,7 +9438,7 @@
     },
     {
       "id": "as-v1-C3-mean-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -9502,7 +9502,7 @@
     },
     {
       "id": "as-v1-C3-mean-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -9566,7 +9566,7 @@
     },
     {
       "id": "as-v1-C3-mean-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -9630,17 +9630,17 @@
     },
     {
       "id": "as-v1-C3-mean-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
-        "C3:城"
+        "C3:城市"
       ],
       "passageId": null,
       "prompt": {
-        "zh": "这座城很大，人也很多。",
-        "highlight": "城",
-        "enInstruction": "In this sentence, what does 「城」 mean?"
+        "zh": "这座城市很大，人也很多。",
+        "highlight": "城市",
+        "enInstruction": "In this sentence, what does 「城市」 mean?"
       },
       "support": {
         "targetPinyin": false,
@@ -9677,7 +9677,7 @@
       "reference": {
         "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
         "entries": [
-          "城"
+          "城市"
         ]
       },
       "review": {
@@ -9694,7 +9694,7 @@
     },
     {
       "id": "as-v1-C3-mean-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -9758,7 +9758,7 @@
     },
     {
       "id": "as-v1-C3-mean-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -9822,7 +9822,7 @@
     },
     {
       "id": "as-v1-C3-mean-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -9886,7 +9886,7 @@
     },
     {
       "id": "as-v1-C3-mean-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -9950,7 +9950,7 @@
     },
     {
       "id": "as-v1-C3-mean-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -9958,7 +9958,7 @@
       ],
       "passageId": null,
       "prompt": {
-        "zh": "花很香。",
+        "zh": "这些花很香。",
         "highlight": "香",
         "enInstruction": "In this sentence, what does 「香」 mean?"
       },
@@ -10014,7 +10014,7 @@
     },
     {
       "id": "as-v1-C3-mean-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -10078,7 +10078,7 @@
     },
     {
       "id": "as-v1-C3-mean-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -10142,7 +10142,7 @@
     },
     {
       "id": "as-v1-C3-mean-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -10206,7 +10206,7 @@
     },
     {
       "id": "as-v1-C3-mean-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -10270,17 +10270,17 @@
     },
     {
       "id": "as-v1-C3-mean-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "meaning_context",
       "targetWordIds": [
-        "C3:板"
+        "C3:黑板"
       ],
       "passageId": null,
       "prompt": {
-        "zh": "教室里有一块板。",
-        "highlight": "板",
-        "enInstruction": "In this sentence, what does 「板」 mean?"
+        "zh": "教室里有一块黑板。",
+        "highlight": "黑板",
+        "enInstruction": "In this sentence, what does 「黑板」 mean?"
       },
       "support": {
         "targetPinyin": false,
@@ -10290,7 +10290,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "a board",
+          "text": "a blackboard",
           "audioAssetId": null
         },
         {
@@ -10317,7 +10317,7 @@
       "reference": {
         "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
         "entries": [
-          "板"
+          "黑板"
         ]
       },
       "review": {
@@ -10334,7 +10334,7 @@
     },
     {
       "id": "as-v1-C3-pass-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10393,7 +10393,7 @@
     },
     {
       "id": "as-v1-C3-pass-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10452,7 +10452,7 @@
     },
     {
       "id": "as-v1-C3-pass-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10511,7 +10511,7 @@
     },
     {
       "id": "as-v1-C3-pass-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10570,7 +10570,7 @@
     },
     {
       "id": "as-v1-C3-pass-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10629,7 +10629,7 @@
     },
     {
       "id": "as-v1-C3-pass-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10688,7 +10688,7 @@
     },
     {
       "id": "as-v1-C3-pass-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10747,7 +10747,7 @@
     },
     {
       "id": "as-v1-C3-pass-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10806,7 +10806,7 @@
     },
     {
       "id": "as-v1-C3-pass-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10865,7 +10865,7 @@
     },
     {
       "id": "as-v1-C3-pass-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10924,7 +10924,7 @@
     },
     {
       "id": "as-v1-C3-pass-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -10983,7 +10983,7 @@
     },
     {
       "id": "as-v1-C3-writ-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -11024,7 +11024,7 @@
     },
     {
       "id": "as-v1-C3-writ-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -11065,7 +11065,7 @@
     },
     {
       "id": "as-v1-C3-writ-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -11106,7 +11106,7 @@
     },
     {
       "id": "as-v1-C3-writ-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -11147,7 +11147,7 @@
     },
     {
       "id": "as-v1-C3-writ-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -11188,7 +11188,7 @@
     },
     {
       "id": "as-v1-C3-writ-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -11229,7 +11229,7 @@
     },
     {
       "id": "as-v1-C3-writ-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C3",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -11270,7 +11270,7 @@
     },
     {
       "id": "as-v1-C4-rec-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11296,19 +11296,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "wang4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "zhou1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "xiang1",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         }
       ],
@@ -11337,7 +11337,7 @@
     },
     {
       "id": "as-v1-C4-rec-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11363,19 +11363,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "nan2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "xiang1",
+          "audioAssetId": "tian2",
           "audioSource": "clip"
         }
       ],
@@ -11404,7 +11404,7 @@
     },
     {
       "id": "as-v1-C4-rec-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11430,19 +11430,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "zhou1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "e4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "xiang1",
+          "audioAssetId": "wang4",
           "audioSource": "clip"
         }
       ],
@@ -11471,7 +11471,7 @@
     },
     {
       "id": "as-v1-C4-rec-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11497,19 +11497,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "zi4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "yuan3",
           "audioSource": "clip"
         }
       ],
@@ -11538,7 +11538,7 @@
     },
     {
       "id": "as-v1-C4-rec-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11564,19 +11564,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "wang4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "nan2",
           "audioSource": "clip"
         }
       ],
@@ -11605,7 +11605,7 @@
     },
     {
       "id": "as-v1-C4-rec-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11631,19 +11631,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "zi4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "wang4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         }
       ],
@@ -11672,7 +11672,7 @@
     },
     {
       "id": "as-v1-C4-rec-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11698,19 +11698,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "zi4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         }
       ],
@@ -11739,7 +11739,7 @@
     },
     {
       "id": "as-v1-C4-rec-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11765,19 +11765,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "tian2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "yuan3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         }
       ],
@@ -11806,7 +11806,7 @@
     },
     {
       "id": "as-v1-C4-rec-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11832,19 +11832,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "wang4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "tian2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         }
       ],
@@ -11873,7 +11873,7 @@
     },
     {
       "id": "as-v1-C4-rec-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11899,19 +11899,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "shui4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "zi4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         }
       ],
@@ -11940,7 +11940,7 @@
     },
     {
       "id": "as-v1-C4-rec-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -11966,19 +11966,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "shui4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "nan2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "er3",
           "audioSource": "clip"
         }
       ],
@@ -12007,7 +12007,7 @@
     },
     {
       "id": "as-v1-C4-rec-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -12033,19 +12033,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "zi4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "nan2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "er3",
           "audioSource": "clip"
         }
       ],
@@ -12074,7 +12074,7 @@
     },
     {
       "id": "as-v1-C4-rec-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -12100,19 +12100,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "er3",
           "audioSource": "clip"
         }
       ],
@@ -12141,7 +12141,7 @@
     },
     {
       "id": "as-v1-C4-rec-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "recognition_unaided",
       "targetWordIds": [
@@ -12167,19 +12167,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "meng4",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "bing1",
+          "audioAssetId": "yuan3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "pai2",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         }
       ],
@@ -12208,7 +12208,7 @@
     },
     {
       "id": "as-v1-C4-dec-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12235,19 +12235,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "yuan3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "fan1",
+          "audioAssetId": "tian2",
           "audioSource": "clip"
         }
       ],
@@ -12276,7 +12276,7 @@
     },
     {
       "id": "as-v1-C4-dec-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12303,19 +12303,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "nan2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "yuan3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "fan1",
+          "audioAssetId": "zi4",
           "audioSource": "clip"
         }
       ],
@@ -12344,7 +12344,7 @@
     },
     {
       "id": "as-v1-C4-dec-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12371,19 +12371,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "fan1",
+          "audioAssetId": "zhou1",
           "audioSource": "clip"
         }
       ],
@@ -12412,7 +12412,7 @@
     },
     {
       "id": "as-v1-C4-dec-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12439,19 +12439,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "tian2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "yuan3",
           "audioSource": "clip"
         }
       ],
@@ -12480,7 +12480,7 @@
     },
     {
       "id": "as-v1-C4-dec-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12507,19 +12507,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "shui4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "nan2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         }
       ],
@@ -12548,7 +12548,7 @@
     },
     {
       "id": "as-v1-C4-dec-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12575,19 +12575,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "e4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "er3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         }
       ],
@@ -12616,7 +12616,7 @@
     },
     {
       "id": "as-v1-C4-dec-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12643,19 +12643,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "zhou1",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         }
       ],
@@ -12684,7 +12684,7 @@
     },
     {
       "id": "as-v1-C4-dec-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12711,19 +12711,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "yuan3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "nan2",
           "audioSource": "clip"
         }
       ],
@@ -12752,7 +12752,7 @@
     },
     {
       "id": "as-v1-C4-dec-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12779,19 +12779,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "nan2",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "wang4",
           "audioSource": "clip"
         }
       ],
@@ -12820,7 +12820,7 @@
     },
     {
       "id": "as-v1-C4-dec-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12847,19 +12847,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "yong4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "zhou1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "zi4",
           "audioSource": "clip"
         }
       ],
@@ -12888,7 +12888,7 @@
     },
     {
       "id": "as-v1-C4-dec-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12915,19 +12915,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "zhou1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "zi4",
           "audioSource": "clip"
         }
       ],
@@ -12956,7 +12956,7 @@
     },
     {
       "id": "as-v1-C4-dec-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -12983,19 +12983,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "shui4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "zhou1",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         }
       ],
@@ -13024,7 +13024,7 @@
     },
     {
       "id": "as-v1-C4-dec-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -13051,19 +13051,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "tian2",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "er3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         }
       ],
@@ -13092,7 +13092,7 @@
     },
     {
       "id": "as-v1-C4-dec-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "decoding_supported",
       "targetWordIds": [
@@ -13119,19 +13119,19 @@
         {
           "id": "o2",
           "text": null,
-          "audioAssetId": "bao4",
+          "audioAssetId": "zi4",
           "audioSource": "clip"
         },
         {
           "id": "o3",
           "text": null,
-          "audioAssetId": "xing3",
+          "audioAssetId": "bi3",
           "audioSource": "clip"
         },
         {
           "id": "o4",
           "text": null,
-          "audioAssetId": "chong1",
+          "audioAssetId": "sui4",
           "audioSource": "clip"
         }
       ],
@@ -13160,7 +13160,7 @@
     },
     {
       "id": "as-v1-C4-mean-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13224,7 +13224,7 @@
     },
     {
       "id": "as-v1-C4-mean-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13288,7 +13288,7 @@
     },
     {
       "id": "as-v1-C4-mean-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13352,17 +13352,17 @@
     },
     {
       "id": "as-v1-C4-mean-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
-        "C4:牌"
+        "C4:牌子"
       ],
       "passageId": null,
       "prompt": {
         "zh": "门口挂着一块牌子。",
-        "highlight": "牌",
-        "enInstruction": "In this sentence, what does 「牌」 mean?"
+        "highlight": "牌子",
+        "enInstruction": "In this sentence, what does 「牌子」 mean?"
       },
       "support": {
         "targetPinyin": false,
@@ -13399,7 +13399,7 @@
       "reference": {
         "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
         "entries": [
-          "牌"
+          "牌子"
         ]
       },
       "review": {
@@ -13416,17 +13416,17 @@
     },
     {
       "id": "as-v1-C4-mean-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
-        "C4:箱"
+        "C4:箱子"
       ],
       "passageId": null,
       "prompt": {
         "zh": "这个箱子太重了，我搬不动。",
-        "highlight": "箱",
-        "enInstruction": "In this sentence, what does 「箱」 mean?"
+        "highlight": "箱子",
+        "enInstruction": "In this sentence, what does 「箱子」 mean?"
       },
       "support": {
         "targetPinyin": false,
@@ -13436,7 +13436,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "box",
+          "text": "a box",
           "audioAssetId": null
         },
         {
@@ -13463,7 +13463,7 @@
       "reference": {
         "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
         "entries": [
-          "箱"
+          "箱子"
         ]
       },
       "review": {
@@ -13480,7 +13480,7 @@
     },
     {
       "id": "as-v1-C4-mean-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13544,7 +13544,7 @@
     },
     {
       "id": "as-v1-C4-mean-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13608,7 +13608,7 @@
     },
     {
       "id": "as-v1-C4-mean-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13672,7 +13672,7 @@
     },
     {
       "id": "as-v1-C4-mean-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13736,7 +13736,7 @@
     },
     {
       "id": "as-v1-C4-mean-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13800,7 +13800,7 @@
     },
     {
       "id": "as-v1-C4-mean-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13864,7 +13864,7 @@
     },
     {
       "id": "as-v1-C4-mean-012",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13928,7 +13928,7 @@
     },
     {
       "id": "as-v1-C4-mean-013",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
@@ -13992,17 +13992,17 @@
     },
     {
       "id": "as-v1-C4-mean-014",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "meaning_context",
       "targetWordIds": [
-        "C4:顶"
+        "C4:山顶"
       ],
       "passageId": null,
       "prompt": {
         "zh": "山顶上有很多雪。",
-        "highlight": "顶",
-        "enInstruction": "In this sentence, what does 「顶」 mean?"
+        "highlight": "山顶",
+        "enInstruction": "In this sentence, what does 「山顶」 mean?"
       },
       "support": {
         "targetPinyin": false,
@@ -14012,7 +14012,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "the top",
+          "text": "the mountain top",
           "audioAssetId": null
         },
         {
@@ -14039,7 +14039,7 @@
       "reference": {
         "standardId": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
         "entries": [
-          "顶"
+          "山顶"
         ]
       },
       "review": {
@@ -14056,7 +14056,7 @@
     },
     {
       "id": "as-v1-C4-pass-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14115,7 +14115,7 @@
     },
     {
       "id": "as-v1-C4-pass-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14174,7 +14174,7 @@
     },
     {
       "id": "as-v1-C4-pass-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14233,7 +14233,7 @@
     },
     {
       "id": "as-v1-C4-pass-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14292,7 +14292,7 @@
     },
     {
       "id": "as-v1-C4-pass-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14351,7 +14351,7 @@
     },
     {
       "id": "as-v1-C4-pass-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14410,7 +14410,7 @@
     },
     {
       "id": "as-v1-C4-pass-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14469,7 +14469,7 @@
     },
     {
       "id": "as-v1-C4-pass-008",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14528,7 +14528,7 @@
     },
     {
       "id": "as-v1-C4-pass-009",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14587,7 +14587,7 @@
     },
     {
       "id": "as-v1-C4-pass-010",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14646,7 +14646,7 @@
     },
     {
       "id": "as-v1-C4-pass-011",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "passage_comprehension",
       "targetWordIds": [],
@@ -14705,7 +14705,7 @@
     },
     {
       "id": "as-v1-C4-writ-001",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -14746,7 +14746,7 @@
     },
     {
       "id": "as-v1-C4-writ-002",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -14787,7 +14787,7 @@
     },
     {
       "id": "as-v1-C4-writ-003",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -14828,7 +14828,7 @@
     },
     {
       "id": "as-v1-C4-writ-004",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -14869,7 +14869,7 @@
     },
     {
       "id": "as-v1-C4-writ-005",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -14910,7 +14910,7 @@
     },
     {
       "id": "as-v1-C4-writ-006",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "writing_recall",
       "targetWordIds": [
@@ -14951,7 +14951,7 @@
     },
     {
       "id": "as-v1-C4-writ-007",
-      "bankVersion": "1.0.0",
+      "bankVersion": "1.1.0",
       "band": "C4",
       "domain": "writing_recall",
       "targetWordIds": [

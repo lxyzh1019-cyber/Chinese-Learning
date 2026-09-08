@@ -24,6 +24,21 @@
 // ── C1 ──────────────────────────────────────────────────────────────────────
 const C1 = {
   passageRange: [25, 50],
+  // Sounds used ONLY as wrong options, never as a target anywhere in the bank.
+  // Avoid ü syllables: the clip library has no nv3/lv4, so `npm run
+  // validate:assessment:audio` rejects them and the option would play nothing.
+  // Before these existed, distractors were "the first three other words in list
+  // order", so an item's wrong options were earlier items' RIGHT answers: by the
+  // fifth question a child who had answered 水/山/人 could take the one remaining
+  // sound without knowing the character. 40 of the bank's 128 audio items were
+  // answerable that way, which is why unaided recognition read near-perfect beside
+  // meaning scores at chance.
+  foils: [
+    { py:"tā",   zh:"他" }, { py:"māo", zh:"猫" }, { py:"gē",  zh:"哥" },
+    { py:"huí",  zh:"回" }, { py:"kàn", zh:"看" }, { py:"sān", zh:"三" },
+    { py:"xià",  zh:"下" }, { py:"zài", zh:"在" }, { py:"lái", zh:"来" },
+    { py:"hěn",  zh:"很" }, { py:"shí", zh:"十" }, { py:"qù",  zh:"去" },
+  ],
   recognition: [
     { zh:"水", py:"shuǐ", en:"water",    anchor:true },
     { zh:"山", py:"shān", en:"mountain", anchor:true },
@@ -60,26 +75,26 @@ const C1 = {
     { sent:"我喝水。",      target:"喝", answer:"drink",       wrong:["eat","run","sleep"],          anchor:true },
     { sent:"妈妈在家。",    target:"家", answer:"home",        wrong:["school","shop","park"],       anchor:true },
     { sent:"爸爸看书。",    target:"书", answer:"book",        wrong:["phone","bowl","chair"],       form:"A" },
-    { sent:"天上有月。",    target:"月", answer:"the moon",    wrong:["a bird","the sun","a cloud"], form:"A" },
-    { sent:"山上有花。",    target:"花", answer:"flowers",     wrong:["snow","rocks","houses"],      form:"A" },
+    { sent:"天上有月亮。",    target:"月亮", answer:"the moon",    wrong:["a bird","the sun","a cloud"], form:"A" },
+    { sent:"山上有很多花。",    target:"花", answer:"flowers",     wrong:["snow","rocks","houses"],      form:"A" },
     { sent:"我学中文。",    target:"学", answer:"study",       wrong:["forget","sell","carry"],      form:"A" },
     { sent:"水很冷。",      target:"冷", answer:"cold",        wrong:["deep","clean","sweet"],       form:"A" },
     { sent:"他走得很快。",  target:"快", answer:"fast",        wrong:["slowly","quietly","far"],     form:"A" },
-    { sent:"天很热。",      target:"热", answer:"hot",         wrong:["windy","dark","wet"],         form:"B" },
-    { sent:"哥哥走得早。",  target:"早", answer:"early",       wrong:["late","alone","again"],       form:"B" },
+    { sent:"今天很热。",      target:"热", answer:"hot",         wrong:["windy","dark","wet"],         form:"B" },
+    { sent:"哥哥走得很早。",  target:"早", answer:"early",       wrong:["late","alone","again"],       form:"B" },
     { sent:"他笑了。",      target:"笑", answer:"laughed",     wrong:["cried","left","slept"],       form:"B" },
-    { sent:"门前有车。",    target:"前", answer:"in front of", wrong:["behind","inside","under"],    form:"B" },
+    { sent:"门前有一辆车。",    target:"前", answer:"in front of", wrong:["behind","inside","under"],    form:"B" },
     { sent:"我爱我家。",    target:"爱", answer:"love",        wrong:["leave","clean","build"],      form:"B" },
     { sent:"老人在前面。",  target:"老", answer:"old",         wrong:["tall","busy","new"],          form:"B" },
   ],
   passages: [
-    { id:"c1p1", form:"A", zh:"早上，妈妈在家。她说：“今天天很好，我们上山去。”我很爱上山。山上有花，花很白。我笑了。",
+    { id:"c1p1", form:"A", zh:"早上，妈妈在家。她说：“今天天气很好，我们去爬山吧。”我很喜欢爬山。山上有很多花，花是白的。我笑了。",
       questions:[
         { kind:"literal",   q:"What did Mum say the weather was like today?", answer:"Very good", wrong:["Very cold","Very windy","Very dark"], form:"A" },
         { kind:"reference", q:"In the story, who is “她” (she)?", answer:"Mum", wrong:["The child","The flower","A friend"], form:"A" },
-        { kind:"inference", q:"Why does the child smile at the end?", answer:"Because they are happy going up the mountain", wrong:["Because they are going home","Because it started to rain","Because Mum was late"], form:"A" },
+        { kind:"inference", q:"Why does the child smile at the end?", answer:"Because they are happy to be climbing the mountain", wrong:["Because they are going home","Because it started to rain","Because Mum was late"], form:"A" },
       ] },
-    { id:"c1p2", form:"both", zh:"爸爸有一本书。书里有山，有水，也有花。他很爱看这本书。晚上，他在家看书。我也看。",
+    { id:"c1p2", form:"both", zh:"爸爸有一本书。书里有山，有水，也有花。他很喜欢看这本书。晚上，他在家看书，我也跟他一起看。",
       questions:[
         { kind:"literal",   q:"What does Dad have?", answer:"A book", wrong:["A car","A flower","A cup"], anchor:true },
         { kind:"literal",   q:"What is inside the book?", answer:"Mountains, water and flowers", wrong:["Cars and roads","Animals and food","Numbers and letters"], form:"A" },
@@ -87,7 +102,7 @@ const C1 = {
         { kind:"reference", q:"In the story, who is “他” (he)?", answer:"Dad", wrong:["The child","The writer","A teacher"], form:"B" },
         { kind:"inference", q:"How can you tell Dad likes this book?", answer:"He reads it at home in the evenings", wrong:["He bought two of them","He gave it away","He wrote it himself"], form:"B" },
       ] },
-    { id:"c1p3", form:"B", zh:"今天很冷。我和哥哥走到山下。山上有水，水很冷。哥哥说：“早点回家吧。”我们就走了。",
+    { id:"c1p3", form:"B", zh:"今天很冷。我和哥哥走到山下。山上有水，水很冷。哥哥说：“早点回家吧。”我们就回家了。",
       questions:[
         { kind:"literal",   q:"What is the weather like today?", answer:"Cold", wrong:["Hot","Rainy","Windy"], form:"B" },
         { kind:"sequence",  q:"What happens right after big brother speaks?", answer:"They go home", wrong:["They climb higher","They drink the water","They sit down"], form:"B" },
@@ -108,6 +123,12 @@ const C1 = {
 // ── C2 ──────────────────────────────────────────────────────────────────────
 const C2 = {
   passageRange: [50, 80],
+  foils: [
+    { py:"fàn",  zh:"饭" }, { py:"wǎn", zh:"碗" }, { py:"qián",zh:"钱" },
+    { py:"xiě",  zh:"写" }, { py:"zuò", zh:"坐" }, { py:"duō", zh:"多" },
+    { py:"péng", zh:"朋" }, { py:"yáng",zh:"羊" }, { py:"dì",  zh:"弟" },
+    { py:"wèn",  zh:"问" }, { py:"sòng",zh:"送" }, { py:"jiào",zh:"叫" },
+  ],
   recognition: [
     { zh:"狗", py:"gǒu",  en:"dog",      anchor:true },
     { zh:"马", py:"mǎ",   en:"horse",    anchor:true },
@@ -150,14 +171,14 @@ const C2 = {
     { sent:"他的脸很红。",        target:"脸", answer:"face",         wrong:["hair","hand","coat"],                 form:"A" },
     { sent:"车在门前停了。",      target:"停", answer:"stopped",      wrong:["started","turned","fell"],            form:"A" },
     { sent:"我给她写了一封信。",  target:"信", answer:"a letter",     wrong:["a song","a list","a story"],          form:"B" },
-    { sent:"你叫什么名字？",      target:"名", answer:"name",         wrong:["age","job","school"],                 form:"B" },
+    { sent:"你叫什么名字？",      target:"名字", answer:"name",         wrong:["age","job","school"],                 form:"B" },
     { sent:"他的头有点痛。",      target:"头", answer:"head",         wrong:["foot","back","arm"],                  form:"B" },
-    { sent:"我们吃米饭。",        target:"米", answer:"rice",         wrong:["bread","noodles","soup"],             form:"B" },
+    { sent:"我们吃米饭。",        target:"米饭", answer:"rice",         wrong:["bread","noodles","soup"],             form:"B" },
     { sent:"医生给了他一些药。",  target:"药", answer:"medicine",     wrong:["water","money","food"],               form:"B" },
     { sent:"请你把书收起来。",    target:"收", answer:"put away",     wrong:["read out","throw away","give back"],  form:"B" },
   ],
   passages: [
-    { id:"c2p1", form:"A", zh:"小明有一只狗，它的名字叫小白。每天早上，小明都带小白去外面走一走。路上有很多人，也有别的狗。小白最爱和它们一起玩。回家以后，小明给小白一些米和水，小白很高兴。",
+    { id:"c2p1", form:"A", zh:"小明有一只狗，它的名字叫小白。每天早上，小明都带小白去外面走一走。路上有很多人，也有别的狗。小白最爱和它们一起玩。回家以后，小明给小白一些米饭和水，小白很高兴。",
       questions:[
         { kind:"literal",   q:"What is the dog called?", answer:"Xiao Bai", wrong:["Xiao Ming","Xiao Hong","Xiao Mi"], form:"A" },
         { kind:"sequence",  q:"What does Xiao Ming do after they get home?", answer:"He gives the dog some rice and water", wrong:["He takes the dog out again","He goes to sleep","He calls a friend"], form:"A" },
@@ -192,6 +213,12 @@ const C2 = {
 // ── C3 ──────────────────────────────────────────────────────────────────────
 const C3 = {
   passageRange: [80, 120],
+  foils: [
+    { py:"zhàn", zh:"站" }, { py:"cài", zh:"菜" }, { py:"ròu", zh:"肉" },
+    { py:"tāng", zh:"汤" }, { py:"yán", zh:"盐" }, { py:"zhǎo",zh:"找" },
+    { py:"pǎo",  zh:"跑" }, { py:"děng",zh:"等" }, { py:"guó", zh:"国" },
+    { py:"lǐ",   zh:"里" }, { py:"sè",  zh:"色" }, { py:"tuī", zh:"推" },
+  ],
   recognition: [
     { zh:"牛", py:"niú",   en:"cow",       anchor:true },
     { zh:"火", py:"huǒ",   en:"fire",      anchor:true },
@@ -228,17 +255,17 @@ const C3 = {
     { sent:"火很热，别靠太近。",          target:"火", answer:"fire",            wrong:["ice","wind","sand"],                       anchor:true },
     { sent:"他抓住了我的手。",            target:"抓", answer:"took hold of",    wrong:["let go of","washed","pointed at"],         anchor:true },
     { sent:"墙上挂着一张图。",            target:"挂", answer:"is hanging",      wrong:["is falling","is drawn","is torn"],         form:"A" },
-    { sent:"这座城很大，人也很多。",      target:"城", answer:"city",            wrong:["farm","island","forest"],                  form:"A" },
+    { sent:"这座城市很大，人也很多。",      target:"城市", answer:"city",            wrong:["farm","island","forest"],                  form:"A" },
     { sent:"小狗跳过了那条河。",          target:"跳", answer:"jumped",          wrong:["swam","walked","looked"],                  form:"A" },
     { sent:"我们的队昨天输了。",          target:"输", answer:"lost",            wrong:["won","played","trained"],                  form:"A" },
     { sent:"这个杯子破了。",              target:"破", answer:"broken",          wrong:["empty","clean","heavy"],                   form:"A" },
     { sent:"这个故事传了很多年。",        target:"传", answer:"has been passed down", wrong:["was written down","was forgotten","was translated"], form:"A" },
-    { sent:"花很香。",                    target:"香", answer:"smells nice",     wrong:["looks bright","feels soft","grows fast"],  form:"B" },
+    { sent:"这些花很香。",                    target:"香", answer:"smells nice",     wrong:["looks bright","feels soft","grows fast"],  form:"B" },
     { sent:"他们在城里建了一座桥。",      target:"建", answer:"built",           wrong:["crossed","painted","found"],               form:"B" },
     { sent:"爸爸在修我的自行车。",        target:"修", answer:"repairing",       wrong:["riding","selling","cleaning"],             form:"B" },
     { sent:"我已经付了钱。",              target:"付", answer:"paid",            wrong:["counted","saved","borrowed"],              form:"B" },
     { sent:"太阳升起来了。",              target:"升", answer:"rose",            wrong:["set","hid","turned"],                      form:"B" },
-    { sent:"教室里有一块板。",            target:"板", answer:"a board",         wrong:["a window","a door","a light"],             form:"B" },
+    { sent:"教室里有一块黑板。",            target:"黑板", answer:"a blackboard",         wrong:["a window","a door","a light"],             form:"B" },
   ],
   passages: [
     { id:"c3p1", form:"A", zh:"从前，有一个小城，城里住着一位老人。老人家里养了一头牛和几只猪。每天早上，他先去田里做事，回来以后再喂牛。有一年冬天特别冷，别人的牛都病了，只有他的牛还很好。大家问他为什么，他说：“因为我天天都照顾它，从来没有忘记过。”",
@@ -276,6 +303,12 @@ const C3 = {
 // ── C4 ──────────────────────────────────────────────────────────────────────
 const C4 = {
   passageRange: [120, 180],
+  foils: [
+    { py:"suì",  zh:"岁" }, { py:"tián",zh:"甜" }, { py:"shuì",zh:"睡" },
+    { py:"wàng", zh:"忘" }, { py:"yòng",zh:"用" }, { py:"yuǎn",zh:"远" },
+    { py:"zhōu", zh:"周" }, { py:"zì",  zh:"字" }, { py:"nán", zh:"男" },
+    { py:"ěr",   zh:"耳" }, { py:"è",   zh:"饿" }, { py:"bǐ",  zh:"笔" },
+  ],
   recognition: [
     { zh:"梦", py:"mèng",  en:"dream",    anchor:true },
     { zh:"冰", py:"bīng",  en:"ice",      anchor:true },
@@ -312,8 +345,8 @@ const C4 = {
     { sent:"昨天晚上我做了一个梦。",          target:"梦", answer:"a dream",       wrong:["a mistake","a promise","a plan"],            anchor:true },
     { sent:"他抱着一只小猫走进来。",          target:"抱", answer:"holding",       wrong:["chasing","feeding","drawing"],               anchor:true },
     { sent:"水太冷，都结成冰了。",            target:"冰", answer:"ice",           wrong:["steam","mud","salt"],                        form:"A" },
-    { sent:"门口挂着一块牌子。",              target:"牌", answer:"a sign",        wrong:["a mirror","a curtain","a basket"],           form:"A" },
-    { sent:"这个箱子太重了，我搬不动。",      target:"箱", answer:"box",           wrong:["chair","ladder","door"],                     form:"A" },
+    { sent:"门口挂着一块牌子。",              target:"牌子", answer:"a sign",        wrong:["a mirror","a curtain","a basket"],           form:"A" },
+    { sent:"这个箱子太重了，我搬不动。",      target:"箱子", answer:"a box",           wrong:["chair","ladder","door"],                     form:"A" },
     { sent:"他每天早上七点就醒了。",          target:"醒", answer:"wakes up",      wrong:["gets dressed","leaves home","eats"],         form:"A" },
     { sent:"请把桌子擦一擦。",                target:"擦", answer:"wipe",          wrong:["move","measure","paint"],                    form:"A" },
     { sent:"这种药有点苦。",                  target:"苦", answer:"bitter",        wrong:["sweet","warm","expensive"],                  form:"A" },
@@ -322,7 +355,7 @@ const C4 = {
     { sent:"他把照片贴在墙上。",              target:"贴", answer:"stuck",         wrong:["threw","hid","tore"],                        form:"B" },
     { sent:"回家以后先把鞋脱了。",            target:"脱", answer:"take off",      wrong:["put on","clean","tie"],                      form:"B" },
     { sent:"请你挑一个你喜欢的。",            target:"挑", answer:"pick out",      wrong:["put back","share","count"],                  form:"B" },
-    { sent:"山顶上有很多雪。",                target:"顶", answer:"the top",       wrong:["the bottom","the side","the path"],          form:"B" },
+    { sent:"山顶上有很多雪。",                target:"山顶", answer:"the mountain top",       wrong:["the bottom","the side","the path"],          form:"B" },
   ],
   passages: [
     { id:"c4p1", form:"A", zh:"李阿姨在城边开了一家小店，门口挂着一块旧牌子。店里卖的东西不多，可是每样都摆得很整齐。冬天的早上特别冷，路上结了冰，来买东西的人也少了。有一天，一个孩子在店门口摔倒了。李阿姨马上跑出去把他抱起来，还给他倒了一杯热水。从那以后，附近的人都愿意到她的店里来。他们说，这里卖的不只是货，还有一份心意。",

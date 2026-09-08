@@ -90,6 +90,20 @@ input{font-family:var(--fui);}
 .sidebar-profile-chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 .sidebar-chip-switch{font-size:.62rem;font-weight:700;color:var(--muted);letter-spacing:.02em;}
 .sidebar-profile-chip:hover .sidebar-chip-switch{color:var(--gold);}
+/* Assessment: its own screen, deliberately plain. No road, no stars, no gold
+   celebration furniture — it is a measurement, and it should not look like a
+   reward loop. */
+.assess-entry{margin:1.1rem auto 0;max-width:380px;width:92%;text-align:center;
+  background:rgba(255,255,255,.03);border:1px solid rgba(212,160,23,.18);border-radius:14px;padding:.85rem .9rem;}
+.assess-entry-title{font-size:.92rem;font-weight:800;color:var(--gold);margin-bottom:.25rem;}
+.assess-entry-sub{font-size:.68rem;color:var(--muted);line-height:1.6;margin-bottom:.6rem;}
+.assess-entry-btns{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;}
+#scr-assessment{align-items:flex-start;justify-content:center;padding:1.2rem 1rem 2.4rem;overflow-y:auto;}
+.assess-shell{max-width:520px;width:100%;}
+.assess-head{display:flex;flex-direction:column;align-items:center;gap:.25rem;margin-bottom:1rem;}
+.assess-title{font-family:var(--fdec);font-size:1.5rem;color:var(--gold);text-align:center;}
+.assess-who{font-size:.8rem;font-weight:700;color:var(--ink);}
+.assess-exit{margin-top:.45rem;}
 .sidebar-avatar{font-size:2.8rem;text-align:center;line-height:1.1;}
 .sidebar-name{font-family:var(--fdec);font-size:1.35rem;color:var(--gold);text-align:center;}
 .sidebar-hsk-badge{font-size:.7rem;font-weight:700;color:var(--jade);text-align:center;
@@ -768,6 +782,14 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
     </div>
     <div class="co-dots" id="co-dots"></div>
   </div>
+  <div class="assess-entry">
+    <div class="assess-entry-title" data-ui-label="assessment"></div>
+    <div class="assess-entry-sub">A quiet check of reading — no stars, no timer, nothing to unlock.<br>安静的阅读小测，不给星星，不计时。</div>
+    <div class="assess-entry-btns">
+      <button class="btn-s" onclick="enterAssessment('jenn')">🐥 Jenn</button>
+      <button class="btn-s" onclick="enterAssessment('jess')">🦊 Jess</button>
+    </div>
+  </div>
   <button class="parent-btn" onclick="showParentSummary()" data-ui-label="parentSummary"></button>
 </div>
 
@@ -1072,14 +1094,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
   </div>
 </div>
 
-<!-- ═══ ASSESSMENT OVERLAY ═══ -->
-<div class="mini-quiz-overlay" id="assessment-overlay">
-  <div class="mini-quiz-card">
-    <button type="button" class="mq-close" onclick="closeAssessment()" title="Close" aria-label="Close">✕</button>
-    <div class="mq-title" data-ui-label="assessment"></div>
-    <div id="assessment-body"></div>
-  </div>
-</div>
+
 
 <!-- ═══ TIME LOCK ═══ -->
 <div class="timelock" id="timelock">
@@ -1093,6 +1108,22 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
       <button class="btn-p" onclick="unlockTime()">Unlock 🔓</button>
       <button class="btn-s" onclick="goToSelect()">End Session</button>
     </div>
+  </div>
+</div>
+
+<!-- ═══ ASSESSMENT SCREEN ═══
+     Its own screen, reached from the profile-select screen — NOT from the hub.
+     The assessment is a measurement instrument that sits outside the game
+     economy (no stars, no timers, no gate effects), and a button in the games
+     strip said the opposite. Nothing here shares the road's furniture. -->
+<div class="screen" id="scr-assessment">
+  <div class="assess-shell">
+    <div class="assess-head">
+      <div class="assess-title" data-ui-label="assessment"></div>
+      <div class="assess-who" id="assessment-who"></div>
+      <button type="button" class="btn-s assess-exit" onclick="closeAssessment()">← Done for now · 先到这里</button>
+    </div>
+    <div id="assessment-body"></div>
   </div>
 </div>
 
@@ -5220,6 +5251,35 @@ function selectPlayer(p){
   startTimer();startPlayTime();
 }
 
+/**
+ * Open the assessment for one child, from the select screen.
+ *
+ * Deliberately NOT selectPlayer(): that starts the 20-minute play-session
+ * countdown and the play-time accumulator. The assessment is outside the game
+ * economy, so sitting one must not spend a child's play time or arm the
+ * time-lock over a question. It still takes ownership properly — curP is set
+ * and sessionGen bumped — so an in-flight callback from a previous profile
+ * cannot land inside the new attempt.
+ */
+function enterAssessment(pid){
+  if(!pid||!state[pid])return;
+  stopTimer();stopPlayTime();
+  drainAllDeferred();
+  releaseAnswerLock();
+  bumpSessionGen();
+  ensureState(pid);
+  curP=pid;curHSK=1;
+  showScreen('assessment');
+  const who=document.getElementById('assessment-who');
+  if(who)who.textContent=playerName(pid);
+  openAssessment();
+}
+
+/** Display name for a profile id. One definition; it used to be four ternaries
+ *  scattered across the hub, the road and the parent panel. */
+function playerName(pid){return pid==='jenn'?'Jenn':pid==='jess'?'Jess':String(pid||'');}
+function playerAvatar(pid){return pid==='jenn'?'\ud83d\udc25':'\ud83e\udd8a';}
+
 function goToSelect(){
   stopTimer();stopPlayTime();
   drainAllDeferred();
@@ -5294,10 +5354,10 @@ function renderHub(){
   const nextDid=nextOpenGateId(s);
   if(nextDid)maybeShowGateTimerReminder(s,nextDid);
   document.getElementById('hub-avatar').textContent=curP==='jenn'?'🐥':'🦊';
-  document.getElementById('hub-name').textContent=curP==='jenn'?'Jenn':'Jess';
+  document.getElementById('hub-name').textContent=playerName(curP);
   const hsk=getCurrentHSK(s);
   document.getElementById('hub-hsk').textContent='HSK '+hsk;
-  document.getElementById('hub-title').textContent=curP==='jenn'?'Jenn\'s Adventure':'Jess\'s Adventure';
+  document.getElementById('hub-title').textContent=playerName(curP)+'\'s Adventure';
   // today stats
   const ts=getTS(curP);
   document.getElementById('ts-stars').textContent=ts.stars||0;
@@ -5398,9 +5458,6 @@ function renderHubContent(){
         <div class="hub-play-btns">
           <button type="button" class="btn-s hub-flash-btn" onclick="openFlashPicker()">${L('flashCards')}</button>
           <button type="button" class="btn-s hub-flash-btn" onclick="openCultureStories()">${L('cultureStories')}</button>
-        </div>
-        <div class="hub-play-btns">
-          <button type="button" class="btn-s hub-flash-btn" onclick="openAssessment()">${L('assessment')}</button>
         </div>
         <div style="margin-top:.6rem;">
           ${gamePickerHtml()}
@@ -7324,7 +7381,7 @@ function renderParentSummary(){
 
   function wrongColHtml(p,words,label){
     const color=p==='jenn'?'var(--jenn)':'var(--jess)';
-    const avatar=p==='jenn'?'🐥 Jenn':'🦊 Jess';
+    const avatar=playerAvatar(p)+' '+playerName(p);
     let html=`<div class="wrong-col"><div class="wrong-col-hdr" style="color:${color};">${avatar} — ${label}</div>`;
     if(words.length){
       html+=words.slice(0,20).map(w=>`<div class="ww-row"><span class="ww-zh">${w.zh}</span><span class="ww-py">${w.py}</span><span class="ww-en">${w.en}</span><span class="ww-cnt">✗${w.failCount}</span></div>`).join('');
@@ -7348,7 +7405,7 @@ function renderParentSummary(){
       const color=p==='jenn'?'var(--jenn)':'var(--jess)';
       const rawMs=(s.dailyTimeMs[dk])||0;
       const mins=Math.floor(rawMs/60000);const secs=Math.floor((rawMs%60000)/1000);
-      grid.innerHTML+=`<div class="ppc"><div class="ppc-title" style="color:${color};">${p==='jenn'?'🐥 Jenn':'🦊 Jess'}</div>
+      grid.innerHTML+=`<div class="ppc"><div class="ppc-title" style="color:${color};">${playerAvatar(p)+' '+playerName(p)}</div>
         <div class="psr"><span class="psr-lbl">☀️ Day Stars (${lbl})</span><span class="psr-val" style="color:var(--gold)">${ts.stars||0}</span></div>
         <div class="psr"><span class="psr-lbl">✅ Correct</span><span class="psr-val">${ts.correct||0}</span></div>
         <div class="psr"><span class="psr-lbl">🏯 Gates Done</span><span class="psr-val">${ts.gates||0}</span></div>
@@ -7380,7 +7437,7 @@ function renderParentSummary(){
     const rawMs=(s.dailyTimeMs&&s.dailyTimeMs[today])||0;
     const mins=Math.floor(rawMs/60000);
     const color=p==='jenn'?'var(--jenn)':'var(--jess)';
-    grid.innerHTML+=`<div class="ppc"><div class="ppc-title" style="color:${color};">${p==='jenn'?'🐥 Jenn':'🦊 Jess'}</div>
+    grid.innerHTML+=`<div class="ppc"><div class="ppc-title" style="color:${color};">${playerAvatar(p)+' '+playerName(p)}</div>
       <div class="psr"><span class="psr-lbl">⭐ All-time Stars</span><span class="psr-val">${s.totalStars}</span></div>
       <div class="psr"><span class="psr-lbl">📅 ${lbl} Stars</span><span class="psr-val" style="color:var(--gold)">${wkStars}</span></div>
       <div class="psr"><span class="psr-lbl">☀️ Today's Stars</span><span class="psr-val">${ts.stars||0}</span></div>

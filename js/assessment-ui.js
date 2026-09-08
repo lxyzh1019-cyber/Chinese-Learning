@@ -1,7 +1,7 @@
 /* eslint-disable */
 "use strict";
 /**
- * Assessment overlay.
+ * Assessment screen.
  *
  * Depends on the app's globals (state, curP, savePlayer, showToast, speak,
  * laterCall, sessionGen) and on AssessmentCore / PlayerStore, so it is loaded
@@ -10,6 +10,12 @@
  * Tone is deliberately flat. This is a calm check, not a gate boss: no streaks,
  * no reward sounds, no correctness reveal, no encouragement between items. All
  * of that resumes afterwards, in the practice offered from the results screen.
+ *
+ * It lives on its own screen, entered from the profile-select screen, rather
+ * than in an overlay opened from the games strip. It shared a stylesheet, a
+ * z-index and a close button with Games, Drill and Flash Cards, which said it
+ * was another activity in the reward loop; it is the one thing in the app that
+ * awards nothing and unlocks nothing.
  */
 (function () {
   const C = globalThis.AssessmentCore;
@@ -36,6 +42,11 @@
    */
   const SESSION_WARN_SECS = 180;
   function sessionNotice() {
+    // Only while a play session is actually running. Entering from the select
+    // screen starts no timer, and timerSecs keeps whatever the last hub session
+    // left behind — so without this the notice fired on an assessment that was
+    // costing the child no play time at all.
+    if (typeof timerIv === "undefined" || !timerIv) return "";
     if (typeof timerSecs === "undefined" || typeof timerSecs !== "number") return "";
     if (timerSecs <= 0 || timerSecs > SESSION_WARN_SECS) return "";
     const mins = Math.max(1, Math.ceil(timerSecs / 60));
@@ -48,10 +59,8 @@
   // ── entry ────────────────────────────────────────────────────────────────
   globalThis.openAssessment = async function openAssessment() {
     if (!curP) { showToast("Pick a profile first."); return; }
-    const overlay = el("assessment-overlay");
-    if (!overlay) return;
+    if (!body()) return;
     body().innerHTML = '<div class="dd-desc">Loading assessment…</div>';
-    overlay.classList.add("show");
 
     // The fetch can outlive the profile that opened it.
     const gen = sessionGen;
@@ -74,9 +83,10 @@
       persist();
       showToast("Assessment saved — you can carry on next time.", 2400);
     }
-    const overlay = el("assessment-overlay");
-    if (overlay) overlay.classList.remove("show");
     ui = null;
+    // Back to the select screen, not the hub: the assessment was never entered
+    // from a child's play session, so there is no session to return into.
+    if (typeof goToSelect === "function") goToSelect();
   };
 
   function persist() {
