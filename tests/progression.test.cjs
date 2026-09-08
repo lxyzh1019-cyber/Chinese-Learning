@@ -353,6 +353,13 @@ function almostCleared(a, { quiz = true, games = true, did = 1, points = 180, le
     ? { trace: 3, match: 3, rain: 3, listen: 3 }
     : { trace: 3, match: 3, rain: 3, listen: 0 } };
   if (quiz) s.gateBestQuiz = { [k]: { accPct: 95, quizStars: 3, points } };
+  // Neutralise the daily mission. Its goal is rolled from the date, so on any
+  // day that rolls "clear a gate" the mission's flat +8 lands inside the gate
+  // payout and this test reads 188 instead of the 180 the gate actually paid.
+  // Marking it done makes bumpMission a no-op and keeps the assertion about
+  // gate completion rather than about what day the suite happens to run on.
+  s.dailyMission = { date: a.todayKey(), goalKey: "stars", progress: 1,
+    target: 1, done: true, rewarded: true };
   return s;
 }
 
