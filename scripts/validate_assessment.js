@@ -36,6 +36,23 @@ const warnings = [];
 const fail = (m) => errors.push(m);
 const warn = (m) => warnings.push(m);
 
+/** The senses of a gloss, split as a child reads them. Mirrors the app's
+ *  `sharesSense` in index.html; kept here so the bank is checked without
+ *  loading the page. */
+function senseSet(text) {
+  return String(text == null ? "" : text)
+    .toLowerCase()
+    .replace(/[^a-z0-9;]+/g, " ")
+    .split(";")
+    .map((t) => t.trim())
+    .filter(Boolean);
+}
+
+function sharesSense(a, b) {
+  const set = new Set(senseSet(b));
+  return senseSet(a).some((t) => set.has(t));
+}
+
 function main() {
   const manifest = JSON.parse(fs.readFileSync(path.join(DIR, "manifest.json"), "utf8"));
   const bank = JSON.parse(fs.readFileSync(path.join(DIR, manifest.files.items), "utf8"));
@@ -64,6 +81,17 @@ function main() {
     // The defect that makes a question unanswerable: two options rendering the
     // same string, one of which is keyed correct.
     if (new Set(texts).size !== texts.length) fail(`${at}: duplicate option text — the question is unanswerable`);
+    // Identical strings are only the obvious half. Two glosses that share a
+    // `;`-separated sense read as the same answer to a child — "law" beside
+    // "law; method" — so whichever they pick, the item measures nothing. The
+    // bank has none today; this keeps it that way as items are added.
+    for (let i = 0; i < texts.length; i++) {
+      for (let j = i + 1; j < texts.length; j++) {
+        if (sharesSense(texts[i], texts[j])) {
+          fail(`${at}: options "${texts[i]}" and "${texts[j]}" share a sense — either could be marked correct`);
+        }
+      }
+    }
     const ids = opts.map((o) => o.id);
     if (new Set(ids).size !== ids.length) fail(`${at}: duplicate option ids`);
 

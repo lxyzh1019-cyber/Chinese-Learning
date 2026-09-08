@@ -24,7 +24,7 @@
         {
           "zh": "有",
           "py": "yǒu",
-          "mn": "had"
+          "mn": "to have"
         },
         {
           "zh": "一",
@@ -35,19 +35,19 @@
         {
           "zh": "位",
           "py": "wèi",
-          "mn": "CL",
+          "mn": "(counting word for people, polite)",
           "bonus": true
         },
         {
           "zh": "努",
           "py": "nǔ",
-          "mn": "hard-",
+          "mn": "to make an effort",
           "bonus": true
         },
         {
           "zh": "力",
           "py": "lì",
-          "mn": "-working",
+          "mn": "strength",
           "bonus": true
         },
         {
@@ -58,7 +58,7 @@
         {
           "zh": "学",
           "py": "xué",
-          "mn": "scho-",
+          "mn": "to study",
           "bonus": true
         },
         {
@@ -136,7 +136,7 @@
         {
           "zh": "学",
           "py": "xué",
-          "mn": "lear-"
+          "mn": "to study"
         },
         {
           "zh": "到",
@@ -152,7 +152,7 @@
         {
           "zh": "东",
           "py": "dōng",
-          "mn": "things-",
+          "mn": "east",
           "bonus": true
         },
         {
@@ -185,13 +185,13 @@
         {
           "zh": "记",
           "py": "jì",
-          "mn": "-book",
+          "mn": "to remember; to record",
           "bonus": true
         },
         {
           "zh": "本",
           "py": "běn",
-          "mn": "book",
+          "mn": "root; a book",
           "bonus": true
         },
         {
@@ -218,7 +218,7 @@
         {
           "zh": "研",
           "py": "yán",
-          "mn": "stu-",
+          "mn": "to study closely",
           "bonus": true
         },
         {
@@ -230,7 +230,7 @@
         {
           "zh": "历",
           "py": "lì",
-          "mn": "hist-"
+          "mn": "to pass through; history"
         },
         {
           "zh": "史",
@@ -244,12 +244,12 @@
         {
           "zh": "文",
           "py": "wén",
-          "mn": "liter-"
+          "mn": "writing; culture"
         },
         {
           "zh": "学",
           "py": "xué",
-          "mn": "-ature",
+          "mn": "to study",
           "bonus": true
         },
         {
@@ -260,13 +260,13 @@
         {
           "zh": "哲",
           "py": "zhé",
-          "mn": "philos-",
+          "mn": "wise",
           "bonus": true
         },
         {
           "zh": "学",
           "py": "xué",
-          "mn": "-ophy",
+          "mn": "to study",
           "bonus": true
         },
         {
@@ -276,7 +276,7 @@
         {
           "zh": "知",
           "py": "zhī",
-          "mn": "know-",
+          "mn": "to know",
           "bonus": true
         },
         {
@@ -288,17 +288,17 @@
         {
           "zh": "非",
           "py": "fēi",
-          "mn": "ex-"
+          "mn": "not"
         },
         {
           "zh": "常",
           "py": "cháng",
-          "mn": "often"
+          "mn": "often; usual"
         },
         {
           "zh": "丰",
           "py": "fēng",
-          "mn": "rich-",
+          "mn": "plentiful",
           "bonus": true
         },
         {
@@ -336,7 +336,7 @@
         {
           "zh": "记",
           "py": "jì",
-          "mn": "-book",
+          "mn": "to remember; to record",
           "bonus": true
         },
         {
@@ -364,7 +364,7 @@
         {
           "zh": "学",
           "py": "xué",
-          "mn": "scho-",
+          "mn": "to study",
           "bonus": true
         },
         {
@@ -388,7 +388,7 @@
         {
           "zh": "珍",
           "py": "zhēn",
-          "mn": "preci-",
+          "mn": "precious",
           "bonus": true
         },
         {
@@ -405,7 +405,7 @@
         {
           "zh": "资",
           "py": "zī",
-          "mn": "mate-",
+          "mn": "materials; funds",
           "bonus": true
         },
         {
@@ -437,7 +437,7 @@
         {
           "zh": "故",
           "py": "gù",
-          "mn": "sto-",
+          "mn": "reason; old",
           "bonus": true
         },
         {
@@ -475,7 +475,7 @@
         {
           "zh": "勤",
           "py": "qín",
-          "mn": "dilig-",
+          "mn": "diligent",
           "bonus": true
         },
         {
@@ -487,7 +487,7 @@
         {
           "zh": "学",
           "py": "xué",
-          "mn": "study"
+          "mn": "to study"
         },
         {
           "zh": "习",
@@ -501,7 +501,7 @@
         {
           "zh": "知",
           "py": "zhī",
-          "mn": "know-",
+          "mn": "to know",
           "bonus": true
         },
         {
@@ -523,7 +523,7 @@
         {
           "zh": "力",
           "py": "lì",
-          "mn": "power-"
+          "mn": "strength"
         },
         {
           "zh": "量",
@@ -537,5 +537,6 @@
       ]
     }
   ],
-  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Extend to the 20-sentence HSK3 ladder and remove \"draft\" to build it.",
+  "draft": true
 }

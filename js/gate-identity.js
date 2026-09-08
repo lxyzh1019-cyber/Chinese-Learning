@@ -130,7 +130,9 @@
 
   // ── migration ────────────────────────────────────────────────────────────
 
-  const SCHEMA_VERSION = 2;
+  // 1 = numeric gate ids. 2 = the 88-gate `h{level}-g{NN}` keys. 3 = story ids
+  // carry their level too (`xia` -> `xia-h1`).
+  const SCHEMA_VERSION = 3;
 
   /**
    * Map one legacy numeric gate to its new key, using the level that dynasty
@@ -174,17 +176,86 @@
       .some((f) => Object.keys(src[f] || {}).some((k) => /^\d+$/.test(k)));
   }
 
+  /** A story id that has not been given its level yet. */
+  function storiesLookLegacy(src) {
+    const unsuffixed = (id) => !/-h[1-4]$/.test(String(id));
+    if ((src.storiesCompleted || []).some(unsuffixed)) return true;
+    if ((src.legacyStoriesCompleted || []).some(unsuffixed)) return true;
+    return Object.keys(src.storyReadCount || {}).some(unsuffixed);
+  }
+
+  /**
+   * Migrate a save.
+   *
+   * Two INDEPENDENT phases, each triggered by the shape it repairs, because a
+   * document can need one and not the other. A save written by the previous
+   * release already carries `h{level}-g{NN}` gate keys and a schemaVersion of 2,
+   * but its story ids are still bare — and running the gate phase over it would
+   * be worse than useless: `parseInt("h1-g01")` is NaN, so every completion
+   * would be filtered away. Gating both phases on one version stamp is exactly
+   * how the flashPassDone remap was missed last time.
+   */
+  /**
+   * Does this save still need work? The ONE predicate callers should use.
+   *
+   * A caller that assembles its own test gets it wrong: index.html's guard
+   * checked the version stamp and the gate shape, and defPlayer() stamps the
+   * current version, so `Object.assign({}, defPlayer(), loaded)` hands an
+   * unstamped legacy save the newest version number. A child who had read
+   * stories but cleared no gates then looked fully migrated and never got the
+   * story remap — which is how defPlayer's stamp skipped the whole migration
+   * once before.
+   */
+  function needsMigration(player) {
+    const src = player || {};
+    if (looksLegacy(src)) return true;
+    if (storiesLookLegacy(src)) return true;
+    return !(src.schemaVersion >= SCHEMA_VERSION);
+  }
+
   function migratePlayer(player) {
     const src = player || {};
     const legacyShape = looksLegacy(src);
+    const legacyStories = storiesLookLegacy(src);
     const report = {
-      alreadyMigrated: src.schemaVersion >= SCHEMA_VERSION && !legacyShape,
+      alreadyMigrated: !needsMigration(src),
       gatesCompleted: [], legacyAccess: [], skipped: [], warnings: [],
+      migratedGates: false, migratedStories: legacyStories,
     };
     if (report.alreadyMigrated) return { player: src, report };
 
     const next = JSON.parse(JSON.stringify(src));
 
+    // The gate phase runs on anything that has not reached the 88-gate model:
+    // legacy-shaped, or simply never stamped (a fresh or hand-made document,
+    // which still needs its legacyAccess seed).
+    const needsGatePhase = legacyShape || !(src.schemaVersion >= 2);
+    report.migratedGates = needsGatePhase;
+    if (needsGatePhase) migrateGateIdentity(src, next, report);
+
+    // Idempotent: an id that already carries its level is left alone.
+    const suffixStory = (id) => (/-h[1-4]$/.test(String(id)) ? String(id) : `${id}-h1`);
+    if (Array.isArray(next.storiesCompleted)) {
+      next.storiesCompleted = [...new Set(next.storiesCompleted.map(suffixStory))];
+    }
+    if (next.storyReadCount && typeof next.storyReadCount === "object") {
+      const reads = {};
+      Object.entries(next.storyReadCount).forEach(([id, count]) => {
+        const k = suffixStory(id);
+        reads[k] = Math.max(reads[k] || 0, Number(count) || 0);
+      });
+      next.storyReadCount = reads;
+    }
+    if (Array.isArray(next.legacyStoriesCompleted)) {
+      next.legacyStoriesCompleted = [...new Set(next.legacyStoriesCompleted.map(suffixStory))];
+    }
+
+    next.schemaVersion = SCHEMA_VERSION;
+    return { player: next, report };
+  }
+
+  /** Phase one: numeric dynasty ids become (level, dynasty) gate keys. */
+  function migrateGateIdentity(src, next, report) {
     const cleared = (src.gatesCompleted || [])
       .map((v) => parseInt(v, 10))
       .filter((v) => Number.isFinite(v));
@@ -219,35 +290,12 @@
     next.legacyLevelAccess = legacyLevelsFor(cleared.length);
     report.legacyLevelAccess = next.legacyLevelAccess;
 
-    // Stories became per-level, so their ids gained a level suffix ("xia" ->
-    // "xia-h1"). Without this remap a child who had read a story twice would
-    // read as never having read it, and §3's chain would silently re-lock
-    // Listen, Match and Rain — the same class of defect as the flashPassDone
-    // remap that only a browser run caught. Legacy reads belong to level 1,
-    // which is the level the existing corpus was written for.
-    const suffixStory = (id) => (/-h[1-4]$/.test(String(id)) ? String(id) : `${id}-h1`);
-    if (Array.isArray(next.storiesCompleted)) {
-      next.storiesCompleted = [...new Set(next.storiesCompleted.map(suffixStory))];
-    }
-    if (next.storyReadCount && typeof next.storyReadCount === "object") {
-      const reads = {};
-      Object.entries(next.storyReadCount).forEach(([id, n]) => {
-        const k = suffixStory(id);
-        reads[k] = Math.max(reads[k] || 0, Number(n) || 0);
-      });
-      next.storyReadCount = reads;
-    }
-    if (Array.isArray(next.legacyStoriesCompleted)) {
-      next.legacyStoriesCompleted = [...new Set(next.legacyStoriesCompleted.map(suffixStory))];
-    }
-
     // The evidence that these came from the old model, kept for provenance.
     next.legacyCredit = {
       migratedAt: new Date().toISOString(),
       fromSchema: src.schemaVersion || 1,
       gatesCompleted: cleared.slice(),
     };
-    next.schemaVersion = SCHEMA_VERSION;
 
     if (next.championCleared && Object.keys(next.championCleared).length) {
       // Champion groups were keyed by group number alone; without a level they
@@ -255,11 +303,11 @@
       // guessed at.
       report.warnings.push("championCleared kept under its old keys — group numbers carry no level, so they are not remapped");
     }
-    return { player: next, report };
   }
 
   return {
     LEVELS, GATES_PER_LEVEL, SCHEMA_VERSION, LEGACY_DYNASTY_LEVEL,
+    needsMigration, storiesLookLegacy,
     gateKey, parseGateKey, isGateKey, allGateKeys,
     nextGateKey, previousGateKey, isGateOpen, nextOpenGateKey,
     championKey, championGateKeys, levelUnlocked, legacyLevelsFor,

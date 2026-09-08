@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_22",
   "level": "HSK2",
   "gateId": 22,
-  "title": "HSK2 Gate 22 Lesson",
-  "explanation": "This is a capstone-style gate. Read the whole paragraph before answering.",
-  "passage": "第22关（挑战）：老师问：“你为什么想学中文？”我说：“因为中文很有用，而且我想和家人说话。”我的朋友也说，学习要坚持。我们每天练习一点点，就会进步。",
+  "title": "HSK2 Gate 22 · Republic of China",
+  "explanationEn": "Gate 22: Republic of China. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第22关：民国。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "一百多年以前，中国还有皇帝。可是那时候的日子很不好过。很多人想：中国要不一样。有一个人叫孙中山。",
+  "passageEn": "A little over a hundred years ago China still had an emperor. But life in those days was very hard. Many thought: China must be different. There was a man called Sun Yat-sen.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "百",
+      "pinyin": "bǎi",
+      "en": "hundred"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "year"
+    },
+    {
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
+    },
+    {
+      "zh": "还有",
+      "pinyin": "hái yǒu",
+      "en": "furthermore"
+    },
+    {
+      "zh": "皇",
+      "pinyin": "huáng",
+      "en": "emperor"
+    },
+    {
+      "zh": "帝",
+      "pinyin": "dì",
+      "en": "emperor"
     }
   ],
   "comprehension": [
     {
-      "question": "Why does the speaker want to learn Chinese?",
-      "answer": "Because it is useful and they want to talk with family."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "A little over a hundred years ago China still had an emperor.",
+      "answer": "一百多年以前，中国还有皇帝。"
     },
     {
-      "question": "What does the friend say about learning?",
-      "answer": "You need to keep at it / persist."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "Many thought: China must be different.",
+      "answer": "很多人想：中国要不一样。"
     },
     {
-      "question": "What strategy does the paragraph suggest?",
-      "answer": "Practice a little every day to improve."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Answer the teacher question in Chinese in 2–3 sentences, then ask a parent to listen."
+  "speakingPromptEn": "Tell a grown-up about Republic of China in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说民国。"
 }

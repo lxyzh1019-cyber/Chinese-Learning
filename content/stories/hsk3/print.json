@@ -72,7 +72,7 @@
         {
           "zh": "印",
           "py": "yìn",
-          "mn": "print",
+          "mn": "to print; a mark",
           "bonus": true
         },
         {
@@ -196,7 +196,7 @@
         {
           "zh": "可",
           "py": "kě",
-          "mn": "can"
+          "mn": "may; can"
         },
         {
           "zh": "以",
@@ -211,7 +211,7 @@
         {
           "zh": "快",
           "py": "kuài",
-          "mn": "quickly",
+          "mn": "fast; happy",
           "bonus": true
         },
         {
@@ -222,7 +222,7 @@
         {
           "zh": "印",
           "py": "yìn",
-          "mn": "print"
+          "mn": "to print; a mark"
         },
         {
           "zh": "出",
@@ -273,7 +273,7 @@
         {
           "zh": "便",
           "py": "pián",
-          "mn": "cheap-"
+          "mn": "convenient"
         },
         {
           "zh": "宜",
@@ -308,7 +308,7 @@
         {
           "zh": "可",
           "py": "kě",
-          "mn": "could"
+          "mn": "may; can"
         },
         {
           "zh": "以",
@@ -366,7 +366,7 @@
         {
           "zh": "世",
           "py": "shì",
-          "mn": "world-"
+          "mn": "world; age"
         },
         {
           "zh": "界",
@@ -376,7 +376,7 @@
         {
           "zh": "印",
           "py": "yìn",
-          "mn": "print-"
+          "mn": "to print; a mark"
         },
         {
           "zh": "刷",
@@ -386,7 +386,7 @@
         {
           "zh": "历",
           "py": "lì",
-          "mn": "his-"
+          "mn": "to pass through; history"
         },
         {
           "zh": "史",
@@ -433,5 +433,6 @@
       ]
     }
   ],
-  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Extend to the 20-sentence HSK3 ladder and remove \"draft\" to build it.",
+  "draft": true
 }

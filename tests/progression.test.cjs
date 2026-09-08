@@ -1088,8 +1088,13 @@ test("S-T02: a level with no text of its own falls back and says so", () => {
   assert.equal(own.id, "xia-h1");
   assert.ok(!own.shared, "level 1 has its own text");
 
-  const borrowed = a.storyForGate("xia", 2);
-  assert.equal(borrowed.id, "xia-h2", "served under the level's own id, so reads count for that level");
+  // HSK2 now has its own telling; HSK3 does not yet, so it is the fallback case.
+  const ownTwo = a.storyForGate("xia", 2);
+  assert.equal(ownTwo.id, "xia-h2");
+  assert.ok(!ownTwo.shared, "HSK2 has its own text too");
+
+  const borrowed = a.storyForGate("xia", 3);
+  assert.equal(borrowed.id, "xia-h3", "served under the level's own id, so reads count for that level");
   assert.equal(borrowed.shared, true, "and flagged, so the reader can say the text is shared");
   assert.deepEqual(borrowed.sents, own.sents, "it is level 1's text");
 });
@@ -1155,4 +1160,508 @@ test("S-T04: HSK1 lessons are bilingual and drawn from their own gate's story", 
       assert.ok(L.passage.includes(v.zh), `${id}: key word "${v.zh}" is not in the passage`);
     });
   }
+});
+
+// ── Parent panel: level-aware flags ────────────────────────────────────────
+
+test("P-T01: gates cleared is reported per level, not as a bare count over 22", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  // A gate is (level, dynasty), so gatesCompleted spans all 88. The panel used
+  // to print `gatesCompleted.length + "/22"`, which reads "24/22" for a child
+  // with progress on two levels and says nothing about which level.
+  for (let g = 1; g <= 22; g++) s.gatesCompleted.push(`h1-g${String(g).padStart(2, "0")}`);
+  s.gatesCompleted.push("h2-g01", "h2-g02");
+  const out = a.gatesClearedSummary(s);
+  assert.match(out, /HSK1 22\/22/);
+  assert.match(out, /HSK2 2\/22/);
+  assert.ok(!/24\/22/.test(out), "never more cleared than the level holds");
+});
+
+test("P-T02: the read-count flag checks the levels played, not the ambient one", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  // Games played at HSK2 on gate 1, with no reads at that level.
+  s.gateGameStars = { "h2-g01": { trace: 3, match: 0, rain: 0, listen: 0 } };
+  s.storyReadCount = { "xia-h1": 2 };   // read twice, but at level 1
+
+  // The panel opens from the select screen, where curHSK holds whatever the
+  // last session left. Both settings must give the same answer.
+  a.curHSK = 1;
+  const atOne = a.playedBeforeReadingHtml(s);
+  a.curHSK = 4;
+  const atFour = a.playedBeforeReadingHtml(s);
+  assert.equal(atOne, atFour, "the flag must not depend on the ambient level");
+  assert.match(atOne, /HSK2/, "and it names the level the games were played at");
+
+  // Reading it twice AT THAT LEVEL clears the flag.
+  s.storyReadCount["xia-h2"] = 2;
+  assert.equal(a.playedBeforeReadingHtml(s), "", "two reads at that level clears it");
+});
+
+test("P-T03: a revoked inherited level is explained rather than vanishing", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  s.legacyLevelAccess = [1, 2];
+  s.gatesCompleted = ["h1-g01", "h1-g02"];
+  const html = a.inheritedAccessHtml(s);
+  assert.match(html, /HSK2/, "says which level they could once open");
+  assert.match(html, /22 gates/, "and what it now takes");
+
+  // Once earned properly there is nothing to explain.
+  for (let g = 3; g <= 22; g++) s.gatesCompleted.push(`h1-g${String(g).padStart(2, "0")}`);
+  assert.equal(a.inheritedAccessHtml(s), "", "no note once the level is genuinely open");
+});
+
+// ── Self-audit findings ────────────────────────────────────────────────────
+
+test("A-T30: a mid-quiz story resume works on a level serving a shared text", () => {
+  const a = app();
+  F.installState(a);
+  // A level with no text of its own is served a story SYNTHESIZED by
+  // storyForGate — it carries that level's id but is never in STORIES_MAP.
+  // Resolving through the map alone made "Continue story quiz" a dead button
+  // on every level but 1.
+  assert.equal(a.STORIES_MAP["xia-h3"], undefined, "the shared story is not a map member");
+  const st = a.storyById("xia-h3");
+  assert.ok(st, "but it still resolves");
+  assert.equal(st.id, "xia-h3");
+  assert.equal(a.storyById("xia-h1").id, "xia-h1", "a real member resolves too");
+  assert.equal(a.storyById("nope-h1"), null);
+});
+
+test("A-T31: a stored story id finds its dynasty despite the level suffix", () => {
+  const a = app();
+  F.installState(a);
+  // `DYNASTIES.find(d => d.story === ps.storyId)` compared a suffixed id
+  // against bare base ids, so it could never match and the caller fell through
+  // to DYNASTIES[0] — drawing the mini-quiz word pool from the Xia gate.
+  for (const lv of [1, 2, 3, 4]) {
+    assert.equal(a.dynastyForStoryId(`qin-h${lv}`).id, 5, `qin-h${lv} is gate 5`);
+    assert.equal(a.dynastyForStoryId(`qin2-h${lv}`).id, 5, "the second story too");
+  }
+  assert.equal(a.dynastyForStoryId("nope-h1"), null);
+});
+
+test("A-T32: the character index is rebuilt when the stories are", () => {
+  const a = app();
+  F.installState(a);
+  // Stories are fetched now, so a call before the fetch lands cached an empty
+  // index forever — and Trace reads it.
+  a.curriculumCache.stories[1] = {};
+  a.rebuildStoriesMap();
+  assert.equal(Object.keys(a.getCharMeta()).length > 0, true,
+    "vocabulary still fills it even with no stories");
+  const empty = Object.keys(a.getCharMeta()).length;
+
+  a.curriculumCache.stories[1] = JSON.parse(
+    require("fs").readFileSync(require("path").join(__dirname, "..", "data", "stories", "hsk1.json"), "utf8")).stories;
+  a.rebuildStoriesMap();
+  assert.ok(Object.keys(a.getCharMeta()).length > empty,
+    "and the index picks the stories up once they arrive");
+});
+
+test("A-T33: a character with no standalone reading is shown, never guessed at", () => {
+  const a = app();
+  F.installState(a);
+  // Word-level tokens leave 34 characters appearing only inside a word.
+  const out = a.uniqueChars([{ zh: "房间", py: "fángjiān", en: "room" }]);
+  const fang = out.find((c) => c.zh === "房");
+  assert.ok(fang, "the character is still offered for tracing");
+  assert.equal(fang.py, "", "with no invented syllable");
+  assert.equal(fang.fromWord, "房间", "and the word it came from recorded");
+  assert.equal(fang.fromWordPy, "fángjiān", "so the card is not blank");
+
+  // A single-character word keeps its own reading.
+  const shui = a.uniqueChars([{ zh: "水", py: "shuǐ", en: "water" }])[0];
+  assert.equal(shui.py, "shuǐ");
+});
+
+test("S-T05: both halves of a split word's English are refused as glosses", () => {
+  const a = app();
+  // The first repair caught only the TRAILING half — 学习 "practice" leaving 习
+  // as "-tice". The leading half was still shipping: 皇帝 "emperor" left 皇 as
+  // "em-", 丝绸 left 丝 as "silk-", 太阳 left 太 as "Tai-". 115 of those were
+  // reaching children across the built HSK1 and HSK2 corpora.
+  const bad = [];
+  for (const s of Object.values(a.STORIES_MAP)) {
+    for (const tok of s.sents.flat()) {
+      if (tok.t === "p") continue;
+      const en = String(tok.mn == null ? "" : tok.mn).trim();
+      const zh = tok.ch || tok.tx;
+      if (!en) bad.push(`${s.id}: ${zh} has no gloss`);
+      else if (/^[-—]/.test(en)) bad.push(`${s.id}: ${zh}="${en}" (trailing half)`);
+      else if (/^[A-Za-z]+-$/.test(en)) bad.push(`${s.id}: ${zh}="${en}" (leading half)`);
+      else if (/^[A-Z]{2,5}$/.test(en)) bad.push(`${s.id}: ${zh}="${en}" (grammar code)`);
+    }
+  }
+  assert.deepEqual(bad.slice(0, 10), [], `${bad.length} fragment glosses in the corpus`);
+});
+
+test("S-T06: every HSK2 story is on its own ladder", () => {
+  const a = app();
+  const h2 = Object.values(a.STORIES_MAP).filter((s) => s.level === 2);
+  assert.equal(h2.length, 44, "22 dynasties, two stories each");
+  for (const s of h2) {
+    assert.equal(s.sents.length, 15, `${s.id}: the HSK2 ladder is fifteen sentences`);
+    assert.equal(s.trans.filter((t) => t && t.trim()).length, 15, `${s.id}: every sentence needs its English`);
+  }
+  // And it is genuinely a different telling from HSK1, not the same text.
+  const one = a.STORIES_MAP["xia-h1"], two = a.STORIES_MAP["xia-h2"];
+  assert.notEqual(one.sents.length, two.sents.length);
+  assert.notDeepEqual(one.sents[0], two.sents[0], "the HSK2 telling is its own text");
+});
+
+test("M-T20: the migration decides for itself whether a save needs work", () => {
+  const a = app();
+  const G = a.GateIdentity;
+  // defPlayer() stamps the current version and mergePlayerState is
+  // Object.assign({}, defPlayer(), loaded) — so an unstamped legacy save arrives
+  // already carrying the newest version number. A caller that checks the stamp
+  // and the gate shape then sees nothing to do, and a child who had read stories
+  // but cleared no gates never gets the story remap.
+  const merged = Object.assign({}, a.defPlayer(), {
+    storyReadCount: { xia: 2, shang: 1 }, storiesCompleted: ["xia"],
+  });
+  assert.equal(merged.schemaVersion, G.SCHEMA_VERSION, "the stamp says it is current");
+  assert.equal(G.looksLegacy(merged), false, "and the gate shape is fine");
+  assert.equal(G.needsMigration(merged), true, "but the story ids are not");
+
+  const { player } = G.migratePlayer(merged);
+  assert.equal(player.storyReadCount["xia-h1"], 2);
+  assert.equal(player.storyReadCount["shang-h1"], 1);
+  assert.deepEqual(player.storiesCompleted, ["xia-h1"]);
+
+  // And ensureState must go through that same predicate, not its own test.
+  const b = app();
+  F.installState(b, { jenn: Object.assign({}, b.defPlayer(), { storyReadCount: { xia: 2 } }) });
+  assert.equal(b.state.jenn.storyReadCount["xia-h1"], 2,
+    "loading a save applies the remap");
+});
+
+test("T-T10: no fragment gloss reaches a child through any surface", () => {
+  const a = app();
+  const fs = require("fs"), path = require("path");
+  const isFragment = (t) => /^[-—]/.test(t) || /^[A-Za-z.]+-$/.test(t) || /^[A-Z]{2,5}$/.test(t);
+  const bad = [];
+
+  // the reader
+  for (const s of Object.values(a.STORIES_MAP)) {
+    for (const tok of s.sents.flat()) {
+      if (tok.t === "p") continue;
+      if (isFragment(String(tok.mn || "").trim())) bad.push(`story ${s.id}: ${tok.ch || tok.tx}="${tok.mn}"`);
+    }
+  }
+  // the games and quizzes, which serve gate vocabulary rather than stories
+  for (const lv of [1, 2, 3, 4]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    const rows = [...(doc.words || [])];
+    (doc.gates || []).forEach((g) => rows.push(...(g.newWords || []), ...(g.reviewWords || [])));
+    rows.forEach((w) => {
+      if (isFragment(String(w.en || "").trim())) bad.push(`hsk${lv} vocabulary: ${w.zh}="${w.en}"`);
+    });
+  }
+  assert.deepEqual(bad.slice(0, 8), [], `${bad.length} fragment glosses still reachable`);
+});
+
+test("T-T11: a trailing hyphen never silently drops a word from its pool", () => {
+  const a = app();
+  // Two things went wrong here in sequence. extractStoryVocab used to reassemble
+  // split-word glosses, and with the fragment class gone the only thing left for
+  // that branch to match was a REAL gloss ending in a prefix — it stripped the
+  // hyphen and skipped isCleanMeaning, putting 非 into the pool as "not; non".
+  // Removing the branch then swung the other way: isCleanMeaning rejects any
+  // gloss ending in "-", so 非 and 再 vanished from the pools altogether and
+  // stopped being taught at all. The fix is at the source — glosses do not
+  // trail a hyphen — so both behaviours are now checked.
+  const story = {
+    sents: [[{ t: "c", ch: "非", py: "fēi", mn: "not" },
+             { t: "c", ch: "常", py: "cháng", mn: "often" },
+             { t: "p", tx: "。" }]],
+  };
+  const vocab = a.extractStoryVocab(story);
+  const fei = vocab.find((w) => w.zh === "非");
+  assert.ok(fei, "a character with a plain gloss reaches the pool");
+  assert.equal(fei.en, "not", "served as written, not mangled");
+  assert.equal(vocab.find((w) => w.zh === "非常"), undefined,
+    "and two separate characters are not welded together");
+
+  // The real corpus: every study token's gloss must survive isCleanMeaning, or
+  // the word is taught in the reader and nowhere else.
+  const dropped = [];
+  for (const s of Object.values(a.STORIES_MAP)) {
+    const pool = new Set(a.extractStoryVocab(s).map((w) => w.zh));
+    for (const tok of s.sents.flat()) {
+      if (tok.t !== "c" || tok.bonus) continue;
+      if (!pool.has(tok.ch) && /-$/.test(String(tok.mn || ""))) {
+        dropped.push(`${s.id}: ${tok.ch}="${tok.mn}"`);
+      }
+    }
+  }
+  assert.deepEqual(dropped.slice(0, 8), [], `${dropped.length} words dropped from their pool by a trailing hyphen`);
+});
+
+test("T-T12: a grammar-code filter must not swallow ordinary English words", () => {
+  const a = app();
+  // isCleanMeaning tested the codes as PREFIXES of the uppercased gloss, which
+  // is a trap: "CL" matches CLOTH, CLASS, CLEAN, CLEVER; "BA" matches BAMBOO,
+  // BAG, BALL, BATTLE; "OF" matches OFTEN and OFFICIAL; "PL" matches PLAYED.
+  // 23 ordinary words were dropped from every flashcard deck and all four
+  // games — taught in the reader and nowhere else.
+  for (const word of ["cloth", "class", "clean", "clever", "climbs", "bamboo",
+                      "bag; to wrap", "ball", "battle", "often; usual", "official",
+                      "played", "plan", "ordinal prefix", "clothes; to serve"]) {
+    assert.equal(a.isCleanMeaning(word), true, `"${word}" is a meaning, not a code`);
+  }
+  // The codes themselves, and their compounds, are still refused.
+  for (const code of ["DE", "PL", "BA", "ADV", "CMPL", "ING", "SUF", "CL", "OF",
+                      "ORD", "CL-PL", "CL-person"]) {
+    assert.equal(a.isCleanMeaning(code), false, `"${code}" is a code, not a meaning`);
+  }
+});
+
+test("T-T13: every study word in the corpus reaches the pool it is taught from", () => {
+  const a = app();
+  // The reader and the games must teach the same set. A word shown on tap but
+  // filtered out of extractStoryVocab is taught in one place and nowhere else.
+  const dropped = new Map();
+  for (const s of Object.values(a.STORIES_MAP)) {
+    const pool = new Set(a.extractStoryVocab(s).map((w) => w.zh));
+    for (const tok of s.sents.flat()) {
+      if (tok.t !== "c" || tok.bonus) continue;
+      if (!pool.has(tok.ch)) dropped.set(`${tok.ch}="${tok.mn}"`, (dropped.get(`${tok.ch}="${tok.mn}"`) || 0) + 1);
+    }
+  }
+  assert.deepEqual([...dropped.keys()].slice(0, 10), [],
+    `${dropped.size} distinct study words never reach a game or flashcard deck`);
+});
+
+test("T-T14: an MCQ never has two right answers, either way round", () => {
+  const a = app();
+  F.installState(a);
+  // The reverse MCQ shows a MEANING and asks for the character, but picked its
+  // wrong options without comparing English — so any character sharing the
+  // meaning was a second correct answer, and a child choosing it was marked
+  // wrong and had the word logged to their practice queue.
+  //
+  // Comparing whole glosses only half-fixed it: 请 "to ask" and 问
+  // "to ask; to inquire" are different strings that a child reads as the same
+  // answer. The comparison is per sense, and it applies in both directions —
+  // as a character option and as an English option.
+  const pool = [
+    { zh: "请", py: "qǐng", en: "to ask" },
+    { zh: "问", py: "wèn", en: "to ask; to inquire" }, // shares one sense only
+    { zh: "干", py: "gān", en: "clean" },
+    { zh: "净", py: "jìng", en: "clean" },             // shares its whole gloss
+    { zh: "山", py: "shān", en: "mountain" },
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "人", py: "rén", en: "person" },
+    { zh: "大", py: "dà", en: "big" },
+    { zh: "小", py: "xiǎo", en: "small" },
+    { zh: "书", py: "shū", en: "book" },
+  ];
+  const glossOf = (zh) => (pool.find((w) => w.zh === zh) || {}).en;
+  // Computed here, not via the app's own helper: an assertion that calls the
+  // function under test moves with the defect and can never fail.
+  const senses = (en) =>
+    String(en || "").toLowerCase().split(";").map((t) => t.trim()).filter(Boolean);
+  const twoRightAnswers = (x, y) => {
+    const b = new Set(senses(y));
+    return senses(x).some((t) => b.has(t));
+  };
+  let reverseSeen = 0;
+  let forwardSeen = 0;
+  for (let seed = 0; seed < 60; seed++) {
+    const qs = a.buildMCQ(pool, 10);
+    for (const q of qs) {
+      const answerEn = glossOf(q.zh);
+      if (q.reverse) {
+        // Prompt is the meaning; options are characters.
+        reverseSeen++;
+        const alsoRight = q.opts.filter(
+          (c) => c !== q.zh && twoRightAnswers(glossOf(c), answerEn),
+        );
+        assert.deepEqual(alsoRight, [], `"${q.correct}" also matches ${alsoRight.join(",")}`);
+      } else {
+        // Prompt is the character; options are meanings.
+        forwardSeen++;
+        const alsoRight = q.opts.filter(
+          (en) => en !== q.correct && twoRightAnswers(en, answerEn),
+        );
+        assert.deepEqual(alsoRight, [], `${q.zh} "${q.correct}" also matches ${alsoRight.join(" / ")}`);
+      }
+    }
+  }
+  // A guard that never ran would pass this test silently.
+  assert.ok(reverseSeen > 0, "no reverse questions were built");
+  assert.ok(forwardSeen > 0, "no forward questions were built");
+});
+
+test("T-T15: a Listen question never offers two options that sound the same", () => {
+  const a = app();
+  F.installState(a);
+  // The question is a sound. Distractors were chosen by comparing ENGLISH, so
+  // a homophone could stand as a wrong option — 向 and 像 are both xiàng, 美
+  // and 每 are both měi. A child hearing the clip could not tell them apart,
+  // and the tap they did not make was logged to their practice queue.
+  const sound = (py) => String(py || "").toLowerCase().replace(/\s+/g, "");
+  const pool = [
+    { zh: "向", py: "xiàng", en: "towards" },
+    { zh: "像", py: "xiàng", en: "to resemble" }, // same sound, different word
+    { zh: "美", py: "měi", en: "beautiful" },
+    { zh: "每", py: "měi", en: "every" },
+    { zh: "山", py: "shān", en: "mountain" },
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "人", py: "rén", en: "person" },
+    { zh: "书", py: "shū", en: "book" },
+  ];
+  const pyOf = (zh) => (pool.find((w) => w.zh === zh) || {}).py;
+  let seen = 0;
+  for (let round = 0; round < 40; round++) {
+    a.startListen(pool);
+    for (const q of a.listenSt.questions) {
+      seen++;
+      assert.equal(new Set(q.opts).size, q.opts.length, `duplicate option in [${q.opts}]`);
+      const alike = q.opts.filter((z) => z !== q.w.zh && sound(pyOf(z)) === sound(q.w.py));
+      assert.deepEqual(alike, [], `${q.w.zh} (${q.w.py}) sounds like ${alike.join(",")}`);
+    }
+  }
+  assert.ok(seen > 0, "no Listen questions were built");
+});
+
+test("T-T16: a Match board never shows two cards a child cannot tell apart", () => {
+  const a = app();
+  F.installState(a);
+  // Cards pair by index, so two words sharing a gloss put two cards reading the
+  // same thing on the table and the correct-looking flip is scored wrong.
+  const senses = (en) =>
+    String(en || "").toLowerCase().split(";").map((t) => t.trim()).filter(Boolean);
+  const collides = (x, y) => {
+    const b = new Set(senses(y));
+    return senses(x).some((t) => b.has(t));
+  };
+  const pool = [
+    { zh: "儿子", py: "érzi", en: "son" },
+    { zh: "子", py: "zǐ", en: "son" },              // identical gloss
+    { zh: "法", py: "fǎ", en: "law; method" },
+    { zh: "法律", py: "fǎlǜ", en: "law" },          // one shared sense
+    { zh: "山", py: "shān", en: "mountain" },
+    { zh: "水", py: "shuǐ", en: "water" },
+    { zh: "人", py: "rén", en: "person" },
+    { zh: "书", py: "shū", en: "book" },
+    { zh: "大", py: "dà", en: "big" },
+  ];
+  for (let round = 0; round < 40; round++) {
+    a.startMemoryMatch(pool);
+    const en = a.matchSt.cards.filter((c) => c.side === "en").map((c) => c.text);
+    const zh = a.matchSt.cards.filter((c) => c.side === "zh").map((c) => c.text);
+    assert.equal(new Set(zh).size, zh.length, `duplicate character card: ${zh}`);
+    for (let i = 0; i < en.length; i++) {
+      for (let j = i + 1; j < en.length; j++) {
+        assert.ok(!collides(en[i], en[j]), `"${en[i]}" and "${en[j]}" read the same`);
+      }
+    }
+    // Dropping ambiguous words must not leave a board that cannot be finished.
+    assert.equal(a.matchSt.cards.length, a.matchSt.pairCount * 2);
+    assert.ok(a.matchSt.pairCount >= 4, `board shrank to ${a.matchSt.pairCount} pairs`);
+  }
+});
+
+test("T-T17: the practice-queue rounds never offer a second right answer", () => {
+  const a = app();
+  F.installState(a);
+  a.curP = "jenn";
+  // Drill and Revenge excluded distractors by CHINESE spelling only, so a
+  // different character carrying the same sense stood as a wrong option. These
+  // are the queue rounds: being scored wrong here is exactly what keeps a word
+  // stuck in the queue the round exists to clear.
+  const senses = (en) =>
+    String(en || "").toLowerCase().split(";").map((t) => t.trim()).filter(Boolean);
+  const twoRightAnswers = (x, y) => {
+    const b = new Set(senses(y));
+    return senses(x).some((t) => b.has(t));
+  };
+  // 方向 "direction" is in HSK_VOCAB, so it reaches the distractor pool; 向
+  // "towards; direction" is the word the child is being asked about.
+  const stuck = [
+    { zh: "向", py: "xiàng", en: "towards; direction" },
+    { zh: "朝", py: "cháo", en: "dynasty; to face" },
+    { zh: "国家", py: "guójiā", en: "country; nation; state" },
+  ];
+  const s = a.state.jenn;
+  s.failedWords = {};
+  for (const w of stuck) {
+    s.failedWords[w.zh] = { ...w, failCount: 3, lastFailed: "2026-09-01" };
+  }
+  for (const [start, st] of [["startDrill", "drillSt"], ["startRevengeRound", "revengeSt"]]) {
+    let seen = 0;
+    for (let round = 0; round < 25; round++) {
+      a[start]();
+      for (const q of a[st].words) {
+        seen++;
+        assert.equal(new Set(q.opts).size, q.opts.length, `duplicate option in [${q.opts}]`);
+        const alsoRight = q.opts.filter((o) => o !== q.correct && twoRightAnswers(o, q.correct));
+        assert.deepEqual(alsoRight, [], `${start}: ${q.zh} "${q.correct}" also matches ${alsoRight.join(" / ")}`);
+      }
+    }
+    assert.ok(seen > 0, `${start} built no questions`);
+  }
+});
+
+test("T-T18: the daily challenge never offers a second right answer", () => {
+  const a = app();
+  F.installState(a);
+  a.curP = "jenn";
+  // The day's word comes from the child's own library and the options are raw
+  // English from HSK_VOCAB, checked by exact string — so the target and an
+  // option can be the SAME word glossed two ways, on the once-a-day challenge
+  // worth five stars.
+  const senses = (en) =>
+    String(en || "").toLowerCase().split(";").map((t) => t.trim()).filter(Boolean);
+  const twoRightAnswers = (x, y) => {
+    const b = new Set(senses(y));
+    return senses(x).some((t) => b.has(t));
+  };
+  // Every curriculum word whose gloss shares a sense with something in
+  // HSK_VOCAB. Three options are drawn at random from ~96, so one sitting only
+  // surfaces a collision about 3% of the time — sweeping every target once
+  // passes with the bug still in. Each of these is presented many times.
+  const colliding = [];
+  const options = [];
+  for (const lv of [1, 2, 3, 4]) for (const w of a.HSK_VOCAB[lv] || []) options.push(w);
+  assert.ok(options.length > 0, "HSK_VOCAB is empty");
+  for (const lv of [1, 2, 3, 4]) {
+    for (const g of require(`../data/hsk${lv}.json`).gates) {
+      for (const w of g.newWords || []) {
+        if (colliding.some((x) => x.zh === w.zh)) continue;
+        if (options.some((o) => o.en !== w.en && twoRightAnswers(o.en, w.en))) {
+          colliding.push({ zh: w.zh, py: w.pinyin, en: w.en });
+        }
+      }
+    }
+  }
+  assert.ok(colliding.length > 0, "no colliding targets found to test with");
+
+  let seen = 0;
+  for (const w of colliding) {
+    for (let sitting = 0; sitting < 250; sitting++) {
+      const s = a.state.jenn;
+      s.library = { [w.zh]: { py: w.py, mn: w.en } };
+      s.dailyWordSolved = null;
+      // The real overlay rebuilds its body, which destroys the option row; the
+      // stub keeps one element per id, so clear it or options accumulate.
+      a.document.getElementById("dw-opts").children.length = 0;
+      a.openDailyWordChallenge();
+      const opts = (a.document.getElementById("dw-opts").children || []).map((c) => c.textContent);
+      seen++;
+      assert.equal(opts.length, 4, `${w.zh} "${w.en}" got ${opts.length} options`);
+      assert.equal(new Set(opts).size, opts.length, `duplicate option in [${opts}]`);
+      const alsoRight = opts.filter((o) => o !== w.en && twoRightAnswers(o, w.en));
+      assert.deepEqual(alsoRight, [], `${w.zh} "${w.en}" also matches ${alsoRight.join(" / ")}`);
+    }
+  }
+  assert.equal(seen, colliding.length * 250);
 });

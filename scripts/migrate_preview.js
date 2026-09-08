@@ -61,15 +61,41 @@ function main() {
     console.log(`── ${pid} ${"─".repeat(60 - pid.length)}`);
     if (report.alreadyMigrated) { console.log("   already migrated — nothing to do\n"); continue; }
 
-    console.log("   gate completions remapped:");
-    if (!report.gatesCompleted.length) console.log("     (none)");
-    report.gatesCompleted.forEach((m) => {
-      const p = G.parseGateKey(m.to);
-      console.log(`     gate ${String(m.from).padStart(2)}  ->  ${m.to}   (level ${p.levelId}, gate ${p.gateId})`);
-    });
+    // Which phases will actually run. They are independent: a save from the
+    // previous release already has its gate keys and needs only the story remap,
+    // and a dry run that reported the gate phase alone said "(none)" while
+    // silently rewriting every story id.
+    console.log(`   phases: gate identity ${report.migratedGates ? "YES" : "no"} · story ids ${report.migratedStories ? "YES" : "no"}`);
 
-    console.log(`   reachable after migration (access, NOT completion):`);
-    console.log(`     ${report.legacyAccess.join(", ")}`);
+    if (report.migratedGates) {
+      console.log("   gate completions remapped:");
+      if (!report.gatesCompleted.length) console.log("     (none)");
+      report.gatesCompleted.forEach((m) => {
+        const p = G.parseGateKey(m.to);
+        console.log(`     gate ${String(m.from).padStart(2)}  ->  ${m.to}   (level ${p.levelId}, gate ${p.gateId})`);
+      });
+    }
+
+    if (report.migratedStories) {
+      console.log("   story ids remapped (reads and completions follow them):");
+      const moved = [];
+      Object.keys(doc.storyReadCount || {}).forEach((id) => {
+        if (!/-h[1-4]$/.test(id)) moved.push(`${id} -> ${id}-h1  (${doc.storyReadCount[id]} read${doc.storyReadCount[id] === 1 ? "" : "s"})`);
+      });
+      (doc.storiesCompleted || []).forEach((id) => {
+        if (!/-h[1-4]$/.test(id)) moved.push(`${id} -> ${id}-h1  (completed)`);
+      });
+      if (!moved.length) console.log("     (none)");
+      moved.forEach((m) => console.log(`     ${m}`));
+    }
+
+    // Only meaningful when the gate phase ran. For a previous-release save —
+    // which is the state every live document is in — it stays empty, and
+    // printing it said the child could reach no gates at all.
+    if (report.migratedGates) {
+      console.log(`   reachable after migration (access, NOT completion):`);
+      console.log(`     ${report.legacyAccess.join(", ") || "(none)"}`);
+    }
     console.log(`   next gate to work on: ${G.nextOpenGateKey(after.gatesCompleted) || "(all cleared)"}`);
 
     // Nothing outside the gate model may change.

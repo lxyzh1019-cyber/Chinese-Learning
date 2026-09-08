@@ -6,7 +6,7 @@ Status values: `not started` · `implemented` · `verified` · `blocked`.
 **`verified` requires evidence** — a passing check, a test, or an observed UI
 traversal. Untested code is `implemented`, never `verified`.
 
-Baseline commit: `c5f94bb` · Working branch: `claude/audit-improvement-plan-review-bfx948`
+Baseline commit: `c5f94bb` · PR #43 merged · Working branch: `claude/chinese-adventure-audit-cont-xjxqpl` (PR #44)
 
 ---
 
@@ -57,10 +57,23 @@ when its todo marker is removed and the test passes.
 | G04 / M-T06 | Two completion sites paid differently, and a cleared gate paid again on every boss replay | Phase B |
 | T03 / M-T03 | Any `storiesCompleted` entry counted as pre-feature credit, so one skimmed story unlocked all four games | Phase B |
 | T04 | `uniqueChars` gave every character its whole word's reading and meaning | Phase B |
+| Q01 / T-T14 | An MCQ offered a second right answer: a distractor whose gloss shared a `;`-separated sense with the answer's. 13 of 10,560 questions built from the real gate word lists, in **both** directions (全/完全 "whole", 法/法律 "law") | Branch audit |
+| Q02 / T-T15 | Listen plays a clip but chose its distractors by English, so a homophone could stand as a wrong option — 向/像 (xiàng), 美/每 (měi). 11 of 10,560 questions | Branch audit |
+| Q03 / T-T16 | Match pairs cards by index, so two words sharing a gloss put two cards reading the same thing on the table. 9 of 1,056 boards, three with literally identical text | Branch audit |
+| Q04 / T-T17 | Drill and Revenge excluded distractors by Chinese spelling only — the practice-queue rounds, where a wrong score is what keeps a word in the queue | Branch audit |
+| Q05 / T-T18 | The Daily Word challenge drew options as raw English and checked by exact string, and its target comes from the child's library: 13 of the 1,200 curriculum words collide with an HSK_VOCAB gloss ("city; town" against "city") | Branch audit |
+
+Q01–Q05 are one defect wearing five faces: every surface that builds options
+compared *strings* where the child compares *meaning*. Each is now measured at
+zero on real curriculum data, with no question left short of four options and no
+board shrunk. The comparison lives in one place (`sharesSense`), and
+`pickDistractors` applies it whichever way a question runs.
 
 Pinned (correct today, guarded against regression): `starsFromAccuracy`
 boundaries and its lack of a minimum sample size; the `gateTimerDays` formula;
-the legitimate one-read and two-reads-plus-Listen unlock chain.
+the legitimate one-read and two-reads-plus-Listen unlock chain; the assessment
+bank carries no sense-sharing option pair and `validate_assessment.js` now
+refuses one.
 
 ---
 
@@ -223,8 +236,14 @@ Browser run (Chromium 1194, local http server), no page errors:
 | ID | Requirement | Status | Files | Evidence |
 |---|---|---|---|---|
 | — | Measure what content actually exists behind the 88 gates | verified | `scripts/content_coverage.js`, `docs/content-coverage.md` | `npm run coverage:content`. Reads the real `STORIES_MAP` and `DYNASTIES` out of the inline script, so the numbers are the app's, not a re-derivation. Read-only. |
-| O05 | Texts increase in difficulty with the selected level | **blocked — owner decision** | — | Not met. 44 stories serve 88 gates: a dynasty carries `story`/`story2` with **no level dimension**, so `h1-g01` and `h4-g01` show the same text. Difficulty tracks the dynasty's position in history instead of the learner's level — 53 study characters per gate at gates 1–5 against 86 at gates 18–22 — and the HSK1 share of a gate's story characters swings from 36% to 85%. Four options with costs are in `docs/content-coverage.md`; recommendation is C then B. |
-| T05 | Real lesson passages for the remaining 66 gates | not started | `data/lessons/**` | 66 of 88 passages are the gate's vocabulary list wrapped in instructions, and their questions ask about the lesson rather than a text. The 22 HSK2 lessons are the exception and are the model. T02 made these visible rather than hidden, which is the right order. |
+| O05 | Texts increase in difficulty with the selected level | **partly verified — HSK1 and HSK2 done, HSK3-4 outstanding** | `data/stories/**`, `index.html` (`storyForGate`, `storyKeyFor`), `scripts/build_stories.js` | Owner decision: the same background story per dynasty, told at each level's difficulty; ladder 10/15/20/25 sentences. Stories left `index.html`, are keyed `<base>-h<level>` and load per level. **All 44 HSK1 stories are on the ten-sentence ladder and all 44 HSK2 on the fifteen-sentence one** — gates 1-11 extended, gates 12-22 rewritten because their texts were HSK3/HSK4 vocabulary. A level with no text of its own serves the HSK1 telling **and says so in the reader**, so partial content is never silently mislabelled. Reads count per level; `migratePlayer` remaps legacy ids. Tests S-T01 to S-T03; Chromium walkthrough. **HSK3-HSK4 texts are not written** — `npm run coverage:content` reports the per-level count. |
+| T05 | Real lesson passages, tied to the gate's story and readable by the child | **partly verified — 44 of 88** | `data/lessons/**`, `scripts/build_gate_lessons.js`, `scripts/validate_lessons.js` | The 44 HSK1 and HSK2 lessons are rebuilt from their own gate's story: passage is that story's opening, the eight key words are content words from it, and each question points at a sentence that is really there. Every instruction, question and answer is **bilingual** — they were Chinese-only, which these two readers cannot use — with the passage staying Chinese and its English behind a toggle. Test S-T04. 44 lessons (HSK3-HSK4) remain on the old template; `npm run validate:lessons` prints the count each run. |
+| T06 | Glosses shown in the reader are meanings, not fragments or codes | verified | `content/stories/**`, `scripts/validate_stories.js` | 211 distinct junk glosses were being shown on every character tap, across two passes: a longer word's English split across its characters (习 `-tice`, 友 `-end`, 鼠 `-use`) and linguists' codes for grammar (的 `DE` x196, 了 `CMPL` x110, `PL`, `CL`, `BA`, `ING`). Same class as the 水 "surname Shui" defect, in the one place the app teaches meaning directly. 1,283 glosses corrected across all sources; the validator rejects a fragment, an all-caps code or a surname gloss. Rule written down in `docs/chinese-style.md`. Test S-T03. |
+| T07 | Assessment bank has no answer reachable without reading | verified | `scripts/assessment-content.js`, `build_assessment_bank.js`, `validate_assessment.js` | Bank 1.0.0 took distractors as the first three other words in list order, so later items offered three sounds that were earlier items' correct answers: **40 of 128 audio items were answerable by elimination**, across only 32 distinct distractor sets. Bank 1.1.0 gives each band twelve foils used only as wrong options and disjoint from every target, drawn by a seeded shuffle - 0 eliminable, 102 distinct sets. Three validator checks, confirmed by reintroducing the defect and watching them fail. Tests A-T20 to A-T23. Comparability cost recorded in `docs/assessment-method.md`. |
+| T08 | Handwriting can actually be reviewed | verified | `js/assessment-ui.js` | `scoreAttempt` always read `attempt.writingReviews` and the bank always shipped the rubric, but nothing in the app ever wrote one - so every report read "waiting for a grown-up" permanently. A review screen behind the parent PIN marks each character against `writing-recall-v1`, leaving `responses` untouched. Test A-T25; Chromium: marking 3 of 4 makes the report read "3 of 4 right". |
+| T09 | Level unlock enforces the stated rule | verified | `js/gate-identity.js`, `index.html` | `levelUnlocked` already required gate 22 of the level below, but `legacyLevelAccess` was a second route that let a child hold HSK2 on five cleared gates, invisibly. The grant is no longer consulted; the field is still written as a record and is now **shown in the parent panel** so a revoked tab is explained rather than vanishing. The locked-tab toast states the real rule and progress. Tests C01, C03, C03b, P-T03. |
+| T10 | Named features are bilingual, from one definition | verified | `index.html` (`UI_LABELS`, `L()`, `data-ui-label`) | Hub buttons and the overlays they opened were written separately, routinely disagreed, and half shipped in one language (`拼音表` opening `拼音表 · Pinyin Chart`). One definition per feature now renders both. Tests UI-T01 to UI-T03. |
+| T11 | Parent flags are level-aware | verified | `index.html` (`gatesClearedSummary`, `levelsWithProgress`, `playedBeforeReadingHtml`) | The panel printed `gatesCompleted.length + "/22"` over an array that spans all 88 gates, and the "played before 2 reads" flag resolved story ids through the ambient `curHSK` - which, opened from the select screen, is whatever the last session left. Both now work per level and name it. Tests P-T01, P-T02. |
 
 Gate vocabulary is done: all four levels serve 793 rows each with no missing
 English, after T01 repaired 453 of them.

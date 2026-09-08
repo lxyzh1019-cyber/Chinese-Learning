@@ -33,7 +33,7 @@
         {
           "zh": "世",
           "py": "shì",
-          "mn": "cen-"
+          "mn": "world; age"
         },
         {
           "zh": "纪",
@@ -95,7 +95,7 @@
         {
           "zh": "现",
           "py": "xiàn",
-          "mn": "mod-"
+          "mn": "now; to appear"
         },
         {
           "zh": "代",
@@ -115,12 +115,12 @@
         {
           "zh": "城",
           "py": "chéng",
-          "mn": "city-"
+          "mn": "city; wall"
         },
         {
           "zh": "市",
           "py": "shì",
-          "mn": "-city",
+          "mn": "market; city",
           "bonus": true
         },
         {
@@ -141,13 +141,13 @@
         {
           "zh": "自",
           "py": "zì",
-          "mn": "from",
+          "mn": "self",
           "bonus": true
         },
         {
           "zh": "世",
           "py": "shì",
-          "mn": "world-"
+          "mn": "world; age"
         },
         {
           "zh": "界",
@@ -173,7 +173,7 @@
         {
           "zh": "商",
           "py": "shāng",
-          "mn": "merchant-"
+          "mn": "trade; merchant"
         },
         {
           "zh": "人",
@@ -254,7 +254,7 @@
         {
           "zh": "技",
           "py": "jì",
-          "mn": "tech-"
+          "mn": "skill"
         },
         {
           "zh": "术",
@@ -286,7 +286,7 @@
         {
           "zh": "学",
           "py": "xué",
-          "mn": "school-"
+          "mn": "to study"
         },
         {
           "zh": "校",
@@ -301,7 +301,7 @@
         {
           "zh": "报",
           "py": "bào",
-          "mn": "news-",
+          "mn": "to report; newspaper",
           "bonus": true
         },
         {
@@ -318,7 +318,7 @@
         {
           "zh": "工",
           "py": "gōng",
-          "mn": "fact-",
+          "mn": "work",
           "bonus": true
         },
         {
@@ -341,7 +341,7 @@
         {
           "zh": "迅",
           "py": "xùn",
-          "mn": "rapid-",
+          "mn": "swift",
           "bonus": true
         },
         {
@@ -386,13 +386,13 @@
         {
           "zh": "传",
           "py": "chuán",
-          "mn": "tradi-",
+          "mn": "to pass on",
           "bonus": true
         },
         {
           "zh": "统",
           "py": "tǒng",
-          "mn": "-tional",
+          "mn": "to unite; to rule",
           "bonus": true
         },
         {
@@ -409,7 +409,7 @@
         {
           "zh": "文",
           "py": "wén",
-          "mn": "cul-"
+          "mn": "writing; culture"
         },
         {
           "zh": "化",
@@ -440,7 +440,7 @@
         {
           "zh": "现",
           "py": "xiàn",
-          "mn": "mod-"
+          "mn": "now; to appear"
         },
         {
           "zh": "代",
@@ -450,7 +450,7 @@
         {
           "zh": "文",
           "py": "wén",
-          "mn": "civ-"
+          "mn": "writing; culture"
         },
         {
           "zh": "明",
@@ -477,7 +477,7 @@
         {
           "zh": "相",
           "py": "xiāng",
-          "mn": "each-",
+          "mn": "each other",
           "bonus": true
         },
         {
@@ -489,7 +489,7 @@
         {
           "zh": "碰",
           "py": "pèng",
-          "mn": "col-",
+          "mn": "to bump",
           "bonus": true
         },
         {
@@ -534,7 +534,7 @@
         {
           "zh": "反",
           "py": "fǎn",
-          "mn": "reflect-",
+          "mn": "opposite; to turn back",
           "bonus": true
         },
         {
@@ -612,7 +612,7 @@
         {
           "zh": "挣",
           "py": "zhèng",
-          "mn": "strug-",
+          "mn": "to struggle",
           "bonus": true
         },
         {
@@ -629,13 +629,13 @@
         {
           "zh": "努",
           "py": "nǔ",
-          "mn": "ef-",
+          "mn": "to make an effort",
           "bonus": true
         },
         {
           "zh": "力",
           "py": "lì",
-          "mn": "-fort",
+          "mn": "strength",
           "bonus": true
         },
         {
@@ -645,5 +645,6 @@
       ]
     }
   ],
-  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Extend to the 20-sentence HSK3 ladder and remove \"draft\" to build it.",
+  "draft": true
 }

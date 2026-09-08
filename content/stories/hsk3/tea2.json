@@ -44,7 +44,7 @@
         {
           "zh": "城",
           "py": "chéng",
-          "mn": "city-"
+          "mn": "city; wall"
         },
         {
           "zh": "里",
@@ -55,7 +55,7 @@
         {
           "zh": "有",
           "py": "yǒu",
-          "mn": "had"
+          "mn": "to have"
         },
         {
           "zh": "很",
@@ -76,7 +76,7 @@
         {
           "zh": "名",
           "py": "míng",
-          "mn": "-s",
+          "mn": "name",
           "bonus": true
         },
         {
@@ -207,7 +207,7 @@
         {
           "zh": "艺",
           "py": "yì",
-          "mn": "art-",
+          "mn": "art; skill",
           "bonus": true
         },
         {
@@ -242,7 +242,7 @@
         {
           "zh": "表",
           "py": "biǎo",
-          "mn": "per-",
+          "mn": "surface; to show",
           "bonus": true
         },
         {
@@ -264,7 +264,7 @@
         {
           "zh": "故",
           "py": "gù",
-          "mn": "sto-",
+          "mn": "reason; old",
           "bonus": true
         },
         {
@@ -282,7 +282,7 @@
         {
           "zh": "客",
           "py": "kè",
-          "mn": "guest-"
+          "mn": "guest"
         },
         {
           "zh": "人",
@@ -379,7 +379,7 @@
         {
           "zh": "文",
           "py": "wén",
-          "mn": "cul-"
+          "mn": "writing; culture"
         },
         {
           "zh": "化",
@@ -389,7 +389,7 @@
         {
           "zh": "交",
           "py": "jiāo",
-          "mn": "ex-",
+          "mn": "to hand over; to mix",
           "bonus": true
         },
         {
@@ -433,7 +433,7 @@
         {
           "zh": "天",
           "py": "tiān",
-          "mn": "today"
+          "mn": "day; sky"
         },
         {
           "t": "p",
@@ -484,13 +484,13 @@
         {
           "zh": "传",
           "py": "chuán",
-          "mn": "tradi-",
+          "mn": "to pass on",
           "bonus": true
         },
         {
           "zh": "统",
           "py": "tǒng",
-          "mn": "-tional",
+          "mn": "to unite; to rule",
           "bonus": true
         },
         {
@@ -513,7 +513,7 @@
         {
           "zh": "文",
           "py": "wén",
-          "mn": "cul-"
+          "mn": "writing; culture"
         },
         {
           "zh": "化",
@@ -527,5 +527,6 @@
       ]
     }
   ],
-  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Extend to the 20-sentence HSK3 ladder and remove \"draft\" to build it.",
+  "draft": true
 }

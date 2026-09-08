@@ -53,7 +53,7 @@
         {
           "zh": "活",
           "py": "huó",
-          "mn": "move-"
+          "mn": "to live; lively"
         },
         {
           "zh": "字",
@@ -63,7 +63,7 @@
         {
           "zh": "印",
           "py": "yìn",
-          "mn": "print-"
+          "mn": "to print; a mark"
         },
         {
           "zh": "刷",
@@ -108,7 +108,7 @@
         {
           "zh": "便",
           "py": "pián",
-          "mn": "cheap-"
+          "mn": "convenient"
         },
         {
           "zh": "宜",
@@ -137,7 +137,7 @@
         {
           "zh": "可",
           "py": "kě",
-          "mn": "could"
+          "mn": "may; can"
         },
         {
           "zh": "以",
@@ -208,7 +208,7 @@
         {
           "zh": "药",
           "py": "yào",
-          "mn": "-powder"
+          "mn": "medicine"
         },
         {
           "t": "p",
@@ -217,7 +217,7 @@
         {
           "zh": "指",
           "py": "zhǐ",
-          "mn": "com-"
+          "mn": "finger; to point"
         },
         {
           "zh": "南",
@@ -237,7 +237,7 @@
         {
           "zh": "造",
           "py": "zào",
-          "mn": "make-"
+          "mn": "to make"
         },
         {
           "zh": "纸",
@@ -262,7 +262,7 @@
         {
           "zh": "指",
           "py": "zhǐ",
-          "mn": "com-"
+          "mn": "finger; to point"
         },
         {
           "zh": "南",
@@ -347,7 +347,7 @@
         {
           "zh": "些",
           "py": "xiē",
-          "mn": "CL-PL"
+          "mn": "some; a few"
         },
         {
           "zh": "发",
@@ -387,7 +387,7 @@
         {
           "zh": "世",
           "py": "shì",
-          "mn": "world-"
+          "mn": "world; age"
         },
         {
           "zh": "界",
@@ -401,5 +401,6 @@
       ]
     }
   ],
-  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Extend to the 20-sentence HSK3 ladder and remove \"draft\" to build it.",
+  "draft": true
 }

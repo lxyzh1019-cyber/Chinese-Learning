@@ -109,7 +109,7 @@
         {
           "zh": "孩",
           "py": "hái",
-          "mn": "chil-",
+          "mn": "child",
           "bonus": true
         },
         {
@@ -148,7 +148,7 @@
         {
           "zh": "骑",
           "py": "qí",
-          "mn": "rode",
+          "mn": "to ride",
           "bonus": true
         },
         {
@@ -159,7 +159,7 @@
         {
           "zh": "奔",
           "py": "bēn",
-          "mn": "gallop-",
+          "mn": "to run fast",
           "bonus": true
         },
         {
@@ -191,7 +191,7 @@
         {
           "zh": "学",
           "py": "xué",
-          "mn": "studied"
+          "mn": "to study"
         },
         {
           "zh": "习",
@@ -201,7 +201,7 @@
         {
           "zh": "射",
           "py": "shè",
-          "mn": "arch-",
+          "mn": "to shoot",
           "bonus": true
         },
         {
@@ -217,7 +217,7 @@
         {
           "zh": "骑",
           "py": "qí",
-          "mn": "riding",
+          "mn": "to ride",
           "bonus": true
         },
         {
@@ -255,7 +255,7 @@
         {
           "zh": "准",
           "py": "zhǔn",
-          "mn": "prepar-",
+          "mn": "to allow; accurate",
           "bonus": true
         },
         {
@@ -299,7 +299,7 @@
         {
           "zh": "活",
           "py": "huó",
-          "mn": "-life",
+          "mn": "to live; lively",
           "bonus": true
         },
         {
@@ -317,7 +317,7 @@
         {
           "zh": "艰",
           "py": "jiān",
-          "mn": "diffi-",
+          "mn": "hard",
           "bonus": true
         },
         {
@@ -356,7 +356,7 @@
         {
           "zh": "自",
           "py": "zì",
-          "mn": "free-"
+          "mn": "self"
         },
         {
           "zh": "由",
@@ -398,7 +398,7 @@
         {
           "zh": "自",
           "py": "zì",
-          "mn": "own"
+          "mn": "self"
         },
         {
           "zh": "己",
@@ -414,7 +414,7 @@
         {
           "zh": "土",
           "py": "tǔ",
-          "mn": "land-"
+          "mn": "earth; soil"
         },
         {
           "zh": "地",
@@ -430,7 +430,7 @@
         {
           "zh": "文",
           "py": "wén",
-          "mn": "cul-"
+          "mn": "writing; culture"
         },
         {
           "zh": "化",
@@ -444,5 +444,6 @@
       ]
     }
   ],
-  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Extend to the 20-sentence HSK3 ladder and remove \"draft\" to build it.",
+  "draft": true
 }

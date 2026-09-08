@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_15",
   "level": "HSK2",
   "gateId": 15,
-  "title": "HSK2 Gate 15 Lesson",
-  "explanation": "This gate adds a small culture connection. Notice time words and places.",
-  "passage": "第15关：我们读一个小故事。端午节，我们可以吃粽子。然后，我们继续练习有用的句子。",
+  "title": "HSK2 Gate 15 · Southern Song",
+  "explanationEn": "Gate 15: Southern Song. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第15关：南宋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "中国人很早就开始喝茶了。到了宋朝，喝茶已经是每天的事。茶是用山上一种树上的东西做的。要先把它放到外面的光下面。",
+  "passageEn": "Chinese people began drinking tea very early. By the Song, tea was an everyday thing. Tea is made from something that grows on a plant in the hills. It must first be laid out in the light outside.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "person"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "早",
+      "pinyin": "zǎo",
+      "en": "early; morning"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "开始",
+      "pinyin": "kāishǐ",
+      "en": "started"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "喝",
+      "pinyin": "hē",
+      "en": "drink"
+    },
+    {
+      "zh": "茶",
+      "pinyin": "chá",
+      "en": "tea"
+    },
+    {
+      "zh": "到",
+      "pinyin": "dào",
+      "en": "to arrive"
+    },
+    {
+      "zh": "已经",
+      "pinyin": "yǐ jīng",
+      "en": "already"
+    },
+    {
+      "zh": "每",
+      "pinyin": "měi",
+      "en": "every"
     }
   ],
   "comprehension": [
     {
-      "question": "What cultural idea appears in the passage?",
-      "answer": "A festival or family tradition mentioned in the text."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Chinese people began drinking tea very early.",
+      "answer": "中国人很早就开始喝茶了。"
     },
     {
-      "question": "What do we do after that moment in the story?",
-      "answer": "Continue practicing useful sentences."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "Tea is made from something that grows on a plant in the hills.",
+      "answer": "茶是用山上一种树上的东西做的。"
     },
     {
-      "question": "Find one place word or time word you recognize.",
-      "answer": "Answers vary with the passage."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Tell a parent one sentence in Chinese about a festival you like."
+  "speakingPromptEn": "Tell a grown-up about Southern Song in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说南宋。"
 }

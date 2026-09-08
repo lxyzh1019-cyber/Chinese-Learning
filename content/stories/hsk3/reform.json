@@ -73,7 +73,7 @@
         {
           "zh": "自",
           "py": "zì",
-          "mn": "from"
+          "mn": "self"
         },
         {
           "zh": "西",
@@ -94,7 +94,7 @@
         {
           "zh": "巨",
           "py": "jù",
-          "mn": "enorm-",
+          "mn": "huge",
           "bonus": true
         },
         {
@@ -106,13 +106,13 @@
         {
           "zh": "压",
           "py": "yā",
-          "mn": "pres-",
+          "mn": "to press",
           "bonus": true
         },
         {
           "zh": "力",
           "py": "lì",
-          "mn": "-sure",
+          "mn": "strength",
           "bonus": true
         },
         {
@@ -163,7 +163,7 @@
         {
           "zh": "希",
           "py": "xī",
-          "mn": "ho-",
+          "mn": "to hope",
           "bonus": true
         },
         {
@@ -175,7 +175,7 @@
         {
           "zh": "学",
           "py": "xué",
-          "mn": "learn"
+          "mn": "to study"
         },
         {
           "zh": "习",
@@ -201,12 +201,12 @@
         {
           "zh": "科",
           "py": "kē",
-          "mn": "sci-"
+          "mn": "branch of study"
         },
         {
           "zh": "学",
           "py": "xué",
-          "mn": "-ence"
+          "mn": "to study"
         },
         {
           "zh": "和",
@@ -216,7 +216,7 @@
         {
           "zh": "技",
           "py": "jì",
-          "mn": "tech-"
+          "mn": "skill"
         },
         {
           "zh": "术",
@@ -242,13 +242,13 @@
         {
           "zh": "些",
           "py": "xiē",
-          "mn": "some",
+          "mn": "some; a few",
           "bonus": true
         },
         {
           "zh": "官",
           "py": "guān",
-          "mn": "off-",
+          "mn": "official",
           "bonus": true
         },
         {
@@ -260,7 +260,7 @@
         {
           "zh": "认",
           "py": "rèn",
-          "mn": "belie-",
+          "mn": "to recognise",
           "bonus": true
         },
         {
@@ -278,7 +278,7 @@
         {
           "zh": "需",
           "py": "xū",
-          "mn": "need-"
+          "mn": "to need"
         },
         {
           "zh": "要",
@@ -298,7 +298,7 @@
         {
           "zh": "现",
           "py": "xiàn",
-          "mn": "mod-"
+          "mn": "now; to appear"
         },
         {
           "zh": "代",
@@ -308,7 +308,7 @@
         {
           "zh": "学",
           "py": "xué",
-          "mn": "school-"
+          "mn": "to study"
         },
         {
           "zh": "校",
@@ -373,23 +373,23 @@
         {
           "zh": "非",
           "py": "fēi",
-          "mn": "ex-"
+          "mn": "not"
         },
         {
           "zh": "常",
           "py": "cháng",
-          "mn": "often"
+          "mn": "often; usual"
         },
         {
           "zh": "困",
           "py": "kùn",
-          "mn": "diffi-",
+          "mn": "hard; tired",
           "bonus": true
         },
         {
           "zh": "难",
           "py": "nán",
-          "mn": "-cult",
+          "mn": "hard; difficult",
           "bonus": true
         },
         {
@@ -421,7 +421,7 @@
         {
           "zh": "有",
           "py": "yǒu",
-          "mn": "have"
+          "mn": "to have"
         },
         {
           "zh": "放",
@@ -473,7 +473,7 @@
         {
           "zh": "精",
           "py": "jīng",
-          "mn": "spir-"
+          "mn": "fine; spirit"
         },
         {
           "zh": "神",
@@ -484,7 +484,7 @@
         {
           "zh": "影",
           "py": "yǐng",
-          "mn": "in-",
+          "mn": "shadow; to affect",
           "bonus": true
         },
         {
@@ -518,7 +518,7 @@
         {
           "zh": "历",
           "py": "lì",
-          "mn": "hist-"
+          "mn": "to pass through; history"
         },
         {
           "zh": "史",
@@ -544,5 +544,6 @@
       ]
     }
   ],
-  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Extend to the 20-sentence HSK3 ladder and remove \"draft\" to build it.",
+  "draft": true
 }

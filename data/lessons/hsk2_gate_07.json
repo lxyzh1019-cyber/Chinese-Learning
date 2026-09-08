@@ -2,40 +2,73 @@
   "lessonId": "hsk2_gate_07",
   "level": "HSK2",
   "gateId": 7,
-  "title": "HSK2 Gate 7 Lesson",
-  "explanation": "This is an early HSK2 gate. Read slowly and focus on clear patterns.",
-  "passage": "第7关：我们学习新词。今天天气很好，我和朋友一起学习中文。",
+  "title": "HSK2 Gate 7 · Eastern Han",
+  "explanationEn": "Gate 7: Eastern Han. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第7关：东汉。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "很久以前，人们不在纸上写字，因为那时候还没有纸。他们把字写在竹子上面。一本书要用很多很多竹子。所以书又重又大，一个人拿不动。",
+  "passageEn": "Long ago people did not write on paper, because there was none. They wrote on strips of bamboo. One book took a great deal of bamboo. So a book was heavy and bulky, and one person could not carry it.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "久",
+      "pinyin": "jiǔ",
+      "en": "long time"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "人们",
+      "pinyin": "rén men",
+      "en": "people"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "纸",
+      "pinyin": "zhǐ",
+      "en": "paper"
+    },
+    {
+      "zh": "上",
+      "pinyin": "shàng",
+      "en": "up; on; above"
+    },
+    {
+      "zh": "写",
+      "pinyin": "xiě",
+      "en": "wrote"
+    },
+    {
+      "zh": "字",
+      "pinyin": "zì",
+      "en": "character; writing"
+    },
+    {
+      "zh": "因为",
+      "pinyin": "yīn wèi",
+      "en": "because"
     }
   ],
   "comprehension": [
     {
-      "question": "What are we doing today?",
-      "answer": "Studying Chinese together."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Long ago people did not write on paper, because there was none.",
+      "answer": "很久以前，人们不在纸上写字，因为那时候还没有纸。"
     },
     {
-      "question": "How is the weather in the passage?",
-      "answer": "Very nice / good."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "One book took a great deal of bamboo.",
+      "answer": "一本书要用很多很多竹子。"
+    },
+    {
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Say two short sentences: who you are and what you like to do."
+  "speakingPromptEn": "Tell a grown-up about Eastern Han in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说东汉。"
 }

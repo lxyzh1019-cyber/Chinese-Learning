@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_21",
   "level": "HSK2",
   "gateId": 21,
-  "title": "HSK2 Gate 21 Lesson",
-  "explanation": "This is a capstone-style gate. Read the whole paragraph before answering.",
-  "passage": "第21关（挑战）：老师问：“你为什么想学中文？”我说：“因为中文很有用，而且我想和家人说话。”我的朋友也说，学习要坚持。我们每天练习一点点，就会进步。",
+  "title": "HSK2 Gate 21 · Late Qing",
+  "explanationEn": "Gate 21: Late Qing. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第21关：清后期。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "清朝快要过去的时候，中国有很多难事。那时候，西边的国家做出了新的船。他们的船又大又快，不用风也可以走。他们也有新的东西，是中国没有的。",
+  "passageEn": "As the Qing dynasty neared its end, China faced many difficulties. By then countries in the west had built new ships. Their ships were large and fast, and could move without wind. They had new things that China did not.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "快",
+      "pinyin": "kuài",
+      "en": "fast; happy"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "过去",
+      "pinyin": "guò qù",
+      "en": "(in the) past"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "en": "period"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
+    },
+    {
+      "zh": "难",
+      "pinyin": "nán",
+      "en": "hard; difficult"
+    },
+    {
+      "zh": "事",
+      "pinyin": "shì",
+      "en": "matter; thing"
+    },
+    {
+      "zh": "西",
+      "pinyin": "xī",
+      "en": "west"
+    },
+    {
+      "zh": "边",
+      "pinyin": "biān",
+      "en": "side; edge"
     }
   ],
   "comprehension": [
     {
-      "question": "Why does the speaker want to learn Chinese?",
-      "answer": "Because it is useful and they want to talk with family."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "As the Qing dynasty neared its end, China faced many difficulties.",
+      "answer": "清朝快要过去的时候，中国有很多难事。"
     },
     {
-      "question": "What does the friend say about learning?",
-      "answer": "You need to keep at it / persist."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "Their ships were large and fast, and could move without wind.",
+      "answer": "他们的船又大又快，不用风也可以走。"
     },
     {
-      "question": "What strategy does the paragraph suggest?",
-      "answer": "Practice a little every day to improve."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Answer the teacher question in Chinese in 2–3 sentences, then ask a parent to listen."
+  "speakingPromptEn": "Tell a grown-up about Late Qing in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说清后期。"
 }

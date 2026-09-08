@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_10",
   "level": "HSK2",
   "gateId": 10,
-  "title": "HSK2 Gate 10 Lesson",
-  "explanation": "This gate adds a small culture connection. Notice time words and places.",
-  "passage": "第10关：我们读一个小故事。中秋节，人们喜欢看月亮、吃月饼。然后，我们继续练习有用的句子。",
+  "title": "HSK2 Gate 10 · Eastern Jin",
+  "explanationEn": "Gate 10: Eastern Jin. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第10关：东晋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "一千六百多年以前，有一个很有名的诗人。他年轻的时候也做过官。做官可以有钱，也可以有名。可是他一点也不喜欢那样的日子。",
+  "passageEn": "More than sixteen hundred years ago there was a famous poet. When he was young he had served as an official. An official could have money, and could have a name. But he did not like that kind of life at all.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "千",
+      "pinyin": "qiān",
+      "en": "thousand"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "六",
+      "pinyin": "liù",
+      "en": "six"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "百",
+      "pinyin": "bǎi",
+      "en": "hundred"
+    },
+    {
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
+    },
+    {
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "year"
+    },
+    {
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
+    },
+    {
+      "zh": "名",
+      "pinyin": "míng",
+      "en": "name"
     }
   ],
   "comprehension": [
     {
-      "question": "What cultural idea appears in the passage?",
-      "answer": "A festival or family tradition mentioned in the text."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "More than sixteen hundred years ago there was a famous poet.",
+      "answer": "一千六百多年以前，有一个很有名的诗人。"
     },
     {
-      "question": "What do we do after that moment in the story?",
-      "answer": "Continue practicing useful sentences."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "An official could have money, and could have a name.",
+      "answer": "做官可以有钱，也可以有名。"
     },
     {
-      "question": "Find one place word or time word you recognize.",
-      "answer": "Answers vary with the passage."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Tell a parent one sentence in Chinese about a festival you like."
+  "speakingPromptEn": "Tell a grown-up about Eastern Jin in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说东晋。"
 }

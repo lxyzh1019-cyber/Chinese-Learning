@@ -201,6 +201,33 @@ Launch the dev server and click through the actual flow:
 
 If you can't run the UI, say so explicitly rather than claim success.
 
+### 9.6 A wrong option must never be secretly right
+
+Every builder that offers choices excluded its answer by **spelling** — the
+Chinese, the array index, or the exact English string. A child compares
+*meaning*, and a gloss is not one meaning: "law; method" and "law" are
+different strings that read as the same answer. Five surfaces had it (MCQ both
+directions, Listen, Match, Drill/Revenge, the Daily Word), and in each one the
+option the child did not tap was scored wrong and logged to their practice
+queue — §1's promise inverted, punishing a correct reading.
+
+The rule: exclude on **what makes the answer identifiable in that question**,
+not on what is convenient to compare.
+
+- Options are meanings → compare senses, `;`-split (`sharesSense`).
+- Options are characters under a meaning prompt → same comparison.
+- Options are characters under an **audio** prompt → compare the *sound*.
+  Listen compared English, so 向 and 像 (both `xiàng`) could sit side by side.
+- A board pairs by index (Match) → drop the colliding word rather than deal an
+  ambiguous card; let the round size follow the pick so it still ends.
+
+Put the comparison in one helper and route every builder through it
+(`pickDistractors`). Then measure on the real curriculum, not a fixture: each
+of these was found by building every question the 88 gate word lists can
+produce and counting the ambiguous ones. Assert with a comparison the test
+computes **itself** — a test that calls the function under test moves with the
+defect and cannot fail.
+
 ---
 
 ## 10. Quick reference — copy-paste templates
@@ -399,7 +426,8 @@ function defPlayer() {
     lastSaved: 0,           // ms timestamp of last save (used for conflict resolution)
 
     // ── Progress ──
-    schemaVersion: 2,       // 1 = legacy 22-gate ids; 2 = the 88-gate key model
+    schemaVersion: 3,       // 1 = legacy 22-gate ids; 2 = the 88-gate key model;
+                            // 3 = story ids carry their level too
     gatesCompleted: [],     // gate KEYS, `h{level}-g{NN}` — see §14
     storiesCompleted: [],   // legacy story IDs — gates marked complete via old flow
     legacyStoriesCompleted: [], // frozen snapshot taken when the read chain shipped
@@ -517,13 +545,30 @@ showed as cleared on all four HSK tabs. The tabs only ever swapped lesson text.
 
 ### Migration
 
-`migratePlayer` remaps a legacy document once. It is **shape-aware**: it detects
-numeric gate ids regardless of any `schemaVersion` stamp, because `defPlayer()`
-stamps version 2 and that stamp used to leak onto legacy documents through
-`Object.assign`, skipping migration and then silently filtering every completion
-away. Old completions map to the level of their historical dynasty group. It is
-idempotent, invents no completions for the other 66 identities, and redistributes
-no stars.
+`migratePlayer` runs **two independent phases**, each triggered by the shape it
+repairs, because a document can need one and not the other:
+
+1. **Gate identity** — numeric dynasty ids become `h{level}-g{NN}` keys. Old
+   completions map to the level of their historical dynasty group.
+2. **Story ids** — `xia` becomes `xia-h1`, so reads and completions follow the
+   story to its level.
+
+Gating both on one version stamp is a trap this app has fallen into twice. A save
+written by the previous release already carries gate keys and a `schemaVersion`
+of 2, so a single stamp check skips the story remap — and its `storyReadCount`
+then reads as empty, which silently re-locks Listen, Match and Rain through §3's
+chain. Worse, running the gate phase over such a save would *delete* it:
+`parseInt("h1-g01")` is `NaN`, so every completion is filtered away.
+
+**Callers must use `GateIdentity.needsMigration(player)`** and nothing else.
+Assembling the test at the call site is the other half of the same trap:
+`defPlayer()` stamps the current version and `mergePlayerState` is
+`Object.assign({}, defPlayer(), loaded)`, so an unstamped legacy save arrives
+already looking current. A child who had read stories but cleared no gates then
+looks fully migrated.
+
+Both phases are idempotent, invent no completions for the other 66 identities,
+and redistribute no stars.
 
 The 22 dynasties themselves are unchanged, IDs 1–22, chronological order:
 
@@ -1168,7 +1213,7 @@ npm test                      # node --test tests/*.test.cjs
 npm run verify                # all of the above, in that order
 
 npm run build:stories         # content/stories/** -> data/stories/**
-npm run build:lessons         # HSK1 lessons, from each gate's own story
+npm run build:lessons <lv>    # a level's lessons, from each gate's own story
 npm run coverage:content      # what content exists behind the 88 gates
 ```
 

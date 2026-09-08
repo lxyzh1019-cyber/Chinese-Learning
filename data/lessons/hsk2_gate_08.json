@@ -2,40 +2,73 @@
   "lessonId": "hsk2_gate_08",
   "level": "HSK2",
   "gateId": 8,
-  "title": "HSK2 Gate 8 Lesson",
-  "explanation": "This is an early HSK2 gate. Read slowly and focus on clear patterns.",
-  "passage": "第8关：我们学习新词。今天天气很好，我和朋友一起学习中文。",
+  "title": "HSK2 Gate 8 · Three Kingdoms",
+  "explanationEn": "Gate 8: Three Kingdoms. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第8关：三国。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "汉朝以后，中国分成了三个国家。这三个国常常打来打去。那时候有一个很聪明的人，叫诸葛亮。他年轻的时候住在山里，天天看书。",
+  "passageEn": "After the Han, China split into three states. The three states fought one another constantly. There was a very clever man of that time called Zhuge Liang. When he was young he lived in the hills and read every day.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "汉朝",
+      "pinyin": "Hàncháo",
+      "en": "Han Dynasty"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "以后",
+      "pinyin": "yǐ hòu",
+      "en": "after"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "分",
+      "pinyin": "fēn",
+      "en": "share"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "成",
+      "pinyin": "chéng",
+      "en": "to become; to succeed"
+    },
+    {
+      "zh": "三",
+      "pinyin": "sān",
+      "en": "three"
+    },
+    {
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "en": "country; nation; state"
+    },
+    {
+      "zh": "国",
+      "pinyin": "guó",
+      "en": "kingdoms"
+    },
+    {
+      "zh": "常",
+      "pinyin": "cháng",
+      "en": "often; usual"
     }
   ],
   "comprehension": [
     {
-      "question": "What are we doing today?",
-      "answer": "Studying Chinese together."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "After the Han, China split into three states.",
+      "answer": "汉朝以后，中国分成了三个国家。"
     },
     {
-      "question": "How is the weather in the passage?",
-      "answer": "Very nice / good."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "There was a very clever man of that time called Zhuge Liang.",
+      "answer": "那时候有一个很聪明的人，叫诸葛亮。"
+    },
+    {
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Say two short sentences: who you are and what you like to do."
+  "speakingPromptEn": "Tell a grown-up about Three Kingdoms in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说三国。"
 }

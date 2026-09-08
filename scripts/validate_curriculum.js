@@ -50,6 +50,24 @@ function checkVocabQuality(doc, name, problems) {
     if (JUNK_GLOSS.test(en) || JUNK_GLOSS_STRICT.test(en)) {
       problems.push(`${where}: ${w.zh} is glossed "${en.slice(0, 40)}" — a dictionary artefact, not a meaning`);
     }
+    // Half of a longer word's English. The story and lesson validators grew this
+    // check after 211 such glosses turned up in the reader; the gate vocabulary
+    // was still teaching 地 as "-ly" and 超级 as "super-", which a child meets in
+    // the games and the quizzes rather than the reader.
+    const t = en.trim();
+    if (/^[-—]/.test(t) || /^[A-Za-z.]+-$/.test(t)) {
+      problems.push(`${where}: ${w.zh} is glossed "${t}" — a fragment of a longer word's English, not a meaning`);
+    }
+    if (/^[A-Z]{2,5}$/.test(t)) {
+      problems.push(`${where}: ${w.zh} is glossed "${t}" — a grammar code; say what it does in plain words`);
+    }
+    // A gloss that TRAILS a hyphen is rejected by isCleanMeaning, so the word is
+    // silently dropped from every word pool built from a story — it simply stops
+    // being taught. 非 "not; non-" and 再 "again; once more; re-" both vanished
+    // that way. Say the meaning without the prefix form.
+    if (/-$/.test(t)) {
+      problems.push(`${where}: ${w.zh} is glossed "${t}" — a trailing hyphen drops it from the word pools`);
+    }
     const allowedProper = OVERRIDES[w.zh] && OVERRIDES[w.zh].proper;
     if (/^[A-Z]/.test(py) && !allowedProper) {
       problems.push(`${where}: ${w.zh} has proper-noun pinyin "${py}" — a surname reading displacing the common word`);

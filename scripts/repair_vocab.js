@@ -27,16 +27,25 @@ const PROPER_PY = /^[A-Z]/;
 
 const changes = [];
 
+/**
+ * Apply a curated override — but only the fields it actually states.
+ *
+ * This used to assign `w.pinyin = o.py` unconditionally, so an override that
+ * corrects only a GLOSS would blank the reading it never mentioned. Most
+ * entries carry both, which is why it went unnoticed; an entry that fixes a
+ * meaning alone is a perfectly reasonable thing to write.
+ */
 function repairWord(w, where) {
   const o = OVERRIDES[w.zh];
   if (!o) return false;
   const beforePy = w.pinyin, beforeEn = w.en;
-  const needsPy = beforePy !== o.py;
-  const needsEn = beforeEn !== o.en;
+  const needsPy = o.py !== undefined && beforePy !== o.py;
+  const needsEn = o.en !== undefined && beforeEn !== o.en;
   if (!needsPy && !needsEn) return false;
-  changes.push({ where, zh: w.zh, beforePy, afterPy: o.py, beforeEn, afterEn: o.en });
-  w.pinyin = o.py;
-  w.en = o.en;
+  changes.push({ where, zh: w.zh, beforePy, afterPy: needsPy ? o.py : beforePy,
+    beforeEn, afterEn: needsEn ? o.en : beforeEn });
+  if (needsPy) w.pinyin = o.py;
+  if (needsEn) w.en = o.en;
   return true;
 }
 

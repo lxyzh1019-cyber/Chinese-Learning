@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_13",
   "level": "HSK2",
   "gateId": 13,
-  "title": "HSK2 Gate 13 Lesson",
-  "explanation": "This gate adds a small culture connection. Notice time words and places.",
-  "passage": "第13关：我们读一个小故事。春节时，家人一起吃团圆饭。然后，我们继续练习有用的句子。",
+  "title": "HSK2 Gate 13 · Five Dynasties",
+  "explanationEn": "Gate 13: Five Dynasties. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第13关：五代。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "有了纸以后，人们可以写书了。可是那时候的书都是一个字一个字写出来的。写一本书要很多天，有时候要几个月。所以书很少，也很贵。",
+  "passageEn": "Once there was paper, people could write books. But books then were written out one character at a time. Writing one book took many days, sometimes months. So books were few, and expensive.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "纸",
+      "pinyin": "zhǐ",
+      "en": "paper"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "以后",
+      "pinyin": "yǐ hòu",
+      "en": "after"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "人们",
+      "pinyin": "rén men",
+      "en": "people"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "写",
+      "pinyin": "xiě",
+      "en": "wrote"
+    },
+    {
+      "zh": "书",
+      "pinyin": "shū",
+      "en": "book"
+    },
+    {
+      "zh": "可是",
+      "pinyin": "kě shì",
+      "en": "but; however"
+    },
+    {
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "en": "period"
+    },
+    {
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     }
   ],
   "comprehension": [
     {
-      "question": "What cultural idea appears in the passage?",
-      "answer": "A festival or family tradition mentioned in the text."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Once there was paper, people could write books.",
+      "answer": "有了纸以后，人们可以写书了。"
     },
     {
-      "question": "What do we do after that moment in the story?",
-      "answer": "Continue practicing useful sentences."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "Writing one book took many days, sometimes months.",
+      "answer": "写一本书要很多天，有时候要几个月。"
     },
     {
-      "question": "Find one place word or time word you recognize.",
-      "answer": "Answers vary with the passage."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Tell a parent one sentence in Chinese about a festival you like."
+  "speakingPromptEn": "Tell a grown-up about Five Dynasties in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说五代。"
 }

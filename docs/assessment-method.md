@@ -1,7 +1,7 @@
 # Assessment method
 
 What the assessment measures, how it scores, and — as importantly — what it
-cannot tell you. Version 1.0.0 of the bank: bands C1–C4, forms A and B.
+cannot tell you. Version **1.1.0** of the bank: bands C1–C4, forms A and B.
 
 ## What it is
 
@@ -23,6 +23,41 @@ Recognition and supported decoding deliberately use **disjoint target words**, a
 decoding always comes after the unaided sections, so pinyin cannot coach an
 answer the child has already given unaided. The validator enforces both.
 
+## What changed in 1.1.0, and what it costs
+
+Bank 1.0.0 chose an item's wrong options as "the first three other words in list
+order". So from the fifth item of a section onward, all three wrong options were
+the **correct answers of earlier items**, and a child who had answered those
+could take the remaining option without reading the character. **40 of the 128
+audio items were answerable that way**, and the whole bank held only 32 distinct
+distractor sets, so a section also felt like one question asked eight times.
+
+That is not a small scoring wrinkle. Unaided recognition is one of the three
+domains that decide routing, and it was the domain most easily gamed. In the
+first live sitting, both children scored 8/8 and 7/8 on recognition and 8/8 on
+supported decoding, beside 4/8 and 3/8 on meaning — which has fresh distractors
+per item and cannot be eliminated. **The meaning and comprehension figures are
+the trustworthy half of that report.**
+
+1.1.0 gives each band twelve foil sounds used **only** as wrong options and
+disjoint from every target in the bank, drawn per item by a seeded shuffle: no
+item is answerable by elimination, and the bank holds 102 distinct distractor
+sets. Three checks in `scripts/validate_assessment.js` keep it that way, and
+they were confirmed by reintroducing the original defect and watching them fail.
+
+1.1.0 also rewrites the Chinese. Sentences had been bent to force a single
+target **character** into them — `今天天很好` is missing 气, `我很爱上山` is not
+something anyone says. Where the natural sentence needs a two-character word,
+the word is now the target. See `docs/chinese-style.md`.
+
+**The cost.** Attempts record their `bankVersion`, and `compareAttempts` refuses
+to diff across versions — it reports *not directly comparable* rather than
+producing a difference. So the two sittings taken on 1.0.0 are a **standalone
+snapshot, not a baseline**: nothing taken later can be measured against them. A
+fresh sitting on 1.1.0 is what produces numbers worth tracking over time. This
+is stated rather than papered over, because a comparison across a changed
+instrument would be the more misleading option.
+
 ## Scoring rules
 
 - `I don't know` is recorded as a **wrong** answer.
@@ -34,7 +69,18 @@ answer the child has already given unaided. The validator enforces both.
 - There is **no overall score**. No single number for "Chinese ability" is
   defensible from samples this size, so none is shown.
 - Unreviewed handwriting is **unassessed, not zero**. The reading report is
-  available while writing waits for a reviewer.
+  available while writing waits for a reviewer. A reviewer marks each character
+  against the shipped `writing-recall-v1` rubric (0 unrecognisable / 1
+  recognisable but inaccurate / 2 correct form) from the report, behind the
+  parent PIN; a score of 2 counts as correct. Until 1.1.0 there was no way in
+  the app to record a review at all, so every report said "waiting for a
+  grown-up" permanently.
+- **Answer pace is reported, and a domain at chance is labelled.** Each item's
+  presentation and response are timestamped, so the report shows a median time
+  per answer, and a completed domain scoring at or below what random guessing
+  gives on four options says so in plain words. Neither is a verdict; both are
+  there because a score at chance and a score earned slowly are different
+  events.
 
 ## Routing between bands
 
@@ -46,6 +92,10 @@ These thresholds choose which block of questions to sample next. They are a
 product default, **not** a pass/fail diagnosis and not a statistical standard.
 A recommended band is provisional and should be confirmed by ordinary learning
 evidence over time.
+
+A set can also be **chosen** rather than always starting at the first one.
+Every band is scored on its own items, so starting higher borrows no credit — it
+only skips the easier evidence, and the report records which sets were sampled.
 
 All four bands exist. A child who clears C1 is offered C2, and so on to C4;
 each band is scored on **its own** items, so a strong C1 can never carry a weak

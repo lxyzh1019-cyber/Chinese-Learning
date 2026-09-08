@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_19",
   "level": "HSK2",
   "gateId": 19,
-  "title": "HSK2 Gate 19 Lesson",
-  "explanation": "This is a capstone-style gate. Read the whole paragraph before answering.",
-  "passage": "第19关（挑战）：老师问：“你为什么想学中文？”我说：“因为中文很有用，而且我想和家人说话。”我的朋友也说，学习要坚持。我们每天练习一点点，就会进步。",
+  "title": "HSK2 Gate 19 · Ming Dynasty",
+  "explanationEn": "Gate 19: Ming Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第19关：明朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "六百多年以前，明朝有一个很大的船队。带着船队的人叫郑和。他的船非常大，比很多房子还大。一条船上可以住几百个人。",
+  "passageEn": "More than six hundred years ago the Ming had a great fleet. The man who led it was called Zheng He. His ships were enormous, bigger than many houses. One ship could hold several hundred people.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "六",
+      "pinyin": "liù",
+      "en": "six"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "百",
+      "pinyin": "bǎi",
+      "en": "hundred"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "year"
+    },
+    {
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
+    },
+    {
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
+    },
+    {
+      "zh": "大",
+      "pinyin": "dà",
+      "en": "great"
+    },
+    {
+      "zh": "船",
+      "pinyin": "chuán",
+      "en": "boats"
     }
   ],
   "comprehension": [
     {
-      "question": "Why does the speaker want to learn Chinese?",
-      "answer": "Because it is useful and they want to talk with family."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "More than six hundred years ago the Ming had a great fleet.",
+      "answer": "六百多年以前，明朝有一个很大的船队。"
     },
     {
-      "question": "What does the friend say about learning?",
-      "answer": "You need to keep at it / persist."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "His ships were enormous, bigger than many houses.",
+      "answer": "他的船非常大，比很多房子还大。"
     },
     {
-      "question": "What strategy does the paragraph suggest?",
-      "answer": "Practice a little every day to improve."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Answer the teacher question in Chinese in 2–3 sentences, then ask a parent to listen."
+  "speakingPromptEn": "Tell a grown-up about Ming Dynasty in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说明朝。"
 }

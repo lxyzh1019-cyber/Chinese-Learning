@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_14",
   "level": "HSK2",
   "gateId": 14,
-  "title": "HSK2 Gate 14 Lesson",
-  "explanation": "This gate adds a small culture connection. Notice time words and places.",
-  "passage": "第14关：我们读一个小故事。中秋节，人们喜欢看月亮、吃月饼。然后，我们继续练习有用的句子。",
+  "title": "HSK2 Gate 14 · Northern Song",
+  "explanationEn": "Gate 14: Northern Song. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第14关：北宋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "中国人做出了很多有用的东西。其中最有名的有四个。第一个是纸。因为有了纸，人们才可以写书。",
+  "passageEn": "Chinese people made many useful things. Four of them are the most famous. The first is paper. It was paper that made books possible.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "person"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "做",
+      "pinyin": "zuò",
+      "en": "do"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "出",
+      "pinyin": "chū",
+      "en": "go"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
+    },
+    {
+      "zh": "用",
+      "pinyin": "yòng",
+      "en": "using"
+    },
+    {
+      "zh": "东西",
+      "pinyin": "dōng xī",
+      "en": "east and west"
+    },
+    {
+      "zh": "其中",
+      "pinyin": "qí zhōng",
+      "en": "among"
+    },
+    {
+      "zh": "最",
+      "pinyin": "zuì",
+      "en": "most; -est"
     }
   ],
   "comprehension": [
     {
-      "question": "What cultural idea appears in the passage?",
-      "answer": "A festival or family tradition mentioned in the text."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Chinese people made many useful things.",
+      "answer": "中国人做出了很多有用的东西。"
     },
     {
-      "question": "What do we do after that moment in the story?",
-      "answer": "Continue practicing useful sentences."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "The first is paper.",
+      "answer": "第一个是纸。"
     },
     {
-      "question": "Find one place word or time word you recognize.",
-      "answer": "Answers vary with the passage."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Tell a parent one sentence in Chinese about a festival you like."
+  "speakingPromptEn": "Tell a grown-up about Northern Song in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说北宋。"
 }

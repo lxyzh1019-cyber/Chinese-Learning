@@ -37,10 +37,14 @@ const SCRIPT_RE =
  * broken fails a test instead of only showing up in a browser.
  */
 function loadStoryFixtures() {
-  try {
-    const raw = fs.readFileSync(path.join(ROOT, "data", "stories", "hsk1.json"), "utf8");
-    return JSON.parse(raw).stories || {};
-  } catch (e) { return {}; }
+  const out = {};
+  for (const lv of [1, 2, 3, 4]) {
+    try {
+      const raw = fs.readFileSync(path.join(ROOT, "data", "stories", `hsk${lv}.json`), "utf8");
+      out[lv] = JSON.parse(raw).stories || {};
+    } catch (e) { /* a level with no text of its own falls back at runtime */ }
+  }
+  return out;
 }
 
 const BRIDGED = [
@@ -52,7 +56,10 @@ const BRIDGED = [
   "curGameTargetLevel",
   // Content tables. Also `const`, so also invisible without the bridge.
   "STORIES_MAP", "DYNASTIES", "HSK_VOCAB", "GATE_VOCAB", "GATE_SENTENCES",
-  "UI_LABELS", "timerSecs", "timerIv", "curriculumCache",
+  "UI_LABELS", "timerSecs", "timerIv", "curriculumCache", "charMetaIndex",
+  // NOT GateIdentity: it is a context global, not a binding in the inline
+  // script, so the accessor's `eval(name)` resolves back to the accessor and
+  // recurses until the stack goes. It is already on the context directly.
 ];
 
 /** Minimal element stub: enough for the app's rendering calls to be no-ops. */
@@ -239,7 +246,7 @@ function loadApp(opts = {}) {
   // map exactly as the app does, so STORIES_MAP is populated before the first
   // word pool is built.
   if (opts.stories !== false) {
-    ctx.curriculumCache.stories[1] = loadStoryFixtures();
+    Object.assign(ctx.curriculumCache.stories, loadStoryFixtures());
     ctx.rebuildStoriesMap();
   }
 

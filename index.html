@@ -1339,6 +1339,10 @@ function rebuildStoriesMap(){
     Object.keys(lvl).forEach(k=>{next[k]=lvl[k];});
   });
   STORIES_MAP=next;
+  // The character index is derived from STORIES_MAP and was memoized forever.
+  // Stories are fetched now, so a first call before or during the fetch cached
+  // an empty index permanently — and Trace reads it.
+  charMetaIndex=null;
   return STORIES_MAP;
 }
 
@@ -2634,11 +2638,17 @@ function openDailyWordChallenge(){
   ensureState(curP);
   if(state[curP].dailyWordSolved===todayKey()){showToast('Great job—you already solved this today!');return;}
   const w=getDailyWordEntry();
+  // Options are raw English, and the answer is checked by exact string. A
+  // gloss that shares a sense with the target is therefore a second right
+  // answer scored wrong — and the day's word comes from the practice queue, so
+  // the pair can be the SAME word glossed two ways ("city; town" against
+  // "city"). Sense-sharing options are excluded, not just identical ones.
+  const ok=(x)=>x&&x.en&&!sharesSense(x.en,w.en);
   const pool=[];
-  [1,2,3,4].forEach(lv=>{(HSK_VOCAB[lv]||[]).forEach(x=>{if(x.en&&x.en!==w.en)pool.push(x.en);});});
-  let wrong=[...new Set(pool)].sort(()=>Math.random()-.5).filter(e=>e!==w.en).slice(0,3);
+  [1,2,3,4].forEach(lv=>{(HSK_VOCAB[lv]||[]).forEach(x=>{if(ok(x))pool.push(x.en);});});
+  let wrong=[...new Set(pool)].sort(()=>Math.random()-.5).slice(0,3);
   let k=0;while(wrong.length<3&&k<40){
-    const x=HSK_VOCAB[1][k++];if(x&&x.en&&x.en!==w.en&&!wrong.includes(x.en))wrong.push(x.en);
+    const x=HSK_VOCAB[1][k++];if(ok(x)&&!wrong.includes(x.en))wrong.push(x.en);
   }
   const opts=[w.en,...wrong].sort(()=>Math.random()-.5);
   document.getElementById('daily-word-overlay').classList.add('show');
@@ -2821,6 +2831,33 @@ function bumpSessionGen(){
 // The revision we last saw on the server for each player. A write is only
 // allowed if the stored revision still matches it; otherwise another device has
 // written since, and blindly overwriting would silently discard their work.
+/** Meanings compared as a child reads them, so "to play" and "To play." are the
+ *  same answer. Used wherever a wrong option must not be secretly right. */
+function normMeaning(en){
+  return String(en==null?'':en).toLowerCase().replace(/[^a-z0-9;]+/g,' ').trim();
+}
+
+/** The senses of a gloss, as a child would count them: "to ask; to inquire" is
+ *  two answers, not one string. */
+function meaningSenses(en){
+  return normMeaning(en).split(';').map(t=>t.trim()).filter(Boolean);
+}
+
+/**
+ * Do two glosses share any sense?
+ *
+ * Comparing whole glosses is not enough. 请 is "to ask" and 问 is
+ * "to ask; to inquire" — different strings, but a child shown the prompt
+ * "to ask; to inquire" and offered both characters is right either way, and
+ * the one they did not pick gets logged to their practice queue.
+ */
+function sharesSense(a,b){
+  const A=meaningSenses(a);
+  if(!A.length)return false;
+  const B=new Set(meaningSenses(b));
+  return A.some(s=>B.has(s));
+}
+
 /**
  * Pick distractors that cannot be mistaken for the answer.
  *
@@ -2828,6 +2865,11 @@ function bumpSessionGen(){
  * and then render `.en`. With genuine near-synonyms in the curriculum — 他们
  * and 她们 both "they", 两 and 二 both "two" — that produced questions where a
  * wrong option read exactly like the right one, which no child could answer.
+ *
+ * Rendered text alone is not enough. Whichever way round the question runs, a
+ * candidate whose gloss shares a sense with the answer's is a second right
+ * answer: as an option it reads "to ask; to inquire" beside "to ask", and as a
+ * character it is 问 beside 请 under the prompt "to ask". Both are rejected.
  *
  * @param pool   candidates to draw from
  * @param answer the correct item
@@ -2841,6 +2883,7 @@ function pickDistractors(pool,answer,render,n){
     if(out.length>=n)return;
     const text=String(render(c)||'').trim();
     if(!text||seen.has(text))return;
+    if(sharesSense(c&&c.en,answer&&answer.en))return;
     seen.add(text);
     out.push(c);
   });
@@ -2987,7 +3030,11 @@ function ensureState(p){
   // DISCARD any id above 22, which is what made an 88-gate scheme impossible.
   // The migration is idempotent, invents no completions, and preserves both
   // the gates already reachable and the level tabs already open.
-  if((s.schemaVersion||1)<GateIdentity.SCHEMA_VERSION||GateIdentity.looksLegacy(s)){
+  // One predicate, owned by the migration. Assembling the test here is how the
+  // story remap got skipped: defPlayer() stamps the current version, and
+  // mergePlayerState is Object.assign over it, so an unstamped legacy save
+  // arrives already looking current.
+  if(GateIdentity.needsMigration(s)){
     const migrated=GateIdentity.migratePlayer(s).player;
     Object.keys(migrated).forEach(k=>{s[k]=migrated[k];});
   }
@@ -3997,7 +4044,19 @@ function startMemoryMatch(words){
   // the unfinished session is persisted it also outranked every other
   // activity on the resume button.
   const cap=did>=15?8:6;
-  const pick=shuffleArr(words).slice(0,cap);
+  // Two cards a child cannot tell apart make the board a guess. Both sides
+  // matter: two words glossed "son" put two identical cards on the table, and
+  // 法 "law; method" beside 法律 "law" is the same problem one sense down —
+  // either way the correct-looking flip is scored wrong. Taking fewer pairs is
+  // the right trade; `pairCount` follows the pick, so the round still ends.
+  const pick=[];
+  const seenZh=new Set(),seenSense=[];
+  for(const w of shuffleArr(words)){
+    if(pick.length>=cap)break;
+    if(!w||!w.zh||seenZh.has(w.zh))continue;
+    if(seenSense.some(en=>sharesSense(en,w.en)))continue;
+    seenZh.add(w.zh);seenSense.push(w.en);pick.push(w);
+  }
   const pairCount=pick.length;
   const cards=[];
   pick.forEach((w,i)=>{
@@ -4214,10 +4273,22 @@ function restoreRain(){
   renderRain();runRain();return true;
 }
 
+/** What a Listen option sounds like. Falls back to the spelling so a word with
+ *  no pinyin is still usable as a distractor rather than silently dropped. */
+function listenSound(w){
+  const py=String((w&&w.py)||'').toLowerCase().replace(/\s+/g,'');
+  return py||String((w&&w.zh)||'');
+}
+
 function startListen(words){
   const pool=shuffleArr(words).filter(w=>w.zh);
   const qs=shuffleArr(pool).slice(0,10).map(w=>{
-    const wrong=pickDistractors(pool.filter(x=>x.zh!==w.zh),w,x=>x.en,3);
+    // The question is a sound, so the distractors must differ by SOUND. They
+    // were chosen by English, which let a homophone stand as a wrong option —
+    // 向 and 像 are both xiàng, 美 and 每 are both měi. A child hearing the clip
+    // could not tell them apart, and the tap they did not make was logged to
+    // their practice queue.
+    const wrong=pickDistractors(pool.filter(x=>x.zh!==w.zh),w,listenSound,3);
     return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
   });
   listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
@@ -4331,7 +4402,11 @@ function uniqueChars(words){
       const info=meta[ch];
       if(info){m[ch]={zh:ch,py:info.py,en:info.en||''};return;}
       // No standalone reading known: show the source word instead of guessing.
-      m[ch]={zh:ch,py:'',en:`in ${w.zh}${w.en?' — '+w.en:''}`,fromWord:w.zh};
+      // Word-level tokens mean 34 characters now appear only inside a word, and
+      // 25 of those have no standalone reading anywhere in the curriculum.
+      // Show the word they come from rather than inventing a syllable for them.
+      m[ch]={zh:ch,py:'',en:`in ${w.zh}${w.en?' — '+w.en:''}`,
+             fromWord:w.zh,fromWordPy:w.py||''};
     });
   });
   return Object.values(m);
@@ -4371,7 +4446,7 @@ function renderTrace(){
   traceSt.watchCount=0;traceSt.quizActive=false;
   body.innerHTML=`<div class="mq-progress" style="font-size:.95rem;">${traceSt.i+1}/${traceSt.chars.length}</div>
     <div id="${traceSt.targetId}" style="width:364px;height:364px;max-width:100%;margin:0 auto;border-radius:12px;background:rgba(255,255,255,.04);"></div>
-    <div class="mq-question" style="text-align:center;margin-top:.45rem;font-size:1.1rem;">${c.zh} · ${c.py} · <span style="color:var(--muted);font-size:.9rem;">${c.en||''}</span></div>
+    <div class="mq-question" style="text-align:center;margin-top:.45rem;font-size:1.1rem;">${[c.zh,c.py||(c.fromWord?c.fromWord+(c.fromWordPy?' '+c.fromWordPy:''):'')].filter(Boolean).join(' · ')}${c.en?` · <span style="color:var(--muted);font-size:.9rem;">${c.en}</span>`:''}</div>
     <div style="text-align:center;font-size:.8rem;color:var(--muted);margin:.25rem 0;">Watch the stroke order, then trace it yourself!</div>
     <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.55rem;">
       <button id="trace-watch-btn" class="btn-s" style="padding:.8rem 1rem;font-size:.95rem;" onclick="traceWatchAgain()">👀 Watch again (3 left)</button>
@@ -4920,7 +4995,7 @@ function renderSelectBadges(){
     const hsk=getCurrentHSK(s);
     document.getElementById(p+'-hsk-badge').textContent='HSK '+hsk;
     document.getElementById(p+'-stats').textContent=
-      '⭐ '+s.totalStars+' pts · 🏯 Gate '+s.gatesCompleted.length+'/22';
+      '⭐ '+s.totalStars+' pts · 🏯 '+gatesClearedSummary(s);
   });
 }
 
@@ -4937,6 +5012,76 @@ function getCurrentHSK(s){
   let top=1;
   [2,3,4].forEach(lv=>{if(levelIsUnlocked(s,lv))top=lv;});
   return top;
+}
+
+/**
+ * Gates cleared, per level.
+ *
+ * The parent panel printed `gatesCompleted.length + "/22"`. Since a gate became
+ * (level, dynasty) that array spans all 88, so a child with progress on two
+ * levels could read "24/22". It also said nothing about WHICH level the gates
+ * were in, which is the only thing the number is useful for.
+ */
+function gatesClearedSummary(s){
+  const per=[1,2,3,4].map(lv=>({lv,n:gatesClearedInLevel(s,lv)})).filter(x=>x.n>0);
+  if(!per.length)return '0/'+GateIdentity.GATES_PER_LEVEL;
+  return per.map(x=>`HSK${x.lv} ${x.n}/${GateIdentity.GATES_PER_LEVEL}`).join(' · ');
+}
+
+/**
+ * Levels this child has any progress in — cleared gates, game stars or reads.
+ * Used by the parent flags, which are opened from the SELECT screen where
+ * `curHSK` holds whatever the last play session left behind. Reading the
+ * ambient level there reports against a level the child may never have played.
+ */
+function levelsWithProgress(s){
+  const set=new Set();
+  ((s&&s.gatesCompleted)||[]).forEach(k=>{const p=GateIdentity.parseGateKey(k);if(p)set.add(p.levelId);});
+  Object.keys((s&&s.gateGameStars)||{}).forEach(k=>{const p=GateIdentity.parseGateKey(k);if(p)set.add(p.levelId);});
+  Object.keys((s&&s.storyReadCount)||{}).forEach(id=>{
+    const m=/-h([1-4])$/.exec(id); if(m)set.add(Number(m[1]));
+  });
+  return set.size?[...set].sort():[1];
+}
+
+/**
+ * "Played the games before reading the story twice" — informational, per §7:
+ * a flag for the family to talk about, never a block.
+ *
+ * Checked across every level the child has progress in rather than the ambient
+ * one, and reported with the level named, so a parent can tell HSK1 gate 3 from
+ * HSK2 gate 3.
+ */
+function playedBeforeReadingHtml(s){
+  const skipped=[];
+  levelsWithProgress(s).forEach(lv=>{
+    DYNASTIES.forEach(d=>{
+      const gg=(s.gateGameStars&&s.gateGameStars[GateIdentity.gateKey(lv,d.id)])||{};
+      const played=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);
+      if(!played)return;
+      const ids=[d.story,d.story2].filter(Boolean).map(b=>storyKeyFor(b,lv));
+      const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));
+      if(reads>=2)return;
+      if((s.gatesCompleted||[]).includes(GateIdentity.gateKey(lv,d.id)))return;
+      skipped.push(`HSK${lv} ${d.zh} (${d.en})`);
+    });
+  });
+  if(!skipped.length)return '';
+  return `<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span>`+
+    `<span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`;
+}
+
+/**
+ * Levels the old running-total rule had opened, which no longer open anything.
+ * migratePlayer still records them; without showing it, a tab quietly
+ * disappearing from a child's hub has no explanation anywhere.
+ */
+function inheritedAccessHtml(s){
+  const had=((s&&s.legacyLevelAccess)||[]).filter(lv=>lv>1&&!levelIsUnlocked(s,lv));
+  if(!had.length)return '';
+  return `<div class="psr" style="color:#9db4d0;"><span class="psr-lbl">ℹ️ Old rule access</span>`+
+    `<span class="psr-val" style="font-size:.7rem;">Could once open ${had.map(lv=>'HSK'+lv).join(', ')}; `+
+    `now needs all ${GateIdentity.GATES_PER_LEVEL} gates of the level below.</span></div>`;
 }
 
 /** How many of a level's 22 gates are cleared. */
@@ -4973,7 +5118,11 @@ function renderHub(){
   const ts=getTS(curP);
   document.getElementById('ts-stars').textContent=ts.stars||0;
   document.getElementById('ts-correct').textContent=ts.correct||0;
-  document.getElementById('ts-gates').textContent=s.gatesCompleted.length+' / 22';
+  // Cleared gates IN THE LEVEL ON SCREEN. `gatesCompleted` spans all 88 since a
+  // gate became (level, dynasty), so the old bare count over 22 could read
+  // "24 / 22" and never said which level it meant.
+  document.getElementById('ts-gates').textContent=
+    gatesClearedInLevel(s,curHSK)+' / '+GateIdentity.GATES_PER_LEVEL;
   document.getElementById('ts-stories').textContent=s.storiesCompleted.length;
   // Champion trophies
   const champMap=s.championCleared||{};
@@ -5216,7 +5365,7 @@ function renderDynastyDetail(d,s){
   function storyBtn(st,isDone){
     if(!st)return '';
     if(storyUnlocked)
-      return `<button class="btn-s" onclick="openStory(STORIES_MAP['${st.id}']||storyForGate('${st.id}',curHSK),DYNASTIES.find(x=>x.id==${d.id}))">${isDone?'📖 Re-read':'📖 Read'}: ${st.title}${st.shared?' <span style="opacity:.6;font-size:.9em;">· shared text</span>':''}</button>`;
+      return `<button class="btn-s" onclick="openStory(storyById('${st.id}'),DYNASTIES.find(x=>x.id==${d.id}))">${isDone?'📖 Re-read':'📖 Read'}: ${st.title}${st.shared?' <span style="opacity:.6;font-size:.9em;">· shared text</span>':''}</button>`;
     return `<button class="btn-s" disabled style="opacity:.45;cursor:not-allowed">🔒 ${st.title}</button>`;
   }
 
@@ -5563,13 +5712,39 @@ function persistMiniQuizState(){
   touchSession('story');
 }
 
+/**
+ * Resolve a saved per-level story id back to a story.
+ *
+ * A gate on a level with no text of its own is served a story SYNTHESIZED by
+ * storyForGate — it carries the level's id but is never a member of
+ * STORIES_MAP. Looking the id up in the map alone therefore fails for every
+ * level but 1, which silently turned "Continue story quiz" into a dead button.
+ */
+function storyById(storyId){
+  if(!storyId)return null;
+  const direct=STORIES_MAP[storyId];
+  if(direct)return direct;
+  const m=/^(.*)-h([1-4])$/.exec(String(storyId));
+  if(!m)return null;
+  return storyForGate(m[1],Number(m[2]));
+}
+
+/** The dynasty a story id belongs to, ignoring its level suffix. */
+function dynastyForStoryId(storyId){
+  const base=String(storyId||'').replace(/-h[1-4]$/,'');
+  return DYNASTIES.find(d=>d.story===base||d.story2===base)||null;
+}
+
 function restoreStoryMiniQuiz(){
   if(!curP||!state[curP].pendingSessions||!state[curP].pendingSessions.story)return false;
   const ps=state[curP].pendingSessions.story;
   if(!ps||!ps.storyId)return false;
-  const st=STORIES_MAP[ps.storyId];if(!st)return false;
+  const st=storyById(ps.storyId);if(!st)return false;
   curStory=st;
-  const dyn=DYNASTIES.find(d=>d.id===ps.dynastyId)||DYNASTIES.find(d=>d.story===ps.storyId||d.story2===ps.storyId);
+  // The stored id carries a level suffix, so a bare-id comparison can never
+  // match; the fallback silently landed on DYNASTIES[0] and drew the word pool
+  // from the Xia gate.
+  const dyn=DYNASTIES.find(d=>d.id===ps.dynastyId)||dynastyForStoryId(ps.storyId);
   if(dyn)curDynasty=dyn;
   sessionQuizCorrect=0;quizCelebrate={c3:false,c6:false};
   miniQ={
@@ -5588,7 +5763,7 @@ function restoreStoryMiniQuiz(){
 }
 
 function buildMiniQuizQuestions(){
-  const dynForStory=curDynasty||DYNASTIES.find(d=>d.story===curStory.id||d.story2===curStory.id)||DYNASTIES[0];
+  const dynForStory=curDynasty||dynastyForStoryId(curStory.id)||DYNASTIES[0];
   const pool=buildQuizVocab(dynForStory).sort(()=>Math.random()-.5);
   const qs=[];
   for(let i=0;i<Math.min(4,pool.length);i++){
@@ -5744,7 +5919,10 @@ function startDrill(){
   });
   // Build MCQ questions from all failed words
   const qs=failed.map(w=>{
-    const distractors=[...hskPool].sort(()=>Math.random()-.5).slice(0,3);
+    // Drawn through the shared picker, so an option cannot read as a second
+    // right answer — these are the queue rounds, where being scored wrong is
+    // exactly what keeps a word stuck in the queue.
+    const distractors=pickDistractors(hskPool,w,x=>x.en,3);
     const opts=[w,...distractors].sort(()=>Math.random()-.5).map(x=>x.en);
     return {zh:w.zh,py:w.py,correct:w.en,opts,failCount:w.failCount};
   }).sort(()=>Math.random()-.5);
@@ -5862,7 +6040,10 @@ function startRevengeRound(){
     if(HSK_VOCAB[lv])HSK_VOCAB[lv].forEach(w=>{if(!failed.find(f=>f.zh===w.zh))hskPool.push(w);});
   });
   const qs=failed.map(w=>{
-    const distractors=[...hskPool].sort(()=>Math.random()-.5).slice(0,3);
+    // Drawn through the shared picker, so an option cannot read as a second
+    // right answer — these are the queue rounds, where being scored wrong is
+    // exactly what keeps a word stuck in the queue.
+    const distractors=pickDistractors(hskPool,w,x=>x.en,3);
     const opts=[w,...distractors].sort(()=>Math.random()-.5).map(x=>x.en);
     return {zh:w.zh,py:w.py,correct:w.en,opts};
   }).sort(()=>Math.random()-.5);
@@ -6034,9 +6215,15 @@ function startChampionChallenge(group){
 function isCleanMeaning(mn){
   if(!mn||mn.length<2)return false;
   if(mn.startsWith('-')||mn.endsWith('-'))return false;
-  const grammar=['DE','PL','BA','ADV','CMPL','ING','SUF','CL','OF','ORD','CL-PL','CL-'];
+  // Grammar codes, matched EXACTLY (or as a `CODE-...` compound). They used to
+  // be matched as prefixes against the UPPERCASED gloss, which is a trap: "CL"
+  // matches CLOTH, CLASS, CLEAN, CLEVER; "BA" matches BAMBOO, BAG, BALL,
+  // BATTLE; "OF" matches OFTEN and OFFICIAL; "PL" matches PLAYED. 23 ordinary
+  // words were being dropped from every flashcard deck and all four games —
+  // taught in the reader and nowhere else.
+  const grammar=['DE','PL','BA','ADV','CMPL','ING','SUF','CL','OF','ORD','CL-PL'];
   const up=mn.toUpperCase();
-  if(grammar.some(g=>up===g||up.startsWith(g)))return false;
+  if(grammar.some(g=>up===g||up.startsWith(g+'-')))return false;
   if(mn===mn.toUpperCase()&&mn.length<=4)return false;
   return true;
 }
@@ -6049,24 +6236,13 @@ function extractStoryVocab(story){
     while(i<sent.length){
       const tok=sent[i];
       if(tok.t!=='c'||tok.bonus){i++;continue;}
-      if(tok.mn&&tok.mn.endsWith('-')){
-        let zh=tok.ch,py=tok.py,rawMn=tok.mn;
-        i++;
-        while(i<sent.length){
-          const u=sent[i];
-          if(u.t!=='c'||u.bonus)break;
-          if(u.mn&&u.mn.startsWith('-')){
-            zh+=u.ch;py+=' '+u.py;
-            rawMn=rawMn.replace(/-+$/,'')+u.mn.replace(/^-/,'');
-            i++;
-            if(!u.mn.endsWith('-'))break;
-          }else break;
-        }
-        const en=rawMn.replace(/-/g,'').replace(/\s+/g,' ').trim();
-        if(en.length>=1&&!seen.has(zh)){seen.add(zh);vocab.push({zh,py,en});}
-        continue;
-      }
-      if(tok.mn&&tok.mn.startsWith('-')){i++;continue;}
+      // A branch used to sit here reassembling glosses that had been split across
+      // a word's characters — "silk-" + "-cloth" back into one entry. That class
+      // no longer exists: the dictionary refuses a fragment and three validators
+      // reject one. All the branch could still match was a LEGITIMATE gloss that
+      // happens to end in a prefix, and it stripped the hyphen and skipped
+      // isCleanMeaning on the way through, putting 非 into the quiz pool as
+      // "not; non" and 再 as "again; once more; re".
       if(isCleanMeaning(tok.mn)&&!seen.has(tok.ch)){
         seen.add(tok.ch);
         vocab.push({zh:tok.ch,py:tok.py,en:tok.mn});
@@ -6184,15 +6360,25 @@ function buildMCQ(vocab,n=8,avoidZh=[]){
   for(let i=0;i<Math.min(n,pool.length);i++){
     const correct=pool[i];
     if(i%2===1&&correct.zh.length===1){
-      const L=CHAR_LOOKALIKES[correct.zh];
-      let wrongZh=L&&L.length>=3?L.slice(0,3):pool.filter(w=>w.zh!==correct.zh&&w.zh.length===1).sort(()=>Math.random()-.5).slice(0,3).map(w=>w.zh);
-      const poolSingles=pool.filter(w=>w.zh.length===1&&w.zh!==correct.zh).map(w=>w.zh);
+      // The prompt is the MEANING and the options are characters, so any
+      // character sharing this meaning is a second correct answer. The forward
+      // branch below already compares on the rendered English; this one did not,
+      // and a child picking a genuinely right option was marked wrong and had
+      // the word logged to their practice queue.
+      const sameMeaning=new Set(pool
+        .filter(w=>w.zh!==correct.zh&&sharesSense(w.en,correct.en))
+        .map(w=>w.zh));
+      const usable=(c)=>c&&c!==correct.zh&&!sameMeaning.has(c);
+      const L=(CHAR_LOOKALIKES[correct.zh]||[]).filter(usable);
+      let wrongZh=L.length>=3?L.slice(0,3)
+        :pool.filter(w=>w.zh.length===1&&usable(w.zh)).sort(()=>Math.random()-.5).slice(0,3).map(w=>w.zh);
+      const poolSingles=pool.filter(w=>w.zh.length===1&&usable(w.zh)).map(w=>w.zh);
       while(wrongZh.length<3&&poolSingles.length)wrongZh.push(poolSingles.pop());
-      wrongZh=wrongZh.filter((c,j,a)=>a.indexOf(c)===j).slice(0,3);
+      wrongZh=wrongZh.filter((c,j,a)=>a.indexOf(c)===j&&usable(c)).slice(0,3);
       let opts=[correct.zh,...wrongZh];
       opts=[...new Set(opts)].sort(()=>Math.random()-.5);
       if(opts.length<4){
-        for(const w of pool){if(w.zh!==correct.zh&&!opts.includes(w.zh)){opts.push(w.zh);if(opts.length>=4)break;}}
+        for(const w of pool){if(usable(w.zh)&&!opts.includes(w.zh)){opts.push(w.zh);if(opts.length>=4)break;}}
       }
       qs.push({zh:correct.zh,py:correct.py,correct:correct.en,opts,reverse:true});
     }else{
@@ -7062,14 +7248,15 @@ function renderParentSummary(){
       <div class="psr"><span class="psr-lbl">📅 ${lbl} Stars</span><span class="psr-val" style="color:var(--gold)">${wkStars}</span></div>
       <div class="psr"><span class="psr-lbl">☀️ Today's Stars</span><span class="psr-val">${ts.stars||0}</span></div>
       ${isNow?`<div class="psr"><span class="psr-lbl">✅ Correct (week)</span><span class="psr-val">${correct}</span></div>`:''}
-      <div class="psr"><span class="psr-lbl">🏯 Gates Completed</span><span class="psr-val">${s.gatesCompleted.length}/22</span></div>
+      <div class="psr"><span class="psr-lbl">🏯 Gates Completed</span><span class="psr-val">${gatesClearedSummary(s)}</span></div>
       <div class="psr"><span class="psr-lbl">📖 Stories Read</span><span class="psr-val">${s.storiesCompleted.length}</span></div>
       <div class="psr"><span class="psr-lbl">📝 Characters Known</span><span class="psr-val">${Object.keys(s.library).length}</span></div>
       ${isNow?`<div class="psr"><span class="psr-lbl">⏱ Today's Time</span><span class="psr-val">${mins}m</span></div>`:''}
       <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} days</span></div>
       <div class="psr"><span class="psr-lbl">💪 Practice Queue</span><span class="psr-val">${Object.keys(s.failedWords||{}).length} words</span></div>
       ${Object.keys(s.championCleared||{}).length?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(Object.keys(s.championCleared).length)}</span></div>`:''}
-      ${(()=>{const skipped=DYNASTIES.filter(d=>{const gg=(s.gateGameStars&&s.gateGameStars[gateKeyOf(d.id)])||{};const gp=(gg.rain||0)+(gg.match||0)+(gg.listen||0)+(gg.trace||0);const ids=[d.story,d.story2].filter(Boolean).map(b=>storyKeyFor(b,curHSK));const reads=Math.max(0,...ids.map(sid=>(s.storyReadCount||{})[sid]||0));return gp>0&&reads<2&&!gateCleared(s,d.id);}).map(d=>d.zh+' ('+d.en+')');return skipped.length?`<div class="psr" style="color:#f0a04b;"><span class="psr-lbl">⚠️ Played before 2 reads</span><span class="psr-val" style="font-size:.7rem;">${skipped.join(', ')}</span></div>`:'';})()}
+      ${playedBeforeReadingHtml(s)}
+      ${inheritedAccessHtml(s)}
     </div>`;
     if(isNow){
       const ww=Object.values(s.failedWords||{}).filter(w=>w.lastFailed&&w.lastFailed>=ws).sort((a,b)=>b.failCount-a.failCount);

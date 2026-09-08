@@ -2,44 +2,73 @@
   "lessonId": "hsk2_gate_16",
   "level": "HSK2",
   "gateId": 16,
-  "title": "HSK2 Gate 16 Lesson",
-  "explanation": "This gate adds a small culture connection. Notice time words and places.",
-  "passage": "第16关：我们读一个小故事。清明节，人们纪念祖先。然后，我们继续练习有用的句子。",
+  "title": "HSK2 Gate 16 · Liao Dynasty",
+  "explanationEn": "Gate 16: Liao Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第16关：辽国。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "中国的北边有很大很大的草地。那里没有山，只有天和草。天冷的时候非常难过，风也很大。很久以前，那里住着一些人，叫契丹。",
+  "passageEn": "Far to the north of China lie vast grasslands. There are no mountains there, only sky and grass. When the cold comes it is very hard, and the wind is strong. Long ago a people lived there called the Khitan.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "北",
+      "pinyin": "běi",
+      "en": "north"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "边",
+      "pinyin": "biān",
+      "en": "side; edge"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "大",
+      "pinyin": "dà",
+      "en": "great"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "草",
+      "pinyin": "cǎo",
+      "en": "grass"
+    },
+    {
+      "zh": "地",
+      "pinyin": "de",
+      "en": "(before how it is done)"
+    },
+    {
+      "zh": "那里",
+      "pinyin": "nà li",
+      "en": "there; that place"
+    },
+    {
+      "zh": "山",
+      "pinyin": "shān",
+      "en": "mountain"
+    },
+    {
+      "zh": "只有",
+      "pinyin": "zhǐ yǒu",
+      "en": "only have ..."
     }
   ],
   "comprehension": [
     {
-      "question": "What cultural idea appears in the passage?",
-      "answer": "A festival or family tradition mentioned in the text."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Far to the north of China lie vast grasslands.",
+      "answer": "中国的北边有很大很大的草地。"
     },
     {
-      "question": "What do we do after that moment in the story?",
-      "answer": "Continue practicing useful sentences."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "When the cold comes it is very hard, and the wind is strong.",
+      "answer": "天冷的时候非常难过，风也很大。"
     },
     {
-      "question": "Find one place word or time word you recognize.",
-      "answer": "Answers vary with the passage."
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Tell a parent one sentence in Chinese about a festival you like."
+  "speakingPromptEn": "Tell a grown-up about Liao Dynasty in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说辽国。"
 }

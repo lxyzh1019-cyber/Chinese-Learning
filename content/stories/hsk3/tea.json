@@ -38,17 +38,17 @@
         {
           "zh": "非",
           "py": "fēi",
-          "mn": "ex-"
+          "mn": "not"
         },
         {
           "zh": "常",
           "py": "cháng",
-          "mn": "often"
+          "mn": "often; usual"
         },
         {
           "zh": "喜",
           "py": "xǐ",
-          "mn": "like-",
+          "mn": "to like; joy",
           "bonus": true
         },
         {
@@ -136,7 +136,7 @@
         {
           "zh": "艺",
           "py": "yì",
-          "mn": "art-"
+          "mn": "art; skill"
         },
         {
           "zh": "术",
@@ -257,7 +257,7 @@
         {
           "zh": "干",
           "py": "gān",
-          "mn": "clean",
+          "mn": "dry",
           "bonus": true
         },
         {
@@ -284,7 +284,7 @@
         {
           "zh": "正",
           "py": "zhèng",
-          "mn": "cor-",
+          "mn": "upright; just now",
           "bonus": true
         },
         {
@@ -301,7 +301,7 @@
         {
           "zh": "温",
           "py": "wēn",
-          "mn": "tem-",
+          "mn": "warm",
           "bonus": true
         },
         {
@@ -328,7 +328,7 @@
         {
           "zh": "天",
           "py": "tiān",
-          "mn": "today"
+          "mn": "day; sky"
         },
         {
           "t": "p",
@@ -371,7 +371,7 @@
         {
           "zh": "文",
           "py": "wén",
-          "mn": "cul-"
+          "mn": "writing; culture"
         },
         {
           "zh": "化",
@@ -396,7 +396,7 @@
         {
           "zh": "部",
           "py": "bù",
-          "mn": "part-",
+          "mn": "part; section",
           "bonus": true
         },
         {
@@ -412,5 +412,6 @@
       ]
     }
   ],
-  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Extend to the 20-sentence HSK3 ladder and remove \"draft\" to build it.",
+  "draft": true
 }

@@ -2,40 +2,73 @@
   "lessonId": "hsk2_gate_04",
   "level": "HSK2",
   "gateId": 4,
-  "title": "HSK2 Gate 4 Lesson",
-  "explanation": "This is an early HSK2 gate. Read slowly and focus on clear patterns.",
-  "passage": "第4关：我们学习新词。今天天气很好，我和朋友一起学习中文。",
+  "title": "HSK2 Gate 4 · Eastern Zhou",
+  "explanationEn": "Gate 4: Eastern Zhou. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第4关：东周。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "两千五百多年以前，中国有一位老师。他的名字叫孔子。那时候，只有很有钱的人才可以读书。但是孔子说，谁想学，他就教谁。",
+  "passageEn": "More than two thousand five hundred years ago, there was a teacher in China. His name was Confucius. In those days, only the wealthy could study. But Confucius said he would teach anyone who wanted to learn.",
   "keyVocab": [
     {
-      "zh": "学习",
-      "pinyin": "xuéxí",
-      "en": "to study; to learn"
+      "zh": "两",
+      "pinyin": "liǎng",
+      "en": "two"
     },
     {
-      "zh": "朋友",
-      "pinyin": "péngyou",
-      "en": "friend"
+      "zh": "千",
+      "pinyin": "qiān",
+      "en": "thousand"
     },
     {
-      "zh": "今天",
-      "pinyin": "jīntiān",
-      "en": "today"
+      "zh": "五",
+      "pinyin": "wǔ",
+      "en": "five"
     },
     {
-      "zh": "一起",
-      "pinyin": "yīqǐ",
-      "en": "together"
+      "zh": "百",
+      "pinyin": "bǎi",
+      "en": "hundred"
+    },
+    {
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
+    },
+    {
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "year"
+    },
+    {
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
+    },
+    {
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     }
   ],
   "comprehension": [
     {
-      "question": "What are we doing today?",
-      "answer": "Studying Chinese together."
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "More than two thousand five hundred years ago, there was a teacher in China.",
+      "answer": "两千五百多年以前，中国有一位老师。"
     },
     {
-      "question": "How is the weather in the passage?",
-      "answer": "Very nice / good."
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "In those days, only the wealthy could study.",
+      "answer": "那时候，只有很有钱的人才可以读书。"
+    },
+    {
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "Say two short sentences: who you are and what you like to do."
+  "speakingPromptEn": "Tell a grown-up about Eastern Zhou in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说东周。"
 }
