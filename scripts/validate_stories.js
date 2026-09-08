@@ -81,7 +81,7 @@ function main() {
           // nine-year-old, and both were shown on every tap.
           const en = String(tok.mn).trim();
           if (!en) fail(`${at}: "${zh}" has an empty gloss`);
-          else if (/^[-—]/.test(en) || /^[A-Za-z]+-$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a fragment of a longer word's English, not a meaning`);
+          else if (/^[-—]/.test(en) || /^[A-Za-z.]+-$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a fragment of a longer word's English, not a meaning`);
           else if (/^[A-Z]{2,5}$/.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — a grammar code; say what it does in plain words`);
           else if (/surname/i.test(en)) fail(`${at}: "${zh}" is glossed "${en}" — the junk-gloss class this project has already been burned by`);
         });

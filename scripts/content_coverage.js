@@ -142,7 +142,9 @@ function main() {
   const done = [1, 2, 3, 4].filter((lv) => (perLevel[lv] || 0) >= 44).map((lv) => `HSK${lv}`);
   console.log(`- Decision **O05**: ${laddered
     ? "met — every level has its own telling."
-    : `partly met — stories carry a level and ${done.join(" and ")} ${done.length > 1 ? "are" : "is"} on the ladder; the levels above are still to be written.`}\n`);
+    : done.length
+      ? `partly met — stories carry a level and ${done.join(" and ")} ${done.length > 1 ? "are" : "is"} on the ladder; the levels above are still to be written.`
+      : "not met — no level has a complete set of its own texts yet."}\n`);
 
   console.log("## Lessons");
   const wordList = lessons.filter((l) => l.isWordList);

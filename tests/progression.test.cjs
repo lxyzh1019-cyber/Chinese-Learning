@@ -1314,3 +1314,73 @@ test("S-T06: every HSK2 story is on its own ladder", () => {
   assert.notEqual(one.sents.length, two.sents.length);
   assert.notDeepEqual(one.sents[0], two.sents[0], "the HSK2 telling is its own text");
 });
+
+test("M-T20: the migration decides for itself whether a save needs work", () => {
+  const a = app();
+  const G = a.GateIdentity;
+  // defPlayer() stamps the current version and mergePlayerState is
+  // Object.assign({}, defPlayer(), loaded) — so an unstamped legacy save arrives
+  // already carrying the newest version number. A caller that checks the stamp
+  // and the gate shape then sees nothing to do, and a child who had read stories
+  // but cleared no gates never gets the story remap.
+  const merged = Object.assign({}, a.defPlayer(), {
+    storyReadCount: { xia: 2, shang: 1 }, storiesCompleted: ["xia"],
+  });
+  assert.equal(merged.schemaVersion, G.SCHEMA_VERSION, "the stamp says it is current");
+  assert.equal(G.looksLegacy(merged), false, "and the gate shape is fine");
+  assert.equal(G.needsMigration(merged), true, "but the story ids are not");
+
+  const { player } = G.migratePlayer(merged);
+  assert.equal(player.storyReadCount["xia-h1"], 2);
+  assert.equal(player.storyReadCount["shang-h1"], 1);
+  assert.deepEqual(player.storiesCompleted, ["xia-h1"]);
+
+  // And ensureState must go through that same predicate, not its own test.
+  const b = app();
+  F.installState(b, { jenn: Object.assign({}, b.defPlayer(), { storyReadCount: { xia: 2 } }) });
+  assert.equal(b.state.jenn.storyReadCount["xia-h1"], 2,
+    "loading a save applies the remap");
+});
+
+test("T-T10: no fragment gloss reaches a child through any surface", () => {
+  const a = app();
+  const fs = require("fs"), path = require("path");
+  const isFragment = (t) => /^[-—]/.test(t) || /^[A-Za-z.]+-$/.test(t) || /^[A-Z]{2,5}$/.test(t);
+  const bad = [];
+
+  // the reader
+  for (const s of Object.values(a.STORIES_MAP)) {
+    for (const tok of s.sents.flat()) {
+      if (tok.t === "p") continue;
+      if (isFragment(String(tok.mn || "").trim())) bad.push(`story ${s.id}: ${tok.ch || tok.tx}="${tok.mn}"`);
+    }
+  }
+  // the games and quizzes, which serve gate vocabulary rather than stories
+  for (const lv of [1, 2, 3, 4]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    const rows = [...(doc.words || [])];
+    (doc.gates || []).forEach((g) => rows.push(...(g.newWords || []), ...(g.reviewWords || [])));
+    rows.forEach((w) => {
+      if (isFragment(String(w.en || "").trim())) bad.push(`hsk${lv} vocabulary: ${w.zh}="${w.en}"`);
+    });
+  }
+  assert.deepEqual(bad.slice(0, 8), [], `${bad.length} fragment glosses still reachable`);
+});
+
+test("T-T11: a legitimate gloss ending in a prefix survives into the word pools", () => {
+  const a = app();
+  // extractStoryVocab used to reassemble split-word glosses, stripping the
+  // hyphen and skipping isCleanMeaning. With the fragment class gone, all that
+  // branch could still match was a REAL gloss like 非 "not; non-", which it put
+  // into the quiz pool as "not; non".
+  const story = {
+    sents: [[{ t: "c", ch: "非", py: "fēi", mn: "not; non-" },
+             { t: "c", ch: "常", py: "cháng", mn: "often" },
+             { t: "p", tx: "。" }]],
+  };
+  const vocab = a.extractStoryVocab(story);
+  const fei = vocab.find((w) => w.zh === "非");
+  if (fei) assert.equal(fei.en, "not; non-", "the gloss is served as written, not mangled");
+  const merged = vocab.find((w) => w.zh === "非常");
+  assert.equal(merged, undefined, "and two separate characters are not welded together");
+});

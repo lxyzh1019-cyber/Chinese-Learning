@@ -195,12 +195,30 @@
    * would be filtered away. Gating both phases on one version stamp is exactly
    * how the flashPassDone remap was missed last time.
    */
+  /**
+   * Does this save still need work? The ONE predicate callers should use.
+   *
+   * A caller that assembles its own test gets it wrong: index.html's guard
+   * checked the version stamp and the gate shape, and defPlayer() stamps the
+   * current version, so `Object.assign({}, defPlayer(), loaded)` hands an
+   * unstamped legacy save the newest version number. A child who had read
+   * stories but cleared no gates then looked fully migrated and never got the
+   * story remap — which is how defPlayer's stamp skipped the whole migration
+   * once before.
+   */
+  function needsMigration(player) {
+    const src = player || {};
+    if (looksLegacy(src)) return true;
+    if (storiesLookLegacy(src)) return true;
+    return !(src.schemaVersion >= SCHEMA_VERSION);
+  }
+
   function migratePlayer(player) {
     const src = player || {};
     const legacyShape = looksLegacy(src);
     const legacyStories = storiesLookLegacy(src);
     const report = {
-      alreadyMigrated: src.schemaVersion >= SCHEMA_VERSION && !legacyShape && !legacyStories,
+      alreadyMigrated: !needsMigration(src),
       gatesCompleted: [], legacyAccess: [], skipped: [], warnings: [],
       migratedGates: false, migratedStories: legacyStories,
     };
@@ -289,6 +307,7 @@
 
   return {
     LEVELS, GATES_PER_LEVEL, SCHEMA_VERSION, LEGACY_DYNASTY_LEVEL,
+    needsMigration, storiesLookLegacy,
     gateKey, parseGateKey, isGateKey, allGateKeys,
     nextGateKey, previousGateKey, isGateOpen, nextOpenGateKey,
     championKey, championGateKeys, levelUnlocked, legacyLevelsFor,

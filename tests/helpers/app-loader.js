@@ -57,6 +57,9 @@ const BRIDGED = [
   // Content tables. Also `const`, so also invisible without the bridge.
   "STORIES_MAP", "DYNASTIES", "HSK_VOCAB", "GATE_VOCAB", "GATE_SENTENCES",
   "UI_LABELS", "timerSecs", "timerIv", "curriculumCache", "charMetaIndex",
+  // NOT GateIdentity: it is a context global, not a binding in the inline
+  // script, so the accessor's `eval(name)` resolves back to the accessor and
+  // recurses until the stack goes. It is already on the context directly.
 ];
 
 /** Minimal element stub: enough for the app's rendering calls to be no-ops. */

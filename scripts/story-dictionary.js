@@ -44,7 +44,10 @@ function isJunkGloss(en) {
   // Leading half: 皇帝 "emperor" -> 皇 "em-", 丝绸 -> 丝 "silk-", 太阳 -> 太 "Tai-".
   // One word ending in a hyphen and nothing else; a genuine gloss that uses a
   // prefix ("not; non-") carries more than that single token.
-  if (/^[A-Za-z]+-$/.test(t)) return true;
+  // Allows an internal period, so 先生 "Mr." leaving 先 as "Mr.-" is caught too.
+  // A genuine gloss that ends in a prefix ("not; non-", "again; once more; re-")
+  // carries more than this one token and is left alone.
+  if (/^[A-Za-z.]+-$/.test(t)) return true;
   if (/^[A-Z]{2,5}$/.test(t)) return true;     // a grammar code
   if (/surname/i.test(t)) return true;         // the 水 "surname Shui" class
   return false;
@@ -90,8 +93,9 @@ function fromStories(dict) {
           if (!tok || typeof tok !== "object" || tok.t === "p") return;
           const zh = tok.zh;
           if (!zh || !tok.py) return;
-          if (!dict[zh]) n++;
+          const before = Object.keys(dict).length;
           addEntry(dict, zh, tok.py, tok.mn, "story");
+          if (Object.keys(dict).length > before) n++;
         });
       });
     });
@@ -108,8 +112,9 @@ function fromCurriculum(dict) {
     const data = JSON.parse(fs.readFileSync(file, "utf8"));
     (data.gates || []).forEach((g) => {
       (g.newWords || []).forEach((w) => {
-        if (!dict[w.zh]) n++;
+        const before = Object.keys(dict).length;
         addEntry(dict, w.zh, w.pinyin || w.py, w.en, `hsk${lv}`);
+        if (Object.keys(dict).length > before) n++;
       });
     });
   }

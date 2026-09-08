@@ -2991,7 +2991,11 @@ function ensureState(p){
   // DISCARD any id above 22, which is what made an 88-gate scheme impossible.
   // The migration is idempotent, invents no completions, and preserves both
   // the gates already reachable and the level tabs already open.
-  if((s.schemaVersion||1)<GateIdentity.SCHEMA_VERSION||GateIdentity.looksLegacy(s)){
+  // One predicate, owned by the migration. Assembling the test here is how the
+  // story remap got skipped: defPlayer() stamps the current version, and
+  // mergePlayerState is Object.assign over it, so an unstamped legacy save
+  // arrives already looking current.
+  if(GateIdentity.needsMigration(s)){
     const migrated=GateIdentity.migratePlayer(s).player;
     Object.keys(migrated).forEach(k=>{s[k]=migrated[k];});
   }
@@ -6157,24 +6161,13 @@ function extractStoryVocab(story){
     while(i<sent.length){
       const tok=sent[i];
       if(tok.t!=='c'||tok.bonus){i++;continue;}
-      if(tok.mn&&tok.mn.endsWith('-')){
-        let zh=tok.ch,py=tok.py,rawMn=tok.mn;
-        i++;
-        while(i<sent.length){
-          const u=sent[i];
-          if(u.t!=='c'||u.bonus)break;
-          if(u.mn&&u.mn.startsWith('-')){
-            zh+=u.ch;py+=' '+u.py;
-            rawMn=rawMn.replace(/-+$/,'')+u.mn.replace(/^-/,'');
-            i++;
-            if(!u.mn.endsWith('-'))break;
-          }else break;
-        }
-        const en=rawMn.replace(/-/g,'').replace(/\s+/g,' ').trim();
-        if(en.length>=1&&!seen.has(zh)){seen.add(zh);vocab.push({zh,py,en});}
-        continue;
-      }
-      if(tok.mn&&tok.mn.startsWith('-')){i++;continue;}
+      // A branch used to sit here reassembling glosses that had been split across
+      // a word's characters — "silk-" + "-cloth" back into one entry. That class
+      // no longer exists: the dictionary refuses a fragment and three validators
+      // reject one. All the branch could still match was a LEGITIMATE gloss that
+      // happens to end in a prefix, and it stripped the hyphen and skipped
+      // isCleanMeaning on the way through, putting 非 into the quiz pool as
+      // "not; non" and 再 as "again; once more; re".
       if(isCleanMeaning(tok.mn)&&!seen.has(tok.ch)){
         seen.add(tok.ch);
         vocab.push({zh:tok.ch,py:tok.py,en:tok.mn});
