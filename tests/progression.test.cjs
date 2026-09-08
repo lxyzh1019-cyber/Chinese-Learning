@@ -1711,3 +1711,233 @@ test("T-T19: the ordinary vocabulary a child needs is actually taught", () => {
     assert.ok(!`${zh}${t.w.pinyin}${t.w.en}`.includes("\uFFFD"), `${zh} carries corrupted text`);
   }
 });
+
+// ── F01: a round is bound to the attempt it started under ─────────────────
+// Audit finding F01. The deadline reset marked only the SAVED quiz copy, so a
+// quiz finishing after its deadline still wrote a qualifying best, and the four
+// games had no check at all. Every expected value below is written out by
+// hand; none is read back from the function under test.
+
+test("F01: a game round begun under a lapsed attempt banks nothing and mints no timer", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  const binding = { playerId: "jenn", gateKey: "h1-g01", attemptId: "g1-old", resetSeq: 0 };
+  const res = a.updateGateGameBest(1, "listen", 3, 1, binding);
+
+  assert.deepEqual(res, { qualified: false });
+  assert.deepEqual(s.gateGameStars["h1-g01"], { trace: 0, match: 0, rain: 0, listen: 0 }, "the reset stands");
+  assert.equal(s.gateTimers["h1-g01"].attemptId, "g1-old", "no replacement timer was minted");
+  assert.equal(s.gateTimers["h1-g01"].active, false);
+  assert.equal(s.gateAttemptHistory["h1-g01"].length, 1, "one archived attempt");
+  assert.equal(s.gateResetSeq["h1-g01"], 1, "the reset counter advanced once");
+  assert.equal(s.totalStars, 500, "nothing was paid");
+});
+
+test("F01: a round begun before any timer qualifies once its own 3★ mints one", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  const b = a.gateAttemptBinding(s, 1, 1);
+  assert.equal(b.attemptId, null, "no timer yet");
+  assert.equal(b.resetSeq, 0);
+  assert.equal(b.gateKey, "h1-g01");
+
+  const res = a.updateGateGameBest(1, "match", 3, 1, b);
+  assert.deepEqual(res, { qualified: true });
+  assert.equal(s.gateGameStars["h1-g01"].match, 3);
+  assert.ok(s.gateTimers["h1-g01"] && s.gateTimers["h1-g01"].active, "the round's 3★ started the challenge");
+});
+
+test("F01: a pre-timer round does not qualify once a reset separates it from now", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  const b = a.gateAttemptBinding(s, 1, 1);
+  a.resetGateProgress(s, 1, 1);
+  assert.equal(s.gateResetSeq["h1-g01"], 1);
+
+  const res = a.updateGateGameBest(1, "match", 3, 1, b);
+  assert.deepEqual(res, { qualified: false });
+  assert.equal((s.gateGameStars["h1-g01"] || {}).match || 0, 0);
+});
+
+test("F01: a session saved before bindings existed keeps its old behaviour", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  s.pendingSessions.listen = {
+    questions: [{ w: { zh: "水", py: "shuǐ", en: "water" }, opts: ["水", "山", "人", "大"] }],
+    qi: 0, streak: 0, score: 0, correctCount: 0, gameTargetDid: 1, gameTargetLevel: 1,
+  };
+  assert.equal(a.restoreListen(), true);
+  assert.equal(a.listenSt.gateAttempt, null, "no binding is invented for an old save");
+
+  const res = a.updateGateGameBest(1, "listen", 3, 1, null);
+  assert.deepEqual(res, { qualified: true });
+  assert.equal(s.gateGameStars["h1-g01"].listen, 3);
+});
+
+test("F01: a Listen round carries its binding through save and restore", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  a.curGameTargetDid = 1;
+  a.curGameTargetLevel = 1;
+  const s = a.state.jenn;
+  s.gateTimers = { "h1-g01": { startKey: "2026-09-01", deadlineKey: "2099-01-01", active: true, days: 5, attemptId: "g1-live" } };
+  const words = Array.from({ length: 6 }, (_, i) => ({ zh: `字${i}`, py: `zi${i}`, en: `w${i}` }));
+  a.startListen(words);
+
+  const expected = { playerId: "jenn", gateKey: "h1-g01", attemptId: "g1-live", resetSeq: 0 };
+  assert.deepEqual(a.listenSt.gateAttempt, expected);
+  assert.deepEqual(s.pendingSessions.listen.gateAttempt, expected, "the saved copy carries it");
+
+  a.listenSt = null;
+  assert.equal(a.restoreListen(), true);
+  assert.deepEqual(a.listenSt.gateAttempt, expected, "and it survives a restore");
+});
+
+test("F01: the quiz result pays nothing to an attempt that lapsed mid-quiz", () => {
+  const a = app();
+  const s = lapsedGate(a);
+  // Games are all at 3★ on the dead attempt, so a qualifying 100% quiz would
+  // have cleared the gate outright.
+  s.gateGameStars["h1-g01"] = { trace: 3, match: 3, rain: 3, listen: 3 };
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === 1);
+  a.quizSt = {
+    did: 1, phase: 3, score: 220, maxScore: 220, phaseScores: [100, 60, 60],
+    vocab: [], questions: [], pyQ: [], sbPack: [], isChampion: false,
+    mcqN: 8, pyN: 10, sbN: 3, noMcqAssistance: true,
+    quizCorrect: 20, quizAttempts: 20,
+    gateAttempt: { playerId: "jenn", gateKey: "h1-g01", attemptId: "g1-old", resetSeq: 0 },
+  };
+  const qc = { innerHTML: "" };
+  a.renderQuizResult(qc);
+
+  assert.equal(s.gateBestQuiz["h1-g01"], undefined, "no qualifying best was written to the new attempt");
+  assert.deepEqual(s.gatesCompleted, [], "the gate did not clear");
+  assert.equal(s.totalStars, 500, "no stars were paid");
+  assert.equal(s.lastGateQuizAttempt, null);
+  assert.ok(qc.innerHTML.includes("Practice round"), "the child is told this was practice");
+  assert.equal(s.gateAttemptHistory["h1-g01"].length, 1, "the lapsed attempt is archived once");
+});
+
+test("F01: the quiz result still pays a round begun under the live attempt", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  s.gateTimers = { "h1-g01": { startKey: "2026-09-01", deadlineKey: "2099-01-01", active: true, days: 5, attemptId: "g1-live" } };
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === 1);
+  a.launchConfetti = () => {}; // the 3★ celebration draws on a canvas the stub lacks
+  a.quizSt = {
+    did: 1, phase: 3, score: 200, maxScore: 220, phaseScores: [100, 60, 40],
+    vocab: [], questions: [], pyQ: [], sbPack: [], isChampion: false,
+    mcqN: 8, pyN: 10, sbN: 3, noMcqAssistance: true,
+    quizCorrect: 19, quizAttempts: 20,
+    gateAttempt: { playerId: "jenn", gateKey: "h1-g01", attemptId: "g1-live", resetSeq: 0 },
+  };
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.gateBestQuiz["h1-g01"].accPct, 95);
+  assert.equal(s.gateBestQuiz["h1-g01"].quizStars, 3);
+  assert.equal(s.gateBestQuiz["h1-g01"].points, 200);
+});
+
+test("F01: clearing a slot stamps when it was cleared", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  s.pendingSessions.listen = { questions: [], qi: 0 };
+  a.clearPendingSession("listen");
+  assert.equal(s.pendingSessions.listen, null);
+  assert.ok(s.pendingSessionClearedAt.listen > 0);
+});
+
+// ── F04: the bank loader serves a frozen version, or says it cannot ──────────
+
+test("A-T32 / F04: loadAssessmentBank loads by version from the manifest and caches it", async () => {
+  const a = app();
+  const fs = require("fs");
+  const path = require("path");
+  const DIR = path.join(__dirname, "..", "data", "assessment");
+  const manifest = JSON.parse(fs.readFileSync(path.join(DIR, "manifest.json"), "utf8"));
+  let calls = 0;
+  a.fetch = (url) => {
+    calls++;
+    const rel = String(url).replace(/^data\/assessment\//, "");
+    const abs = path.join(DIR, rel);
+    if (!fs.existsSync(abs)) return Promise.resolve({ ok: false, status: 404 });
+    return Promise.resolve({ ok: true, json: () => Promise.resolve(JSON.parse(fs.readFileSync(abs, "utf8"))) });
+  };
+
+  const current = await a.loadAssessmentBank();
+  assert.ok(current && current.bank && current.forms, "the current bank loads with no version given");
+  assert.equal(current.bankVersion, manifest.bankVersion);
+
+  const byVersion = await a.loadAssessmentBank(manifest.bankVersion);
+  assert.equal(byVersion.bankVersion, manifest.bankVersion);
+  const before = calls;
+  await a.loadAssessmentBank(manifest.bankVersion);
+  assert.equal(calls, before, "a second request for the same version is served from cache");
+
+  assert.equal(await a.loadAssessmentBank("1.0.0"), null, "a version the manifest no longer lists is null, not the current bank");
+  assert.ok(await a.loadAssessmentBank(), "and asking for the current bank afterwards still works");
+});
+
+// ── F06: lesson comprehension is think-then-reveal ──────────────────────────
+
+test("F06: a lesson question hides its answer until the child reveals it", async () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  a.curriculumCache.lessons["x"] = {
+    level: "HSK1", gateId: 1, passage: "大禹治水。", passageEn: "Yu tamed the flood.",
+    comprehension: [{ question: "谁治水？", questionEn: "Who tamed the flood?", answer: "大禹。", answerEn: "Yu." }],
+  };
+  await a.renderGateLesson(1, "x");
+  const html = a.document.getElementById("gate-lesson-box").innerHTML;
+  assert.ok(html.includes("Who tamed the flood?"), "the question is shown");
+  assert.match(html, /id="lesson-ans-0" hidden/, "the answer element starts hidden");
+  assert.ok(html.includes("Reveal"), "a Reveal button is offered");
+  assert.ok(html.includes("lessonSelfCheck(1,0,'had')") && html.includes("lessonSelfCheck(1,0,'notyet')"), "both verdicts are offered after reveal");
+  // The answer text appears exactly once, inside the hidden element.
+  const idx = html.indexOf("Yu.");
+  assert.ok(idx > html.indexOf('id="lesson-ans-0"'), "the answer text is inside the hidden element");
+  assert.equal(html.indexOf("Yu.", idx + 1), -1, "and nowhere else");
+});
+
+test("F06: a self-report is stored per gate and question, never as evidence, never for stars", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  s.totalStars = 100;
+  a.lessonSelfCheck(1, 0, "notyet");
+  assert.equal(s.lessonSelfCheck["h1-g01"][0].result, "notyet");
+  assert.ok(/^\d{4}-\d{2}-\d{2}$/.test(s.lessonSelfCheck["h1-g01"][0].at));
+  assert.deepEqual(s.reviewRecords, {}, "a self-report is not unaided evidence");
+  assert.equal(s.totalStars, 100, "and it pays nothing");
+  a.lessonSelfCheck(1, 0, "had");
+  assert.equal(s.lessonSelfCheck["h1-g01"][0].result, "had", "the child can change their mind");
+  a.lessonSelfCheck(1, 0, "maybe");
+  assert.equal(s.lessonSelfCheck["h1-g01"][0].result, "had", "only the two verdicts are accepted");
+});
+
+test("F06: a prior self-report renders the answer open with the verdict", async () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  a.state.jenn.lessonSelfCheck = { "h1-g01": { 0: { result: "had", at: "2026-09-01" } } };
+  a.curriculumCache.lessons["x"] = {
+    level: "HSK1", gateId: 1, passage: "大禹治水。",
+    comprehension: [{ question: "谁治水？", questionEn: "Who?", answer: "大禹。", answerEn: "Yu." }],
+  };
+  await a.renderGateLesson(1, "x");
+  const html = a.document.getElementById("gate-lesson-box").innerHTML;
+  assert.doesNotMatch(html, /id="lesson-ans-0" hidden/, "already answered: the answer is open");
+  assert.ok(html.includes("You said: I had it"));
+  assert.ok(!html.includes("Reveal 👀"), "no reveal button to press again");
+});

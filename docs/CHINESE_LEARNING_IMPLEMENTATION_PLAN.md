@@ -107,7 +107,7 @@ Load as classic scripts **after** the main inline block (~`index.html:6933`) so 
 | `js/assessment-core.js` | Pure: item selection, scoring, routing, comparison, attempt state-machine transitions. No DOM, no globals — directly unit-testable. |
 | `js/assessment-ui.js` | Entry, instructions, task rendering, save/resume, results, history. |
 | `js/player-store.js` | Owner-scoped persistence + attempt read/write. |
-| `data/assessment/manifest.json`, `v1/forms.json`, `v1/items.json` | Versioned frozen bank. |
+| `data/assessment/manifest.json`, `<version>/forms.json`, `<version>/items.json` | Versioned frozen bank. |
 | `schemas/assessment.schema.json`, `scripts/validate_assessment.js` | Domain-specific contract; fails on missing audio, passage-less passage items, MCQ options on writing items, anchor mismatch, cross-form target overlap. |
 | `docs/assessment-method.md`, `docs/content-review.md` | Exact method, source ledger, unresolved items, stated limits. |
 

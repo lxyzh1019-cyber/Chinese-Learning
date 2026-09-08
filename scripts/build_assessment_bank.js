@@ -17,9 +17,11 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
-const OUT = path.join(ROOT, "data", "assessment", "v1");
 const CONTENT = require("./assessment-content.js");
 const BANK_VERSION = "1.1.0";
+// Each bank version is frozen in its own directory. A report is scored on the
+// bank it was taken with, so an edit must never overwrite an older version.
+const OUT = path.join(ROOT, "data", "assessment", BANK_VERSION);
 const STANDARD = "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only";
 
 /** Deterministic clip key for a single tone-marked syllable. Mirrors the app's
@@ -250,9 +252,21 @@ const BAND_INFO = {
 const BAND_NOTE = "The sets get harder in order and are built from graded word " +
   "lists. They are not HSK levels and do not certify one.";
 
+function existingVersions() {
+  try {
+    const prev = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "assessment", "manifest.json"), "utf8"));
+    return (prev && prev.versions) || {};
+  } catch (e) { return {}; }
+}
+
 fs.writeFileSync(path.join(ROOT, "data", "assessment", "manifest.json"), JSON.stringify({
   bankVersion: BANK_VERSION, bands, forms: Object.keys(forms),
-  files: { items: "v1/items.json", forms: "v1/forms.json" },
+  files: { items: `${BANK_VERSION}/items.json`, forms: `${BANK_VERSION}/forms.json` },
+  // Every version still on disk, so the app can score an old report on the
+  // bank it was taken with. The builder keeps the entries already present.
+  versions: Object.assign({}, existingVersions(), {
+    [BANK_VERSION]: { files: { items: `${BANK_VERSION}/items.json`, forms: `${BANK_VERSION}/forms.json` } },
+  }),
   standard: STANDARD,
   bandInfo: Object.fromEntries(bands.map((b) => [b, Object.assign({}, BAND_INFO[b], {
     passageChars: `${CONTENT[b].passageRange[0]}–${CONTENT[b].passageRange[1]}`,

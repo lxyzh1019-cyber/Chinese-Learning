@@ -821,6 +821,7 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
     </div>
     <div id="streak-cal"></div>
     <div class="daily-word-box" id="daily-word-box"></div>
+    <div class="daily-word-box" id="review-today-box" style="margin-top:.55rem;"></div>
     <div class="daily-word-box" id="daily-mission-box" style="margin-top:.55rem;"></div>
     <div class="daily-word-box" id="rivalry-coop-strip" style="margin-top:.55rem;"></div>
     <div id="hub-mystery-card" style="margin-top:.55rem;"></div>
@@ -1179,6 +1180,7 @@ const UI_LABELS=Object.freeze({
   daily:          {icon:'\ud83d\udcc6',en:'Daily',              zh:'\u6bcf\u65e5'},
   clearProgress:  {icon:'\ud83d\uddd1\ufe0f',en:'Clear All Progress',zh:'\u6e05\u9664\u6240\u6709\u8fdb\u5ea6'},
   resumeLast:     {icon:'\u25b6',en:'Resume last activity',zh:'\u7ee7\u7eed\u4e0a\u6b21'},
+  reviewToday:    {icon:'\ud83c\udf31',en:'Review today',zh:'\u4eca\u65e5\u590d\u4e60'},
   continueFlash:  {icon:'\u25b6',en:'Continue flash cards',zh:'\u7ee7\u7eed\u8bcd\u5361'},
   continueGate:   {icon:'\u25b6',en:'Continue gate quiz',zh:'\u7ee7\u7eed\u5173\u4e3b\u8003'},
   continueStory:  {icon:'\u25b6',en:'Continue story quiz',zh:'\u7ee7\u7eed\u6545\u4e8b\u8003'},
@@ -1866,6 +1868,16 @@ function dbgLog(tag,data){
   else console.log('[DBG '+ts+'] '+tag,data);
 }
 function isObj(v){return !!v&&typeof v==='object'&&!Array.isArray(v);}
+/** Options for MergeState.mergePlayers: the week key and the per-record
+ *  review-evidence merger. Passed explicitly — merge-state is a pure module
+ *  and must not reach for ReviewCore as a global. */
+function mergeOptsFor(s){
+  return{
+    weekKey:(s&&s.weekStart)||null,
+    mergeReviewRecord:(typeof ReviewCore!=='undefined'&&ReviewCore.mergeRecords)||null,
+  };
+}
+
 function mergePlayerState(base,loaded){
   const b=isObj(base)?base:defPlayer();
   const src=isObj(loaded)?loaded:{};
@@ -1901,7 +1913,7 @@ function initFirestore(){
           // A shallow assign would drop anything this device did that the
           // other has not seen. Merge the two histories instead.
           try{
-            state[pid]=MergeState.mergePlayers(state[pid],remote,{weekKey:state[pid].weekStart||null}).player;
+            state[pid]=MergeState.mergePlayers(state[pid],remote,mergeOptsFor(state[pid])).player;
           }catch(e){
             state[pid]=mergePlayerState(state[pid],remote);
           }
@@ -1940,13 +1952,16 @@ function defPlayer(){
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
     weekStart:weekStart(),
     badges:[],totalWrongAnswers:0,storyReadCount:{},flashPassDone:{},dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
-    pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null},
+    pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null,review:null},
     traceStars:{},
     libraryCountAtDayStart:{},
     gateGameStars:{},
     gateBestQuiz:{},
     championBestQuiz:{},
     gateTimers:{},
+    gateResetSeq:{},
+    pendingSessionClearedAt:{},
+    lessonSelfCheck:{},
     lastGateQuizAttempt:null,
     altRoundProgress:{trace:0,match:0,rain:0,listen:0,total:0},
     forgivenessProgress:{trace:0,match:0,rain:0,listen:0},
@@ -2000,20 +2015,34 @@ async function loadCultureCurriculum(){
 // needed to render the hub, and a slow fetch must not delay the child getting
 // into the app. Same contract as the curriculum loaders — never throws,
 // shape-validates before caching, returns null on failure.
-async function loadAssessmentBank(){
-  if(curriculumCache.assessment)return curriculumCache.assessment;
+async function loadAssessmentBank(version){
+  // No version: the current bank, cached in the slot callers have always used.
+  // A version: that frozen bank, so an old report is scored on the bank it was
+  // taken with rather than re-interpreted by whatever shipped since. A version
+  // the manifest no longer lists returns null; the report says so instead of
+  // rescoring.
+  if(!version&&curriculumCache.assessment)return curriculumCache.assessment;
+  if(!curriculumCache.assessmentByVersion)curriculumCache.assessmentByVersion={};
+  if(version&&curriculumCache.assessmentByVersion[version])return curriculumCache.assessmentByVersion[version];
   try{
-    const manifest=await fetchJsonSafe('data/assessment/manifest.json');
+    const manifest=curriculumCache.assessmentManifest||await fetchJsonSafe('data/assessment/manifest.json');
     if(!manifest||!manifest.files)return null;
+    curriculumCache.assessmentManifest=manifest;
+    const want=version||manifest.bankVersion;
+    const files=(want===manifest.bankVersion)?manifest.files:((manifest.versions||{})[want]||{}).files;
+    if(!files||!files.items||!files.forms)return null;
     const [items,forms]=await Promise.all([
-      fetchJsonSafe('data/assessment/'+manifest.files.items),
-      fetchJsonSafe('data/assessment/'+manifest.files.forms),
+      fetchJsonSafe('data/assessment/'+files.items),
+      fetchJsonSafe('data/assessment/'+files.forms),
     ]);
     if(items&&Array.isArray(items.items)&&forms&&forms.forms){
-      curriculumCache.assessment={manifest,bank:items,forms};
+      const data={manifest,bank:items,forms,bankVersion:want};
+      curriculumCache.assessmentByVersion[want]=data;
+      if(want===manifest.bankVersion)curriculumCache.assessment=data;
+      return data;
     }
   }catch(e){dbgLog('loadAssessmentBank failed',String(e&&e.message||e));}
-  return curriculumCache.assessment||null;
+  return version?null:(curriculumCache.assessment||null);
 }
 /**
  * Stories, per level.
@@ -2940,7 +2969,7 @@ function noteSyncConflict(pid,remote,remoteRev){
   // round in progress on both devices is kept twice with the choice surfaced.
   if(remote){
     try{
-      const merged=MergeState.mergePlayers(s,remote,{weekKey:s.weekStart||null});
+      const merged=MergeState.mergePlayers(s,remote,mergeOptsFor(s));
       Object.keys(merged.player).forEach(k=>{s[k]=merged.player[k];});
       if(merged.notes.length)showToast(merged.notes[0],3200);
     }catch(e){dbgLog('merge failed',String(e&&e.message||e));}
@@ -3061,8 +3090,12 @@ function ensureState(p){
   if(s.dailyWordTotal===undefined)s.dailyWordTotal=0;
   if(s.pinyinIntroDone===undefined)s.pinyinIntroDone=false;
   if(s.lastSaved===undefined)s.lastSaved=0;
-  if(!s.pendingSessions)s.pendingSessions={gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null};
+  if(!s.pendingSessions)s.pendingSessions={gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null,review:null};
   if(s.pendingSessions&&s.pendingSessions.revenge===undefined)s.pendingSessions.revenge=null;
+  if(s.pendingSessions&&s.pendingSessions.review===undefined)s.pendingSessions.review=null;
+  if(!s.gateResetSeq)s.gateResetSeq={};
+  if(!s.pendingSessionClearedAt)s.pendingSessionClearedAt={};
+  if(!s.lessonSelfCheck)s.lessonSelfCheck={};
   if(!s.traceStars)s.traceStars={};
   if(!s.libraryCountAtDayStart)s.libraryCountAtDayStart={};
   if(!s.gateGameStars)s.gateGameStars={};
@@ -3159,15 +3192,29 @@ function traceStarsFromAccuracy(correct,total,did){
   return 0;
 }
 
-function updateGateGameBest(did,gameKey,stars,level){
-  if(!curP||!did||!gameKey)return;
+/**
+ * Bank a finished game round's stars against its gate.
+ *
+ * `binding` is what gateAttemptBinding returned when the round STARTED. It is
+ * optional for legacy callers; when given, a round that no longer matches the
+ * gate's current attempt (the deadline passed and reset it mid-round) writes
+ * nothing and reports `{qualified:false}` so the caller can present it as
+ * practice. Without this, the reset that expireGateTimerIfNeeded performs on
+ * the line below was immediately undone by the very round that outlived it.
+ */
+function updateGateGameBest(did,gameKey,stars,level,binding){
+  if(!curP||!did||!gameKey)return{qualified:false};
   ensureState(curP);
   const s=state[curP];
   const lv=Number(level||curHSK||1);
   expireGateTimerIfNeeded(s,did,{level:lv});
   if(!s.gateGameStars)s.gateGameStars={};
   const k=gateKeyOf(did,lv);
-  if(!k)return;
+  if(!k)return{qualified:false};
+  if(binding!==undefined&&!gateSessionQualifies(s,binding,did,lv)){
+    saveState();
+    return{qualified:false};
+  }
   if(!s.gateGameStars[k])s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
   const prev=s.gateGameStars[k][gameKey]||0;
   if(stars>prev){
@@ -3177,6 +3224,7 @@ function updateGateGameBest(did,gameKey,stars,level){
     evaluateGateCompletion(did,lv);
   }
   saveState();
+  return{qualified:true};
 }
 
 function starsText(n){
@@ -3377,6 +3425,12 @@ function resetGateProgress(s,did,level){
 
   if(s.gateGameStars)s.gateGameStars[k]={trace:0,match:0,rain:0,listen:0};
   if(s.gateBestQuiz)delete s.gateBestQuiz[k];
+  // A monotonic per-gate counter. The history above is capped at ten entries
+  // and its dates are day-granular, so neither can say "a reset happened
+  // between when this round started and now". Sessions carry the value they
+  // started under (gateAttemptBinding) and compare it at the qualifying write.
+  if(!s.gateResetSeq)s.gateResetSeq={};
+  s.gateResetSeq[k]=(s.gateResetSeq[k]||0)+1;
   if(s.lastGateQuizAttempt&&s.lastGateQuizAttempt.did===did)s.lastGateQuizAttempt=null;
   // A quiz already in progress is NOT thrown away. It is flagged as belonging
   // to the expired attempt so it can be finished as practice without
@@ -3384,6 +3438,63 @@ function resetGateProgress(s,did,level){
   if(s.pendingSessions&&s.pendingSessions.gate&&s.pendingSessions.gate.did===did){
     s.pendingSessions.gate.attemptExpired=true;
   }
+}
+
+/**
+ * The attempt a gate-scoped round is starting under.
+ *
+ * A round used to carry only its gate id. A deadline reset then had no way to
+ * tell a round begun under the dead attempt from one begun under the new
+ * one, so a Listen game or boss quiz that ran past the deadline banked its
+ * stars into the replacement attempt — exactly the credit the reset had just
+ * cleared. The quiz path had a boolean for this, but it lived on the SAVED
+ * copy and the live quiz never read it.
+ *
+ * `attemptId` is the timer's id when a timer exists (active or not: a round
+ * that finishes just after the gate clears still matches), or null before the
+ * first 3★ round mints one. `resetSeq` is the gate's reset counter.
+ */
+function gateAttemptBinding(s,did,level){
+  if(!s||!did)return null;
+  const k=gateKeyOf(did,level);if(!k)return null;
+  const t=(s.gateTimers&&s.gateTimers[k])||null;
+  return{playerId:curP||null,gateKey:k,attemptId:(t&&t.attemptId)||null,resetSeq:((s.gateResetSeq||{})[k])||0};
+}
+
+/**
+ * Does a round started under `binding` still qualify for this gate's current
+ * attempt? A missing binding is a round saved before bindings existed; it keeps
+ * the behaviour it had (CLAUDE §8), which for the quiz is the attemptExpired
+ * flag checked by the caller.
+ */
+function gateSessionQualifies(s,binding,did,level){
+  if(!binding)return true;
+  const live=gateAttemptBinding(s,did,level);
+  if(!live||live.gateKey!==binding.gateKey)return false;
+  if(binding.playerId&&live.playerId&&binding.playerId!==live.playerId)return false;
+  if((binding.resetSeq||0)!==(live.resetSeq||0))return false;
+  // A round begun before any timer existed may see one minted after it (the
+  // round's own 3★ can be what mints it). It qualifies as long as no reset
+  // separates the two, which resetSeq has already established.
+  if(binding.attemptId==null)return true;
+  return binding.attemptId===live.attemptId;
+}
+
+const LATE_ROUND_MSG='This round was practice — the challenge restarted, so let\'s go again! 🌱';
+
+/**
+ * Null a resumable slot and remember when. The merge treats a null slot as
+ * "nothing here" and used to let a device that had merely finished a round
+ * overwrite another device's live one; the timestamp lets it tell a deliberate
+ * clear from an absence.
+ */
+function clearPendingSession(kind){
+  if(!curP||!kind)return;
+  const s=state[curP];
+  if(!s.pendingSessions)return;
+  s.pendingSessions[kind]=null;
+  if(!s.pendingSessionClearedAt)s.pendingSessionClearedAt={};
+  s.pendingSessionClearedAt[kind]=Date.now();
 }
 
 function startGateTimerIfNeeded(s,did,stars,level){
@@ -3585,7 +3696,7 @@ function touchSession(kind){
 function mostRecentSession(){
   if(!curP)return null;
   const ps=state[curP].pendingSessions||{};
-  const kinds=['story','gate','champion','flash','match','rain','listen','trace','revenge'];
+  const kinds=['story','gate','champion','flash','match','rain','listen','trace','revenge','review'];
   let best=null;
   kinds.forEach(k=>{
     const sess=ps[k];
@@ -3724,7 +3835,7 @@ function persistFlashSession(){
   touchSession('flash');
 }
 
-function clearFlashSession(){if(curP&&state[curP]&&state[curP].pendingSessions)state[curP].pendingSessions.flash=null;}
+function clearFlashSession(){clearPendingSession('flash');}
 
 function closeFlashOverlay(){
   document.getElementById('flash-overlay').classList.remove('show');
@@ -3895,6 +4006,7 @@ function closeGamesOverlay(){
   // state[curP] — and award stars for a round the child abandoned.
   clearRainTimers();
   drainScope('games');
+  drainScope('review');
 }
 function setGamesFailedFocus(active){
   const ov=document.getElementById('games-overlay');
@@ -3962,11 +4074,30 @@ function gamePickerHtml(){
       ${gameRow('trace','✍️ Trace',!ul.trace,'Read story + finish flashcards 🃏',gs.trace||0)}
       ${gameRow('match','🧠 Match',!ul.match,'Read the story twice 📖📖',gs.match||0)}
       ${gameRow('rain','🌧️ Rain',!ul.rain,'Play Listen first 👂',gs.rain||0)}
+      ${reviewPickerRow()}
     </div>
     <div style="margin-top:.55rem;font-size:.7rem;line-height:1.5;color:var(--muted);text-align:center;">
       <b>${L('scopeDynasty',{icon:false})}</b> = words from the gate on your map ·
       <b>${L('scopeHsk',{icon:false})}</b> = words from your current HSK level ·
       <b>${L('scopeWip',{icon:false})}</b> = words you missed before (practice list)
+    </div>`;
+}
+
+/** The fifth row of the picker: today's review, always open, never required. */
+function reviewPickerRow(){
+  const s=curP?state[curP]:null;
+  const due=s?reviewDueToday(curP,'normal'):{dueTotal:0,summary:''};
+  const pending=!!(s&&s.pendingSessions&&s.pendingSessions.review);
+  const n=due.dueTotal||0;
+  const open=pending||n>0;
+  return `<div style="grid-column:1/-1;padding:.45rem;border:1px solid rgba(39,174,96,.28);border-radius:10px;background:rgba(39,174,96,.05);">
+      <div style="font-weight:800;margin-bottom:.2rem;text-align:center;">${L('reviewToday')}</div>
+      <div style="font-size:.7rem;color:var(--muted);text-align:center;margin-bottom:.3rem;">${pending?'A review is waiting to be finished':n?due.summary:'Nothing due today — come back tomorrow ✅'}</div>
+      <div style="display:flex;gap:.35rem;justify-content:center;">
+        ${open
+          ?`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;" onclick="${pending?"resumeSession('review')":'startReviewRound()'}">${pending?'Continue':'Start'}</button>`
+          :`<button class="btn-s game-picker-btn" style="padding:.35rem .65rem;font-size:.72rem;opacity:.4;cursor:default;" disabled>Start</button>`}
+      </div>
     </div>`;
 }
 
@@ -4032,8 +4163,8 @@ function startGame(game,scope){
   else if(game==='trace')startTrace(words);
 }
 
-function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null,gameTargetLevel:matchSt.gameTargetLevel||null};}
-function clearMatch(){if(curP)state[curP].pendingSessions.match=null;}
+function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null,gameTargetLevel:matchSt.gameTargetLevel||null,gateAttempt:matchSt.gateAttempt||null};}
+function clearMatch(){clearPendingSession('match');}
 
 function startMemoryMatch(words){
   const did=(curGameTargetDid||effectiveGameTargetDid()||1);
@@ -4063,7 +4194,8 @@ function startMemoryMatch(words){
     cards.push({id:'a'+i,pair:i,side:'zh',text:w.zh,w:{...w},matched:false});
     cards.push({id:'b'+i,pair:i,side:'en',text:w.en,w:{...w},matched:false});
   });
-  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
+  matchSt={cards:shuffleArr(cards),openIdxs:[],matched:0,moves:0,start:Date.now(),pairCount,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,
+    gateAttempt:curGameTargetDid&&curP?gateAttemptBinding(state[curP],curGameTargetDid,curGameTargetLevel||curHSK||1):null};
   persistMatch();saveState();renderMemoryMatch();
   touchSession('match');
 }
@@ -4075,12 +4207,13 @@ function renderMemoryMatch(){
     const sec=(Date.now()-matchSt.start)/1000;
     const stars=sec<120?3:sec<180?2:sec<240?1:0;
     const tid=matchSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'match',stars,matchSt.gameTargetLevel);
+    const res=tid?updateGateGameBest(tid,'match',stars,matchSt.gameTargetLevel,matchSt.gateAttempt||null):null;
+    const late=!!(res&&res.qualified===false);
     awardAltRound('match',stars);
-    body.innerHTML=`<div class="mq-title" style="text-align:center;">🧠 Brainy win!</div>
-      <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+    body.innerHTML=`<div class="mq-title" style="text-align:center;">${late?'🧠 Practice round done!':'🧠 Brainy win!'}</div>
+      <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
-    showStarEffect(stars,'Memory match');
+    if(late)showToast(LATE_ROUND_MSG,2800);else showStarEffect(stars,'Memory match');
     return;
   }
   const cols=matchSt.pairCount<=6?3:4;
@@ -4135,7 +4268,7 @@ function persistRain(){
   if(!curP)return;
   state[curP].pendingSessions.rain={pool:rainSt.pool.map(w=>({...w})),target:rainSt.target?{...rainSt.target}:null,
     score:rainSt.score,combo:rainSt.combo,bestCombo:rainSt.bestCombo,timeLeft:rainSt.timeLeft,
-    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,gameTargetLevel:rainSt.gameTargetLevel||null,
+    rainHits:rainSt.rainHits||0,rainAttempts:rainSt.rainAttempts||0,gameTargetDid:rainSt.gameTargetDid||null,gameTargetLevel:rainSt.gameTargetLevel||null,gateAttempt:rainSt.gateAttempt||null,
     targetSeq:(rainSt.targetSeq||[]).map(w=>({...w})),targetIdx:rainSt.targetIdx||0,targetSeenCount:rainSt.targetSeenCount||0,
     spawnsSinceTarget:rainSt.spawnsSinceTarget||0,targetShownThisRound:!!rainSt.targetShownThisRound};
   touchSession('rain');
@@ -4146,7 +4279,7 @@ function clearRainTimers(){
   if(rainSt.targetIv)clearInterval(rainSt.targetIv);
   rainSt.spawnIv=rainSt.tickIv=rainSt.targetIv=null;
 }
-function clearRainSession(){clearRainTimers();if(curP)state[curP].pendingSessions.rain=null;}
+function clearRainSession(){clearRainTimers();clearPendingSession('rain');}
 
 function startRain(words){
   clearRainSession();
@@ -4154,7 +4287,9 @@ function startRain(words){
   words.filter(w=>w.zh&&w.en).forEach(w=>{if(!seen.has(w.zh)){seen.add(w.zh);uniq.push(w);}});
   if(uniq.length<5){showToast('Rain needs at least 5 words. Try Dynasty or HSK to build your word pool!');return;}
   rainSt={pool:uniq,target:null,score:0,combo:0,bestCombo:0,timeLeft:45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0,
+    rainHits:0,rainAttempts:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,
+    gateAttempt:curGameTargetDid&&curP?gateAttemptBinding(state[curP],curGameTargetDid,curGameTargetLevel||curHSK||1):null,
+    targetSeq:shuffleArr([...uniq]),targetIdx:0,targetSeenCount:0,
     spawnsSinceTarget:0,targetShownThisRound:false};
   pickRainTarget();persistRain();saveState();renderRain();runRain();
 }
@@ -4253,12 +4388,13 @@ function endRain(fromUser){
   // Natural end (timer ran out) — full round completed, stars deserved
   clearRainSession();
   const stars=starsFromAccuracy(rh,ra);
-  if(tid)updateGateGameBest(tid,'rain',stars,rainSt.gameTargetLevel);
+  const res=tid?updateGateGameBest(tid,'rain',stars,rainSt.gameTargetLevel,rainSt.gateAttempt||null):null;
+  const late=!!(res&&res.qualified===false);
   awardAltRound('rain',stars);
   body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Time is up!</div>
-    <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+    <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
     <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
-  showStarEffect(stars,'Rain game');
+  if(late)showToast(LATE_ROUND_MSG,2800);else showStarEffect(stars,'Rain game');
   saveState();
 }
 
@@ -4267,7 +4403,7 @@ function restoreRain(){
   clearRainSession();
   const seq=(ps.targetSeq&&ps.targetSeq.length)?ps.targetSeq.map(w=>({...w})):shuffleArr(ps.pool.map(w=>({...w})));
   rainSt={pool:ps.pool.map(w=>({...w})),target:ps.target?{...ps.target}:null,score:ps.score||0,combo:ps.combo||0,bestCombo:ps.bestCombo||0,timeLeft:ps.timeLeft||45,spawnIv:null,tickIv:null,targetIv:null,dropId:0,
-    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0,
+    rainHits:ps.rainHits||0,rainAttempts:ps.rainAttempts||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null,targetSeq:seq,targetIdx:ps.targetIdx||0,targetSeenCount:ps.targetSeenCount||0,
     spawnsSinceTarget:ps.spawnsSinceTarget||0,targetShownThisRound:!!ps.targetShownThisRound};
   document.getElementById('games-overlay').classList.add('show');
   renderRain();runRain();return true;
@@ -4291,8 +4427,9 @@ function startListen(words){
     const wrong=pickDistractors(pool.filter(x=>x.zh!==w.zh),w,listenSound,3);
     return{w:{...w},opts:shuffleArr([w,...wrong]).map(x=>x.zh)};
   });
-  listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1};
-  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null};touchSession('listen');
+  listenSt={questions:qs,qi:0,streak:0,score:0,correctCount:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,
+    gateAttempt:curGameTargetDid&&curP?gateAttemptBinding(state[curP],curGameTargetDid,curGameTargetLevel||curHSK||1):null};
+  if(curP)state[curP].pendingSessions.listen={questions:qs.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:0,streak:0,score:0,correctCount:0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null,gateAttempt:listenSt.gateAttempt||null};touchSession('listen');
   saveState();renderListen();
 }
 
@@ -4300,17 +4437,18 @@ function renderListen(){
   const body=document.getElementById('games-body');if(!body)return;
   const q=listenSt.questions[listenSt.qi];
   if(!q){
-    if(curP)state[curP].pendingSessions.listen=null;
+    clearPendingSession('listen');
     const tot=listenSt.questions.length;
     const cc=listenSt.correctCount||0;
     const stars=starsFromAccuracy(cc,tot);
     const tid=listenSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'listen',stars,listenSt.gameTargetLevel);
+    const res=tid?updateGateGameBest(tid,'listen',stars,listenSt.gameTargetLevel,listenSt.gateAttempt||null):null;
+    const late=!!(res&&res.qualified===false);
     awardAltRound('listen',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Listening complete!</div>
-      <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
-    showStarEffect(stars,'Listen game');
+    if(late)showToast(LATE_ROUND_MSG,2800);else showStarEffect(stars,'Listen game');
     saveState();return;
   }
   body.innerHTML=`<div class="mq-progress">${listenSt.qi+1}/${listenSt.questions.length} · score ${listenSt.score}</div>
@@ -4349,7 +4487,7 @@ function checkListen(btn,ok,q){
   // Audio to character with no pinyin on screen: unaided recognition.
   noteEvidence(curP,q.w,'recognition',ok,{source:'listen'});
   listenSt.qi++;
-  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null};touchSession('listen');
+  if(curP)state[curP].pendingSessions.listen={questions:listenSt.questions.map(x=>({w:{...x.w},opts:[...x.opts]})),qi:listenSt.qi,streak:listenSt.streak,score:listenSt.score,correctCount:listenSt.correctCount||0,gameTargetDid:listenSt.gameTargetDid,gameTargetLevel:listenSt.gameTargetLevel||null,gateAttempt:listenSt.gateAttempt||null};touchSession('listen');
   saveState();
   laterCall('listen',renderListen,800);
 }
@@ -4418,8 +4556,9 @@ function startTrace(words){
     ?shuffleArr(allChars).slice(0,traceTargetLimitForGate(curGameTargetDid))
     :allChars;
   if(!chars.length){showToast('No characters to trace yet—learn a few more first!');return;}
-  traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null,watchCount:0,quizActive:false};
-  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');
+  traceSt={chars,i:0,writer:null,targetId:'',traceGood:0,gameTargetDid:curGameTargetDid||null,gameTargetLevel:curGameTargetLevel||curHSK||1,watchCount:0,quizActive:false,
+    gateAttempt:curGameTargetDid&&curP?gateAttemptBinding(state[curP],curGameTargetDid,curGameTargetLevel||curHSK||1):null};
+  if(curP)state[curP].pendingSessions.trace={chars:chars.map(c=>({...c})),i:0,traceGood:0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null,gateAttempt:traceSt.gateAttempt||null};touchSession('trace');
   saveState();renderTrace();
 }
 
@@ -4427,19 +4566,20 @@ function renderTrace(){
   const body=document.getElementById('games-body');if(!body)return;
   const c=traceSt.chars[traceSt.i];
   if(!c){
-    if(curP)state[curP].pendingSessions.trace=null;
+    clearPendingSession('trace');
     const tot=traceSt.chars.length;
     const tg=traceSt.traceGood||0;
     const stars=traceSt.gameTargetDid
       ?traceStarsFromAccuracy(tg,tot,traceSt.gameTargetDid)
       :starsFromAccuracy(tg,tot);
     const tid=traceSt.gameTargetDid;
-    if(tid)updateGateGameBest(tid,'trace',stars,traceSt.gameTargetLevel);
+    const res=tid?updateGateGameBest(tid,'trace',stars,traceSt.gameTargetLevel,traceSt.gateAttempt||null):null;
+    const late=!!(res&&res.qualified===false);
     awardAltRound('trace',stars);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
-      <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${'★'.repeat(stars)}${'☆'.repeat(3-stars)}</div>
+      <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
-    showStarEffect(stars,'Trace game');
+    if(late)showToast(LATE_ROUND_MSG,2800);else showStarEffect(stars,'Trace game');
     saveState();return;
   }
   traceSt.targetId='trace-'+Date.now();
@@ -4502,7 +4642,7 @@ function startTraceQuiz(){
       const stars=mistakes===0?3:(mistakes<=4?2:1);
       const s=state[curP];s.traceStars[c.zh]=Math.max(s.traceStars[c.zh]||0,stars);
       traceSt.traceGood=(traceSt.traceGood||0)+(mistakes===0?1:0);
-      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');
+      if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(x=>({...x})),i:traceSt.i,traceGood:traceSt.traceGood,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null,gateAttempt:traceSt.gateAttempt||null};touchSession('trace');
       const msgs=stars===3
         ?['Perfect! 🌟','Flawless! Amazing! ✨','No mistakes — you nailed it! 🏆']
         :stars===2
@@ -4524,11 +4664,11 @@ function exitTrace(){
 }
 
 function traceAnimate(){traceWatchAgain();}
-function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null};touchSession('trace');saveState();renderTrace();}
+function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null,gateAttempt:traceSt.gateAttempt||null};touchSession('trace');saveState();renderTrace();}
 
 function restoreTrace(){
   const ps=state[curP].pendingSessions.trace;if(!ps||!ps.chars)return false;
-  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:'',traceGood:ps.traceGood||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
+  traceSt={chars:ps.chars.map(c=>({...c})),i:ps.i||0,writer:null,targetId:'',traceGood:ps.traceGood||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null};
   document.getElementById('games-overlay').classList.add('show');
   renderTrace();return true;
 }
@@ -4542,14 +4682,14 @@ function restoreMatch(){
   // a permanent dead end.
   const dealtPairs=new Set(cards.map(c=>c.pair)).size;
   const pairCount=Math.min(ps.pairCount||dealtPairs,dealtPairs);
-  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
+  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null};
   document.getElementById('games-overlay').classList.add('show');
   renderMemoryMatch();return true;
 }
 
 function restoreListen(){
   const ps=state[curP].pendingSessions.listen;if(!ps||!ps.questions)return false;
-  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0,correctCount:ps.correctCount||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null};
+  listenSt={questions:ps.questions.map(q=>({w:{...q.w},opts:[...q.opts]})),qi:ps.qi||0,streak:ps.streak||0,score:ps.score||0,correctCount:ps.correctCount||0,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null};
   document.getElementById('games-overlay').classList.add('show');
   renderListen();return true;
 }
@@ -4569,7 +4709,8 @@ function persistGateQuizState(){
     mcqN:quizSt.mcqN,pyN:quizSt.pyN,sbN:quizSt.sbN,maxScore:quizSt.maxScore,noMcqAssistance:!!quizSt.noMcqAssistance,
     mcqAnswered:typeof mcqAnswered==='number'?mcqAnswered:0,pyAnswered:typeof pyAnswered==='number'?pyAnswered:0,
     sbBuilt:[...(typeof sbBuilt!=='undefined'?sbBuilt:[])],speakUsed:!!speakUsed,pyHintUsed:!!pyHintUsed,pyPeekUsed:!!pyPeekUsed,
-    quizCorrect:quizSt.quizCorrect||0,quizAttempts:quizSt.quizAttempts||0
+    quizCorrect:quizSt.quizCorrect||0,quizAttempts:quizSt.quizAttempts||0,
+    gateAttempt:quizSt.gateAttempt?{...quizSt.gateAttempt}:null
   };
   touchSession('gate');
   if(quizSt&&quizSt.attemptExpired&&state[curP]&&state[curP].pendingSessions){
@@ -4580,8 +4721,8 @@ function persistGateQuizState(){
 
 function clearGateQuizPending(){
   if(!curP||!state[curP].pendingSessions)return;
-  state[curP].pendingSessions.gate=null;
-  state[curP].pendingSessions.champion=null;
+  clearPendingSession('gate');
+  clearPendingSession('champion');
 }
 
 function restoreGateQuizSession(){
@@ -4600,7 +4741,8 @@ function restoreGateQuizSession(){
     hardMode:!!ps.hardMode,
     mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:ps.noMcqAssistance!==false,
     quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0,
-    attemptExpired:!!ps.attemptExpired
+    attemptExpired:!!ps.attemptExpired,
+    gateAttempt:ps.gateAttempt?{...ps.gateAttempt}:null
   };
   mcqAnswered=ps.mcqAnswered||0;pyAnswered=ps.pyAnswered||0;sbBuilt=[...(ps.sbBuilt||[])];
   speakUsed=!!ps.speakUsed;pyHintUsed=!!ps.pyHintUsed;pyPeekUsed=!!ps.pyPeekUsed;
@@ -4620,6 +4762,7 @@ function resumeSession(type){
   if(type==='listen')return restoreListen();
   if(type==='trace')return restoreTrace();
   if(type==='revenge')return restoreRevengeRound();
+  if(type==='review')return restoreReviewRound();
   return false;
 }
 
@@ -4638,6 +4781,7 @@ function resumeLastSession(){
   if(ps.listen&&resumeSession('listen'))return;
   if(ps.trace&&resumeSession('trace'))return;
   if(ps.revenge&&resumeSession('revenge'))return;
+  if(ps.review&&resumeSession('review'))return;
   showToast('Nothing to resume right now—start a fresh challenge!');
 }
 
@@ -5144,6 +5288,7 @@ function renderHub(){
     maybeMascotToast('streak');
   }
   renderDailyWordBox(curP);
+  renderReviewTodayBox(curP);
   renderDailyMissionPanel(curP);
   renderRivalryCoopStrip();
   renderHubRulesBody();
@@ -5158,7 +5303,7 @@ function renderHub(){
     const failWords=Object.values(s.failedWords||{})
       .sort((a,b)=>b.failCount-a.failCount).slice(0,8);
     const ps=s.pendingSessions||{};
-    const resumeBtn=(ps.story||ps.gate||ps.champion||ps.flash||ps.match||ps.rain||ps.listen||ps.trace)
+    const resumeBtn=(ps.story||ps.gate||ps.champion||ps.flash||ps.match||ps.rain||ps.listen||ps.trace||ps.review)
       ?'<button class="drill-btn" style="margin-top:.45rem;" onclick="resumeLastSession()">'+L('resumeLast')+'</button>':'';
     if(failWords.length){
       practiceBox.innerHTML='<div class="practice-box-title">💪 Practice</div>'+
@@ -5437,10 +5582,29 @@ async function renderGateLesson(did,lessonRef){
   // gate?" — with the real question demoted to a parenthetical and the real
   // answer never rendered at all. On 22 of the 88 lessons the substitute did
   // not even match the question it replaced.
-  const qs=(lesson.comprehension||[]).map(q=>`<li style="margin:.45rem 0;">
+  //
+  // The answer is hidden until the child has had a go (audit F06). Printing it
+  // beside the question made these worked examples; a child could read the
+  // answer without ever reading the passage. Think, tap Reveal, then say
+  // whether you had it — a self-report, recorded as one, never as unaided
+  // evidence and never for stars.
+  const gk=gateKeyOf(gate,curHSK)||String(gate);
+  const prior=((state[curP]&&state[curP].lessonSelfCheck)||{})[gk]||{};
+  const qs=(lesson.comprehension||[]).map((q,i)=>{
+    const said=prior[i]&&prior[i].result;
+    const verdict=said
+      ?`<div style="font-size:.7rem;color:var(--muted);margin-top:.2rem;">You said: ${said==='had'?'I had it 🌟':'Not yet 🌱'} — <button class="btn-s" style="font-size:.66rem;padding:.15rem .45rem;" onclick="lessonSelfCheck(${Number(gate)},${i},'${said==='had'?'notyet':'had'}')">change</button></div>`
+      :`<div id="lesson-check-${i}" hidden style="display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.25rem;">
+          <button class="btn-s" style="font-size:.7rem;" onclick="lessonSelfCheck(${Number(gate)},${i},'had')">I had it 🌟</button>
+          <button class="btn-s" style="font-size:.7rem;" onclick="lessonSelfCheck(${Number(gate)},${i},'notyet')">Not yet 🌱</button>
+        </div>`;
+    return `<li style="margin:.45rem 0;">
       <span style="color:var(--ink);">${bi(q.questionEn,q.question)}</span>
-      <span style="color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;">→ ${bi(q.answerEn,q.answer)}</span>
-    </li>`).join('');
+      ${said?'':`<button id="lesson-reveal-${i}" class="btn-s" style="font-size:.7rem;margin-top:.2rem;" onclick="lessonRevealAnswer(${i})">Reveal 👀</button>`}
+      <span id="lesson-ans-${i}" ${said?'':'hidden'} style="color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;">→ ${bi(q.answerEn,q.answer)}</span>
+      ${verdict}
+    </li>`;
+  }).join('');
 
   const speaking=(lesson.speakingPromptEn||lesson.speakingPrompt)
     ? `<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;line-height:1.6;"><strong>🗣 Speaking · 口语</strong><br>${bi(lesson.speakingPromptEn,lesson.speakingPrompt)}</div>`
@@ -5452,6 +5616,38 @@ async function renderGateLesson(did,lessonRef){
     ${passage}
     ${qs?`<div class="dd-desc"><strong>✅ 读一读，想一想 · Check understanding</strong><ol style="margin:.35rem 0 .1rem 1.1rem;line-height:1.7;">${qs}</ol></div>`:''}
     ${speaking}`;
+}
+
+/** Show a lesson answer after the child has thought about it. */
+function lessonRevealAnswer(i){
+  const ans=document.getElementById('lesson-ans-'+i);
+  const btn=document.getElementById('lesson-reveal-'+i);
+  const chk=document.getElementById('lesson-check-'+i);
+  if(ans)ans.hidden=false;
+  if(btn)btn.hidden=true;
+  if(chk)chk.hidden=false;
+}
+
+/**
+ * The child's own verdict on a lesson question. Stored per gate per question;
+ * it is a self-report, so it never enters reviewRecords (which hold unaided
+ * evidence only) and never pays stars.
+ */
+function lessonSelfCheck(did,i,result){
+  if(!curP||!state[curP])return;
+  if(result!=='had'&&result!=='notyet')return;
+  const s=state[curP];
+  const gk=gateKeyOf(did,curHSK)||String(did);
+  if(!s.lessonSelfCheck)s.lessonSelfCheck={};
+  if(!s.lessonSelfCheck[gk])s.lessonSelfCheck[gk]={};
+  s.lessonSelfCheck[gk][i]={result,at:todayKey()};
+  saveState();
+  const chk=document.getElementById('lesson-check-'+i);
+  if(chk){
+    chk.hidden=false;
+    chk.innerHTML=`<span style="font-size:.7rem;color:var(--muted);">You said: ${result==='had'?'I had it 🌟':'Not yet 🌱'} — <button class="btn-s" style="font-size:.66rem;padding:.15rem .45rem;" onclick="lessonSelfCheck(${Number(did)},${i},'${result==='had'?'notyet':'had'}')">change</button></span>`;
+  }
+  showToast(result==='had'?'Nice — you had it! 🌟':'Good try — now you know it 🌱',1600);
 }
 
 function closeCultureStories(){
@@ -5697,7 +5893,7 @@ function closeComplete(){
 // ── STORY MINI-QUIZ ──
 let miniQ={questions:[],qi:0,score:0,wrongQueue:[],phase:'main',attemptedStoryId:null,attemptedDynastyId:null,storyCompletedNow:false};
 
-function clearStoryPending(){if(curP&&state[curP].pendingSessions)state[curP].pendingSessions.story=null;}
+function clearStoryPending(){clearPendingSession('story');}
 
 function persistMiniQuizState(){
   if(!curP||!state[curP].pendingSessions)return;
@@ -6025,7 +6221,7 @@ function closeRevengeRound(){
       qi:revengeSt.qi,correct:revengeSt.correct,updatedAt:Date.now()};
     showToast('Progress saved — finish the round to earn stars! ⚔️',2400);
   }else if(curP&&state[curP].pendingSessions){
-    state[curP].pendingSessions.revenge=null;
+    clearPendingSession('revenge');
   }
   saveState();
 }
@@ -6175,7 +6371,8 @@ function startGateQuiz(did,opts){
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
     questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:false,hardMode:hard,mcqN,pyN,sbN,maxScore,noMcqAssistance:!hard,
-    quizCorrect:0,quizAttempts:0};
+    quizCorrect:0,quizAttempts:0,
+    gateAttempt:curP?gateAttemptBinding(state[curP],did,curHSK||1):null};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
   recentStore[`g-${did}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
@@ -6205,7 +6402,8 @@ function startChampionChallenge(group){
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
     questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
-    quizCorrect:0,quizAttempts:0};
+    quizCorrect:0,quizAttempts:0,
+    gateAttempt:curP?gateAttemptBinding(state[curP],did,curHSK||1):null};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
   recentStore[`c-${group}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
@@ -6933,19 +7131,29 @@ function renderQuizResult(qc){
   // finished — the child's work is not thrown away — but it does not qualify
   // the new attempt. Otherwise an old pending round could resurrect credit the
   // deadline reset deliberately cleared.
-  if(!quizSt.attemptExpired){
+  //
+  // `attemptExpired` is the legacy flag: it is set on the SAVED copy by the
+  // reset and only reaches the live quiz through a restore. The binding taken
+  // at start is what catches a quiz that runs past its own deadline in one
+  // sitting — the reset on the line above happens in the middle of this
+  // function, and the flag never learns of it.
+  const qualifies=!quizSt.attemptExpired&&gateSessionQualifies(s,quizSt.gateAttempt||null,quizSt.did,curHSK||1);
+  if(qualifies){
     updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars,score);
   }
   const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup);
   const gamesOk=gateGamesAllThree(s,quizSt.did);
   const quizPass=(bestQuiz.accPct||0)>=90&&(bestQuiz.quizStars||0)===3;
-  const fullPass=quizPass&&gamesOk;
+  const fullPass=qualifies&&quizPass&&gamesOk;
   const passedGate=!quizSt.isChampion&&fullPass;
   const passedChampion=!!quizSt.isChampion&&fullPass;
-  s.lastGateQuizAttempt={
+  if(qualifies)s.lastGateQuizAttempt={
     did:quizSt.did,isChampion:!!quizSt.isChampion,accPct,quizStars,atKey:todayKey()
   };
-  if(quizSt.isChampion){
+  if(!qualifies){
+    // Practice: evidence and the practice queue were recorded per answer;
+    // nothing else is paid or judged.
+  }else if(quizSt.isChampion){
     const grp=quizSt.champGroup;
     if(passedChampion){
       // Champion trophies pay once too. The old code ran addEarnedStars on
@@ -6971,7 +7179,7 @@ function renderQuizResult(qc){
   }
   clearGateQuizPending();
   saveState();
-  checkBadges(curP,{speedGate:!!quizSt.noMcqAssistance&&!quizSt.isChampion});
+  if(qualifies)checkBadges(curP,{speedGate:!!quizSt.noMcqAssistance&&!quizSt.isChampion});
   saveState();
   const gateLabel=quizSt.isChampion?`👑 Champion · Group ${quizSt.champGroup}`:`Gate ${quizSt.did}`;
   const cleared=quizSt.isChampion?passedChampion:passedGate;
@@ -6994,8 +7202,9 @@ function renderQuizResult(qc){
   qc.innerHTML=`
   <div class="quiz-result">
     <div class="quiz-prog-bar"><div class="quiz-prog-fill" style="width:${pctPts}%"></div></div>
-    <div class="qr-stars">${starsStr}</div>
-    <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':'Almost there!'}</div>
+    <div class="qr-stars">${qualifies?starsStr:'🌱'}</div>
+    <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':qualifies?'Almost there!':'Practice round'}</div>
+    ${qualifies?'':`<div class="qr-msg">${LATE_ROUND_MSG}</div>`}
     ${quizSt.isChampion&&passedChampion?'<div class="champion-badge">🏆 Champion Trophy Earned! Amazing work!</div>':''}
     <div class="qr-msg">${d.zh} · ${d.en}\n\nThis try: ${accPct}% (${qcOk}/${qa}) · ${quizStars}★\nBest score: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★\nPoints: ${score}/${mx} (${pctPts}%)\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}\nGames at 3★ for this gate: ${g3}/4</div>
     ${lockMsg}
@@ -7004,7 +7213,8 @@ function renderQuizResult(qc){
       ${quizSt.isChampion?`<button class="btn-s" onclick="startChampionChallenge(${quizSt.champGroup})">↺ Retry</button>`:`<button class="btn-s" onclick="startGateQuiz(${quizSt.did},{hardMode:${!!quizSt.hardMode}})">↺ Retry</button>`}
     </div>
   </div>`;
-  showStarEffect(quizStars,quizSt.isChampion?'Champion quiz':'Gate quiz');
+  if(qualifies)showStarEffect(quizStars,quizSt.isChampion?'Champion quiz':'Gate quiz');
+  else showToast(LATE_ROUND_MSG,2800);
 }
 
 function exitQuiz(){
@@ -7043,7 +7253,7 @@ function noteEvidence(p,word,skill,correct,opts){
   if(!s.reviewRecords)s.reviewRecords={};
   const o=opts||{};
   s.reviewRecords=ReviewCore.recordAttempt(s.reviewRecords,{
-    wordId:word.zh,skill,correct:!!correct,todayKey:todayKey(),
+    wordId:word.zh,skill,correct:!!correct,todayKey:todayKey(),at:Date.now(),
     supported:!!o.supported,sameSession:!!o.sameSession,source:o.source||null,
   });
 }
@@ -7061,6 +7271,248 @@ function reviewStatus(p,zh,skill){
   if(typeof ReviewCore==='undefined')return'';
   const s=state[p];if(!s)return'';
   return ReviewCore.statusOf(ReviewCore.getRecord(s.reviewRecords||{},zh,skill));
+}
+
+// ══════════════════════════════════════════════════════
+// REVIEW TODAY — the student-facing end of the retention schedule
+// ══════════════════════════════════════════════════════
+// The schedule was stored and never read back to a child: reviewDueToday and
+// ReviewCore.selectDue existed and were tested, and nothing in the app called
+// them (audit F05). A word answered correctly today was scheduled for a check
+// that never came. This is that check: a bounded round over what is due,
+// each item asked in the skill it is due for, first response recorded as
+// unaided and a retry after the reveal recorded as sameSession.
+//
+// It is outside the gate requirements — always open, never required — and
+// pays a small flat amount on natural completion regardless of accuracy,
+// so it is worth doing and never a score to fear. Early exit saves and pays
+// nothing (§2).
+let reviewSt=null;
+const REVIEW_STARS=5;
+/** Skills the round can serve. writingRecall has no producer in the app yet
+ *  (only the assessment asks for writing, and it never writes to the review
+ *  store), so a writing branch would serve an always-empty queue. */
+const REVIEW_SERVED_SKILLS=['recognition','meaning','contextComprehension'];
+
+/** {zh,py,en} for a review target, from whatever the app knows about it. */
+function reviewWordMeta(zh){
+  if(!zh)return null;
+  const s=curP&&state[curP];
+  const lib=s&&s.library&&s.library[zh];
+  const fw=s&&s.failedWords&&s.failedWords[zh];
+  let hit=null;
+  Object.values(HSK_VOCAB||{}).some(list=>(list||[]).some(w=>{if(w&&w.zh===zh){hit=w;return true;}return false;}));
+  if(!hit)Object.values(GATE_VOCAB||{}).some(list=>(list||[]).some(w=>{if(w&&w.zh===zh){hit=w;return true;}return false;}));
+  const meta=(!hit&&!lib&&!fw)?(getCharMeta()[zh]||null):null;
+  const py=(hit&&hit.py)||(lib&&lib.py)||(fw&&fw.py)||(meta&&meta.py)||'';
+  const en=(hit&&hit.en)||(lib&&lib.mn)||(fw&&fw.en)||(meta&&meta.en)||'';
+  if(!en&&!py)return null;
+  return{zh,py,en};
+}
+
+/** Every word the app could offer as a wrong option. */
+function reviewDistractorPool(){
+  const out=[];const seen=new Set();
+  const add=w=>{if(w&&w.zh&&w.en&&!seen.has(w.zh)){seen.add(w.zh);out.push({zh:w.zh,py:w.py||'',en:w.en});}};
+  Object.values(HSK_VOCAB||{}).forEach(list=>(list||[]).forEach(add));
+  const s=curP&&state[curP];
+  Object.entries((s&&s.library)||{}).forEach(([zh,e])=>add({zh,py:e.py,en:e.mn}));
+  return out;
+}
+
+/** A story sentence containing the word, with its translation, or null. */
+function reviewSentenceFor(zh){
+  for(const st of Object.values(STORIES_MAP||{})){
+    const sents=st.sents||[];
+    for(let i=0;i<sents.length;i++){
+      const toks=sents[i];
+      const hit=toks.some(t=>t&&((t.t==='c'&&t.ch===zh)||(t.t==='n'&&t.tx===zh)));
+      if(!hit)continue;
+      const text=toks.map(t=>{
+        if(!t)return'';
+        if((t.t==='c'&&t.ch===zh)||(t.t==='n'&&t.tx===zh))return'＿＿';
+        return t.ch||t.tx||'';
+      }).join('');
+      return{zh:text,en:(st.trans&&st.trans[i])||''};
+    }
+  }
+  return null;
+}
+
+/**
+ * Build today's round. Each due record becomes one item in the skill it is
+ * due for; a record the app cannot ask about yet (no word data, a skill with
+ * no exercise) stays due and is counted in "remain for later" rather than
+ * being dropped or asked as something else.
+ */
+function buildReviewRound(p,mode){
+  const due=reviewDueToday(p,mode);
+  const pool=reviewDistractorPool();
+  const items=[];let deferred=0;
+  (due.items||[]).forEach(r=>{
+    const skill=r.skill;
+    if(REVIEW_SERVED_SKILLS.indexOf(skill)===-1){deferred++;return;}
+    const w=reviewWordMeta(r.wordId);
+    if(!w||!w.en){deferred++;return;}
+    const others=pool.filter(x=>x.zh!==w.zh);
+    if(skill==='recognition'){
+      const wrong=pickDistractors(others,w,listenSound,3);
+      items.push({zh:w.zh,py:w.py,en:w.en,skill,kind:'audio',opts:shuffleArr([w,...wrong]).map(x=>x.zh),correct:w.zh});
+    }else if(skill==='meaning'){
+      const wrong=pickDistractors(others,w,x=>x.en,3);
+      items.push({zh:w.zh,py:w.py,en:w.en,skill,kind:'meaning',opts:shuffleArr([w,...wrong]).map(x=>x.en),correct:w.en});
+    }else{
+      const sent=reviewSentenceFor(w.zh);
+      if(!sent){deferred++;return;}
+      // Options are characters under a translated prompt, so what identifies
+      // the answer is its meaning (§9.6).
+      const wrong=pickDistractors(others,w,x=>x.en,3);
+      items.push({zh:w.zh,py:w.py,en:w.en,skill,kind:'context',sentence:sent.zh,sentenceEn:sent.en,opts:shuffleArr([w,...wrong]).map(x=>x.zh),correct:w.zh});
+    }
+  });
+  const remaining=(due.remaining||0)+deferred;
+  const summary=`${items.length} to review${remaining?`; ${remaining} remain for later`:''}`;
+  return{items,dueTotal:due.dueTotal||0,remaining,summary};
+}
+
+function persistReview(){
+  if(!curP||!reviewSt||!state[curP].pendingSessions)return;
+  state[curP].pendingSessions.review={
+    items:reviewSt.items.map(x=>({...x,opts:[...x.opts]})),qi:reviewSt.qi,correct:reviewSt.correct,
+    answered:reviewSt.answered,activeMs:reviewSt.activeMs,remaining:reviewSt.remaining,dueTotal:reviewSt.dueTotal,
+    startedAt:reviewSt.startedAt,mode:reviewSt.mode||'normal'};
+  touchSession('review');
+}
+
+function startReviewRound(mode){
+  if(!curP)return;
+  ensureState(curP);
+  const round=buildReviewRound(curP,mode||'normal');
+  if(!round.items.length){showToast('Nothing due today — come back tomorrow ✅',2400);return;}
+  reviewSt={items:round.items,qi:0,correct:0,answered:0,activeMs:0,remaining:round.remaining,dueTotal:round.dueTotal,
+    startedAt:Date.now(),shownAt:0,retry:false,mode:mode||'normal'};
+  persistReview();saveState();
+  const ov=document.getElementById('games-overlay');if(ov)ov.classList.add('show');
+  setGamesFailedFocus(false);
+  renderReviewRound();
+}
+
+function restoreReviewRound(){
+  const ps=state[curP].pendingSessions.review;if(!ps||!ps.items||!ps.items.length)return false;
+  reviewSt={items:ps.items.map(x=>({...x,opts:[...x.opts]})),qi:ps.qi||0,correct:ps.correct||0,answered:ps.answered||0,activeMs:ps.activeMs||0,
+    remaining:ps.remaining||0,dueTotal:ps.dueTotal||0,startedAt:ps.startedAt||Date.now(),shownAt:0,retry:false,mode:ps.mode||'normal'};
+  const ov=document.getElementById('games-overlay');if(ov)ov.classList.add('show');
+  renderReviewRound();return true;
+}
+
+function renderReviewRound(){
+  const body=document.getElementById('games-body');if(!body||!reviewSt)return;
+  const spent=typeof ReviewCore!=='undefined'&&ReviewCore.budgetSpent({activeMs:reviewSt.activeMs,answered:reviewSt.answered},reviewSt.mode);
+  if(reviewSt.qi>=reviewSt.items.length||spent){finishReviewRound();return;}
+  const it=reviewSt.items[reviewSt.qi];
+  reviewSt.shownAt=Date.now();
+  const prompt=it.kind==='audio'
+    ?`<div class="mq-question" style="text-align:center;">Listen · tap the character</div>
+       <div style="text-align:center;margin:.45rem 0;"><button class="q-speak" onclick="speak('${it.zh.replace(/'/g,"\\'")}')">🔊</button></div>`
+    :it.kind==='meaning'
+    ?`<div class="mq-hz" style="text-align:center;">${it.zh}</div>
+       <div class="mq-question" style="text-align:center;">What does this mean?</div>`
+    :`<div class="practice-box" style="font-family:var(--fzh);font-size:1.05rem;line-height:1.9;text-align:center;">${it.sentence}</div>
+       <div style="font-size:.74rem;color:var(--muted);text-align:center;margin:.3rem 0;">${it.sentenceEn}</div>
+       <div class="mq-question" style="text-align:center;">Which word fills the gap?</div>`;
+  body.innerHTML=`<div class="mq-progress">🌱 Review today · ${reviewSt.qi+1}/${reviewSt.items.length}${reviewSt.retry?' · one more try':''}</div>
+    ${prompt}
+    <div class="mq-opts" id="review-opts"></div><div class="mq-fb" id="review-fb"></div>
+    <div style="text-align:center;margin-top:.55rem;"><button class="btn-s" style="font-size:.75rem;opacity:.7;" onclick="exitReviewRound()">Save &amp; Exit</button></div>`;
+  if(it.kind==='audio')speak(it.zh);
+  const grid=document.getElementById('review-opts');
+  it.opts.forEach((o,i)=>{
+    const b=document.createElement('button');b.className='mcq-opt'+(it.kind==='meaning'?'':' zh-opt');b.textContent=o;
+    b.onclick=()=>answerReview(i);
+    grid.appendChild(b);
+  });
+}
+
+/**
+ * One tap. The first response on an item is unaided evidence; a miss shows the
+ * answer and asks the same item once more, and that second response is
+ * recorded as sameSession — being told is not remembering (§25).
+ */
+function answerReview(idx){
+  if(!reviewSt||!curP)return;
+  const it=reviewSt.items[reviewSt.qi];if(!it)return;
+  const picked=it.opts[idx];
+  const ok=picked===it.correct;
+  const grid=document.getElementById('review-opts');const fb=document.getElementById('review-fb');
+  if(grid)grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;if(b.textContent===it.correct)b.classList.add('correct');});
+  const w={zh:it.zh,py:it.py,en:it.en};
+  const retry=!!reviewSt.retry;
+  noteEvidence(curP,w,it.skill,ok,{source:'review',sameSession:retry});
+  if(!retry){
+    reviewSt.answered++;
+    reviewSt.activeMs+=Math.max(0,Math.min(10*60*1000,Date.now()-(reviewSt.shownAt||Date.now())));
+  }
+  if(ok){
+    if(!retry)reviewSt.correct++;
+    if(fb){fb.className='mq-fb ok';fb.textContent='✅';}
+    reviewSt.retry=false;reviewSt.qi++;
+    persistReview();saveState();
+    laterCall('review',renderReviewRound,700);
+    return;
+  }
+  if(fb){fb.className='mq-fb err';fb.textContent='❌ '+it.correct;}
+  if(!retry){
+    logWrong(curP,it.zh,it.py,it.en);
+    reviewSt.retry=true;
+    persistReview();saveState();
+    showCorrectRevealCard({zh:it.zh,py:it.py,en:it.en,onDone:()=>{if(reviewSt)renderReviewRound();}});
+    return;
+  }
+  // Missed the retry too: move on, the schedule already has it back tomorrow.
+  reviewSt.retry=false;reviewSt.qi++;
+  persistReview();saveState();
+  laterCall('review',renderReviewRound,900);
+}
+
+function exitReviewRound(){
+  if(!reviewSt)return;
+  persistReview();saveState();
+  showToast('Progress saved — finish the review to earn stars! 🌱',2400);
+  drainScope('review');
+  reviewSt=null;
+  openGamesHub();
+}
+
+function finishReviewRound(){
+  const body=document.getElementById('games-body');
+  const done=reviewSt?reviewSt.answered:0;
+  const right=reviewSt?reviewSt.correct:0;
+  const left=reviewSt?Math.max(0,reviewSt.remaining+(reviewSt.items.length-reviewSt.qi)):0;
+  clearPendingSession('review');
+  addEarnedStars(REVIEW_STARS);
+  reviewSt=null;
+  saveState();
+  if(body)body.innerHTML=`<div class="mq-title" style="text-align:center;">🌱 Review done!</div>
+    <div class="mq-question" style="text-align:center;">${done} reviewed · ${right} remembered first time · +${REVIEW_STARS}⭐</div>
+    <div style="font-size:.78rem;color:var(--muted);text-align:center;margin:.4rem 0 .7rem;">${left?`${left} remain for later — they will be here tomorrow.`:'Nothing else is due today.'}</div>
+    <div style="text-align:center;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
+  showToast(`🌱 Review done! +${REVIEW_STARS} stars for showing up.`,2600);
+  renderReviewTodayBox(curP);
+}
+
+/** The hub card: how much is due, and a way in. */
+function renderReviewTodayBox(p){
+  const el=document.getElementById('review-today-box');if(!el||!p||!state[p])return;
+  const due=reviewDueToday(p,'normal');
+  const pending=state[p].pendingSessions&&state[p].pendingSessions.review;
+  const n=due.dueTotal||0;
+  const label=pending?'Continue':n?'Review':'Done';
+  const line=pending?'A review is waiting to be finished':n?due.summary:'Nothing due today — come back tomorrow ✅';
+  el.innerHTML=`<div class="dwb-title">${L('reviewToday')}</div>
+    <div class="dwb-row">
+      <span class="dwb-done">${line}</span>
+      <button class="dwb-btn" onclick="${pending?"resumeSession('review')":'startReviewRound()'}" ${(!n&&!pending)?'disabled':''}>${label}</button>
+    </div>`;
 }
 
 function logWrong(p,zh,py,en){

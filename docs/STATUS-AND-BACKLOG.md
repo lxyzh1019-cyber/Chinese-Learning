@@ -33,7 +33,7 @@ and content is the half that is at 50%.
 Verification on every change:
 
 ```
-npm run verify   # parse guard + curriculum + stories + lessons + assessment bank + 195 tests
+npm run verify   # parse guard + curriculum + stories + lessons + assessment bank + 240 tests
 ```
 
 Browser runs are not optional (`CLAUDE.md` §9.5). Unit tests have twice
@@ -81,6 +81,19 @@ Its own screen, entered per child from profile select, awarding no stars and
 starting no play timer. Bank 1.1.0 closed a guessing route that made 40 of 128
 audio items answerable by elimination. Reports name the child, say why routing
 stopped, and label unreviewed writing `Not independently verified` — never zero.
+
+### The third-party audit (2026-09-08)
+Eight findings, all reproduced, six fixed — one commit each, with the
+regression case written first. See the audit ledger at the end of
+`docs/implementation-status.md`. In short: a round that outlives its deadline
+is practice, not credit (F01); a sync can no longer undo a reset or erase a
+device's review history (F02); an assessment in progress is continued on the
+device that started it and every device sees the history (F03); reports are
+scored on the bank they were taken with and a repeat really is the same
+questions, with a before-and-after screen (F04); **"Review today"** puts the
+retention schedule in front of the child (F05); lesson answers hide until the
+child has had a go (F06). F07 and F08 are content work and stay in the backlog
+below.
 
 ### Correctness work
 Five surfaces were asking questions with **two right answers**: every builder
@@ -143,10 +156,12 @@ none of its own.
 
 ### 6. Cloud sync has never been exercised
 The sandbox blocks the Firebase CDN, so `db` is null in every browser run to
-date. The compare-and-set path and the event-sourced merge are unit-tested
-against a stub only. **The first real two-device session will be running
-untested code.** Test deliberately: same child on two devices, both offline,
-both earning stars, then both back online.
+date. The player compare-and-set, the event-sourced merge, and now the
+assessment's transactional push, cloud hydrate and reconnect flush are all
+unit-tested against a stub only. **The first real two-device session will be
+running untested code.** Test deliberately: same child on two devices, both
+offline, both earning stars, then both back online; then an assessment paused
+on one device and opened on the other (it should be listed, not resumable).
 
 ### 7. Nothing has run on the girls' iPad
 Specifically unexercised: audio start and failure, overlay scrolling,
@@ -163,10 +178,16 @@ mis-keyed answers. Log it as a model check, not as review.
 
 ### 9. No fresh sitting on bank 1.1.0
 The two baseline reports were taken on 1.0.0, whose guessing route inflated
-recognition and pinyin. `compareAttempts` refuses to diff across bank versions,
-so this is surfaced rather than silent — but it means **there is currently no
-comparison baseline.** One sitting per child on 1.1.0 produces numbers worth
-tracking.
+recognition and pinyin. Bank 1.0.0 is no longer shipped, so those two reports
+now show "taken on a bank that is no longer available" rather than being
+rescored on 1.1.0 — **there is currently no comparison baseline.** One sitting
+per child on 1.1.0, then "Repeat same questions" later, produces the first
+before-and-after the app can show.
+
+### 9b. Lesson answer options — content
+Lesson comprehension is think-then-reveal with a self-report. Real marking
+needs reviewed answer choices for the 44 substantive lessons (and the 44 still
+to be written). Author them with the HSK3/4 work.
 
 ### 10. Curriculum: words with no standalone HSK entry
 同 is taught only inside compounds (同学, 同意, both now present). If authored

@@ -120,11 +120,20 @@
       formId: opts.formId,
       mode: opts.mode || "baseline",
       comparisonAttemptId: opts.comparisonAttemptId || null,
+      // The device that started it. An attempt in progress is continued only
+      // there; every device can still read it for history and comparison.
+      deviceId: opts.deviceId || null,
+      // A same-questions repeat shuffles options with the ORIGINAL attempt's
+      // seed and walks the original band sequence instead of re-routing, so
+      // "same questions" means the same questions, in the same presentation.
+      optionSeedAttemptId: opts.optionSeedAttemptId || null,
+      bandPath: Array.isArray(opts.bandPath) ? opts.bandPath.slice() : null,
       status: "created",
       revision: 1,
       createdAt: opts.createdAt || new Date().toISOString(),
       submittedAt: null,
       activeTimeMs: 0,
+      breakOfferedAtMs: 0,
       bands: (opts.bands || ["C1"]).slice(),
       presentations: [],
       responses: [],
@@ -155,7 +164,7 @@
     opts = opts || {};
     const existing = attempt.presentations.find((p) => p.itemId === item.id);
     if (existing) return existing;
-    const seed = hashString(`${attempt.attemptId}:${item.id}`);
+    const seed = hashString(`${attempt.optionSeedAttemptId || attempt.attemptId}:${item.id}`);
     const rng = mulberry32(seed);
     const optionOrder = (item.options || []).length
       ? shuffled(item.options.map((o) => o.id), rng)
@@ -193,6 +202,44 @@
     attempt.responses.push(rec);
     attempt.revision++;
     return { response: rec, committed: true };
+  }
+
+  // ── pacing ───────────────────────────────────────────────────────────────
+  /** Time on one item counts up to this; a longer gap is a closed lid, not thinking. */
+  const ACTIVE_CAP_MS = 10 * 60 * 1000;
+  /** The assessment spends no play time and arms no lock, so this is the only pacing it has. */
+  const BREAK_AFTER_MS = 20 * 60 * 1000;
+
+  /** Add the time an item was on screen. activeTimeMs was initialised and never written. */
+  function addActiveTime(attempt, ms, opts) {
+    const cap = (opts && opts.capMs) || ACTIVE_CAP_MS;
+    const n = Number(ms) || 0;
+    if (n <= 0 || n > cap) return attempt.activeTimeMs || 0;
+    attempt.activeTimeMs = (attempt.activeTimeMs || 0) + n;
+    return attempt.activeTimeMs;
+  }
+
+  /** Time for a gentle "save and continue later?" — once per threshold, never a lock. */
+  function shouldOfferBreak(attempt, opts) {
+    const threshold = (opts && opts.thresholdMs) || BREAK_AFTER_MS;
+    return ((attempt.activeTimeMs || 0) - (attempt.breakOfferedAtMs || 0)) >= threshold;
+  }
+
+  function markBreakOffered(attempt) {
+    attempt.breakOfferedAtMs = attempt.activeTimeMs || 0;
+    return attempt;
+  }
+
+  /**
+   * The band a planned repeat goes to after `band`. `null` when the plan ends
+   * there; `undefined` when there is no plan and routing should decide.
+   */
+  function nextPlannedBand(attempt, band) {
+    const path = attempt && attempt.bandPath;
+    if (!Array.isArray(path) || !path.length) return undefined;
+    const i = path.indexOf(band);
+    if (i === -1) return null;
+    return path[i + 1] || null;
   }
 
   // ── scoring ──────────────────────────────────────────────────────────────
@@ -352,11 +399,11 @@
     }
 
     const byId = itemsById(bank);
-    const anchorOf = (attempt) => {
+    const anchorOf = (attempt, bands) => {
       const res = { anchor: {}, fresh: {} };
       const map = {};
       attempt.responses.forEach((r) => { map[r.itemId] = r; });
-      sharedBands.forEach((band) => {
+      bands.forEach((band) => {
         selectItems(bank, forms, attempt.formId, band).forEach((item) => {
           if (item.domain === "writing_recall") return; // reviewed separately
           const bucket = item.anchorGroupId ? res.anchor : res.fresh;
@@ -370,7 +417,7 @@
       return res;
     };
 
-    const A = anchorOf(a), B = anchorOf(b);
+    const A = anchorOf(a, sharedBands), B = anchorOf(b, sharedBands);
     const diff = (x, y) => {
       const out = {};
       Object.keys(Object.assign({}, x, y)).forEach((domain) => {
@@ -388,10 +435,22 @@
       return out;
     };
 
+    // Per band as well as pooled. Bands are never pooled in the report, and a
+    // comparison that pooled them would hide exactly where the change happened.
+    const byBand = {};
+    sharedBands.forEach((band) => {
+      const x = anchorOf(a, [band]), y = anchorOf(b, [band]);
+      byBand[band] = { anchors: diff(x.anchor, y.anchor), fresh: diff(x.fresh, y.fresh) };
+    });
+    const notCompared = [...a.bands, ...b.bands].filter((x, i, arr) => sharedBands.indexOf(x) === -1 && arr.indexOf(x) === i);
+
     const sameForm = a.formId === b.formId;
     return {
       comparable: true,
       bands: sharedBands,
+      byBand,
+      notCompared,
+      bandSetsDiffer: notCompared.length > 0,
       sameForm,
       label: sameForm
         ? "same-form repeat — scores can rise from familiarity with the identical questions"
@@ -407,6 +466,7 @@
     INPUT_SUBMITTED, INPUT_DONT_KNOW, INPUT_UNANSWERED,
     mulberry32, hashString, shuffled, itemsById,
     selectItems, createAttempt, canTransition, transition, present, respond,
-    isCorrect, scoreAttempt, routeNextBand, compareAttempts,
+    nextPlannedBand, isCorrect, scoreAttempt, routeNextBand, compareAttempts,
+    ACTIVE_CAP_MS, BREAK_AFTER_MS, addActiveTime, shouldOfferBreak, markBreakOffered,
   };
 });

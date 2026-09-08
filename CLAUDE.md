@@ -444,6 +444,7 @@ function defPlayer() {
     failedWords: {},        // { zh: { zh, py, en, failCount, lastFailed } }
     traceStars: {},         // { zh: 0|1|2|3 } — best trace stars per character
     reviewRecords: {},      // { "zh::skill": record } — retention evidence, §25
+    lessonSelfCheck: {},    // { gateKey: { qIdx: { result: 'had'|'notyet', at } } } — self-report, never evidence
 
     // ── Sync ──
     revision: 0,            // compare-and-set counter for the Firestore write
@@ -470,7 +471,9 @@ function defPlayer() {
       listen: null,         // mid-game Listen
       trace: null,          // mid-game Trace
       revenge: null,        // mid-round Revenge
+      review: null,         // mid-round Review today (§25)
     },
+    pendingSessionClearedAt: {}, // { slot: ms } — when a slot was deliberately cleared, for the merge (§26)
 
     // ── Daily stats ──
     todayStats: {},         // { "YYYY-MM-DD": { stars, correct, wrong, stories, gates, champions } }
@@ -489,7 +492,8 @@ function defPlayer() {
     },
 
     // ── Gate timers ──
-    gateTimers: {},         // { "did": { startKey, deadlineKey, active, days } }
+    gateTimers: {},         // { gateKey: { startKey, deadlineKey, active, days, attemptId } }
+    gateResetSeq: {},       // { gateKey: n } — deadline resets so far; rounds carry the value they started under
     timerReminderShown: {}, // { "did": dateKey }
     timerWarningShown: {},  // { "did": dateKey }
     timerLastSeenAt: {},    // { "did": dateKey }
@@ -629,6 +633,18 @@ and then detonated mid-session the next time any game or quiz happened to finish
 pending quiz, and **archives** them first. `library`, `failedWords`,
 `reviewRecords` and stars are never touched: long-term learning records do not
 expire.
+
+**A round is bound to the attempt it started under.** Every gate-scoped round —
+the four games and the boss/champion quiz — records `gateAttemptBinding()`
+(`{playerId, gateKey, attemptId, resetSeq}`) when it starts and carries it
+through save and restore. `updateGateGameBest` and `renderQuizResult` check it
+with `gateSessionQualifies()`: a round that no longer matches the gate's current
+attempt (the deadline passed mid-round) is presented as practice and pays
+nothing, while its per-answer evidence stands. A pre-timer round qualifies once
+its own 3★ mints the timer, as long as no reset separates the two. Before this,
+the reset marked only the *saved* quiz copy, the live quiz never read it, and
+the games had no check at all — so the round that outlived the deadline was
+the one that resurrected the credit the reset had cleared.
 
 ---
 
@@ -1066,8 +1082,8 @@ outside it.
 |---|---|
 | `js/assessment-core.js` | Pure: item selection, per-band scoring, routing, comparison, the attempt state machine. No DOM, no globals. |
 | `js/assessment-ui.js` | Overlay, band transitions, save/resume, per-band report. |
-| `js/player-store.js` | Attempts at `chinese-adventure/{playerId}/assessments/{attemptId}`, revision compare-and-set, offline queue. |
-| `data/assessment/**` | Versioned frozen bank: 4 bands × 2 forms, 240 distinct items, 34 per form-band, 8 shared anchors per band, 12 passages. |
+| `js/player-store.js` | Attempts at `chinese-adventure/{playerId}/assessments/{attemptId}`; device id; transactional compare-and-set on the acknowledged base revision; cloud listing and hydration; offline queue flushed on open and on `online`. |
+| `data/assessment/<version>/` | Frozen banks, one directory per version; `manifest.json` lists them under `versions` and serves the current one. 1.1.0: 4 bands × 2 forms, 240 distinct items, 34 per form-band, 8 shared anchors per band, 12 passages. |
 | `scripts/validate_assessment.js` | Domain contract. `--audio` HEAD-checks all 108 clips. |
 
 **Bands, not a score.** Four custom bands C1–C4. A band is decided on that band's
@@ -1085,6 +1101,30 @@ gate is truthful labelling, not a validity claim.
 
 **Unanswered ≠ wrong.** `I don't know` is wrong. Save & Exit, missing audio, a
 technical failure and a timeout are **unanswered**.
+
+**One device continues an attempt.** An attempt records the device that started
+it and is resumable only there; every device hydrates the cloud's attempts on
+open, so history and comparison see them all. Two devices on one attempt sit at
+equal revisions most of the time, which is the one case a compare-and-set can
+only refuse, so the lock removes the case rather than adjudicating it.
+
+**Reports are scored on the bank they were taken with.** `loadAssessmentBank(version)`
+loads a frozen bank by `attempt.bankVersion`; a version the manifest no longer
+lists renders "taken on a bank that is no longer available" instead of rescoring.
+The builder writes to `data/assessment/<BANK_VERSION>/` and never overwrites an
+older directory.
+
+**A repeat is the same sitting.** "Repeat same questions" starts in the original
+first band, seeds option order on the original attempt (`optionSeedAttemptId`)
+and follows the original band sequence (`bandPath`, `nextPlannedBand`). The
+matched form starts in the same band and routes normally. `assessmentCompare`
+shows before and after per band per domain, anchors apart from fresh items, and
+names the bands it could not compare.
+
+**Pacing.** The assessment spends no play time, so it keeps its own:
+`addActiveTime` lands each item's screen time with its answer (capped, so a
+closed lid is not thinking) and `shouldOfferBreak` offers a soft "save and
+continue later?" once per twenty minutes. No lock, nothing to unlock.
 
 **Audio.** Single-syllable targets use fixed MP3 clips, so unaided recognition —
 the one domain where cross-attempt comparison matters — is identical on every
@@ -1134,6 +1174,26 @@ later" — never deleted, never held over the child. One slot is reserved for
 something already recalled, so a struggling child does not meet an unbroken run
 of their own failures.
 
+**Review today** is the student-facing end of the schedule (`buildReviewRound`,
+`startReviewRound`, `answerReview` in `index.html`; slot `pendingSessions.review`;
+scope `review`). It is reached from a hub card and the fifth row of the games
+picker, is always open and never a gate requirement. Each due record is asked
+in its own skill: `recognition` is heard and a character tapped; `meaning` shows
+the character and asks the English; `contextComprehension` shows a story
+sentence with the word blanked and its translation. The first response is
+unaided evidence; a miss shows the reveal card and asks once more, recorded
+`sameSession`. Early exit saves and pays nothing (§2); natural completion pays a
+flat `REVIEW_STARS` (5) whatever the answers. `writingRecall` records are counted
+as remaining, not asked — nothing in the app produces them yet.
+
+**Lesson self-checks are not evidence.** A lesson question hides its answer until
+Reveal; the child's "I had it" / "Not yet" goes to `lessonSelfCheck`, never to
+`reviewRecords`, and pays nothing.
+
+**Attempt entries carry ids.** Each entry in a record's `attempts` has a stable
+`id` and an arrival `at`, and `applyAttempt` is a pure fold, so `mergeRecords`
+can union two devices' histories and replay them to the same schedule (§26).
+
 `targetsFromAssessment` turns weak assessment domains into **suggestions** only,
 carrying `provenance: "assessment"`. Writing awaiting review is never counted as a
 weakness. Assessment results never write into the review store by themselves, and
@@ -1162,9 +1222,30 @@ against `revision`; a stale write is refused rather than landing.
 **Divergence is merged, not resolved by picking a winner** (`js/merge-state.js`).
 Stars are an event ledger with stable ids, so the merge is commutative and
 idempotent — the same award seen twice counts once, and merge order does not
-matter. Sets are unioned; counters are maxed; gate records respect `lastResetAt`;
-two genuinely different in-progress rounds are **both kept** under
-`conflictSessions` rather than one being discarded.
+matter. Sets are unioned; counters are maxed; two genuinely different
+in-progress rounds are **both kept** under `conflictSessions` rather than one
+being discarded.
+
+**Gate records respect resets, by attempt.** `resetMarker` compares two sides'
+resets by archived attempt id first (an id the other side has never seen is a
+reset it does not know about), then by day, then by `gateResetSeq`. The
+resetting side's record is taken **whole** — a zeros object counts, because that
+is what `resetGateProgress` writes for game stars. The old rule only dropped a
+stale record when the resetting side held nothing, so a reset that wrote zeros
+lost to a stale copy's threes through the per-field max. `gateTimers` merge per
+gate, preferring the attempt not archived on either side.
+
+**Review evidence is unioned, never picked.** `reviewRecords` merge key by key;
+with `ReviewCore.mergeRecords` (passed in explicitly via `mergeOptsFor`, since
+merge-state is a pure module) the two histories are unioned by attempt id and
+replayed, so merge order does not change the schedule. Before this there was no
+rule at all: the whole object came from the local copy, and a device with an
+empty store erased the other's history on first sync.
+
+**A null slot is not "nothing here".** Every slot is initialised to `null`, so a
+plain object merge wrote a device's null over the other's live round. A null
+slot now adopts the other round unless `pendingSessionClearedAt[slot]` says this
+device cleared it after that round was last saved.
 
 **Firestore rules.** `firestore.rules` is a **merge fragment, not a publishable
 ruleset** — the Firebase project serves other apps whose paths are not visible
@@ -1181,8 +1262,8 @@ Every timer, animation frame and async continuation goes through a registry:
 `drainAllDeferred()`, and a monotonic `sessionGen` that `selectPlayer` and
 `goToSelect` bump.
 
-Scopes: `quiz`, `games`, `flash`, `listen`, `session`, `ui`. `exitQuiz` drains
-`quiz`; `closeGamesOverlay` drains `games`; a profile switch drains everything
+Scopes: `quiz`, `games`, `flash`, `listen`, `review`, `session`, `ui`. `exitQuiz` drains
+`quiz`; `closeGamesOverlay` drains `games` and `review`; a profile switch drains everything
 except the wall clock, confetti, the blob-URL revoke, the Firestore listeners and
 the `visibilitychange` handler.
 

@@ -361,3 +361,212 @@ test("app: a wrong Listen answer is evidence, and still reaches the practice que
   assert.equal(rec.dueOn, "2026-09-07", "back tomorrow");
   assert.equal(app.state.jenn.failedWords["书"].failCount, 1, "both systems, one answer");
 });
+
+// ── F02: replayable evidence ───────────────────────────────────────────────
+
+test("F02: every recorded attempt carries a stable id", () => {
+  const store = play([{ wordId: "水", skill: "meaning", correct: true, todayKey: DAY }]);
+  const rec = R.getRecord(store, "水", "meaning");
+  assert.ok(rec.attempts[0].id, "an id is minted");
+  const again = R.recordAttempt(store, { wordId: "水", skill: "meaning", correct: false, todayKey: DAY, id: "given" });
+  assert.equal(R.getRecord(again, "水", "meaning").attempts[1].id, "given", "a caller's id is kept");
+});
+
+test("F02: replaying a union of two histories reproduces the hand-computed schedule", () => {
+  // Day 1 unaided success (A), day 2 miss (B), day 4 unaided success (A).
+  // Ladder: 1 -> success stage 1 due +1; miss -> stage 0 due +1; success -> stage 1 due +1 = day 5.
+  const a = play([
+    { wordId: "火", skill: "recognition", correct: true, todayKey: "2026-09-01", id: "a1" },
+    { wordId: "火", skill: "recognition", correct: true, todayKey: "2026-09-04", id: "a2" },
+  ]);
+  const b = play([{ wordId: "火", skill: "recognition", correct: false, todayKey: "2026-09-02", id: "b1" }]);
+  const m = R.mergeRecords(R.getRecord(a, "火", "recognition"), R.getRecord(b, "火", "recognition"));
+  assert.equal(m.attempts.length, 3);
+  assert.deepEqual(m.attempts.map((e) => e.id), ["a1", "b1", "a2"], "in study-date order");
+  assert.equal(m.stage, 1);
+  assert.equal(m.dueOn, "2026-09-05");
+  assert.equal(m.unresolvedRuns, 0);
+  assert.deepEqual(m.independentSuccesses, ["2026-09-01", "2026-09-04"]);
+  assert.equal(m.firstTaughtOn, "2026-09-01");
+});
+
+test("F02: merging a record with itself changes nothing, and legacy entries do not duplicate", () => {
+  const legacy = {
+    wordId: "山", skill: "meaning", stage: 1, dueOn: "2026-09-07",
+    attempts: [{ on: DAY, correct: true, supported: false, sameSession: false, source: "listen" }],
+    independentSuccesses: [DAY], firstTaughtOn: DAY, lastSeenOn: DAY, unresolvedRuns: 0,
+  };
+  const m = R.mergeRecords(legacy, JSON.parse(JSON.stringify(legacy)));
+  assert.equal(m.attempts.length, 1, "the same id-less attempt seen on both devices counts once");
+  assert.equal(m.stage, 1);
+  assert.equal(m.dueOn, "2026-09-07");
+});
+
+test("F02: at the history bound the fuller copy is kept whole rather than under-replayed", () => {
+  const full = { wordId: "人", skill: "meaning", stage: 5, dueOn: "2026-10-01", lastSeenOn: DAY,
+    attempts: Array.from({ length: R.MAX_ATTEMPTS }, (_, i) => ({ id: `f${i}`, on: DAY, correct: true })) };
+  const small = { wordId: "人", skill: "meaning", stage: 1, dueOn: "2026-09-07", lastSeenOn: DAY,
+    attempts: [{ id: "s1", on: DAY, correct: true }] };
+  assert.equal(R.mergeRecords(full, small).stage, 5);
+  assert.equal(R.mergeRecords(small, full).stage, 5);
+});
+
+// ── F05: the review reaches a child ────────────────────────────────────────
+// Audit finding F05. The schedule was stored and never read back: nothing in
+// the app called reviewDueToday. These drive the real activity end to end.
+
+/** Seed `n` due records for HSK1 words in the given skill, all due yesterday. */
+function seedDue(app, n, skill, start = 0) {
+  const words = app.HSK_VOCAB[1].slice(start, start + n);
+  words.forEach((w) => app.noteEvidence("jenn", { zh: w.zh }, skill, false, {}));
+  Object.values(app.state.jenn.reviewRecords).forEach((r) => { r.dueOn = "2026-09-01"; });
+  return words;
+}
+const senses = (s) => String(s || "").toLowerCase().split(";").map((t) => t.trim()).filter(Boolean);
+const shareSense = (a, b) => senses(a).some((t) => senses(b).indexOf(t) !== -1);
+
+test("F05: a round is bounded, states its backlog, and never offers a second right answer", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 12, "meaning");
+
+  const round = app.buildReviewRound("jenn", "normal");
+  assert.equal(round.items.length, 8, "eight items in a normal sitting");
+  assert.equal(round.remaining, 4);
+  assert.equal(round.summary, "8 to review; 4 remain for later");
+  const byZh = {};
+  app.HSK_VOCAB[1].forEach((w) => { byZh[w.zh] = w; });
+  round.items.forEach((it) => {
+    assert.equal(it.kind, "meaning", "a meaning record is asked as character → English");
+    assert.equal(new Set(it.opts).size, it.opts.length, `${it.zh}: options are distinct`);
+    assert.ok(it.opts.indexOf(it.correct) !== -1, "the answer is among the options");
+    it.opts.filter((o) => o !== it.correct).forEach((o) => {
+      assert.ok(!shareSense(o, it.en), `${it.zh}: wrong option "${o}" must not mean the same as "${it.en}"`);
+    });
+  });
+});
+
+test("F05: each skill is asked in its own exercise", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 2, "recognition");
+  seedDue(app, 2, "meaning", 2);
+  const round = app.buildReviewRound("jenn", "normal");
+  const kinds = {};
+  round.items.forEach((it) => { kinds[it.skill] = it; });
+  assert.equal(kinds.recognition.kind, "audio", "a recognition record is heard, then a character is tapped");
+  kinds.recognition.opts.forEach((o) => assert.ok(/[一-鿿]/.test(o), "options are characters"));
+  assert.equal(kinds.meaning.kind, "meaning");
+  kinds.meaning.opts.forEach((o) => assert.ok(!/[一-鿿]/.test(o), "options are English"));
+});
+
+test("F05: a record the app cannot ask about yet stays due and is counted, not dropped", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "meaning");
+  app.noteEvidence("jenn", { zh: "水" }, "writingRecall", false, {});
+  app.state.jenn.reviewRecords["水::writingRecall"].dueOn = "2026-09-01";
+  const round = app.buildReviewRound("jenn", "normal");
+  assert.equal(round.items.length, 3);
+  assert.equal(round.remaining, 1, "the writing record is reported as remaining");
+  assert.equal(round.summary, "3 to review; 1 remain for later");
+});
+
+test("F05: the first answer is unaided evidence; a retry after the reveal is not", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  const [w] = seedDue(app, 1, "meaning");
+  app.startReviewRound("normal");
+  const it = app.reviewSt.items[0];
+  assert.equal(it.zh, w.zh);
+  const before = app.state.jenn.reviewRecords[`${w.zh}::meaning`];
+  assert.equal(before.attempts.length, 1, "the seeded miss");
+
+  // Wrong first tap.
+  const wrongIdx = it.opts.findIndex((o) => o !== it.correct);
+  app.answerReview(wrongIdx);
+  let rec = app.state.jenn.reviewRecords[`${w.zh}::meaning`];
+  assert.equal(rec.attempts.length, 2);
+  assert.equal(rec.attempts[1].correct, false);
+  assert.equal(rec.attempts[1].sameSession, false, "the first response is unaided");
+  assert.equal(rec.attempts[1].source, "review");
+  assert.equal(app.reviewSt.retry, true, "the same item is asked once more");
+  assert.equal(app.reviewSt.answered, 1);
+  assert.equal(app.state.jenn.failedWords[w.zh].failCount, 1, "and it reaches the practice queue");
+
+  // Correct on the retry.
+  app.renderReviewRound();
+  app.answerReview(it.opts.indexOf(it.correct));
+  rec = app.state.jenn.reviewRecords[`${w.zh}::meaning`];
+  assert.equal(rec.attempts.length, 3);
+  assert.equal(rec.attempts[2].correct, true);
+  assert.equal(rec.attempts[2].sameSession, true, "being told is not remembering");
+  assert.equal(rec.stage, 0, "the schedule did not advance");
+  assert.equal(rec.independentSuccesses.length, 0);
+  assert.equal(app.reviewSt.answered, 1, "a retry is not a second item");
+  assert.equal(app.reviewSt.qi, 1, "and the round moved on");
+});
+
+test("F05: leaving early saves the round and pays nothing; resuming lands on the same item", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 4, "meaning");
+  app.state.jenn.totalStars = 100;
+  app.startReviewRound("normal");
+  const first = app.reviewSt.items[0];
+  app.answerReview(first.opts.indexOf(first.correct));
+  assert.equal(app.reviewSt.qi, 1);
+  app.exitReviewRound();
+  assert.equal(app.reviewSt, null);
+  const saved = app.state.jenn.pendingSessions.review;
+  assert.ok(saved, "the round survives an early exit");
+  assert.equal(saved.qi, 1);
+  assert.equal(saved.items.length, 4);
+  assert.equal(app.state.jenn.totalStars, 100, "zero stars for an early exit");
+
+  assert.equal(app.resumeSession("review"), true);
+  assert.equal(app.reviewSt.qi, 1, "resumed at the item the child had reached");
+  assert.equal(app.reviewSt.items[0].zh, first.zh);
+});
+
+test("F05: finishing the round pays a flat amount whatever the answers were", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "meaning");
+  app.state.jenn.totalStars = 100;
+  app.startReviewRound("normal");
+  while (app.reviewSt) {
+    const it = app.reviewSt.items[app.reviewSt.qi];
+    if (!it) { app.renderReviewRound(); break; }
+    // Miss every item, twice.
+    app.answerReview(it.opts.findIndex((o) => o !== it.correct));
+    if (!app.reviewSt) break;
+    app.renderReviewRound();
+    app.answerReview(it.opts.findIndex((o) => o !== it.correct));
+    app.renderReviewRound();
+  }
+  assert.equal(app.reviewSt, null, "the round ended");
+  assert.equal(app.state.jenn.totalStars, 105, "5 stars for showing up, not for being right");
+  assert.equal(app.state.jenn.pendingSessions.review, null, "nothing left to resume");
+  assert.ok(app.state.jenn.pendingSessionClearedAt.review > 0);
+});
+
+test("F05: with nothing due there is no round and no pending slot", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  assert.equal(app.buildReviewRound("jenn", "normal").items.length, 0);
+  app.startReviewRound("normal");
+  assert.equal(app.reviewSt, null);
+  assert.equal(app.state.jenn.pendingSessions.review, null);
+});
+
+test("F05: the hub card and the games picker both show the queue and a way in", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 12, "meaning");
+  const box = app.document.getElementById("review-today-box");
+  app.renderReviewTodayBox("jenn");
+  assert.match(box.innerHTML, /8 to review; 4 remain for later/);
+  assert.match(box.innerHTML, /startReviewRound\(\)/);
+  assert.match(app.gamePickerHtml(), /Review today[\s\S]*8 to review; 4 remain for later[\s\S]*startReviewRound\(\)/);
+});

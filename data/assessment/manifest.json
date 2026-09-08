@@ -11,8 +11,16 @@
     "B"
   ],
   "files": {
-    "items": "v1/items.json",
-    "forms": "v1/forms.json"
+    "items": "1.1.0/items.json",
+    "forms": "1.1.0/forms.json"
+  },
+  "versions": {
+    "1.1.0": {
+      "files": {
+        "items": "1.1.0/items.json",
+        "forms": "1.1.0/forms.json"
+      }
+    }
   },
   "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
   "bandInfo": {
