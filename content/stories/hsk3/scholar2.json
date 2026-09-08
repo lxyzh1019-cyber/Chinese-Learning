@@ -1,0 +1,541 @@
+{
+  "id": "scholar2",
+  "did": 17,
+  "level": 3,
+  "title": "学者的笔记",
+  "en": "The Scholar's Notes",
+  "names": {
+    "金朝": {
+      "py": "Jīncháo",
+      "en": "Jin Dynasty"
+    }
+  },
+  "sents": [
+    {
+      "zh": "金朝有一位努力的学者，每天读很多书。",
+      "en": "Jin Dynasty had a hard-working scholar who read many books every day.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "金朝",
+          "py": "Jīncháo",
+          "mn": "Jin Dynasty"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "CL",
+          "bonus": true
+        },
+        {
+          "zh": "努",
+          "py": "nǔ",
+          "mn": "hard-",
+          "bonus": true
+        },
+        {
+          "zh": "力",
+          "py": "lì",
+          "mn": "-working",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "scho-",
+          "bonus": true
+        },
+        {
+          "zh": "者",
+          "py": "zhě",
+          "mn": "-lar",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "read"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "many"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他把自己学到的东西都写在笔记本里。",
+      "en": "He wrote everything he learned in his notebook.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)",
+          "bonus": true
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "self"
+        },
+        {
+          "zh": "己",
+          "py": "jǐ",
+          "mn": "self",
+          "bonus": true
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "lear-"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "东",
+          "py": "dōng",
+          "mn": "things-",
+          "bonus": true
+        },
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "west",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "wrote"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at; in"
+        },
+        {
+          "zh": "笔",
+          "py": "bǐ",
+          "mn": "note-",
+          "bonus": true
+        },
+        {
+          "zh": "记",
+          "py": "jì",
+          "mn": "-book",
+          "bonus": true
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "book",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他研究历史、文学和哲学，知识非常丰富。",
+      "en": "He studied history, literature, and philosophy — very knowledgeable.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "研",
+          "py": "yán",
+          "mn": "stu-",
+          "bonus": true
+        },
+        {
+          "zh": "究",
+          "py": "jiū",
+          "mn": "-dy",
+          "bonus": true
+        },
+        {
+          "zh": "历",
+          "py": "lì",
+          "mn": "hist-"
+        },
+        {
+          "zh": "史",
+          "py": "shǐ",
+          "mn": "-ory"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "文",
+          "py": "wén",
+          "mn": "liter-"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "-ature",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "哲",
+          "py": "zhé",
+          "mn": "philos-",
+          "bonus": true
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "-ophy",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "知",
+          "py": "zhī",
+          "mn": "know-",
+          "bonus": true
+        },
+        {
+          "zh": "识",
+          "py": "shí",
+          "mn": "to know",
+          "bonus": true
+        },
+        {
+          "zh": "非",
+          "py": "fēi",
+          "mn": "ex-"
+        },
+        {
+          "zh": "常",
+          "py": "cháng",
+          "mn": "often"
+        },
+        {
+          "zh": "丰",
+          "py": "fēng",
+          "mn": "rich-",
+          "bonus": true
+        },
+        {
+          "zh": "富",
+          "py": "fù",
+          "mn": "rich",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他的笔记被后来的学者当作珍贵的资料。",
+      "en": "His notes were treated as precious materials by later scholars.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "笔",
+          "py": "bǐ",
+          "mn": "note-",
+          "bonus": true
+        },
+        {
+          "zh": "记",
+          "py": "jì",
+          "mn": "-book",
+          "bonus": true
+        },
+        {
+          "zh": "被",
+          "py": "bèi",
+          "mn": "were",
+          "bonus": true
+        },
+        {
+          "zh": "后",
+          "py": "hòu",
+          "mn": "later",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "scho-",
+          "bonus": true
+        },
+        {
+          "zh": "者",
+          "py": "zhě",
+          "mn": "-lars",
+          "bonus": true
+        },
+        {
+          "zh": "当",
+          "py": "dāng",
+          "mn": "treated as",
+          "bonus": true
+        },
+        {
+          "zh": "作",
+          "py": "zuò",
+          "mn": "to do; work",
+          "bonus": true
+        },
+        {
+          "zh": "珍",
+          "py": "zhēn",
+          "mn": "preci-",
+          "bonus": true
+        },
+        {
+          "zh": "贵",
+          "py": "guì",
+          "mn": "expensive",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "资",
+          "py": "zī",
+          "mn": "mate-",
+          "bonus": true
+        },
+        {
+          "zh": "料",
+          "py": "liào",
+          "mn": "-rials",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他的故事告诉我们：勤奋学习，知识就是力量。",
+      "en": "His story tells us: study diligently, and knowledge is power.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "故",
+          "py": "gù",
+          "mn": "sto-",
+          "bonus": true
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing",
+          "bonus": true
+        },
+        {
+          "zh": "告",
+          "py": "gào",
+          "mn": "tells",
+          "bonus": true
+        },
+        {
+          "zh": "诉",
+          "py": "sù",
+          "mn": "tells",
+          "bonus": true
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "zh": "勤",
+          "py": "qín",
+          "mn": "dilig-",
+          "bonus": true
+        },
+        {
+          "zh": "奋",
+          "py": "fèn",
+          "mn": "-ent",
+          "bonus": true
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "study"
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "to practise"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "知",
+          "py": "zhī",
+          "mn": "know-",
+          "bonus": true
+        },
+        {
+          "zh": "识",
+          "py": "shí",
+          "mn": "to know",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "is"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "力",
+          "py": "lì",
+          "mn": "power-"
+        },
+        {
+          "zh": "量",
+          "py": "liàng",
+          "mn": "amount"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

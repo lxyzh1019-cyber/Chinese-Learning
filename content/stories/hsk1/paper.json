@@ -1,0 +1,410 @@
+{
+  "id": "paper",
+  "did": 7,
+  "level": 1,
+  "title": "纸的故事",
+  "en": "The Story of Paper",
+  "names": {
+    "东汉": {
+      "py": "Dōng Hàn",
+      "en": "Eastern Han"
+    },
+    "蔡伦": {
+      "py": "Cài Lún",
+      "en": "Cai Lun"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "以前，人们在竹子上写字，很重。",
+      "en": "Before, people wrote on bamboo sticks — very heavy.",
+      "seg": [
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "by means of",
+          "bonus": true
+        },
+        {
+          "zh": "前",
+          "py": "qián",
+          "mn": "front; before",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at; in"
+        },
+        {
+          "zh": "竹",
+          "py": "zhú",
+          "mn": "bamboo",
+          "bonus": true
+        },
+        {
+          "zh": "子",
+          "py": "zi",
+          "mn": "(word ending)",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "wrote"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character; writing"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "重",
+          "py": "zhòng",
+          "mn": "heavy",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "一本书要用很多竹子，一个人拿不动。",
+      "en": "One book took a great deal of bamboo — one person could not carry it."
+    },
+    {
+      "zh": "东汉时候，一位叫蔡伦的人发现可以用树皮做纸。",
+      "en": "During the Eastern Han, Cai Lun discovered he could make paper from tree bark.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "东汉",
+          "py": "Dōng Hàn",
+          "mn": "Eastern Han"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhòu",
+          "mn": "period"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "person",
+          "bonus": true
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "named",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "蔡伦",
+          "py": "Cài Lún",
+          "mn": "Cai Lun"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "发现",
+          "py": "fāxiàn",
+          "mn": "discovered",
+          "bonus": true
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "could"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "by means of"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "use",
+          "bonus": true
+        },
+        {
+          "zh": "树",
+          "py": "shù",
+          "mn": "tree",
+          "bonus": true
+        },
+        {
+          "zh": "皮",
+          "py": "pí",
+          "mn": "bark",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "make"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他用树皮、旧布和水，做出了纸。",
+      "en": "He used tree bark, old cloth and water to make paper."
+    },
+    {
+      "zh": "纸很轻，也很便宜。",
+      "en": "Paper is light and also cheap.",
+      "seg": [
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "轻",
+          "py": "qīng",
+          "mn": "light",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "便",
+          "py": "pián",
+          "mn": "cheap-"
+        },
+        {
+          "zh": "宜",
+          "py": "yí",
+          "mn": "suitable"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "有了纸，人们可以写很多字。",
+      "en": "With paper, people could write many characters.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "with"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "can"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "by means of"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "write"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "many"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character; writing"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "学生可以带着书上学，老师可以写下课文。",
+      "en": "Students could carry books to school, and teachers could write out lessons."
+    },
+    {
+      "zh": "后来，纸从中国到了别的国家。",
+      "en": "Later, paper travelled from China to other countries."
+    },
+    {
+      "zh": "世界上很多人开始用纸写字。",
+      "en": "Many people around the world began writing on paper."
+    },
+    {
+      "zh": "蔡伦的发明改变中国和世界。",
+      "en": "Cai Lun's invention changed China and the world.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "蔡伦",
+          "py": "Cài Lún",
+          "mn": "Cai Lun"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "发明",
+          "py": "fāmíng",
+          "mn": "invention",
+          "bonus": true
+        },
+        {
+          "zh": "改",
+          "py": "gǎi",
+          "mn": "changed"
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "changed"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "世",
+          "py": "shì",
+          "mn": "world-"
+        },
+        {
+          "zh": "界",
+          "py": "jiè",
+          "mn": "boundary; world"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

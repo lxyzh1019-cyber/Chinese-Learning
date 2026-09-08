@@ -29,6 +29,20 @@ const SCRIPT_RE =
  * in the inline script's lexical scope, so the loader bridges them onto the
  * context object via accessors (see loadApp).
  */
+/**
+ * The 44 level-1 stories, read straight from the data file the app fetches.
+ *
+ * They used to be inline in index.html, so loading the script was enough. Tests
+ * exercise the real corpus rather than a stub, so a story whose tokenization is
+ * broken fails a test instead of only showing up in a browser.
+ */
+function loadStoryFixtures() {
+  try {
+    const raw = fs.readFileSync(path.join(ROOT, "data", "stories", "hsk1.json"), "utf8");
+    return JSON.parse(raw).stories || {};
+  } catch (e) { return {}; }
+}
+
 const BRIDGED = [
   "state", "curP", "curHSK", "curStory", "curDynasty", "quizSt",
   "db", "engagementSettings", "selectedGateId", "curGameTargetDid",
@@ -38,6 +52,7 @@ const BRIDGED = [
   "curGameTargetLevel",
   // Content tables. Also `const`, so also invisible without the bridge.
   "STORIES_MAP", "DYNASTIES", "HSK_VOCAB", "GATE_VOCAB", "GATE_SENTENCES",
+  "UI_LABELS", "timerSecs", "timerIv", "curriculumCache",
 ];
 
 /** Minimal element stub: enough for the app's rendering calls to be no-ops. */
@@ -218,6 +233,15 @@ function loadApp(opts = {}) {
 
   vm.createContext(ctx);
   new vm.Script(code, { filename: "index.html<inline>" }).runInContext(ctx);
+
+  // Stories are fetched at runtime now, and nothing in a test awaits
+  // preloadCurriculum. Seed the cache from the real data file and rebuild the
+  // map exactly as the app does, so STORIES_MAP is populated before the first
+  // word pool is built.
+  if (opts.stories !== false) {
+    ctx.curriculumCache.stories[1] = loadStoryFixtures();
+    ctx.rebuildStoriesMap();
+  }
 
   /** Stop every timer this app instance started. Call when a test is done. */
   ctx.__stopAllTimers = () => {

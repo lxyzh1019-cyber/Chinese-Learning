@@ -1,0 +1,323 @@
+{
+  "id": "shufa",
+  "did": 9,
+  "level": 1,
+  "title": "写字高手",
+  "en": "Master of Calligraphy",
+  "names": {
+    "西晋": {
+      "py": "Xī Jìn",
+      "en": "Western Jin"
+    },
+    "王羲之": {
+      "py": "Wáng Xīzhī",
+      "en": "Wang Xizhi"
+    },
+    "书圣": {
+      "py": "Shū Shèng",
+      "en": "\"Sage of Calligraphy\", a title"
+    },
+    "圣人": {
+      "py": "shèngrén",
+      "en": "a sage"
+    }
+  },
+  "sents": [
+    {
+      "zh": "西晋有一位很有名的人，叫王羲之。",
+      "en": "Western Jin had a very famous person named Wang Xizhi.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "西晋",
+          "py": "Xī Jìn",
+          "mn": "Western Jin"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "person",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "have",
+          "bonus": true
+        },
+        {
+          "zh": "名",
+          "py": "míng",
+          "mn": "famous",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "named",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "王羲之",
+          "py": "Wáng Xīzhī",
+          "mn": "Wang Xizhi"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他很小的时候就开始学写字。",
+      "en": "He began learning to write when he was very young."
+    },
+    {
+      "zh": "他每天练习写字，从不停。",
+      "en": "He practiced writing every day, never stopping.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "练",
+          "py": "liàn",
+          "mn": "prac-",
+          "bonus": true
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "to practise",
+          "bonus": true
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "write"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character; writing"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "never",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "停",
+          "py": "tíng",
+          "mn": "stop",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他写完字就去洗笔，水都变黑了。",
+      "en": "He washed his brush after writing, until the water turned black."
+    },
+    {
+      "zh": "他的字写得非常美。",
+      "en": "His characters were written extremely beautifully.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character; writing"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "written"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(before how it is done)"
+        },
+        {
+          "zh": "非",
+          "py": "fēi",
+          "mn": "ex-"
+        },
+        {
+          "zh": "常",
+          "py": "cháng",
+          "mn": "often"
+        },
+        {
+          "zh": "美",
+          "py": "měi",
+          "mn": "beautiful",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "人们说他是“书圣”，意思是写字的圣人。",
+      "en": "People called him the \"Sage of Calligraphy\" — a saint of writing."
+    },
+    {
+      "zh": "他和朋友在山里写下了很有名的字。",
+      "en": "He and his friends wrote very famous characters in the mountains."
+    },
+    {
+      "zh": "那些字到现在还有人看。",
+      "en": "People still look at those characters today."
+    },
+    {
+      "zh": "后来的人都想学他的字。",
+      "en": "People in later times all wanted to learn his hand."
+    },
+    {
+      "zh": "今天，人们还学习他写字方法。",
+      "en": "Today, people still learn his method of writing.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "now"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still",
+          "bonus": true
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "study"
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "to practise"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "his"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "writing"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character; writing"
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "direction; square",
+          "bonus": true
+        },
+        {
+          "zh": "法",
+          "py": "fǎ",
+          "mn": "method; law",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,590 @@
+{
+  "id": "yuan2",
+  "did": 18,
+  "level": 3,
+  "title": "元朝的美食",
+  "en": "Yuan Dynasty Food Journey",
+  "names": {
+    "元朝": {
+      "py": "Yuáncháo",
+      "en": "Yuan Dynasty"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    },
+    "马可·波罗": {
+      "py": "Mǎkě Bōluó",
+      "en": "Marco Polo"
+    }
+  },
+  "sents": [
+    {
+      "zh": "元朝时候蒙古人带来了很多来自不同地方的食物。",
+      "en": "During the Yuan Dynasty, the Mongols brought many foods from different places.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "元朝",
+          "py": "Yuáncháo",
+          "mn": "Yuan Dynasty"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "at that"
+        },
+        {
+          "zh": "候",
+          "py": "hòu",
+          "mn": "time"
+        },
+        {
+          "zh": "蒙",
+          "py": "Méng",
+          "mn": "Mon-",
+          "bonus": true
+        },
+        {
+          "zh": "古",
+          "py": "gǔ",
+          "mn": "-gol",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "brought",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "many"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "from",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "dif-"
+        },
+        {
+          "zh": "同",
+          "py": "tóng",
+          "mn": "-ferent"
+        },
+        {
+          "zh": "地",
+          "py": "dì",
+          "mn": "(before how it is done)",
+          "bonus": true
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "direction; square",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "食",
+          "py": "shí",
+          "mn": "food-",
+          "bonus": true
+        },
+        {
+          "zh": "物",
+          "py": "wù",
+          "mn": "thing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "奶酪、羊肉和奶茶成为了北方的流行食物。",
+      "en": "Cheese, lamb, and milk tea became popular foods in the north.",
+      "seg": [
+        {
+          "zh": "奶",
+          "py": "nǎi",
+          "mn": "cheese-",
+          "bonus": true
+        },
+        {
+          "zh": "酪",
+          "py": "lào",
+          "mn": "-cheese",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "羊",
+          "py": "yáng",
+          "mn": "lamb-",
+          "bonus": true
+        },
+        {
+          "zh": "肉",
+          "py": "ròu",
+          "mn": "meat",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "奶",
+          "py": "nǎi",
+          "mn": "milk-",
+          "bonus": true
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "-tea",
+          "bonus": true
+        },
+        {
+          "zh": "成",
+          "py": "chéng",
+          "mn": "became",
+          "bonus": true
+        },
+        {
+          "zh": "为",
+          "py": "wéi",
+          "mn": "for; to be",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "北",
+          "py": "běi",
+          "mn": "north-",
+          "bonus": true
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "direction; square",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "流",
+          "py": "liú",
+          "mn": "popular"
+        },
+        {
+          "zh": "行",
+          "py": "xíng",
+          "mn": "fashion",
+          "bonus": true
+        },
+        {
+          "zh": "食",
+          "py": "shí",
+          "mn": "food-",
+          "bonus": true
+        },
+        {
+          "zh": "物",
+          "py": "wù",
+          "mn": "thing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "来自中亚的香料使中国的烹饪变得更加多样化。",
+      "en": "Spices from Central Asia made Chinese cooking even more diverse.",
+      "seg": [
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "from",
+          "bonus": true
+        },
+        {
+          "zh": "中",
+          "py": "zhōng",
+          "mn": "Cen-",
+          "bonus": true
+        },
+        {
+          "zh": "亚",
+          "py": "yà",
+          "mn": "-tral Asia",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "香",
+          "py": "xiāng",
+          "mn": "spic-",
+          "bonus": true
+        },
+        {
+          "zh": "料",
+          "py": "liào",
+          "mn": "-es",
+          "bonus": true
+        },
+        {
+          "zh": "使",
+          "py": "shǐ",
+          "mn": "made"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "烹",
+          "py": "pēng",
+          "mn": "cook-"
+        },
+        {
+          "zh": "饪",
+          "py": "rèn",
+          "mn": "-ing",
+          "bonus": true
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "became",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(before how it is done)"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "more"
+        },
+        {
+          "zh": "加",
+          "py": "jiā",
+          "mn": "even more",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "di-"
+        },
+        {
+          "zh": "样",
+          "py": "yàng",
+          "mn": "-verse",
+          "bonus": true
+        },
+        {
+          "zh": "化",
+          "py": "huà",
+          "mn": "diversified",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "马可·波罗记录下了他在中国品尝到的各种美食。",
+      "en": "Marco Polo recorded the various delicacies he tasted in China.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "马可·波罗",
+          "py": "Mǎkě Bōluó",
+          "mn": "Marco Polo"
+        },
+        {
+          "zh": "记",
+          "py": "jì",
+          "mn": "recorded",
+          "bonus": true
+        },
+        {
+          "zh": "录",
+          "py": "lù",
+          "mn": "recorded",
+          "bonus": true
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "down",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at; in"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "品",
+          "py": "pǐn",
+          "mn": "tast-",
+          "bonus": true
+        },
+        {
+          "zh": "尝",
+          "py": "cháng",
+          "mn": "-ing",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "各",
+          "py": "gè",
+          "mn": "various"
+        },
+        {
+          "zh": "种",
+          "py": "zhǒng",
+          "mn": "kinds",
+          "bonus": true
+        },
+        {
+          "zh": "美",
+          "py": "měi",
+          "mn": "deli-",
+          "bonus": true
+        },
+        {
+          "zh": "食",
+          "py": "shí",
+          "mn": "-cious food",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "不同文化之间的食物交流丰富中国的饮食文化。",
+      "en": "Food exchange between different cultures enriched Chinese food culture.",
+      "seg": [
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "dif-"
+        },
+        {
+          "zh": "同",
+          "py": "tóng",
+          "mn": "-ferent"
+        },
+        {
+          "zh": "文",
+          "py": "wén",
+          "mn": "cul-"
+        },
+        {
+          "zh": "化",
+          "py": "huà",
+          "mn": "-tures"
+        },
+        {
+          "zh": "之",
+          "py": "zhī",
+          "mn": "between",
+          "bonus": true
+        },
+        {
+          "zh": "间",
+          "py": "jiān",
+          "mn": "between",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "食",
+          "py": "shí",
+          "mn": "food",
+          "bonus": true
+        },
+        {
+          "zh": "物",
+          "py": "wù",
+          "mn": "thing",
+          "bonus": true
+        },
+        {
+          "zh": "交",
+          "py": "jiāo",
+          "mn": "ex-",
+          "bonus": true
+        },
+        {
+          "zh": "流",
+          "py": "liú",
+          "mn": "-change",
+          "bonus": true
+        },
+        {
+          "zh": "丰",
+          "py": "fēng",
+          "mn": "enrich-",
+          "bonus": true
+        },
+        {
+          "zh": "富",
+          "py": "fù",
+          "mn": "rich",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "饮",
+          "py": "yǐn",
+          "mn": "dining",
+          "bonus": true
+        },
+        {
+          "zh": "食",
+          "py": "shí",
+          "mn": "food",
+          "bonus": true
+        },
+        {
+          "zh": "文",
+          "py": "wén",
+          "mn": "cul-"
+        },
+        {
+          "zh": "化",
+          "py": "huà",
+          "mn": "-ture"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

@@ -91,16 +91,22 @@
   /**
    * Which levels a child may open.
    *
-   * The new rule is strict: a level opens when the previous level's gate 22 is
-   * cleared. The old rule was a running total (5/11/17 gates), which was much
-   * looser — so migrating without care would TAKE AWAY a tab a child already
-   * had. `legacyLevelAccess` carries that earlier access forward. Access is not
-   * completion: an inherited tab is browsable, it is not credit.
+   * One rule, no exceptions: a level opens when the previous level's gate 22 is
+   * cleared.
+   *
+   * `legacyLevelAccess` used to grant a second route. The migration recorded the
+   * levels the old running-total rule (5/11/17 gates) had opened, and honoured
+   * them here so nobody lost a tab they already had. That grandfather clause is
+   * gone: it let a child hold HSK2 on five cleared gates, which is not the rule
+   * the curriculum is built on, and the discrepancy was invisible in the UI. The
+   * field is still WRITTEN by migratePlayer, because what a child used to be
+   * able to reach is worth keeping as a record — it just no longer opens
+   * anything. Removing the check is what revokes the access: a document that
+   * already carries the field needs no migration.
    */
-  function levelUnlocked(levelId, clearedKeys, legacyLevelAccess) {
+  function levelUnlocked(levelId, clearedKeys) {
     const lv = Number(levelId);
     if (lv === 1) return true;
-    if ((legacyLevelAccess || []).indexOf(lv) !== -1) return true;
     return (clearedKeys || []).indexOf(gateKey(lv - 1, GATES_PER_LEVEL)) !== -1;
   }
 
@@ -212,6 +218,28 @@
     // Preserve the level tabs the old threshold rule had already opened.
     next.legacyLevelAccess = legacyLevelsFor(cleared.length);
     report.legacyLevelAccess = next.legacyLevelAccess;
+
+    // Stories became per-level, so their ids gained a level suffix ("xia" ->
+    // "xia-h1"). Without this remap a child who had read a story twice would
+    // read as never having read it, and §3's chain would silently re-lock
+    // Listen, Match and Rain — the same class of defect as the flashPassDone
+    // remap that only a browser run caught. Legacy reads belong to level 1,
+    // which is the level the existing corpus was written for.
+    const suffixStory = (id) => (/-h[1-4]$/.test(String(id)) ? String(id) : `${id}-h1`);
+    if (Array.isArray(next.storiesCompleted)) {
+      next.storiesCompleted = [...new Set(next.storiesCompleted.map(suffixStory))];
+    }
+    if (next.storyReadCount && typeof next.storyReadCount === "object") {
+      const reads = {};
+      Object.entries(next.storyReadCount).forEach(([id, n]) => {
+        const k = suffixStory(id);
+        reads[k] = Math.max(reads[k] || 0, Number(n) || 0);
+      });
+      next.storyReadCount = reads;
+    }
+    if (Array.isArray(next.legacyStoriesCompleted)) {
+      next.legacyStoriesCompleted = [...new Set(next.legacyStoriesCompleted.map(suffixStory))];
+    }
 
     // The evidence that these came from the old model, kept for provenance.
     next.legacyCredit = {

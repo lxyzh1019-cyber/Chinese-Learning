@@ -464,3 +464,157 @@ test("every audio item resolves to a fixed clip, never device speech", () => {
     });
   });
 });
+
+// ── bank 1.1.0: no answer reachable without reading ────────────────────────
+
+test("A-T20: no audio item is answerable by elimination", () => {
+  // Bank 1.0.0 took distractors as the first three other words in list order,
+  // so items 5 onward offered three sounds that were the correct answers of
+  // items 1-3: 40 of 128 audio items could be answered by process of
+  // elimination, without reading the character at all.
+  const audio = ["recognition_unaided", "decoding_supported"];
+  for (const formId of ["A", "B"]) {
+    for (const band of manifest.bands) {
+      for (const domain of audio) {
+        const items = C.selectItems(bank, forms, formId, band).filter((i) => i.domain === domain);
+        const answered = new Set();
+        for (const it of items) {
+          const ok = it.options.find((o) => o.id === it.acceptedOptionIds[0]);
+          const wrong = it.options.filter((o) => o.id !== it.acceptedOptionIds[0]).map((o) => o.audioAssetId);
+          assert.ok(!wrong.every((w) => answered.has(w)),
+            `${it.id}: every wrong option is an earlier correct answer`);
+          answered.add(ok.audioAssetId);
+        }
+      }
+    }
+  }
+});
+
+test("A-T21: a distractor is never a target sound anywhere in the bank", () => {
+  const audio = ["recognition_unaided", "decoding_supported"];
+  const targets = new Set(bank.items.filter((i) => audio.includes(i.domain))
+    .map((i) => i.options.find((o) => o.id === i.acceptedOptionIds[0]).audioAssetId));
+  bank.items.filter((i) => audio.includes(i.domain)).forEach((it) => {
+    it.options.filter((o) => o.id !== it.acceptedOptionIds[0]).forEach((o) => {
+      assert.ok(!targets.has(o.audioAssetId),
+        `${it.id}: distractor ${o.audioAssetId} is a target elsewhere`);
+    });
+  });
+});
+
+test("A-T22: a section does not offer the same wrong options throughout", () => {
+  // 32 distinct distractor sets across the whole bank made a section read as
+  // one question asked eight times, whether or not it could be solved.
+  const audio = ["recognition_unaided", "decoding_supported"];
+  for (const formId of ["A", "B"]) {
+    for (const band of manifest.bands) {
+      for (const domain of audio) {
+        const items = C.selectItems(bank, forms, formId, band).filter((i) => i.domain === domain);
+        const sets = new Set(items.map((it) => it.options
+          .filter((o) => o.id !== it.acceptedOptionIds[0])
+          .map((o) => o.audioAssetId).sort().join(",")));
+        assert.ok(sets.size >= Math.ceil(items.length / 2),
+          `${formId}/${band}/${domain}: only ${sets.size} distinct sets for ${items.length} items`);
+      }
+    }
+  }
+});
+
+test("A-T23: the correct option is spread evenly across the four slots", () => {
+  // If the shuffle favoured a slot, a child could learn the position instead of
+  // the character — a second route to a right answer without reading.
+  const slots = [0, 0, 0, 0];
+  let n = 0;
+  for (let k = 0; k < 120; k++) {
+    const a = C.createAttempt({ attemptId: `slot-${k}`, playerId: "jenn", bankVersion: manifest.bankVersion, formId: "A", bands: ["C1"] });
+    for (const it of C.selectItems(bank, forms, "A", "C1")) {
+      if (!it.options.length) continue;
+      const p = C.present(a, it, {});
+      slots[p.optionOrder.indexOf(it.acceptedOptionIds[0])]++;
+      n++;
+    }
+  }
+  slots.forEach((c, i) => {
+    const pct = c / n;
+    assert.ok(pct > 0.2 && pct < 0.3, `slot ${i + 1} holds the answer ${(pct * 100).toFixed(1)}% of the time`);
+  });
+});
+
+test("A-T24: bands carry a name and the manifest refuses to call them HSK levels", () => {
+  assert.ok(manifest.bandInfo, "band metadata ships with the bank");
+  for (const b of manifest.bands) {
+    const info = manifest.bandInfo[b];
+    assert.ok(info && info.name && info.about, `${b}: needs a name and a description`);
+    assert.ok(/[一-鿿]/.test(info.zh), `${b}: needs a Chinese name`);
+    assert.ok(!/^HSK/i.test(info.name), `${b}: must not be presented as an HSK level`);
+  }
+  assert.match(manifest.bandNote, /not HSK levels/);
+});
+
+test("A-T25: a writing review scores the domain and leaves the answers alone", () => {
+  // The scorer always read writingReviews and the bank always shipped the
+  // rubric, but nothing in the app ever wrote one — so every report said
+  // "waiting for a grown-up" permanently.
+  const a = C.createAttempt({ attemptId: "wr-1", playerId: "jenn", bankVersion: manifest.bankVersion, formId: "A", bands: ["C1"] });
+  const writing = C.selectItems(bank, forms, "A", "C1").filter((i) => i.domain === "writing_recall");
+  assert.equal(writing.length, 4);
+  writing.forEach((it) => {
+    C.present(a, it, {});
+    C.respond(a, { itemId: it.id, selectedOptionId: null, inputStatus: C.INPUT_SUBMITTED, writingRef: "paper" });
+  });
+  const before = JSON.parse(JSON.stringify(a.responses));
+
+  let s = C.scoreAttempt(a, bank, forms);
+  assert.equal(s.byBand.C1.domains.writing_recall.awaitingReview, 4, "unreviewed writing is unassessed, not zero");
+  assert.equal(s.byBand.C1.domains.writing_recall.correct, 0);
+
+  // Three of four right, which is what both children actually wrote.
+  writing.forEach((it, i) => {
+    a.writingReviews.push({ itemId: it.id, rubricId: "writing-recall-v1", rubricScore: i < 3 ? 2 : 0,
+      reviewedAt: "2026-09-08T00:00:00Z", reason: "marked in the app by a grown-up" });
+  });
+  s = C.scoreAttempt(a, bank, forms);
+  assert.equal(s.byBand.C1.domains.writing_recall.correct, 3);
+  assert.equal(s.byBand.C1.domains.writing_recall.expected, 4);
+  assert.equal(s.byBand.C1.domains.writing_recall.awaitingReview, 0);
+  assert.deepEqual(a.responses, before, "a review is a second opinion on an answer, never a rewrite of it");
+});
+
+test("A-T26: an attempt can start at a band other than the first", () => {
+  const a = C.createAttempt({ attemptId: "b3", playerId: "jess", bankVersion: manifest.bankVersion, formId: "A", bands: ["C3"] });
+  assert.deepEqual(a.bands, ["C3"]);
+  const items = C.selectItems(bank, forms, a.formId, "C3");
+  assert.equal(items.length, 34);
+  assert.ok(items.every((i) => i.band === "C3"), "and is scored on that band's own items only");
+});
+
+test("A-T27: the report can say why it stopped, and how far off it was", () => {
+  const a = C.createAttempt({ attemptId: "why", playerId: "jenn", bankVersion: manifest.bankVersion, formId: "A", bands: ["C1"] });
+  // Recall everything, understand nothing — the shape of the real baseline.
+  C.selectItems(bank, forms, "A", "C1").forEach((it) => {
+    if (it.domain === "writing_recall") return;
+    C.present(a, it, {});
+    const correct = it.domain !== "meaning_context";
+    C.respond(a, { itemId: it.id,
+      selectedOptionId: correct ? it.acceptedOptionIds[0] : it.options.find((o) => o.id !== it.acceptedOptionIds[0]).id,
+      inputStatus: C.INPUT_SUBMITTED });
+  });
+  const route = C.routeNextBand(C.scoreAttempt(a, bank, forms), "C1");
+  assert.equal(route.advance, false);
+  const meaning = route.reasons.find((r) => r.startsWith("meaning_context"));
+  assert.match(meaning, /0\/8 \(need 6\)/, "the reason names the domain, the score and the bar");
+});
+
+test("A-T28: a domain at chance is flagged rather than read as a result", () => {
+  const a = C.createAttempt({ attemptId: "chance", playerId: "jenn", bankVersion: manifest.bankVersion, formId: "A", bands: ["C1"] });
+  C.selectItems(bank, forms, "A", "C1").forEach((it) => {
+    if (it.domain !== "meaning_context") return;
+    C.present(a, it, {});
+    C.respond(a, { itemId: it.id, selectedOptionId: it.options.find((o) => o.id !== it.acceptedOptionIds[0]).id,
+      inputStatus: C.INPUT_SUBMITTED });
+  });
+  const d = C.scoreAttempt(a, bank, forms).byBand.C1.domains.meaning_context;
+  assert.equal(d.chanceLevel, 2, "four options over eight items");
+  assert.equal(d.atChance, true);
+  assert.equal(typeof d.medianSecs, "number", "answer pace comes from data already stored");
+});

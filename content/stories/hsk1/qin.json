@@ -1,0 +1,318 @@
+{
+  "id": "qin",
+  "did": 5,
+  "level": 1,
+  "title": "万里长城",
+  "en": "The Great Wall",
+  "names": {
+    "秦始皇": {
+      "py": "Qín Shǐhuáng",
+      "en": "First Emperor Qin"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    },
+    "长城": {
+      "py": "Chángchéng",
+      "en": "Great Wall"
+    }
+  },
+  "sents": [
+    {
+      "zh": "秦始皇是中国第一个大王。",
+      "en": "Qin Shi Huang was China's first great king.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "秦始皇",
+          "py": "Qín Shǐhuáng",
+          "mn": "First Emperor Qin"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is/was"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "第",
+          "py": "dì",
+          "mn": "ordinal prefix",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)",
+          "bonus": true
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "great"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他让中国的字都一样。",
+      "en": "He made the characters of China all the same."
+    },
+    {
+      "zh": "北边有人常常来，所以他很想做一件事。",
+      "en": "People often came from the north, so he wanted very much to do one thing."
+    },
+    {
+      "zh": "他要做一个很大的长城。",
+      "en": "He wanted to build a very large Great Wall.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "wanted"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "build"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very",
+          "bonus": true
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "长城",
+          "py": "Chángchéng",
+          "mn": "Great Wall"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "很多人来做这个工作。",
+      "en": "Many people came to do this work.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "do"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "工",
+          "py": "gōng",
+          "mn": "work-"
+        },
+        {
+          "zh": "作",
+          "py": "zuò",
+          "mn": "to do; work"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们从早上做到晚上，很累。",
+      "en": "They worked from morning to night, and it was very hard."
+    },
+    {
+      "zh": "长城在山上，很长。",
+      "en": "The Great Wall is on the mountains, very long.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "长城",
+          "py": "Chángchéng",
+          "mn": "Great Wall"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at; in"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "top"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "它有两万多里长，所以叫万里长城。",
+      "en": "It is more than twenty thousand li long, which is why it is called the Ten-Thousand-Li Great Wall."
+    },
+    {
+      "zh": "两千多年过去了，长城还在。",
+      "en": "More than two thousand years have passed, and the Great Wall is still there."
+    },
+    {
+      "zh": "今天，人们还可以看它。",
+      "en": "Today, people can still see it.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "today/now"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "can-"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "by means of"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "see"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

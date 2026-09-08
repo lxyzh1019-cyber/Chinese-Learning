@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_12",
   "level": "HSK1",
   "gateId": 12,
-  "title": "HSK1 Gate 12 Lesson",
-  "explanation": "HSK1 Gate 12：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第12关：今天的新词有：分、笑、女人、小时、有些、帮、日、别人、站、女……等（共14个生字）。复习字有：出来、地方、最后、老、行、号、放、朋友……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 12 · Tang Dynasty",
+  "explanationEn": "Gate 12: Tang Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第12关：唐朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "唐朝的时候，中国很大也很有名。唐朝的大城叫长安。那时候，长安是世界上最大的城。城里有很多路，路很直很长。",
+  "passageEn": "In the Tang dynasty China was large and well known. The great city of the Tang was called Chang’an. At that time Chang’an was the largest city in the world. The city had many streets, straight and long.",
   "keyVocab": [
     {
-      "zh": "分",
-      "pinyin": "fēn",
-      "en": "to divide; to separate"
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "en": "period"
     },
     {
-      "zh": "笑",
-      "pinyin": "xiào",
-      "en": "to laugh; to smile"
+      "zh": "大",
+      "pinyin": "dà",
+      "en": "great"
     },
     {
-      "zh": "女人",
-      "pinyin": "nǚ rén",
-      "en": "woman"
+      "zh": "名",
+      "pinyin": "míng",
+      "en": "name-"
     },
     {
-      "zh": "小时",
-      "pinyin": "xiǎo shí",
-      "en": "hour"
+      "zh": "城",
+      "pinyin": "chéng",
+      "en": "city-"
     },
     {
-      "zh": "有些",
-      "pinyin": "yǒu xiē",
-      "en": "some"
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
     },
     {
-      "zh": "帮",
-      "pinyin": "bāng",
-      "en": "to help; to assist"
+      "zh": "世界",
+      "pinyin": "shì jiè",
+      "en": "world"
     },
     {
-      "zh": "日",
-      "pinyin": "Rì",
-      "en": "abbr. for 本, Japan"
+      "zh": "上",
+      "pinyin": "shàng",
+      "en": "up; on; above"
     },
     {
-      "zh": "别人",
-      "pinyin": "bié ren",
-      "en": "other people; others; other person"
-    },
-    {
-      "zh": "站",
-      "pinyin": "zhàn",
-      "en": "station"
-    },
-    {
-      "zh": "女",
-      "pinyin": "nǚ",
-      "en": "female"
-    },
-    {
-      "zh": "路",
-      "pinyin": "lù",
-      "en": "road; path; way"
-    },
-    {
-      "zh": "男人",
-      "pinyin": "nán rén",
-      "en": "a man"
-    },
-    {
-      "zh": "正在",
-      "pinyin": "zhèng zài",
-      "en": "just at (that time)"
-    },
-    {
-      "zh": "门",
-      "pinyin": "mén",
-      "en": "door; gate; entrance"
+      "zh": "最",
+      "pinyin": "zuì",
+      "en": "most; -est"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "14个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "In the Tang dynasty China was large and well known.",
+      "answer": "唐朝的时候，中国很大也很有名。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：出来 和 地方（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "At that time Chang’an was the largest city in the world.",
+      "answer": "那时候，长安是世界上最大的城。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「分」「笑」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Tang Dynasty in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说唐朝。"
 }

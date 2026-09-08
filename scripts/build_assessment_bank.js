@@ -19,7 +19,7 @@ const path = require("path");
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "data", "assessment", "v1");
 const CONTENT = require("./assessment-content.js");
-const BANK_VERSION = "1.0.0";
+const BANK_VERSION = "1.1.0";
 const STANDARD = "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only";
 
 /** Deterministic clip key for a single tone-marked syllable. Mirrors the app's
@@ -74,14 +74,58 @@ function review(notes) {
     sources: [{ standard: STANDARD, note: "band membership only" }], notes };
 }
 
+/** Stable 32-bit hash, so a given item always draws the same foils. */
+function hashString(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+
+/**
+ * Three wrong SOUNDS for one audio item, drawn from the band's foil pool.
+ *
+ * The pool is disjoint from every target in the bank, which is the whole point:
+ * distractors used to be `C.recognition.filter(x => x.zh !== w.zh).slice(0, 3)`
+ * — the first three other words in list order — so items 5 onward offered three
+ * sounds that were the CORRECT answers of items 1-3. A child who had answered
+ * those could take the remaining option without reading the character at all.
+ * 40 of 128 audio items were solvable that way, and only 32 distinct distractor
+ * sets existed across the whole bank, so a section also felt like one question
+ * asked eight times.
+ *
+ * Selection is a seeded shuffle rather than a sliding window: a window of three
+ * consecutive entries only has as many variants as the pool is long, and
+ * neighbouring items then share two of their three wrong options, which is what
+ * made a section feel like the same question asked eight times. Choosing three
+ * of twelve gives 220 possible sets, and seeding on the item id keeps the bank
+ * reproducible from source.
+ */
+function pickFoils(band, pool, itemId, n) {
+  if (!pool || pool.length < n + 1) {
+    throw new Error(`${band}: foil pool too small (${pool ? pool.length : 0})`);
+  }
+  let seed = hashString(`${band}:${itemId}`);
+  const rand = () => {
+    seed = (Math.imul(seed ^ (seed >>> 15), 2246822507) ^ 0) >>> 0;
+    return seed / 4294967296;
+  };
+  const deck = pool.slice();
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+  return deck.slice(0, n);
+}
+
 for (const [band, C] of Object.entries(CONTENT)) {
 
   // Show the character, choose among four SPOKEN options. No pinyin and no
   // audio on the target — that is what makes it unaided.
   C.recognition.forEach((w) => {
-    const distractors = C.recognition.filter((x) => x.zh !== w.zh).slice(0, 3);
+    const recId = nextId(band, "rec");
+    const distractors = pickFoils(band, C.foils, recId, 3);
     place(band, {
-      id: nextId(band, "rec"), bankVersion: BANK_VERSION, band, domain: "recognition_unaided",
+      id: recId, bankVersion: BANK_VERSION, band, domain: "recognition_unaided",
       targetWordIds: [`${band}:${w.zh}`], passageId: null,
       prompt: { zh: w.zh, enInstruction: "Listen to each one. Which sound matches this character?" },
       support: { targetPinyin: false, targetAudio: false, translation: false },
@@ -99,9 +143,10 @@ for (const [band, C] of Object.entries(CONTENT)) {
   // Character PLUS pinyin, choose the spoken form. Targets are disjoint from
   // the recognition set so the support cannot coach an earlier unaided answer.
   C.decoding.forEach((w) => {
-    const distractors = C.decoding.filter((x) => x.zh !== w.zh).slice(0, 3);
+    const decId = nextId(band, "dec");
+    const distractors = pickFoils(band, C.foils, decId, 3);
     place(band, {
-      id: nextId(band, "dec"), bankVersion: BANK_VERSION, band, domain: "decoding_supported",
+      id: decId, bankVersion: BANK_VERSION, band, domain: "decoding_supported",
       targetWordIds: [`${band}:${w.zh}`], passageId: null,
       prompt: { zh: w.zh, pinyin: w.py, enInstruction: "The pinyin is shown to help. Which sound matches?" },
       support: { targetPinyin: true, targetAudio: false, translation: false },
@@ -189,10 +234,30 @@ fs.writeFileSync(path.join(OUT, "forms.json"), JSON.stringify({
   bankVersion: BANK_VERSION, forms,
 }, null, 2) + "\n");
 
+// Band metadata ships with the bank so the UI can NAME a set. "Set C1" told a
+// parent nothing about what distinguishes it from "Set C2", and nothing on
+// screen named the band during the run at all.
+const BAND_INFO = {
+  C1: { name: "Set 1 · First characters", zh: "第一组 · 最先学的字",
+        about: "Single everyday characters, and sentences of four to six characters." },
+  C2: { name: "Set 2 · Everyday words", zh: "第二组 · 日常词语",
+        about: "Two-character everyday words in short sentences about ordinary things." },
+  C3: { name: "Set 3 · Longer sentences", zh: "第三组 · 长句子",
+        about: "Sentences with more than one clause, and short connected texts." },
+  C4: { name: "Set 4 · Short stories", zh: "第四组 · 短故事",
+        about: "Multi-sentence passages with description and reported speech." },
+};
+const BAND_NOTE = "The sets get harder in order and are built from graded word " +
+  "lists. They are not HSK levels and do not certify one.";
+
 fs.writeFileSync(path.join(ROOT, "data", "assessment", "manifest.json"), JSON.stringify({
   bankVersion: BANK_VERSION, bands, forms: Object.keys(forms),
   files: { items: "v1/items.json", forms: "v1/forms.json" },
   standard: STANDARD,
+  bandInfo: Object.fromEntries(bands.map((b) => [b, Object.assign({}, BAND_INFO[b], {
+    passageChars: `${CONTENT[b].passageRange[0]}–${CONTENT[b].passageRange[1]}`,
+  })])),
+  bandNote: BAND_NOTE,
 }, null, 2) + "\n");
 
 const anchors = items.filter((i) => i.anchorGroupId).length;

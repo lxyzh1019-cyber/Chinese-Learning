@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_22",
   "level": "HSK1",
   "gateId": 22,
-  "title": "HSK1 Gate 22 Lesson",
-  "explanation": "HSK1 Gate 22：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第22关：今天的新词有：休息、班、坏、一边、洗、有的、毛、忘记、房间、八……等（共14个生字）。复习字有：教、不用、读、忘、认真、电、房子、冷……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 22 · Republic of China",
+  "explanationEn": "Gate 22: Republic of China. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第22关：民国。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "一百多年以前，中国还有王。很多人想，中国要不一样。有一个人叫孙中山。他去过很多国家，看过很多事。",
+  "passageEn": "A little over a hundred years ago China still had an emperor. Many people thought China should be different. There was a man called Sun Yat-sen. He had been to many countries and seen many things.",
   "keyVocab": [
     {
-      "zh": "休息",
-      "pinyin": "xiū xi",
-      "en": "rest"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "班",
-      "pinyin": "bān",
-      "en": "class; shift; group"
+      "zh": "百",
+      "pinyin": "bǎi",
+      "en": "hundred"
     },
     {
-      "zh": "坏",
-      "pinyin": "huài",
-      "en": "bad"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
     },
     {
-      "zh": "一边",
-      "pinyin": "yī biān",
-      "en": "one side"
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "year"
     },
     {
-      "zh": "洗",
-      "pinyin": "xǐ",
-      "en": "to wash; to bathe"
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
     },
     {
-      "zh": "有的",
-      "pinyin": "yǒu de",
-      "en": "(there are) some (who are...)"
+      "zh": "还有",
+      "pinyin": "hái yǒu",
+      "en": "furthermore"
     },
     {
-      "zh": "毛",
-      "pinyin": "máo",
-      "en": "hair; fur; mao (0.1 yuan)"
+      "zh": "王",
+      "pinyin": "wáng",
+      "en": "king"
     },
     {
-      "zh": "忘记",
-      "pinyin": "wàng jì",
-      "en": "to forget"
-    },
-    {
-      "zh": "房间",
-      "pinyin": "fáng jiān",
-      "en": "room"
-    },
-    {
-      "zh": "八",
-      "pinyin": "bā",
-      "en": "eight; 8"
-    },
-    {
-      "zh": "左",
-      "pinyin": "zuǒ",
-      "en": "left (direction)"
-    },
-    {
-      "zh": "吃饭",
-      "pinyin": "chī fàn",
-      "en": "to have a meal"
-    },
-    {
-      "zh": "动作",
-      "pinyin": "dòng zuò",
-      "en": "movement; motion; action"
-    },
-    {
-      "zh": "七",
-      "pinyin": "qī",
-      "en": "seven"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "person"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "14个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "A little over a hundred years ago China still had an emperor.",
+      "answer": "一百多年以前，中国还有王。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：教 和 不用（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "There was a man called Sun Yat-sen.",
+      "answer": "有一个人叫孙中山。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「休息」「班」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Republic of China in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说民国。"
 }

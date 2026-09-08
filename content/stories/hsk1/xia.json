@@ -1,0 +1,274 @@
+{
+  "id": "xia",
+  "did": 1,
+  "level": 1,
+  "title": "大禹治水",
+  "en": "Dayu Controls the Floods",
+  "names": {
+    "大禹": {
+      "py": "Dà Yǔ",
+      "en": "Dayu"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "很久以前，中国的水很大。",
+      "en": "Long ago, the waters of China were very high."
+    },
+    {
+      "zh": "水很大，很多人没有家。",
+      "en": "The water was very big; many people had no home.",
+      "seg": [
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "没",
+          "py": "méi",
+          "mn": "no"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "have"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "大禹是一位好人。",
+      "en": "Dayu was a good person.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "大禹",
+          "py": "Dà Yǔ",
+          "mn": "hero Dayu"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is/was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "measure word (people)",
+          "bonus": true
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "王请他去看水，让他想办法。",
+      "en": "The king asked him to look at the water and find a way."
+    },
+    {
+      "zh": "大禹去山上工作。",
+      "en": "Dayu went to work on the mountains.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "大禹",
+          "py": "Dà Yǔ",
+          "mn": "Dayu"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "went to"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "up/on"
+        },
+        {
+          "zh": "工",
+          "py": "gōng",
+          "mn": "work"
+        },
+        {
+          "zh": "作",
+          "py": "zuò",
+          "mn": "to do; work"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他和很多人一起做工，很累。",
+      "en": "He worked together with many people, and it was hard."
+    },
+    {
+      "zh": "他三十年不回家。",
+      "en": "He did not return home for thirty years.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "十",
+          "py": "shí",
+          "mn": "ten"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "回",
+          "py": "huí",
+          "mn": "return"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "有三次他走到家门口，都没有进去。",
+      "en": "Three times he came to his own door and did not go in."
+    },
+    {
+      "zh": "后来水小了，人们回家了。",
+      "en": "Later the water went down and people went home."
+    },
+    {
+      "zh": "中国人都说大禹很好。",
+      "en": "All Chinese people said Dayu was very good.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "say"
+        },
+        {
+          "t": "n",
+          "zh": "大禹",
+          "py": "Dà Yǔ",
+          "mn": "Dayu"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

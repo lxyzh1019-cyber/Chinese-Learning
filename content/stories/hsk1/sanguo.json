@@ -1,0 +1,379 @@
+{
+  "id": "sanguo",
+  "did": 8,
+  "level": 1,
+  "title": "诸葛亮的智慧",
+  "en": "Zhuge Liang's Wisdom",
+  "names": {
+    "三国": {
+      "py": "Sānguó",
+      "en": "Three Kingdoms"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    },
+    "诸葛亮": {
+      "py": "Zhūgě Liàng",
+      "en": "Zhuge Liang"
+    },
+    "刘备": {
+      "py": "Liú Bèi",
+      "en": "Liu Bei"
+    }
+  },
+  "sents": [
+    {
+      "zh": "三国时候，中国有三个国。",
+      "en": "During the Three Kingdoms period, China had three kingdoms.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "三国",
+          "py": "Sānguó",
+          "mn": "Three Kingdoms"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "time"
+        },
+        {
+          "zh": "候",
+          "py": "hòu",
+          "mn": "period"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "国",
+          "py": "guó",
+          "mn": "kingdoms"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "三个国常常打来打去。",
+      "en": "The three kingdoms fought each other again and again."
+    },
+    {
+      "zh": "诸葛亮是一位很有智慧的人。",
+      "en": "Zhuge Liang was a person of great wisdom.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "诸葛亮",
+          "py": "Zhūgě Liàng",
+          "mn": "Zhuge Liang"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "CL-person"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "have"
+        },
+        {
+          "zh": "智",
+          "py": "zhì",
+          "mn": "wisdom-"
+        },
+        {
+          "zh": "慧",
+          "py": "huì",
+          "mn": "wisdom"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他很会想办法，也很会看天气。",
+      "en": "He was good at finding a way, and good at reading the weather."
+    },
+    {
+      "zh": "他帮刘备打了很多次胜仗。",
+      "en": "He helped Liu Bei win many battles.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "帮",
+          "py": "bāng",
+          "mn": "helped"
+        },
+        {
+          "t": "n",
+          "zh": "刘备",
+          "py": "Liú Bèi",
+          "mn": "Liu Bei"
+        },
+        {
+          "zh": "打",
+          "py": "dǎ",
+          "mn": "fight"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "times"
+        },
+        {
+          "zh": "胜",
+          "py": "shèng",
+          "mn": "win"
+        },
+        {
+          "zh": "仗",
+          "py": "zhàng",
+          "mn": "battle"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "有一次他用一个好计，敌人都跑了。",
+      "en": "One time he used a clever plan and all the enemies ran away.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "one time"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "time"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "used"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "clever"
+        },
+        {
+          "zh": "计",
+          "py": "jì",
+          "mn": "plan"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "敌",
+          "py": "dí",
+          "mn": "enemy"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "跑",
+          "py": "pǎo",
+          "mn": "ran"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "还有一次，他一个人坐在城上看书。",
+      "en": "Another time, he sat alone on the city wall reading."
+    },
+    {
+      "zh": "敌人看见了，以为城里有很多兵，就走了。",
+      "en": "The enemy saw him, thought the city was full of soldiers, and left."
+    },
+    {
+      "zh": "他为国做事，一直做到很老。",
+      "en": "He served his kingdom until he was very old."
+    },
+    {
+      "zh": "他的故事到今天还让人感动。",
+      "en": "His story still moves people today.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "故",
+          "py": "gù",
+          "mn": "story-"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive"
+        },
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "today"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "makes"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "感",
+          "py": "gǎn",
+          "mn": "feel-"
+        },
+        {
+          "zh": "动",
+          "py": "dòng",
+          "mn": "to move"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

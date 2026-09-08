@@ -1,0 +1,619 @@
+{
+  "id": "republic2",
+  "did": 22,
+  "level": 3,
+  "title": "新时代的年轻人",
+  "en": "Youth of the New Era",
+  "names": {
+    "民国": {
+      "py": "Mínguó",
+      "en": "Republic"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "民国时候，中国出现了一代充满理想的年轻人。",
+      "en": "During the Republic era, China produced a generation of young people full of ideals.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "民国",
+          "py": "Mínguó",
+          "mn": "Republic"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "at that"
+        },
+        {
+          "zh": "候",
+          "py": "hòu",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "produced",
+          "bonus": true
+        },
+        {
+          "zh": "现",
+          "py": "xiàn",
+          "mn": "appeared",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "代",
+          "py": "dài",
+          "mn": "generation",
+          "bonus": true
+        },
+        {
+          "zh": "充",
+          "py": "chōng",
+          "mn": "full of",
+          "bonus": true
+        },
+        {
+          "zh": "满",
+          "py": "mǎn",
+          "mn": "full of",
+          "bonus": true
+        },
+        {
+          "zh": "理",
+          "py": "lǐ",
+          "mn": "ide-",
+          "bonus": true
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "-als",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "young-",
+          "bonus": true
+        },
+        {
+          "zh": "轻",
+          "py": "qīng",
+          "mn": "-young",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们接受了新式教育，学习科学、民主和现代文化。",
+      "en": "They received new-style education, studying science, democracy, and modern culture.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "接",
+          "py": "jiē",
+          "mn": "received",
+          "bonus": true
+        },
+        {
+          "zh": "受",
+          "py": "shòu",
+          "mn": "received",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new",
+          "bonus": true
+        },
+        {
+          "zh": "式",
+          "py": "shì",
+          "mn": "style",
+          "bonus": true
+        },
+        {
+          "zh": "教",
+          "py": "jiào",
+          "mn": "edu-",
+          "bonus": true
+        },
+        {
+          "zh": "育",
+          "py": "yù",
+          "mn": "-cation",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "studied"
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "to practise"
+        },
+        {
+          "zh": "科",
+          "py": "kē",
+          "mn": "sci-"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "-ence"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "民",
+          "py": "mín",
+          "mn": "demo-",
+          "bonus": true
+        },
+        {
+          "zh": "主",
+          "py": "zhǔ",
+          "mn": "-cracy",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "现",
+          "py": "xiàn",
+          "mn": "mod-"
+        },
+        {
+          "zh": "代",
+          "py": "dài",
+          "mn": "-ern"
+        },
+        {
+          "zh": "文",
+          "py": "wén",
+          "mn": "cul-"
+        },
+        {
+          "zh": "化",
+          "py": "huà",
+          "mn": "-ture"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "很多人出国留学，回来后为中国的发展做出贡献。",
+      "en": "Many went abroad to study and returned to contribute to China's development.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "many"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "went a-",
+          "bonus": true
+        },
+        {
+          "zh": "国",
+          "py": "guó",
+          "mn": "-broad",
+          "bonus": true
+        },
+        {
+          "zh": "留",
+          "py": "liú",
+          "mn": "stay",
+          "bonus": true
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "study",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "回",
+          "py": "huí",
+          "mn": "returned",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "后",
+          "py": "hòu",
+          "mn": "after",
+          "bonus": true
+        },
+        {
+          "zh": "为",
+          "py": "wèi",
+          "mn": "for; to be",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "devel-",
+          "bonus": true
+        },
+        {
+          "zh": "展",
+          "py": "zhǎn",
+          "mn": "-opment",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "make"
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "CMPL"
+        },
+        {
+          "zh": "贡",
+          "py": "gòng",
+          "mn": "contri-",
+          "bonus": true
+        },
+        {
+          "zh": "献",
+          "py": "xiàn",
+          "mn": "-bution",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们创作新文学，研究新科学，推动社会进步。",
+      "en": "They created new literature, researched new science, and pushed society forward.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "创",
+          "py": "chuàng",
+          "mn": "created",
+          "bonus": true
+        },
+        {
+          "zh": "作",
+          "py": "zuò",
+          "mn": "to do; work",
+          "bonus": true
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new",
+          "bonus": true
+        },
+        {
+          "zh": "文",
+          "py": "wén",
+          "mn": "liter-"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "-ature",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "研",
+          "py": "yán",
+          "mn": "re-",
+          "bonus": true
+        },
+        {
+          "zh": "究",
+          "py": "jiū",
+          "mn": "-search",
+          "bonus": true
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new",
+          "bonus": true
+        },
+        {
+          "zh": "科",
+          "py": "kē",
+          "mn": "sci-"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "-ence"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "推",
+          "py": "tuī",
+          "mn": "drove",
+          "bonus": true
+        },
+        {
+          "zh": "动",
+          "py": "dòng",
+          "mn": "to move",
+          "bonus": true
+        },
+        {
+          "zh": "社",
+          "py": "shè",
+          "mn": "soc-",
+          "bonus": true
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "can; to meet",
+          "bonus": true
+        },
+        {
+          "zh": "进",
+          "py": "jìn",
+          "mn": "for-",
+          "bonus": true
+        },
+        {
+          "zh": "步",
+          "py": "bù",
+          "mn": "-ward",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们相信教育和知识是改变国家命运的关键。",
+      "en": "They believed education and knowledge were the key to changing the nation's destiny.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "相",
+          "py": "xiāng",
+          "mn": "be-",
+          "bonus": true
+        },
+        {
+          "zh": "信",
+          "py": "xìn",
+          "mn": "-lieved",
+          "bonus": true
+        },
+        {
+          "zh": "教",
+          "py": "jiào",
+          "mn": "edu-",
+          "bonus": true
+        },
+        {
+          "zh": "育",
+          "py": "yù",
+          "mn": "-cation",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "知",
+          "py": "zhī",
+          "mn": "know-",
+          "bonus": true
+        },
+        {
+          "zh": "识",
+          "py": "shí",
+          "mn": "to know",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "are"
+        },
+        {
+          "zh": "改",
+          "py": "gǎi",
+          "mn": "chang-",
+          "bonus": true
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "-ing",
+          "bonus": true
+        },
+        {
+          "zh": "国",
+          "py": "guó",
+          "mn": "nation-"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "-state",
+          "bonus": true
+        },
+        {
+          "zh": "命",
+          "py": "mìng",
+          "mn": "des-",
+          "bonus": true
+        },
+        {
+          "zh": "运",
+          "py": "yùn",
+          "mn": "-tiny",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "关",
+          "py": "guān",
+          "mn": "key-",
+          "bonus": true
+        },
+        {
+          "zh": "键",
+          "py": "jiàn",
+          "mn": "-key",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

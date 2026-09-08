@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_20",
   "level": "HSK1",
   "gateId": 20,
-  "title": "HSK1 Gate 20 Lesson",
-  "explanation": "HSK1 Gate 20：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第20关：今天的新词有：第、回到、差、家里、教、不用、读、忘、认真、电……等（共14个生字）。复习字有：她们、马上、今年、手机、忙、十、看见、听到……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 20 · Early Qing",
+  "explanationEn": "Gate 20: Early Qing. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第20关：清前期。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "清朝有一位很有名的大王，叫康熙。他很小的时候就做了王。他做了六十多年。他每天很早就起来做事。",
+  "passageEn": "The Qing dynasty had a famous ruler called Kangxi. He became ruler when he was very young. He ruled for more than sixty years. He got up very early every day to work.",
   "keyVocab": [
     {
-      "zh": "第",
-      "pinyin": "dì",
-      "en": "(prefix indicating ordinal number, as in 六 \"sixth\")"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "回到",
-      "pinyin": "huí dào",
-      "en": "to return to"
+      "zh": "位",
+      "pinyin": "wèi",
+      "en": "great"
     },
     {
-      "zh": "差",
-      "pinyin": "chā",
-      "en": "difference; discrepancy"
+      "zh": "名",
+      "pinyin": "míng",
+      "en": "name-"
     },
     {
-      "zh": "家里",
-      "pinyin": "jiā lǐ",
-      "en": "home"
+      "zh": "大",
+      "pinyin": "dà",
+      "en": "great"
     },
     {
-      "zh": "教",
+      "zh": "王",
+      "pinyin": "wáng",
+      "en": "king"
+    },
+    {
+      "zh": "叫",
       "pinyin": "jiào",
-      "en": "to teach; to instruct"
+      "en": "called"
     },
     {
-      "zh": "不用",
-      "pinyin": "bù yòng",
-      "en": "need not"
+      "zh": "小",
+      "pinyin": "xiǎo",
+      "en": "little"
     },
     {
-      "zh": "读",
-      "pinyin": "dòu",
-      "en": "comma"
-    },
-    {
-      "zh": "忘",
-      "pinyin": "wàng",
-      "en": "to forget"
-    },
-    {
-      "zh": "认真",
-      "pinyin": "rèn zhēn",
-      "en": "conscientious"
-    },
-    {
-      "zh": "电",
-      "pinyin": "diàn",
-      "en": "lightning"
-    },
-    {
-      "zh": "房子",
-      "pinyin": "fáng zi",
-      "en": "house"
-    },
-    {
-      "zh": "冷",
-      "pinyin": "lěng",
-      "en": "cold; cool; chilly"
-    },
-    {
-      "zh": "山",
-      "pinyin": "shān",
-      "en": "mountain; hill"
-    },
-    {
-      "zh": "常",
-      "pinyin": "cháng",
-      "en": "often; usually; common"
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "en": "period"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "14个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "The Qing dynasty had a famous ruler called Kangxi.",
+      "answer": "清朝有一位很有名的大王，叫康熙。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：她们 和 马上（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "He ruled for more than sixty years.",
+      "answer": "他做了六十多年。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「第」「回到」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Early Qing in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说清前期。"
 }

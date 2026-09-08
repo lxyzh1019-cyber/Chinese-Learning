@@ -244,8 +244,36 @@
         if (isCorrect(byId[item.id], r)) d.correct++;
       });
 
+      // Median seconds per answer, from the presentation's shownAt and the
+      // response's submittedAt — both already recorded, so this needs no schema
+      // change. It is the only signal available for "was that answered or
+      // guessed": a 4-option item scores 25% on chance alone, and a domain sitting
+      // at chance answered in a second or two is a different event from one
+      // answered slowly and wrongly.
+      const shownAt = {};
+      attempt.presentations.forEach((p) => { shownAt[p.itemId] = Date.parse(p.shownAt); });
       Object.values(domains).forEach((d) => {
+        const secs = [];
+        selectItems(bank, forms, attempt.formId, band)
+          .filter((it) => it.domain === d.domain)
+          .forEach((it) => {
+            const r = byItem[it.id];
+            const t0 = shownAt[it.id];
+            if (!r || !t0) return;
+            const dt = (Date.parse(r.submittedAt) - t0) / 1000;
+            // A resumed attempt can span days; that gap is not thinking time.
+            if (dt >= 0 && dt < 600) secs.push(dt);
+          });
+        secs.sort((a, b) => a - b);
+        d.medianSecs = secs.length
+          ? Math.round((secs.length % 2 ? secs[(secs.length - 1) / 2]
+              : (secs[secs.length / 2 - 1] + secs[secs.length / 2]) / 2) * 10) / 10
+          : null;
         d.complete = d.submitted + d.dontKnow >= d.expected && d.unanswered === 0;
+        // Chance for a 4-option item, so a score at or under it says the domain
+        // carries no evidence either way — not that the child failed.
+        d.chanceLevel = d.domain === "writing_recall" ? null : d.expected / 4;
+        d.atChance = d.chanceLevel != null && d.complete && d.correct <= Math.ceil(d.chanceLevel);
         // A percentage is only meaningful over a completed domain. A partial
         // domain reports accuracy over what was submitted, explicitly flagged.
         d.accuracyOverSubmitted = d.submitted > 0 ? d.correct / d.submitted : null;

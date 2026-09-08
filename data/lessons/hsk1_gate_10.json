@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_10",
   "level": "HSK1",
   "gateId": 10,
-  "title": "HSK1 Gate 10 Lesson",
-  "explanation": "HSK1 Gate 10：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第10关：今天的新词有：买、重要、问、告诉、出来、地方、最后、老、行、号……等（共14个生字）。复习字有：看到、起来、一起、起、几、见、车、找到……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 10 · Eastern Jin",
+  "explanationEn": "Gate 10: Eastern Jin. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第10关：东晋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "东晋有一位诗人，他很喜欢在田里工作。他以前也做过官。可是他不喜欢那样的日子。他不喜欢做大官，他只爱大自然。",
+  "passageEn": "Eastern Jin had a poet who loved working in the fields. He had once been an official. But he did not like that kind of life. He didn't want to be a big official — he only loved nature.",
   "keyVocab": [
     {
-      "zh": "买",
-      "pinyin": "mǎi",
-      "en": "to buy"
+      "zh": "工",
+      "pinyin": "gōng",
+      "en": "work-"
     },
     {
-      "zh": "重要",
-      "pinyin": "zhòng yào",
-      "en": "important"
+      "zh": "作",
+      "pinyin": "zuò",
+      "en": "to do; work"
     },
     {
-      "zh": "问",
-      "pinyin": "wèn",
-      "en": "to ask; to inquire"
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
     },
     {
-      "zh": "告诉",
-      "pinyin": "gào sù",
-      "en": "to press charges; to file a complaint"
+      "zh": "做",
+      "pinyin": "zuò",
+      "en": "do"
     },
     {
-      "zh": "出来",
-      "pinyin": "chū lái",
-      "en": "to come out"
+      "zh": "过",
+      "pinyin": "guò",
+      "en": "pass"
     },
     {
-      "zh": "地方",
-      "pinyin": "dì fāng",
-      "en": "region"
+      "zh": "官",
+      "pinyin": "guān",
+      "en": "official"
     },
     {
-      "zh": "最后",
-      "pinyin": "zuì hòu",
-      "en": "final"
+      "zh": "可是",
+      "pinyin": "kě shì",
+      "en": "but; however"
     },
     {
-      "zh": "老",
-      "pinyin": "lǎo",
-      "en": "old; elderly; experienced"
-    },
-    {
-      "zh": "行",
-      "pinyin": "háng",
-      "en": "row"
-    },
-    {
-      "zh": "号",
-      "pinyin": "háo",
-      "en": "roar"
-    },
-    {
-      "zh": "放",
-      "pinyin": "fàng",
-      "en": "to put"
-    },
-    {
-      "zh": "朋友",
-      "pinyin": "péng you",
-      "en": "friend"
-    },
-    {
-      "zh": "住",
-      "pinyin": "zhù",
-      "en": "to live"
-    },
-    {
-      "zh": "拿",
-      "pinyin": "ná",
-      "en": "to hold; to take; to bring"
+      "zh": "喜欢",
+      "pinyin": "xǐ huan",
+      "en": "to like; to be fond of"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "14个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Eastern Jin had a poet who loved working in the fields.",
+      "answer": "东晋有一位诗人，他很喜欢在田里工作。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：看到 和 起来（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "But he did not like that kind of life.",
+      "answer": "可是他不喜欢那样的日子。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「买」「重要」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Eastern Jin in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说东晋。"
 }

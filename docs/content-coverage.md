@@ -1,24 +1,26 @@
 # Content coverage
 
+
 Gates: 88  (4 levels x 22 dynasties)
 
 ## Stories
 - Authored stories: **44**
 - Distinct story pairs across all 88 gates: **22**
-- So every gate on levels 2-4 shows the **same text** as the level-1 gate with the same dynasty.
-- Study characters per story: min 19, median 32, max 72
-- Sentences per story: 5
-- Decision **O05** ("texts increase in difficulty with the selected level") is **not met by story content**.
+- By level: HSK1 44 · HSK2 0 · HSK3 0 · HSK4 0 (44 per level is complete)
+- Levels HSK2, HSK3, HSK4 have no text of their own yet, so those gates fall back to the HSK1 telling and the reader says so.
+- Study characters per story: min 57, median 81, max 104
+- Sentences per story: 10
+- Decision **O05**: partly met — stories carry a level and HSK1 is on its ladder; the levels listed above are still to be written.
 
 ## Lessons
 - Lesson files: **88** (HSK1, HSK2, HSK3, HSK4, 22 each)
-- Passages that are a vocabulary list plus instructions, not a text: **66** (75%)
-- Lessons carrying at least one question about the lesson rather than the text: **66**
+- Passages that are a vocabulary list plus instructions, not a text: **44** (50%)
+- Lessons carrying at least one question about the lesson rather than the text: **44**
 - Lessons with a question missing its answer: **0**
 
 | Level | Lessons | Word-list passages | Meta questions | Passage chars (min/med/max) |
 |---|---|---|---|---|
-| HSK1 | 22 | 22 | 22 | 100 / 127 / 132 |
+| HSK1 | 22 | 0 | 0 | 42 / 51 / 69 |
 | HSK2 | 22 | 0 | 0 | 29 / 41 / 75 |
 | HSK3 | 22 | 22 | 22 | 106 / 131 / 136 |
 | HSK4 | 22 | 22 | 22 | 105 / 131 / 136 |
@@ -29,84 +31,76 @@ Gates: 88  (4 levels x 22 dynasties)
 - hsk3: 22 gates, 793 served rows, 0 with no English meaning
 - hsk4: 22 gates, 793 served rows, 0 with no English meaning
 
-Regenerate with `npm run coverage:content`. Read-only.
-
 ---
 
 ## What this means for decision O05
 
-**O05** — "texts increase in difficulty with the selected level" — is **not met**.
+**O05 is now partly met, and the shape of the remaining work is fixed.**
 
-The reader has no level dimension at all. A dynasty carries `story` and `story2`,
-and `openStory` serves those two regardless of which HSK tab the child is on. So
-`h1-g01`, `h2-g01`, `h3-g01` and `h4-g01` all show the same 大禹治水. The lesson
-JSON *is* per level, which is why the gap has stayed invisible: the lesson text
-changes, the story does not.
+Before: a dynasty carried `story`/`story2` with no level dimension, so `h1-g01`
+and `h4-g01` served the same 大禹治水 and only the lesson, the vocabulary and
+the quiz changed. The corpus was graded along the **wrong axis** — difficulty
+tracked the dynasty's position in history rather than the learner's level, and
+the HSK1 share of a gate's story characters ran from 36% to 85%.
 
-The corpus is graded, but along the **wrong axis**. Difficulty tracks the
-dynasty's position in history, not the learner's level:
+Now:
 
-| | avg study characters per gate |
-|---|---|
-| gates 1–5 (Xia → Qin) | 53 |
-| gates 18–22 (Yuan → Republic) | 86 |
+- Stories are keyed `<base>-h<level>` and load from `data/stories/hsk{lv}.json`.
+- **All 44 HSK1 stories are on the ten-sentence ladder.** Gates 1–11 were
+  extended; gates 12–22 were **rewritten**, because their original texts used
+  HSK3/HSK4 vocabulary (帝国, 繁荣, 挣扎, 现代化) and lengthening them would have
+  made them longer rather than level-appropriate. Those dense originals are kept
+  under `content/stories/hsk3/` as seeds for that level.
+- A level with no text of its own serves the HSK1 telling **and says so in the
+  reader**, naming the level whose words, lesson and quiz the child is getting.
+  Silently serving another level's text was the defect; the fallback is the
+  honest form of "the story is shared", and it means partial content is never
+  broken content.
+- Reads and completions count under the per-level id, so each level earns its
+  own reading gate rather than inheriting level 1's.
 
-And the share of a gate's story characters that fall inside the HSK1 set ranges
-from 36% to 85% with a median of 64% — so a child on HSK1 already meets texts
-where a third of the characters are outside their level, purely because the Qing
-dynasty comes late in the road.
+**Ladder** (owner decision): HSK1 10 sentences, HSK2 15, HSK3 20, HSK4 25.
+Study-token ranges in `scripts/validate_stories.js` are derived from the built
+corpus, not guessed — natural HSK1 prose runs a median of 8.1 study tokens per
+sentence.
 
-553 distinct characters appear across the 44 stories; 181 of them are HSK1 and
-299 are HSK1-or-2.
+### Remaining
 
-### The options, and what each costs
+| | stories | lessons |
+|---|---|---|
+| HSK1 | done — 44 on the ladder | done — 22 rewritten, bilingual, drawn from the gate's story |
+| HSK2 | 44 to write, 15 sentences | 22 still on the old template |
+| HSK3 | 44 to write, 20 sentences (22 seeded) | 22 still on the old template |
+| HSK4 | 44 to write, 25 sentences | 22 still on the old template |
 
-**A. Author 132 new stories** (44 exist, 176 needed for 4 levels × 22 dynasties ×
-2 stories). Fully meets O05. Every story is hand-tokenized `{t, ch, py, mn, bonus}`
-with per-character pinyin and gloss — this is the real cost, and at ~32 study
-characters each it is a large authoring job, not a generation job. The existing
-44 are good; matching their quality four times over is the expensive path.
+Authoring runs through `content/stories/hsk{lv}/` and `npm run build:stories`.
+The build **refuses** to emit a story containing a span the curated dictionary
+cannot vouch for — it stops and names the character rather than inventing a
+reading or a gloss. Across 320 newly authored sentences it rejected 30, every
+one of them a word the curriculum does not teach; all were rewritten with words
+it does.
 
-**B. Re-level the 44 that exist.** Keep one story pair per dynasty, but stop
-pretending the level tabs change the reading. Assign each existing story the
-level its vocabulary actually supports (the HSK1-share numbers above give the
-ordering), and let the level tabs differ in the lesson, the vocabulary and the
-quiz — which they already do — while the story is shared. Costs nothing to
-author; requires saying plainly in the UI that the story is the same text.
+## Glosses shown in the reader
 
-**C. Author one new story per dynasty for the upper levels** (22 new stories,
-serving levels 3–4 as a pair with the existing one). A middle path: the jump from
-HSK1/2 to HSK3/4 is where a shared text is least defensible, and 22 is a
-tractable authoring target.
-
-**D. Generate difficulty variants of the existing 44.** Same narrative, simplified
-or elaborated per level. Cheapest per story, but the tokenization still has to be
-correct per character, and a machine-simplified Chinese text for a child is
-exactly the kind of content this project has already been burned by — the gate
-vocabulary was generated the same way and shipped 水 glossed "surname Shui".
-
-**Recommendation: C, then B for what C does not cover.** It puts new authoring
-where the mismatch is worst, keeps the existing quality bar, and does not commit
-to 132 hand-tokenized texts before the girls' baseline says which levels they will
-actually reach this year. If the baseline lands at C1/C2, option B alone is
-defensible for a while and C can wait.
-
-This is an owner decision — it changes what content exists, not how the app
-behaves — so nothing here is implemented.
+96 distinct junk glosses were being shown to a child on every character tap,
+and are fixed. A longer word's English had been split across its characters —
+学习 "practice" leaving 习 as `-tice`, 朋友 "friend" leaving 友 as `-end`, 老鼠
+"mouse" leaving 鼠 as `-use` — and the grammar carried linguists' codes: 的 was
+`DE` (196 times), 了 was `CMPL` (110), plus `PL`, `CL`, `BA`, `ING`, `ADV`,
+`SUF`. This is the same class as the 水 "surname Shui" vocabulary defect, in the
+one place the app teaches meaning directly. 822 glosses were corrected across
+all 44 sources, and `validate_stories.js` now rejects a fragment, a grammar code
+or a surname gloss outright.
 
 ## Lesson passages
 
-66 of the 88 lessons have a "passage" that is not a passage: it is the gate's
-vocabulary list wrapped in instructions, e.g.
+The 22 HSK1 lessons are rewritten and are the model for the rest: the passage is
+the gate's own story opening, the eight key words are words the child meets in
+it, and each question points at a sentence that is actually there. Every
+instruction, question and answer carries both languages, because these two
+readers read English far better than Chinese and a Chinese-only instruction is
+not an instruction. The passage stays Chinese with its English behind a toggle.
 
-> 第10关：今天的新词有：内容、上面、痛、感情…（共14个生字）。复习字有：状态、群…（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。
-
-and its three questions ask about the lesson rather than about any text —
-"本关有几个生字（新词）？" → "14个。" Until T02 these were not even displayed;
-the renderer printed three hard-coded English substitutes instead. They are
-displayed now, which makes the placeholder visible rather than hidden, and that
-is the right order: you can see what needs writing.
-
-The 22 HSK2 lessons are the exception — they carry short real passages (29–75
-characters) with real comprehension questions. They are the model for what the
-other 66 should become.
+66 lessons remain on the old template — the gate's vocabulary list wrapped in
+instructions, asking 本关有几个生字？ `validate_lessons.js` reports the count on
+every run.

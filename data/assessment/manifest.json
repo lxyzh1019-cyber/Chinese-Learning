@@ -1,5 +1,5 @@
 {
-  "bankVersion": "1.0.0",
+  "bankVersion": "1.1.0",
   "bands": [
     "C1",
     "C2",
@@ -14,5 +14,32 @@
     "items": "v1/items.json",
     "forms": "v1/forms.json"
   },
-  "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only"
+  "standard": "HSK3.0-new-1 (drkameleon/complete-hsk-vocabulary), used for band membership only",
+  "bandInfo": {
+    "C1": {
+      "name": "Set 1 · First characters",
+      "zh": "第一组 · 最先学的字",
+      "about": "Single everyday characters, and sentences of four to six characters.",
+      "passageChars": "25–50"
+    },
+    "C2": {
+      "name": "Set 2 · Everyday words",
+      "zh": "第二组 · 日常词语",
+      "about": "Two-character everyday words in short sentences about ordinary things.",
+      "passageChars": "50–80"
+    },
+    "C3": {
+      "name": "Set 3 · Longer sentences",
+      "zh": "第三组 · 长句子",
+      "about": "Sentences with more than one clause, and short connected texts.",
+      "passageChars": "80–120"
+    },
+    "C4": {
+      "name": "Set 4 · Short stories",
+      "zh": "第四组 · 短故事",
+      "about": "Multi-sentence passages with description and reported speech.",
+      "passageChars": "120–180"
+    }
+  },
+  "bandNote": "The sets get harder in order and are built from graded word lists. They are not HSK levels and do not certify one."
 }

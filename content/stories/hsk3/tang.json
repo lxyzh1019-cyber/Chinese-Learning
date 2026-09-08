@@ -1,0 +1,445 @@
+{
+  "id": "tang",
+  "did": 12,
+  "level": 3,
+  "title": "长安的繁华",
+  "en": "The Glory of Chang'an",
+  "names": {
+    "唐朝": {
+      "py": "Tángcháo",
+      "en": "Tang Dynasty"
+    },
+    "长安": {
+      "py": "Cháng'ān",
+      "en": "Chang'an"
+    },
+    "李白": {
+      "py": "Lǐ Bái",
+      "en": "Li Bai"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "唐朝的首都长安是当时世界上最大的城市。",
+      "en": "The Tang capital Chang'an was the world's largest city at that time.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "唐朝",
+          "py": "Tángcháo",
+          "mn": "Tang Dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "首",
+          "py": "shǒu",
+          "mn": "capital-"
+        },
+        {
+          "zh": "都",
+          "py": "dū",
+          "mn": "-capital"
+        },
+        {
+          "t": "n",
+          "zh": "长安",
+          "py": "Cháng'ān",
+          "mn": "Chang'an"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "zh": "当",
+          "py": "dāng",
+          "mn": "at that"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "time"
+        },
+        {
+          "zh": "世",
+          "py": "shì",
+          "mn": "world"
+        },
+        {
+          "zh": "界",
+          "py": "jiè",
+          "mn": "boundary; world"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "large"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city-"
+        },
+        {
+          "zh": "市",
+          "py": "shì",
+          "mn": "-city"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "来自不同国家的商人在这里做生意。",
+      "en": "Merchants from different countries came here to do business.",
+      "seg": [
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "from"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not-"
+        },
+        {
+          "zh": "同",
+          "py": "tóng",
+          "mn": "-same"
+        },
+        {
+          "zh": "国",
+          "py": "guó",
+          "mn": "country"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home/country"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "商",
+          "py": "shāng",
+          "mn": "merchant"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at; in"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "place"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "do"
+        },
+        {
+          "zh": "生",
+          "py": "shēng",
+          "mn": "to be born; student"
+        },
+        {
+          "zh": "意",
+          "py": "yì",
+          "mn": "meaning; idea"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "大诗人李白写了很多美丽的诗。",
+      "en": "The great poet Li Bai wrote many beautiful poems.",
+      "seg": [
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "great"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poet"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "n",
+          "zh": "李白",
+          "py": "Lǐ Bái",
+          "mn": "Li Bai"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "wrote"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "many"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "美",
+          "py": "měi",
+          "mn": "beautiful"
+        },
+        {
+          "zh": "丽",
+          "py": "lì",
+          "mn": "beautiful"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poems"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "那时候，女人可以骑马，学习，自由地生活。",
+      "en": "At that time, women could ride horses, study, and live freely.",
+      "seg": [
+        {
+          "zh": "那",
+          "py": "nà",
+          "mn": "that"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "time"
+        },
+        {
+          "zh": "候",
+          "py": "hòu",
+          "mn": "period"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "女",
+          "py": "nǚ",
+          "mn": "women"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "可",
+          "py": "kě",
+          "mn": "could"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "by means of"
+        },
+        {
+          "zh": "骑",
+          "py": "qí",
+          "mn": "ride"
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horse"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "study"
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "to practise"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "free-"
+        },
+        {
+          "zh": "由",
+          "py": "yóu",
+          "mn": "from; by"
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "(before how it is done)"
+        },
+        {
+          "zh": "生",
+          "py": "shēng",
+          "mn": "to be born; student"
+        },
+        {
+          "zh": "活",
+          "py": "huó",
+          "mn": "-live"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "唐朝是中国最辉煌的时代之一。",
+      "en": "The Tang Dynasty was one of China's most glorious eras.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "唐朝",
+          "py": "Tángcháo",
+          "mn": "Tang Dynasty"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "辉",
+          "py": "huī",
+          "mn": "glo-"
+        },
+        {
+          "zh": "煌",
+          "py": "huáng",
+          "mn": "-rious"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "time"
+        },
+        {
+          "zh": "代",
+          "py": "dài",
+          "mn": "era"
+        },
+        {
+          "zh": "之",
+          "py": "zhī",
+          "mn": "OF"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

@@ -1,0 +1,488 @@
+{
+  "id": "print2",
+  "did": 13,
+  "level": 3,
+  "title": "图书馆的一天",
+  "en": "A Day at the Library",
+  "names": {
+    "老师": {
+      "py": "lǎoshī",
+      "en": "teacher"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "今天老师带我们去了图书馆。",
+      "en": "Today the teacher took us to the library.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "today"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "t": "n",
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "took",
+          "bonus": true
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "图",
+          "py": "tú",
+          "mn": "libr-",
+          "bonus": true
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "-ary",
+          "bonus": true
+        },
+        {
+          "zh": "馆",
+          "py": "guǎn",
+          "mn": "library",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "图书馆里有成千上万本书。",
+      "en": "The library has thousands and thousands of books.",
+      "seg": [
+        {
+          "zh": "图",
+          "py": "tú",
+          "mn": "libr-",
+          "bonus": true
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "-ary",
+          "bonus": true
+        },
+        {
+          "zh": "馆",
+          "py": "guǎn",
+          "mn": "library",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "has"
+        },
+        {
+          "zh": "成",
+          "py": "chéng",
+          "mn": "thous-",
+          "bonus": true
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "mn": "-ands",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "upon",
+          "bonus": true
+        },
+        {
+          "zh": "万",
+          "py": "wàn",
+          "mn": "ten-thousand",
+          "bonus": true
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "CL-book"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我找到了一本关于古代中国的故事书。",
+      "en": "I found a story book about ancient China.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "找",
+          "py": "zhǎo",
+          "mn": "found",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "CL-book"
+        },
+        {
+          "zh": "关",
+          "py": "guān",
+          "mn": "about",
+          "bonus": true
+        },
+        {
+          "zh": "于",
+          "py": "yú",
+          "mn": "about",
+          "bonus": true
+        },
+        {
+          "zh": "古",
+          "py": "gǔ",
+          "mn": "ancient",
+          "bonus": true
+        },
+        {
+          "zh": "代",
+          "py": "dài",
+          "mn": "era"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "故",
+          "py": "gù",
+          "mn": "sto-",
+          "bonus": true
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing",
+          "bonus": true
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我在图书馆里读了两个小时，忘记了时间。",
+      "en": "I read for two hours in the library and forgot about time.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at; in"
+        },
+        {
+          "zh": "图",
+          "py": "tú",
+          "mn": "libr-",
+          "bonus": true
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "-ary",
+          "bonus": true
+        },
+        {
+          "zh": "馆",
+          "py": "guǎn",
+          "mn": "library",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "read"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)",
+          "bonus": true
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "smal-",
+          "bonus": true
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "-hours",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "忘",
+          "py": "wàng",
+          "mn": "to forget",
+          "bonus": true
+        },
+        {
+          "zh": "记",
+          "py": "jì",
+          "mn": "CMPL",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "time"
+        },
+        {
+          "zh": "间",
+          "py": "jiān",
+          "mn": "time",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我借了三本书回家，迫不及待地想把它们读完。",
+      "en": "I borrowed three books to take home, eager to finish reading them.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "借",
+          "py": "jiè",
+          "mn": "borrowed",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "CL"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "回",
+          "py": "huí",
+          "mn": "to go",
+          "bonus": true
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "迫",
+          "py": "pò",
+          "mn": "can't",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "wait",
+          "bonus": true
+        },
+        {
+          "zh": "及",
+          "py": "jí",
+          "mn": "wait",
+          "bonus": true
+        },
+        {
+          "zh": "待",
+          "py": "dài",
+          "mn": "wait"
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "(before how it is done)"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "wanted",
+          "bonus": true
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)",
+          "bonus": true
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "them"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "read"
+        },
+        {
+          "zh": "完",
+          "py": "wán",
+          "mn": "finish",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

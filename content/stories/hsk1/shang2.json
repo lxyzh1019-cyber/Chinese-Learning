@@ -1,0 +1,327 @@
+{
+  "id": "shang2",
+  "did": 2,
+  "level": 1,
+  "title": "市场的一天",
+  "en": "A Day at the Market",
+  "names": {},
+  "sents": [
+    {
+      "zh": "今天是市场的日子。",
+      "en": "Today is market day.",
+      "seg": [
+        {
+          "zh": "今",
+          "py": "jīn",
+          "mn": "today"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "市",
+          "py": "shì",
+          "mn": "mar-",
+          "bonus": true
+        },
+        {
+          "zh": "场",
+          "py": "chǎng",
+          "mn": "place; ground",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "日",
+          "py": "rì",
+          "mn": "day",
+          "bonus": true
+        },
+        {
+          "zh": "子",
+          "py": "zi",
+          "mn": "(word ending)",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "早上，市场里有很多人。",
+      "en": "In the morning there are many people at the market."
+    },
+    {
+      "zh": "有人卖水果，有人卖鱼。",
+      "en": "Some people sell fruit; some people sell fish.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "卖",
+          "py": "mài",
+          "mn": "to sell",
+          "bonus": true
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "fruit",
+          "bonus": true
+        },
+        {
+          "zh": "果",
+          "py": "guǒ",
+          "mn": "fruit; result",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "卖",
+          "py": "mài",
+          "mn": "to sell",
+          "bonus": true
+        },
+        {
+          "zh": "鱼",
+          "py": "yú",
+          "mn": "fish",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "也有人卖菜和肉。",
+      "en": "Some people also sell vegetables and meat."
+    },
+    {
+      "zh": "我买了三个苹果，很好吃。",
+      "en": "I bought three apples — very delicious.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "买",
+          "py": "mǎi",
+          "mn": "bought",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)",
+          "bonus": true
+        },
+        {
+          "zh": "苹",
+          "py": "píng",
+          "mn": "ap-",
+          "bonus": true
+        },
+        {
+          "zh": "果",
+          "py": "guǒ",
+          "mn": "fruit; result",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "eat"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "苹果很红，一个三块钱。",
+      "en": "The apples were red, three yuan each."
+    },
+    {
+      "zh": "妈妈买了很多东西。",
+      "en": "Mum bought many things.",
+      "seg": [
+        {
+          "zh": "妈",
+          "py": "māmā",
+          "mn": "mother",
+          "bonus": true
+        },
+        {
+          "zh": "妈",
+          "py": "māmā",
+          "mn": "mother",
+          "bonus": true
+        },
+        {
+          "zh": "买",
+          "py": "mǎi",
+          "mn": "bought",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "东",
+          "py": "dōng",
+          "mn": "things-",
+          "bonus": true
+        },
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "west",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "她买了鱼、菜和水果。",
+      "en": "She bought fish, vegetables and fruit."
+    },
+    {
+      "zh": "东西太多了，我帮她拿。",
+      "en": "There were too many things, so I helped her carry them."
+    },
+    {
+      "zh": "我们一起回家吃饭。",
+      "en": "We went home together to eat.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "起",
+          "py": "qǐ",
+          "mn": "to rise; to get up",
+          "bonus": true
+        },
+        {
+          "zh": "回",
+          "py": "huí",
+          "mn": "returned",
+          "bonus": true
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "eat"
+        },
+        {
+          "zh": "饭",
+          "py": "fàn",
+          "mn": "cooked rice; a meal",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

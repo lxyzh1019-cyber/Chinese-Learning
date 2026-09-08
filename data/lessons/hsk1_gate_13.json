@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_13",
   "level": "HSK1",
   "gateId": 13,
-  "title": "HSK1 Gate 13 Lesson",
-  "explanation": "HSK1 Gate 13：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第13关：今天的新词有：穿、学校、花、坐、早、身上、干、认识、睡、喝……等（共14个生字）。复习字有：得到、那些、准备、水、进、写、国家、您……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 13 · Five Dynasties",
+  "explanationEn": "Gate 13: Five Dynasties. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第13关：五代。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "很久以前，一本书要一个字一个字地写。写一本书要很多天。所以书很少，也很贵。后来，人们想到了一个好办法。",
+  "passageEn": "Long ago, a book had to be written out one character at a time. Writing one book took many days. So books were few, and expensive. Later, people thought of a good way.",
   "keyVocab": [
     {
-      "zh": "穿",
-      "pinyin": "chuān",
-      "en": "to wear"
+      "zh": "久",
+      "pinyin": "jiǔ",
+      "en": "long time"
     },
     {
-      "zh": "学校",
-      "pinyin": "xué xiào",
-      "en": "school"
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "en": "before"
     },
     {
-      "zh": "花",
-      "pinyin": "huā",
-      "en": "flower; to spend (money/time)"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "坐",
-      "pinyin": "zuò",
-      "en": "to sit; to travel by"
+      "zh": "本",
+      "pinyin": "běn",
+      "en": "Compend-"
     },
     {
-      "zh": "早",
-      "pinyin": "zǎo",
-      "en": "early"
+      "zh": "书",
+      "pinyin": "shū",
+      "en": "book"
     },
     {
-      "zh": "身上",
-      "pinyin": "shēn shang",
-      "en": "on the body"
+      "zh": "字",
+      "pinyin": "zì",
+      "en": "character; writing"
     },
     {
-      "zh": "干",
-      "pinyin": "gàn",
-      "en": "to do; to work; competent"
+      "zh": "地",
+      "pinyin": "de",
+      "en": "(before how it is done)"
     },
     {
-      "zh": "认识",
-      "pinyin": "rèn shi",
-      "en": "to know"
-    },
-    {
-      "zh": "睡",
-      "pinyin": "shuì",
-      "en": "to sleep"
-    },
-    {
-      "zh": "喝",
-      "pinyin": "hē",
-      "en": "to drink"
-    },
-    {
-      "zh": "明天",
-      "pinyin": "míng tiān",
-      "en": "tomorrow"
-    },
-    {
-      "zh": "回来",
-      "pinyin": "huí lai",
-      "en": "to return; to come back"
-    },
-    {
-      "zh": "四",
-      "pinyin": "sì",
-      "en": "four"
-    },
-    {
-      "zh": "块",
-      "pinyin": "kuài",
-      "en": "lump; chunk; piece"
+      "zh": "写",
+      "pinyin": "xiě",
+      "en": "wrote"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "14个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "Long ago, a book had to be written out one character at a time.",
+      "answer": "很久以前，一本书要一个字一个字地写。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：得到 和 那些（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "So books were few, and expensive.",
+      "answer": "所以书很少，也很贵。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「穿」「学校」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Five Dynasties in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说五代。"
 }

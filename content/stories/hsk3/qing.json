@@ -1,0 +1,437 @@
+{
+  "id": "qing",
+  "did": 20,
+  "level": 3,
+  "title": "康熙皇帝",
+  "en": "Emperor Kangxi",
+  "names": {
+    "清朝": {
+      "py": "Qīngcháo",
+      "en": "Qing Dynasty"
+    },
+    "康熙": {
+      "py": "Kāngxī",
+      "en": "Kangxi"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "清朝的康熙皇帝统治中国长达六十一年。",
+      "en": "The Qing Dynasty's Emperor Kangxi ruled China for 61 years.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "清朝",
+          "py": "Qīngcháo",
+          "mn": "Qing Dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "n",
+          "zh": "康熙",
+          "py": "Kāngxī",
+          "mn": "Kangxi"
+        },
+        {
+          "zh": "皇",
+          "py": "huáng",
+          "mn": "em-"
+        },
+        {
+          "zh": "帝",
+          "py": "dì",
+          "mn": "emperor"
+        },
+        {
+          "zh": "统",
+          "py": "tǒng",
+          "mn": "rule-"
+        },
+        {
+          "zh": "治",
+          "py": "zhì",
+          "mn": "-rule"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "for a long"
+        },
+        {
+          "zh": "达",
+          "py": "dá",
+          "mn": "as long as"
+        },
+        {
+          "zh": "六",
+          "py": "liù",
+          "mn": "six"
+        },
+        {
+          "zh": "十",
+          "py": "shí",
+          "mn": "ten"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他是一位非常勤奋的皇帝。",
+      "en": "He was an extremely hardworking emperor.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "CL-person"
+        },
+        {
+          "zh": "非",
+          "py": "fēi",
+          "mn": "ex-"
+        },
+        {
+          "zh": "常",
+          "py": "cháng",
+          "mn": "often"
+        },
+        {
+          "zh": "勤",
+          "py": "qín",
+          "mn": "hard-"
+        },
+        {
+          "zh": "奋",
+          "py": "fèn",
+          "mn": "-working"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "皇",
+          "py": "huáng",
+          "mn": "em-"
+        },
+        {
+          "zh": "帝",
+          "py": "dì",
+          "mn": "emperor"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他亲自学习数学、音乐和西方科学。",
+      "en": "He personally studied mathematics, music, and Western science.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "亲",
+          "py": "qīn",
+          "mn": "person-"
+        },
+        {
+          "zh": "自",
+          "py": "zì",
+          "mn": "-ally"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "studied"
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "to practise"
+        },
+        {
+          "zh": "数",
+          "py": "shù",
+          "mn": "math-"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "-ematics"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "音",
+          "py": "yīn",
+          "mn": "sound"
+        },
+        {
+          "zh": "乐",
+          "py": "yuè",
+          "mn": "happy; music"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "west"
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "direction; square"
+        },
+        {
+          "zh": "科",
+          "py": "kē",
+          "mn": "sci-"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "-ence"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "在他的统治下，中国的领土达到最大。",
+      "en": "Under his rule, China's territory reached its greatest extent.",
+      "seg": [
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at; in"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "统",
+          "py": "tǒng",
+          "mn": "rule"
+        },
+        {
+          "zh": "治",
+          "py": "zhì",
+          "mn": "rule"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "under"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "领",
+          "py": "lǐng",
+          "mn": "terri-"
+        },
+        {
+          "zh": "土",
+          "py": "tǔ",
+          "mn": "-tory"
+        },
+        {
+          "zh": "达",
+          "py": "dá",
+          "mn": "reached"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "large"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他被认为是中国历史上最伟大的皇帝之一。",
+      "en": "He is regarded as one of the greatest emperors in Chinese history.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "被",
+          "py": "bèi",
+          "mn": "passive"
+        },
+        {
+          "zh": "认",
+          "py": "rèn",
+          "mn": "re-"
+        },
+        {
+          "zh": "为",
+          "py": "wéi",
+          "mn": "for; to be"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "as"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "历",
+          "py": "lì",
+          "mn": "hist-"
+        },
+        {
+          "zh": "史",
+          "py": "shǐ",
+          "mn": "-ory"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "in"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "伟",
+          "py": "wěi",
+          "mn": "great-"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "-great"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "皇",
+          "py": "huáng",
+          "mn": "em-"
+        },
+        {
+          "zh": "帝",
+          "py": "dì",
+          "mn": "emperor"
+        },
+        {
+          "zh": "之",
+          "py": "zhī",
+          "mn": "OF"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}

@@ -1,0 +1,321 @@
+{
+  "id": "zhou",
+  "did": 3,
+  "level": 1,
+  "title": "天命的故事",
+  "en": "The Mandate of Heaven",
+  "names": {
+    "西周": {
+      "py": "Xī Zhōu",
+      "en": "Western Zhou"
+    },
+    "中国": {
+      "py": "Zhōngguó",
+      "en": "China"
+    }
+  },
+  "sents": [
+    {
+      "zh": "商朝以后，中国有了西周。",
+      "en": "After the Shang, China had the Western Zhou."
+    },
+    {
+      "zh": "西周的王说：“天让我做王。”",
+      "en": "The Western Zhou king said: \"Heaven lets me be king.\"",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "西周",
+          "py": "Xī Zhōu",
+          "mn": "Western Zhou"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "：“"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "Heaven",
+          "bonus": true
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "lets",
+          "bonus": true
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "be"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king"
+        },
+        {
+          "t": "p",
+          "tx": "。”"
+        }
+      ]
+    },
+    {
+      "zh": "他说，天看着每一个王。",
+      "en": "He said that Heaven watches every king."
+    },
+    {
+      "zh": "王要爱人，人也要爱王。",
+      "en": "The king must love the people; the people must also love the king.",
+      "seg": [
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "爱",
+          "py": "ài",
+          "mn": "love",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "爱",
+          "py": "ài",
+          "mn": "love",
+          "bonus": true
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "王做得好，天就让他做王。",
+      "en": "If a king does well, Heaven lets him stay king."
+    },
+    {
+      "zh": "王做得不好，天就不让了。",
+      "en": "If a king does badly, Heaven no longer allows it."
+    },
+    {
+      "zh": "王有很多好士兵。",
+      "en": "The king had many good soldiers.",
+      "seg": [
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "士",
+          "py": "shì",
+          "mn": "sol-",
+          "bonus": true
+        },
+        {
+          "zh": "兵",
+          "py": "bīng",
+          "mn": "soldier",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们每天去山上练习。",
+      "en": "They trained in the mountains every day.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "they"
+        },
+        {
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "went to"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "top"
+        },
+        {
+          "zh": "练",
+          "py": "liàn",
+          "mn": "prac-",
+          "bonus": true
+        },
+        {
+          "zh": "习",
+          "py": "xí",
+          "mn": "to practise",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "人们在田里做工，家里有米有肉。",
+      "en": "People worked in the fields, and there was rice and meat at home."
+    },
+    {
+      "zh": "那时，中国很大，很美。",
+      "en": "At that time, China was very big and beautiful.",
+      "seg": [
+        {
+          "zh": "那",
+          "py": "nà",
+          "mn": "at that"
+        },
+        {
+          "zh": "时",
+          "py": "shí",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "美",
+          "py": "měi",
+          "mn": "beautiful",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ]
+}

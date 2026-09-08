@@ -1,7 +1,7 @@
 /* eslint-disable */
 "use strict";
 /**
- * Assessment overlay.
+ * Assessment screen.
  *
  * Depends on the app's globals (state, curP, savePlayer, showToast, speak,
  * laterCall, sessionGen) and on AssessmentCore / PlayerStore, so it is loaded
@@ -10,6 +10,12 @@
  * Tone is deliberately flat. This is a calm check, not a gate boss: no streaks,
  * no reward sounds, no correctness reveal, no encouragement between items. All
  * of that resumes afterwards, in the practice offered from the results screen.
+ *
+ * It lives on its own screen, entered from the profile-select screen, rather
+ * than in an overlay opened from the games strip. It shared a stylesheet, a
+ * z-index and a close button with Games, Drill and Flash Cards, which said it
+ * was another activity in the reward loop; it is the one thing in the app that
+ * awards nothing and unlocks nothing.
  */
 (function () {
   const C = globalThis.AssessmentCore;
@@ -18,6 +24,20 @@
 
   const FIRST_BAND = "C1";
   let ui = null;   // { attempt, band, items, idx, bankData, gen, owner }
+
+  /** A set's plain name. "Set C1" told a parent nothing about what separates it
+   *  from "Set C2", and nothing on screen named the band during the run at all —
+   *  which is why two sittings that never left C1 looked like the same test. */
+  function bandInfo(bandId) {
+    const info = ((ui && ui.bankData && ui.bankData.manifest.bandInfo) || {})[bandId];
+    return info || { name: `Set ${bandId}`, zh: "", about: "" };
+  }
+  function bandName(bandId) { return bandInfo(bandId).name; }
+  function bandOrdinal(bandId) {
+    const bands = (ui && ui.bankData && ui.bankData.manifest.bands) || [];
+    const i = bands.indexOf(bandId);
+    return i < 0 ? "" : `${i + 1} of ${bands.length}`;
+  }
 
   const el = (id) => document.getElementById(id);
   const body = () => el("assessment-body");
@@ -36,6 +56,11 @@
    */
   const SESSION_WARN_SECS = 180;
   function sessionNotice() {
+    // Only while a play session is actually running. Entering from the select
+    // screen starts no timer, and timerSecs keeps whatever the last hub session
+    // left behind — so without this the notice fired on an assessment that was
+    // costing the child no play time at all.
+    if (typeof timerIv === "undefined" || !timerIv) return "";
     if (typeof timerSecs === "undefined" || typeof timerSecs !== "number") return "";
     if (timerSecs <= 0 || timerSecs > SESSION_WARN_SECS) return "";
     const mins = Math.max(1, Math.ceil(timerSecs / 60));
@@ -48,10 +73,8 @@
   // ── entry ────────────────────────────────────────────────────────────────
   globalThis.openAssessment = async function openAssessment() {
     if (!curP) { showToast("Pick a profile first."); return; }
-    const overlay = el("assessment-overlay");
-    if (!overlay) return;
+    if (!body()) return;
     body().innerHTML = '<div class="dd-desc">Loading assessment…</div>';
-    overlay.classList.add("show");
 
     // The fetch can outlive the profile that opened it.
     const gen = sessionGen;
@@ -74,9 +97,10 @@
       persist();
       showToast("Assessment saved — you can carry on next time.", 2400);
     }
-    const overlay = el("assessment-overlay");
-    if (overlay) overlay.classList.remove("show");
     ui = null;
+    // Back to the select screen, not the hub: the assessment was never entered
+    // from a child's play session, so there is no session to return into.
+    if (typeof goToSelect === "function") goToSelect();
   };
 
   function persist() {
@@ -96,6 +120,9 @@
     const done = past.filter((a) => a.status === "results_available" || a.status === "submitted");
     const open = past.find((a) => a.status === "active" || a.status === "paused");
 
+    const bands = (ui.bankData.manifest.bands) || [FIRST_BAND];
+    const note = ui.bankData.manifest.bandNote || "";
+
     body().innerHTML = `
       <div class="dd-desc" style="text-align:left;line-height:1.6;">
         This is a quiet check of what you can read and understand right now.
@@ -104,11 +131,48 @@
       <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:.9rem;">
         ${open
           ? `<button class="btn-g" onclick="assessmentResume('${esc(open.attemptId)}')">Continue assessment</button>`
-          : `<button class="btn-g" onclick="assessmentStart('baseline')">Start baseline</button>`}
+          : `<button class="btn-g" onclick="assessmentStart('baseline')">Start at ${esc(bandName(FIRST_BAND))}</button>`}
         ${done.length ? `<button class="btn-s" onclick="assessmentHistory()">History &amp; compare (${done.length})</button>` : ""}
+        <button class="btn-s" onclick="assessmentSets()">What the sets are · 各组说明</button>
       </div>
-      <div id="assessment-sync" style="font-size:.68rem;color:var(--muted);text-align:center;margin-top:.7rem;"></div>`;
+      ${open ? "" : `
+        <div class="practice-box" style="text-align:left;margin-top:.8rem;">
+          <div style="font-size:.72rem;color:var(--ink);margin-bottom:.35rem;">Start somewhere else</div>
+          <div style="display:flex;gap:.35rem;flex-wrap:wrap;">
+            ${bands.slice(1).map((b) => `<button class="btn-s" style="font-size:.68rem;" onclick="assessmentStart('baseline',null,null,'${esc(b)}')">${esc(bandName(b))}</button>`).join("")}
+          </div>
+          <div style="font-size:.66rem;color:var(--muted);margin-top:.35rem;line-height:1.5;">
+            Every set is scored on its own questions, so starting higher does not
+            borrow credit — it only skips the easier evidence.
+          </div>
+        </div>`}
+      <div id="assessment-sync" style="font-size:.68rem;color:var(--muted);text-align:center;margin-top:.7rem;"></div>
+      ${note ? `<div style="font-size:.66rem;color:var(--muted);text-align:left;margin-top:.5rem;line-height:1.5;">${esc(note)}</div>` : ""}`;
   }
+
+  globalThis.assessmentSets = function assessmentSets() {
+    const bands = (ui.bankData.manifest.bands) || [];
+    body().innerHTML = `
+      <div class="dd-desc" style="text-align:left;line-height:1.6;">
+        Four sets, harder in order. Each is scored only on its own questions, so
+        a strong easier set can never carry a weaker harder one.
+      </div>
+      <div style="margin:.8rem 0;">
+        ${bands.map((b) => {
+          const i = bandInfo(b);
+          return `<div class="practice-box" style="text-align:left;margin-bottom:.5rem;">
+            <div style="font-size:.78rem;color:var(--gold-bright);">${esc(i.name)}</div>
+            <div style="font-size:.7rem;color:var(--muted);font-family:var(--fzh);">${esc(i.zh || "")}</div>
+            <div style="font-size:.7rem;color:var(--ink);margin-top:.25rem;line-height:1.5;">${esc(i.about || "")}</div>
+            ${i.passageChars ? `<div style="font-size:.66rem;color:var(--muted);margin-top:.2rem;">Reading passages of about ${esc(i.passageChars)} characters.</div>` : ""}
+          </div>`;
+        }).join("")}
+      </div>
+      <div class="practice-box" style="text-align:left;font-size:.7rem;line-height:1.6;">
+        ${esc(ui.bankData.manifest.bandNote || "")}
+      </div>
+      <button class="btn-s" style="margin-top:.7rem;" onclick="assessmentHome()">Back</button>`;
+  };
 
   globalThis.assessmentHistory = function assessmentHistory() {
     const past = S.listAttempts(storeCtx(), curP)
@@ -118,7 +182,8 @@
       <div style="display:flex;flex-direction:column;gap:.45rem;margin:.8rem 0;">
         ${past.map((a) => `
           <div class="practice-box" style="text-align:left;">
-            <div style="font-size:.78rem;color:var(--ink);">${esc(String(a.createdAt).slice(0, 10))} · form ${esc(a.formId)} · bands ${esc(a.bands.join(", "))}</div>
+            <div style="font-size:.78rem;color:var(--ink);">${esc(typeof playerName === "function" ? playerName(a.playerId) : a.playerId)} · ${esc(String(a.createdAt).slice(0, 10))} · form ${esc(a.formId)}</div>
+            <div style="font-size:.7rem;color:var(--gold);">${esc(a.bands.map(bandName).join(", "))}</div>
             <div style="font-size:.68rem;color:var(--muted);margin-top:.2rem;">bank ${esc(a.bankVersion)}</div>
             <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.45rem;">
               <button class="btn-s" onclick="assessmentShowResult('${esc(a.attemptId)}')">See report</button>
@@ -132,20 +197,25 @@
   globalThis.assessmentHome = renderHome;
 
   // ── running an attempt ───────────────────────────────────────────────────
-  globalThis.assessmentStart = function assessmentStart(mode, formId, comparisonAttemptId) {
+  globalThis.assessmentStart = function assessmentStart(mode, formId, comparisonAttemptId, startBand) {
+    // The starting set was hardcoded, so a child plainly past the first set had
+    // to sit 34 easy items to prove it. createAttempt already took `bands`; the
+    // UI simply never passed one.
+    const available = (ui.bankData.manifest.bands) || [FIRST_BAND];
+    const band = available.indexOf(startBand) !== -1 ? startBand : FIRST_BAND;
     const attempt = C.createAttempt({
       attemptId: S.newAttemptId(curP),
       playerId: curP,                 // fixed here; never re-read from a later global
       bankVersion: ui.bankData.manifest.bankVersion,
       formId: formId || "A",
       mode: mode || "baseline",
-      bands: [FIRST_BAND],
+      bands: [band],
       comparisonAttemptId: comparisonAttemptId || null,
     });
     C.transition(attempt, "active");
     ui.attempt = attempt;
-    ui.band = FIRST_BAND;
-    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, FIRST_BAND);
+    ui.band = band;
+    ui.items = C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, band);
     ui.idx = 0;
     persist();
     renderItem();
@@ -192,6 +262,7 @@
     const passage = item.passageId ? ui.bankData.bank.passages[item.passageId] : null;
 
     body().innerHTML = `
+      <div class="mq-progress">${esc(bandName(ui.band))} · set ${esc(bandOrdinal(ui.band))}</div>
       <div class="mq-progress">Question ${ui.idx + 1} of ${ui.items.length}</div>
       ${passage ? `<div class="practice-box" style="font-family:var(--fzh);font-size:1.05rem;line-height:1.9;text-align:left;">${esc(passage.zh)}</div>` : ""}
       ${item.prompt.zh ? `<div class="mq-hz" style="font-family:var(--fzh);">${esc(item.prompt.zh)}</div>` : ""}
@@ -320,6 +391,40 @@
     if (a && a.playerId === curP) renderResult(a);
   };
 
+  /**
+   * Why the assessment stopped where it did.
+   *
+   * routeNextBand has always returned `reasons`, and the report threw the array
+   * away — so a parent saw "sets C1" with no way to tell whether the child had
+   * declined the next set, run out of time, or missed the bar, and by how much.
+   * Both baseline sittings stopped at C1 for the same reason and looked
+   * identical because of it.
+   */
+  function stopReason(score, highest, route) {
+    if (route.atCeiling) {
+      return `<div class="practice-box" style="text-align:left;font-size:.72rem;line-height:1.6;margin-bottom:.6rem;">
+        Finished the last set we have — ${esc(bandName(highest))}.</div>`;
+    }
+    const domains = ((score.byBand || {})[highest] || {}).domains || {};
+    const missed = Object.keys(C.ROUTING_THRESHOLDS || {})
+      .map((dom) => ({ dom, d: domains[dom], need: C.ROUTING_THRESHOLDS[dom] }))
+      .filter((x) => x.d && x.d.complete && x.d.correct < x.need);
+    const incomplete = Object.keys(C.ROUTING_THRESHOLDS || {})
+      .filter((dom) => !domains[dom] || !domains[dom].complete);
+
+    let why;
+    if (incomplete.length) {
+      why = `Not every part of ${esc(bandName(highest))} was finished, so there was nothing to decide on.`;
+    } else if (missed.length) {
+      why = `Stopped after ${esc(bandName(highest))}. The next set opens at ` +
+        missed.map((x) => `${x.need} of ${x.d.expected} on “${esc(DOMAIN_LABEL[x.dom] || x.dom)}” (got ${x.d.correct})`).join(", ") + ".";
+    } else {
+      why = `${esc(bandName(highest))} was passed — the next set was offered and not taken this time.`;
+    }
+    return `<div class="practice-box" style="text-align:left;font-size:.72rem;line-height:1.6;margin-bottom:.6rem;">
+      ${why}<br><span style="color:var(--muted);">Stopping is allowed and costs nothing.</span></div>`;
+  }
+
   const DOMAIN_LABEL = {
     recognition_unaided: "Reading characters on their own",
     decoding_supported: "Reading with pinyin to help",
@@ -338,6 +443,15 @@
       const entry = score.byBand[bandId];
       if (!entry) return "";
       const rows = Object.values(entry.domains).map((d) => {
+        // Median answer time, and an explicit note when a completed domain sits
+        // at or below chance for a 4-option item. Both come from data the attempt
+        // already stores; neither is a verdict, and the report says so.
+        const pace = d.medianSecs != null
+          ? `<span style="color:var(--muted);"> · about ${d.medianSecs}s per answer</span>` : "";
+        const chance = d.atChance
+          ? `<div style="font-size:.66rem;color:var(--muted);margin-top:.1rem;">
+               At this length, ${Math.ceil(d.chanceLevel)} of ${d.expected} is what picking at
+               random gives, so this part does not tell us much either way.</div>` : "";
         const detail = d.domain === "writing_recall" && d.awaitingReview
           ? `<span style="color:var(--muted);">${d.awaitingReview} waiting for a grown-up to look at — not scored yet</span>`
           : d.complete
@@ -345,18 +459,30 @@
             : `${d.correct} of ${d.submitted} answered right · ${d.unanswered} not answered <span style="color:var(--muted);">(part of the set only)</span>`;
         return `<div style="padding:.35rem 0;border-bottom:1px solid rgba(212,160,23,.14);text-align:left;">
           <div style="font-size:.78rem;color:var(--ink);">${esc(DOMAIN_LABEL[d.domain] || d.domain)}</div>
-          <div style="font-size:.72rem;color:var(--gold);margin-top:.12rem;">${detail}</div>
+          <div style="font-size:.72rem;color:var(--gold);margin-top:.12rem;">${detail}${pace}</div>
+          ${chance}
         </div>`;
       }).join("");
+      const info = bandInfo(bandId);
       return `<div class="practice-box" style="text-align:left;margin-bottom:.6rem;">
-        <div style="font-size:.8rem;color:var(--gold-bright);margin-bottom:.25rem;">Set ${esc(bandId)}</div>
+        <div style="font-size:.8rem;color:var(--gold-bright);">${esc(info.name)}</div>
+        <div style="font-size:.66rem;color:var(--muted);margin-bottom:.3rem;">${esc(info.about || "")}</div>
         ${rows}
       </div>`;
     };
     const rows = attempt.bands.map(bandBlock).join("");
 
+    // Who this is. The report carried no name, so two children's reports were
+    // told apart by the screenshot's filename. Read from attempt.playerId, never
+    // curP: ownership is fixed at creation and must survive a profile switch.
+    const who = typeof playerName === "function" ? playerName(attempt.playerId) : attempt.playerId;
     body().innerHTML = `
-      <div class="dd-desc" style="text-align:left;">Assessment report · ${esc(String(attempt.createdAt).slice(0, 10))} · form ${esc(attempt.formId)} · sets ${esc(attempt.bands.join(", "))}</div>
+      <div class="dd-desc" style="text-align:left;">
+        <strong style="color:var(--gold);">${esc(who)}</strong> · assessment report<br>
+        ${esc(String(attempt.createdAt).slice(0, 10))} · form ${esc(attempt.formId)} ·
+        ${esc(attempt.bands.map(bandName).join(", "))} · bank ${esc(attempt.bankVersion || "?")}
+      </div>
+      ${stopReason(score, highest, route)}
       <div style="margin:.7rem 0;">${rows}</div>
       <div class="practice-box" style="text-align:left;font-size:.74rem;line-height:1.6;">
         <strong style="color:var(--ink);">What this is</strong><br>
@@ -368,6 +494,130 @@
       </div>
       <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.8rem;">
         <button class="btn-s" onclick="assessmentHome()">Done</button>
+        <button class="btn-s" onclick="assessmentReviewWriting('${esc(attempt.attemptId)}')">✍️ Grown-up: mark the writing</button>
+        <button class="btn-s" onclick="assessmentExport('${esc(attempt.attemptId)}')">⬇ Save report</button>
       </div>`;
   }
+
+  // ── handwriting review ───────────────────────────────────────────────────
+  /**
+   * A grown-up marks the writing items.
+   *
+   * The scorer has always read `attempt.writingReviews` and counted rubricScore
+   * >= 2 as correct, and the bank has always shipped the rubric — but nothing in
+   * the app ever wrote to that array. So every report said "4 waiting for a
+   * grown-up to look at" forever, and the promise the report makes had no way to
+   * be kept.
+   *
+   * Behind the parent PIN, because it changes a recorded score. "Done — I wrote
+   * it" cannot mark itself correct: the app never sees the paper, and crediting
+   * it would put a made-up number in the one place this design promises not to.
+   */
+  globalThis.assessmentReviewWriting = function assessmentReviewWriting(attemptId) {
+    const ok = typeof askParentPwd === "function"
+      ? askParentPwd("Marking handwriting changes a recorded score.")
+      : true;
+    if (!ok) return;
+    const a = S.loadAttempt(storeCtx(), attemptId);
+    if (!a) return;
+    renderWritingReview(a);
+  };
+
+  function writingItemsOf(attempt) {
+    const out = [];
+    attempt.bands.forEach((b) => {
+      C.selectItems(ui.bankData.bank, ui.bankData.forms, attempt.formId, b)
+        .filter((it) => it.domain === "writing_recall")
+        .forEach((it) => out.push(it));
+    });
+    return out;
+  }
+
+  function renderWritingReview(attempt) {
+    const items = writingItemsOf(attempt);
+    const rubric = (ui.bankData.bank.rubrics || {})["writing-recall-v1"] || { levels: [] };
+    const answered = new Set(attempt.responses.map((r) => r.itemId));
+    const scoreOf = (id) => {
+      const r = attempt.writingReviews.find((w) => w.itemId === id);
+      return r && typeof r.rubricScore === "number" ? r.rubricScore : null;
+    };
+    body().innerHTML = `
+      <div class="dd-desc" style="text-align:left;line-height:1.6;">
+        The child wrote these on paper from hearing the word — no model was shown.
+        Mark what is actually on the page. Stroke order cannot be judged from a
+        finished character and is not scored.
+      </div>
+      <div style="margin:.8rem 0;">
+        ${items.map((it) => {
+          const target = (it.reference && it.reference.entries && it.reference.entries[0]) || "?";
+          const cur = scoreOf(it.id);
+          const skipped = !answered.has(it.id);
+          return `<div class="practice-box" style="text-align:left;margin-bottom:.55rem;">
+            <div style="display:flex;align-items:center;gap:.6rem;">
+              <span style="font-family:var(--fzh);font-size:2rem;color:var(--gold);">${esc(target)}</span>
+              <span style="font-size:.72rem;color:var(--muted);">${esc(it.prompt.enInstruction || "")}</span>
+            </div>
+            ${skipped ? `<div style="font-size:.68rem;color:var(--muted);margin-top:.3rem;">Not attempted — leave it unmarked rather than scoring it zero.</div>` : ""}
+            <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.45rem;">
+              ${rubric.levels.map((lv) => `
+                <button class="btn-s" style="font-size:.66rem;${cur === lv.score ? "border-color:var(--gold);color:var(--gold);" : ""}"
+                  onclick="assessmentMarkWriting('${esc(attempt.attemptId)}','${esc(it.id)}',${lv.score})">
+                  ${lv.score} · ${esc(lv.label)}</button>`).join("")}
+              ${cur != null ? `<button class="btn-s" style="font-size:.66rem;" onclick="assessmentMarkWriting('${esc(attempt.attemptId)}','${esc(it.id)}',null)">clear</button>` : ""}
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+      <div style="font-size:.68rem;color:var(--muted);line-height:1.5;">
+        ${esc(rubric.note || "")}
+      </div>
+      <button class="btn-g" style="margin-top:.7rem;width:100%;" onclick="assessmentShowResult('${esc(attempt.attemptId)}')">Back to the report</button>`;
+  }
+
+  globalThis.assessmentMarkWriting = function assessmentMarkWriting(attemptId, itemId, score) {
+    const a = S.loadAttempt(storeCtx(), attemptId);
+    if (!a) return;
+    a.writingReviews = (a.writingReviews || []).filter((w) => w.itemId !== itemId);
+    if (score !== null && score !== undefined) {
+      a.writingReviews.push({
+        itemId, rubricId: "writing-recall-v1", rubricScore: Number(score),
+        reviewedAt: new Date().toISOString(), reason: "marked in the app by a grown-up",
+      });
+    }
+    // The responses themselves are never touched — a review is a second opinion
+    // ON an answer, not a replacement for it. revision bumps so the compare-and-set
+    // write is accepted; resultVersion marks the report as re-derived.
+    a.revision = (a.revision || 1) + 1;
+    a.resultVersion = (a.resultVersion || 1) + 1;
+    S.saveAttempt(storeCtx(), a);
+    S.pushAttempt(storeCtx(), a).catch(() => {});
+    if (ui && ui.attempt && ui.attempt.attemptId === attemptId) ui.attempt = a;
+    renderWritingReview(a);
+  };
+
+  // ── export ───────────────────────────────────────────────────────────────
+  /** Save one report as JSON. The two baseline reports were told apart by the
+   *  screenshot filename; a file named for the child fixes that at the source. */
+  globalThis.assessmentExport = function assessmentExport(attemptId) {
+    const a = S.loadAttempt(storeCtx(), attemptId);
+    if (!a) return;
+    const who = typeof playerName === "function" ? playerName(a.playerId) : a.playerId;
+    const score = C.scoreAttempt(a, ui.bankData.bank, ui.bankData.forms);
+    const payload = {
+      player: who, playerId: a.playerId, attemptId: a.attemptId,
+      createdAt: a.createdAt, submittedAt: a.submittedAt,
+      bankVersion: a.bankVersion, formId: a.formId, bands: a.bands,
+      sets: a.bands.map((b) => ({ band: b, name: bandName(b) })),
+      byBand: score.byBand,
+      writingReviews: a.writingReviews,
+      note: "Sample of reading and understanding. No overall score: none is defensible from samples this size. Not an HSK level.",
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `assessment_${who}_${String(a.createdAt).slice(0, 10)}_${a.bands.join("-")}.json`;
+    document.body.appendChild(link); link.click(); link.remove();
+    laterCall("ui", () => URL.revokeObjectURL(url), 1000);
+  };
 })();

@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_03",
   "level": "HSK1",
   "gateId": 3,
-  "title": "HSK1 Gate 3 Lesson",
-  "explanation": "HSK1 Gate 3：本关有 13 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第3关：今天的新词有：很、还、去、她、着、想、给、没有、能、那……等（共13个生字）。复习字有：我、是、你、在、不、有、他、这……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 3 · Western Zhou",
+  "explanationEn": "Gate 3: Western Zhou. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第3关：西周。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "商朝以后，中国有了西周。西周的王说：“天让我做王。”他说，天看着每一个王。王要爱人，人也要爱王。",
+  "passageEn": "After the Shang, China had the Western Zhou. The Western Zhou king said: \"Heaven lets me be king.\" He said that Heaven watches every king. The king must love the people; the people must also love the king.",
   "keyVocab": [
     {
-      "zh": "很",
-      "pinyin": "hěn",
-      "en": "(adverb of degree)"
+      "zh": "商朝",
+      "pinyin": "Shāngcháo",
+      "en": "Shang Dynasty"
     },
     {
-      "zh": "还",
-      "pinyin": "hái",
-      "en": "still; also; even more; yet"
+      "zh": "以后",
+      "pinyin": "yǐ hòu",
+      "en": "after"
     },
     {
-      "zh": "去",
-      "pinyin": "qù",
-      "en": "to go"
+      "zh": "王",
+      "pinyin": "wáng",
+      "en": "king"
     },
     {
-      "zh": "她",
-      "pinyin": "tā",
-      "en": "she"
-    },
-    {
-      "zh": "着",
-      "pinyin": "zhāo",
-      "en": "(chess) move"
-    },
-    {
-      "zh": "想",
-      "pinyin": "xiǎng",
-      "en": "to think (about)"
-    },
-    {
-      "zh": "给",
-      "pinyin": "gěi",
-      "en": "to"
-    },
-    {
-      "zh": "没有",
-      "pinyin": "méi yǒu",
-      "en": "haven't"
-    },
-    {
-      "zh": "能",
-      "pinyin": "néng",
-      "en": "can; to be able to; capable"
-    },
-    {
-      "zh": "那",
-      "pinyin": "nà",
-      "en": "that; those; then"
-    },
-    {
-      "zh": "他们",
-      "pinyin": "tā men",
-      "en": "they"
-    },
-    {
-      "zh": "看",
-      "pinyin": "kān",
-      "en": "to look after"
+      "zh": "说",
+      "pinyin": "shuō",
+      "en": "said"
     },
     {
       "zh": "做",
       "pinyin": "zuò",
-      "en": "to make; to produce"
+      "en": "be"
     },
     {
-      "zh": "我",
-      "pinyin": "wǒ",
-      "en": "I; me; my"
+      "zh": "天",
+      "pinyin": "tiān",
+      "en": "today"
+    },
+    {
+      "zh": "看",
+      "pinyin": "kàn",
+      "en": "saw"
+    },
+    {
+      "zh": "着",
+      "pinyin": "zhe",
+      "en": "(-ing, still going on)"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "13个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "After the Shang, China had the Western Zhou.",
+      "answer": "商朝以后，中国有了西周。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：我 和 是（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "He said that Heaven watches every king.",
+      "answer": "他说，天看着每一个王。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「很」「还」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Western Zhou in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说西周。"
 }

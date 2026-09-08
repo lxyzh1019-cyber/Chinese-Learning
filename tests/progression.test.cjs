@@ -96,10 +96,10 @@ test("M-T03 / T03: a new user's mini-quiz does not bypass the read chain", () =>
 
 test("T03: an existing child keeps the access they already had", () => {
   const a = app();
-  const p = F.newUserAfterMiniQuiz(a, "xia");
+  const p = F.newUserAfterMiniQuiz(a, "xia-h1");
   delete p.legacyStoriesCompleted;      // pre-migration save
   F.installState(a, { jenn: p });       // ensureState takes the snapshot
-  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia"],
+  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia-h1"],
     "stories finished before the gate shipped are grandfathered");
   const u = a.gameUnlockForDid(1);
   assert.equal(u.rain, true, "previously reachable games stay reachable");
@@ -107,13 +107,13 @@ test("T03: an existing child keeps the access they already had", () => {
 
 test("T03: the snapshot is taken once and does not grow", () => {
   const a = app();
-  const p = F.newUserAfterMiniQuiz(a, "xia");
+  const p = F.newUserAfterMiniQuiz(a, "xia-h1");
   delete p.legacyStoriesCompleted;
   F.installState(a, { jenn: p });
   // A story finished today must not join the legacy list.
-  a.state.jenn.storiesCompleted.push("shang");
+  a.state.jenn.storiesCompleted.push("shang-h1");
   a.ensureState("jenn");
-  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia"],
+  assert.deepEqual(a.state.jenn.legacyStoriesCompleted, ["xia-h1"],
     "re-running ensureState does not re-snapshot");
   assert.equal(a.gameUnlockForDid(2).rain, false, "the new story earns no bypass");
 });
@@ -304,7 +304,7 @@ function studyChars(app, story, known = {}) {
 test("M-T04 / B02e: exploring every study character reaches 100%, not 79%", () => {
   const a = app();
   F.installState(a);
-  const story = a.STORIES_MAP.xia;
+  const story = a.STORIES_MAP["xia-h1"];
   const uniq = studyChars(a, story);
 
   // Reproduce the reader's counters: the denominator must be the unique set.
@@ -353,6 +353,13 @@ function almostCleared(a, { quiz = true, games = true, did = 1, points = 180, le
     ? { trace: 3, match: 3, rain: 3, listen: 3 }
     : { trace: 3, match: 3, rain: 3, listen: 0 } };
   if (quiz) s.gateBestQuiz = { [k]: { accPct: 95, quizStars: 3, points } };
+  // Neutralise the daily mission. Its goal is rolled from the date, so on any
+  // day that rolls "clear a gate" the mission's flat +8 lands inside the gate
+  // payout and this test reads 188 instead of the 180 the gate actually paid.
+  // Marking it done makes bumpMission a no-op and keeps the assertion about
+  // gate completion rather than about what day the suite happens to run on.
+  s.dailyMission = { date: a.todayKey(), goalKey: "stars", progress: 1,
+    target: 1, done: true, rewarded: true };
   return s;
 }
 
@@ -805,7 +812,7 @@ test("C01: the level a child is on comes from real progress, not a running total
   assert.equal(a.gatesClearedInLevel(s, 2), 0);
 });
 
-test("C03: migrating a legacy save keeps both the credit and the access", () => {
+test("C03: migrating a legacy save keeps the credit, and no longer grants access", () => {
   const a = app();
   // A pre-migration document, exactly as it sits on disk today.
   const legacy = a.defPlayer();
@@ -822,9 +829,33 @@ test("C03: migrating a legacy save keeps both the credit and the access", () => 
   assert.equal(s.gateGameStars["h1-g05"].trace, 3, "so do game stars");
   assert.equal(s.totalStars, 2270, "and nothing else is disturbed");
   assert.deepEqual(s.legacyCredit.gatesCompleted, [1, 2, 3, 4, 5], "provenance kept");
-  assert.deepEqual(s.legacyLevelAccess, [1, 2], "the HSK2 tab they already had stays open");
-  assert.equal(a.levelIsUnlocked(s, 2), true);
-  assert.equal(a.levelIsUnlocked(s, 3), false, "but no tab they had not earned");
+
+  // The migration still RECORDS what the old running-total rule had opened,
+  // because it is worth knowing what a child used to be able to reach...
+  assert.deepEqual(s.legacyLevelAccess, [1, 2], "what the old rule opened is still recorded");
+
+  // ...but it no longer opens anything. Five cleared gates is not 22, so HSK2
+  // is shut, and a document that already carries the grant needs no migration
+  // to lose it — the rule simply stopped consulting the field.
+  assert.equal(a.levelIsUnlocked(s, 2), false,
+    "five gates does not open HSK2, grandfathered or not");
+  assert.equal(a.levelIsUnlocked(s, 3), false);
+  assert.equal(a.getCurrentHSK(s), 1, "and the child reads as HSK1");
+});
+
+test("C03b: only clearing all 22 gates of the level below opens a level", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  // The grant that used to be honoured, now inert.
+  s.legacyLevelAccess = [1, 2, 3, 4];
+
+  for (let g = 1; g <= 21; g++) s.gatesCompleted.push(`h1-g${String(g).padStart(2, "0")}`);
+  assert.equal(a.levelIsUnlocked(s, 2), false, "21 of 22 is still locked");
+
+  s.gatesCompleted.push("h1-g22");
+  assert.equal(a.levelIsUnlocked(s, 2), true, "the 22nd gate opens it");
+  assert.equal(a.levelIsUnlocked(s, 3), false, "and opens only the next one");
 });
 
 test("M-T18: re-running the migration through ensureState changes nothing", () => {
@@ -955,4 +986,173 @@ test("T02: every lesson file has the content the renderer now needs", () => {
     });
   });
   assert.deepEqual(missing, [], "nothing the renderer reads is absent");
+});
+
+// ── Bilingual UI labels ────────────────────────────────────────────────────
+
+test("UI-T01: every named feature has both languages, from one definition", () => {
+  const a = app();
+  const labels = a.UI_LABELS;
+  const keys = Object.keys(labels);
+  assert.ok(keys.length >= 30, "the registry covers the app's named features");
+
+  const cjk = /[一-鿿]/;
+  const latin = /[A-Za-z]{2,}/;
+  for (const k of keys) {
+    const d = labels[k];
+    assert.ok(latin.test(d.en), `${k}: needs an English name`);
+    assert.ok(cjk.test(d.zh), `${k}: needs a Chinese name`);
+    // The rendered form always carries both, so a control can never ship in
+    // one language the way the hub buttons used to.
+    const rendered = a.L(k);
+    assert.ok(latin.test(rendered) && cjk.test(rendered),
+      `${k}: rendered label must be bilingual, got ${rendered}`);
+    assert.ok(rendered.includes(" · "), `${k}: uses the ' · ' separator`);
+  }
+  assert.equal(a.L("flashCards", { icon: false }), "Flash Cards · 词卡");
+});
+
+test("UI-T02: no named feature ships in only one language", () => {
+  const fs = require("fs");
+  const path = require("path");
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  const a = app();
+
+  // The defect: the hub button said "📖 拼音表" while the overlay it opened said
+  // "拼音表 · Pinyin Chart"; "🏮 Culture Stories" opened
+  // "🏮 Culture Stories · 文化故事". Two hand-written copies, free to disagree,
+  // and half of them readable in only one language — which for these two
+  // readers means not readable at all.
+  //
+  // Every named feature now renders from UI_LABELS, so the regression to catch
+  // is a STATIC label that is one of those names in a single language.
+  const cjk = /[一-鿿]/;
+  const latin = /[A-Za-z]{2,}/;
+  const strip = (t) => t.replace(/[^\p{L}\p{N} ]/gu, " ").replace(/\s+/g, " ").trim().toLowerCase();
+
+  const names = new Map();
+  for (const [k, d] of Object.entries(a.UI_LABELS)) {
+    names.set(strip(d.en), k);
+    names.set(strip(d.zh), k);
+  }
+
+  const offenders = [];
+  for (const m of html.matchAll(/<(?:button|summary|div)\b[^>]*>([^<>{}`]{2,60})<\/(?:button|summary|div)>/g)) {
+    const raw = m[1].trim();
+    if (!raw) continue;
+    const key = names.get(strip(raw));
+    if (!key) continue;                       // not one of our feature names
+    if (cjk.test(raw) && latin.test(raw)) continue; // already bilingual
+    offenders.push(`${key}: ${raw}`);
+  }
+  assert.deepEqual(offenders, [],
+    "a named feature written straight into markup in one language");
+});
+
+test("UI-T03: the static markup carries no hand-written copy of a label", () => {
+  const fs = require("fs");
+  const path = require("path");
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  const a = app();
+
+  // A hand-written copy of the rendered form is how the two versions drifted
+  // apart in the first place, so the rendered string must appear nowhere but
+  // the registry that produces it.
+  const dupes = [];
+  for (const k of Object.keys(a.UI_LABELS)) {
+    const rendered = a.L(k);
+    for (const m of html.matchAll(/<(?:button|summary|div|span)\b[^>]*>([^<>{}`]+)<\//g)) {
+      if (m[1].trim() === rendered) dupes.push(`${k}: ${rendered}`);
+    }
+  }
+  assert.deepEqual(dupes, [], "labels must come from L() or data-ui-label");
+});
+
+// ── Stories and lessons ────────────────────────────────────────────────────
+
+test("S-T01: a story's reads count against the level that served it", () => {
+  const a = app();
+  F.installState(a);
+  // The same dynasty at two levels is two different reading gates. Before
+  // stories carried a level, reading 夏朝 on HSK1 unlocked the games on h2-g01
+  // as well, because reads were keyed by dynasty alone.
+  assert.equal(a.storyKeyFor("xia", 1), "xia-h1");
+  assert.equal(a.storyKeyFor("xia", 2), "xia-h2");
+  assert.equal(a.storyKeyFor("xia-h1", 3), "xia-h3", "an already-suffixed id is re-levelled, not doubled");
+});
+
+test("S-T02: a level with no text of its own falls back and says so", () => {
+  const a = app();
+  F.installState(a);
+  const own = a.storyForGate("xia", 1);
+  assert.equal(own.id, "xia-h1");
+  assert.ok(!own.shared, "level 1 has its own text");
+
+  const borrowed = a.storyForGate("xia", 2);
+  assert.equal(borrowed.id, "xia-h2", "served under the level's own id, so reads count for that level");
+  assert.equal(borrowed.shared, true, "and flagged, so the reader can say the text is shared");
+  assert.deepEqual(borrowed.sents, own.sents, "it is level 1's text");
+});
+
+test("S-T03: every HSK1 story is on the ladder and fully glossed", () => {
+  const a = app();
+  const stories = Object.values(a.STORIES_MAP).filter((s) => s.level === 1);
+  assert.equal(stories.length, 44, "22 dynasties, two stories each");
+  for (const s of stories) {
+    assert.equal(s.sents.length, 10, `${s.id}: the HSK1 ladder is ten sentences`);
+    assert.equal(s.trans.length, 10, `${s.id}: every sentence needs its English`);
+    for (const tok of s.sents.flat()) {
+      if (tok.t === "p") continue;
+      const zh = tok.ch || tok.tx;
+      assert.ok(tok.py, `${s.id}: "${zh}" has no reading`);
+      const en = String(tok.mn == null ? "" : tok.mn).trim();
+      assert.ok(en, `${s.id}: "${zh}" has no meaning`);
+      // The child sees this string when they tap the character. 96 of these
+      // were a longer word's English cut in half ("-tice" for 习) or a
+      // linguist's code ("DE" for 的).
+      assert.ok(!/^[-—]/.test(en), `${s.id}: "${zh}" is glossed "${en}" — a fragment`);
+      assert.ok(!/^[A-Z]{2,5}$/.test(en), `${s.id}: "${zh}" is glossed "${en}" — a grammar code`);
+    }
+  }
+});
+
+test("S-T04: HSK1 lessons are bilingual and drawn from their own gate's story", () => {
+  const fs = require("fs");
+  const path = require("path");
+  const a = app();
+  const dir = path.join(__dirname, "..", "data", "lessons");
+
+  for (let g = 1; g <= 22; g++) {
+    const id = `hsk1_gate_${String(g).padStart(2, "0")}`;
+    const L = JSON.parse(fs.readFileSync(path.join(dir, `${id}.json`), "utf8"));
+
+    // An instruction the child cannot read is not an instruction.
+    for (const [en, zh, what] of [
+      [L.explanationEn, L.explanation, "explanation"],
+      [L.speakingPromptEn, L.speakingPrompt, "speaking prompt"],
+    ]) {
+      assert.match(en || "", /[A-Za-z]{3,}/, `${id}: ${what} has no English`);
+      assert.match(zh || "", /[一-鿿]/, `${id}: ${what} has no Chinese`);
+    }
+    assert.match(L.passageEn || "", /[A-Za-z]{3,}/, `${id}: the passage has no English`);
+
+    // The passage used to be the gate's word list wrapped in instructions,
+    // with questions about the lesson rather than about a text.
+    assert.ok(!/生字|本关有几个|复习字/.test(L.passage), `${id}: the passage is a word list`);
+    L.comprehension.forEach((q, i) => {
+      assert.ok(!/生字|本关有几个/.test(q.question), `${id} q${i + 1}: asks about the lesson`);
+      assert.match(q.questionEn || "", /[A-Za-z]{3,}/, `${id} q${i + 1}: no English`);
+      assert.ok(String(q.answer || "").trim(), `${id} q${i + 1}: no answer`);
+    });
+
+    // And it must come from THIS gate's story, not a free-standing topic.
+    const dyn = a.DYNASTIES.find((d) => d.id === g);
+    const story = a.STORIES_MAP[`${dyn.story}-h1`];
+    const opening = story.sents.slice(0, 4)
+      .map((s) => s.map((t) => (t.t === "p" ? t.tx : (t.ch || t.tx))).join("")).join("");
+    assert.equal(L.passage, opening, `${id}: the passage is not this gate's story`);
+    L.keyVocab.forEach((v) => {
+      assert.ok(L.passage.includes(v.zh), `${id}: key word "${v.zh}" is not in the passage`);
+    });
+  }
 });

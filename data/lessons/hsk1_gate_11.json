@@ -2,94 +2,73 @@
   "lessonId": "hsk1_gate_11",
   "level": "HSK1",
   "gateId": 11,
-  "title": "HSK1 Gate 11 Lesson",
-  "explanation": "HSK1 Gate 11：本关有 14 个生字和 24 个复习字。先认读下面的词，再读短文，最后做理解题。大部分内容你可以自己完成；不懂的地方可以问家长（约二成时间）。",
-  "passage": "第11关：今天的新词有：高、正、岁、先、得到、那些、准备、水、进、写……等（共14个生字）。复习字有：这里、别、请、钱、本、回、东西、一些……等（共24个）。请你先听一听（或请家长读一遍），再自己大声读两遍。然后试着用本关的一个新词说一句很短的中文。",
+  "title": "HSK1 Gate 11 · Sui Dynasty",
+  "explanationEn": "Gate 11: Sui Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
+  "explanation": "第11关：隋朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
+  "passage": "隋朝的皇帝想建一条很长的河。那时候，北方和南方来往很不方便。走一次要很多天。很多人一起工作，建了大运河。",
+  "passageEn": "The Sui Dynasty emperor wanted to build a very long canal. At that time, travel between north and south was very difficult. One journey took many days. Many people worked together and built the Grand Canal.",
   "keyVocab": [
     {
-      "zh": "高",
-      "pinyin": "gāo",
-      "en": "tall; high; above average"
+      "zh": "长",
+      "pinyin": "cháng",
+      "en": "long"
     },
     {
-      "zh": "正",
-      "pinyin": "zhēng",
-      "en": "first month of the lunar year"
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "en": "period"
     },
     {
-      "zh": "岁",
-      "pinyin": "suì",
-      "en": "variant of 岁, year"
+      "zh": "北",
+      "pinyin": "běi",
+      "en": "north"
     },
     {
-      "zh": "先",
-      "pinyin": "xiān",
-      "en": "early"
+      "zh": "方",
+      "pinyin": "fāng",
+      "en": "square; direction; way"
     },
     {
-      "zh": "得到",
-      "pinyin": "dé dào",
-      "en": "to get"
+      "zh": "南",
+      "pinyin": "nán",
+      "en": "south"
     },
     {
-      "zh": "那些",
-      "pinyin": "nà xiē",
-      "en": "those"
+      "zh": "来",
+      "pinyin": "lái",
+      "en": "to come"
     },
     {
-      "zh": "准备",
-      "pinyin": "zhǔn bèi",
-      "en": "preparation"
+      "zh": "往",
+      "pinyin": "wǎng",
+      "en": "to go (in a direction)"
     },
     {
-      "zh": "水",
-      "pinyin": "shuǐ",
-      "en": "water"
-    },
-    {
-      "zh": "进",
-      "pinyin": "jìn",
-      "en": "to go forward"
-    },
-    {
-      "zh": "写",
-      "pinyin": "xiě",
-      "en": "to write"
-    },
-    {
-      "zh": "国家",
-      "pinyin": "guó jiā",
-      "en": "country; nation; state"
-    },
-    {
-      "zh": "您",
-      "pinyin": "nín",
-      "en": "you (courteous, as opposed to informal 你)"
-    },
-    {
-      "zh": "电话",
-      "pinyin": "diàn huà",
-      "en": "telephone"
-    },
-    {
-      "zh": "送",
-      "pinyin": "sòng",
-      "en": "to send; to deliver; to transmit"
+      "zh": "便",
+      "pinyin": "pián",
+      "en": "cheap-"
     }
   ],
   "comprehension": [
     {
-      "question": "本关有几个生字（新词）？",
-      "answer": "14个。"
+      "questionEn": "Read the first sentence again. What does it tell you?",
+      "question": "再读第一句。它说了什么？",
+      "answerEn": "The Sui Dynasty emperor wanted to build a very long canal.",
+      "answer": "隋朝的皇帝想建一条很长的河。"
     },
     {
-      "question": "请说出两个“复习字”（从短文里的复习列表选）。",
-      "answer": "例如：这里 和 别（答案不唯一，合理即可）。"
+      "questionEn": "Read the third sentence again. Who or what is it about?",
+      "question": "再读第三句。它说的是谁，或者是什么？",
+      "answerEn": "One journey took many days.",
+      "answer": "走一次要很多天。"
     },
     {
-      "question": "读完以后，你应该自己先做哪一步？",
-      "answer": "大声读词和短文，再用新词说一句短句（需要时请家长帮忙）。"
+      "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
+      "question": "大声读一遍短文，再试着背出其中的一句。",
+      "answerEn": "Any one sentence from the passage above.",
+      "answer": "上面短文里的任何一句。"
     }
   ],
-  "speakingPrompt": "用本关的词（例如「高」「正」）说 2～3 句很短的中文，可以说你的一天或你的爱好。"
+  "speakingPromptEn": "Tell a grown-up about Sui Dynasty in two or three short Chinese sentences. Use words from the list above.",
+  "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说隋朝。"
 }

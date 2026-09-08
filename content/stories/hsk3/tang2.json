@@ -1,0 +1,479 @@
+{
+  "id": "tang2",
+  "did": 12,
+  "level": 3,
+  "title": "诗人看月亮",
+  "en": "The Poet Looks at the Moon",
+  "names": {
+    "唐朝": {
+      "py": "Tángcháo",
+      "en": "Tang Dynasty"
+    },
+    "李白": {
+      "py": "Lǐ Bái",
+      "en": "Li Bai"
+    }
+  },
+  "sents": [
+    {
+      "zh": "唐朝大诗人李白很喜欢看月亮。",
+      "en": "The great Tang poet Li Bai loved watching the moon.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "唐朝",
+          "py": "Tángcháo",
+          "mn": "Tang Dynasty"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "great"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "po-",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "李白",
+          "py": "Lǐ Bái",
+          "mn": "Li Bai"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "喜",
+          "py": "xǐ",
+          "mn": "liked-",
+          "bonus": true
+        },
+        {
+          "zh": "欢",
+          "py": "huān",
+          "mn": "joy",
+          "bonus": true
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "watch"
+        },
+        {
+          "zh": "月",
+          "py": "yuè",
+          "mn": "moon-",
+          "bonus": true
+        },
+        {
+          "zh": "亮",
+          "py": "liàng",
+          "mn": "bright",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他一个人喝酒，看着夜空中的月亮。",
+      "en": "He drank wine alone, watching the moon in the night sky.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "drank",
+          "bonus": true
+        },
+        {
+          "zh": "酒",
+          "py": "jiǔ",
+          "mn": "wine",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "watching"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)",
+          "bonus": true
+        },
+        {
+          "zh": "夜",
+          "py": "yè",
+          "mn": "night-",
+          "bonus": true
+        },
+        {
+          "zh": "空",
+          "py": "kōng",
+          "mn": "-sky",
+          "bonus": true
+        },
+        {
+          "zh": "中",
+          "py": "zhōng",
+          "mn": "in"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "月",
+          "py": "yuè",
+          "mn": "moon-",
+          "bonus": true
+        },
+        {
+          "zh": "亮",
+          "py": "liàng",
+          "mn": "bright",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他思念远方的家人，心里很难过。",
+      "en": "He missed his family far away; his heart felt very sad.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "思",
+          "py": "sī",
+          "mn": "miss-",
+          "bonus": true
+        },
+        {
+          "zh": "念",
+          "py": "niàn",
+          "mn": "-ing",
+          "bonus": true
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "faraway",
+          "bonus": true
+        },
+        {
+          "zh": "方",
+          "py": "fāng",
+          "mn": "direction; square",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "family"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "心",
+          "py": "xīn",
+          "mn": "heart"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "难",
+          "py": "nán",
+          "mn": "sad",
+          "bonus": true
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "sad",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他写下了著名的诗：“床前明月光，疑是地上霜。”",
+      "en": "He wrote the famous poem: \"Before my bed the bright moonlight gleams — I thought it was frost on the ground.\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "wrote"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "down"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)",
+          "bonus": true
+        },
+        {
+          "zh": "著",
+          "py": "zhù",
+          "mn": "famous",
+          "bonus": true
+        },
+        {
+          "zh": "名",
+          "py": "míng",
+          "mn": "famous",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poem",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "：“"
+        },
+        {
+          "zh": "床",
+          "py": "chuáng",
+          "mn": "bed",
+          "bonus": true
+        },
+        {
+          "zh": "前",
+          "py": "qián",
+          "mn": "front; before",
+          "bonus": true
+        },
+        {
+          "zh": "明",
+          "py": "míng",
+          "mn": "bright; clear",
+          "bonus": true
+        },
+        {
+          "zh": "月",
+          "py": "yuè",
+          "mn": "moon",
+          "bonus": true
+        },
+        {
+          "zh": "光",
+          "py": "guāng",
+          "mn": "light",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "疑",
+          "py": "yí",
+          "mn": "seems like",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "地",
+          "py": "dì",
+          "mn": "(before how it is done)"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "霜",
+          "py": "shuāng",
+          "mn": "frost",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。”"
+        }
+      ]
+    },
+    {
+      "zh": "这首诗让很多离家的人感到安慰。",
+      "en": "This poem brought comfort to many people away from home.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "首",
+          "py": "shǒu",
+          "mn": "CL-poem",
+          "bonus": true
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poem",
+          "bonus": true
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "made",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "离",
+          "py": "lí",
+          "mn": "away from",
+          "bonus": true
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "感",
+          "py": "gǎn",
+          "mn": "felt",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive"
+        },
+        {
+          "zh": "安",
+          "py": "ān",
+          "mn": "com-",
+          "bonus": true
+        },
+        {
+          "zh": "慰",
+          "py": "wèi",
+          "mn": "-fort",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    }
+  ],
+  "note": "Seeded from the original level-blind text, whose vocabulary is HSK3/HSK4 material rather than HSK1. Needs extending to the 20-sentence HSK3 ladder before it is built."
+}
