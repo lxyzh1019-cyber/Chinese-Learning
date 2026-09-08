@@ -1,130 +1,117 @@
-# Handoff — Chinese Adventure, post-baseline
+# Handoff — Chinese Adventure, after the baseline fixes
 
-Read this first in a new session. It is the working state of the audit-and-plan
-work, written to be the only file you need before picking up.
+Read this first in a new session. It is the working state, written to be the
+only file you need.
 
 ---
 
-## Goal
+## Current state
 
-Validate an external audit of the app against the real code, then execute the
-resulting plan: ship the assessment, fix the confirmed defects, move to an
-88-gate model, make sync survive divergent devices, repair the content the games
-actually serve, and add a retention model. Measure before authoring more content.
+- Branch `claude/chinese-adventure-audit-cont-xjxqpl`, PR
+  [#44](https://github.com/lxyzh1019-cyber/Chinese-Learning/pull/44) (draft).
+  PR #43 is **merged**; this branch started fresh from `main`.
+- `npm run verify` → parse guard, curriculum, stories, lessons, assessment bank,
+  **173 tests, 0 fail**.
+- `npm run validate:assessment:audio` → all 156 clips reachable.
+
+## What the baseline actually showed
+
+Both girls stopped at the first set. Neither met the advance rule
+(recognition ≥6/8 **and** meaning ≥6/8 **and** comprehension ≥4/6):
+
+| | recognition | meaning | comprehension | pinyin-supported | writing |
+|---|---|---|---|---|---|
+| 12:01 report | 8/8 | **4/8** | 6/6 | 8/8 | 4 unreviewed |
+| 12:11 report | 7/8 | **3/8** | **2/6** | 8/8 | 4 unreviewed |
+
+**The high numbers were inflated.** Bank 1.0.0 drew distractors as the first
+three other words in list order, so later items offered three sounds that were
+earlier items' *correct answers*: 40 of 128 audio items were answerable by
+elimination. The domains that could be gamed scored near-perfect; the two that
+could not scored near chance (2/8 is chance on a 4-option item). **Meaning and
+comprehension are the trustworthy half**, and both are low.
+
+The bank is now 1.1.0 and those routes are closed, so **the two baseline reports
+are a snapshot, not a comparison baseline**. A fresh sitting on 1.1.0 is what
+produces numbers worth tracking. Neither child has sat one.
 
 ## Locked decisions (do not re-litigate)
 
 | Decision | Choice |
 |---|---|
-| Order | Assessment first, then Phase B defects |
-| Assessment scope | Full spec — 4 bands C1–C4 × 2 forms, 240 distinct items |
-| Audio | Keep device TTS, label the reproducibility limit honestly |
-| Live records | Real and must be preserved — backup + dry run before any migration |
-| Firestore rules | Ship as a **merge fragment**, never a publishable ruleset — the project is shared with other apps |
-| Bands | Custom C1–C4. **Not** HSK 1–4, and must never be presented as such |
+| Bands | Custom C1–C4. **Not** HSK 1–4, and never presented as such |
 | Honesty bar | No overall "ability" score, no mastery flag, unreviewed writing is never zero |
+| Assessment home | Its own screen, entered from the **profile-select** screen |
+| Level unlock | All 22 gates of the level below. No grandfather clause |
+| O05 | Same background story per dynasty, told at each level's difficulty |
+| Ladder | HSK1 10 sentences, HSK2 15, HSK3 20, HSK4 25 |
+| Firestore rules | Ship as a **merge fragment**, never a publishable ruleset |
 
-## Current state
+## Shipped on this branch
 
-- Branch `claude/audit-improvement-plan-review-bfx948`, **17 commits** ahead of `main`.
-- PR [#43](https://github.com/lxyzh1019-cyber/Chinese-Learning/pull/43), draft, open.
-- `npm run verify` → **155 tests, 0 fail, 0 todo**. Parse guard, curriculum
-  validator and assessment bank all pass.
-- Working tree clean.
+Assessment moved to its own screen and costs no play time; report names the
+child, names the sets, says why it stopped, shows answer pace, flags a domain at
+chance, and exports to `assessment_<Name>_<date>_<sets>.json`. Handwriting can be
+marked behind the parent PIN — the scorer always read `writingReviews` and
+nothing ever wrote one. Starting set is choosable. Bank 1.1.0: foil pools, zero
+eliminable items, 102 distinct distractor sets, and the unnatural Chinese fixed
+(`今天天很好` → `今天天气很好`, `我很爱上山` → `我很喜欢爬山`, single-character
+targets moved to the words people actually say). One bilingual definition per
+named feature, with two tests holding it. One profile control, at the top of the
+sidebar. Level unlock enforces the 22-gate rule and says so.
 
-**Shipped and verified:** owner-scoped saves; deferred-callback registry with
-`sessionGen`; answer locks; Match pair count from the pool; unique-target story
-progress; champion counts from generated items; one idempotent
-`evaluateGateCompletion`; eager gate-timer expiry; per-character trace metadata;
-88-gate identity `h{level}-g{NN}` with a shape-aware migration; revision
-compare-and-set plus event-sourced merge; 453 vocabulary rows repaired; lesson
-passages rendered; retention engine; content-coverage measurement.
+Stories carry a level, load from `data/stories/`, and **all 44 HSK1 stories are
+on the ten-sentence ladder** — gates 1–11 extended, gates 12–22 rewritten
+because their texts were HSK3/HSK4 vocabulary. 96 junk glosses fixed (822
+corrections): the reader was showing `的` as "DE" and `习` as "-tice" on every
+tap. The 22 HSK1 lessons are rewritten from their own gate's story and are
+bilingual throughout.
 
-**Two bugs only a browser caught** (unit tests passed through both) — keep
-browser verification in the loop:
-1. `defPlayer()`'s `schemaVersion: 2` leaked onto legacy documents via
-   `Object.assign`, skipping migration, which then filtered every numeric gate
-   id away — would have silently erased all completions.
-2. `flashPassDone` missing from the migration remap would have re-locked Trace.
+## Next
 
-## Open — needs the owner
-
-**O05 — the story-level decision. This is what the baseline unblocks.**
-
-44 stories serve all 88 gates. A dynasty carries `story`/`story2` with no level
-dimension, so `h1-g01` and `h4-g01` show the same 大禹治水; only the vocabulary,
-lesson and quiz differ. Difficulty tracks the dynasty's position in history, not
-the learner's level (53 study characters/gate at gates 1–5 vs 86 at 18–22; the
-HSK1 share of a gate's story characters runs 36%–85%).
-
-Live progress as of the 2026-09-05 backup:
-
-| | gates cleared | level 2 |
-|---|---|---|
-| Jess | 1–5 | **already unlocked** |
-| Jenn | 1–2 | 3 gates away |
-
-So the decision turns on Jess:
-
-- **Jess in C1** → she cleared gates faster than her reading supports. Take
-  option **B**: re-level the existing 44 and say plainly the story is shared.
-  Don't author new ones yet.
-- **Jess in C2+** → she needs harder texts. Take option **C**: author 22 new
-  stories for the upper levels, starting with the dynasties she's nearest.
-
-Full option list with costs: `docs/content-coverage.md`. Recommendation was
-**C then B**. Authoring all 132 missing stories (option A) is hand-tokenized per
-character and should not be committed to before the baseline.
-
-## Open — not started
-
-- **T05** — 66 of 88 lesson passages are still the gate's vocabulary list wrapped
-  in instructions, with questions that ask about the lesson rather than a text
-  (`本关有几个生字`). The 22 HSK2 lessons are real and are the model to copy.
-  T02 made these visible rather than hidden, which is the right order.
+1. **HSK2 stories** — 44 texts, 15 sentences, `content/stories/hsk2/`.
+   `npm run build:stories` refuses any span the curated dictionary cannot vouch
+   for; across 320 authored sentences it rejected 30, all words the curriculum
+   does not teach. Then HSK3 (22 seeds already in `content/stories/hsk3/`) and
+   HSK4.
+2. **66 lessons** still on the old template. The 22 HSK1 ones are the model;
+   `scripts/build_hsk1_lessons.js` shows the shape.
+3. **A fresh assessment sitting on bank 1.1.0**, and enter the girls' 3-of-4
+   handwriting against it.
 
 ## Blocked on the owner or on hardware
 
 1. **Firestore rules not deployed.** `firestore.rules` is a merge fragment.
-   Paste only the marked block into the existing ruleset in the Firebase
-   console, then run `node scripts/check_firestore_rules.js` (read-only probes;
-   nothing writes). Until then both children's documents are readable and
-   writable by anyone with the repo URL. The fragment requires **no auth**, so
-   it is safe to apply to the currently-deployed app as well as the new one.
-2. **Cloud sync never exercised.** This sandbox blocks the Firebase CDN, so `db`
-   was null in every browser run. The CAS path is unit-tested against a stub only.
-3. **Not run on the girls' iPad.** Needed there: audio start and failure,
-   overlay scrolling, backgrounding mid-question, the session limit landing
-   mid-answer, next-day resume, profile switch during an attempt.
+   Paste the marked block into the existing ruleset in the Firebase console,
+   then run `node scripts/check_firestore_rules.js` (read-only probes). Until
+   then both children's documents are readable and writable by anyone with the
+   repo URL.
+2. **Cloud sync never exercised** — this sandbox blocks the Firebase CDN, so
+   `db` is null in every browser run. The CAS path is unit-tested against a stub.
+3. **Not run on the girls' iPad.** Needed there: audio start and failure, overlay
+   scrolling, backgrounding mid-question, next-day resume, profile switch during
+   an attempt.
 4. **No educator has reviewed the assessment bank.** Every item records
    `reviewerType: "model"`.
-
-## Next step
-
-Report the baseline results — for each child, the per-part counts and which set
-(C1–C4) they reached. Then take the O05 decision above, and pick up T05.
 
 ## Reference
 
 ```
 repo    lxyzh1019-cyber/Chinese-Learning
-branch  claude/audit-improvement-plan-review-bfx948
-PR      #43 (draft)
+branch  claude/chinese-adventure-audit-cont-xjxqpl
+PR      #44 (draft)
 
-npm run verify              # parse guard + curriculum + bank + 155 tests
-npm run coverage:content    # what content exists behind the 88 gates
-npm run validate:assessment:audio   # HEAD-checks all 108 clips
-node scripts/backup_players.js      # READ-ONLY live backup, no credentials needed
+npm run verify                      # everything, in order
+npm run build:stories [level]       # content/stories/** -> data/stories/**
+npm run build:lessons               # HSK1 lessons from each gate's story
+npm run coverage:content            # what content exists behind the 88 gates
+npm run validate:assessment:audio   # HEAD-checks all 156 clips
+node scripts/backup_players.js      # READ-ONLY live backup
 
-docs/CHINESE_LEARNING_IMPLEMENTATION_PLAN.md   the audit validation, §1.2 corrections
-docs/implementation-status.md                  per-requirement status + evidence
-docs/content-coverage.md                       O05 options and their costs
-docs/assessment-method.md                      what the assessment can and cannot do
-CLAUDE.md                                      the blueprint, now matching the code
+docs/content-coverage.md    O05 status and what remains, per level
+docs/assessment-method.md   what the assessment can and cannot do
+docs/implementation-status.md  per-requirement status + evidence
+CLAUDE.md                   the blueprint
 ```
 
-`backups/` is git-ignored and holds **real learner records** — never commit it,
-and note that a sandbox container's copy is lost when it is reclaimed.
-
-Parent-facing brief for the sitting:
-https://claude.ai/code/artifact/52b3f979-14b0-41e0-a2df-d4c2084b4c11
+`backups/` is git-ignored and holds **real learner records** — never commit it.

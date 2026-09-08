@@ -23,7 +23,16 @@ function loadContentTables() {
   const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   const m = /<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/.exec(html);
   if (!m) throw new Error("no inline script found");
+  // Stories moved out of the inline script into data/stories/hsk{lv}.json when
+  // they gained a level. Seed the cache the way preloadCurriculum does, or this
+  // reports zero authored stories against a corpus that exists.
+  const storyLevels = {};
+  for (const lv of [1, 2, 3, 4]) {
+    const f = path.join(ROOT, "data", "stories", `hsk${lv}.json`);
+    if (fs.existsSync(f)) storyLevels[lv] = JSON.parse(fs.readFileSync(f, "utf8")).stories || {};
+  }
   const code = m[1].replace(/\n\s*init\(\);\s*$/, "\n") +
+    `\n;Object.assign(curriculumCache.stories, ${JSON.stringify(storyLevels)});rebuildStoriesMap();` +
     "\n;globalThis.__S=STORIES_MAP;globalThis.__D=DYNASTIES;";
   const el = () => ({
     style: {}, dataset: {}, innerHTML: "", textContent: "",
@@ -119,11 +128,18 @@ function main() {
   console.log("## Stories");
   console.log(`- Authored stories: **${sr.stories.length}**`);
   console.log(`- Distinct story pairs across all ${gateKeys.length} gates: **${distinctStorySets.size}**`);
-  console.log(`- So every gate on levels 2-4 shows the **same text** as the level-1 gate with the same dynasty.`);
+  const perLevel = {};
+  sr.stories.forEach((s) => { const lv = Number(String(s.key).slice(-1)) || 1; perLevel[lv] = (perLevel[lv] || 0) + 1; });
+  console.log(`- By level: ${[1, 2, 3, 4].map((lv) => `HSK${lv} ${perLevel[lv] || 0}`).join(" · ")} (44 per level is complete)`);
+  const missing = [1, 2, 3, 4].filter((lv) => (perLevel[lv] || 0) < 44);
+  if (missing.length) {
+    console.log(`- Levels ${missing.map((l) => `HSK${l}`).join(", ")} have no text of their own yet, so those gates fall back to the HSK1 telling and the reader says so.`);
+  }
   const studies = sr.stories.map((s) => s.study).sort((a, b) => a - b);
   console.log(`- Study characters per story: min ${studies[0]}, median ${studies[studies.length >> 1]}, max ${studies[studies.length - 1]}`);
   console.log(`- Sentences per story: ${[...new Set(sr.stories.map((s) => s.sentences))].sort().join(", ")}`);
-  console.log(`- Decision **O05** ("texts increase in difficulty with the selected level") is **not met by story content**.\n`);
+  const laddered = missing.length === 0;
+  console.log(`- Decision **O05**: ${laddered ? "met — every level has its own telling." : "partly met — stories carry a level and HSK1 is on its ladder; the levels listed above are still to be written."}\n`);
 
   console.log("## Lessons");
   const wordList = lessons.filter((l) => l.isWordList);

@@ -591,8 +591,36 @@ expire.
 
 ### 15.1 Dynasty stories
 
-Each dynasty has two story articles (`story` and `story2`). Stories are
-tokenized into sentences, each sentence an array of tokens:
+Each dynasty has two story articles (`story` and `story2`), **per level**.
+Stories live in `data/stories/hsk{lv}.json`, keyed `<base>-h<level>`
+(`xia-h1`, `xia-h2`, …), and are loaded at runtime into `STORIES_MAP` by
+`preloadCurriculum`. They were inline in `index.html` until four levels made
+that 176 hand-tokenized texts.
+
+`storyForGate(baseId, level)` resolves one. A level with no text of its own
+serves the HSK1 telling with `shared: true`, and the reader **says so** — naming
+the level whose words, lesson and quiz the child is actually getting. Silently
+serving another level's text is the defect that decision O05 exists to fix.
+
+Reads and completions are keyed by the per-level id, so each level earns its own
+reading gate. `migratePlayer` remaps legacy ids (`xia` → `xia-h1`); without it a
+child's read counts vanish and §3's chain re-locks their games.
+
+**The ladder** (owner decision): HSK1 10 sentences, HSK2 15, HSK3 20, HSK4 25 —
+the same background story, told at the level's difficulty.
+
+**Authoring.** Sources live in `content/stories/hsk{lv}/`; `npm run build:stories`
+tokenizes them against the curated dictionary in `scripts/story-dictionary.js`
+(assembled only from already-validated sources) and **fails on any span it
+cannot vouch for**, naming the character rather than inventing a reading. A
+source sentence may carry its own `seg` with explicit glosses — the 44 reviewed
+HSK1 stories do, so a rebuild reproduces them token for token.
+
+A gloss is what the child reads when they tap a character, so
+`validate_stories.js` rejects a fragment of a longer word's English (`-tice`),
+a grammar code (`DE`, `CL`), or a surname gloss.
+
+Stories are tokenized into sentences, each sentence an array of tokens:
 ```javascript
 { t: 'c',           // type: 'c' = character, 's' = space/punctuation
   ch: '朝',         // the character (if t==='c')
@@ -1133,9 +1161,15 @@ against the other child's state.
 ```
 npm run check                 # inline-script parse guard (§9.1)
 npm run validate:curriculum   # gate/word quality, incl. the junk-gloss filter
+npm run validate:stories      # ladder, glosses, punctuation, translations
+npm run validate:lessons      # bilingual instructions, passage is a real text
 npm run validate:assessment   # bank contract; --audio HEAD-checks every clip
 npm test                      # node --test tests/*.test.cjs
 npm run verify                # all of the above, in that order
+
+npm run build:stories         # content/stories/** -> data/stories/**
+npm run build:lessons         # HSK1 lessons, from each gate's own story
+npm run coverage:content      # what content exists behind the 88 gates
 ```
 
 `tests/helpers/app-loader.js` loads the real inline script into a Node `vm` with
