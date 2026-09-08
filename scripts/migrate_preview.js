@@ -89,8 +89,13 @@ function main() {
       moved.forEach((m) => console.log(`     ${m}`));
     }
 
-    console.log(`   reachable after migration (access, NOT completion):`);
-    console.log(`     ${report.legacyAccess.join(", ")}`);
+    // Only meaningful when the gate phase ran. For a previous-release save —
+    // which is the state every live document is in — it stays empty, and
+    // printing it said the child could reach no gates at all.
+    if (report.migratedGates) {
+      console.log(`   reachable after migration (access, NOT completion):`);
+      console.log(`     ${report.legacyAccess.join(", ") || "(none)"}`);
+    }
     console.log(`   next gate to work on: ${G.nextOpenGateKey(after.gatesCompleted) || "(all cleared)"}`);
 
     // Nothing outside the gate model may change.

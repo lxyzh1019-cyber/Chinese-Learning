@@ -174,5 +174,9 @@ module.exports = {
   "力": "strength",
   "快": "fast; happy",
   "教": "to teach",
-  "非": "not; non-",
+  // A gloss that trails a hyphen is dropped by isCleanMeaning, so the word
+  // disappears from the story-derived pools entirely. Say the meaning plainly.
+  "非": "not",
+  "再": "again; once more",
+  "先": "first; before",
 };

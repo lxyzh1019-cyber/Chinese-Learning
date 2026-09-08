@@ -1367,20 +1367,39 @@ test("T-T10: no fragment gloss reaches a child through any surface", () => {
   assert.deepEqual(bad.slice(0, 8), [], `${bad.length} fragment glosses still reachable`);
 });
 
-test("T-T11: a legitimate gloss ending in a prefix survives into the word pools", () => {
+test("T-T11: a trailing hyphen never silently drops a word from its pool", () => {
   const a = app();
-  // extractStoryVocab used to reassemble split-word glosses, stripping the
-  // hyphen and skipping isCleanMeaning. With the fragment class gone, all that
-  // branch could still match was a REAL gloss like 非 "not; non-", which it put
-  // into the quiz pool as "not; non".
+  // Two things went wrong here in sequence. extractStoryVocab used to reassemble
+  // split-word glosses, and with the fragment class gone the only thing left for
+  // that branch to match was a REAL gloss ending in a prefix — it stripped the
+  // hyphen and skipped isCleanMeaning, putting 非 into the pool as "not; non".
+  // Removing the branch then swung the other way: isCleanMeaning rejects any
+  // gloss ending in "-", so 非 and 再 vanished from the pools altogether and
+  // stopped being taught at all. The fix is at the source — glosses do not
+  // trail a hyphen — so both behaviours are now checked.
   const story = {
-    sents: [[{ t: "c", ch: "非", py: "fēi", mn: "not; non-" },
+    sents: [[{ t: "c", ch: "非", py: "fēi", mn: "not" },
              { t: "c", ch: "常", py: "cháng", mn: "often" },
              { t: "p", tx: "。" }]],
   };
   const vocab = a.extractStoryVocab(story);
   const fei = vocab.find((w) => w.zh === "非");
-  if (fei) assert.equal(fei.en, "not; non-", "the gloss is served as written, not mangled");
-  const merged = vocab.find((w) => w.zh === "非常");
-  assert.equal(merged, undefined, "and two separate characters are not welded together");
+  assert.ok(fei, "a character with a plain gloss reaches the pool");
+  assert.equal(fei.en, "not", "served as written, not mangled");
+  assert.equal(vocab.find((w) => w.zh === "非常"), undefined,
+    "and two separate characters are not welded together");
+
+  // The real corpus: every study token's gloss must survive isCleanMeaning, or
+  // the word is taught in the reader and nowhere else.
+  const dropped = [];
+  for (const s of Object.values(a.STORIES_MAP)) {
+    const pool = new Set(a.extractStoryVocab(s).map((w) => w.zh));
+    for (const tok of s.sents.flat()) {
+      if (tok.t !== "c" || tok.bonus) continue;
+      if (!pool.has(tok.ch) && /-$/.test(String(tok.mn || ""))) {
+        dropped.push(`${s.id}: ${tok.ch}="${tok.mn}"`);
+      }
+    }
+  }
+  assert.deepEqual(dropped.slice(0, 8), [], `${dropped.length} words dropped from their pool by a trailing hyphen`);
 });
