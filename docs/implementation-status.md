@@ -57,10 +57,23 @@ when its todo marker is removed and the test passes.
 | G04 / M-T06 | Two completion sites paid differently, and a cleared gate paid again on every boss replay | Phase B |
 | T03 / M-T03 | Any `storiesCompleted` entry counted as pre-feature credit, so one skimmed story unlocked all four games | Phase B |
 | T04 | `uniqueChars` gave every character its whole word's reading and meaning | Phase B |
+| Q01 / T-T14 | An MCQ offered a second right answer: a distractor whose gloss shared a `;`-separated sense with the answer's. 13 of 10,560 questions built from the real gate word lists, in **both** directions (全/完全 "whole", 法/法律 "law") | Branch audit |
+| Q02 / T-T15 | Listen plays a clip but chose its distractors by English, so a homophone could stand as a wrong option — 向/像 (xiàng), 美/每 (měi). 11 of 10,560 questions | Branch audit |
+| Q03 / T-T16 | Match pairs cards by index, so two words sharing a gloss put two cards reading the same thing on the table. 9 of 1,056 boards, three with literally identical text | Branch audit |
+| Q04 / T-T17 | Drill and Revenge excluded distractors by Chinese spelling only — the practice-queue rounds, where a wrong score is what keeps a word in the queue | Branch audit |
+| Q05 / T-T18 | The Daily Word challenge drew options as raw English and checked by exact string, and its target comes from the child's library: 13 of the 1,200 curriculum words collide with an HSK_VOCAB gloss ("city; town" against "city") | Branch audit |
+
+Q01–Q05 are one defect wearing five faces: every surface that builds options
+compared *strings* where the child compares *meaning*. Each is now measured at
+zero on real curriculum data, with no question left short of four options and no
+board shrunk. The comparison lives in one place (`sharesSense`), and
+`pickDistractors` applies it whichever way a question runs.
 
 Pinned (correct today, guarded against regression): `starsFromAccuracy`
 boundaries and its lack of a minimum sample size; the `gateTimerDays` formula;
-the legitimate one-read and two-reads-plus-Listen unlock chain.
+the legitimate one-read and two-reads-plus-Listen unlock chain; the assessment
+bank carries no sense-sharing option pair and `validate_assessment.js` now
+refuses one.
 
 ---
 

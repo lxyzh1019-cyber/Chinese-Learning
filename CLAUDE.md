@@ -201,6 +201,33 @@ Launch the dev server and click through the actual flow:
 
 If you can't run the UI, say so explicitly rather than claim success.
 
+### 9.6 A wrong option must never be secretly right
+
+Every builder that offers choices excluded its answer by **spelling** — the
+Chinese, the array index, or the exact English string. A child compares
+*meaning*, and a gloss is not one meaning: "law; method" and "law" are
+different strings that read as the same answer. Five surfaces had it (MCQ both
+directions, Listen, Match, Drill/Revenge, the Daily Word), and in each one the
+option the child did not tap was scored wrong and logged to their practice
+queue — §1's promise inverted, punishing a correct reading.
+
+The rule: exclude on **what makes the answer identifiable in that question**,
+not on what is convenient to compare.
+
+- Options are meanings → compare senses, `;`-split (`sharesSense`).
+- Options are characters under a meaning prompt → same comparison.
+- Options are characters under an **audio** prompt → compare the *sound*.
+  Listen compared English, so 向 and 像 (both `xiàng`) could sit side by side.
+- A board pairs by index (Match) → drop the colliding word rather than deal an
+  ambiguous card; let the round size follow the pick so it still ends.
+
+Put the comparison in one helper and route every builder through it
+(`pickDistractors`). Then measure on the real curriculum, not a fixture: each
+of these was found by building every question the 88 gate word lists can
+produce and counting the ambiguous ones. Assert with a comparison the test
+computes **itself** — a test that calls the function under test moves with the
+defect and cannot fail.
+
 ---
 
 ## 10. Quick reference — copy-paste templates
