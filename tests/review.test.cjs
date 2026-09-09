@@ -900,3 +900,50 @@ test("S1: the checkpoint's stage and its successes describe the same prefix", ()
   assert.deepEqual(cp.successes, ["2025-09-01"]);
   assert.equal(cp.stage, 1, "a checkpoint naming one date cannot claim two rungs");
 });
+
+test("S1: the same dates give the same set whatever order they arrive in", () => {
+  const dates = Array.from({ length: 25 }, (_, i) => `2026-01-${String(i + 1).padStart(2, "0")}`);
+  const build = (order) => {
+    let rec = R.blankRecord("久", "meaning");
+    order.forEach((on, i) => { rec = R.applyAttempt(rec, { id: `d_${on}`, at: i, on, correct: true }); });
+    return rec;
+  };
+  const a = build(dates);
+  const b = build([...dates.slice(10), ...dates.slice(0, 10)]);
+  // The bound keeps the twenty LATEST dates, which is a property of the dates
+  // themselves — computed here — not of the order they were written in.
+  const expected = [...dates].sort().slice(-20);
+  assert.deepEqual(a.independentSuccesses, expected);
+  assert.deepEqual(b.independentSuccesses, expected);
+});
+
+test("S1: firstTaughtOn is the earliest date seen, not the first one recorded", () => {
+  let rec = R.blankRecord("久", "meaning");
+  rec = R.applyAttempt(rec, { id: "late", at: 1, on: "2026-01-10", correct: true });
+  rec = R.applyAttempt(rec, { id: "early", at: 0, on: "2026-01-01", correct: true });
+  assert.equal(rec.firstTaughtOn, "2026-01-01",
+    "statusOf measures a week from teaching; a late value costs the strongest label");
+});
+
+test("S1: a divergent fold under-states the ladder rather than inflating it", () => {
+  const at = (id, on, o) =>
+    Object.assign({ id, at: 0, on, correct: true, supported: false, sameSession: false }, o || {});
+  const prefix = [at("p0", "2026-02-01", { correct: false }), at("p1", "2026-02-02"), at("p2", "2026-02-03")];
+  let base = R.blankRecord("久", "meaning");
+  prefix.forEach((e) => { base = R.applyAttempt(base, e); });
+  assert.equal(base.stage, 2, "a miss then two unaided dates is two rungs");
+
+  let folded = JSON.parse(JSON.stringify(base));
+  for (let i = 0; i < 40; i++) {
+    folded = R.applyAttempt(folded, at(`s${i}`, "2026-02-04", { supported: true }));
+  }
+  const retained = JSON.parse(JSON.stringify(base));
+  const ab = R.mergeRecords(JSON.parse(JSON.stringify(folded)), JSON.parse(JSON.stringify(retained)));
+  const ba = R.mergeRecords(JSON.parse(JSON.stringify(retained)), JSON.parse(JSON.stringify(folded)));
+
+  assert.ok(ab.stage <= 2, "a merge must never invent a rung");
+  assert.equal(ab.stage, ba.stage, "and must not depend on argument order");
+  assert.equal(ab.dueOn, ba.dueOn);
+  const again = R.mergeRecords(JSON.parse(JSON.stringify(ab)), JSON.parse(JSON.stringify(ab)));
+  assert.equal(again.stage, ab.stage, "and must be stable on repeat");
+});

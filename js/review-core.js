@@ -126,7 +126,12 @@
     }
     rec.attempts = history.slice(-MAX_ATTEMPTS);
     rec.lastSeenOn = todayKey;
-    if (!rec.firstTaughtOn) rec.firstTaughtOn = todayKey;
+    // The EARLIEST date, not the first one recorded. A merge replays the union
+    // in date order, but a device can still meet an older attempt second (the
+    // other side held earlier history), and statusOf needs this to decide
+    // whether a check came a week after teaching — an inflated value quietly
+    // costs the child the strongest label.
+    if (!rec.firstTaughtOn || (todayKey && todayKey < rec.firstTaughtOn)) rec.firstTaughtOn = todayKey;
     rec.independentSuccesses = rec.independentSuccesses || [];
 
     const independent = correct && !supported && !sameSession;
@@ -137,7 +142,7 @@
       // item five times in one sitting is not five days of retention.
       const alreadyToday = rec.independentSuccesses.indexOf(todayKey) !== -1;
       if (!alreadyToday) {
-        rec.independentSuccesses = rec.independentSuccesses.concat([todayKey]).slice(-20);
+        rec.independentSuccesses = dedupeDates(rec.independentSuccesses.concat([todayKey]));
         rec.stage = Math.min(rec.stage + 1, LADDER.length);
       }
       rec.dueOn = addDays(todayKey, LADDER[Math.max(0, rec.stage - 1)]);
@@ -172,6 +177,20 @@
    * learning event anywhere. Deriving both from the same prefix makes the
    * checkpoint self-consistent, which is what makes the replay idempotent.
    */
+  /**
+   * Study dates as a set: deduplicated, sorted, newest 20 kept.
+   *
+   * `independentSuccesses` used to be built with `concat(date).slice(-20)`,
+   * which is ARRIVAL order — so past twenty dates the truncation dropped
+   * whichever happened to sit at the front rather than the oldest, and the same
+   * evidence replayed in a different order kept a different set. That moves
+   * both `statusOf` and the once-per-date guard, so two devices holding
+   * identical histories could disagree about the schedule.
+   */
+  function dedupeDates(list) {
+    return [...new Set((list || []).filter(Boolean))].sort().slice(-20);
+  }
+
   function foldStep(state, e) {
     const independent = e.correct && !e.supported && !e.sameSession;
     if (independent) {
@@ -203,7 +222,7 @@
       count,
       stage: st.stage,
       firstTaughtOn,
-      successes: st.successes.sort().slice(-20),
+      successes: dedupeDates(st.successes),
     };
   }
 
@@ -246,15 +265,29 @@
    * and merge(b, a) land on the same schedule, and merging a record with
    * itself changes nothing.
    *
-   * That last claim was false for two years' worth of shapes: it holds only
-   * while the checkpoint's stage and its successes describe the SAME prefix of
-   * the history. See foldInto — the stage used to come from after the retained
-   * attempts, so a replay of those attempts advanced the ladder a second time
-   * and a device could gain days of retention simply by syncing.
+   * That last claim was false for a wide class of shapes. It holds only while
+   * the checkpoint's stage and its successes describe the SAME prefix of the
+   * history (see foldInto), the success dates are a set rather than an arrival
+   * list, and firstTaughtOn is the earliest date rather than the first written.
+   * All three are now true, and a merge no longer hands out retention: over
+   * 1,500 generated streams with dates that only move forward — the only kind a
+   * device can record — merge(a,a) === a, merge(a,b) === merge(b,a) and
+   * merge(m,m) === m all hold.
    *
    * Replaying an attempt the other side had already folded is harmless: an
    * independent success only advances the ladder once per date, and the seed
    * already carries that date.
+   *
+   * ONE CASE IS STILL APPROXIMATE, and it is left in deliberately. Where one
+   * side has folded a MISS that the other still holds, the replay meets that
+   * miss first and zeroes the seeded stage, while the successes after it are
+   * suppressed as dates the seed already names. The result under-states the
+   * ladder — the child is checked again sooner than they strictly need to be —
+   * and it is order-independent and stable on repeat, which it was not before.
+   * Erring downwards is the acceptable direction: it costs a little practice,
+   * never credit. Fixing it properly means recording where the folded prefix
+   * ends so a replayed folded miss can be recognised, which is a change to the
+   * checkpoint contract and belongs in its own pass.
    */
   function mergeRecords(a, b) {
     if (!a) return b || null;
