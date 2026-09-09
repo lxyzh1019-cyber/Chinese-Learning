@@ -13,6 +13,65 @@ Companion documents:
 
 ---
 
+## The 2026-09-08-02 audit: what was acted on
+
+An external audit recommended holding the milestone. **Every one of its twelve
+findings reproduced against the source** — none was spurious — and three were
+worse than reported. All are now fixed, each with a regression confirmed to fail
+on the pre-fix code.
+
+| ID | What was wrong | State |
+|---|---|---|
+| F1 | Flashcards wrote a legacy key: Trace never unlocked, and migration then dropped modern gate records | fixed |
+| F2 | A wrong sentence held the answer lock, so the quiz could not be finished | fixed |
+| F3 | A quiz resumed the next day was judged against HSK1 whatever level it began in | fixed |
+| C1 | 23 words served an archaic, specialist or obscene reading; audio and text disagreed | fixed |
+| C2 | `sentenceTargetsPack` existed in 0 of 88 gates; 52 pairs served three generic sentences | fixed |
+| C3 | All 29 culture readings were one template with no content | authored |
+| C4 | 大禹 away 三十年 at HSK1 and 十三年 at HSK2, plus unnatural phrasing throughout | fixed |
+| C5 | Two assessment passages had defective premises | fixed on bank 1.2.0 |
+| L1 | Lesson answers visible in the glossary counted as independent recall — all 88 of them | fixed |
+| L2 | Sentence checks created reviews the app could never serve — all 44 | fixed |
+| S1 | Merging a review record with an identical copy advanced the schedule | fixed |
+
+**Worse than the audit found, in three places.** F1 also meant Trace never
+unlocked at all, independently of the migration. L1 was not a sample: 88 of 88.
+S1 had shapes that skipped two rungs, and `review-core.js`'s own docstring
+claimed self-merge was a no-op.
+
+**Wider than the audit found, in one.** C1's root cause is
+`build_hsk_curriculum.js` taking `forms[0]` blindly — the practice rule 6 below
+already forbids for `meanings[0]`; only the field differed. Cross-checking every
+served reading against the curated story dictionary found 27 disagreements
+against the five the audit named. The old guard was three hand-written
+characters that only warned, and its 行 rule actively suppressed one of the real
+defects.
+
+Two things found alongside, in neither report: `openCultureStories` was defined
+twice with the dead copy carrying an ungated star button, and every neutral tone
+fetched a first-tone audio clip.
+
+### What was verified, and how
+
+`npm run verify` — parse guard, six content validators, 304 tests. Every new
+validator was run against the **pre-fix** data first and shown to fail there:
+52 curriculum problems, 44 lesson problems, 322 culture problems.
+
+A **real-browser walkthrough** was completed in Chromium against the app served
+over http, with Firebase and the CDNs unreachable: twelve checks covering the
+flash pass, the sentence retry, the HSK2 overnight resume, the sentence packs
+and a culture reading, all passing with no uncaught page errors. The previous
+audit could not complete this step.
+
+### Still not verified
+
+Live Firestore, a two-device run, and the children's iPad — audio actually
+heard, overlay scrolling, backgrounding mid-question. Those remain operational
+items, as below. No educator has reviewed any of the language work; every
+correction here is labelled model-reviewed, as the vocabulary ledger already is.
+
+---
+
 ## Supported device workflow
 
 **One designated learning device per child.** Finish a sitting on it; take
@@ -224,10 +283,24 @@ wrong classifier either way; it is now 一个小马玩具. 1.1.0 stays on disk a
 the manifest, because a report is scored on the bank it was taken with. Nothing
 was lost by bumping: no sitting had been taken on 1.1.0.
 
-### 9b. Lesson answer options — content
-Lesson comprehension is think-then-reveal with a self-report. Real marking
-needs reviewed answer choices for the 44 substantive lessons (and the 44 still
-to be written). Author them with the HSK3/4 work.
+### 9b. Lesson answer options — done for HSK1/2, outstanding for HSK3/4
+**This entry used to say lesson comprehension was think-then-reveal with a
+self-report and that answer choices still had to be authored. That has been
+untrue since PR #46:** the 44 substantive lessons carry **132 marked questions**
+— 88 word-meaning and 44 sentence-meaning — each with four options, a real
+answer and a bilingual explanation, built from the gate's own story.
+
+What is genuinely outstanding is the other 44 lessons, which arrive with the
+HSK3/4 stories they would be built from.
+
+Two corrections landed on the questions that do exist. A lesson check is now
+recorded as **supported** practice: the lesson prints its key vocabulary with
+the English visible, and all 88 word-meaning checks ask for a gloss that is on
+screen while it is answered, so counting a correct tap as unaided recall
+advanced the ladder on something the child was reading off the page. And a
+sentence check is filed against a **word** from its sentence rather than the
+sentence itself — sentence-keyed records could never be resolved by
+`reviewWordMeta`, so they came due daily and were askable never.
 
 ### 10. Curriculum: words with no standalone HSK entry
 同 is taught only inside compounds (同学, 同意, both now present). If authored
