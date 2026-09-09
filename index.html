@@ -628,6 +628,12 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 #culture-body{flex:1;overflow-y:auto;min-height:0;padding-right:.2rem;}
 .culture-reader-body{font-size:.88rem;line-height:1.65;color:var(--ink);max-height:62vh;overflow-y:auto;}
 .culture-reader-cn{font-family:var(--fzh);font-size:1.05rem;color:var(--gold);margin:.5rem 0;}
+.culture-words{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.6rem;}
+.culture-word{display:flex;flex-direction:column;align-items:center;gap:.05rem;padding:.3rem .5rem;border:1px solid var(--gold-dim);border-radius:8px;background:transparent;color:var(--ink);cursor:pointer;font-family:inherit;}
+.culture-word .cw-zh{font-family:var(--fzh);font-size:1rem;color:var(--gold);}
+.culture-word .cw-py{font-size:.68rem;color:var(--muted);}
+.culture-word .cw-en{font-size:.7rem;color:var(--ink);}
+.culture-answer{font-size:.8rem;color:var(--gold);font-family:var(--fzh);margin:.2rem 0 .3rem;}
 .sticker-grid{display:flex;flex-wrap:wrap;gap:.35rem;justify-content:center;padding:.5rem 0;}
 .sticker-cell{width:52px;height:52px;border-radius:10px;border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.6rem;background:rgba(0,0,0,.15);opacity:.35;}
 .sticker-cell.on{opacity:1;border-color:rgba(212,160,23,.5);box-shadow:0 0 8px rgba(212,160,23,.2);}
@@ -1951,7 +1957,7 @@ function defPlayer(){
     library:{},failedWords:{},
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
     weekStart:weekStart(),
-    badges:[],totalWrongAnswers:0,storyReadCount:{},flashPassDone:{},dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
+    badges:[],totalWrongAnswers:0,storyReadCount:{},flashPassDone:{},listenPlayed:{},dailyWordSolved:null,dailyWordTotal:0,pinyinIntroDone:false,
     pendingSessions:{gate:null,champion:null,story:null,flash:null,match:null,rain:null,listen:null,trace:null,revenge:null,review:null},
     traceStars:{},
     libraryCountAtDayStart:{},
@@ -2059,11 +2065,17 @@ async function loadAssessmentBank(version){
  * defect being fixed, not the fallback.
  */
 async function loadLevelStories(lv){
-  if(curriculumCache.stories[lv])return curriculumCache.stories[lv];
+  if(lv in curriculumCache.stories)return curriculumCache.stories[lv];
   try{
     const data=await fetchJsonSafe(`data/stories/hsk${lv}.json`);
     if(data&&data.stories&&typeof data.stories==='object')curriculumCache.stories[lv]=data.stories;
-  }catch(e){dbgLog('loadLevelStories failed',{lv,msg:String(e&&e.message||e)});}
+  }catch(e){
+    // A level with no text yet (HSK3/4) answers 404. Remember that, or every
+    // hub render fetches both files again. A network failure is not remembered,
+    // so a level that does exist gets another try.
+    if(/HTTP 404/.test(String(e&&e.message||'')))curriculumCache.stories[lv]=null;
+    dbgLog('loadLevelStories failed',{lv,msg:String(e&&e.message||e)});
+  }
   return curriculumCache.stories[lv]||null;
 }
 
@@ -2689,7 +2701,7 @@ function openDailyWordChallenge(){
     <div class="mq-fb" id="dw-fb"></div>`;
   const od=document.getElementById('dw-opts');
   opts.forEach(o=>{
-    const b=document.createElement('button');b.className='mcq-opt';b.textContent=o;
+    const b=document.createElement('button');b.className='mcq-opt';b.textContent=optionLabel(o);b.dataset.en=o;
     b.onclick=()=>finishDailyWord(o===w.en,w.en,b);
     od.appendChild(b);
   });
@@ -3211,6 +3223,9 @@ function updateGateGameBest(did,gameKey,stars,level,binding){
   if(!s.gateGameStars)s.gateGameStars={};
   const k=gateKeyOf(did,lv);
   if(!k)return{qualified:false};
+  // §3: Rain unlocks once Listen has been PLAYED for the gate. The stars
+  // record only moves on improvement, so a 0★ first round left Rain locked.
+  if(gameKey==='listen'){if(!s.listenPlayed)s.listenPlayed={};s.listenPlayed[k]=true;}
   if(binding!==undefined&&!gateSessionQualifies(s,binding,did,lv)){
     saveState();
     return{qualified:false};
@@ -3227,6 +3242,23 @@ function updateGateGameBest(did,gameKey,stars,level,binding){
   return{qualified:true};
 }
 
+/**
+ * What a meaning option SHOWS. The stored gloss stays the answer key; only the
+ * label changes. A raw dictionary row such as "(measure word for people and
+ * things)" or "to be (followed by substantives only)" read as the odd one out
+ * on a card of four — answerable by elimination, not by knowing the word.
+ * First plain sense wins; a gloss that is only a parenthetical shows its
+ * contents without the brackets.
+ */
+function optionLabel(en){
+  const raw=String(en==null?'':en).trim();
+  if(!raw)return raw;
+  const senses=raw.split(';').map(s=>s.trim()).filter(Boolean);
+  const plain=senses.map(s=>s.replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim()).filter(Boolean);
+  if(plain.length)return plain[0];
+  return senses[0].replace(/^\((.*)\)$/,'$1').trim()||raw;
+}
+
 function starsText(n){
   const v=Math.max(0,Math.min(3,parseInt(n,10)||0));
   return '★'.repeat(v)+'☆'.repeat(3-v);
@@ -3239,10 +3271,17 @@ function tokenLabel(gameKey){
   return 'Listen';
 }
 
-function awardAltRound(gameKey,stars){
+/**
+ * `targetDid` is the ROUND's scope (xSt.gameTargetDid). The global
+ * curGameTargetDid is set only when a round starts, never on a restore, so a
+ * resumed HSK round was reading whatever scope the previous round had — spending
+ * dynasty forgiveness tokens on an HSK miss and earning no cross-trainer credit.
+ */
+function awardAltRound(gameKey,stars,targetDid){
   if(!curP||!gameKey)return;
   const s=state[curP];
-  if(curGameTargetDid)return;
+  const scope=(targetDid!==undefined)?targetDid:curGameTargetDid;
+  if(scope)return;
   if(!s.altRoundProgress)s.altRoundProgress={trace:0,match:0,rain:0,listen:0,total:0};
   if(!s.forgivenessProgress)s.forgivenessProgress={trace:0,match:0,rain:0,listen:0};
   if(!s.dynastyForgiveness)s.dynastyForgiveness={trace:0,match:0,rain:0,listen:0};
@@ -3259,8 +3298,9 @@ function awardAltRound(gameKey,stars){
   checkBadges(curP);
 }
 
-function consumeDynastyForgiveness(gameKey){
-  if(!curP||!curGameTargetDid)return false;
+function consumeDynastyForgiveness(gameKey,targetDid){
+  const scope=(targetDid!==undefined)?targetDid:curGameTargetDid;
+  if(!curP||!scope)return false;
   const s=state[curP];
   if(!s.dynastyForgiveness)s.dynastyForgiveness={trace:0,match:0,rain:0,listen:0};
   const have=s.dynastyForgiveness[gameKey]||0;
@@ -4007,7 +4047,7 @@ function renderFlashQuiz(){
   opts.forEach(o=>{
     const b=document.createElement('button');
     b.className='mcq-opt'+(flashSt.mode!=='zh2en'?' zh-opt':'');
-    b.textContent=o;
+    b.textContent=flashSt.mode==='zh2en'?optionLabel(o):o;b.dataset.en=o;
     b.onclick=()=>checkFlashAnswer(b,o===answer,answer,w);
     grid.appendChild(b);
   });
@@ -4079,7 +4119,7 @@ function gameUnlockForDid(did){
   if(storyIds.some(sid=>(s.legacyStoriesCompleted||[]).includes(sid)))return{listen:true,trace:true,match:true,rain:true};
   const maxReads=Math.max(0,...storyIds.map(sid=>(s.storyReadCount||{})[sid]||0));
   const flashDone=!!(s.flashPassDone&&s.flashPassDone[gateKeyOf(did)]);
-  const listenPlayed=((s.gateGameStars&&s.gateGameStars[gateKeyOf(did)])||{}).listen>0;
+  const listenPlayed=!!((s.listenPlayed||{})[gateKeyOf(did)])||((s.gateGameStars&&s.gateGameStars[gateKeyOf(did)])||{}).listen>0;
   return{
     listen:maxReads>=1,
     trace:maxReads>=1&&flashDone,
@@ -4209,7 +4249,13 @@ function startGame(game,scope){
   else if(game==='trace')startTrace(words);
 }
 
-function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null,gameTargetLevel:matchSt.gameTargetLevel||null,gateAttempt:matchSt.gateAttempt||null};}
+/**
+ * Match is scored on time, so the save carries the time PLAYED so far
+ * (elapsedMs) and the restore resumes the clock from there. Saving the
+ * wall-clock start meant any round resumed after four minutes was already 0★.
+ * The save is also stamped, or "Resume last activity" prefers an older round.
+ */
+function persistMatch(){if(!curP)return;state[curP].pendingSessions.match={cards:matchSt.cards.map(c=>({...c})),openIdxs:[...matchSt.openIdxs],matched:matchSt.matched,moves:matchSt.moves,start:matchSt.start,elapsedMs:Math.max(0,Date.now()-(matchSt.start||Date.now())),pairCount:matchSt.pairCount,gameTargetDid:matchSt.gameTargetDid||null,gameTargetLevel:matchSt.gameTargetLevel||null,gateAttempt:matchSt.gateAttempt||null};touchSession('match');}
 function clearMatch(){clearPendingSession('match');}
 
 function startMemoryMatch(words){
@@ -4255,7 +4301,7 @@ function renderMemoryMatch(){
     const tid=matchSt.gameTargetDid;
     const res=tid?updateGateGameBest(tid,'match',stars,matchSt.gameTargetLevel,matchSt.gateAttempt||null):null;
     const late=!!(res&&res.qualified===false);
-    awardAltRound('match',stars);
+    awardAltRound('match',stars,matchSt.gameTargetDid||null);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">${late?'🧠 Practice round done!':'🧠 Brainy win!'}</div>
       <div class="mq-question" style="text-align:center;">Moves ${matchSt.moves} · ${Math.max(1,Math.round(sec))}s · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
@@ -4400,7 +4446,7 @@ function spawnRainDrop(){
       if(hint&&rainSt.target)hint.innerHTML='Tap the character for this English meaning:<b>'+rainSt.target.en+'</b>';
     }else{
       rainSt.combo=0;
-      if(!consumeDynastyForgiveness('rain'))logWrong(curP,w.zh,w.py,w.en);
+      if(!consumeDynastyForgiveness('rain',rainSt.gameTargetDid||null))logWrong(curP,w.zh,w.py,w.en);
     }
     btn.remove();persistRain();saveState();
   };
@@ -4411,7 +4457,7 @@ function spawnRainDrop(){
       if(w.zh===rainSt.target.zh&&rainSt.targetShownThisRound){
         rainSt.rainAttempts=(rainSt.rainAttempts||0)+1;
         rainSt.combo=0;
-        if(!consumeDynastyForgiveness('rain'))logWrong(curP,w.zh,w.py,w.en);
+        if(!consumeDynastyForgiveness('rain',rainSt.gameTargetDid||null))logWrong(curP,w.zh,w.py,w.en);
         persistRain();saveState();
       }
       btn.remove();
@@ -4436,7 +4482,7 @@ function endRain(fromUser){
   const stars=starsFromAccuracy(rh,ra);
   const res=tid?updateGateGameBest(tid,'rain',stars,rainSt.gameTargetLevel,rainSt.gateAttempt||null):null;
   const late=!!(res&&res.qualified===false);
-  awardAltRound('rain',stars);
+  awardAltRound('rain',stars,rainSt.gameTargetDid||null);
   body.innerHTML=`<div class="mq-title" style="text-align:center;">🌧️ Time is up!</div>
     <div class="mq-question" style="text-align:center;">Score ${rainSt.score} · taps ${rh}/${ra} · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
     <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
@@ -4490,7 +4536,7 @@ function renderListen(){
     const tid=listenSt.gameTargetDid;
     const res=tid?updateGateGameBest(tid,'listen',stars,listenSt.gameTargetLevel,listenSt.gateAttempt||null):null;
     const late=!!(res&&res.qualified===false);
-    awardAltRound('listen',stars);
+    awardAltRound('listen',stars,listenSt.gameTargetDid||null);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">👂 Listening complete!</div>
       <div class="mq-question" style="text-align:center;">${cc}/${tot} correct · score ${listenSt.score} · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
@@ -4528,7 +4574,7 @@ function checkListen(btn,ok,q){
     bumpCorrectCount(1);
   }else{
     listenSt.streak=0;btn.classList.add('wrong');fb.className='mq-fb err';fb.textContent='❌ '+q.w.zh;
-    if(!consumeDynastyForgiveness('listen'))logWrong(curP,q.w.zh,q.w.py,q.w.en);
+    if(!consumeDynastyForgiveness('listen',listenSt.gameTargetDid||null))logWrong(curP,q.w.zh,q.w.py,q.w.en);
   }
   // Audio to character with no pinyin on screen: unaided recognition.
   noteEvidence(curP,q.w,'recognition',ok,{source:'listen'});
@@ -4621,7 +4667,7 @@ function renderTrace(){
     const tid=traceSt.gameTargetDid;
     const res=tid?updateGateGameBest(tid,'trace',stars,traceSt.gameTargetLevel,traceSt.gateAttempt||null):null;
     const late=!!(res&&res.qualified===false);
-    awardAltRound('trace',stars);
+    awardAltRound('trace',stars,traceSt.gameTargetDid||null);
     body.innerHTML=`<div class="mq-title" style="text-align:center;">✍️ Tracing complete!</div>
       <div class="mq-question" style="text-align:center;">Perfect traces ${tg}/${tot} · ${late?'practice':'★'.repeat(stars)+'☆'.repeat(3-stars)}</div>
       <div style="text-align:center;margin-top:.8rem;"><button class="btn-g" onclick="openGamesHub()">${L('games')}</button></div>`;
@@ -4677,7 +4723,7 @@ function startTraceQuiz(){
   traceSt.writer.quiz({
     onMistake:()=>{
       if(traceGen!==sessionGen)return;
-      if(!consumeDynastyForgiveness('trace')){
+      if(!consumeDynastyForgiveness('trace',traceSt.gameTargetDid||null)){
         mistakes++;
         logWrong(curP,c.zh,c.py,c.en);
       }
@@ -4728,7 +4774,8 @@ function restoreMatch(){
   // a permanent dead end.
   const dealtPairs=new Set(cards.map(c=>c.pair)).size;
   const pairCount=Math.min(ps.pairCount||dealtPairs,dealtPairs);
-  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start:ps.start||Date.now(),pairCount,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null};
+  const start=(typeof ps.elapsedMs==='number')?Date.now()-ps.elapsedMs:(ps.start||Date.now());
+  matchSt={cards,openIdxs:[...(ps.openIdxs||[])],matched:ps.matched||0,moves:ps.moves||0,start,pairCount,gameTargetDid:ps.gameTargetDid||null,gameTargetLevel:ps.gameTargetLevel||null,gateAttempt:ps.gateAttempt||null};
   document.getElementById('games-overlay').classList.add('show');
   renderMemoryMatch();return true;
 }
@@ -5160,6 +5207,7 @@ function selectPlayer(p){
   bumpSessionGen();
   // Otherwise the new profile's hub opens on the previous child's gate.
   selectedGateId=null;
+  toastSession={};
   curP=p;ensureState(p);curHSK=1;
   state[p].mascotSession={count:0,lastAt:0};
   stopCharOriginRotation();
@@ -5885,13 +5933,33 @@ function openCultureReader(st){
   if(title)title.textContent=(st.title||st.id)+' · Read';
   const paras=(st.readerParagraphs&&st.readerParagraphs.length)?st.readerParagraphs:[`${st.title||''}：读一读，想一想。`];
   const qs=(st.readerComprehension&&st.readerComprehension.length)?st.readerComprehension:[];
-  let html=paras.map(p=>`<div class="culture-reader-cn">${p}</div>`).join('');
+  const esc=(t)=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  // The 29 readings carry target words and answers that the reader never
+  // showed (audit 2026-09-09, C3): a child met the words with no gloss and
+  // the questions with no way to check. The words are a strip to tap for
+  // sound; the answer sits behind a button. Nothing here is scored — a reveal
+  // is not evidence (§25), so it pays nothing and records nothing.
+  const words=Array.isArray(st.targetWords)?st.targetWords.filter(w=>w&&w.zh):[];
+  let html='';
+  if(words.length){
+    html+='<div class="dd-desc" style="margin:0 0 .35rem;"><strong>Words to know · 生词</strong></div><div class="culture-words">';
+    html+=words.map(w=>`<button type="button" class="culture-word" data-zh="${esc(w.zh)}"><span class="cw-zh">${esc(w.zh)}</span><span class="cw-py">${esc(w.py||'')}</span><span class="cw-en">${esc(w.en||'')}</span></button>`).join('');
+    html+='</div>';
+  }
+  html+=paras.map(p=>`<div class="culture-reader-cn">${esc(p)}</div>`).join('');
   if(qs.length){
-    html+='<div class="dd-desc" style="margin-top:.6rem;"><strong>Think about</strong></div><ol style="margin:.3rem 0 0 1.1rem;font-size:.82rem;color:var(--muted);">';
-    html+=qs.map(q=>`<li>${(q&&q.question)||''}</li>`).join('');
+    html+='<div class="dd-desc" style="margin-top:.6rem;"><strong>Think about · 想一想</strong></div><ol style="margin:.3rem 0 0 1.1rem;font-size:.82rem;color:var(--muted);">';
+    html+=qs.map((q,i)=>`<li>${esc(q&&q.question)}${(q&&q.answer)?` <button type="button" class="btn-s culture-answer-btn" data-i="${i}" style="font-size:.7rem;padding:.1rem .45rem;margin-left:.3rem;">Show answer</button><div class="culture-answer" id="culture-answer-${i}" hidden>${esc(q.answer)}</div>`:''}</li>`).join('');
     html+='</ol>';
   }
-  if(box)box.innerHTML=html;
+  if(box){
+    box.innerHTML=html;
+    box.querySelectorAll('.culture-word').forEach(b=>{b.onclick=()=>speak(b.dataset.zh);});
+    box.querySelectorAll('.culture-answer-btn').forEach(b=>{b.onclick=()=>{
+      const a=document.getElementById('culture-answer-'+b.dataset.i);
+      if(!a)return;a.hidden=!a.hidden;b.textContent=a.hidden?'Show answer':'Hide answer';
+    };});
+  }
   document.getElementById('culture-reader-overlay').classList.add('show');
 }
 function finishCultureReader(){
@@ -6011,7 +6079,11 @@ function completeStory(){
         if(t.t==='c'&&t.ch===ch&&t.py){state[curP].library[ch]={py:t.py,mn:t.mn};break outer;}
   });
   const s=state[curP];
-  const pts=newChars.size*5+20;
+  // 5 per new character, capped so one read pays at most 100 (owner decision,
+  // 2026-09-09). Uncapped, a first read of a 49-character story paid 265 —
+  // more than clearing a whole gate (220) — and on a blank profile fired the
+  // family co-op goal and the weekly star-lead badge from a single story.
+  const pts=Math.min(newChars.size*5,80)+20;
   addEarnedStars(pts);
   // Track read count only if the kid spent at least 45s in the story
   const sid=curStory&&curStory.id;
@@ -6144,7 +6216,7 @@ function renderMiniQuestion(){
     <div class="mq-fb" id="mq-fb"></div>`;
   const opts=document.getElementById('mq-opts');
   q.opts.forEach(o=>{
-    const b=document.createElement('button');b.className='mcq-opt';b.textContent=o;
+    const b=document.createElement('button');b.className='mcq-opt';b.textContent=optionLabel(o);b.dataset.en=o;
     b.onclick=()=>checkMiniQ(b,o===q.correct,q.correct,opts);
     opts.appendChild(b);
   });
@@ -6288,7 +6360,7 @@ function renderDrillQ(){
     <div class="mq-fb" id="drill-fb"></div>`;
   const opts=document.getElementById('drill-opts');
   q.opts.forEach(o=>{
-    const b=document.createElement('button');b.className='mcq-opt';b.textContent=o;
+    const b=document.createElement('button');b.className='mcq-opt';b.textContent=optionLabel(o);b.dataset.en=o;
     b.onclick=()=>checkDrillQ(b,o===q.correct,q.correct,opts,q.zh,q.py);
     opts.appendChild(b);
   });
@@ -6408,7 +6480,7 @@ function renderRevengeQuestion(){
     <div class="mq-fb" id="rev-fb"></div>`;
   const grid=document.getElementById('rev-opts');
   q.opts.forEach(o=>{
-    const b=document.createElement('button');b.className='mcq-opt';b.textContent=o;
+    const b=document.createElement('button');b.className='mcq-opt';b.textContent=optionLabel(o);b.dataset.en=o;
     b.onclick=()=>checkRevengeQ(b,o===q.correct,q.correct,grid,q.zh,q.py);
     grid.appendChild(b);
   });
@@ -6895,7 +6967,7 @@ function renderMCQPhase(qc,scoreBar){
     const sp=document.getElementById('mcq-speak');if(sp)sp.onclick=()=>{speakUsed=true;speak(q.zh);};
     const grid=document.getElementById('mcq-grid');
     q.opts.forEach(opt=>{
-      const btn=document.createElement('button');btn.className='mcq-opt';btn.textContent=opt;
+      const btn=document.createElement('button');btn.className='mcq-opt';btn.textContent=optionLabel(opt);btn.dataset.en=opt;
       btn.onclick=()=>checkMCQ(btn,opt===q.correct,q.correct,q.zh,q.py,grid);
       grid.appendChild(btn);
     });
@@ -8113,9 +8185,16 @@ function speak(text,opts){
 }
 function showToast(msg,dur=2000,kind){
   kind=kind||'default';
-  toastSession[kind]=(toastSession[kind]||0)+1;
-  const lim=TOAST_SESSION_LIMITS[kind]||TOAST_SESSION_LIMITS.default;
-  if(toastSession[kind]>lim)return;
+  // The per-session cap is for the decorative kinds (celebrate, micro,
+  // mystery, soundboard). It used to apply to plain messages too, so after
+  // eight of them every "Progress saved", unlock hint and "Gate cleared!" was
+  // silently dropped for the rest of the page load — §2's explicit save
+  // message being exactly what went missing.
+  if(kind!=='default'){
+    toastSession[kind]=(toastSession[kind]||0)+1;
+    const lim=TOAST_SESSION_LIMITS[kind]||TOAST_SESSION_LIMITS.default;
+    if(toastSession[kind]>lim)return;
+  }
   const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
   if(toastTimer)clearTimeout(toastTimer);
   toastTimer=setTimeout(()=>t.classList.remove('show'),dur);
@@ -8276,6 +8355,9 @@ async function openCultureStories(){
   body.innerHTML=cards.join('')||'<div class="dd-desc">No culture stories configured.</div>';
 }
 function showParentSummary(){
+  // A household control, not a security boundary (the PIN is in this file).
+  // It used to open without asking; only the star edits and clear-all asked.
+  if(!askParentPwd('Parent dashboard'))return;
   sumMode='weekly';sumOffset=0;
   document.getElementById('tab-wk').classList.add('active');
   document.getElementById('tab-dy').classList.remove('active');

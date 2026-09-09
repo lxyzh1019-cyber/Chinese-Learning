@@ -1656,7 +1656,9 @@ test("T-T18: the daily challenge never offers a second right answer", () => {
       // stub keeps one element per id, so clear it or options accumulate.
       a.document.getElementById("dw-opts").children.length = 0;
       a.openDailyWordChallenge();
-      const opts = (a.document.getElementById("dw-opts").children || []).map((c) => c.textContent);
+      // The button SHOWS optionLabel(gloss) and carries the gloss it stands for;
+      // the collision question is about the glosses.
+      const opts = (a.document.getElementById("dw-opts").children || []).map((c) => c.dataset.en || c.textContent);
       seen++;
       assert.equal(opts.length, 4, `${w.zh} "${w.en}" got ${opts.length} options`);
       assert.equal(new Set(opts).size, opts.length, `duplicate option in [${opts}]`);
@@ -2746,4 +2748,111 @@ test("R2: the served packs pass an independent reading of the screens", () => {
       }
     }
   }
+});
+
+// ── 2026-09-09 audit: logic findings beyond the report ────────────────────
+
+test("A09: a plain toast is never dropped by the session cap, and the cap resets per profile", () => {
+  const a = app();
+  F.installState(a);
+  const shown = [];
+  const el = a.document.getElementById("toast");
+  for (let i = 0; i < 12; i++) { a.showToast(`saved ${i}`); shown.push(el.textContent); }
+  assert.equal(el.textContent, "saved 11", "the twelfth plain message still shows");
+  for (let i = 0; i < 9; i++) a.showToast(`micro ${i}`, 1000, "micro");
+  assert.equal(el.textContent, "micro 7", "the decorative kind is still capped at 8");
+  a.selectPlayer("jess");
+  a.__stopAllTimers(); // selectPlayer starts the wall clock and play-time intervals
+  a.showToast("after switch", 1000, "micro");
+  assert.equal(el.textContent, "after switch", "a profile switch starts the count again");
+});
+
+test("A09: a Match round resumes with the time it had played, not the wall clock", () => {
+  const a = app();
+  F.installState(a);
+  a.curP = "jenn";
+  a.curGameTargetDid = null;
+  a.startMemoryMatch([
+    { zh: "水", py: "shuǐ", en: "water" }, { zh: "山", py: "shān", en: "mountain" }, { zh: "火", py: "huǒ", en: "fire" },
+  ]);
+  // 30 s of play, then Save & Exit.
+  a.matchSt.start = Date.now() - 30000;
+  a.exitMatch();
+  const saved = a.state.jenn.pendingSessions.match;
+  assert.ok(saved.updatedAt > 0, "the save is stamped, so Resume picks it");
+  assert.ok(saved.elapsedMs >= 30000 && saved.elapsedMs < 31000, `elapsed ${saved.elapsedMs}`);
+  // Come back an hour later.
+  saved.start = Date.now() - 3600000;
+  assert.equal(a.restoreMatch(), true);
+  const played = Date.now() - a.matchSt.start;
+  assert.ok(played >= 30000 && played < 31000, `resumed at ${played} ms played, not an hour`);
+});
+
+test("A09: a resumed HSK round does not spend dynasty forgiveness tokens", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  s.dynastyForgiveness = { trace: 0, match: 0, rain: 0, listen: 2 };
+  a.curGameTargetDid = 3; // stale: the previous round was dynasty scope
+  // A round whose own scope is HSK (gameTargetDid null) must not consume.
+  assert.equal(a.consumeDynastyForgiveness("listen", null), false);
+  assert.equal(s.dynastyForgiveness.listen, 2);
+  // And the alt-round credit goes to the HSK round, whatever the global says.
+  a.awardAltRound("listen", 2, null);
+  assert.equal(s.altRoundProgress.listen, 1);
+  // A dynasty round still consumes.
+  assert.equal(a.consumeDynastyForgiveness("listen", 3), true);
+  assert.equal(s.dynastyForgiveness.listen, 1);
+});
+
+test("A09: Rain unlocks after Listen has been played, even at 0 stars", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  a.curHSK = 1;
+  s.storyReadCount = { "xia-h1": 2 };
+  s.flashPassDone = { "h1-g01": true };
+  assert.equal(a.gameUnlockForDid(1).rain, false, "not before Listen");
+  a.updateGateGameBest(1, "listen", 0, 1);
+  assert.equal(a.gameUnlockForDid(1).rain, true, "a 0★ Listen is still a Listen played");
+});
+
+test("A09: a story pays at most 100 stars a read", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  a.curDynasty = a.DYNASTIES[0];
+  a.curStory = { id: "xia-h1", sents: [] };
+  a.launchConfetti = () => {};
+  a.storyOpenTime = Date.now();
+  const before = s.totalStars;
+  a.newChars = new Set("一二三四五六七八九十百千万上下大小人口日月山水火木".split(""));
+  assert.equal(a.newChars.size, 25);
+  a.completeStory();
+  assert.equal(s.totalStars - before, 100, "25 new characters used to pay 145");
+});
+
+test("A09: a meaning option shows a plain sense, never a bare parenthetical", () => {
+  const a = app();
+  assert.equal(a.optionLabel("to be (followed by substantives only)"), "to be");
+  assert.equal(a.optionLabel("(measure word for people and things)"), "measure word for people and things");
+  assert.equal(a.optionLabel("to look; to watch; to read"), "to look");
+  assert.equal(a.optionLabel("water"), "water");
+  assert.equal(a.optionLabel("(-ing, an action going on)"), "-ing, an action going on");
+});
+
+test("A09: a level with no story file is fetched once, not on every hub render", async () => {
+  const a = app();
+  let calls = 0;
+  a.fetch = () => { calls++; return Promise.resolve({ ok: false, status: 404, json: () => Promise.resolve(null) }); };
+  a.curriculumCache.stories = {};
+  assert.equal(await a.loadLevelStories(3), null);
+  assert.equal(await a.loadLevelStories(3), null);
+  assert.equal(await a.loadLevelStories(3), null);
+  assert.equal(calls, 1, "the 404 is remembered for the session");
+  // A network failure is not remembered: a level that exists gets another try.
+  a.fetch = () => { calls++; return Promise.reject(new Error("Failed to fetch")); };
+  a.curriculumCache.stories = {};
+  await a.loadLevelStories(2); await a.loadLevelStories(2);
+  assert.equal(calls, 3);
 });
