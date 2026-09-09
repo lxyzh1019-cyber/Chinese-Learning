@@ -10,23 +10,18 @@
   "keyVocab": [
     {
       "zh": "时候",
-      "pinyin": "shíhòu",
-      "en": "period"
+      "pinyin": "shíhou",
+      "en": "time; moment"
     },
     {
-      "zh": "西",
-      "pinyin": "xī",
-      "en": "west"
-    },
-    {
-      "zh": "边",
-      "pinyin": "biān",
-      "en": "side; edge"
+      "zh": "西边",
+      "pinyin": "xī biān",
+      "en": "the west"
     },
     {
       "zh": "国家",
       "pinyin": "guó jiā",
-      "en": "country; nation; state"
+      "en": "country"
     },
     {
       "zh": "少",
@@ -47,6 +42,11 @@
       "zh": "多",
       "pinyin": "duō",
       "en": "many"
+    },
+    {
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "person"
     }
   ],
   "comprehension": [
@@ -75,7 +75,7 @@
       "kind": "wordMeaning",
       "skill": "meaning",
       "zh": "时候",
-      "pinyin": "shíhòu",
+      "pinyin": "shíhou",
       "promptEn": "In the story, what does 时候 mean?",
       "prompt": "短文里的“时候”是什么意思？",
       "options": [
@@ -89,7 +89,7 @@
         },
         {
           "id": "o3",
-          "text": "period"
+          "text": "time; moment"
         },
         {
           "id": "o4",
@@ -97,17 +97,17 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "时候 (shíhòu) means \"period\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhòu）的意思是“period”，就在上面的短文里。"
+      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
+      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_06_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "西",
-      "pinyin": "xī",
-      "promptEn": "In the story, what does 西 mean?",
-      "prompt": "短文里的“西”是什么意思？",
+      "zh": "西边",
+      "pinyin": "xī biān",
+      "promptEn": "In the story, what does 西边 mean?",
+      "prompt": "短文里的“西边”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -115,7 +115,7 @@
         },
         {
           "id": "o2",
-          "text": "west"
+          "text": "the west"
         },
         {
           "id": "o3",
@@ -127,14 +127,16 @@
         }
       ],
       "answerId": "o2",
-      "explanationEn": "西 (xī) means \"west\" — you can find it in the passage above.",
-      "explanation": "“西”（xī）的意思是“west”，就在上面的短文里。"
+      "explanationEn": "西边 (xī biān) means \"the west\" — you can find it in the passage above.",
+      "explanation": "“西边”（xī biān）的意思是“the west”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_06_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "汉朝的时候，中国和西边的国家还很少来往。",
+      "targetZh": "时候",
+      "targetPinyin": "shíhou",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

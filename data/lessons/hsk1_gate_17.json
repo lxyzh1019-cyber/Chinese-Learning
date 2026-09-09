@@ -10,8 +10,8 @@
   "keyVocab": [
     {
       "zh": "时候",
-      "pinyin": "shíhòu",
-      "en": "period"
+      "pinyin": "shíhou",
+      "en": "time; moment"
     },
     {
       "zh": "多",
@@ -19,14 +19,9 @@
       "en": "many"
     },
     {
-      "zh": "年",
-      "pinyin": "nián",
-      "en": "year"
-    },
-    {
-      "zh": "轻",
-      "pinyin": "qīng",
-      "en": "light"
+      "zh": "年轻",
+      "pinyin": "nián qīng",
+      "en": "young"
     },
     {
       "zh": "人",
@@ -44,9 +39,14 @@
       "en": "to study"
     },
     {
-      "zh": "汉",
-      "pinyin": "Hàn",
-      "en": "Han; Chinese"
+      "zh": "汉字",
+      "pinyin": "hàn zì",
+      "en": "Chinese character"
+    },
+    {
+      "zh": "他们",
+      "pinyin": "tā men",
+      "en": "they"
     }
   ],
   "comprehension": [
@@ -75,7 +75,7 @@
       "kind": "wordMeaning",
       "skill": "meaning",
       "zh": "时候",
-      "pinyin": "shíhòu",
+      "pinyin": "shíhou",
       "promptEn": "In the story, what does 时候 mean?",
       "prompt": "短文里的“时候”是什么意思？",
       "options": [
@@ -89,16 +89,16 @@
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o4",
-          "text": "period"
+          "text": "time; moment"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "时候 (shíhòu) means \"period\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhòu）的意思是“period”，就在上面的短文里。"
+      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
+      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_17_w2",
@@ -115,7 +115,7 @@
         },
         {
           "id": "o2",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o3",
@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "金朝的时候，很多年轻人开始学汉字。",
+      "targetZh": "时候",
+      "targetPinyin": "shíhou",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
@@ -148,11 +150,11 @@
         },
         {
           "id": "o3",
-          "text": "Long ago, the waters of China were very high."
+          "text": "Long ago, great floods came to China."
         },
         {
           "id": "o4",
-          "text": "The water was very big; many people had no home."
+          "text": "The floods came, and many people had no home."
         }
       ],
       "answerId": "o2",

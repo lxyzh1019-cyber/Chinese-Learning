@@ -40,15 +40,76 @@
       "en": "He also loved learning new things."
     },
     {
-      "zh": "他学数，也学西边来的学问。",
-      "en": "He studied numbers, and learning that came from the west."
+      "zh": "他学数学，也学西边来的学问。",
+      "en": "He studied mathematics, and learning that came from the west.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to study"
+        },
+        {
+          "zh": "数学",
+          "py": "shù xué",
+          "mn": "mathematics",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to study"
+        },
+        {
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "learning"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "西边来的人给他讲天上的事。",
       "en": "People from the west told him about the sky."
     },
     {
-      "zh": "他让人做了中国的大地图。",
+      "zh": "他让人画了中国的大地图。",
       "en": "He had a great map of China made."
     },
     {

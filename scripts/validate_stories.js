@@ -41,6 +41,95 @@ function pending() {
   return JSON.parse(fs.readFileSync(f, "utf8"));
 }
 
+/**
+ * Wordings simplification keeps reaching for, which are wrong in ways a schema
+ * check cannot see.
+ *
+ * Each of these shipped. They are not style preferences: a child who learns
+ * 做学校 has learnt a sentence a Chinese speaker would not say, and 种米 teaches
+ * that the grain in the bowl is the thing growing in the field.
+ */
+const BUILT_NOT_MADE = /做[^。，、；：]{0,6}(?:学校|长城|房子|桥|工厂|医院|地图|运河)|做一条[^。，]{0,6}(?:河|路|城)/;
+const GROWN_NOT_MILLED = /种[^。，、；：]{0,4}米(?!饭)|很多种饭/;
+const SAD_NOT_HARD = /(?:天(?:冷|热)|风|雪|冬天|日子)[^。，]{0,6}难过/;
+// 做钱 in the sense of EARNING is a calque; earning is 赚, or 做买卖 at this
+// level. Manufacturing currency — 用纸做钱, which is exactly what the Song
+// story is about — is a different verb sense and is left alone.
+const COUNTERFEIT = /做了?很多钱/;
+// 学数 / 教数 is not studying or teaching mathematics; that is 数学.
+const NUMBERS_NOT_MATHS = /(?:学|教)(?:过)?数(?![学字量])/;
+// 水很大 / 水又大 is not how depth or a flood is described.
+const BIG_WATER = /水(?:很|又|太)大/;
+// 眼 on its own is not the word for an eye.
+const BARE_EYE = /(?:^|[，。、])[^。，]{0,4}眼(?![睛前泪])(?:不好|是黑|很大)/;
+// 不有 is not a negation anyone writes.
+const BAD_NEGATION = /不有(?:钱|人|书)/;
+
+function checkNaturalness(text, at) {
+  if (BUILT_NOT_MADE.test(text)) {
+    fail(`${at}: uses 做 for something that is built — schools, roads and bridges take 建, 修 or 盖`);
+  }
+  if (GROWN_NOT_MILLED.test(text)) {
+    fail(`${at}: grows 米, which is the milled grain; the plant in the field is 稻子`);
+  }
+  if (SAD_NOT_HARD.test(text)) {
+    fail(`${at}: uses 难过 for weather or conditions — that is being sad, not hard going`);
+  }
+  if (COUNTERFEIT.test(text)) {
+    fail(`${at}: 做钱 is counterfeiting money; earning it is 赚 or, at this level, 做买卖`);
+  }
+  if (NUMBERS_NOT_MATHS.test(text)) {
+    fail(`${at}: 学数 / 教数 is not mathematics — the subject is 数学`);
+  }
+  if (BIG_WATER.test(text)) {
+    fail(`${at}: water is 深 or a 大水 flood; 水很大 is not how either is said`);
+  }
+  if (BARE_EYE.test(text)) {
+    fail(`${at}: uses a bare 眼; the word for an eye is 眼睛`);
+  }
+  if (BAD_NEGATION.test(text)) {
+    fail(`${at}: 不有 is not a negation — 有 is negated with 没有`);
+  }
+}
+
+/**
+ * The same story told at two levels must not contradict itself on a fact.
+ *
+ * HSK1 had 大禹 away from home for 三十年 while HSK2 said 十三年 — the same
+ * legend, the same event, told to the same child a level apart. Numbers are the
+ * form of contradiction that is both checkable and most likely: they are what a
+ * simplification pass rewrites.
+ */
+const CN_NUM = /[一二三四五六七八九十百千万]+(?=年|个月|天|岁|次|条|座)/g;
+const levelTexts = {};
+
+function checkCrossLevelFacts() {
+  const byBase = {};
+  Object.entries(levelTexts).forEach(([lv, stories]) => {
+    Object.entries(stories).forEach(([base, text]) => {
+      byBase[base] = byBase[base] || {};
+      byBase[base][lv] = new Set(text.match(CN_NUM) || []);
+    });
+  });
+  Object.entries(byBase).forEach(([base, byLv]) => {
+    const levels = Object.keys(byLv);
+    if (levels.length < 2) return;
+    for (let i = 0; i < levels.length; i++) {
+      for (let j = i + 1; j < levels.length; j++) {
+        const a = byLv[levels[i]], b = byLv[levels[j]];
+        // A number one telling gives and the other reverses (三十 vs 十三) is
+        // the digit-order slip; a number only one telling mentions is fine.
+        [...a].forEach((n) => {
+          const rev = [...n].reverse().join("");
+          if (rev !== n && b.has(rev) && !b.has(n)) {
+            fail(`${base}: HSK${levels[i]} says ${n} where HSK${levels[j]} says ${rev} — the same fact, two answers`);
+          }
+        });
+      }
+    }
+  });
+}
+
 function main() {
   const skip = new Set(pending().notLaddered || []);
   let checked = 0, laddered = 0;
@@ -113,6 +202,10 @@ function main() {
       });
       if (/["']/.test(text)) fail(`${at}: uses a straight quote; Chinese text takes \u201c \u201d`);
 
+      checkNaturalness(text, at);
+      levelTexts[lv] = levelTexts[lv] || {};
+      levelTexts[lv][(s.legacyId || key.replace(/-h[1-4]$/, ""))] = text;
+
       const study = s.sents.flat().filter((t) => t.t === "c" && !t.bonus).length;
       if (skip.has(key)) return;
       laddered++;
@@ -127,6 +220,8 @@ function main() {
       }
     });
   }
+
+  checkCrossLevelFacts();
 
   console.log(`\nstories: ${checked} checked · ${laddered} on the ladder · ${skip.size} still to extend`);
   if (skip.size) {

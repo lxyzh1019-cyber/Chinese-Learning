@@ -30,8 +30,8 @@
     },
     {
       "zh": "时候",
-      "pinyin": "shíhòu",
-      "en": "period"
+      "pinyin": "shíhou",
+      "en": "time; moment"
     },
     {
       "zh": "人",
@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "商朝是中国很早的一个朝代。",
+      "targetZh": "早",
+      "targetPinyin": "zǎo",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

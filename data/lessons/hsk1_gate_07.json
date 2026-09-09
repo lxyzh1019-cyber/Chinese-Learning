@@ -81,7 +81,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o2",
@@ -123,7 +123,7 @@
         },
         {
           "id": "o4",
-          "text": "before"
+          "text": "from"
         }
       ],
       "answerId": "o1",
@@ -135,16 +135,18 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "以前，人们在竹子上写字，很重。",
+      "targetZh": "人",
+      "targetPinyin": "rén",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "Long ago, the waters of China were very high."
+          "text": "Long ago, great floods came to China."
         },
         {
           "id": "o2",
-          "text": "The water was very big; many people had no home."
+          "text": "The floods came, and many people had no home."
         },
         {
           "id": "o3",

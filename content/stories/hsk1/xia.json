@@ -16,27 +16,73 @@
   },
   "sents": [
     {
-      "zh": "很久以前，中国的水很大。",
-      "en": "Long ago, the waters of China were very high."
-    },
-    {
-      "zh": "水很大，很多人没有家。",
-      "en": "The water was very big; many people had no home.",
+      "zh": "很久以前，中国发大水。",
+      "en": "Long ago, great floods came to China.",
       "seg": [
-        {
-          "zh": "水",
-          "py": "shuǐ",
-          "mn": "water"
-        },
         {
           "zh": "很",
           "py": "hěn",
           "mn": "very"
         },
         {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time"
+        },
+        {
+          "zh": "以",
+          "py": "yǐ",
+          "mn": "from"
+        },
+        {
+          "zh": "前",
+          "py": "qián",
+          "mn": "before"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "发大水",
+          "py": "fā dà shuǐ",
+          "mn": "great floods came",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "大水来了，很多人没有家。",
+      "en": "The floods came, and many people had no home.",
+      "seg": [
+        {
           "zh": "大",
           "py": "dà",
           "mn": "big"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(finished)"
         },
         {
           "t": "p",
@@ -55,12 +101,12 @@
         {
           "zh": "人",
           "py": "rén",
-          "mn": "person"
+          "mn": "people"
         },
         {
           "zh": "没",
           "py": "méi",
-          "mn": "no"
+          "mn": "not"
         },
         {
           "zh": "有",
@@ -171,8 +217,8 @@
       "en": "He worked together with many people, and it was hard."
     },
     {
-      "zh": "他三十年不回家。",
-      "en": "He did not return home for thirty years.",
+      "zh": "他十三年不回家。",
+      "en": "He did not return home for thirteen years.",
       "seg": [
         {
           "zh": "他",
@@ -180,14 +226,14 @@
           "mn": "he"
         },
         {
-          "zh": "三",
-          "py": "sān",
-          "mn": "three"
-        },
-        {
           "zh": "十",
           "py": "shí",
           "mn": "ten"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
         },
         {
           "zh": "年",

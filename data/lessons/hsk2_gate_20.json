@@ -14,9 +14,9 @@
       "en": "one"
     },
     {
-      "zh": "名",
-      "pinyin": "míng",
-      "en": "name"
+      "zh": "有名",
+      "pinyin": "yǒu míng",
+      "en": "famous"
     },
     {
       "zh": "皇",
@@ -45,8 +45,8 @@
     },
     {
       "zh": "时候",
-      "pinyin": "shíhòu",
-      "en": "period"
+      "pinyin": "shíhou",
+      "en": "time; moment"
     }
   ],
   "comprehension": [
@@ -104,10 +104,10 @@
       "id": "hsk2_gate_20_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "名",
-      "pinyin": "míng",
-      "promptEn": "In the story, what does 名 mean?",
-      "prompt": "短文里的“名”是什么意思？",
+      "zh": "有名",
+      "pinyin": "yǒu míng",
+      "promptEn": "In the story, what does 有名 mean?",
+      "prompt": "短文里的“有名”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -123,18 +123,20 @@
         },
         {
           "id": "o4",
-          "text": "name"
+          "text": "famous"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "名 (míng) means \"name\" — you can find it in the passage above.",
-      "explanation": "“名”（míng）的意思是“name”，就在上面的短文里。"
+      "explanationEn": "有名 (yǒu míng) means \"famous\" — you can find it in the passage above.",
+      "explanation": "“有名”（yǒu míng）的意思是“famous”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_20_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "清朝有一个很有名的皇帝，叫康熙。",
+      "targetZh": "一",
+      "targetPinyin": "yī",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

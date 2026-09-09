@@ -44,9 +44,9 @@
       "en": "before"
     },
     {
-      "zh": "名",
-      "pinyin": "míng",
-      "en": "name"
+      "zh": "有名",
+      "pinyin": "yǒu míng",
+      "en": "famous"
     }
   ],
   "comprehension": [
@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "一千六百多年以前，有一个很有名的诗人。",
+      "targetZh": "一",
+      "targetPinyin": "yī",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

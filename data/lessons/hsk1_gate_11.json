@@ -15,8 +15,8 @@
     },
     {
       "zh": "时候",
-      "pinyin": "shíhòu",
-      "en": "period"
+      "pinyin": "shíhou",
+      "en": "time; moment"
     },
     {
       "zh": "北",
@@ -44,8 +44,8 @@
       "en": "to go (in a direction)"
     },
     {
-      "zh": "便",
-      "pinyin": "pián",
+      "zh": "方便",
+      "pinyin": "fāng biàn",
       "en": "convenient"
     }
   ],
@@ -81,7 +81,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o2",
@@ -105,13 +105,13 @@
       "kind": "wordMeaning",
       "skill": "meaning",
       "zh": "时候",
-      "pinyin": "shíhòu",
+      "pinyin": "shíhou",
       "promptEn": "In the story, what does 时候 mean?",
       "prompt": "短文里的“时候”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "period"
+          "text": "time; moment"
         },
         {
           "id": "o2",
@@ -123,28 +123,30 @@
         },
         {
           "id": "o4",
-          "text": "before"
+          "text": "from"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "时候 (shíhòu) means \"period\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhòu）的意思是“period”，就在上面的短文里。"
+      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
+      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_11_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "隋朝的皇帝想建一条很长的河。",
+      "targetZh": "长",
+      "targetPinyin": "cháng",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "Long ago, the waters of China were very high."
+          "text": "Long ago, great floods came to China."
         },
         {
           "id": "o2",
-          "text": "The water was very big; many people had no home."
+          "text": "The floods came, and many people had no home."
         },
         {
           "id": "o3",

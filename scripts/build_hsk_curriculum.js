@@ -58,13 +58,57 @@ function rankWord(a) {
   return freq + idiomPenalty + symbolPenalty + longPenalty + friendlyBonus;
 }
 
+/**
+ * Dictionary artefacts that must never become a beginner's first meaning.
+ *
+ * Kept in step with the same list in scripts/validate_curriculum.js: what the
+ * builder refuses to emit is exactly what the validator refuses to accept.
+ */
+const ARTEFACT_SENSE = /variant of|abbr\.|^surname\b|^used in |\(chess\)|archaic|\bcomma\b|first month of the lunar year|\bradical\b|^\(of (a|an) \w+\)/i;
+
+/**
+ * Choose the form a child should meet, not simply the first one listed.
+ *
+ * The upstream list orders `forms` by dictionary convention, not by what a
+ * beginner needs, and taking `forms[0]` blindly is how 听 came to be served as
+ * `yǐn` "smile (archaic)", 打 as `dá` "dozen", 读 as `dòu` "comma" and 鸟 as
+ * `diǎo` — an obscenity, under a picture-book word. It is the same mistake as
+ * taking `meanings[0]`, which STATUS-AND-BACKLOG rule 6 already forbids; only
+ * the field differed.
+ *
+ * A form is preferred when its sense is not a dictionary artefact and its
+ * part of speech is one the row itself claims. Ties keep the upstream order,
+ * so this only ever moves a form that had a positive reason to be skipped.
+ */
+function pickForm(raw) {
+  const forms = (Array.isArray(raw.forms) ? raw.forms : []).filter(Boolean);
+  if (!forms.length) return null;
+  const rowPos = Array.isArray(raw.pos) ? raw.pos : [];
+  const score = (f) => {
+    const meanings = Array.isArray(f.meanings) ? f.meanings : [];
+    const usable = meanings.filter((m) => m && !ARTEFACT_SENSE.test(m));
+    let s = 0;
+    if (!usable.length) s += 100;                 // nothing here a child can learn
+    if (!(f.transcriptions || {}).pinyin) s += 200;
+    // A form whose part of speech the row never claims is the wrong reading:
+    // 更 was served as a verb while the row is tagged adverb-only.
+    if (rowPos.length && Array.isArray(f.pos) && f.pos.length &&
+        !f.pos.some((p) => rowPos.includes(p))) s += 50;
+    return s;
+  };
+  let best = forms[0], bestScore = score(forms[0]);
+  forms.forEach((f) => { const sc = score(f); if (sc < bestScore) { best = f; bestScore = sc; } });
+  return best;
+}
+
 function normalizeEntry(raw, sourceLevel, sourceTag) {
-  const forms = Array.isArray(raw.forms) ? raw.forms : [];
-  const form0 = forms[0] || {};
+  const form0 = pickForm(raw) || {};
   const trans = form0.transcriptions || {};
   const meanings = Array.isArray(form0.meanings) ? form0.meanings : [];
   const pinyin = trans.pinyin || "";
-  const en = meanings[0] || "TBD meaning";
+  // Never meanings[0] unconditionally: take the first sense that is a meaning
+  // rather than a cross-reference, and say so loudly when there is none.
+  const en = meanings.find((m) => m && !ARTEFACT_SENSE.test(m)) || meanings[0] || "TBD meaning";
   const zh = raw.simplified || "";
   if (!zh || !pinyin) return null;
   return {
@@ -181,10 +225,31 @@ async function main() {
   const hsk3 = levelDoc(3, hsk3Words, ["300-word custom level from HSK 3.0 new-3 list, excluding HSK2 borrowed entries"]);
   const hsk4 = levelDoc(4, hsk4Words, ["300-word custom level from HSK 3.0 new-4 list"]);
 
-  fs.writeFileSync(path.join(DATA_DIR, "hsk1.json"), JSON.stringify(hsk1, null, 2));
-  fs.writeFileSync(path.join(DATA_DIR, "hsk2.json"), JSON.stringify(hsk2, null, 2));
-  fs.writeFileSync(path.join(DATA_DIR, "hsk3.json"), JSON.stringify(hsk3, null, 2));
-  fs.writeFileSync(path.join(DATA_DIR, "hsk4.json"), JSON.stringify(hsk4, null, 2));
+  // This script REPLACES the level files wholesale from an upstream fetch, so
+  // anything a later pass wrote into a gate is destroyed unless it is carried
+  // across. The sentence packs are built from the story corpus, not from
+  // upstream, and losing them silently returns Phase 3 to the three generic
+  // sentences it used to serve. Same relationship the file already has with
+  // repair_vocab.js: rerun `npm run build:sentences` after a rebuild.
+  const carryForward = (doc, name) => {
+    const file = path.join(DATA_DIR, name);
+    if (!fs.existsSync(file)) return doc;
+    let prev;
+    try { prev = JSON.parse(fs.readFileSync(file, "utf8")); } catch (e) { return doc; }
+    const byId = new Map((prev.gates || []).map((g) => [g.gateId, g]));
+    (doc.gates || []).forEach((g) => {
+      const old = byId.get(g.gateId);
+      if (!old) return;
+      if (old.sentenceTargetsPack) g.sentenceTargetsPack = old.sentenceTargetsPack;
+      if (old.sentenceTargetsMeta) g.sentenceTargetsMeta = old.sentenceTargetsMeta;
+    });
+    return doc;
+  };
+
+  fs.writeFileSync(path.join(DATA_DIR, "hsk1.json"), JSON.stringify(carryForward(hsk1, "hsk1.json"), null, 2));
+  fs.writeFileSync(path.join(DATA_DIR, "hsk2.json"), JSON.stringify(carryForward(hsk2, "hsk2.json"), null, 2));
+  fs.writeFileSync(path.join(DATA_DIR, "hsk3.json"), JSON.stringify(carryForward(hsk3, "hsk3.json"), null, 2));
+  fs.writeFileSync(path.join(DATA_DIR, "hsk4.json"), JSON.stringify(carryForward(hsk4, "hsk4.json"), null, 2));
 
   const report = {
     generatedAt: new Date().toISOString(),
@@ -209,7 +274,13 @@ async function main() {
   console.log(`Generated curriculum files under ${DATA_DIR}`);
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Exported so the form/sense choice can be tested without a network fetch:
+// the defect this guards against is invisible until a rebuild runs.
+module.exports = { pickForm, normalizeEntry, ARTEFACT_SENSE };
+
+if (require.main === module) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

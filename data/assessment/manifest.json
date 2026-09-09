@@ -1,5 +1,5 @@
 {
-  "bankVersion": "1.1.0",
+  "bankVersion": "1.2.0",
   "bands": [
     "C1",
     "C2",
@@ -11,8 +11,8 @@
     "B"
   ],
   "files": {
-    "items": "1.1.0/items.json",
-    "forms": "1.1.0/forms.json"
+    "items": "1.2.0/items.json",
+    "forms": "1.2.0/forms.json"
   },
   "versions": {
     "1.1.0": {
@@ -23,6 +23,16 @@
       "sha256": {
         "items": "3da03f25cc3592309aa927142fcb8833eb26888358d7f90e69a978414dcda395",
         "forms": "f49ad9cc489f8f9756c142641fce5c7adc9a92fca7ab4f269156e274e6cb382e"
+      }
+    },
+    "1.2.0": {
+      "files": {
+        "items": "1.2.0/items.json",
+        "forms": "1.2.0/forms.json"
+      },
+      "sha256": {
+        "items": "c5e3cd55d551f3e7ec96e3e74f37419da029695c52fe6f56ebb4cac84b5d6099",
+        "forms": "de7daa86cd68045657cd874e4df487ed6d316fb562aabf3517144bc360f7ed67"
       }
     }
   },

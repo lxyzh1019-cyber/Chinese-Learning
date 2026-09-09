@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "中国人很早就觉得写字是一件很美的事。",
+      "targetZh": "中国",
+      "targetPinyin": "Zhōngguó",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

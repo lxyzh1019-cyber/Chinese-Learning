@@ -804,3 +804,146 @@ test("A26: a decoding record is asked as a reading, not as a sound", (t) => {
   const same = it.opts.filter((o) => o === it.correct);
   assert.equal(same.length, 1, "exactly one option is the right sound");
 });
+
+// ── S1: a merge must not hand out retention nobody earned ────────────────
+// The checkpoint stored a stage from AFTER the retained attempts alongside
+// successes covering only the SHED ones. seedFrom copied both, the replay
+// re-advanced on every retained success the seed did not name, and merging a
+// record with an identical copy moved the schedule days into the future.
+//
+// Expected values below are literals worked out by hand from LADDER and the
+// attempt rules, never read back from mergeRecords — a test that asks the
+// function under test what it thinks moves with the defect and cannot fail.
+
+function att(on, i, o) {
+  return Object.assign(
+    { id: `s1_${on}_${i}`, at: i, on, correct: true, supported: false, sameSession: false, source: "t" },
+    o || {}
+  );
+}
+function replay(entries) {
+  let rec = R.blankRecord("很", "meaning");
+  entries.forEach((e) => { rec = R.applyAttempt(rec, e); });
+  return rec;
+}
+
+test("S1: 40 successes on one day then two on the next sits at stage 2", () => {
+  const rec = replay([
+    ...Array.from({ length: 40 }, (_, i) => att("2025-09-01", i)),
+    att("2025-09-02", 100), att("2025-09-02", 101),
+  ]);
+  // Two distinct unaided dates => two rungs. LADDER[1] is 3 days after 09-02.
+  assert.equal(rec.stage, 2);
+  assert.equal(rec.dueOn, "2025-09-05");
+  assert.ok(rec.attempts.length === R.MAX_ATTEMPTS, "the history was trimmed, so a checkpoint exists");
+  assert.ok(rec.checkpoint, "and it is populated");
+});
+
+test("S1: merging a record with an identical copy changes nothing", () => {
+  const rec = replay([
+    ...Array.from({ length: 40 }, (_, i) => att("2025-09-01", i)),
+    att("2025-09-02", 100), att("2025-09-02", 101),
+  ]);
+  const merged = R.mergeRecords(rec, JSON.parse(JSON.stringify(rec)));
+  assert.equal(merged.stage, 2, "no rung is gained by syncing");
+  assert.equal(merged.dueOn, "2025-09-05", "and the due date does not move");
+  assert.deepEqual(merged.independentSuccesses, ["2025-09-01", "2025-09-02"]);
+});
+
+test("S1: a self-merge does not skip two rungs when the shed prefix is a miss", () => {
+  const rec = replay([
+    att("2025-09-01", 0, { correct: false }), att("2025-09-01", 1, { correct: false }),
+    ...Array.from({ length: 38 }, (_, i) => att("2025-09-01", i + 2)),
+    att("2025-09-02", 100), att("2025-09-02", 101),
+  ]);
+  assert.equal(rec.stage, 2);
+  assert.equal(rec.dueOn, "2025-09-05");
+  const merged = R.mergeRecords(rec, JSON.parse(JSON.stringify(rec)));
+  assert.equal(merged.stage, 2, "stage 2, not 4");
+  assert.equal(merged.dueOn, "2025-09-05");
+});
+
+test("S1: supported answers in the shed prefix do not become retention", () => {
+  const rec = replay([
+    ...Array.from({ length: 39 }, (_, i) => att("2025-09-01", i, { supported: true })),
+    att("2025-09-02", 100), att("2025-09-02", 101), att("2025-09-03", 102),
+  ]);
+  // Only 09-02 and 09-03 are unaided => stage 2, LADDER[1] = 3 days after 09-03.
+  assert.equal(rec.stage, 2);
+  assert.equal(rec.dueOn, "2025-09-06");
+  const merged = R.mergeRecords(rec, JSON.parse(JSON.stringify(rec)));
+  assert.equal(merged.stage, 2);
+  assert.equal(merged.dueOn, "2025-09-06");
+});
+
+test("S1: merge stays order-independent after the fix", () => {
+  const rec = replay([
+    ...Array.from({ length: 40 }, (_, i) => att("2025-09-01", i)),
+    att("2025-09-02", 100), att("2025-09-02", 101),
+  ]);
+  const copy = JSON.parse(JSON.stringify(rec));
+  const ab = R.mergeRecords(rec, copy);
+  const ba = R.mergeRecords(copy, rec);
+  assert.equal(ab.stage, ba.stage);
+  assert.equal(ab.dueOn, ba.dueOn);
+  assert.deepEqual(ab.independentSuccesses, ba.independentSuccesses);
+});
+
+test("S1: the checkpoint's stage and its successes describe the same prefix", () => {
+  const rec = replay([
+    ...Array.from({ length: 40 }, (_, i) => att("2025-09-01", i)),
+    att("2025-09-02", 100), att("2025-09-02", 101),
+  ]);
+  const cp = rec.checkpoint;
+  // Every shed entry here is an unaided success on 09-01, so the folded prefix
+  // reached exactly one rung and names exactly that one date.
+  assert.deepEqual(cp.successes, ["2025-09-01"]);
+  assert.equal(cp.stage, 1, "a checkpoint naming one date cannot claim two rungs");
+});
+
+test("S1: the same dates give the same set whatever order they arrive in", () => {
+  const dates = Array.from({ length: 25 }, (_, i) => `2026-01-${String(i + 1).padStart(2, "0")}`);
+  const build = (order) => {
+    let rec = R.blankRecord("久", "meaning");
+    order.forEach((on, i) => { rec = R.applyAttempt(rec, { id: `d_${on}`, at: i, on, correct: true }); });
+    return rec;
+  };
+  const a = build(dates);
+  const b = build([...dates.slice(10), ...dates.slice(0, 10)]);
+  // The bound keeps the twenty LATEST dates, which is a property of the dates
+  // themselves — computed here — not of the order they were written in.
+  const expected = [...dates].sort().slice(-20);
+  assert.deepEqual(a.independentSuccesses, expected);
+  assert.deepEqual(b.independentSuccesses, expected);
+});
+
+test("S1: firstTaughtOn is the earliest date seen, not the first one recorded", () => {
+  let rec = R.blankRecord("久", "meaning");
+  rec = R.applyAttempt(rec, { id: "late", at: 1, on: "2026-01-10", correct: true });
+  rec = R.applyAttempt(rec, { id: "early", at: 0, on: "2026-01-01", correct: true });
+  assert.equal(rec.firstTaughtOn, "2026-01-01",
+    "statusOf measures a week from teaching; a late value costs the strongest label");
+});
+
+test("S1: a divergent fold under-states the ladder rather than inflating it", () => {
+  const at = (id, on, o) =>
+    Object.assign({ id, at: 0, on, correct: true, supported: false, sameSession: false }, o || {});
+  const prefix = [at("p0", "2026-02-01", { correct: false }), at("p1", "2026-02-02"), at("p2", "2026-02-03")];
+  let base = R.blankRecord("久", "meaning");
+  prefix.forEach((e) => { base = R.applyAttempt(base, e); });
+  assert.equal(base.stage, 2, "a miss then two unaided dates is two rungs");
+
+  let folded = JSON.parse(JSON.stringify(base));
+  for (let i = 0; i < 40; i++) {
+    folded = R.applyAttempt(folded, at(`s${i}`, "2026-02-04", { supported: true }));
+  }
+  const retained = JSON.parse(JSON.stringify(base));
+  const ab = R.mergeRecords(JSON.parse(JSON.stringify(folded)), JSON.parse(JSON.stringify(retained)));
+  const ba = R.mergeRecords(JSON.parse(JSON.stringify(retained)), JSON.parse(JSON.stringify(folded)));
+
+  assert.ok(ab.stage <= 2, "a merge must never invent a rung");
+  assert.equal(ab.stage, ba.stage, "and must not depend on argument order");
+  assert.equal(ab.dueOn, ba.dueOn);
+  const again = R.mergeRecords(JSON.parse(JSON.stringify(ab)), JSON.parse(JSON.stringify(ab)));
+  assert.equal(again.stage, ab.stage, "and must be stable on repeat");
+});

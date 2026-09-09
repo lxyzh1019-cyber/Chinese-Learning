@@ -16,7 +16,7 @@
   },
   "sents": [
     {
-      "zh": "中国很大，北边和南边差得很远。",
+      "zh": "中国很大，北边和南边离得很远。",
       "en": "China is large, and the north and south are far apart."
     },
     {
@@ -24,8 +24,60 @@
       "en": "The north is cold and the south is hot."
     },
     {
-      "zh": "南边的田里可以种很多米。",
-      "en": "A great deal of rice can be grown in the southern fields."
+      "zh": "南边的田里可以种很多稻子。",
+      "en": "A great deal of rice can be grown in the southern fields.",
+      "seg": [
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "田",
+          "py": "tián",
+          "mn": "field"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "to grow"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "稻子",
+          "py": "dào zi",
+          "mn": "rice plants",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "可是要把米送到北边去，非常不方便。",
@@ -40,7 +92,7 @@
       "en": "The Sui emperor thought of a great plan."
     },
     {
-      "zh": "他决定做一条很长很长的河。",
+      "zh": "他决定建一条很长很长的河。",
       "en": "He decided to make a very long waterway."
     },
     {

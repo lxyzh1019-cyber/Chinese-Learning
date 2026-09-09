@@ -144,11 +144,30 @@
     return lv ? gateKey(lv, Number(did)) : null;
   }
 
+  /**
+   * A key that is already in the 88-gate model. `parseInt("h1-g01")` is NaN, so
+   * a key like this must never reach the legacy remap: it would be filtered
+   * away and the record silently dropped.
+   */
+  function isCanonicalGateKey(k) {
+    return /^h[1-4]-g(0[1-9]|1[0-9]|2[0-2])$/.test(String(k));
+  }
+
+  /**
+   * Remap one gate-keyed map, tolerating a MIXED document.
+   *
+   * A save can carry both shapes at once: anything that wrote a bare dynasty
+   * number into an otherwise-modern document (flashPassDone did exactly this)
+   * makes `looksLegacy` fire, and the whole map then went through parseInt.
+   * Modern keys are passed through untouched; only genuinely numeric keys are
+   * converted.
+   */
   function remapKeyed(obj, note) {
     const out = {}; const skipped = [];
     Object.entries(obj || {}).forEach(([k, v]) => {
+      if (isCanonicalGateKey(k)) { out[k] = v; return; }
       const key = legacyGateKey(parseInt(k, 10));
-      if (key) out[key] = v; else skipped.push(k);
+      if (key) { if (!(key in out)) out[key] = v; } else skipped.push(k);
     });
     return { out, skipped, note };
   }
@@ -256,7 +275,13 @@
 
   /** Phase one: numeric dynasty ids become (level, dynasty) gate keys. */
   function migrateGateIdentity(src, next, report) {
-    const cleared = (src.gatesCompleted || [])
+    // A mixed document keeps its modern completions. Partitioning rather than
+    // mapping is the whole point: parseInt("h1-g01") is NaN, so the old code
+    // filtered every already-migrated completion away before the loop ran.
+    const raw = src.gatesCompleted || [];
+    const keptKeys = raw.filter(isCanonicalGateKey).map(String);
+    const cleared = raw
+      .filter((v) => !isCanonicalGateKey(v))
       .map((v) => parseInt(v, 10))
       .filter((v) => Number.isFinite(v));
     const clearedKeys = [];
@@ -265,7 +290,8 @@
       if (key) { clearedKeys.push(key); report.gatesCompleted.push({ from: did, to: key }); }
       else report.skipped.push({ field: "gatesCompleted", value: did });
     });
-    next.gatesCompleted = [...new Set(clearedKeys)];
+    report.keptGateKeys = keptKeys.slice();
+    next.gatesCompleted = [...new Set([...keptKeys, ...clearedKeys])];
 
     [["gateStars", "stars"], ["gateGameStars", "game stars"], ["gateBestQuiz", "best quiz"],
      ["gateTimers", "timers"], ["gateAttemptHistory", "attempt history"],
@@ -280,8 +306,9 @@
 
     // Access is not completion. Content the child could already reach stays
     // reachable, recorded separately so it can never be mistaken for mastery.
-    const reachable = new Set(clearedKeys);
-    clearedKeys.forEach((k) => { const n = nextGateKey(k); if (n) reachable.add(n); });
+    const allKeys = [...new Set([...keptKeys, ...clearedKeys])];
+    const reachable = new Set(allKeys);
+    allKeys.forEach((k) => { const n = nextGateKey(k); if (n) reachable.add(n); });
     reachable.add(gateKey(1, 1));
     next.legacyAccess = [...reachable].sort();
     report.legacyAccess = next.legacyAccess;

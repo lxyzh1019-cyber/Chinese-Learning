@@ -20,8 +20,8 @@
     },
     {
       "zh": "时候",
-      "pinyin": "shíhòu",
-      "en": "period"
+      "pinyin": "shíhou",
+      "en": "time; moment"
     },
     {
       "zh": "多",
@@ -39,14 +39,14 @@
       "en": "matter; thing"
     },
     {
-      "zh": "西",
-      "pinyin": "xī",
-      "en": "west"
+      "zh": "西边",
+      "pinyin": "xī biān",
+      "en": "the west"
     },
     {
-      "zh": "边",
-      "pinyin": "biān",
-      "en": "side; edge"
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "en": "country"
     }
   ],
   "comprehension": [
@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "清朝快要过去的时候，中国有很多难事。",
+      "targetZh": "快",
+      "targetPinyin": "kuài",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

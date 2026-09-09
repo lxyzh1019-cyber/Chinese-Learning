@@ -24,8 +24,83 @@
       "en": "They went to the new schools."
     },
     {
-      "zh": "他们学数，学字，也学西边的学问。",
-      "en": "They studied numbers, writing, and western learning."
+      "zh": "他们学数学，学写字，也学西边的学问。",
+      "en": "They studied mathematics, writing, and western learning.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to study"
+        },
+        {
+          "zh": "数学",
+          "py": "shù xué",
+          "mn": "mathematics",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to study"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to study"
+        },
+        {
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "learning"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "有的人去别的国家读书。",

@@ -36,7 +36,7 @@
     {
       "zh": "打",
       "pinyin": "dǎ",
-      "en": "fight"
+      "en": "to hit; to play (a game)"
     },
     {
       "zh": "来",
@@ -93,7 +93,7 @@
         },
         {
           "id": "o4",
-          "text": "before"
+          "text": "from"
         }
       ],
       "answerId": "o1",
@@ -119,7 +119,7 @@
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o4",
@@ -135,12 +135,14 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "三国时候，中国有三个国。",
+      "targetZh": "时",
+      "targetPinyin": "shí",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "The water was very big; many people had no home."
+          "text": "The floods came, and many people had no home."
         },
         {
           "id": "o2",
@@ -152,7 +154,7 @@
         },
         {
           "id": "o4",
-          "text": "Long ago, the waters of China were very high."
+          "text": "Long ago, great floods came to China."
         }
       ],
       "answerId": "o3",

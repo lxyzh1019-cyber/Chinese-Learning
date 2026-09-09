@@ -85,7 +85,7 @@
         },
         {
           "id": "o2",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o3",
@@ -111,7 +111,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o2",
@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "一百多年以前，中国还有王。",
+      "targetZh": "一",
+      "targetPinyin": "yī",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
@@ -144,11 +146,11 @@
         },
         {
           "id": "o2",
-          "text": "Long ago, the waters of China were very high."
+          "text": "Long ago, great floods came to China."
         },
         {
           "id": "o3",
-          "text": "The water was very big; many people had no home."
+          "text": "The floods came, and many people had no home."
         },
         {
           "id": "o4",

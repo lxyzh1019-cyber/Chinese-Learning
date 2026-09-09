@@ -1338,17 +1338,31 @@ against the other child's state.
 
 ```
 npm run check                 # inline-script parse guard (§9.1)
-npm run validate:curriculum   # gate/word quality, incl. the junk-gloss filter
-npm run validate:stories      # ladder, glosses, punctuation, translations
+npm run validate:curriculum   # readings vs the curated dictionary; junk glosses
+npm run validate:stories      # ladder, glosses, punctuation, naturalness, facts
 npm run validate:lessons      # bilingual instructions, passage is a real text
+npm run validate:sentences    # sentence packs: from the story, and unambiguous
+npm run validate:culture      # a culture reading must contain a reading
 npm run validate:assessment   # bank contract; --audio HEAD-checks every clip
 npm test                      # node --test tests/*.test.cjs
 npm run verify                # all of the above, in that order
 
 npm run build:stories         # content/stories/** -> data/stories/**
 npm run build:lessons <lv>    # a level's lessons, from each gate's own story
+npm run build:sentences [lv]  # Phase 3 packs, from each gate's own story
+npm run build:culture         # the 29 culture readings
 npm run coverage:content      # what content exists behind the 88 gates
 ```
+
+**The build order matters.** Lessons and sentence packs both quote story
+sentences, so editing `content/stories/**` means
+`build:stories` -> `build:lessons` -> `build:sentences`. Leaving the derived
+files stale puts the old wording back in front of the child through a different
+door, and `validate:sentences` is what catches it.
+
+`build_hsk_curriculum.js` REPLACES `data/hsk*.json` wholesale from an upstream
+fetch. It carries the sentence packs across, but the vocabulary repair does not
+survive: rerun `repair_vocab.js` after it, as `docs/vocab-repair-ledger.md` says.
 
 `tests/helpers/app-loader.js` loads the real inline script into a Node `vm` with
 stubbed browser globals, strips the trailing `init()`, and bridges the script's

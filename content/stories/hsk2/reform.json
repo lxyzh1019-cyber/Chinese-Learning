@@ -44,12 +44,78 @@
       "en": "Some said we must learn the west’s knowledge."
     },
     {
-      "zh": "所以一些官开始做新的学校。",
+      "zh": "所以一些官开始建新的学校。",
       "en": "So some officials began founding new schools."
     },
     {
-      "zh": "学校里教数，也教别的国家的话。",
-      "en": "Those schools taught numbers, and other countries’ languages."
+      "zh": "学校里教数学，也教别的国家的话。",
+      "en": "Those schools taught mathematics, and other countries' languages.",
+      "seg": [
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
+        },
+        {
+          "zh": "数学",
+          "py": "shù xué",
+          "mn": "mathematics",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
+        },
+        {
+          "zh": "别",
+          "py": "bié",
+          "mn": "other"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "language"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他们也送年轻人出去读书。",
@@ -60,7 +126,7 @@
       "en": "Those young people did a great deal after they returned."
     },
     {
-      "zh": "有的人做船，有的人做路。",
+      "zh": "有的人造船，有的人修路。",
       "en": "Some built ships, some built roads."
     },
     {

@@ -9,14 +9,9 @@
   "passageEn": "In the north of China there is a great grassland. There are no mountains there, only sky and grass. Long ago some people lived there. They were called the Khitan.",
   "keyVocab": [
     {
-      "zh": "北",
-      "pinyin": "běi",
-      "en": "north"
-    },
-    {
-      "zh": "边",
-      "pinyin": "biān",
-      "en": "side; edge"
+      "zh": "北边",
+      "pinyin": "běi biān",
+      "en": "the north side"
     },
     {
       "zh": "大",
@@ -47,6 +42,11 @@
       "zh": "只有",
       "pinyin": "zhǐ yǒu",
       "en": "only have ..."
+    },
+    {
+      "zh": "天",
+      "pinyin": "tiān",
+      "en": "day; sky"
     }
   ],
   "comprehension": [
@@ -74,14 +74,14 @@
       "id": "hsk1_gate_16_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "北",
-      "pinyin": "běi",
-      "promptEn": "In the story, what does 北 mean?",
-      "prompt": "短文里的“北”是什么意思？",
+      "zh": "北边",
+      "pinyin": "běi biān",
+      "promptEn": "In the story, what does 北边 mean?",
+      "prompt": "短文里的“北边”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "north"
+          "text": "the north side"
         },
         {
           "id": "o2",
@@ -93,21 +93,21 @@
         },
         {
           "id": "o4",
-          "text": "before"
+          "text": "from"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "北 (běi) means \"north\" — you can find it in the passage above.",
-      "explanation": "“北”（běi）的意思是“north”，就在上面的短文里。"
+      "explanationEn": "北边 (běi biān) means \"the north side\" — you can find it in the passage above.",
+      "explanation": "“北边”（běi biān）的意思是“the north side”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_16_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "边",
-      "pinyin": "biān",
-      "promptEn": "In the story, what does 边 mean?",
-      "prompt": "短文里的“边”是什么意思？",
+      "zh": "大",
+      "pinyin": "dà",
+      "promptEn": "In the story, what does 大 mean?",
+      "prompt": "短文里的“大”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -119,28 +119,30 @@
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o4",
-          "text": "side; edge"
+          "text": "great"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "边 (biān) means \"side; edge\" — you can find it in the passage above.",
-      "explanation": "“边”（biān）的意思是“side; edge”，就在上面的短文里。"
+      "explanationEn": "大 (dà) means \"great\" — you can find it in the passage above.",
+      "explanation": "“大”（dà）的意思是“great”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_16_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "中国北边有很大的草地。",
+      "targetZh": "北边",
+      "targetPinyin": "běi biān",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "The water was very big; many people had no home."
+          "text": "The floods came, and many people had no home."
         },
         {
           "id": "o2",
@@ -152,7 +154,7 @@
         },
         {
           "id": "o4",
-          "text": "Long ago, the waters of China were very high."
+          "text": "Long ago, great floods came to China."
         }
       ],
       "answerId": "o3",

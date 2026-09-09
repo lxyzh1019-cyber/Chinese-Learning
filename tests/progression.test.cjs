@@ -1988,7 +1988,12 @@ test("A26: a checked question offers options and no Reveal", async () => {
   assert.equal(html.indexOf("shuǐ"), -1, "and the explanation is not shown up front");
 });
 
-test("A26: a right answer is unaided evidence and still explains itself", async () => {
+test("L1: a right answer is SUPPORTED practice and still explains itself", async () => {
+  // This test used to assert `supported: false` — that a lesson answer proved
+  // unaided recall. It does not. The lesson prints its key vocabulary with the
+  // English visible, and every word-meaning check asks for a gloss that is on
+  // screen while it is answered. Reading it off the page is learning, but the
+  // ladder must not advance on it; a later unaided Review today does that.
   const a = await lessonWithCheck();
   const s = a.state.jenn;
   s.totalStars = 100;
@@ -1998,9 +2003,11 @@ test("A26: a right answer is unaided evidence and still explains itself", async 
   assert.ok(rec, "a checked answer is real evidence, unlike the self-report");
   const last = rec.attempts[rec.attempts.length - 1];
   assert.equal(last.correct, true);
-  assert.equal(last.sameSession, false, "the first response is unaided");
-  assert.equal(last.supported, false);
+  assert.equal(last.sameSession, false, "it is the first response, not a retry");
+  assert.equal(last.supported, true, "but the answer was on screen: supported");
   assert.equal(last.source, "lesson-check");
+  assert.equal(rec.independentSuccesses.length, 0, "so it cannot advance the ladder");
+  assert.equal(rec.stage, 0, "retention is established by a later unaided check");
   assert.equal(s.totalStars, 100, "and it pays nothing — it is unbounded and retryable");
   assert.ok(a.document.getElementById("lchk-say-0").innerHTML.includes('means &quot;water&quot;')
     || a.document.getElementById("lchk-say-0").innerHTML.includes('means "water"'),
@@ -2055,4 +2062,487 @@ test("A26: a lesson with no checked questions keeps the old self-report flow", a
   const html = a.document.getElementById("gate-lesson-box").innerHTML;
   assert.ok(html.includes("Reveal"), "HSK3 and HSK4 have no story to build questions from yet");
   assert.equal(html.indexOf("lchk-opts-0"), -1);
+});
+
+// ── F1: a flashcard pass must not cost a child their cleared gates ────────
+// The writer used `flashPassDone[String(did)]` while gameUnlockForDid reads
+// `flashPassDone[gateKeyOf(did)]`, so Trace never unlocked at all — and the
+// bare numeric key made GateIdentity.needsMigration treat an already-modern
+// save as legacy, whose remap then filtered every `h1-g01` key to NaN.
+
+test("F1: finishing a flashcard pass unlocks Trace for that gate", () => {
+  const a = app();
+  const p = F.oneQualifyingRead(a);
+  F.installState(a, { jenn: p });
+  assert.equal(a.gameUnlockForDid(1).trace, false, "not unlocked before the pass");
+
+  a.flashSt = { did: 1, level: 1, mode: "zh2en", sub: "review",
+                deck: [{ zh: "水", py: "shuǐ", en: "water" }], i: 1, flipped: false };
+  a.renderFlashCurrent();
+
+  // Computed here, not read back from the app: the key the reader must see.
+  assert.deepEqual(Object.keys(a.state.jenn.flashPassDone), ["h1-g01"],
+    "the pass is filed under the canonical gate key");
+  assert.equal(a.gameUnlockForDid(1).trace, true, "Trace unlocks");
+});
+
+test("F1: the pass is filed against the level it was earned in", () => {
+  const a = app();
+  a.curHSK = 2;
+  F.installState(a, { jenn: F.oneQualifyingRead(a, "xia-h2") });
+  a.flashSt = { did: 3, level: 2, mode: "zh2en", sub: "review",
+                deck: [{ zh: "水", py: "shuǐ", en: "water" }], i: 1, flipped: false };
+  a.renderFlashCurrent();
+  assert.deepEqual(Object.keys(a.state.jenn.flashPassDone), ["h2-g03"],
+    "an HSK2 pass must not be filed under HSK1");
+});
+
+test("F1: a flashcard pass does not discard cleared gates or their stars", () => {
+  const a = app();
+  const p = F.gateFullyQualified(a, 1, 1);
+  p.gatesCompleted = ["h1-g01"];
+  F.installState(a, { jenn: p });
+
+  a.flashSt = { did: 2, level: 1, mode: "zh2en", sub: "review",
+                deck: [{ zh: "水", py: "shuǐ", en: "water" }], i: 1, flipped: false };
+  a.renderFlashCurrent();
+  a.ensureState("jenn");
+
+  const s = a.state.jenn;
+  assert.deepEqual(s.gatesCompleted, ["h1-g01"], "the cleared gate survives normalization");
+  assert.deepEqual(s.gateGameStars["h1-g01"], { trace: 3, match: 3, rain: 3, listen: 3 },
+    "its game stars survive");
+  assert.deepEqual(s.gateBestQuiz["h1-g01"], { accPct: 95, quizStars: 3 },
+    "its best quiz survives");
+  assert.equal(s.flashPassDone["h1-g02"], true, "and the new pass is recorded");
+});
+
+// ── F2: a wrong sentence must not lock the child out of the retry ─────────
+// checkSB took the answer lock and released it only from the correct branch's
+// goNext. A miss left `answerLocked` true forever, so the "Try again" button
+// rearranged chips that no further Check answer would ever read.
+
+function sbQuiz(a, pack) {
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === 1);
+  // The reveal card dismisses on a 4s timer and goNext waits 1.1s; run both
+  // continuations straight away so the test is deterministic.
+  a.showCorrectRevealCard = (o) => { if (o && o.onDone) o.onDone(); };
+  a.laterCall = (scope, fn) => { fn(); return 0; };
+  a.quizSt = {
+    did: 1, phase: 2, score: 0, maxScore: 220, phaseScores: [0, 0, 0],
+    vocab: [], questions: [], pyQ: [], sbPack: pack, sbRound: 0, sbN: pack.length,
+    isChampion: false, mcqN: 8, pyN: 10, quizCorrect: 0, quizAttempts: 0,
+    gateAttempt: null,
+  };
+  return a;
+}
+
+const SB_PACK = [["我", "爱", "中文", "。"], ["我", "是", "人", "。"]];
+
+test("F2: a wrong sentence answer releases the lock so the retry lands", () => {
+  const a = app();
+  F.installState(a);
+  sbQuiz(a, SB_PACK.map((x) => [...x]));
+
+  a.sbBuilt = ["我", "中文", "爱", "。"];
+  a.checkSB();
+  assert.equal(a.quizSt.quizAttempts, 1, "the miss is counted once");
+  assert.equal(a.answerLocked, false, "the lock is released for the retry");
+  assert.equal(a.quizSt.sbRound, 0, "still on the same sentence");
+
+  a.sbBuilt = ["我", "爱", "中文", "。"];
+  a.checkSB();
+  assert.equal(a.quizSt.sbRound, 1, "the correct retry is accepted and advances once");
+});
+
+test("F2: a retry after the answer was shown pays nothing and counts nothing", () => {
+  const a = app();
+  F.installState(a);
+  sbQuiz(a, SB_PACK.map((x) => [...x]));
+
+  a.sbBuilt = ["我", "中文", "爱", "。"];
+  a.checkSB();
+  a.sbBuilt = ["我", "爱", "中文", "。"];
+  a.checkSB();
+
+  // The retry must be ACCEPTED (the round moves on) but unpaid: one attempt for
+  // the miss, no correct, no points, because the sentence was just shown (§25).
+  assert.equal(a.quizSt.sbRound, 1, "the retry was accepted, not ignored");
+  assert.equal(a.quizSt.quizAttempts, 1, "the retry is not a second attempt");
+  assert.equal(a.quizSt.quizCorrect, 0, "being told is not remembering");
+  assert.equal(a.quizSt.score, 0, "no points for a revealed sentence");
+});
+
+test("F2: a first-time correct sentence still pays its 20 points", () => {
+  const a = app();
+  F.installState(a);
+  sbQuiz(a, SB_PACK.map((x) => [...x]));
+  a.sbBuilt = ["我", "爱", "中文", "。"];
+  a.checkSB();
+  assert.equal(a.quizSt.score, 20);
+  assert.equal(a.quizSt.quizCorrect, 1);
+  assert.equal(a.quizSt.quizAttempts, 1);
+  assert.equal(a.quizSt.sbRound, 1);
+});
+
+test("F2: the reveal marker does not leak into the next sentence", () => {
+  const a = app();
+  F.installState(a);
+  sbQuiz(a, SB_PACK.map((x) => [...x]));
+  a.sbBuilt = ["我", "中文", "爱", "。"];
+  a.checkSB();                       // miss sentence 1, answer revealed
+  a.sbBuilt = ["我", "爱", "中文", "。"];
+  a.checkSB();                       // unpaid retry, advances to sentence 2
+  a.sbBuilt = ["我", "是", "人", "。"];
+  a.checkSB();                       // sentence 2, first try
+  assert.equal(a.quizSt.score, 20, "the next sentence pays normally");
+  assert.equal(a.quizSt.quizCorrect, 1);
+});
+
+// ── F3: a quiz paused overnight must resume in its own level ─────────────
+// selectPlayer resets curHSK to 1, and restoreGateQuizSession never put it
+// back. The saved binding said h2-g06, the live lookup said h1-g06, so
+// gateSessionQualifies refused a perfectly good round and it paid nothing.
+
+test("F3: restoring a saved HSK2 quiz puts the level back", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;                                  // what selectPlayer leaves behind
+  const s = a.state.jenn;
+  s.pendingSessions.gate = {
+    did: 6, phase: 2, score: 120, phaseScores: [60, 40, 20],
+    vocab: [], questions: [], pyQ: [], sbPack: [["我", "爱", "中文", "。"]],
+    sbRound: 0, isChampion: false, mcqN: 8, pyN: 10, sbN: 3, maxScore: 220,
+    quizCorrect: 12, quizAttempts: 13,
+    gateAttempt: { playerId: "jenn", gateKey: "h2-g06", attemptId: "g6-live", resetSeq: 0 },
+  };
+  assert.equal(a.restoreGateQuizSession(), true);
+  assert.equal(a.curHSK, 2, "the level comes from the binding, not the tab");
+});
+
+test("F3: a resumed HSK2 quiz banks its credit against h2, not h1", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  s.gateTimers = { "h2-g06": { startKey: "2026-09-01", deadlineKey: "2099-01-01", active: true, days: 7, attemptId: "g6-live" } };
+  s.pendingSessions.gate = {
+    did: 6, phase: 3, score: 200, phaseScores: [100, 60, 40],
+    vocab: [], questions: [], pyQ: [], sbPack: [], sbRound: 3,
+    isChampion: false, mcqN: 8, pyN: 10, sbN: 3, maxScore: 220, noMcqAssistance: true,
+    quizCorrect: 19, quizAttempts: 20,
+    gateAttempt: { playerId: "jenn", gateKey: "h2-g06", attemptId: "g6-live", resetSeq: 0 },
+  };
+  a.launchConfetti = () => {};
+  assert.equal(a.restoreGateQuizSession(), true);
+
+  const qc = { innerHTML: "" };
+  a.renderQuizResult(qc);
+
+  // 19/20 = 95%, which is 3 stars — computed here, not read back from the app.
+  assert.ok(s.gateBestQuiz["h2-g06"], "the best quiz is recorded against HSK2");
+  assert.equal(s.gateBestQuiz["h2-g06"].accPct, 95);
+  assert.equal(s.gateBestQuiz["h2-g06"].quizStars, 3);
+  assert.equal(s.gateBestQuiz["h1-g06"], undefined, "and nothing is written to HSK1");
+  assert.ok(!qc.innerHTML.includes("Practice round"), "a live round is not called practice");
+});
+
+test("F3: an expired attempt is still refused after the level is restored", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  // The gate has moved on to a new attempt since this round was saved.
+  s.gateTimers = { "h2-g06": { startKey: "2026-09-08", deadlineKey: "2099-01-01", active: true, days: 7, attemptId: "g6-NEW" } };
+  s.pendingSessions.gate = {
+    did: 6, phase: 3, score: 200, phaseScores: [100, 60, 40],
+    vocab: [], questions: [], pyQ: [], sbPack: [], sbRound: 3,
+    isChampion: false, mcqN: 8, pyN: 10, sbN: 3, maxScore: 220,
+    quizCorrect: 19, quizAttempts: 20,
+    gateAttempt: { playerId: "jenn", gateKey: "h2-g06", attemptId: "g6-OLD", resetSeq: 0 },
+  };
+  a.launchConfetti = () => {};
+  assert.equal(a.restoreGateQuizSession(), true);
+  assert.equal(a.curHSK, 2, "the level is still restored");
+
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.gateBestQuiz["h2-g06"], undefined,
+    "a round from a superseded attempt still earns no credit");
+});
+
+// ── L2: a missed sentence check must produce a review that can be served ──
+// The sentence check filed its evidence under the whole sentence, e.g.
+// "很久以前，中国的水很大。::contextComprehension". reviewWordMeta resolves
+// words, so the record came due, could not be built into a question, and was
+// reported as "remain for later" every day for the rest of the child's life.
+
+const SENTENCE_LESSON = {
+  level: "HSK1", gateId: 1, passage: "很久以前，中国的水很大。",
+  passageEn: "Long ago, the waters of China were very high.",
+  comprehension: [],
+  check: [{
+    id: "s1", kind: "sentenceMeaning", skill: "contextComprehension",
+    zh: "很久以前，中国的水很大。", targetZh: "水", targetPinyin: "shuǐ",
+    promptEn: "What does this sentence say?", prompt: "这句话说了什么？",
+    options: [{ id: "o1", text: "Long ago, the waters of China were very high." },
+              { id: "o2", text: "The Shang wrote on bones." },
+              { id: "o3", text: "Confucius was a teacher." },
+              { id: "o4", text: "The emperor built a canal." }],
+    answerId: "o1",
+    explanationEn: "It means \"Long ago, the waters of China were very high.\".",
+    explanation: "意思是“Long ago, the waters of China were very high.”。",
+  }],
+};
+
+async function lessonWithSentenceCheck() {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  a.curriculumCache.lessons["y"] = JSON.parse(JSON.stringify(SENTENCE_LESSON));
+  await a.renderGateLesson(1, "y");
+  return a;
+}
+
+test("L2: a sentence check is filed against a word, not the sentence", async () => {
+  const a = await lessonWithSentenceCheck();
+  a.lessonCheckAnswer("h1-g01", 0, "o2");             // a miss
+
+  const keys = Object.keys(a.state.jenn.reviewRecords);
+  assert.deepEqual(keys, ["水::contextComprehension"],
+    "the record is keyed on a word the app can look up");
+  keys.forEach((k) => {
+    // Computed here: nothing in the store may carry sentence punctuation.
+    assert.ok(!/[，。！？]/.test(k), `${k} is not askable as a review item`);
+  });
+});
+
+test("L2: every authored sentence check names a target word inside its sentence", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const dir = path.join(__dirname, "..", "data", "lessons");
+  let checked = 0;
+  for (const f of fs.readdirSync(dir)) {
+    const lesson = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+    for (const q of lesson.check || []) {
+      if (q.kind !== "sentenceMeaning") continue;
+      checked++;
+      assert.ok(q.targetZh, `${f}: a sentence check with no target word is unservable`);
+      assert.ok(q.zh.includes(q.targetZh),
+        `${f}: the target ${q.targetZh} must actually occur in the sentence`);
+    }
+  }
+  assert.ok(checked > 0, "there are sentence checks to check");
+});
+
+test("L2: a legacy sentence-keyed record is kept but not counted as outstanding", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  // What a save written before the fix carries.
+  s.reviewRecords = {
+    "很久以前，中国的水很大。::contextComprehension": {
+      wordId: "很久以前，中国的水很大。", skill: "contextComprehension",
+      stage: 0, dueOn: "2020-01-01", attempts: [], independentSuccesses: [],
+      unresolvedRuns: 1, firstTaughtOn: "2020-01-01",
+    },
+  };
+  const round = a.buildReviewRound("jenn", "normal");
+  assert.equal(round.items.length, 0);
+  assert.equal(round.remaining, 0, "a backlog the child can never work off is not reported");
+  assert.ok(!round.summary.includes("remain for later"));
+  assert.ok(s.reviewRecords["很久以前，中国的水很大。::contextComprehension"],
+    "and the evidence itself is preserved, not deleted");
+});
+
+// ── C1: the reading a child sees and the one they hear must be the same ──
+// buildQuizVocab early-returns on the dataset in data/hsk*.json, while the
+// audio map was built only from the inline tables. They disagreed for exactly
+// the polyphones the dataset had wrong: 看 was shown as kān and spoken kàn.
+
+test("C1: no served row keeps a specialist or archaic gloss", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  // Written out here rather than imported from the validator, so this fails if
+  // the validator's own list is quietly narrowed.
+  const artefact = /\(chess\)|archaic|^\s*comma\s*$|first month of the lunar year|dozen \(loanword\)/i;
+  const hits = [];
+  for (const lv of [1, 2, 3, 4]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const w of doc.words || []) if (artefact.test(w.en || "")) hits.push(`hsk${lv} ${w.zh} "${w.en}"`);
+  }
+  assert.deepEqual(hits, [], "a beginner's default meaning must be an ordinary one");
+});
+
+test("C1: the audio map agrees with the reading the quiz shows", () => {
+  const a = app();
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2, 3, 4]) {
+    a.curriculumCache.levels[lv] =
+      JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+  }
+  const map = a.getZhCharClipMap();
+  const bad = [];
+  for (const lv of [1, 2, 3, 4]) {
+    for (const w of a.curriculumCache.levels[lv].words || []) {
+      if (typeof w.zh !== "string" || [...w.zh].length !== 1) continue;
+      // The expected key is computed here from the row's own pinyin.
+      const want = a.markedPinyinToClipKey(w.pinyin || "");
+      if (!want) continue;                       // neutral tone: falls back to TTS
+      if (map[w.zh] && map[w.zh] !== want) bad.push(`${w.zh} shown ${w.pinyin} but sounds ${map[w.zh]}`);
+    }
+  }
+  assert.deepEqual(bad, [], "prompt and audio must not disagree");
+});
+
+test("C1: an unmarked syllable is neutral tone, not first tone", () => {
+  const a = app();
+  ["de", "le", "ma", "zi", "ba"].forEach((py) => {
+    assert.equal(a.markedPinyinToClipKey(py), "",
+      `${py} has no tone mark: there is no ${py}5 clip, so it must fall through to speech`);
+  });
+  // A marked syllable still resolves normally.
+  assert.equal(a.markedPinyinToClipKey("tīng"), "ting1");
+  assert.equal(a.markedPinyinToClipKey("kàn"), "kan4");
+});
+
+// ── C2: Phase 3 must ask about the story the child just read ─────────────
+// buildSBPack read `sentenceTargetsPack`, which existed in none of the 88
+// gates, so the branch had never run. 52 of the 88 gate/level pairs fell
+// through to the same three generic sentences, and champions asked for ten
+// and were handed six.
+
+function withCurriculum(a) {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2, 3, 4]) {
+    a.curriculumCache.levels[lv] =
+      JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+  }
+  return a;
+}
+
+test("C2: every authored gate supplies a full round from its own story", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const g of doc.gates) {
+      assert.ok(Array.isArray(g.sentenceTargetsPack),
+        `hsk${lv} gate ${g.gateId} has no pack, so it falls back to the generic sentences`);
+      assert.ok(g.sentenceTargetsPack.length >= 3,
+        `hsk${lv} gate ${g.gateId} supplies ${g.sentenceTargetsPack.length}, a round asks for 3`);
+    }
+  }
+});
+
+test("C2: a normal round no longer serves the generic fallback", () => {
+  const a = withCurriculum(app());
+  a.curP = "jenn";
+  a.curHSK = 1;
+  const generic = ["我爱学习中文。", "我是中国人。", "我们一起读故事。"];
+  // GATE_SENTENCES only ever had gates 1, 5, 6, 8, 12, 14, 18, 19 and 20, so
+  // these are gates that really did serve the generic three, at every level.
+  [2, 7, 10, 11, 22].forEach((did) => {
+    const pack = a.buildSBPack(did, false, 3);
+    assert.equal(pack.length, 3, `gate ${did} should supply a full round`);
+    pack.forEach((s) => {
+      assert.ok(!generic.includes(s.join("")),
+        `gate ${did} served "${s.join("")}", which is the generic fallback and not its own story`);
+    });
+  });
+});
+
+test("C2: a champion round gets the ten sentences it asks for", () => {
+  const a = withCurriculum(app());
+  a.curP = "jenn";
+  a.curHSK = 1;
+  // Champion groups end at gates 5, 10, 15 and 20 and pool the five behind them.
+  [5, 10, 15, 20].forEach((did) => {
+    assert.equal(a.buildSBPack(did, true, 10).length, 10,
+      `champion at gate ${did} was short — the score maximum would not match the questions`);
+  });
+});
+
+test("C2: HSK1 and HSK2 ask different sentences for the same gate number", () => {
+  const a = withCurriculum(app());
+  a.curP = "jenn";
+  a.curHSK = 1;
+  const one = new Set(a.curriculumCache.levels[1].gates.find((g) => g.gateId === 1).sentenceTargetsPack.map((s) => s.join("")));
+  const two = new Set(a.curriculumCache.levels[2].gates.find((g) => g.gateId === 1).sentenceTargetsPack.map((s) => s.join("")));
+  const shared = [...one].filter((s) => two.has(s));
+  assert.notDeepEqual([...one], [...two],
+    "GATE_SENTENCES had no level dimension; the packs must follow the level's own text");
+  assert.ok(shared.length < one.size, `levels should not serve an identical set (${shared.length} shared)`);
+});
+
+test("C2: every pack sentence is buildable from its chips exactly once", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const g of doc.gates) {
+      for (const chips of g.sentenceTargetsPack || []) {
+        const answer = chips.join("");
+        // checkSB compares sbBuilt.join("") to correct.join("") — computed here.
+        assert.equal(chips.join(""), answer);
+        assert.ok(g.sentenceTargetsMeta && g.sentenceTargetsMeta[answer],
+          `hsk${lv} gate ${g.gateId}: "${answer}" has no metadata, so the reveal card has no reading`);
+      }
+    }
+  }
+});
+
+// ── C4: the two tellings of one story must agree on the facts ────────────
+test("C4: Dayu is away for the same number of years at every level", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const years = {};
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "stories", `hsk${lv}.json`), "utf8"));
+    const story = doc.stories[`xia-h${lv}`];
+    const text = story.sents.map((s) => s.map((t) => (t.t === "p" ? t.tx : (t.tx || t.ch))).join("")).join("");
+    // Computed here from the text, not read from a fixture.
+    const m = text.match(/[一二三四五六七八九十]+(?=年)/g) || [];
+    years[lv] = m.filter((n) => n === "三十" || n === "十三");
+  }
+  assert.deepEqual(years[1], ["十三"], "HSK1 said 三十年 where HSK2 said 十三年");
+  assert.deepEqual(years[2], ["十三"]);
+});
+
+// ── C3: an advertised reading must contain a reading ─────────────────────
+// All 29 culture entries shared one template: paragraphs 2 and 3 were
+// byte-identical across every entry, and both "comprehension" questions asked
+// about the reading instructions rather than about anything read.
+
+test("C3: no culture reading is a template shared with another", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "culture_stories.json"), "utf8"));
+  const stories = doc.tracks.flatMap((t) => t.stories || []);
+  assert.equal(stories.length, 29);
+
+  // Counted here: a paragraph two entries share is a template by definition.
+  const seen = new Map();
+  for (const s of stories) {
+    for (const p of s.readerParagraphs || []) seen.set(p, (seen.get(p) || 0) + 1);
+  }
+  const shared = [...seen.entries()].filter(([, n]) => n > 1).map(([p]) => p.slice(0, 20));
+  assert.deepEqual(shared, [], "these paragraphs appear in more than one reading");
+});
+
+test("C3: every culture reading teaches words it actually uses", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "culture_stories.json"), "utf8"));
+  for (const s of doc.tracks.flatMap((t) => t.stories || [])) {
+    assert.ok((s.targetWords || []).length > 0, `${s.id}: no target words`);
+    const text = (s.readerParagraphs || []).join("");
+    for (const w of s.targetWords) {
+      assert.ok(w.py && w.en, `${s.id}: ${w.zh} is missing a reading or a gloss`);
+      assert.ok(text.includes(w.zh), `${s.id}: teaches ${w.zh}, which its own text never uses`);
+    }
+    assert.ok(text.includes(s.title), `${s.id}: the reading never mentions ${s.title}`);
+    assert.equal((s.readerComprehension || []).length, 2, `${s.id}: needs two questions`);
+  }
 });
