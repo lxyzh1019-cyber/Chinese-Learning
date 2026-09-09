@@ -192,7 +192,7 @@ const C2 = {
         { kind:"reference", q:"Who says thank you at the end?", answer:"The old man", wrong:["Doctor Wang","The shopkeeper","A child"], form:"B" },
         { kind:"inference", q:"What kind of doctor does Wang seem to be?", answer:"Careful — he gives advice as well as medicine", wrong:["Impatient — he sends people away","Forgetful — he loses the medicine","Strict — he refuses to help"], form:"B" },
       ] },
-    { id:"c2p3", form:"B", zh:"今天是星期六。姐姐带我去外面买东西。我们先到一家书店，买了两本书。后来我们又去了一家小店，我选了一张红色的卡。回家以前，姐姐还给我买了一个小马。我很高兴。",
+    { id:"c2p3", form:"B", zh:"今天是星期六。姐姐带我去外面买东西。我们先到一家书店，买了两本书。后来我们又去了一家小店，我选了一张红色的卡。回家以前，姐姐还给我买了一个小马玩具。我很高兴。",
       questions:[
         { kind:"literal",   q:"What day is it in the story?", answer:"Saturday", wrong:["Sunday","Monday","Friday"], form:"B" },
         { kind:"sequence",  q:"Where do they go first?", answer:"A bookshop", wrong:["A small shop","Home","A friend's house"], form:"B" },
@@ -372,7 +372,7 @@ const C4 = {
         { kind:"reference", q:"What does the granddaughter dream about that night?", answer:"Grandpa as a young man", wrong:["The river bank","Her own future","A family meal"], form:"B" },
         { kind:"inference", q:"What made the hard years bearable for him?", answer:"Thinking about his family", wrong:["The friends he served with","Knowing it would end soon","The pay he received"], form:"B" },
       ] },
-    { id:"c4p3", form:"B", zh:"上个季度，我们班要做一个关于水的报告。老师把同学分成四组，每组挑一个题目。我们这组选了冰。刚开始，大家觉得这个题目很简单，可是查了资料以后才发现，问题比想象的多得多。有的同学去图书馆翻书，有的在家里做实验：把水放进箱子里，看它多久才会结冰。最后我们把结果贴在一张大纸上，还画了图。报告那天，老师说我们这组做得最认真。",
+    { id:"c4p3", form:"B", zh:"上个季度，我们班要做一个关于水的报告。老师把同学分成四组，每组挑一个题目。我们这组选了冰。刚开始，大家觉得这个题目很简单，可是查了资料以后才发现，问题比想象的多得多。有的同学去图书馆翻书，有的在家里做实验：把水放进冰箱里，看它多久才会结冰。最后我们把结果贴在一张大纸上，还画了图。报告那天，老师说我们这组做得最认真。",
       questions:[
         { kind:"literal",   q:"What topic did this group choose?", answer:"Ice", wrong:["Rain","Rivers","Steam"], form:"B" },
         { kind:"sequence",  q:"What did they discover after looking things up?", answer:"There were far more questions than they expected", wrong:["The topic was too easy","Another group had the same topic","They had run out of time"], form:"B" },

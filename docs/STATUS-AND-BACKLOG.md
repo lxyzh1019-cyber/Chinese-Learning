@@ -208,13 +208,21 @@ report say something untrue. What a model review can honestly do is act as a
 drafting check before a human looks: flag unnatural phrasing, ambiguous items,
 mis-keyed answers. Log it as a model check, not as review.
 
-### 9. No fresh sitting on bank 1.1.0
+### 9. No fresh sitting on bank 1.2.0
 The two baseline reports were taken on 1.0.0, whose guessing route inflated
 recognition and pinyin. Bank 1.0.0 is no longer shipped, so those two reports
 now show "taken on a bank that is no longer available" rather than being
-rescored on 1.1.0 — **there is currently no comparison baseline.** One sitting
-per child on 1.1.0, then "Repeat same questions" later, produces the first
+rescored on 1.2.0 — **there is currently no comparison baseline.** One sitting
+per child on 1.2.0, then "Repeat same questions" later, produces the first
 before-and-after the app can show.
+
+Bank **1.2.0** supersedes 1.1.0 and is the one to sit. Two passages were
+corrected: C4's `c4p3` put water in a 箱子 to watch it freeze — a plain box does
+not explain freezing, so it is now a 冰箱 — and C2's `c2p3` had 姐姐 buying
+一个小马, which leaves a toy and a live horse equally readable and takes the
+wrong classifier either way; it is now 一个小马玩具. 1.1.0 stays on disk and in
+the manifest, because a report is scored on the bank it was taken with. Nothing
+was lost by bumping: no sitting had been taken on 1.1.0.
 
 ### 9b. Lesson answer options — content
 Lesson comprehension is think-then-reveal with a self-report. Real marking

@@ -19,7 +19,7 @@ const crypto = require("crypto");
 
 const ROOT = path.resolve(__dirname, "..");
 const CONTENT = require("./assessment-content.js");
-const BANK_VERSION = "1.1.0";
+const BANK_VERSION = "1.2.0";
 // Each bank version is frozen in its own directory. A report is scored on the
 // bank it was taken with, so an edit must never overwrite an older version.
 const OUT = path.join(ROOT, "data", "assessment", BANK_VERSION);
