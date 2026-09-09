@@ -58,6 +58,27 @@
     }
   }
 
+  /** A detached copy. A push must upload what it was handed, not what the object became. */
+  function snapshot(x) { return JSON.parse(JSON.stringify(x)); }
+
+  /**
+   * One upload at a time per attempt.
+   *
+   * persist() fires a push on every render and every answer without awaiting,
+   * so overlapping pushes for one attempt are the normal case. Unserialized,
+   * two transactions race on the same base revision and the loser's answers
+   * are refused as stale even though nothing diverged.
+   */
+  const inFlight = new Map();
+  function serialize(key, fn) {
+    const prev = inFlight.get(key) || Promise.resolve();
+    const run = prev.then(fn, fn);
+    const guard = run.then(() => {}, () => {});
+    inFlight.set(key, guard);
+    guard.then(() => { if (inFlight.get(key) === guard) inFlight.delete(key); });
+    return run;
+  }
+
   const IN_PROGRESS = ["active", "paused"];
   const inProgress = (a) => !!a && IN_PROGRESS.indexOf(a.status) !== -1;
 
@@ -156,16 +177,34 @@
    * Returns `{ok:false, conflict:{...}}` on a refusal. The caller must surface
    * a choice — both records are preserved. Nothing is merged on a clock.
    */
-  async function pushAttempt(ctx, attempt) {
-    if (!ctx.db) return { ok: false, reason: "offline", status: SYNC_LOCAL };
-    const ref = attemptRef(ctx, attempt.playerId, attempt.attemptId);
-    const blob = readLocal(ctx.storage);
-    const base = Number(blob.synced[attempt.attemptId] || 0);
+  function pushAttempt(ctx, attempt) {
+    if (!ctx.db) return Promise.resolve({ ok: false, reason: "offline", status: SYNC_LOCAL });
+    if (!attempt || !attempt.attemptId) {
+      return Promise.resolve({ ok: false, reason: "no attempt", status: SYNC_ATTENTION });
+    }
+    return serialize(attempt.attemptId, () => pushOnce(ctx, attempt, true));
+  }
+
+  /**
+   * The upload itself. `attempt` is the caller's live object and the child may
+   * answer another question while the transaction is in flight, so everything
+   * that is written or acknowledged comes from `payload` — taken here, once,
+   * before any await. Acknowledging `attempt.revision` afterwards recorded a
+   * revision the cloud had never seen, which made isSynced() lie AND poisoned
+   * the base for every later push of that attempt.
+   */
+  async function pushOnce(ctx, attempt, mayRebase) {
+    const payload = snapshot(attempt);
+    const rev = Number(payload.revision || 0);
+    const ref = attemptRef(ctx, payload.playerId, payload.attemptId);
+    const base = Number(readLocal(ctx.storage).synced[payload.attemptId] || 0);
+    let seen = null;
     const check = (snap) => {
       const remote = (snap && snap.exists) ? snap.data() : null;
+      seen = remote;
       if (remote && Number(remote.revision || 0) !== base) {
         const err = new Error("stale-write");
-        err.conflict = conflictOf(attempt, remote);
+        err.conflict = conflictOf(payload, remote);
         throw err;
       }
     };
@@ -173,18 +212,31 @@
       if (typeof ctx.db.runTransaction === "function") {
         await ctx.db.runTransaction((tx) => Promise.resolve(tx.get(ref)).then((snap) => {
           check(snap);
-          tx.set(ref, attempt);
+          tx.set(ref, payload);
         }));
       } else {
         check(await ref.get());
-        await ref.set(attempt);
+        await ref.set(payload);
       }
       const after = readLocal(ctx.storage);
-      after.synced[attempt.attemptId] = attempt.revision;
+      after.synced[payload.attemptId] = rev;
       writeLocal(ctx.storage, after);
-      return { ok: true, status: SYNC_OK };
+      return { ok: true, status: SYNC_OK, revision: rev };
     } catch (e) {
-      if (e && e.conflict) return { ok: false, status: SYNC_ATTENTION, conflict: e.conflict };
+      if (e && e.conflict) {
+        // A base ahead of the cloud is this device's own bookkeeping error, not
+        // a divergence: no other writer can have moved the document backwards.
+        // Re-base on what is actually there and try once more, so a single
+        // device cannot wedge itself into a permanent, empty conflict.
+        const remoteRev = Number((seen && seen.revision) || 0);
+        if (mayRebase && remoteRev < base) {
+          const fix = readLocal(ctx.storage);
+          fix.synced[payload.attemptId] = remoteRev;
+          writeLocal(ctx.storage, fix);
+          return pushOnce(ctx, attempt, false);
+        }
+        return { ok: false, status: SYNC_ATTENTION, conflict: e.conflict };
+      }
       return { ok: false, reason: String((e && e.message) || e), status: SYNC_ATTENTION };
     }
   }
@@ -255,28 +307,44 @@
       .map((x) => ({ itemId: x.itemId, local: x, remote: r[x.itemId] }));
   }
 
-  /** Flush the queue. Conflicts are collected, never resolved automatically. */
+  /**
+   * Flush the queue. Conflicts are collected, never resolved automatically.
+   *
+   * Every read is fresh and every removal is by exact identity. The old flush
+   * uploaded a snapshot taken before the loop and then wrote back a queue
+   * derived from that same snapshot, so an answer saved while an upload was in
+   * flight was both left un-uploaded AND dropped from the queue: it lived only
+   * on this device and nothing would ever retry it. `baseRevision`, written by
+   * saveAttempt since it shipped and read nowhere, is what makes the removal
+   * exact — an entry queued at a revision the upload did not carry survives.
+   */
   async function flushQueue(ctx) {
-    const blob = readLocal(ctx.storage);
     const conflicts = [];
-    const remaining = [];
-    for (const entry of blob.queue || []) {
-      const attempt = blob.attempts[entry.attemptId];
-      if (!attempt) continue;
-      const res = await pushAttempt(ctx, attempt);
-      if (res.ok) continue;
+    const ids = [];
+    (readLocal(ctx.storage).queue || []).forEach((e) => {
+      if (e && e.attemptId && ids.indexOf(e.attemptId) === -1) ids.push(e.attemptId);
+    });
+    for (const attemptId of ids) {
+      // Re-read per attempt: upload what the child has now, not what they had
+      // when the flush started.
+      const attempt = readLocal(ctx.storage).attempts[attemptId];
+      // An entry whose attempt is gone (cleared progress, pruned mirror) has
+      // nothing to send. Drop it rather than retrying it forever.
+      const res = attempt ? await pushAttempt(ctx, attempt)
+        : { ok: true, revision: Number.MAX_SAFE_INTEGER };
       if (res.conflict) conflicts.push(res.conflict);
-      remaining.push(entry);
+      if (!res.ok) continue;
+      const uploaded = Number(res.revision || 0);
+      const fresh = readLocal(ctx.storage);
+      fresh.queue = (fresh.queue || []).filter((e) =>
+        e.attemptId !== attemptId || Number(e.baseRevision || 0) > uploaded);
+      writeLocal(ctx.storage, fresh);
     }
-    // Re-read before writing: each accepted push recorded its acknowledged
-    // revision in `synced`, and writing the blob read at the top would erase it.
-    const fresh = readLocal(ctx.storage);
-    fresh.queue = remaining;
-    writeLocal(ctx.storage, fresh);
+    const pending = (readLocal(ctx.storage).queue || []).length;
     return {
-      pending: remaining.length,
+      pending,
       conflicts,
-      status: conflicts.length ? SYNC_ATTENTION : (remaining.length ? SYNC_LOCAL : SYNC_OK),
+      status: conflicts.length ? SYNC_ATTENTION : (pending ? SYNC_LOCAL : SYNC_OK),
     };
   }
 

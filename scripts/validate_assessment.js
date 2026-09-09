@@ -17,6 +17,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const ROOT = path.resolve(__dirname, "..");
 const DIR = path.join(ROOT, "data", "assessment");
@@ -37,21 +38,9 @@ const fail = (m) => errors.push(m);
 const warn = (m) => warnings.push(m);
 
 /** The senses of a gloss, split as a child reads them. Mirrors the app's
- *  `sharesSense` in index.html; kept here so the bank is checked without
- *  loading the page. */
-function senseSet(text) {
-  return String(text == null ? "" : text)
-    .toLowerCase()
-    .replace(/[^a-z0-9;]+/g, " ")
-    .split(";")
-    .map((t) => t.trim())
-    .filter(Boolean);
-}
-
-function sharesSense(a, b) {
-  const set = new Set(senseSet(b));
-  return senseSet(a).some((t) => set.has(t));
-}
+ *  `sharesSense` in index.html; the shared implementation lives in
+ *  scripts/senses.js so the bank is checked without loading the page. */
+const { sharesSense } = require("./senses.js");
 
 function main() {
   const manifest = JSON.parse(fs.readFileSync(path.join(DIR, "manifest.json"), "utf8"));
@@ -71,8 +60,19 @@ function main() {
       if (!rel) return fail(`versions.${v}.files.${k} missing`);
       const abs = path.join(DIR, rel);
       if (!fs.existsSync(abs)) return fail(`versions.${v}.files.${k} points at a missing file ${rel}`);
-      const doc = JSON.parse(fs.readFileSync(abs, "utf8"));
+      const text = fs.readFileSync(abs, "utf8");
+      const doc = JSON.parse(text);
       if (doc.bankVersion !== v) fail(`versions.${v}.files.${k}: file says bankVersion ${doc.bankVersion}`);
+      // A frozen bank that has been edited in place can no longer reproduce the
+      // reports scored on it. Versions built before hashes were recorded have
+      // nothing to check against, and say so rather than passing silently.
+      const want = entry.sha256 && entry.sha256[k];
+      if (!want) {
+        warn(`versions.${v}.files.${k}: no recorded hash - built before bank contents were frozen`);
+      } else if (crypto.createHash("sha256").update(text).digest("hex") !== want) {
+        fail(`versions.${v}.files.${k}: has been edited in place; a report scored on bank ${v} can no longer be reproduced. `
+          + "Restore the file, or publish a new BANK_VERSION.");
+      }
     });
   });
   const cur = versions[manifest.bankVersion] && versions[manifest.bankVersion].files;

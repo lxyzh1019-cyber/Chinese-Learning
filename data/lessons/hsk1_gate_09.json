@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk1_gate_09_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "人",
+      "pinyin": "rén",
+      "promptEn": "In the story, what does 人 mean?",
+      "prompt": "短文里的“人”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "long time"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "person"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "人 (rén) means \"person\" — you can find it in the passage above.",
+      "explanation": "“人”（rén）的意思是“person”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_09_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "小",
+      "pinyin": "xiǎo",
+      "promptEn": "In the story, what does 小 mean?",
+      "prompt": "短文里的“小”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "long time"
+        },
+        {
+          "id": "o2",
+          "text": "before"
+        },
+        {
+          "id": "o3",
+          "text": "little"
+        },
+        {
+          "id": "o4",
+          "text": "very"
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "小 (xiǎo) means \"little\" — you can find it in the passage above.",
+      "explanation": "“小”（xiǎo）的意思是“little”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_09_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "西晋有一位很有名的人，叫王羲之。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Dayu was a good person."
+        },
+        {
+          "id": "o2",
+          "text": "Western Jin had a very famous person named Wang Xizhi."
+        },
+        {
+          "id": "o3",
+          "text": "Long ago, the waters of China were very high."
+        },
+        {
+          "id": "o4",
+          "text": "The water was very big; many people had no home."
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "\"西晋有一位很有名的人，叫王羲之。\" means \"Western Jin had a very famous person named Wang Xizhi.\".",
+      "explanation": "“西晋有一位很有名的人，叫王羲之。”的意思是“Western Jin had a very famous person named Wang Xizhi.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Western Jin in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说西晋。"
 }

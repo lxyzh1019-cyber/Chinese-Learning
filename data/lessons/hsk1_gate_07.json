@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk1_gate_07_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "人",
+      "pinyin": "rén",
+      "promptEn": "In the story, what does 人 mean?",
+      "prompt": "短文里的“人”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "before"
+        },
+        {
+          "id": "o2",
+          "text": "person"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "long time"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "人 (rén) means \"person\" — you can find it in the passage above.",
+      "explanation": "“人”（rén）的意思是“person”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_07_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "上",
+      "pinyin": "shàng",
+      "promptEn": "In the story, what does 上 mean?",
+      "prompt": "短文里的“上”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "on"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "long time"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "上 (shàng) means \"on\" — you can find it in the passage above.",
+      "explanation": "“上”（shàng）的意思是“on”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_07_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "以前，人们在竹子上写字，很重。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Long ago, the waters of China were very high."
+        },
+        {
+          "id": "o2",
+          "text": "The water was very big; many people had no home."
+        },
+        {
+          "id": "o3",
+          "text": "Dayu was a good person."
+        },
+        {
+          "id": "o4",
+          "text": "Before, people wrote on bamboo sticks — very heavy."
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "\"以前，人们在竹子上写字，很重。\" means \"Before, people wrote on bamboo sticks — very heavy.\".",
+      "explanation": "“以前，人们在竹子上写字，很重。”的意思是“Before, people wrote on bamboo sticks — very heavy.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Eastern Han in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说东汉。"
 }

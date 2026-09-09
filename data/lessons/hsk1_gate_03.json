@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk1_gate_03_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "商朝",
+      "pinyin": "Shāngcháo",
+      "promptEn": "In the story, what does 商朝 mean?",
+      "prompt": "短文里的“商朝”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "before"
+        },
+        {
+          "id": "o2",
+          "text": "Shang Dynasty"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "long time"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "商朝 (Shāngcháo) means \"Shang Dynasty\" — you can find it in the passage above.",
+      "explanation": "“商朝”（Shāngcháo）的意思是“Shang Dynasty”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_03_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "以后",
+      "pinyin": "yǐ hòu",
+      "promptEn": "In the story, what does 以后 mean?",
+      "prompt": "短文里的“以后”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "after"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "long time"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "以后 (yǐ hòu) means \"after\" — you can find it in the passage above.",
+      "explanation": "“以后”（yǐ hòu）的意思是“after”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_03_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "商朝以后，中国有了西周。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Long ago, the waters of China were very high."
+        },
+        {
+          "id": "o2",
+          "text": "The water was very big; many people had no home."
+        },
+        {
+          "id": "o3",
+          "text": "Dayu was a good person."
+        },
+        {
+          "id": "o4",
+          "text": "After the Shang, China had the Western Zhou."
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "\"商朝以后，中国有了西周。\" means \"After the Shang, China had the Western Zhou.\".",
+      "explanation": "“商朝以后，中国有了西周。”的意思是“After the Shang, China had the Western Zhou.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Western Zhou in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说西周。"
 }

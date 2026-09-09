@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk1_gate_21_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "快",
+      "pinyin": "kuài",
+      "promptEn": "In the story, what does 快 mean?",
+      "prompt": "短文里的“快”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "long time"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "fast; happy"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "快 (kuài) means \"fast; happy\" — you can find it in the passage above.",
+      "explanation": "“快”（kuài）的意思是“fast; happy”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_21_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "过去",
+      "pinyin": "guò qù",
+      "promptEn": "In the story, what does 过去 mean?",
+      "prompt": "短文里的“过去”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "long time"
+        },
+        {
+          "id": "o2",
+          "text": "before"
+        },
+        {
+          "id": "o3",
+          "text": "(in the) past"
+        },
+        {
+          "id": "o4",
+          "text": "very"
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "过去 (guò qù) means \"(in the) past\" — you can find it in the passage above.",
+      "explanation": "“过去”（guò qù）的意思是“(in the) past”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_21_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "清朝快要过去的时候，中国有很多难事。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Dayu was a good person."
+        },
+        {
+          "id": "o2",
+          "text": "As the Qing dynasty was ending, China had many difficulties."
+        },
+        {
+          "id": "o3",
+          "text": "Long ago, the waters of China were very high."
+        },
+        {
+          "id": "o4",
+          "text": "The water was very big; many people had no home."
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "\"清朝快要过去的时候，中国有很多难事。\" means \"As the Qing dynasty was ending, China had many difficulties.\".",
+      "explanation": "“清朝快要过去的时候，中国有很多难事。”的意思是“As the Qing dynasty was ending, China had many difficulties.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Late Qing in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说清后期。"
 }

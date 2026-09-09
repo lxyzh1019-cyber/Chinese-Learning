@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk2_gate_22_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "一",
+      "pinyin": "yī",
+      "promptEn": "In the story, what does 一 mean?",
+      "prompt": "短文里的“一”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "long time"
+        },
+        {
+          "id": "o2",
+          "text": "before"
+        },
+        {
+          "id": "o3",
+          "text": "one"
+        },
+        {
+          "id": "o4",
+          "text": "very"
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "一 (yī) means \"one\" — you can find it in the passage above.",
+      "explanation": "“一”（yī）的意思是“one”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_22_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "百",
+      "pinyin": "bǎi",
+      "promptEn": "In the story, what does 百 mean?",
+      "prompt": "短文里的“百”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "before"
+        },
+        {
+          "id": "o2",
+          "text": "hundred"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "long time"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "百 (bǎi) means \"hundred\" — you can find it in the passage above.",
+      "explanation": "“百”（bǎi）的意思是“hundred”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_22_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "一百多年以前，中国还有皇帝。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "A little over a hundred years ago China still had an emperor."
+        },
+        {
+          "id": "o2",
+          "text": "Very long ago, it rained in China for many days."
+        },
+        {
+          "id": "o3",
+          "text": "Because there was so much rain, the water rose higher and higher."
+        },
+        {
+          "id": "o4",
+          "text": "The water came into the fields, and into many people’s homes."
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "\"一百多年以前，中国还有皇帝。\" means \"A little over a hundred years ago China still had an emperor.\".",
+      "explanation": "“一百多年以前，中国还有皇帝。”的意思是“A little over a hundred years ago China still had an emperor.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Republic of China in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说民国。"
 }

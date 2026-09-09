@@ -15,6 +15,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const ROOT = path.resolve(__dirname, "..");
 const CONTENT = require("./assessment-content.js");
@@ -221,8 +222,23 @@ for (const [band, C] of Object.entries(CONTENT)) {
 
 const bands = Object.keys(CONTENT);
 
-fs.mkdirSync(OUT, { recursive: true });
-fs.writeFileSync(path.join(OUT, "items.json"), JSON.stringify({
+/**
+ * A published bank version is immutable.
+ *
+ * Reports are scored on the bank they were taken with, so changing the content
+ * under a version that is already on disk silently reinterprets answers a child
+ * gave to different questions. The builder wrote both files unconditionally,
+ * which is exactly what the comment above OUT says must never happen.
+ * Regenerating identical content is fine and stays a no-op.
+ */
+const sha = (text) => crypto.createHash("sha256").update(text).digest("hex");
+function frozenState(file, text) {
+  const abs = path.join(OUT, file);
+  if (!fs.existsSync(abs)) return "new";
+  return fs.readFileSync(abs, "utf8") === text ? "same" : "changed";
+}
+
+const itemsText = JSON.stringify({
   bankVersion: BANK_VERSION, bands, standard: STANDARD,
   rubrics: { "writing-recall-v1": { version: 1, levels: [
     { score: 0, label: "missing, wrong target, or unrecognisable" },
@@ -230,11 +246,36 @@ fs.writeFileSync(path.join(OUT, "items.json"), JSON.stringify({
     { score: 2, label: "correct recognisable form with essential components and reasonable proportions" },
   ], note: "Stroke order cannot be judged from a finished image and is not scored here." } },
   passages, items,
-}, null, 2) + "\n");
+}, null, 2) + "\n";
 
-fs.writeFileSync(path.join(OUT, "forms.json"), JSON.stringify({
+const formsText = JSON.stringify({
   bankVersion: BANK_VERSION, forms,
-}, null, 2) + "\n");
+}, null, 2) + "\n";
+
+// Decide before writing either file, so a refusal cannot leave half a new
+// version on disk.
+fs.mkdirSync(OUT, { recursive: true });
+const state = { "items.json": frozenState("items.json", itemsText),
+                "forms.json": frozenState("forms.json", formsText) };
+const changed = Object.keys(state).filter((f) => state[f] === "changed");
+if (changed.length) {
+  const next = BANK_VERSION.replace(/(\d+)\.(\d+)\.(\d+)$/, (_, a, b) => `${a}.${Number(b) + 1}.0`);
+  console.error(
+    `refusing to overwrite ${changed.map((f) => `data/assessment/${BANK_VERSION}/${f}`).join(" and ")}\n` +
+    `bank ${BANK_VERSION} is already on disk with different content.\n` +
+    "A report is scored on the bank it was taken with, so a published version is immutable.\n" +
+    `Bump BANK_VERSION in scripts/build_assessment_bank.js (${BANK_VERSION} -> ${next}) and re-run;\n` +
+    "the old directory stays and the manifest keeps both."
+  );
+  process.exit(1);
+}
+const wrote = Object.keys(state).filter((f) => state[f] === "new");
+if (wrote.length) {
+  fs.writeFileSync(path.join(OUT, "items.json"), itemsText);
+  fs.writeFileSync(path.join(OUT, "forms.json"), formsText);
+} else {
+  console.log(`bank ${BANK_VERSION} unchanged - nothing written`);
+}
 
 // Band metadata ships with the bank so the UI can NAME a set. "Set C1" told a
 // parent nothing about what distinguishes it from "Set C2", and nothing on
@@ -264,8 +305,13 @@ fs.writeFileSync(path.join(ROOT, "data", "assessment", "manifest.json"), JSON.st
   files: { items: `${BANK_VERSION}/items.json`, forms: `${BANK_VERSION}/forms.json` },
   // Every version still on disk, so the app can score an old report on the
   // bank it was taken with. The builder keeps the entries already present.
+  // Hashes so a hand-edit to a frozen directory is detectable later; entries
+  // written before the freeze existed keep whatever they have.
   versions: Object.assign({}, existingVersions(), {
-    [BANK_VERSION]: { files: { items: `${BANK_VERSION}/items.json`, forms: `${BANK_VERSION}/forms.json` } },
+    [BANK_VERSION]: {
+      files: { items: `${BANK_VERSION}/items.json`, forms: `${BANK_VERSION}/forms.json` },
+      sha256: { items: sha(itemsText), forms: sha(formsText) },
+    },
   }),
   standard: STANDARD,
   bandInfo: Object.fromEntries(bands.map((b) => [b, Object.assign({}, BAND_INFO[b], {

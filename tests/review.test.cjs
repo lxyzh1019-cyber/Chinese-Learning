@@ -11,6 +11,7 @@
 const { test } = require("node:test");
 const assert = require("node:assert");
 const R = require("../js/review-core.js");
+const clone = (x) => JSON.parse(JSON.stringify(x));
 
 const DAY = "2026-09-06";
 
@@ -402,13 +403,87 @@ test("F02: merging a record with itself changes nothing, and legacy entries do n
   assert.equal(m.dueOn, "2026-09-07");
 });
 
-test("F02: at the history bound the fuller copy is kept whole rather than under-replayed", () => {
-  const full = { wordId: "人", skill: "meaning", stage: 5, dueOn: "2026-10-01", lastSeenOn: DAY,
-    attempts: Array.from({ length: R.MAX_ATTEMPTS }, (_, i) => ({ id: `f${i}`, on: DAY, correct: true })) };
-  const small = { wordId: "人", skill: "meaning", stage: 1, dueOn: "2026-09-07", lastSeenOn: DAY,
-    attempts: [{ id: "s1", on: DAY, correct: true }] };
-  assert.equal(R.mergeRecords(full, small).stage, 5);
-  assert.equal(R.mergeRecords(small, full).stage, 5);
+// Past the history bound, trimming folds the shed attempts into a checkpoint
+// instead of discarding them, so the merge can keep replaying. It used to give
+// up and keep one whole record, which made the result depend on argument order
+// and dropped the other device's evidence outright (audit A26-R04).
+
+/** A record with `n` unaided successes on consecutive days, oldest first. */
+function longHistory(days, over) {
+  let store = {};
+  for (let i = 0; i < days; i++) {
+    store = R.recordAttempt(store, {
+      wordId: "人", skill: "meaning", correct: true,
+      todayKey: R.addDays("2026-01-01", i), id: `h${i}`, at: i,
+    });
+  }
+  return Object.assign(store["人::meaning"], over || {});
+}
+
+test("F02: past the bound, the folded prefix is kept as a checkpoint, not dropped", () => {
+  const rec = longHistory(R.MAX_ATTEMPTS + 10);
+  assert.equal(rec.attempts.length, R.MAX_ATTEMPTS, "the history is still bounded");
+  assert.ok(rec.checkpoint, "and what fell off the front is accounted for");
+  assert.equal(rec.checkpoint.count, 10);
+  assert.equal(rec.checkpoint.firstTaughtOn, "2026-01-01",
+    "when this word was first taught survives the fold - statusOf needs it");
+  assert.equal(rec.firstTaughtOn, "2026-01-01");
+});
+
+test("A26-R04: past the bound the merge is order-independent and idempotent", () => {
+  const base = longHistory(R.MAX_ATTEMPTS);
+  // Two devices, each with one attempt the other has never seen, both still at
+  // the bound because the oldest entry is trimmed as the new one lands.
+  const older = R.applyAttempt(clone(base), { id: "x-old", on: "2026-03-01", at: 900, correct: true });
+  const newer = R.applyAttempt(clone(base), { id: "x-new", on: "2026-03-01", at: 901, correct: false });
+  assert.equal(older.attempts.length, R.MAX_ATTEMPTS);
+  assert.equal(newer.attempts.length, R.MAX_ATTEMPTS);
+
+  const ab = R.mergeRecords(clone(older), clone(newer));
+  const ba = R.mergeRecords(clone(newer), clone(older));
+  assert.deepEqual(ab, ba, "which device merged first must not change the schedule");
+
+  const ids = ab.attempts.map((e) => e.id);
+  assert.ok(ids.indexOf("x-new") !== -1, "the new miss is not discarded");
+  assert.ok(ids.indexOf("x-old") !== -1, "nor the other device's new success");
+  // A miss returns the target to tomorrow, whichever order the merge ran in.
+  assert.equal(ab.stage, 0);
+  assert.equal(ab.dueOn, R.addDays("2026-03-01", 1));
+
+  assert.deepEqual(R.mergeRecords(clone(ab), clone(ab)), ab, "merging again changes nothing");
+});
+
+test("A26-R04: a fresh device's misses are not thrown away by a longer history", () => {
+  const long = longHistory(R.MAX_ATTEMPTS + 5);
+  let store = {};
+  ["2026-03-01", "2026-03-02", "2026-03-03"].forEach((d, i) => {
+    store = R.recordAttempt(store, { wordId: "\u4eba", skill: "meaning", correct: false, todayKey: d, id: `m${i}`, at: i });
+  });
+  const fresh = store["\u4eba::meaning"];
+
+  const merged = R.mergeRecords(clone(long), clone(fresh));
+  const ids = merged.attempts.map((e) => e.id);
+  ["m0", "m1", "m2"].forEach((id) => assert.ok(ids.indexOf(id) !== -1, `${id} survives`));
+  assert.deepEqual(merged, R.mergeRecords(clone(fresh), clone(long)));
+  assert.equal(merged.stage, 0, "three recent misses put the target back at the start");
+});
+
+test("A26-R04: a fold does not cost the child their retained label", () => {
+  // Taught in January, recalled unaided again well over a week later, then
+  // drilled enough that the early evidence is folded away.
+  let store = {};
+  store = R.recordAttempt(store, { wordId: "\u4eba", skill: "meaning", correct: true, todayKey: "2026-01-01", id: "a", at: 1 });
+  store = R.recordAttempt(store, { wordId: "\u4eba", skill: "meaning", correct: true, todayKey: "2026-02-01", id: "b", at: 2 });
+  assert.equal(R.statusOf(store["\u4eba::meaning"]), R.LABELS.RETAINED);
+
+  let rec = store["\u4eba::meaning"];
+  for (let i = 0; i < R.MAX_ATTEMPTS + 5; i++) {
+    rec = R.applyAttempt(rec, { id: `f${i}`, on: "2026-03-01", at: i, correct: true, sameSession: true });
+  }
+  assert.ok(rec.checkpoint.count > 0, "the January evidence has been folded");
+  assert.equal(R.statusOf(rec), R.LABELS.RETAINED,
+    "practising a word many times in one sitting must not demote what it already proved");
+  assert.deepEqual(R.mergeRecords(clone(rec), clone(rec)), rec);
 });
 
 // ── F05: the review reaches a child ────────────────────────────────────────
@@ -569,4 +644,163 @@ test("F05: the hub card and the games picker both show the queue and a way in", 
   assert.match(box.innerHTML, /8 to review; 4 remain for later/);
   assert.match(box.innerHTML, /startReviewRound\(\)/);
   assert.match(app.gamePickerHtml(), /Review today[\s\S]*8 to review; 4 remain for later[\s\S]*startReviewRound\(\)/);
+});
+
+// ── the 2026-09-08 audit: a reveal must survive an interruption (A26-R03) ───
+// The retry flag was never persisted and restoreReviewRound hardcoded it to
+// false, so being shown the answer, leaving, and coming back turned supported
+// practice into apparent independent recall. F05's existing tests covered the
+// retry path and the resume path but never crossed them, which is why a green
+// suite missed it.
+
+/** Miss the current item so the reveal is showing, then return the record. */
+function missCurrent(app) {
+  const it = app.reviewSt.items[app.reviewSt.qi];
+  const wrong = it.opts.findIndex((o) => o !== it.correct);
+  app.answerReview(wrong);
+  return it;
+}
+
+test("A26-R03: the answer a child was shown is still supported after Save & Exit", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "meaning");
+  app.startReviewRound("normal");
+
+  const it = missCurrent(app);
+  assert.equal(app.reviewSt.retry, true, "the reveal is showing");
+  assert.equal(app.state.jenn.pendingSessions.review.retry, true,
+    "and the saved round remembers it — the miss itself persists the round");
+
+  app.exitReviewRound();
+  assert.equal(app.resumeSession("review"), true);
+  assert.equal(app.reviewSt.retry, true, "resuming lands back on the retry, not a fresh ask");
+
+  const before = JSON.parse(JSON.stringify(app.state.jenn.reviewRecords[`${it.zh}::meaning`]));
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.indexOf(cur.correct));
+
+  const rec = app.state.jenn.reviewRecords[`${it.zh}::meaning`];
+  const last = rec.attempts[rec.attempts.length - 1];
+  assert.equal(last.correct, true);
+  assert.equal(last.sameSession, true, "being told, then leaving and coming back, is still being told");
+  assert.equal(rec.stage, before.stage, "the ladder does not move");
+  assert.deepEqual(rec.independentSuccesses, before.independentSuccesses,
+    "and no independent success is invented");
+});
+
+test("A26-R03: the same holds across a reload, with no Save & Exit at all", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "meaning");
+  app.startReviewRound("normal");
+  const it = missCurrent(app);
+
+  // A reload, a tab kill or a profile switch: nothing tidies up, the round is
+  // simply read back from what the miss already wrote.
+  app.reviewSt = null;
+  assert.equal(app.resumeSession("review"), true);
+  assert.equal(app.reviewSt.retry, true);
+
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.indexOf(cur.correct));
+  const rec = app.state.jenn.reviewRecords[`${it.zh}::meaning`];
+  assert.equal(rec.attempts[rec.attempts.length - 1].sameSession, true);
+  assert.equal(rec.independentSuccesses.length, 0);
+});
+
+test("A26-R03: a resumed retry is not counted as a second item", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 4, "meaning");
+  app.startReviewRound("normal");
+  missCurrent(app);
+  const answered = app.reviewSt.answered, correct = app.reviewSt.correct;
+
+  app.exitReviewRound();
+  app.resumeSession("review");
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.indexOf(cur.correct));
+
+  assert.equal(app.reviewSt.answered, answered, "the retry does not spend a second slot of the budget");
+  assert.equal(app.reviewSt.correct, correct, "nor count as remembered first time");
+});
+
+test("A26-R03: a second miss then an interruption is still supported", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "recognition");
+  app.startReviewRound("normal");
+  const it = missCurrent(app);
+  app.exitReviewRound();
+  app.resumeSession("review");
+
+  // Miss the retry too. The round moves on; the word is already back tomorrow.
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.findIndex((o) => o !== cur.correct));
+  assert.equal(app.reviewSt.retry, false, "a missed retry ends the item");
+
+  const rec = app.state.jenn.reviewRecords[`${it.zh}::recognition`];
+  const last = rec.attempts[rec.attempts.length - 1];
+  assert.equal(last.correct, false);
+  assert.equal(last.sameSession, true, "the second miss is still the same, told, sitting");
+  assert.equal(rec.independentSuccesses.length, 0);
+});
+
+// ── the 2026-09-08 audit: name each measured task accurately ────────────────
+
+test("A26: a context item asks unaided first and only then shows the translation", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  // contextComprehension had no producer at all, so this branch was
+  // unreachable; seed a record directly the way a producer will.
+  const w = app.HSK_VOCAB[1][0];
+  app.noteEvidence("jenn", { zh: w.zh }, "contextComprehension", false, {});
+  Object.values(app.state.jenn.reviewRecords).forEach((r) => { r.dueOn = "2026-09-01"; });
+  app.startReviewRound("normal");
+  const it = app.reviewSt.items.find((x) => x.kind === "context");
+  if (!it) return; // no story sentence for this word in the fixture corpus
+
+  const body = () => app.document.getElementById("games-body").innerHTML;
+  assert.ok(body().indexOf(it.sentenceEn) === -1,
+    "the English names the missing word, so the first ask must not show it");
+  app.answerReview(it.opts.findIndex((o) => o !== it.correct));
+  assert.equal(app.reviewSt.retry, true);
+  app.renderReviewRound();
+  assert.ok(body().indexOf(it.sentenceEn) !== -1, "the retry gets the translation");
+
+  const cur = app.reviewSt.items[app.reviewSt.qi];
+  app.answerReview(cur.opts.indexOf(cur.correct));
+  const rec = app.state.jenn.reviewRecords[`${it.zh}::contextComprehension`];
+  const last = rec.attempts[rec.attempts.length - 1];
+  assert.equal(last.supported, true, "answered with the translation on screen");
+  assert.equal(last.sameSession, true);
+  assert.equal(rec.independentSuccesses.length, 0, "neither flag may advance the ladder");
+});
+
+test("A26: hearing a word and reading one are different records", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  const w = app.HSK_VOCAB[1][0];
+  app.noteEvidence("jenn", { zh: w.zh }, "recognition", true, {});
+  app.noteEvidence("jenn", { zh: w.zh }, "decoding", true, {});
+  const recs = app.state.jenn.reviewRecords;
+  assert.ok(recs[`${w.zh}::recognition`], "Listen: heard it, picked the character");
+  assert.ok(recs[`${w.zh}::decoding`], "pinyin phase: saw the character, produced the reading");
+  assert.notEqual(recs[`${w.zh}::recognition`], recs[`${w.zh}::decoding`],
+    "proving one must not schedule the other as if it were already known");
+});
+
+test("A26: a decoding record is asked as a reading, not as a sound", (t) => {
+  const app = bootApp();
+  t.after(() => app.__stopAllTimers());
+  seedDue(app, 3, "decoding");
+  app.startReviewRound("normal");
+  const it = app.reviewSt.items[0];
+  assert.equal(it.kind, "decode");
+  assert.equal(it.correct, it.py, "the answer is the reading");
+  it.opts.forEach((o) => assert.ok(typeof o === "string" && o.length));
+  // §9.6: options are readings, so no option may sound like the answer.
+  const same = it.opts.filter((o) => o === it.correct);
+  assert.equal(same.length, 1, "exactly one option is the right sound");
 });

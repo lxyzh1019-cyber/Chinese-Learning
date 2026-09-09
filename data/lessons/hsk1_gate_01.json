@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk1_gate_01_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "久",
+      "pinyin": "jiǔ",
+      "promptEn": "In the story, what does 久 mean?",
+      "prompt": "短文里的“久”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "before"
+        },
+        {
+          "id": "o3",
+          "text": "to have"
+        },
+        {
+          "id": "o4",
+          "text": "long time"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "久 (jiǔ) means \"long time\" — you can find it in the passage above.",
+      "explanation": "“久”（jiǔ）的意思是“long time”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_01_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "promptEn": "In the story, what does 以前 mean?",
+      "prompt": "短文里的“以前”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "long time"
+        },
+        {
+          "id": "o2",
+          "text": "to have"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "very"
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "以前 (yǐ qián) means \"before\" — you can find it in the passage above.",
+      "explanation": "“以前”（yǐ qián）的意思是“before”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_01_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "很久以前，中国的水很大。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "The bones were big, and many characters could be written on them."
+        },
+        {
+          "id": "o2",
+          "text": "Long ago, the waters of China were very high."
+        },
+        {
+          "id": "o3",
+          "text": "Long ago, China had a dynasty called the Shang."
+        },
+        {
+          "id": "o4",
+          "text": "Shang Dynasty people wrote characters on bones."
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "\"很久以前，中国的水很大。\" means \"Long ago, the waters of China were very high.\".",
+      "explanation": "“很久以前，中国的水很大。”的意思是“Long ago, the waters of China were very high.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Xia Dynasty in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说夏朝。"
 }

@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk2_gate_05_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "两",
+      "pinyin": "liǎng",
+      "promptEn": "In the story, what does 两 mean?",
+      "prompt": "短文里的“两”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "long time"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "two"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "两 (liǎng) means \"two\" — you can find it in the passage above.",
+      "explanation": "“两”（liǎng）的意思是“two”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_05_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "千",
+      "pinyin": "qiān",
+      "promptEn": "In the story, what does 千 mean?",
+      "prompt": "短文里的“千”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "long time"
+        },
+        {
+          "id": "o2",
+          "text": "before"
+        },
+        {
+          "id": "o3",
+          "text": "thousand"
+        },
+        {
+          "id": "o4",
+          "text": "very"
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "千 (qiān) means \"thousand\" — you can find it in the passage above.",
+      "explanation": "“千”（qiān）的意思是“thousand”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_05_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "两千多年以前，中国有很多小国。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "The water came into the fields, and into many people’s homes."
+        },
+        {
+          "id": "o2",
+          "text": "More than two thousand years ago, China had many small states."
+        },
+        {
+          "id": "o3",
+          "text": "Very long ago, it rained in China for many days."
+        },
+        {
+          "id": "o4",
+          "text": "Because there was so much rain, the water rose higher and higher."
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "\"两千多年以前，中国有很多小国。\" means \"More than two thousand years ago, China had many small states.\".",
+      "explanation": "“两千多年以前，中国有很多小国。”的意思是“More than two thousand years ago, China had many small states.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Qin Dynasty in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说秦朝。"
 }

@@ -5606,6 +5606,21 @@ async function renderGateLesson(did,lessonRef){
     </li>`;
   }).join('');
 
+  // Questions with a right answer. The child answers first — there is no
+  // Reveal here — and the explanation is shown either way, because knowing WHY
+  // is the point and a child who guessed right has learnt nothing. A miss adds
+  // the correction and one more try. Unlike the self-report below, a checked
+  // answer is real evidence and is scheduled like any other (§25).
+  lessonCheckState[gk]=lesson.check||[];
+  const checks=(lesson.check||[]).map((q,i)=>`<div class="practice-box" style="text-align:left;margin-bottom:.5rem;">
+    <div style="font-size:.74rem;color:var(--ink);line-height:1.6;">${bi(q.promptEn,q.prompt)}</div>
+    ${q.zh?`<div style="font-family:var(--fzh);font-size:1.02rem;color:var(--gold);line-height:1.8;margin:.25rem 0;">${esc(q.zh)}</div>`:''}
+    <div class="mq-opts" id="lchk-opts-${i}" style="margin-top:.3rem;">
+      ${(q.options||[]).map(o=>`<button class="mcq-opt" style="font-size:.72rem;" onclick="lessonCheckAnswer('${esc(gk)}',${i},'${esc(o.id)}')">${esc(o.text)}</button>`).join('')}
+    </div>
+    <div id="lchk-say-${i}" style="font-size:.7rem;line-height:1.6;margin-top:.3rem;"></div>
+  </div>`).join('');
+
   const speaking=(lesson.speakingPromptEn||lesson.speakingPrompt)
     ? `<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;line-height:1.6;"><strong>🗣 Speaking · 口语</strong><br>${bi(lesson.speakingPromptEn,lesson.speakingPrompt)}</div>`
     : '';
@@ -5614,8 +5629,71 @@ async function renderGateLesson(did,lessonRef){
     ${intro}
     ${vocab?`<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0;">${vocab}</div>`:''}
     ${passage}
+    ${checks?`<div class="dd-desc"><strong>🎯 试一试 · Have a go</strong><div style="font-size:.68rem;color:var(--muted);margin:.2rem 0 .4rem;line-height:1.5;">Answer first — you will see why, either way.</div>${checks}</div>`:''}
     ${qs?`<div class="dd-desc"><strong>✅ 读一读，想一想 · Check understanding</strong><ol style="margin:.35rem 0 .1rem 1.1rem;line-height:1.7;">${qs}</ol></div>`:''}
     ${speaking}`;
+}
+
+/** The checked questions currently on screen, by gate key. */
+let lessonCheckState={};
+
+/**
+ * One tap on a checked lesson question.
+ *
+ * The lesson used to hide its answer behind Reveal and then ask the child
+ * whether they had had it — a self-report, which is all the data allowed: all
+ * 88 files carried the same three templated prompts, two answered by quoting a
+ * sentence and one "recite one from memory", answered "any one sentence from
+ * the passage above". None of that can be marked. These questions have a right
+ * answer, so they are marked, they explain themselves either way, and a miss
+ * schedules a real follow-up through the ordinary retention store.
+ *
+ * No stars: it is unbounded and retryable, and paying it would reward guessing.
+ */
+function lessonCheckAnswer(gk,i,optId){
+  const q=((lessonCheckState||{})[gk]||[])[i];if(!q||!curP)return;
+  const opts=document.getElementById('lchk-opts-'+i);
+  const say=document.getElementById('lchk-say-'+i);
+  if(!opts||opts.dataset.done==='1')return;
+  const retry=opts.dataset.tried==='1';
+  const ok=optId===q.answerId;
+  const answer=(q.options||[]).find(o=>o.id===q.answerId);
+  const ansText=answer?answer.text:'';
+  const E=(t)=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  // renderGateLesson's `bi` is scoped to that function and this runs long after.
+  const BI=(en,zh)=>(en&&zh)?E(en)+'<br><span style="opacity:.8;">'+E(zh)+'</span>':E(en||zh||'');
+  opts.querySelectorAll('.mcq-opt').forEach(b=>{
+    b.classList.add('revealed');
+    if(b.textContent===ansText)b.classList.add('correct');
+  });
+  // The first response is unaided; a second, after the explanation, is not (§25).
+  noteEvidence(curP,{zh:q.zh,py:q.pinyin,en:ansText},q.skill,ok,
+    {source:'lesson-check',sameSession:retry});
+  const why='<div style="color:var(--muted);margin-top:.2rem;">'+BI(q.explanationEn,q.explanation)+'</div>';
+  if(ok){
+    opts.dataset.done='1';
+    if(say)say.innerHTML='<span style="color:var(--jade);">✅ Yes — that is it.</span>'+why;
+    saveState();return;
+  }
+  if(retry){
+    opts.dataset.done='1';
+    if(say)say.innerHTML='<span style="color:var(--gold);">The answer is “'+E(ansText)+'”.</span>'+why+
+      '<div style="color:var(--muted);margin-top:.2rem;">It is back in Review today, so you will meet it again 🌱</div>';
+    saveState();return;
+  }
+  opts.dataset.tried='1';
+  if(say)say.innerHTML='<span style="color:var(--gold);">Not quite — the answer is “'+E(ansText)+'”.</span>'+why+
+    '<div style="margin-top:.3rem;"><button class="btn-s" style="font-size:.7rem;" onclick="lessonCheckRetry('+i+')">Try it again 🌱</button></div>';
+  saveState();
+}
+
+/** Re-open the options for one more go, once the explanation has been read. */
+function lessonCheckRetry(i){
+  const opts=document.getElementById('lchk-opts-'+i);
+  const say=document.getElementById('lchk-say-'+i);
+  if(!opts||opts.dataset.done==='1')return;
+  opts.querySelectorAll('.mcq-opt').forEach(b=>b.classList.remove('revealed','correct'));
+  if(say)say.innerHTML='';
 }
 
 /** Show a lesson answer after the child has thought about it. */
@@ -6744,11 +6822,13 @@ function checkMCQ(btn,isCorrect,correctAns,zhHint,pyHint,grid){
     || quizSt.vocab.find(v=>v.zh===qKey&&v.py===pyHint)
     || quizSt.vocab.find(v=>v.zh===qKey)
     || {zh:qKey||'?',py:pyHint||'?',en:correctAns};
-  // A reverse item shows English and asks for the character; the rest show the
-  // character and ask what it means. Pinyin or audio on screen makes it a
-  // supported answer, which is recorded but never advances the schedule.
-  noteEvidence(curP,w,(curQ&&curQ.reverse)?'recognition':'meaning',isCorrect,
-    {supported:!!(speakUsed||pyHintUsed),source:'gate-quiz-mcq'});
+  // Both directions are the same character-to-meaning link, so both are
+  // 'meaning'. A reverse item was filed as 'recognition', which is hearing a
+  // word — nothing here is heard. The source keeps the direction recoverable.
+  // Pinyin or audio on screen makes it a supported answer, which is recorded
+  // but never advances the schedule.
+  noteEvidence(curP,w,'meaning',isCorrect,
+    {supported:!!(speakUsed||pyHintUsed),source:(curQ&&curQ.reverse)?'gate-quiz-mcq-reverse':'gate-quiz-mcq'});
   if(isCorrect){
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
@@ -6981,9 +7061,11 @@ function checkPY(){
     else nextPhase();
   };
   inp.disabled=true;
-  // Character on screen, reading typed from memory: recognition. The pinyin
-  // chart is answer-revealing, so a peek makes the answer a supported one.
-  noteEvidence(curP,w||{zh:q.zh},'recognition',val===correct,
+  // Character on screen, reading typed from memory: decoding. This used to be
+  // filed as 'recognition' alongside Listen's hear-and-pick, so proving one
+  // scheduled a check of the other. The pinyin chart is answer-revealing, so a
+  // peek makes the answer a supported one.
+  noteEvidence(curP,w||{zh:q.zh},'decoding',val===correct,
     {supported:!!(speakUsed||pyPeekUsed),source:'gate-quiz-pinyin'});
   if(val===correct){
     quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
@@ -7292,7 +7374,7 @@ const REVIEW_STARS=5;
 /** Skills the round can serve. writingRecall has no producer in the app yet
  *  (only the assessment asks for writing, and it never writes to the review
  *  store), so a writing branch would serve an always-empty queue. */
-const REVIEW_SERVED_SKILLS=['recognition','meaning','contextComprehension'];
+const REVIEW_SERVED_SKILLS=['recognition','decoding','meaning','contextComprehension'];
 
 /** {zh,py,en} for a review target, from whatever the app knows about it. */
 function reviewWordMeta(zh){
@@ -7358,6 +7440,11 @@ function buildReviewRound(p,mode){
     if(skill==='recognition'){
       const wrong=pickDistractors(others,w,listenSound,3);
       items.push({zh:w.zh,py:w.py,en:w.en,skill,kind:'audio',opts:shuffleArr([w,...wrong]).map(x=>x.zh),correct:w.zh});
+    }else if(skill==='decoding'){
+      // Character shown, reading chosen. Options are readings, so what makes
+      // the answer identifiable is the sound (§9.6).
+      const wrong=pickDistractors(others,w,listenSound,3);
+      items.push({zh:w.zh,py:w.py,en:w.en,skill,kind:'decode',opts:shuffleArr([w,...wrong]).map(x=>x.py),correct:w.py});
     }else if(skill==='meaning'){
       const wrong=pickDistractors(others,w,x=>x.en,3);
       items.push({zh:w.zh,py:w.py,en:w.en,skill,kind:'meaning',opts:shuffleArr([w,...wrong]).map(x=>x.en),correct:w.en});
@@ -7380,7 +7467,12 @@ function persistReview(){
   state[curP].pendingSessions.review={
     items:reviewSt.items.map(x=>({...x,opts:[...x.opts]})),qi:reviewSt.qi,correct:reviewSt.correct,
     answered:reviewSt.answered,activeMs:reviewSt.activeMs,remaining:reviewSt.remaining,dueTotal:reviewSt.dueTotal,
-    startedAt:reviewSt.startedAt,mode:reviewSt.mode||'normal'};
+    startedAt:reviewSt.startedAt,mode:reviewSt.mode||'normal',
+    // Without this the reveal is forgotten across a save: the child comes back,
+    // taps the answer they were just shown, and it is recorded as independent
+    // recall (§25). persistReview runs on the miss itself, so a reload or a
+    // profile switch reproduced it without anyone pressing Save & Exit.
+    retry:!!reviewSt.retry};
   touchSession('review');
 }
 
@@ -7400,7 +7492,10 @@ function startReviewRound(mode){
 function restoreReviewRound(){
   const ps=state[curP].pendingSessions.review;if(!ps||!ps.items||!ps.items.length)return false;
   reviewSt={items:ps.items.map(x=>({...x,opts:[...x.opts]})),qi:ps.qi||0,correct:ps.correct||0,answered:ps.answered||0,activeMs:ps.activeMs||0,
-    remaining:ps.remaining||0,dueTotal:ps.dueTotal||0,startedAt:ps.startedAt||Date.now(),shownAt:0,retry:false,mode:ps.mode||'normal'};
+    remaining:ps.remaining||0,dueTotal:ps.dueTotal||0,startedAt:ps.startedAt||Date.now(),shownAt:0,
+    // A round saved before this was tracked has no flag; treat it as a first
+    // ask rather than guessing that the child had already been told.
+    retry:!!ps.retry,mode:ps.mode||'normal'};
   const ov=document.getElementById('games-overlay');if(ov)ov.classList.add('show');
   renderReviewRound();return true;
 }
@@ -7417,8 +7512,15 @@ function renderReviewRound(){
     :it.kind==='meaning'
     ?`<div class="mq-hz" style="text-align:center;">${it.zh}</div>
        <div class="mq-question" style="text-align:center;">What does this mean?</div>`
+    :it.kind==='decode'
+    ?`<div class="mq-hz" style="text-align:center;">${it.zh}</div>
+       <div class="mq-question" style="text-align:center;">How do you say this?</div>`
+    // The English translation names the missing word's meaning, so showing it
+    // up front makes the first ask a supported one — answerable without
+    // reading the Chinese at all. Ask unaided, then reveal it for the retry,
+    // which is already recorded as supported and never advances the ladder.
     :`<div class="practice-box" style="font-family:var(--fzh);font-size:1.05rem;line-height:1.9;text-align:center;">${it.sentence}</div>
-       <div style="font-size:.74rem;color:var(--muted);text-align:center;margin:.3rem 0;">${it.sentenceEn}</div>
+       ${reviewSt.retry?`<div style="font-size:.74rem;color:var(--muted);text-align:center;margin:.3rem 0;">${it.sentenceEn}</div>`:''}
        <div class="mq-question" style="text-align:center;">Which word fills the gap?</div>`;
   body.innerHTML=`<div class="mq-progress">🌱 Review today · ${reviewSt.qi+1}/${reviewSt.items.length}${reviewSt.retry?' · one more try':''}</div>
     ${prompt}
@@ -7427,7 +7529,7 @@ function renderReviewRound(){
   if(it.kind==='audio')speak(it.zh);
   const grid=document.getElementById('review-opts');
   it.opts.forEach((o,i)=>{
-    const b=document.createElement('button');b.className='mcq-opt'+(it.kind==='meaning'?'':' zh-opt');b.textContent=o;
+    const b=document.createElement('button');b.className='mcq-opt'+(it.kind==='meaning'||it.kind==='decode'?'':' zh-opt');b.textContent=o;
     b.onclick=()=>answerReview(i);
     grid.appendChild(b);
   });
@@ -7447,7 +7549,8 @@ function answerReview(idx){
   if(grid)grid.querySelectorAll('.mcq-opt').forEach(b=>{b.classList.add('revealed');b.onclick=null;if(b.textContent===it.correct)b.classList.add('correct');});
   const w={zh:it.zh,py:it.py,en:it.en};
   const retry=!!reviewSt.retry;
-  noteEvidence(curP,w,it.skill,ok,{source:'review',sameSession:retry});
+  noteEvidence(curP,w,it.skill,ok,
+    {source:'review',sameSession:retry,supported:retry&&it.kind==='context'});
   if(!retry){
     reviewSt.answered++;
     reviewSt.activeMs+=Math.max(0,Math.min(10*60*1000,Date.now()-(reviewSt.shownAt||Date.now())));

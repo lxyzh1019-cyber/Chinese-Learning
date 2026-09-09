@@ -20,12 +20,23 @@ Companion documents:
 | Engineering requirements (`implementation-status.md`) | 26 of 28 rows verified | **93%** |
 | Story texts | 88 of 176 authored (HSK1 44 · HSK2 44 · HSK3 0 · HSK4 0) | **50%** |
 | Lessons rewritten from their gate's story | 44 of 88 | **50%** |
+| Lessons with marked questions (options + explanation) | 44 of 88 · 132 questions | **50%** |
 | Curriculum vocabulary | 1,599 words across 4 levels, ordinary-word gap closed | **done** |
 
 The two unverified requirement rows — **O05** (level-graded stories) and
 **T05** (lesson passages drawn from the gate's story) — are partial only
-because HSK3 and HSK4 have no text yet. Every requirement that is not
-content-bound is verified.
+because HSK3 and HSK4 have no text yet.
+
+**This share is a row count in our own ledger, not independently verified
+functional completion.** A third-party re-audit on 2026-09-08 found four
+correctness defects in rows that were already marked `verified` — two in
+assessment sync, two in retention — and a green 240-test suite had missed all
+four, because no test held an upload open while the attempt changed, and none
+crossed the review round's retry path with its save/resume path. They are fixed
+and the reproductions are in the suite (`A26-R01`…`A26-R04`), but the lesson is
+that `verified` here means "we have a test", not "an outsider could not break
+it". Live Firestore, a two-device run and the children's iPad remain
+unexercised.
 
 **Blended: roughly 70%.** The plan called content "the bulk of the work",
 and content is the half that is at 50%.
@@ -33,7 +44,7 @@ and content is the half that is at 50%.
 Verification on every change:
 
 ```
-npm run verify   # parse guard + curriculum + stories + lessons + assessment bank + 240 tests
+npm run verify   # parse guard + curriculum + stories + lessons + assessment bank + 271 tests
 ```
 
 Browser runs are not optional (`CLAUDE.md` §9.5). Unit tests have twice

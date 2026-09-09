@@ -52,8 +52,56 @@
   // Anything saved while offline is pushed when the connection returns. The
   // queue used to be written on every save and drained by nothing.
   if (typeof window !== "undefined" && typeof window.addEventListener === "function") {
-    window.addEventListener("online", () => { S.flushQueue(storeCtx()).catch(() => {}); });
+    window.addEventListener("online", () => {
+      S.flushQueue(storeCtx()).then(noteFlush).catch(() => {});
+    });
   }
+
+  /**
+   * Refused writes, kept until a grown-up decides.
+   *
+   * flushQueue has always returned its conflicts and both callers threw them
+   * away, so a genuine divergence — two devices answering the same item — was
+   * invisible: the badge read "Needs attention" with nothing behind it and no
+   * way to act. player-store's own comment says the caller must surface a
+   * choice; this is that caller.
+   */
+  /**
+   * Stop the clock and keep what it holds.
+   *
+   * Called whenever the child stops answering — the tab is hidden, the window
+   * loses focus, the overlay closes, a band ends. Partial time on an item the
+   * child never finished used to be dropped on the floor, because time was
+   * only banked when an answer landed.
+   */
+  function pauseTiming() {
+    if (!ui || !ui.attempt || !ui.clock) return;
+    C.flushClock(ui.attempt, ui.clock, Date.now());
+    C.pauseClock(ui.clock, Date.now());
+    persist();
+  }
+
+  // Registered once, on the assessment's own listeners rather than the hub's:
+  // index.html's visibilitychange handler is scoped to curP and the play
+  // timer, and the assessment deliberately spends no play time.
+  if (typeof window !== "undefined" && typeof window.addEventListener === "function") {
+    document.addEventListener("visibilitychange", () => {
+      if (!ui || !ui.attempt || ui.attempt.status !== "active" || !ui.clock) return;
+      if (document.hidden) pauseTiming(); else C.resumeClock(ui.clock, Date.now());
+    });
+    window.addEventListener("blur", pauseTiming);
+    window.addEventListener("pagehide", pauseTiming);
+    window.addEventListener("focus", () => {
+      if (ui && ui.attempt && ui.attempt.status === "active" && ui.clock && ui.idx < ui.items.length) {
+        C.resumeClock(ui.clock, Date.now());
+      }
+    });
+  }
+
+  const conflicts = new Map();
+  function noteConflict(c) { if (c && c.attemptId) conflicts.set(c.attemptId, c); }
+  function noteFlush(res) { ((res && res.conflicts) || []).forEach(noteConflict); return res; }
+  function conflictFor(attemptId) { return conflicts.get(attemptId) || null; }
 
   /** Warn before the app's play-session cap lands, so a 34-item set is not
    *  guillotined mid-question with no warning. The cap itself is deliberately
@@ -95,7 +143,7 @@
     // Bring down what other devices have uploaded, then push anything this
     // device still owes. Both are no-ops offline.
     try { await S.hydrateFromCloud(storeCtx(), owner, DEV()); } catch (e) { /* offline */ }
-    try { await S.flushQueue(storeCtx()); } catch (e) { /* offline */ }
+    try { noteFlush(await S.flushQueue(storeCtx())); } catch (e) { /* offline */ }
     if (gen !== sessionGen || curP !== owner) return;
     ui = { bankData: data, attempt: null, items: [], idx: 0, gen, owner };
     renderHome();
@@ -105,6 +153,9 @@
     // Leaving mid-attempt is fine and costs nothing: there is no deadline, no
     // penalty and no expiry. Whatever was answered is already saved.
     if (ui && ui.attempt && ui.attempt.status === "active") {
+      // Bank the part-answered item's time before the attempt stops being active.
+      C.flushClock(ui.attempt, ui.clock, Date.now());
+      C.pauseClock(ui.clock, Date.now());
       C.transition(ui.attempt, "paused");
       persist();
       showToast("Assessment saved — you can carry on next time.", 2400);
@@ -115,19 +166,38 @@
     if (typeof goToSelect === "function") goToSelect();
   };
 
+  // renderItem rebuilds the body on every question, so the badge a push
+  // started against is gone by the time it resolves. Without a sequence, an
+  // older push's status lands on a newer question's badge and two pushes
+  // resolving out of order leave the stale one showing.
+  let pushSeq = 0;
   function persist() {
     if (!ui || !ui.attempt) return;
     const res = S.saveAttempt(storeCtx(), ui.attempt);
-    const badge = el("assessment-sync");
-    if (badge) badge.textContent = res.status;
+    const attemptId = ui.attempt.attemptId;
+    const seq = ++pushSeq;
+    const show = (text) => {
+      if (seq !== pushSeq) return;
+      const b = el("assessment-sync");
+      if (b) b.textContent = text;
+    };
+    show(res.status);
     S.pushAttempt(storeCtx(), ui.attempt).then((r) => {
       // Only a push the cloud accepted may say "Synced". A refused or offline
       // push leaves the local-save status standing.
-      const status = r.ok ? S.SYNC_OK : (r.conflict ? S.SYNC_ATTENTION : res.status);
-      const b = el("assessment-sync");
-      if (b) b.textContent = status;
+      if (r.conflict) noteConflict(r.conflict);
+      show(r.ok ? S.SYNC_OK : (r.conflict ? S.SYNC_ATTENTION : res.status));
+      if (r.conflict) renderConflictEntry(attemptId);
     }).catch(() => {});
     return res;
+  }
+
+  /** A way in to the resolution screen, wherever the badge currently is. */
+  function renderConflictEntry(attemptId) {
+    const b = el("assessment-sync");
+    if (!b || !conflictFor(attemptId)) return;
+    b.innerHTML = `${esc(S.SYNC_ATTENTION)} · <button class="btn-s" style="font-size:.66rem;padding:.1rem .4rem;"
+      onclick="assessmentConflict('${esc(attemptId)}')">sort this out</button>`;
   }
 
   /** "Synced" or "Saved on this device", from what the cloud actually acknowledged. */
@@ -205,6 +275,12 @@
             borrow credit — it only skips the easier evidence.
           </div>
         </div>`}
+      ${[...conflicts.keys()].map((id) => `<div class="practice-box" style="text-align:left;margin-top:.7rem;font-size:.72rem;line-height:1.5;">
+        Two devices answered the same question differently on the assessment from
+        ${esc(String((conflictFor(id).local || {}).createdAt || "").slice(0, 10))}.
+        Nothing is lost — a grown-up can pick which answers to keep.
+        <div style="margin-top:.4rem;"><button class="btn-s" style="font-size:.68rem;" onclick="assessmentConflict('${esc(id)}')">Sort it out</button></div>
+      </div>`).join("")}
       <div id="assessment-sync" style="font-size:.68rem;color:var(--muted);text-align:center;margin-top:.7rem;"></div>
       ${note ? `<div style="font-size:.66rem;color:var(--muted);text-align:left;margin-top:.5rem;line-height:1.5;">${esc(note)}</div>` : ""}`;
   }
@@ -336,7 +412,8 @@
     // reshuffle the options under a child who has already looked at them.
     const pres = C.present(a, item, { audioSource: item.options.some((o) => o.audioAssetId) ? "clip" : null });
     persist();
-    ui.shownAtMs = Date.now();
+    ui.clock = ui.clock || C.newClock(null);
+    C.resumeClock(ui.clock, Date.now());
 
     const order = pres.optionOrder.length ? pres.optionOrder : item.options.map((o) => o.id);
     const byId = {}; item.options.forEach((o) => { byId[o.id] = o; });
@@ -396,8 +473,8 @@
     C.respond(ui.attempt, Object.assign({ itemId: item.id }, input));
     // Time on the item lands with the answer, so a reload cannot lose it and
     // a closed lid cannot inflate it.
-    if (ui.shownAtMs) C.addActiveTime(ui.attempt, Date.now() - ui.shownAtMs);
-    ui.shownAtMs = 0;
+    C.flushClock(ui.attempt, ui.clock, Date.now());
+    C.pauseClock(ui.clock, Date.now());
     persist();
     ui.idx++;
     // A 20-minute sitting is the app's rhythm, and the assessment deliberately
@@ -413,6 +490,7 @@
   }
 
   function renderBreakOffer() {
+    pauseTiming();
     const mins = Math.round((ui.attempt.activeTimeMs || 0) / 60000);
     body().innerHTML = `
       <div class="dd-desc" style="text-align:left;line-height:1.6;">
@@ -440,6 +518,7 @@
    * unreviewed never opens or closes the next band.
    */
   function renderBandEnd() {
+    pauseTiming();
     const a = ui.attempt;
     const bank = runBank();
     const score = C.scoreAttempt(a, bank.bank, bank.forms);
@@ -633,6 +712,96 @@
       </div>`;
   }
 
+  // ── conflict resolution ──────────────────────────────────────────────────
+  /**
+   * Two devices answered the same item. Neither answer is discarded and
+   * nothing is merged on a clock: a grown-up is shown both and picks, item by
+   * item. Until then the refused write stays queued.
+   */
+  globalThis.assessmentConflict = function assessmentConflict(attemptId) {
+    const c = conflictFor(attemptId);
+    const back = `<button class="btn-s" style="margin-top:.8rem;" onclick="assessmentHome()">Back</button>`;
+    if (!c) {
+      body().innerHTML = `<div class="dd-desc" style="text-align:left;">Nothing left to sort out here.</div>${back}`;
+      return;
+    }
+    const byId = ui && ui.bankData ? C.itemsById(ui.bankData.bank) : {};
+    const answerText = (item, resp) => {
+      if (!resp) return "not answered";
+      if (resp.inputStatus === C.INPUT_DONT_KNOW) return "I don't know";
+      if (resp.inputStatus === C.INPUT_UNANSWERED) return "not answered";
+      const opt = ((item && item.options) || []).find((o) => o.id === resp.selectedOptionId);
+      return opt ? opt.text : (resp.selectedOptionId || resp.textAnswer || "answered");
+    };
+    const rows = c.conflictingItems.map((x, i) => {
+      const item = byId[x.itemId];
+      const prompt = item && item.prompt ? (item.prompt.enInstruction || item.prompt.text || x.itemId) : x.itemId;
+      return `<div class="practice-box" style="text-align:left;margin-bottom:.5rem;">
+        <div style="font-size:.72rem;color:var(--ink);">${esc(prompt)}</div>
+        <div style="display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.35rem;">
+          <button class="btn-s" id="cf-mine-${i}" style="font-size:.68rem;"
+            onclick="assessmentConflictPick('${esc(attemptId)}',${i},'mine')">This device: ${esc(answerText(item, x.local))}</button>
+          <button class="btn-s" id="cf-theirs-${i}" style="font-size:.68rem;"
+            onclick="assessmentConflictPick('${esc(attemptId)}',${i},'theirs')">Other device: ${esc(answerText(item, x.remote))}</button>
+        </div>
+        <div style="font-size:.66rem;color:var(--muted);margin-top:.25rem;" id="cf-say-${i}">Keeping this device's answer.</div>
+      </div>`;
+    }).join("");
+    body().innerHTML = `
+      <div class="dd-desc" style="text-align:left;line-height:1.6;">
+        Two devices answered the same question differently. Nothing has been
+        thrown away — pick which answer to keep for each one.
+      </div>
+      <div style="margin-top:.7rem;">${rows}</div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem;">
+        <button class="btn-g" onclick="assessmentConflictApply('${esc(attemptId)}')">Save these choices</button>
+      </div>${back}`;
+  };
+
+  /** Choices live on the conflict record until they are applied. */
+  globalThis.assessmentConflictPick = function assessmentConflictPick(attemptId, idx, side) {
+    const c = conflictFor(attemptId);
+    if (!c || !c.conflictingItems[idx]) return;
+    c.conflictingItems[idx].keep = side;
+    const say = el(`cf-say-${idx}`);
+    if (say) say.textContent = side === "theirs"
+      ? "Keeping the other device's answer." : "Keeping this device's answer.";
+  };
+
+  globalThis.assessmentConflictApply = async function assessmentConflictApply(attemptId) {
+    const c = conflictFor(attemptId);
+    if (!c) return;
+    const merged = JSON.parse(JSON.stringify(c.local));
+    const chosen = {};
+    c.conflictingItems.forEach((x) => { if (x.keep === "theirs") chosen[x.itemId] = x.remote; });
+    // Start from this device's answers, swap in the ones the grown-up kept
+    // from the other device, then carry across anything only the other device
+    // has. A resolution must never lose an answer that was not in dispute.
+    merged.responses = ((c.local && c.local.responses) || []).map((r) => chosen[r.itemId] || r);
+    const have = {};
+    merged.responses.forEach((r) => { have[r.itemId] = true; });
+    ((c.remote && c.remote.responses) || []).forEach((r) => { if (!have[r.itemId]) merged.responses.push(r); });
+    // Rebase onto what the cloud actually holds, so the compare-and-set that
+    // refused this write now accepts it.
+    const remoteRev = Number(c.remoteRevision || 0);
+    merged.revision = Math.max(Number(c.localRevision || 0), remoteRev) + 1;
+    const ctx = storeCtx();
+    const blob = S.readLocal(ctx.storage);
+    blob.synced[attemptId] = remoteRev;
+    S.writeLocal(ctx.storage, blob);
+    S.saveAttempt(ctx, merged);
+    if (ui && ui.attempt && ui.attempt.attemptId === attemptId) ui.attempt = merged;
+    const r = await S.pushAttempt(ctx, merged);
+    if (r.ok) {
+      conflicts.delete(attemptId);
+      showToast("Sorted — both devices agree now.", 2400);
+    } else {
+      if (r.conflict) noteConflict(r.conflict);
+      showToast("Saved here. It will sync when the connection is back.", 2600);
+    }
+    assessmentHome();
+  };
+
   // ── comparison ───────────────────────────────────────────────────────────
   /**
    * Before and after, one row per band per domain, anchors apart from fresh
@@ -671,19 +840,31 @@
         <div style="font-size:.72rem;color:var(--gold);">${esc(d.before)} → ${esc(d.after)}${delta}</div>
       </div>`;
     }).join("") || `<div style="font-size:.7rem;color:var(--muted);">nothing answered in both sittings</div>`;
+    // On a same-form repeat every question was seen before, anchor or not, so
+    // calling the rest "new to this sitting" was simply untrue.
+    const freshHeading = cmp.sameForm
+      ? "The rest of the same questions, seen again"
+      : "Questions new to this sitting";
     const bands = cmp.bands.map((b) => {
       const x = cmp.byBand[b];
       return `<div class="practice-box" style="text-align:left;margin-bottom:.6rem;">
         <div style="font-size:.8rem;color:var(--gold-bright);">${esc(bandName(b))}</div>
         <div style="font-size:.7rem;color:var(--muted);margin:.3rem 0 .15rem;">Questions seen in both sittings</div>${rows(x.anchors)}
-        <div style="font-size:.7rem;color:var(--muted);margin:.45rem 0 .15rem;">Questions new to this sitting</div>${rows(x.fresh)}
+        <div style="font-size:.7rem;color:var(--muted);margin:.45rem 0 .15rem;">${esc(freshHeading)}</div>${rows(x.fresh)}
       </div>`;
     }).join("");
     body().innerHTML = `${head}
       <div class="practice-box" style="text-align:left;font-size:.7rem;line-height:1.6;margin:.6rem 0;">${esc(cmp.label)}</div>
       ${bands}
       ${cmp.bandSetsDiffer ? `<div class="practice-box" style="text-align:left;font-size:.7rem;line-height:1.6;">Not compared: ${esc(cmp.notCompared.map(bandName).join(", "))} — only tested in one of the two sittings.</div>` : ""}
-      <div style="font-size:.68rem;color:var(--muted);line-height:1.5;margin-top:.5rem;text-align:left;">${esc(cmp.writing)}</div>
+      ${cmp.writing && cmp.writing.compared
+        ? `<div class="practice-box" style="text-align:left;margin-top:.6rem;">
+             <div style="font-size:.8rem;color:var(--gold-bright);">Handwriting · marked by a grown-up</div>
+             ${rows({ "Characters written in both sittings": cmp.writing.anchors,
+                      "All marked characters": cmp.writing.all })}
+             <div style="font-size:.66rem;color:var(--muted);margin-top:.35rem;line-height:1.5;">${esc(cmp.writing.note)}</div>
+           </div>`
+        : `<div style="font-size:.68rem;color:var(--muted);line-height:1.5;margin-top:.5rem;text-align:left;">${esc((cmp.writing || {}).reason || "")}</div>`}
       ${back}`;
   };
 

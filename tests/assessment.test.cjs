@@ -861,3 +861,299 @@ test("A-T34: the break is offered once per twenty minutes of answering", () => {
   assert.equal(C.shouldOfferBreak(a), true, "and again after the next twenty");
   assert.equal(newAttempt().breakOfferedAtMs, 0, "a fresh attempt carries the field");
 });
+
+// ── the 2026-09-08 audit: the assessment save lifecycle (A26-R01, A26-R02) ──
+// Both defects survived a green suite because every existing test awaits each
+// call, so no upload is ever in flight while the attempt changes underneath it.
+// These hold the write open on purpose.
+
+/** Like fakeDb, but every set() parks until release() is called. */
+function gatedDb(seed = {}) {
+  const docs = Object.assign({}, seed);
+  const gates = [];
+  const db = {
+    docs,
+    open: false,
+    pending: () => gates.length,
+    release() { gates.splice(0).forEach((g) => g()); },
+    collection: (c) => ({
+      doc: (a) => ({
+        collection: (s) => ({
+          doc: (b) => {
+            const key = `${c}/${a}/${s}/${b}`;
+            return {
+              get: async () => ({ exists: key in docs, data: () => docs[key] }),
+              set: (v) => new Promise((res) => {
+                const write = () => { docs[key] = JSON.parse(JSON.stringify(v)); res(); };
+                if (db.open) return write();
+                gates.push(write);
+              }),
+            };
+          },
+        }),
+      }),
+    }),
+  };
+  return db;
+}
+
+/** Let parked promises reach their gate. */
+const settle = () => new Promise((r) => setImmediate(r));
+
+test("A26-R02: a delayed acknowledgement never marks a revision the cloud never saw", async () => {
+  const storage = memStorage();
+  const db = gatedDb();
+  const ctx = { storage, db };
+  const a = newAttempt();
+  a.revision = 2;
+  S.saveAttempt(ctx, a);
+
+  const push = S.pushAttempt(ctx, a);
+  await settle();
+  // The child answers another question while the write is in flight.
+  a.revision = 3;
+  db.release();
+  assert.equal((await push).ok, true);
+
+  const key = `chinese-adventure/jenn/assessments/${a.attemptId}`;
+  assert.equal(db.docs[key].revision, 2, "the cloud holds the revision that was uploaded");
+  assert.equal(S.readLocal(storage).synced[a.attemptId], 2,
+    "the acknowledgement is the uploaded revision, not whatever the object became");
+  assert.equal(S.isSynced(ctx, a), false, "revision 3 is only on this device, and says so");
+});
+
+test("A26-R02: answering fast does not wedge one device into a permanent empty conflict", async () => {
+  const storage = memStorage();
+  const db = gatedDb();
+  const ctx = { storage, db };
+  const a = newAttempt();
+  a.revision = 2;
+  S.saveAttempt(ctx, a);
+
+  const first = S.pushAttempt(ctx, a);
+  await settle();
+  a.revision = 3;
+  S.saveAttempt(ctx, a);
+  const second = S.pushAttempt(ctx, a);
+  db.release();
+  await settle();
+  db.release();
+
+  assert.equal((await first).ok, true);
+  const r2 = await second;
+  assert.equal(r2.ok, true, "the follow-up upload is accepted, not refused as stale");
+  assert.equal(r2.conflict, undefined, "a single device never conflicts with itself");
+  assert.equal(S.isSynced(ctx, a), true, "and ends up genuinely synced");
+});
+
+test("A26-R02: a base that has run ahead of the cloud re-bases instead of jamming forever", async () => {
+  const storage = memStorage();
+  const db = fakeDb();
+  const ctx = { storage, db };
+  const a = newAttempt();
+  a.revision = 4;
+  S.saveAttempt(ctx, a);
+  assert.equal((await S.pushAttempt(ctx, a)).ok, true);
+
+  // Poison the acknowledged base the way the old pushAttempt did.
+  const blob = S.readLocal(storage);
+  blob.synced[a.attemptId] = 9;
+  storage.setItem("zh_adv_assess_v1", JSON.stringify(blob));
+
+  a.revision = 5;
+  const res = await S.pushAttempt(ctx, a);
+  assert.equal(res.ok, true, "no other writer can move the cloud backwards, so this is recoverable");
+  assert.equal(S.readLocal(storage).synced[a.attemptId], 5);
+});
+
+test("A26-R01: a save made during a flush is uploaded, not silently dropped", async () => {
+  const storage = memStorage();
+  const db = gatedDb();
+  const ctx = { storage, db };
+
+  const A = newAttempt({ attemptId: "att-A" });
+  A.revision = 1;
+  S.saveAttempt(ctx, A);
+
+  const flush = S.flushQueue(ctx);
+  await settle();
+  // While revision 1 is in flight: revision 2 of A, and a second assessment B.
+  A.revision = 2;
+  S.saveAttempt(ctx, A);
+  const B = newAttempt({ attemptId: "att-B" });
+  B.revision = 1;
+  S.saveAttempt(ctx, B);
+  db.release();
+  await settle();
+  db.release();
+  await flush;
+
+  const q = S.readLocal(storage).queue;
+  const ids = q.map((e) => e.attemptId).sort();
+  assert.deepEqual(ids, ["att-A", "att-B"],
+    "neither the newer revision of A nor the newly queued B may be discarded");
+  assert.equal(q.find((e) => e.attemptId === "att-A").baseRevision, 2);
+
+  // And a later flush delivers both.
+  db.open = true;
+  const again = await S.flushQueue(ctx);
+  assert.equal(again.pending, 0);
+  assert.equal(db.docs["chinese-adventure/jenn/assessments/att-A"].revision, 2);
+  assert.equal(db.docs["chinese-adventure/jenn/assessments/att-B"].revision, 1);
+});
+
+test("A26-R01: a failed upload keeps its queue entry; a genuine conflict is reported", async () => {
+  const storage = memStorage();
+  const a = newAttempt();
+  a.revision = 1;
+  S.saveAttempt({ storage, db: null }, a);
+
+  // Offline: nothing uploads, nothing is lost.
+  const off = await S.flushQueue({ storage, db: null });
+  assert.equal(off.pending, 1);
+
+  // Someone else has already written a different answer at a revision this
+  // device never acknowledged.
+  const item = C.selectItems(bank, forms, "A", "C1")[0];
+  const db = fakeDb({
+    [`chinese-adventure/jenn/assessments/${a.attemptId}`]: Object.assign(newAttempt(), {
+      revision: 7, responses: [{ itemId: item.id, selectedOptionId: "zzz" }],
+    }),
+  });
+  C.present(a, item);
+  C.respond(a, { itemId: item.id, selectedOptionId: item.acceptedOptionIds[0] });
+  S.saveAttempt({ storage, db }, a);
+
+  const res = await S.flushQueue({ storage, db });
+  assert.equal(res.conflicts.length, 1, "a real divergence is surfaced");
+  assert.equal(res.conflicts[0].conflictingItems.length, 1, "and names the item that differs");
+  assert.equal(res.status, S.SYNC_ATTENTION);
+  assert.equal(S.readLocal(storage).queue.length, 1, "the unsent answer stays queued");
+});
+
+// ── the 2026-09-08 audit: honest comparison reporting ──────────────────────
+// compareAttempts returned a fixed "not compared" string for writing whatever
+// the attempts held, so a grown-up who had marked every character still saw
+// nothing. It is still refused where it cannot be scored honestly.
+
+/** An attempt with every writing item in `band` marked at `score`. */
+function markedWriting(formId, band, score, rubricId) {
+  const a = newAttempt({ attemptId: `w-${formId}-${score}`, formId, bands: [band] });
+  a.writingReviews = C.selectItems(bank, forms, formId, band)
+    .filter((i) => i.domain === "writing_recall")
+    .map((i) => ({ itemId: i.id, rubricId: rubricId || "writing-recall-v1", rubricScore: score }));
+  return a;
+}
+
+test("A26: writing is not compared when only one sitting has been marked", () => {
+  const before = markedWriting("A", "C1", 1);
+  const after = newAttempt({ attemptId: "w-none", formId: "A", bands: ["C1"] });
+  const cmp = C.compareAttempts(before, after, bank, forms);
+  assert.equal(cmp.writing.compared, false);
+  assert.match(cmp.writing.reason, /only reported when both attempts have a reviewed score/);
+});
+
+test("A26: writing is not compared across two different rubrics", () => {
+  const before = markedWriting("A", "C1", 1);
+  const after = markedWriting("A", "C1", 2, "some-other-rubric-v9");
+  const cmp = C.compareAttempts(before, after, bank, forms);
+  assert.equal(cmp.writing.compared, false);
+  assert.match(cmp.writing.reason, /different writing rubrics/);
+});
+
+test("A26: writing marked under one rubric in both sittings is compared", () => {
+  const before = markedWriting("A", "C1", 1);
+  const after = markedWriting("A", "C1", 2);
+  const cmp = C.compareAttempts(before, after, bank, forms);
+  assert.equal(cmp.writing.compared, true);
+  assert.equal(cmp.writing.rubricId, "writing-recall-v1");
+
+  // Expectation computed here, from the bank and the rubric — not by calling
+  // the function under test (CLAUDE.md §9.6).
+  const items = C.selectItems(bank, forms, "A", "C1").filter((i) => i.domain === "writing_recall");
+  const top = Math.max(...bank.rubrics["writing-recall-v1"].levels.map((l) => l.score));
+  assert.equal(cmp.writing.all.before, `${items.length * 1}/${items.length * top}`);
+  assert.equal(cmp.writing.all.after, `${items.length * 2}/${items.length * top}`);
+  assert.equal(cmp.writing.all.pointDifference,
+    Math.round((2 / top - 1 / top) * 100), "the gain is computed from the rubric, not guessed");
+
+  const anchors = items.filter((i) => i.anchorGroupId);
+  assert.equal(cmp.writing.anchors.sampleSize.before, anchors.length,
+    "anchors are reported apart — they are the same character both times");
+});
+
+test("A26: an unmarked character is never counted as a zero", () => {
+  const before = markedWriting("A", "C1", 2);
+  const after = markedWriting("A", "C1", 2);
+  after.writingReviews = after.writingReviews.slice(0, 1);
+  const cmp = C.compareAttempts(before, after, bank, forms);
+  assert.equal(cmp.writing.compared, true);
+  assert.equal(cmp.writing.all.sampleSize.after, 1, "only what was marked is counted");
+  assert.equal(cmp.writing.all.after, `2/${Math.max(...bank.rubrics["writing-recall-v1"].levels.map((l) => l.score))}`);
+  assert.equal(cmp.writing.all.pointDifference, 0, "the same standard, on a smaller sample, is not a fall");
+});
+
+test("A26: a same-form repeat is labelled as a repeat, not as new questions", () => {
+  const before = newAttempt({ attemptId: "s1", formId: "A", bands: ["C1"] });
+  const after = newAttempt({ attemptId: "s2", formId: "A", bands: ["C1"] });
+  assert.equal(C.compareAttempts(before, after, bank, forms).sameForm, true);
+  const other = newAttempt({ attemptId: "s3", formId: "B", bands: ["C1"] });
+  assert.equal(C.compareAttempts(before, other, bank, forms).sameForm, false);
+});
+
+// ── the 2026-09-08 audit: pacing on foreground time (A26 pacing) ───────────
+// Item time was measured as "how long it was on screen" and banked only when
+// an answer landed, so a hidden tab counted in full, an over-cap item counted
+// as nothing at all, and a part-answered item's time was lost on exit.
+
+test("A26: time while the page is hidden is not counted as thinking", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  C.pauseClock(clock, 60 * 1000);          // a minute answering, then hidden
+  C.resumeClock(clock, 10 * 60 * 1000);    // back nine minutes later
+  C.pauseClock(clock, 10.5 * 60 * 1000);   // another thirty seconds
+  C.flushClock(a, clock, 10.5 * 60 * 1000);
+  assert.equal(a.activeTimeMs, 90 * 1000, "only the two foreground stretches count");
+});
+
+test("A26: a part-answered item's time survives leaving", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  // No respond() at all — the child simply closed the overlay.
+  assert.equal(C.flushClock(a, clock, 45 * 1000), 45 * 1000);
+  assert.equal(a.activeTimeMs, 45 * 1000, "time on an unanswered item is not thrown away");
+});
+
+test("A26: an over-cap segment is dropped, but time banked before it is kept", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  C.pauseClock(clock, 2 * 60 * 1000);                 // two real minutes
+  C.resumeClock(clock, 2 * 60 * 1000);
+  C.pauseClock(clock, 2 * 60 * 1000 + C.ACTIVE_CAP_MS + 1000); // then the lid stays up
+  C.flushClock(a, clock, 0);
+  assert.equal(a.activeTimeMs, 2 * 60 * 1000,
+    "the old code dropped the whole item, so those two minutes were worth nothing");
+});
+
+test("A26: flushing twice banks the time once", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  C.flushClock(a, clock, 30 * 1000);
+  const once = a.activeTimeMs;
+  C.flushClock(a, clock, 30 * 1000);
+  assert.equal(a.activeTimeMs, once);
+  assert.equal(once, 30 * 1000);
+});
+
+test("A26: a flush keeps the clock running so the next stretch still counts", () => {
+  const a = newAttempt();
+  const clock = C.newClock(0);
+  C.resumeClock(clock, 0);
+  C.flushClock(a, clock, 10 * 1000);
+  C.flushClock(a, clock, 25 * 1000);
+  assert.equal(a.activeTimeMs, 25 * 1000, "10s then a further 15s");
+});

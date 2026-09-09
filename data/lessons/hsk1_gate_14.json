@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk1_gate_14_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "人",
+      "pinyin": "rén",
+      "promptEn": "In the story, what does 人 mean?",
+      "prompt": "短文里的“人”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "long time"
+        },
+        {
+          "id": "o2",
+          "text": "before"
+        },
+        {
+          "id": "o3",
+          "text": "person"
+        },
+        {
+          "id": "o4",
+          "text": "very"
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "人 (rén) means \"person\" — you can find it in the passage above.",
+      "explanation": "“人”（rén）的意思是“person”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_14_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "做",
+      "pinyin": "zuò",
+      "promptEn": "In the story, what does 做 mean?",
+      "prompt": "短文里的“做”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "before"
+        },
+        {
+          "id": "o2",
+          "text": "do"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "long time"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "做 (zuò) means \"do\" — you can find it in the passage above.",
+      "explanation": "“做”（zuò）的意思是“do”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_14_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "中国人做出了很多有用的东西。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Chinese people made many useful things."
+        },
+        {
+          "id": "o2",
+          "text": "Long ago, the waters of China were very high."
+        },
+        {
+          "id": "o3",
+          "text": "The water was very big; many people had no home."
+        },
+        {
+          "id": "o4",
+          "text": "Dayu was a good person."
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "\"中国人做出了很多有用的东西。\" means \"Chinese people made many useful things.\".",
+      "explanation": "“中国人做出了很多有用的东西。”的意思是“Chinese people made many useful things.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Northern Song in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说北宋。"
 }

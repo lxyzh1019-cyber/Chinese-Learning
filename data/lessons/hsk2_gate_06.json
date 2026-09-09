@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk2_gate_06_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "promptEn": "In the story, what does 时候 mean?",
+      "prompt": "短文里的“时候”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "long time"
+        },
+        {
+          "id": "o2",
+          "text": "before"
+        },
+        {
+          "id": "o3",
+          "text": "period"
+        },
+        {
+          "id": "o4",
+          "text": "very"
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "时候 (shíhòu) means \"period\" — you can find it in the passage above.",
+      "explanation": "“时候”（shíhòu）的意思是“period”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_06_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "西",
+      "pinyin": "xī",
+      "promptEn": "In the story, what does 西 mean?",
+      "prompt": "短文里的“西”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "before"
+        },
+        {
+          "id": "o2",
+          "text": "west"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "long time"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "西 (xī) means \"west\" — you can find it in the passage above.",
+      "explanation": "“西”（xī）的意思是“west”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_06_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "汉朝的时候，中国和西边的国家还很少来往。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "In the Han dynasty, China had little contact with the lands to the west."
+        },
+        {
+          "id": "o2",
+          "text": "Very long ago, it rained in China for many days."
+        },
+        {
+          "id": "o3",
+          "text": "Because there was so much rain, the water rose higher and higher."
+        },
+        {
+          "id": "o4",
+          "text": "The water came into the fields, and into many people’s homes."
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "\"汉朝的时候，中国和西边的国家还很少来往。\" means \"In the Han dynasty, China had little contact with the lands to the west.\".",
+      "explanation": "“汉朝的时候，中国和西边的国家还很少来往。”的意思是“In the Han dynasty, China had little contact with the lands to the west.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Western Han in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说西汉。"
 }

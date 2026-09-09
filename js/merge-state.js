@@ -213,7 +213,8 @@
    * There was no rule for this at all: the whole object came from the local
    * copy, so a device with an empty store erased the other's history on the
    * first sync. `mergeRecord` (ReviewCore.mergeRecords) replays the union of
-   * both histories; without it the copy with more evidence is kept.
+   * both histories from their merged checkpoints, so nothing is discarded and
+   * the order of the two arguments does not matter.
    */
   function mergeReviewRecords(a, b, mergeRecord) {
     const out = {};
@@ -223,10 +224,16 @@
       if (!x) { out[k] = y; return; }
       if (!y) { out[k] = x; return; }
       if (typeof mergeRecord === "function") { out[k] = mergeRecord(x, y); return; }
+      // No merger passed in. This used to re-implement "keep the fuller copy",
+      // which silently discarded one device's evidence and made the result
+      // depend on argument order. Keeping both is the honest fallback: the
+      // schedule stays on the copy with more history, and the other is parked
+      // where it can still be recovered rather than deleted.
       const nx = (x.attempts || []).length, ny = (y.attempts || []).length;
-      if (ny > nx) { out[k] = y; return; }
-      if (nx > ny) { out[k] = x; return; }
-      out[k] = String(y.lastSeenOn || "") > String(x.lastSeenOn || "") ? y : x;
+      const keep = ny > nx ? y : nx > ny ? x
+        : (String(y.lastSeenOn || "") > String(x.lastSeenOn || "") ? y : x);
+      const other = keep === y ? x : y;
+      out[k] = Object.assign({}, keep, { unmergedCopy: other });
     });
     return out;
   }

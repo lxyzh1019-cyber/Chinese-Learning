@@ -41,7 +41,7 @@
     {
       "zh": "位",
       "pinyin": "wèi",
-      "en": "great"
+      "en": "(counting word for people, polite)"
     },
     {
       "zh": "叫",
@@ -67,6 +67,97 @@
       "question": "大声读一遍短文，再试着背出其中的一句。",
       "answerEn": "Any one sentence from the passage above.",
       "answer": "上面短文里的任何一句。"
+    }
+  ],
+  "check": [
+    {
+      "id": "hsk1_gate_04_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "两",
+      "pinyin": "liǎng",
+      "promptEn": "In the story, what does 两 mean?",
+      "prompt": "短文里的“两”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "two"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "long time"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "两 (liǎng) means \"two\" — you can find it in the passage above.",
+      "explanation": "“两”（liǎng）的意思是“two”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_04_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "千",
+      "pinyin": "qiān",
+      "promptEn": "In the story, what does 千 mean?",
+      "prompt": "短文里的“千”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "long time"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "thousand"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "千 (qiān) means \"thousand\" — you can find it in the passage above.",
+      "explanation": "“千”（qiān）的意思是“thousand”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_04_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "两千多年以前，中国有一位老师，叫孔子。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "The water was very big; many people had no home."
+        },
+        {
+          "id": "o2",
+          "text": "Dayu was a good person."
+        },
+        {
+          "id": "o3",
+          "text": "More than two thousand years ago there was a teacher in China called Confucius."
+        },
+        {
+          "id": "o4",
+          "text": "Long ago, the waters of China were very high."
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "\"两千多年以前，中国有一位老师，叫孔子。\" means \"More than two thousand years ago there was a teacher in China called Confucius.\".",
+      "explanation": "“两千多年以前，中国有一位老师，叫孔子。”的意思是“More than two thousand years ago there was a teacher in China called Confucius.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Eastern Zhou in two or three short Chinese sentences. Use words from the list above.",

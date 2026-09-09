@@ -741,9 +741,9 @@ rewards stars via `cultureRewarded`.
 ### 15.7 Lesson cards (per-gate curriculum)
 
 Loaded from `data/hsk{lv}.json` → each gate entry can have a `lessonRef`
-pointing to a lesson JSON. The lesson shows key vocabulary with visible
-English, comprehension Q&A, and a speaking prompt — displayed in the dynasty
-detail panel below the story buttons.
+pointing to a lesson JSON. The lesson shows key vocabulary with visible English,
+marked `check` questions (§25), think-then-reveal comprehension Q&A, and a
+speaking prompt — displayed in the dynasty detail panel below the story buttons.
 
 ---
 
@@ -1139,8 +1139,19 @@ never substituted with visible pinyin in an unaided section.
 ## 25. Retention (`js/review-core.js`)
 
 Evidence is per `{word, skill}`, stored in `reviewRecords` keyed `"zh::skill"`.
-Skills: `recognition`, `meaning`, `contextComprehension`, `writingRecall`.
-`tracePractice` is tracked apart and is refused by `recordAttempt`.
+Skills: `recognition`, `decoding`, `meaning`, `contextComprehension`,
+`writingRecall`. `tracePractice` is tracked apart and is refused by
+`recordAttempt`.
+
+**One skill per task.** `recognition` is hearing a word and picking the
+character (Listen, and the review round's audio item). `decoding` is seeing the
+character and producing the reading (the gate quiz's pinyin phase). Both used to
+be `recognition`, so a child who had proved they could type a reading was
+re-checked by ear on the same record. The gate quiz's reverse MCQ — English
+shown, character chosen — is `meaning`: the same character-to-meaning link as the
+forward direction, and nothing in it is heard; `source` keeps the direction
+recoverable. Records written under the old grouping keep their key and decay
+naturally; there is no migration.
 
 `failedWords` still exists and is unchanged. It is a practice queue, not a
 measurement: one counter per word, bumped by any miss anywhere.
@@ -1178,17 +1189,41 @@ of their own failures.
 `startReviewRound`, `answerReview` in `index.html`; slot `pendingSessions.review`;
 scope `review`). It is reached from a hub card and the fifth row of the games
 picker, is always open and never a gate requirement. Each due record is asked
-in its own skill: `recognition` is heard and a character tapped; `meaning` shows
-the character and asks the English; `contextComprehension` shows a story
-sentence with the word blanked and its translation. The first response is
-unaided evidence; a miss shows the reveal card and asks once more, recorded
-`sameSession`. Early exit saves and pays nothing (§2); natural completion pays a
-flat `REVIEW_STARS` (5) whatever the answers. `writingRecall` records are counted
-as remaining, not asked — nothing in the app produces them yet.
+in its own skill: `recognition` is heard and a character tapped; `decoding` shows
+the character and asks for the reading; `meaning` shows the character and asks
+the English; `contextComprehension` shows a story sentence with the word blanked.
+That sentence's translation names the missing word's meaning, so it appears
+**only on the retry**, after the unaided ask — and the retry is recorded
+`supported` as well as `sameSession`. The first response is unaided evidence; a
+miss shows the reveal card and asks once more, recorded `sameSession`. Early exit
+saves and pays nothing (§2); natural completion pays a flat `REVIEW_STARS` (5)
+whatever the answers. `writingRecall` records are counted as remaining, not asked
+— nothing in the app produces them yet, and until the lesson checks land nothing
+produces `contextComprehension` either: that branch is built and tested but
+unreachable.
 
-**Lesson self-checks are not evidence.** A lesson question hides its answer until
-Reveal; the child's "I had it" / "Not yet" goes to `lessonSelfCheck`, never to
-`reviewRecords`, and pays nothing.
+**Lesson self-checks are not evidence.** A `comprehension` question hides its
+answer until Reveal; the child's "I had it" / "Not yet" goes to
+`lessonSelfCheck`, never to `reviewRecords`, and pays nothing.
+
+**Lesson `check` questions are.** A lesson's `check` array carries questions
+with a right answer — options, an `answerId`, and a bilingual explanation —
+built by `scripts/build_gate_lessons.js` from the gate's own story, so the
+answer and the explanation are true by construction rather than authored twice.
+The child answers (no Reveal), the explanation is shown **either way** because a
+child who guessed right has learnt nothing, a miss adds the correction and one
+more try, and the response goes to `reviewRecords` like any other: unaided on
+the first response, `sameSession` on the retry. A miss therefore re-dues the
+word and the follow-up is Review today — no second scheduler. It pays no stars:
+it is unbounded and retryable, and paying it would reward guessing (§2).
+
+Distractors come from *other gates'* stories, never another sentence of the same
+passage (answerable by elimination), and are excluded by sense through the one
+shared `sharesSense` in `scripts/senses.js` (§9.6). `validate_lessons.js`
+enforces four unique options, a real `answerId`, bilingual prompt and
+explanation, and a `skill` that is a real retention skill; a lesson with no
+`check` block **warns**, so HSK3 and HSK4 keep the self-report flow until they
+have stories to build questions from.
 
 **Attempt entries carry ids.** Each entry in a record's `attempts` has a stable
 `id` and an arrival `at`, and `applyAttempt` is a pure fold, so `mergeRecords`
@@ -1241,6 +1276,23 @@ merge-state is a pure module) the two histories are unioned by attempt id and
 replayed, so merge order does not change the schedule. Before this there was no
 rule at all: the whole object came from the local copy, and a device with an
 empty store erased the other's history on first sync.
+
+**Past the history bound, the fold is what keeps the union honest.** `attempts`
+is capped at `MAX_ATTEMPTS` (40). Trimming used to discard the overflow, so a
+replay would have understated the record and `mergeRecords` gave up and kept one
+whole copy instead — which made the result depend on argument order (both call
+sites pass local first, so local always won and two devices never converged),
+and dropped the other side's evidence: a device with 40 old entries beat a
+fresher one carrying three real misses. A record at 40 stays at exactly 40, so
+that branch, once entered, was permanent for that word.
+
+Trimming now folds the shed attempts into `record.checkpoint`
+(`{count, stage, firstTaughtOn, successes}`) — what a replay cannot recompute.
+Every field commutes (max, min, set union), so two views of the same folded
+prefix merge to the same seed, and `mergeRecords` always unions and replays.
+Replaying an attempt the other side had already folded is harmless: an
+independent success advances the ladder once per date and the seed already
+carries that date. `pickFuller` is gone.
 
 **A null slot is not "nothing here".** Every slot is initialised to `null`, so a
 plain object merge wrote a device's null over the other's live round. A null

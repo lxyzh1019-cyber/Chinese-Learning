@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk2_gate_08_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "汉朝",
+      "pinyin": "Hàncháo",
+      "promptEn": "In the story, what does 汉朝 mean?",
+      "prompt": "短文里的“汉朝”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Han Dynasty"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "long time"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "汉朝 (Hàncháo) means \"Han Dynasty\" — you can find it in the passage above.",
+      "explanation": "“汉朝”（Hàncháo）的意思是“Han Dynasty”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_08_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "以后",
+      "pinyin": "yǐ hòu",
+      "promptEn": "In the story, what does 以后 mean?",
+      "prompt": "短文里的“以后”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "long time"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "after"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "以后 (yǐ hòu) means \"after\" — you can find it in the passage above.",
+      "explanation": "“以后”（yǐ hòu）的意思是“after”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_08_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "汉朝以后，中国分成了三个国家。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Because there was so much rain, the water rose higher and higher."
+        },
+        {
+          "id": "o2",
+          "text": "The water came into the fields, and into many people’s homes."
+        },
+        {
+          "id": "o3",
+          "text": "After the Han, China split into three states."
+        },
+        {
+          "id": "o4",
+          "text": "Very long ago, it rained in China for many days."
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "\"汉朝以后，中国分成了三个国家。\" means \"After the Han, China split into three states.\".",
+      "explanation": "“汉朝以后，中国分成了三个国家。”的意思是“After the Han, China split into three states.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Three Kingdoms in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说三国。"
 }

@@ -11,6 +11,7 @@ if(!fs.existsSync(storyFile)){
   process.exit(1);
 }
 const stories=require(storyFile).stories;
+const {sharesSense}=require('./senses.js');
 const DYN=readDynasties();
 // Each lesson is built FROM its gate's own story: the passage is that story's
 // opening, the key words are words the child will actually meet in it, and the
@@ -26,6 +27,95 @@ function readDynasties(){
   const ctx={};vm.createContext(ctx);
   vm.runInContext(h.slice(i,j)+';globalThis.__d=DYNASTIES;',ctx);
   return ctx.__d.map(d=>({id:d.id,zh:d.zh,en:d.en,story:d.story,story2:d.story2}));
+}
+
+/**
+ * Questions a machine can actually mark.
+ *
+ * The three questions every lesson used to carry were the same in all 88 files
+ * — "read the first sentence again and say what it says", answered with that
+ * sentence — plus "recite one sentence from memory", answered "any one
+ * sentence from the passage above". None of that can be checked, so there was
+ * no answer to mark, no correction to give and no follow-up to schedule; the
+ * child could only be asked to grade themselves. These are built from the
+ * story's own glosses and translations, so the answer and the explanation are
+ * true by construction rather than authored twice.
+ */
+const DECOYS=[];   // {zh, en, gate} from every gate's story, for distractors
+for(const d of DYN){
+  const st=stories[`${d.story}-h${LEVEL}`]; if(!st) continue;
+  for(const i of [0,1,2,3]) for(const t of (st.sents[i]||[])){
+    if(t.t!=='c'||t.bonus||!t.mn) continue;
+    if(/^[A-Z]{1,4}$/.test(String(t.mn).trim())) continue;
+    DECOYS.push({zh:t.ch,en:t.mn,gate:d.id});
+  }
+}
+const SENTS=[];    // {zh, en, gate} whole sentences, for the sentence-meaning check
+for(const d of DYN){
+  const st=stories[`${d.story}-h${LEVEL}`]; if(!st) continue;
+  for(const i of [0,1,2,3]){
+    if(!st.sents[i]||!st.trans[i]) continue;
+    SENTS.push({zh:st.sents[i].map(t=>t.t==='p'?t.tx:(t.ch||t.tx)).join(''),en:st.trans[i],gate:d.id});
+  }
+}
+/** Deterministic order, so a rebuild reproduces the file token for token. */
+function pickWrong(cands,answerEn,want,gate){
+  const out=[];
+  for(const c of cands){
+    if(c.gate===gate) continue;                       // same passage: answerable by elimination
+    if(sharesSense(c.en,answerEn)) continue;          // §9.6
+    if(out.some(o=>o.en===c.en||sharesSense(o.en,c.en))) continue;
+    out.push(c);
+    if(out.length===want) break;
+  }
+  return out;
+}
+
+function buildCheck(d,st,key,passage){
+  const out=[];
+  const id=(k)=>`hsk${LEVEL}_gate_${String(d.id).padStart(2,'0')}_${k}`;
+  const opt=(t,i)=>({id:`o${i+1}`,text:t});
+
+  // 1-2 word-meaning checks, on words the child meets in this very passage.
+  key.filter(w=>w.en&&w.zh).slice(0,2).forEach((w,qi)=>{
+    const wrong=pickWrong(DECOYS,w.en,3,d.id);
+    if(wrong.length<3) return;
+    const texts=[w.en,...wrong.map(x=>x.en)];
+    out.push({
+      id:id(`w${qi+1}`), kind:'wordMeaning', skill:'meaning',
+      zh:w.zh, pinyin:w.pinyin,
+      promptEn:`In the story, what does ${w.zh} mean?`,
+      prompt:`短文里的“${w.zh}”是什么意思？`,
+      options:texts.map(opt), answerId:'o1',
+      explanationEn:`${w.zh} (${w.pinyin}) means "${w.en}" — you can find it in the passage above.`,
+      explanation:`“${w.zh}”（${w.pinyin}）的意思是“${w.en}”，就在上面的短文里。`,
+    });
+  });
+
+  // One sentence-meaning check, drawn from this gate's own passage.
+  const mine=SENTS.filter(x=>x.gate===d.id&&passage.indexOf(x.zh)!==-1)[0];
+  if(mine){
+    const wrong=pickWrong(SENTS,mine.en,3,d.id);
+    if(wrong.length>=3){
+      out.push({
+        id:id('s1'), kind:'sentenceMeaning', skill:'contextComprehension',
+        zh:mine.zh,
+        promptEn:'What does this sentence say?',
+        prompt:'这句话说了什么？',
+        options:[mine.en,...wrong.map(x=>x.en)].map(opt), answerId:'o1',
+        explanationEn:`"${mine.zh}" means "${mine.en}".`,
+        explanation:`“${mine.zh}”的意思是“${mine.en}”。`,
+      });
+    }
+  }
+  // Options are authored answer-first; shuffle deterministically by gate so a
+  // rebuild is reproducible and the answer is not always the first button.
+  return out.map((q,qi)=>{
+    const k=(d.id+qi)%q.options.length;
+    const rot=q.options.slice(k).concat(q.options.slice(0,k));
+    return Object.assign({},q,{options:rot.map((o,i)=>({id:`o${i+1}`,text:o.text})),
+      answerId:`o${rot.findIndex(o=>o.id===q.answerId)+1}`});
+  });
 }
 
 let n=0;
@@ -81,6 +171,7 @@ for(const d of DYN){
        question:`大声读一遍短文，再试着背出其中的一句。`,
        answerEn:`Any one sentence from the passage above.`, answer:`上面短文里的任何一句。`},
     ],
+    check:buildCheck(d,st,key,passage),
     speakingPromptEn:`Tell a grown-up about ${d.en} in two or three short Chinese sentences. Use words from the list above.`,
     speakingPrompt:`用上面的词，跟家里的大人说两三句中文，说一说${d.zh}。`,
   };

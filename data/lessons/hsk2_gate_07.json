@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk2_gate_07_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "久",
+      "pinyin": "jiǔ",
+      "promptEn": "In the story, what does 久 mean?",
+      "prompt": "短文里的“久”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "below; to go down"
+        },
+        {
+          "id": "o2",
+          "text": "long time"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "久 (jiǔ) means \"long time\" — you can find it in the passage above.",
+      "explanation": "“久”（jiǔ）的意思是“long time”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_07_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "promptEn": "In the story, what does 以前 mean?",
+      "prompt": "短文里的“以前”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "before"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "long time"
+        },
+        {
+          "id": "o4",
+          "text": "below; to go down"
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "以前 (yǐ qián) means \"before\" — you can find it in the passage above.",
+      "explanation": "“以前”（yǐ qián）的意思是“before”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_07_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "很久以前，人们不在纸上写字，因为那时候还没有纸。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Very long ago, it rained in China for many days."
+        },
+        {
+          "id": "o2",
+          "text": "Because there was so much rain, the water rose higher and higher."
+        },
+        {
+          "id": "o3",
+          "text": "The water came into the fields, and into many people’s homes."
+        },
+        {
+          "id": "o4",
+          "text": "Long ago people did not write on paper, because there was none."
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "\"很久以前，人们不在纸上写字，因为那时候还没有纸。\" means \"Long ago people did not write on paper, because there was none.\".",
+      "explanation": "“很久以前，人们不在纸上写字，因为那时候还没有纸。”的意思是“Long ago people did not write on paper, because there was none.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Eastern Han in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说东汉。"
 }
