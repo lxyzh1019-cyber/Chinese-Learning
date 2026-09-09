@@ -3467,6 +3467,22 @@ function gateAttemptBinding(s,did,level){
  * the behaviour it had (CLAUDE §8), which for the quiz is the attemptExpired
  * flag checked by the caller.
  */
+/**
+ * The level a quiz round belongs to.
+ *
+ * `curHSK` is reset to 1 by selectPlayer, so a quiz resumed on a later day was
+ * being qualified against HSK1 whatever level it was started in — the binding
+ * said `h2-g06`, the live lookup said `h1-g06`, and a perfectly good round was
+ * presented as practice and paid nothing. The binding is immutable and taken at
+ * start, so it is the authority; the tab is only a fallback for rounds saved
+ * before bindings existed.
+ */
+function quizLevelOf(q){
+  const gk=q&&q.gateAttempt&&q.gateAttempt.gateKey;
+  const parsed=gk?GateIdentity.parseGateKey(gk):null;
+  return (parsed&&parsed.levelId)||Number(curHSK||1);
+}
+
 function gateSessionQualifies(s,binding,did,level){
   if(!binding)return true;
   const live=gateAttemptBinding(s,did,level);
@@ -3578,12 +3594,12 @@ function gateTimerStatusLine(s,did,level){
   return `Gate Challenge active: ${left} days left (due ${t.deadlineKey}).`;
 }
 
-function bestQuizForAttempt(s,isChampion,did,group){
+function bestQuizForAttempt(s,isChampion,did,group,level){
   if(isChampion){
     const ck=String(group||0);
     return(s.championBestQuiz&&s.championBestQuiz[ck])||{accPct:0,quizStars:0};
   }
-  const k=gateKeyOf(did);
+  const k=gateKeyOf(did,level);
   return(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0};
 }
 
@@ -3599,9 +3615,10 @@ function bestQuizForAttempt(s,isChampion,did,group){
  * attempt — assembled from ONE attempt, never max()-ed field by field across
  * different ones.
  */
-function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars,points){
+function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars,points,level){
   const store=isChampion?'championBestQuiz':'gateBestQuiz';
-  const key=isChampion?GateIdentity.championKey(curHSK||1,group||0):gateKeyOf(did);
+  const lv=Number(level||curHSK||1);
+  const key=isChampion?GateIdentity.championKey(lv,group||0):gateKeyOf(did,lv);
   if(!s[store])s[store]={};
   const prev=s[store][key]||null;
   const next={accPct:accPct||0,quizStars:quizStars||0,points:points||0,atKey:todayKey()};
@@ -4708,7 +4725,8 @@ function persistGateQuizState(){
     questions:(quizSt.questions||[]).map(q=>({...q})),
     pyQ:(quizSt.pyQ||[]).map(q=>({...q})),
     sbPack:(quizSt.sbPack||[]).map(s=>[...s]),
-    sbRound:quizSt.sbRound||0,isChampion:!!quizSt.isChampion,champGroup:quizSt.champGroup||null,
+    sbRound:quizSt.sbRound||0,sbRevealed:(typeof quizSt.sbRevealed==='number'?quizSt.sbRevealed:null),
+    isChampion:!!quizSt.isChampion,champGroup:quizSt.champGroup||null,
     hardMode:!!quizSt.hardMode,
     mcqN:quizSt.mcqN,pyN:quizSt.pyN,sbN:quizSt.sbN,maxScore:quizSt.maxScore,noMcqAssistance:!!quizSt.noMcqAssistance,
     mcqAnswered:typeof mcqAnswered==='number'?mcqAnswered:0,pyAnswered:typeof pyAnswered==='number'?pyAnswered:0,
@@ -4741,7 +4759,8 @@ function restoreGateQuizSession(){
     questions:(ps.questions||[]).map(q=>({...q})),
     pyQ:(ps.pyQ||[]).map(q=>({...q})),
     sbPack:(ps.sbPack||[]).map(s=>[...s]),
-    sbRound:ps.sbRound||0,isDaddy:false,isChampion:!!ps.isChampion,champGroup:ps.champGroup||null,
+    sbRound:ps.sbRound||0,sbRevealed:(typeof ps.sbRevealed==='number'?ps.sbRevealed:null),
+    isDaddy:false,isChampion:!!ps.isChampion,champGroup:ps.champGroup||null,
     hardMode:!!ps.hardMode,
     mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:ps.noMcqAssistance!==false,
     quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0,
@@ -4750,6 +4769,10 @@ function restoreGateQuizSession(){
   };
   mcqAnswered=ps.mcqAnswered||0;pyAnswered=ps.pyAnswered||0;sbBuilt=[...(ps.sbBuilt||[])];
   speakUsed=!!ps.speakUsed;pyHintUsed=!!ps.pyHintUsed;pyPeekUsed=!!ps.pyPeekUsed;
+  // Put the level back before anything reads it. Every gate-keyed lookup in the
+  // quiz falls back to curHSK, which selectPlayer has just set to 1.
+  const rlv=quizLevelOf(quizSt);
+  if(rlv>=1&&rlv<=4)curHSK=rlv;
   document.getElementById('quiz-title').textContent=quizSt.isChampion?('👑 CHAMPION · Group '+quizSt.champGroup):('Gate '+ps.did+': '+d.zh+' Boss · 关卡挑战');
   showScreen('quiz');renderQuizPhase();
   return true;
@@ -7163,30 +7186,47 @@ function checkSB(){
   if(!lockAnswer())return;
   const fb=document.getElementById('q-fb');
   const isCorrect=sbBuilt.join('')===correct.join('');
+  // Has this sentence already been missed and its answer shown? The retry is
+  // then practice: the child is rebuilding a sentence they were just given, so
+  // it neither counts a second attempt nor pays again (§25 — being told is not
+  // remembering). The miss stays on the record.
+  const revealed=quizSt.sbRevealed===quizSt.sbRound;
   const goNext=()=>{
     releaseAnswerLock();
     quizSt.sbRound++;
+    quizSt.sbRevealed=null;
     resetSB();
     const sbTotal=quizSt.sbN||3;
     if(quizSt.sbRound<sbTotal)renderSBPhase(document.getElementById('quiz-content'),'');
     else nextPhase();
   };
   if(isCorrect){
-    quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
-    quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
-    fb.className='q-feedback ok';fb.textContent='✅ Perfect! +20 points!';
-    quizSt.score+=20;quizSt.phaseScores[2]+=20;
-    bumpCorrectCount(1);
-    maybeCelebrateQuizMilestone();
-    microRewardToast('Nice one!');
+    if(revealed){
+      fb.className='q-feedback ok';fb.textContent='✅ That is it — well rebuilt!';
+    }else{
+      quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
+      quizSt.quizCorrect=(quizSt.quizCorrect||0)+1;
+      fb.className='q-feedback ok';fb.textContent='✅ Perfect! +20 points!';
+      quizSt.score+=20;quizSt.phaseScores[2]+=20;
+      bumpCorrectCount(1);
+      maybeCelebrateQuizMilestone();
+      microRewardToast('Nice one!');
+    }
     persistGateQuizState();saveState();
     laterCall('quiz',goNext,1100);
   }else{
-    quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
+    if(!revealed)quizSt.quizAttempts=(quizSt.quizAttempts||0)+1;
     fb.className='q-feedback err';fb.textContent='❌ Listen once more, then try again!';
+    quizSt.sbRevealed=quizSt.sbRound;
     const sent=correct.join('');
     showCorrectRevealCard({zh:sent,py:'',en:'Correct sentence',isSentence:true,onDone:()=>{
-      const f=document.getElementById('q-fb');if(f)f.textContent='';
+      // The lock is what the "Try again" button needs released. Without this the
+      // child could rearrange the chips but every further Check answer returned
+      // at lockAnswer(), and only leaving the quiz cleared it.
+      releaseAnswerLock();
+      resetSB();
+      const f=document.getElementById('q-fb');
+      if(f){f.className='q-feedback';f.textContent='Your turn — put it in order and check again.';}
     }});
     persistGateQuizState();saveState();
   }
@@ -7223,12 +7263,13 @@ function renderQuizResult(qc){
   // at start is what catches a quiz that runs past its own deadline in one
   // sitting — the reset on the line above happens in the middle of this
   // function, and the flag never learns of it.
-  const qualifies=!quizSt.attemptExpired&&gateSessionQualifies(s,quizSt.gateAttempt||null,quizSt.did,curHSK||1);
+  const qlv=quizLevelOf(quizSt);
+  const qualifies=!quizSt.attemptExpired&&gateSessionQualifies(s,quizSt.gateAttempt||null,quizSt.did,qlv);
   if(qualifies){
-    updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars,score);
+    updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars,score,qlv);
   }
-  const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup);
-  const gamesOk=gateGamesAllThree(s,quizSt.did);
+  const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,qlv);
+  const gamesOk=gateGamesAllThree(s,quizSt.did,qlv);
   const quizPass=(bestQuiz.accPct||0)>=90&&(bestQuiz.quizStars||0)===3;
   const fullPass=qualifies&&quizPass&&gamesOk;
   const passedGate=!quizSt.isChampion&&fullPass;
@@ -7260,7 +7301,7 @@ function renderQuizResult(qc){
     // One idempotent decision, shared with the game-star path: the gate pays
     // the same whether the quiz or the last game was the final requirement,
     // and a replay of a cleared gate pays nothing.
-    const outcome=evaluateGateCompletion(quizSt.did);
+    const outcome=evaluateGateCompletion(quizSt.did,qlv);
     if(outcome.justCleared&&score>=10)bumpCorrectCount(1);
   }
   clearGateQuizPending();
@@ -7270,14 +7311,14 @@ function renderQuizResult(qc){
   const gateLabel=quizSt.isChampion?`👑 Champion · Group ${quizSt.champGroup}`:`Gate ${quizSt.did}`;
   const cleared=quizSt.isChampion?passedChampion:passedGate;
   const ptsMsg=cleared?score:0;
-  const g=(s.gateGameStars&&s.gateGameStars[gateKeyOf(quizSt.did)])||{};
+  const g=(s.gateGameStars&&s.gateGameStars[gateKeyOf(quizSt.did,qlv)])||{};
   const g3=[g.trace,g.match,g.rain,g.listen].filter(x=>(x||0)>=3).length;
   let lockMsg='';
   if(!cleared){
     const bits=[];
     if(!quizPass)bits.push(`Quiz goal: score <b>90% or above</b> and earn 3 quiz stars. You are getting closer! <span class="lock-sub">Best so far: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★</span>`);
     if(!gamesOk)bits.push(`Game goal: earn 3★ in Trace, Memory, Rain, and Listen for this gate. <span class="lock-sub">Ready: ${g3}/4</span>`);
-    const timer=(s.gateTimers&&s.gateTimers[gateKeyOf(quizSt.did)])||null;
+    const timer=(s.gateTimers&&s.gateTimers[gateKeyOf(quizSt.did,qlv)])||null;
     if(timer&&timer.active){
       const left=gateTimerDaysLeft(timer);
       if(left<=1)bits.push('Timer goal: final day! Complete now to keep your progress.');

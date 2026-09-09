@@ -2109,3 +2109,156 @@ test("F1: a flashcard pass does not discard cleared gates or their stars", () =>
     "its best quiz survives");
   assert.equal(s.flashPassDone["h1-g02"], true, "and the new pass is recorded");
 });
+
+// ── F2: a wrong sentence must not lock the child out of the retry ─────────
+// checkSB took the answer lock and released it only from the correct branch's
+// goNext. A miss left `answerLocked` true forever, so the "Try again" button
+// rearranged chips that no further Check answer would ever read.
+
+function sbQuiz(a, pack) {
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === 1);
+  // The reveal card dismisses on a 4s timer and goNext waits 1.1s; run both
+  // continuations straight away so the test is deterministic.
+  a.showCorrectRevealCard = (o) => { if (o && o.onDone) o.onDone(); };
+  a.laterCall = (scope, fn) => { fn(); return 0; };
+  a.quizSt = {
+    did: 1, phase: 2, score: 0, maxScore: 220, phaseScores: [0, 0, 0],
+    vocab: [], questions: [], pyQ: [], sbPack: pack, sbRound: 0, sbN: pack.length,
+    isChampion: false, mcqN: 8, pyN: 10, quizCorrect: 0, quizAttempts: 0,
+    gateAttempt: null,
+  };
+  return a;
+}
+
+const SB_PACK = [["我", "爱", "中文", "。"], ["我", "是", "人", "。"]];
+
+test("F2: a wrong sentence answer releases the lock so the retry lands", () => {
+  const a = app();
+  F.installState(a);
+  sbQuiz(a, SB_PACK.map((x) => [...x]));
+
+  a.sbBuilt = ["我", "中文", "爱", "。"];
+  a.checkSB();
+  assert.equal(a.quizSt.quizAttempts, 1, "the miss is counted once");
+  assert.equal(a.answerLocked, false, "the lock is released for the retry");
+  assert.equal(a.quizSt.sbRound, 0, "still on the same sentence");
+
+  a.sbBuilt = ["我", "爱", "中文", "。"];
+  a.checkSB();
+  assert.equal(a.quizSt.sbRound, 1, "the correct retry is accepted and advances once");
+});
+
+test("F2: a retry after the answer was shown pays nothing and counts nothing", () => {
+  const a = app();
+  F.installState(a);
+  sbQuiz(a, SB_PACK.map((x) => [...x]));
+
+  a.sbBuilt = ["我", "中文", "爱", "。"];
+  a.checkSB();
+  a.sbBuilt = ["我", "爱", "中文", "。"];
+  a.checkSB();
+
+  // The retry must be ACCEPTED (the round moves on) but unpaid: one attempt for
+  // the miss, no correct, no points, because the sentence was just shown (§25).
+  assert.equal(a.quizSt.sbRound, 1, "the retry was accepted, not ignored");
+  assert.equal(a.quizSt.quizAttempts, 1, "the retry is not a second attempt");
+  assert.equal(a.quizSt.quizCorrect, 0, "being told is not remembering");
+  assert.equal(a.quizSt.score, 0, "no points for a revealed sentence");
+});
+
+test("F2: a first-time correct sentence still pays its 20 points", () => {
+  const a = app();
+  F.installState(a);
+  sbQuiz(a, SB_PACK.map((x) => [...x]));
+  a.sbBuilt = ["我", "爱", "中文", "。"];
+  a.checkSB();
+  assert.equal(a.quizSt.score, 20);
+  assert.equal(a.quizSt.quizCorrect, 1);
+  assert.equal(a.quizSt.quizAttempts, 1);
+  assert.equal(a.quizSt.sbRound, 1);
+});
+
+test("F2: the reveal marker does not leak into the next sentence", () => {
+  const a = app();
+  F.installState(a);
+  sbQuiz(a, SB_PACK.map((x) => [...x]));
+  a.sbBuilt = ["我", "中文", "爱", "。"];
+  a.checkSB();                       // miss sentence 1, answer revealed
+  a.sbBuilt = ["我", "爱", "中文", "。"];
+  a.checkSB();                       // unpaid retry, advances to sentence 2
+  a.sbBuilt = ["我", "是", "人", "。"];
+  a.checkSB();                       // sentence 2, first try
+  assert.equal(a.quizSt.score, 20, "the next sentence pays normally");
+  assert.equal(a.quizSt.quizCorrect, 1);
+});
+
+// ── F3: a quiz paused overnight must resume in its own level ─────────────
+// selectPlayer resets curHSK to 1, and restoreGateQuizSession never put it
+// back. The saved binding said h2-g06, the live lookup said h1-g06, so
+// gateSessionQualifies refused a perfectly good round and it paid nothing.
+
+test("F3: restoring a saved HSK2 quiz puts the level back", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;                                  // what selectPlayer leaves behind
+  const s = a.state.jenn;
+  s.pendingSessions.gate = {
+    did: 6, phase: 2, score: 120, phaseScores: [60, 40, 20],
+    vocab: [], questions: [], pyQ: [], sbPack: [["我", "爱", "中文", "。"]],
+    sbRound: 0, isChampion: false, mcqN: 8, pyN: 10, sbN: 3, maxScore: 220,
+    quizCorrect: 12, quizAttempts: 13,
+    gateAttempt: { playerId: "jenn", gateKey: "h2-g06", attemptId: "g6-live", resetSeq: 0 },
+  };
+  assert.equal(a.restoreGateQuizSession(), true);
+  assert.equal(a.curHSK, 2, "the level comes from the binding, not the tab");
+});
+
+test("F3: a resumed HSK2 quiz banks its credit against h2, not h1", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  s.gateTimers = { "h2-g06": { startKey: "2026-09-01", deadlineKey: "2099-01-01", active: true, days: 7, attemptId: "g6-live" } };
+  s.pendingSessions.gate = {
+    did: 6, phase: 3, score: 200, phaseScores: [100, 60, 40],
+    vocab: [], questions: [], pyQ: [], sbPack: [], sbRound: 3,
+    isChampion: false, mcqN: 8, pyN: 10, sbN: 3, maxScore: 220, noMcqAssistance: true,
+    quizCorrect: 19, quizAttempts: 20,
+    gateAttempt: { playerId: "jenn", gateKey: "h2-g06", attemptId: "g6-live", resetSeq: 0 },
+  };
+  a.launchConfetti = () => {};
+  assert.equal(a.restoreGateQuizSession(), true);
+
+  const qc = { innerHTML: "" };
+  a.renderQuizResult(qc);
+
+  // 19/20 = 95%, which is 3 stars — computed here, not read back from the app.
+  assert.ok(s.gateBestQuiz["h2-g06"], "the best quiz is recorded against HSK2");
+  assert.equal(s.gateBestQuiz["h2-g06"].accPct, 95);
+  assert.equal(s.gateBestQuiz["h2-g06"].quizStars, 3);
+  assert.equal(s.gateBestQuiz["h1-g06"], undefined, "and nothing is written to HSK1");
+  assert.ok(!qc.innerHTML.includes("Practice round"), "a live round is not called practice");
+});
+
+test("F3: an expired attempt is still refused after the level is restored", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  // The gate has moved on to a new attempt since this round was saved.
+  s.gateTimers = { "h2-g06": { startKey: "2026-09-08", deadlineKey: "2099-01-01", active: true, days: 7, attemptId: "g6-NEW" } };
+  s.pendingSessions.gate = {
+    did: 6, phase: 3, score: 200, phaseScores: [100, 60, 40],
+    vocab: [], questions: [], pyQ: [], sbPack: [], sbRound: 3,
+    isChampion: false, mcqN: 8, pyN: 10, sbN: 3, maxScore: 220,
+    quizCorrect: 19, quizAttempts: 20,
+    gateAttempt: { playerId: "jenn", gateKey: "h2-g06", attemptId: "g6-OLD", resetSeq: 0 },
+  };
+  a.launchConfetti = () => {};
+  assert.equal(a.restoreGateQuizSession(), true);
+  assert.equal(a.curHSK, 2, "the level is still restored");
+
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.gateBestQuiz["h2-g06"], undefined,
+    "a round from a superseded attempt still earns no credit");
+});

@@ -53,6 +53,7 @@ const BRIDGED = [
   "flashSt", "matchSt", "rainSt", "listenSt", "traceSt", "miniQ",
   "tapped", "newChars", "totalNew", "storyOpenTime",
   "revengeSt", "drillSt", "reviewSt", "answerLocked", "remoteBaseRevision", "syncStatus",
+  "sbBuilt", "mcqAnswered", "pyAnswered",
   "curGameTargetLevel",
   // Content tables. Also `const`, so also invisible without the bridge.
   "STORIES_MAP", "DYNASTIES", "HSK_VOCAB", "GATE_VOCAB", "GATE_SENTENCES",
