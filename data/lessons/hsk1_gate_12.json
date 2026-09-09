@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk1_gate_12_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "时候",
+      "pinyin": "shíhòu",
+      "promptEn": "In the story, what does 时候 mean?",
+      "prompt": "短文里的“时候”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "period"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "long time"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "时候 (shíhòu) means \"period\" — you can find it in the passage above.",
+      "explanation": "“时候”（shíhòu）的意思是“period”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_12_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "大",
+      "pinyin": "dà",
+      "promptEn": "In the story, what does 大 mean?",
+      "prompt": "短文里的“大”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "long time"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "great"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "大 (dà) means \"great\" — you can find it in the passage above.",
+      "explanation": "“大”（dà）的意思是“great”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_12_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "唐朝的时候，中国很大也很有名。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "The water was very big; many people had no home."
+        },
+        {
+          "id": "o2",
+          "text": "Dayu was a good person."
+        },
+        {
+          "id": "o3",
+          "text": "In the Tang dynasty China was large and well known."
+        },
+        {
+          "id": "o4",
+          "text": "Long ago, the waters of China were very high."
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "\"唐朝的时候，中国很大也很有名。\" means \"In the Tang dynasty China was large and well known.\".",
+      "explanation": "“唐朝的时候，中国很大也很有名。”的意思是“In the Tang dynasty China was large and well known.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Tang Dynasty in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说唐朝。"
 }

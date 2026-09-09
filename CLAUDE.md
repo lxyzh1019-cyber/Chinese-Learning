@@ -741,9 +741,9 @@ rewards stars via `cultureRewarded`.
 ### 15.7 Lesson cards (per-gate curriculum)
 
 Loaded from `data/hsk{lv}.json` → each gate entry can have a `lessonRef`
-pointing to a lesson JSON. The lesson shows key vocabulary with visible
-English, comprehension Q&A, and a speaking prompt — displayed in the dynasty
-detail panel below the story buttons.
+pointing to a lesson JSON. The lesson shows key vocabulary with visible English,
+marked `check` questions (§25), think-then-reveal comprehension Q&A, and a
+speaking prompt — displayed in the dynasty detail panel below the story buttons.
 
 ---
 
@@ -1202,9 +1202,28 @@ whatever the answers. `writingRecall` records are counted as remaining, not aske
 produces `contextComprehension` either: that branch is built and tested but
 unreachable.
 
-**Lesson self-checks are not evidence.** A lesson question hides its answer until
-Reveal; the child's "I had it" / "Not yet" goes to `lessonSelfCheck`, never to
-`reviewRecords`, and pays nothing.
+**Lesson self-checks are not evidence.** A `comprehension` question hides its
+answer until Reveal; the child's "I had it" / "Not yet" goes to
+`lessonSelfCheck`, never to `reviewRecords`, and pays nothing.
+
+**Lesson `check` questions are.** A lesson's `check` array carries questions
+with a right answer — options, an `answerId`, and a bilingual explanation —
+built by `scripts/build_gate_lessons.js` from the gate's own story, so the
+answer and the explanation are true by construction rather than authored twice.
+The child answers (no Reveal), the explanation is shown **either way** because a
+child who guessed right has learnt nothing, a miss adds the correction and one
+more try, and the response goes to `reviewRecords` like any other: unaided on
+the first response, `sameSession` on the retry. A miss therefore re-dues the
+word and the follow-up is Review today — no second scheduler. It pays no stars:
+it is unbounded and retryable, and paying it would reward guessing (§2).
+
+Distractors come from *other gates'* stories, never another sentence of the same
+passage (answerable by elimination), and are excluded by sense through the one
+shared `sharesSense` in `scripts/senses.js` (§9.6). `validate_lessons.js`
+enforces four unique options, a real `answerId`, bilingual prompt and
+explanation, and a `skill` that is a real retention skill; a lesson with no
+`check` block **warns**, so HSK3 and HSK4 keep the self-report flow until they
+have stories to build questions from.
 
 **Attempt entries carry ids.** Each entry in a record's `attempts` has a stable
 `id` and an arrival `at`, and `applyAttempt` is a pure fold, so `mergeRecords`

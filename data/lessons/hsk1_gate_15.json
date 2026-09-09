@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk1_gate_15_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "人",
+      "pinyin": "rén",
+      "promptEn": "In the story, what does 人 mean?",
+      "prompt": "短文里的“人”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "before"
+        },
+        {
+          "id": "o2",
+          "text": "person"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "long time"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "人 (rén) means \"person\" — you can find it in the passage above.",
+      "explanation": "“人”（rén）的意思是“person”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_15_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "早",
+      "pinyin": "zǎo",
+      "promptEn": "In the story, what does 早 mean?",
+      "prompt": "短文里的“早”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "early; morning"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "long time"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "早 (zǎo) means \"early; morning\" — you can find it in the passage above.",
+      "explanation": "“早”（zǎo）的意思是“early; morning”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_15_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "中国人很早就开始喝茶。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Long ago, the waters of China were very high."
+        },
+        {
+          "id": "o2",
+          "text": "The water was very big; many people had no home."
+        },
+        {
+          "id": "o3",
+          "text": "Dayu was a good person."
+        },
+        {
+          "id": "o4",
+          "text": "Chinese people began drinking tea very early."
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "\"中国人很早就开始喝茶。\" means \"Chinese people began drinking tea very early.\".",
+      "explanation": "“中国人很早就开始喝茶。”的意思是“Chinese people began drinking tea very early.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Southern Song in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说南宋。"
 }

@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk2_gate_09_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "promptEn": "In the story, what does 中国 mean?",
+      "prompt": "短文里的“中国”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "long time"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "China"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
+      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_09_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "人",
+      "pinyin": "rén",
+      "promptEn": "In the story, what does 人 mean?",
+      "prompt": "短文里的“人”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "long time"
+        },
+        {
+          "id": "o2",
+          "text": "before"
+        },
+        {
+          "id": "o3",
+          "text": "person"
+        },
+        {
+          "id": "o4",
+          "text": "very"
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "人 (rén) means \"person\" — you can find it in the passage above.",
+      "explanation": "“人”（rén）的意思是“person”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_09_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "中国人很早就觉得写字是一件很美的事。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "The water came into the fields, and into many people’s homes."
+        },
+        {
+          "id": "o2",
+          "text": "Chinese people early on felt that writing was a beautiful thing."
+        },
+        {
+          "id": "o3",
+          "text": "Very long ago, it rained in China for many days."
+        },
+        {
+          "id": "o4",
+          "text": "Because there was so much rain, the water rose higher and higher."
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "\"中国人很早就觉得写字是一件很美的事。\" means \"Chinese people early on felt that writing was a beautiful thing.\".",
+      "explanation": "“中国人很早就觉得写字是一件很美的事。”的意思是“Chinese people early on felt that writing was a beautiful thing.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Western Jin in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说西晋。"
 }

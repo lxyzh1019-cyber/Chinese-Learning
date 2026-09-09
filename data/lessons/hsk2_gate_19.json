@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk2_gate_19_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "六",
+      "pinyin": "liù",
+      "promptEn": "In the story, what does 六 mean?",
+      "prompt": "短文里的“六”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "before"
+        },
+        {
+          "id": "o2",
+          "text": "six"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "long time"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "六 (liù) means \"six\" — you can find it in the passage above.",
+      "explanation": "“六”（liù）的意思是“six”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_19_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "百",
+      "pinyin": "bǎi",
+      "promptEn": "In the story, what does 百 mean?",
+      "prompt": "短文里的“百”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "hundred"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "long time"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "百 (bǎi) means \"hundred\" — you can find it in the passage above.",
+      "explanation": "“百”（bǎi）的意思是“hundred”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_19_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "六百多年以前，明朝有一个很大的船队。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "Very long ago, it rained in China for many days."
+        },
+        {
+          "id": "o2",
+          "text": "Because there was so much rain, the water rose higher and higher."
+        },
+        {
+          "id": "o3",
+          "text": "The water came into the fields, and into many people’s homes."
+        },
+        {
+          "id": "o4",
+          "text": "More than six hundred years ago the Ming had a great fleet."
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "\"六百多年以前，明朝有一个很大的船队。\" means \"More than six hundred years ago the Ming had a great fleet.\".",
+      "explanation": "“六百多年以前，明朝有一个很大的船队。”的意思是“More than six hundred years ago the Ming had a great fleet.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Ming Dynasty in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说明朝。"
 }

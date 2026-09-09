@@ -22,6 +22,7 @@ const test = require("node:test");
 const assert = require("node:assert");
 const { loadApp } = require("./helpers/app-loader.js");
 const F = require("./fixtures/players.js");
+const R = require("../js/review-core.js");
 
 function app() {
   const a = loadApp();
@@ -1940,4 +1941,118 @@ test("F06: a prior self-report renders the answer open with the verdict", async 
   assert.doesNotMatch(html, /id="lesson-ans-0" hidden/, "already answered: the answer is open");
   assert.ok(html.includes("You said: I had it"));
   assert.ok(!html.includes("Reveal 👀"), "no reveal button to press again");
+});
+
+// ── the 2026-09-08 audit: lesson questions a machine can mark ───────────────
+// The audit asked for answer -> explanation -> correction -> later check. The
+// lesson data could not support it: all 88 files carried the same three
+// templated prompts, no options, and one answered "any one sentence from the
+// passage above". `check` items are built from the story's own glosses, so the
+// answer and the explanation are true by construction.
+
+const CHECK_LESSON = {
+  level: "HSK1", gateId: 1, passage: "大禹治水。", passageEn: "Yu tamed the flood.",
+  comprehension: [{ question: "谁治水？", questionEn: "Who tamed the flood?", answer: "大禹。", answerEn: "Yu." }],
+  check: [{
+    id: "t1", kind: "wordMeaning", skill: "meaning", zh: "水", pinyin: "shuǐ",
+    promptEn: "In the story, what does 水 mean?", prompt: "短文里的“水”是什么意思？",
+    options: [{ id: "o1", text: "before" }, { id: "o2", text: "water" },
+              { id: "o3", text: "person" }, { id: "o4", text: "big" }],
+    answerId: "o2",
+    explanationEn: "水 (shuǐ) means \"water\".", explanation: "“水”的意思是“water”。",
+  }],
+};
+
+async function lessonWithCheck() {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  a.curriculumCache.lessons["x"] = JSON.parse(JSON.stringify(CHECK_LESSON));
+  await a.renderGateLesson(1, "x");
+  return a;
+}
+
+test("A26: a checked question offers options and no Reveal", async () => {
+  const a = await lessonWithCheck();
+  const html = a.document.getElementById("gate-lesson-box").innerHTML;
+  assert.ok(html.includes("what does 水 mean?"), "the question is shown");
+  ["before", "water", "person", "big"].forEach((t) =>
+    assert.ok(html.includes(">" + t + "<"), `option ${t} is offered`));
+  // Scoped to the checked block: the self-report list below it still has its
+  // own Reveal, which is untouched by this change.
+  const optsIdx = html.indexOf('id="lchk-opts-0"');
+  const sayIdx = html.indexOf('id="lchk-say-0"');
+  assert.ok(optsIdx > -1 && sayIdx > optsIdx);
+  const block = html.slice(optsIdx, sayIdx);
+  assert.equal(block.indexOf("lessonRevealAnswer"), -1, "a checked question is answered, not revealed");
+  assert.equal(html.indexOf("shuǐ"), -1, "and the explanation is not shown up front");
+});
+
+test("A26: a right answer is unaided evidence and still explains itself", async () => {
+  const a = await lessonWithCheck();
+  const s = a.state.jenn;
+  s.totalStars = 100;
+  a.lessonCheckAnswer("h1-g01", 0, "o2");
+
+  const rec = s.reviewRecords["水::meaning"];
+  assert.ok(rec, "a checked answer is real evidence, unlike the self-report");
+  const last = rec.attempts[rec.attempts.length - 1];
+  assert.equal(last.correct, true);
+  assert.equal(last.sameSession, false, "the first response is unaided");
+  assert.equal(last.supported, false);
+  assert.equal(last.source, "lesson-check");
+  assert.equal(s.totalStars, 100, "and it pays nothing — it is unbounded and retryable");
+  assert.ok(a.document.getElementById("lchk-say-0").innerHTML.includes('means &quot;water&quot;')
+    || a.document.getElementById("lchk-say-0").innerHTML.includes('means "water"'),
+    "why it is right is shown even when the child got it right");
+});
+
+test("A26: a miss corrects, explains, and comes back tomorrow", async () => {
+  const a = await lessonWithCheck();
+  const s = a.state.jenn;
+  a.lessonCheckAnswer("h1-g01", 0, "o1");
+
+  const say = a.document.getElementById("lchk-say-0").innerHTML;
+  assert.ok(say.includes("Not quite"), "the child is told, kindly");
+  assert.ok(say.includes("water"), "and given the answer");
+  assert.ok(say.includes("lessonCheckRetry(0)"), "with one more go offered");
+
+  const rec = s.reviewRecords["水::meaning"];
+  assert.equal(rec.stage, 0);
+  assert.equal(rec.dueOn, R.addDays(a.todayKey(), 1), "a miss schedules the real follow-up");
+});
+
+test("A26: the second go, after the explanation, is not unaided", async () => {
+  const a = await lessonWithCheck();
+  a.lessonCheckAnswer("h1-g01", 0, "o1");
+  a.lessonCheckRetry(0);
+  a.lessonCheckAnswer("h1-g01", 0, "o2");
+
+  const rec = a.state.jenn.reviewRecords["水::meaning"];
+  const last = rec.attempts[rec.attempts.length - 1];
+  assert.equal(last.correct, true);
+  assert.equal(last.sameSession, true, "the answer was on screen a moment ago");
+  assert.equal(rec.independentSuccesses.length, 0, "so it cannot advance the ladder");
+});
+
+test("A26: answering again after it is settled changes nothing", async () => {
+  const a = await lessonWithCheck();
+  a.lessonCheckAnswer("h1-g01", 0, "o2");
+  const n = a.state.jenn.reviewRecords["水::meaning"].attempts.length;
+  a.lessonCheckAnswer("h1-g01", 0, "o1");
+  assert.equal(a.state.jenn.reviewRecords["水::meaning"].attempts.length, n,
+    "a settled question is closed; tapping again must not log a failure");
+});
+
+test("A26: a lesson with no checked questions keeps the old self-report flow", async () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const lesson = JSON.parse(JSON.stringify(CHECK_LESSON));
+  delete lesson.check;
+  a.curriculumCache.lessons["x"] = lesson;
+  await a.renderGateLesson(1, "x");
+  const html = a.document.getElementById("gate-lesson-box").innerHTML;
+  assert.ok(html.includes("Reveal"), "HSK3 and HSK4 have no story to build questions from yet");
+  assert.equal(html.indexOf("lchk-opts-0"), -1);
 });

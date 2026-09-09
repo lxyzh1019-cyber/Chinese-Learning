@@ -69,6 +69,97 @@
       "answer": "上面短文里的任何一句。"
     }
   ],
+  "check": [
+    {
+      "id": "hsk2_gate_01_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "久",
+      "pinyin": "jiǔ",
+      "promptEn": "In the story, what does 久 mean?",
+      "prompt": "短文里的“久”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "is"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "early; morning"
+        },
+        {
+          "id": "o4",
+          "text": "long time"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "久 (jiǔ) means \"long time\" — you can find it in the passage above.",
+      "explanation": "“久”（jiǔ）的意思是“long time”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_01_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "以前",
+      "pinyin": "yǐ qián",
+      "promptEn": "In the story, what does 以前 mean?",
+      "prompt": "短文里的“以前”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "early; morning"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "is"
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "以前 (yǐ qián) means \"before\" — you can find it in the passage above.",
+      "explanation": "“以前”（yǐ qián）的意思是“before”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_01_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "很久很久以前，中国下了很多天的雨。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "But they did not write on paper, because there was no paper yet."
+        },
+        {
+          "id": "o2",
+          "text": "Very long ago, it rained in China for many days."
+        },
+        {
+          "id": "o3",
+          "text": "The Shang was one of China’s very early dynasties."
+        },
+        {
+          "id": "o4",
+          "text": "People of that time could already write."
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "\"很久很久以前，中国下了很多天的雨。\" means \"Very long ago, it rained in China for many days.\".",
+      "explanation": "“很久很久以前，中国下了很多天的雨。”的意思是“Very long ago, it rained in China for many days.”。"
+    }
+  ],
   "speakingPromptEn": "Tell a grown-up about Xia Dynasty in two or three short Chinese sentences. Use words from the list above.",
   "speakingPrompt": "用上面的词，跟家里的大人说两三句中文，说一说夏朝。"
 }

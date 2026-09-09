@@ -38,21 +38,9 @@ const fail = (m) => errors.push(m);
 const warn = (m) => warnings.push(m);
 
 /** The senses of a gloss, split as a child reads them. Mirrors the app's
- *  `sharesSense` in index.html; kept here so the bank is checked without
- *  loading the page. */
-function senseSet(text) {
-  return String(text == null ? "" : text)
-    .toLowerCase()
-    .replace(/[^a-z0-9;]+/g, " ")
-    .split(";")
-    .map((t) => t.trim())
-    .filter(Boolean);
-}
-
-function sharesSense(a, b) {
-  const set = new Set(senseSet(b));
-  return senseSet(a).some((t) => set.has(t));
-}
+ *  `sharesSense` in index.html; the shared implementation lives in
+ *  scripts/senses.js so the bank is checked without loading the page. */
+const { sharesSense } = require("./senses.js");
 
 function main() {
   const manifest = JSON.parse(fs.readFileSync(path.join(DIR, "manifest.json"), "utf8"));

@@ -25,6 +25,8 @@ const DIR = path.join(ROOT, "data", "lessons");
 const PENDING = path.join(ROOT, "content", "stories", "PENDING.json");
 
 const META = [/生字/, /本关有几个/, /复习字/, /共\s*\d+\s*个/];
+const { sharesSense } = require("./senses.js");
+const { SKILLS } = require("../js/review-core.js");
 const CJK = /[一-鿿]/;
 const LATIN = /[A-Za-z]{3,}/;
 
@@ -76,6 +78,36 @@ function main() {
       if (!q.answer || !String(q.answer).trim()) fail(`${where}: no answer`);
       META.forEach((re) => {
         if (re.test(q.question)) fail(`${where}: asks about the lesson, not about the text`);
+      });
+    });
+
+    // Checked questions. A lesson without any only WARNS: the mechanism ships
+    // before every level's content is authored, and HSK2-4 keep the
+    // self-report flow until their questions are written.
+    const checks = L.check || [];
+    if (!checks.length) {
+      warn(`${at}: no checked questions — the child can only self-report here`);
+    }
+    checks.forEach((q, i) => {
+      const where = `${at} check ${i + 1}`;
+      if (!q.id) fail(`${where}: no id`);
+      if (SKILLS.indexOf(q.skill) === -1) fail(`${where}: skill ${q.skill} is not a retention skill`);
+      if (!q.promptEn || !LATIN.test(q.promptEn)) fail(`${where}: no English prompt`);
+      if (!q.prompt || !CJK.test(q.prompt)) fail(`${where}: no Chinese prompt`);
+      if (!q.explanationEn || !LATIN.test(q.explanationEn)) fail(`${where}: no English explanation`);
+      if (!q.explanation || !CJK.test(q.explanation)) fail(`${where}: no Chinese explanation`);
+      const opts = q.options || [];
+      if (opts.length < 4) fail(`${where}: needs at least four options`);
+      const ids = new Set(opts.map((o) => o.id));
+      if (ids.size !== opts.length) fail(`${where}: option ids are not unique`);
+      const answer = opts.find((o) => o.id === q.answerId);
+      if (!answer) return fail(`${where}: answerId ${q.answerId} is not one of the options`);
+      // §9.6: a wrong option must never be secretly right.
+      opts.forEach((o) => {
+        if (o.id === q.answerId) return;
+        if (sharesSense(o.text, answer.text)) {
+          fail(`${where}: option "${o.text}" shares a sense with the answer "${answer.text}"`);
+        }
       });
     });
 

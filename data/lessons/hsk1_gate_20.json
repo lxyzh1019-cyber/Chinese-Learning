@@ -16,7 +16,7 @@
     {
       "zh": "位",
       "pinyin": "wèi",
-      "en": "great"
+      "en": "(counting word for people, polite)"
     },
     {
       "zh": "名",
@@ -67,6 +67,97 @@
       "question": "大声读一遍短文，再试着背出其中的一句。",
       "answerEn": "Any one sentence from the passage above.",
       "answer": "上面短文里的任何一句。"
+    }
+  ],
+  "check": [
+    {
+      "id": "hsk1_gate_20_w1",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "一",
+      "pinyin": "yī",
+      "promptEn": "In the story, what does 一 mean?",
+      "prompt": "短文里的“一”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "one"
+        },
+        {
+          "id": "o2",
+          "text": "very"
+        },
+        {
+          "id": "o3",
+          "text": "long time"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o1",
+      "explanationEn": "一 (yī) means \"one\" — you can find it in the passage above.",
+      "explanation": "“一”（yī）的意思是“one”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_20_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "位",
+      "pinyin": "wèi",
+      "promptEn": "In the story, what does 位 mean?",
+      "prompt": "短文里的“位”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "very"
+        },
+        {
+          "id": "o2",
+          "text": "long time"
+        },
+        {
+          "id": "o3",
+          "text": "before"
+        },
+        {
+          "id": "o4",
+          "text": "(counting word for people, polite)"
+        }
+      ],
+      "answerId": "o4",
+      "explanationEn": "位 (wèi) means \"(counting word for people, polite)\" — you can find it in the passage above.",
+      "explanation": "“位”（wèi）的意思是“(counting word for people, polite)”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk1_gate_20_s1",
+      "kind": "sentenceMeaning",
+      "skill": "contextComprehension",
+      "zh": "清朝有一位很有名的大王，叫康熙。",
+      "promptEn": "What does this sentence say?",
+      "prompt": "这句话说了什么？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "The water was very big; many people had no home."
+        },
+        {
+          "id": "o2",
+          "text": "Dayu was a good person."
+        },
+        {
+          "id": "o3",
+          "text": "The Qing dynasty had a famous ruler called Kangxi."
+        },
+        {
+          "id": "o4",
+          "text": "Long ago, the waters of China were very high."
+        }
+      ],
+      "answerId": "o3",
+      "explanationEn": "\"清朝有一位很有名的大王，叫康熙。\" means \"The Qing dynasty had a famous ruler called Kangxi.\".",
+      "explanation": "“清朝有一位很有名的大王，叫康熙。”的意思是“The Qing dynasty had a famous ruler called Kangxi.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Early Qing in two or three short Chinese sentences. Use words from the list above.",
