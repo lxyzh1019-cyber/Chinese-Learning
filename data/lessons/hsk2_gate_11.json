@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "中国很大，北边和南边差得很远。",
+      "targetZh": "大",
+      "targetPinyin": "dà",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

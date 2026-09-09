@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "汉朝以后，中国分成了三个国家。",
+      "targetZh": "汉朝",
+      "targetPinyin": "Hàncháo",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "隋朝的皇帝想建一条很长的河。",
+      "targetZh": "长",
+      "targetPinyin": "cháng",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

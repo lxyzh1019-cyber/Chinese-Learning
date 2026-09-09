@@ -96,10 +96,16 @@ function buildCheck(d,st,key,passage){
   const mine=SENTS.filter(x=>x.gate===d.id&&passage.indexOf(x.zh)!==-1)[0];
   if(mine){
     const wrong=pickWrong(SENTS,mine.en,3,d.id);
-    if(wrong.length>=3){
+    // The evidence this question produces has to be about a WORD, because that
+    // is the only thing Review today can ask about later: reviewWordMeta looks
+    // a target up in the library, the vocab tables and the story index, and a
+    // whole sentence resolves in none of them. Keyed by the sentence, a miss
+    // here became a review the app could never serve and never clear.
+    const target=key.filter(w=>w.zh&&w.en&&mine.zh.indexOf(w.zh)!==-1)[0];
+    if(wrong.length>=3&&target){
       out.push({
         id:id('s1'), kind:'sentenceMeaning', skill:'contextComprehension',
-        zh:mine.zh,
+        zh:mine.zh, targetZh:target.zh, targetPinyin:target.pinyin,
         promptEn:'What does this sentence say?',
         prompt:'这句话说了什么？',
         options:[mine.en,...wrong.map(x=>x.en)].map(opt), answerId:'o1',

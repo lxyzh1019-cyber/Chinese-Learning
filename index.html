@@ -5693,9 +5693,22 @@ function lessonCheckAnswer(gk,i,optId){
     b.classList.add('revealed');
     if(b.textContent===ansText)b.classList.add('correct');
   });
-  // The first response is unaided; a second, after the explanation, is not (§25).
-  noteEvidence(curP,{zh:q.zh,py:q.pinyin,en:ansText},q.skill,ok,
-    {source:'lesson-check',sameSession:retry});
+  // Every lesson check is SUPPORTED practice, first response included.
+  //
+  // The lesson prints its key vocabulary with the English visible a few
+  // centimetres above the question, and all 88 word-meaning checks ask for a
+  // gloss that is on screen while they are answered. Reading an answer off the
+  // page is legitimate learning, but it is not unaided recall, and recording it
+  // as such let the ladder advance on something the child was looking at.
+  // Retention is established later, by an unaided Review today (§25).
+  //
+  // A sentence check is filed against a WORD from that sentence, not the
+  // sentence itself: reviewWordMeta resolves words, so a sentence-keyed record
+  // was due forever and askable never.
+  const evZh=q.targetZh||q.zh;
+  const evPy=q.targetZh?(q.targetPinyin||''):q.pinyin;
+  noteEvidence(curP,{zh:evZh,py:evPy,en:q.targetZh?'':ansText},q.skill,ok,
+    {source:'lesson-check',supported:true,sameSession:retry});
   const why='<div style="color:var(--muted);margin-top:.2rem;">'+BI(q.explanationEn,q.explanation)+'</div>';
   if(ok){
     opts.dataset.done='1';
@@ -7390,7 +7403,16 @@ function reviewDueToday(p,mode){
   if(typeof ReviewCore==='undefined')return{items:[],dueTotal:0,remaining:0,summary:''};
   const s=state[p];if(!s)return{items:[],dueTotal:0,remaining:0,summary:''};
   const limit=mode==='focus'?ReviewCore.BUDGET.focusItems:ReviewCore.BUDGET.normalItems;
-  return ReviewCore.selectDue(s.reviewRecords||{},todayKey(),{limit});
+  // Sentence-keyed records from the old lesson flow are kept in the store but
+  // hidden from selection, so they neither take a slot nor inflate the count of
+  // what is still outstanding. Nothing can ever ask them (see
+  // reviewTargetIsSentence), and a backlog a child cannot work off is not a
+  // fact worth reporting to them (§25).
+  const store={};
+  Object.entries(s.reviewRecords||{}).forEach(([k,r])=>{
+    if(!reviewTargetIsSentence(r&&r.wordId))store[k]=r;
+  });
+  return ReviewCore.selectDue(store,todayKey(),{limit});
 }
 
 /** The honest label for one {word, skill}: never "mastered", never "failed". */
@@ -7472,12 +7494,32 @@ function reviewSentenceFor(zh){
  * no exercise) stays due and is counted in "remain for later" rather than
  * being dropped or asked as something else.
  */
+/**
+ * A record the app can never ask about, because its target is a whole sentence.
+ *
+ * Lesson sentence checks used to file their evidence under the sentence itself
+ * (`很久以前，中国的水很大。::contextComprehension`). reviewWordMeta resolves
+ * words, so those records came due, could not be built into a question, and were
+ * counted as "remain for later" every single day — a backlog that could only
+ * grow. The builder now files them against a word from the sentence, but saves
+ * written before that still carry the old ones.
+ *
+ * They are KEPT: they are real evidence of a real answer, and §25 does not
+ * delete learning history. They are simply not counted as work outstanding,
+ * because no amount of reviewing will ever discharge them.
+ */
+function reviewTargetIsSentence(wordId){
+  const t=String(wordId||'');
+  return /[，。！？；、,.!?]/.test(t)||[...t].length>4;
+}
+
 function buildReviewRound(p,mode){
   const due=reviewDueToday(p,mode);
   const pool=reviewDistractorPool();
   const items=[];let deferred=0;
   (due.items||[]).forEach(r=>{
     const skill=r.skill;
+    if(reviewTargetIsSentence(r.wordId))return;   // unservable by construction
     if(REVIEW_SERVED_SKILLS.indexOf(skill)===-1){deferred++;return;}
     const w=reviewWordMeta(r.wordId);
     if(!w||!w.en){deferred++;return;}
@@ -7504,6 +7546,7 @@ function buildReviewRound(p,mode){
   });
   const remaining=(due.remaining||0)+deferred;
   const summary=`${items.length} to review${remaining?`; ${remaining} remain for later`:''}`;
+  
   return{items,dueTotal:due.dueTotal||0,remaining,summary};
 }
 

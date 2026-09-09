@@ -96,6 +96,17 @@ function main() {
       if (!q.prompt || !CJK.test(q.prompt)) fail(`${where}: no Chinese prompt`);
       if (!q.explanationEn || !LATIN.test(q.explanationEn)) fail(`${where}: no English explanation`);
       if (!q.explanation || !CJK.test(q.explanation)) fail(`${where}: no Chinese explanation`);
+      // A sentence check must name the WORD its evidence is filed against.
+      // Keyed by the sentence, the record it writes comes due every day and
+      // can never be built into a question: reviewWordMeta resolves words, not
+      // sentences, so the child is told something remains for later forever.
+      if (q.kind === "sentenceMeaning") {
+        if (!q.targetZh) {
+          fail(`${where}: a sentence check needs targetZh, or its review can never be served`);
+        } else if (String(q.zh || "").indexOf(q.targetZh) === -1) {
+          fail(`${where}: targetZh ${q.targetZh} does not occur in the sentence it is drawn from`);
+        }
+      }
       const opts = q.options || [];
       if (opts.length < 4) fail(`${where}: needs at least four options`);
       const ids = new Set(opts.map((o) => o.id));

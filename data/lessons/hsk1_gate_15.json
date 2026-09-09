@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "中国人很早就开始喝茶。",
+      "targetZh": "人",
+      "targetPinyin": "rén",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

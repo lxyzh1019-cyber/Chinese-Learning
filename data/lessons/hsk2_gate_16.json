@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "中国的北边有很大很大的草地。",
+      "targetZh": "北",
+      "targetPinyin": "běi",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

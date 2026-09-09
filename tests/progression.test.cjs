@@ -1988,7 +1988,12 @@ test("A26: a checked question offers options and no Reveal", async () => {
   assert.equal(html.indexOf("shuǐ"), -1, "and the explanation is not shown up front");
 });
 
-test("A26: a right answer is unaided evidence and still explains itself", async () => {
+test("L1: a right answer is SUPPORTED practice and still explains itself", async () => {
+  // This test used to assert `supported: false` — that a lesson answer proved
+  // unaided recall. It does not. The lesson prints its key vocabulary with the
+  // English visible, and every word-meaning check asks for a gloss that is on
+  // screen while it is answered. Reading it off the page is learning, but the
+  // ladder must not advance on it; a later unaided Review today does that.
   const a = await lessonWithCheck();
   const s = a.state.jenn;
   s.totalStars = 100;
@@ -1998,9 +2003,11 @@ test("A26: a right answer is unaided evidence and still explains itself", async 
   assert.ok(rec, "a checked answer is real evidence, unlike the self-report");
   const last = rec.attempts[rec.attempts.length - 1];
   assert.equal(last.correct, true);
-  assert.equal(last.sameSession, false, "the first response is unaided");
-  assert.equal(last.supported, false);
+  assert.equal(last.sameSession, false, "it is the first response, not a retry");
+  assert.equal(last.supported, true, "but the answer was on screen: supported");
   assert.equal(last.source, "lesson-check");
+  assert.equal(rec.independentSuccesses.length, 0, "so it cannot advance the ladder");
+  assert.equal(rec.stage, 0, "retention is established by a later unaided check");
   assert.equal(s.totalStars, 100, "and it pays nothing — it is unbounded and retryable");
   assert.ok(a.document.getElementById("lchk-say-0").innerHTML.includes('means &quot;water&quot;')
     || a.document.getElementById("lchk-say-0").innerHTML.includes('means "water"'),
@@ -2261,4 +2268,88 @@ test("F3: an expired attempt is still refused after the level is restored", () =
   a.renderQuizResult({ innerHTML: "" });
   assert.equal(s.gateBestQuiz["h2-g06"], undefined,
     "a round from a superseded attempt still earns no credit");
+});
+
+// ── L2: a missed sentence check must produce a review that can be served ──
+// The sentence check filed its evidence under the whole sentence, e.g.
+// "很久以前，中国的水很大。::contextComprehension". reviewWordMeta resolves
+// words, so the record came due, could not be built into a question, and was
+// reported as "remain for later" every day for the rest of the child's life.
+
+const SENTENCE_LESSON = {
+  level: "HSK1", gateId: 1, passage: "很久以前，中国的水很大。",
+  passageEn: "Long ago, the waters of China were very high.",
+  comprehension: [],
+  check: [{
+    id: "s1", kind: "sentenceMeaning", skill: "contextComprehension",
+    zh: "很久以前，中国的水很大。", targetZh: "水", targetPinyin: "shuǐ",
+    promptEn: "What does this sentence say?", prompt: "这句话说了什么？",
+    options: [{ id: "o1", text: "Long ago, the waters of China were very high." },
+              { id: "o2", text: "The Shang wrote on bones." },
+              { id: "o3", text: "Confucius was a teacher." },
+              { id: "o4", text: "The emperor built a canal." }],
+    answerId: "o1",
+    explanationEn: "It means \"Long ago, the waters of China were very high.\".",
+    explanation: "意思是“Long ago, the waters of China were very high.”。",
+  }],
+};
+
+async function lessonWithSentenceCheck() {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  a.curriculumCache.lessons["y"] = JSON.parse(JSON.stringify(SENTENCE_LESSON));
+  await a.renderGateLesson(1, "y");
+  return a;
+}
+
+test("L2: a sentence check is filed against a word, not the sentence", async () => {
+  const a = await lessonWithSentenceCheck();
+  a.lessonCheckAnswer("h1-g01", 0, "o2");             // a miss
+
+  const keys = Object.keys(a.state.jenn.reviewRecords);
+  assert.deepEqual(keys, ["水::contextComprehension"],
+    "the record is keyed on a word the app can look up");
+  keys.forEach((k) => {
+    // Computed here: nothing in the store may carry sentence punctuation.
+    assert.ok(!/[，。！？]/.test(k), `${k} is not askable as a review item`);
+  });
+});
+
+test("L2: every authored sentence check names a target word inside its sentence", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const dir = path.join(__dirname, "..", "data", "lessons");
+  let checked = 0;
+  for (const f of fs.readdirSync(dir)) {
+    const lesson = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+    for (const q of lesson.check || []) {
+      if (q.kind !== "sentenceMeaning") continue;
+      checked++;
+      assert.ok(q.targetZh, `${f}: a sentence check with no target word is unservable`);
+      assert.ok(q.zh.includes(q.targetZh),
+        `${f}: the target ${q.targetZh} must actually occur in the sentence`);
+    }
+  }
+  assert.ok(checked > 0, "there are sentence checks to check");
+});
+
+test("L2: a legacy sentence-keyed record is kept but not counted as outstanding", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  // What a save written before the fix carries.
+  s.reviewRecords = {
+    "很久以前，中国的水很大。::contextComprehension": {
+      wordId: "很久以前，中国的水很大。", skill: "contextComprehension",
+      stage: 0, dueOn: "2020-01-01", attempts: [], independentSuccesses: [],
+      unresolvedRuns: 1, firstTaughtOn: "2020-01-01",
+    },
+  };
+  const round = a.buildReviewRound("jenn", "normal");
+  assert.equal(round.items.length, 0);
+  assert.equal(round.remaining, 0, "a backlog the child can never work off is not reported");
+  assert.ok(!round.summary.includes("remain for later"));
+  assert.ok(s.reviewRecords["很久以前，中国的水很大。::contextComprehension"],
+    "and the evidence itself is preserved, not deleted");
 });

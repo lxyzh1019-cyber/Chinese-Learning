@@ -135,6 +135,8 @@
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "很久以前，中国的水很大。",
+      "targetZh": "久",
+      "targetPinyin": "jiǔ",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
