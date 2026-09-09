@@ -173,4 +173,42 @@ module.exports = {
   "资源": { py: "zī yuán", en: "resources" },
   "诗":   { py: "shī",    en: "poem; poetry" },
   "家":   { py: "jiā",    en: "home; family" },
+
+  // ── polyphones served under a reading a beginner should never meet first ──
+  //
+  // scripts/build_hsk_curriculum.js took `forms[0]` from the upstream list, and
+  // for a polyphonic character the first form is not the common one. These were
+  // found by cross-checking every served reading against the curated story
+  // dictionary — the lexicon the child actually reads — and each was judged
+  // against the row's own `meta.pos`, which in several cases contradicted the
+  // reading being served (更 was glossed as a verb while tagged adverb-only).
+  //
+  // 鸟 is the sharpest: `diǎo` is an obscenity, printed under a picture book
+  // word. 听 as `yǐn` "smile (archaic)" and 读 as `dòu` "comma" are the kind of
+  // entry that makes a child's correct answer wrong.
+  "着": { py: "zhe",   en: "(-ing, an action going on)" },
+  "看": { py: "kàn",   en: "to look; to watch; to read" },
+  "打": { py: "dǎ",    en: "to hit; to play (a game)" },
+  "听": { py: "tīng",  en: "to listen; to hear" },
+  "行": { py: "xíng",  en: "to walk; all right" },
+  "正": { py: "zhèng", en: "just now; upright" },
+  "跑": { py: "pǎo",   en: "to run" },
+  "重": { py: "zhòng", en: "heavy; important" },
+  "读": { py: "dú",    en: "to read" },
+  "累": { py: "lèi",   en: "tired" },
+  "更": { py: "gèng",  en: "more; even more" },
+  "场": { py: "chǎng", en: "place; ground" },
+  "鸟": { py: "niǎo",  en: "bird" },
+  "骑": { py: "qí",    en: "to ride" },
+  "追": { py: "zhuī",  en: "to chase; to follow" },
+  "结": { py: "jié",   en: "to tie; knot; result" },
+  "量": { py: "liàng", en: "quantity; amount" },
+  "数": { py: "shù",   en: "number" },
+  "得": { py: "de",    en: "(joins a verb to how it is done)" },
+
+  // ── right reading, unusable gloss ──
+  "种":   { en: "kind; type; (measure word)" },
+  "子":   { py: "zi",     en: "(word ending, as in 孩子)" },
+  "妈":   { py: "mā",     en: "mum; mother" },
+  "时候": { py: "shíhou", en: "time; moment" },
 };

@@ -4877,7 +4877,17 @@ function markedPinyinToClipKey(marked){
   if(base==='v')base='yu';
   else if(base==='ve')base='yue';
   else if(base==='vn')base='yun';
-  return tone?`${base}${tone}`:`${base}1`;
+  if(tone)return `${base}${tone}`;
+  // No tone mark means NEUTRAL tone, not first tone. Defaulting to `${base}1`
+  // sent 的 to `de1`, 了 to `le1` and 吗 to `ma1` — a high level tone under the
+  // commonest words in the language, so the child heard a different syllable
+  // from the one on screen.
+  //
+  // The clip set has no neutral-tone recordings: `de5` and `ma5` both 404, and
+  // a failed fetch is silent. Returning no key sends the caller to
+  // speechSynthesis, which does pronounce neutral tone — the right sound from a
+  // less consistent voice beats the wrong sound from a consistent one.
+  return '';
 }
 function playPinyinClip(clipKey,fallbackText){
   if(!clipKey){if(fallbackText)speak(fallbackText);return;}
@@ -4898,6 +4908,18 @@ function playPinyinFromMarked(marked,fallbackText){
   playPinyinClip(markedPinyinToClipKey(marked),fallbackText);
 }
 let zhCharClipMap=null;
+/**
+ * Character -> audio clip, built from the SAME readings the quiz shows.
+ *
+ * This used to read only the inline HSK_VOCAB and GATE_VOCAB tables, while
+ * buildQuizVocab early-returns on the dataset in data/hsk*.json. The two
+ * disagreed for exactly the polyphones the dataset had wrong, so the child saw
+ * `kān` and heard `kàn`. Whichever source is corrected, the other stayed stale.
+ *
+ * The dataset is loaded first and wins, because it is what the prompt is drawn
+ * from; the inline tables fill in characters it does not carry. A level that
+ * has not been fetched yet simply contributes nothing.
+ */
 function getZhCharClipMap(){
   if(zhCharClipMap)return zhCharClipMap;
   zhCharClipMap={};
@@ -4906,6 +4928,10 @@ function getZhCharClipMap(){
     const key=markedPinyinToClipKey(w.py||w.pinyin||'');
     if(key&&!zhCharClipMap[w.zh])zhCharClipMap[w.zh]=key;
   };
+  [1,2,3,4].forEach((lv)=>{
+    const doc=curriculumCache.levels[lv];
+    if(doc&&Array.isArray(doc.words))doc.words.forEach(addWord);
+  });
   [1,2,3,4].forEach((lv)=>{(HSK_VOCAB[lv]||[]).forEach(addWord);});
   Object.values(GATE_VOCAB||{}).forEach((arr)=>{(arr||[]).forEach(addWord);});
   return zhCharClipMap;

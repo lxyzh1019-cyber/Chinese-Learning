@@ -2353,3 +2353,55 @@ test("L2: a legacy sentence-keyed record is kept but not counted as outstanding"
   assert.ok(s.reviewRecords["很久以前，中国的水很大。::contextComprehension"],
     "and the evidence itself is preserved, not deleted");
 });
+
+// ── C1: the reading a child sees and the one they hear must be the same ──
+// buildQuizVocab early-returns on the dataset in data/hsk*.json, while the
+// audio map was built only from the inline tables. They disagreed for exactly
+// the polyphones the dataset had wrong: 看 was shown as kān and spoken kàn.
+
+test("C1: no served row keeps a specialist or archaic gloss", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  // Written out here rather than imported from the validator, so this fails if
+  // the validator's own list is quietly narrowed.
+  const artefact = /\(chess\)|archaic|^\s*comma\s*$|first month of the lunar year|dozen \(loanword\)/i;
+  const hits = [];
+  for (const lv of [1, 2, 3, 4]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const w of doc.words || []) if (artefact.test(w.en || "")) hits.push(`hsk${lv} ${w.zh} "${w.en}"`);
+  }
+  assert.deepEqual(hits, [], "a beginner's default meaning must be an ordinary one");
+});
+
+test("C1: the audio map agrees with the reading the quiz shows", () => {
+  const a = app();
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2, 3, 4]) {
+    a.curriculumCache.levels[lv] =
+      JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+  }
+  const map = a.getZhCharClipMap();
+  const bad = [];
+  for (const lv of [1, 2, 3, 4]) {
+    for (const w of a.curriculumCache.levels[lv].words || []) {
+      if (typeof w.zh !== "string" || [...w.zh].length !== 1) continue;
+      // The expected key is computed here from the row's own pinyin.
+      const want = a.markedPinyinToClipKey(w.pinyin || "");
+      if (!want) continue;                       // neutral tone: falls back to TTS
+      if (map[w.zh] && map[w.zh] !== want) bad.push(`${w.zh} shown ${w.pinyin} but sounds ${map[w.zh]}`);
+    }
+  }
+  assert.deepEqual(bad, [], "prompt and audio must not disagree");
+});
+
+test("C1: an unmarked syllable is neutral tone, not first tone", () => {
+  const a = app();
+  ["de", "le", "ma", "zi", "ba"].forEach((py) => {
+    assert.equal(a.markedPinyinToClipKey(py), "",
+      `${py} has no tone mark: there is no ${py}5 clip, so it must fall through to speech`);
+  });
+  // A marked syllable still resolves normally.
+  assert.equal(a.markedPinyinToClipKey("tīng"), "ting1");
+  assert.equal(a.markedPinyinToClipKey("kàn"), "kan4");
+});

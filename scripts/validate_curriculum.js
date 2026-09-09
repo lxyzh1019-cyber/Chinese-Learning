@@ -15,21 +15,45 @@ function assert(cond, msg) {
   if (!cond) throw new Error(msg);
 }
 
-/** Common kid-track homographs: warn if pinyin/en look like a less-common reading. */
-const HOMOGRAPH_WARN = [
-  { zh: "都", badPy: /^dū/i, hint: "prefer dōu (all/both) for learners" },
-  {
-    zh: "还",
-    badPy: /^huán/i,
-    hint: "hái (still/also) vs huán (return); check gloss matches pinyin",
-  },
-  {
-    zh: "行",
-    badPy: /^háng/i,
-    skipIfEn: /row|line|bank|industry|walk\s*of|surname/i,
-    hint: "xíng (OK/walk) vs háng (row); check gloss matches pinyin",
-  },
-];
+/**
+ * Readings a child should never meet as the default, found by COMPUTATION.
+ *
+ * This used to be a hand-written list of three characters that only warned —
+ * and its 行 rule carried `skipIfEn: /row|.../`, which suppressed the warning
+ * for exactly the defective row (`háng` "row") it was meant to catch. Three
+ * entries against 1,599 words, one of them self-defeating.
+ *
+ * The replacement compares every served reading against the curated story
+ * dictionary — the lexicon assembled from already-validated sources, which the
+ * child actually reads — and fails on a disagreement. That is a real oracle:
+ * it caught 27 rows the hand list did not, among them 听 as `yǐn`
+ * "smile (archaic)", 读 as `dòu` "comma" and 鸟 as `diǎo`, an obscenity.
+ *
+ * Entries below are the reviewed exceptions: places the two sources differ for
+ * a good reason. Anything not listed here must agree.
+ */
+const READING_EXCEPTIONS = {
+  // The dictionary glosses in context; the curriculum teaches the base word.
+  "妈": "the story reads 妈妈; the taught character is mā",
+  "爸": "the story reads 爸爸; the taught character is bà",
+  // Both readings are ordinary and the row's own pos backs the served one.
+  "干": "gàn (to do) is verb-first, as this row's pos says",
+  "只": "zhǐ (only) is adverb-first, as this row's pos says",
+  "头": "tóu (head) is noun-first, as this row's pos says",
+  "种": "zhǒng (kind/type) is the measure-word reading this row is tagged for",
+  "子": "zi as a word ending; the story gloss and the curriculum agree in sense",
+};
+
+function loadCuratedDictionary() {
+  try {
+    const built = require("./story-dictionary.js").build();
+    return built.dict || built;
+  } catch (e) {
+    return null;   // the dictionary needs the story corpus; skip rather than fail
+  }
+}
+
+const normPy = (p) => String(p || "").toLowerCase().normalize("NFC").replace(/\s+/g, "");
 
 /**
  * Dictionary artefacts that must never be a beginner's default meaning.
@@ -41,6 +65,37 @@ const HOMOGRAPH_WARN = [
 const JUNK_GLOSS = /variant of|abbr\./i;
 const JUNK_GLOSS_STRICT = /^\s*(surname |old variant of|used in )/i;
 const OVERRIDES = (() => { try { return require("./vocab-overrides.js"); } catch (e) { return {}; } })();
+
+const CURATED = loadCuratedDictionary();
+
+/**
+ * Senses that are dictionary machinery, not a meaning a ten-year-old can use.
+ * Kept in step with ARTEFACT_SENSE in scripts/build_hsk_curriculum.js: what the
+ * builder refuses to emit is what this refuses to accept.
+ */
+const ARTEFACT_SENSE = /\(chess\)|archaic|^\s*comma\s*$|first month of the lunar year|\bradical\b|^\(of (a|an) [a-z]+\)|dozen \(loanword\)/i;
+
+/**
+ * One served row against the curated dictionary and the artefact list.
+ *
+ * The comparison is COMPUTED here from the two data sources, not looked up in a
+ * table of known-bad rows — a list of the defects we already found cannot catch
+ * the next one, which is how the previous three-entry version missed 27.
+ */
+function checkReading(zh, py, en, where, problems) {
+  if (ARTEFACT_SENSE.test(en)) {
+    problems.push(`${where} is glossed "${en}" — a specialist or archaic sense, not a beginner's default`);
+  }
+  if (!CURATED || READING_EXCEPTIONS[zh]) return;
+  const entry = CURATED[zh];
+  if (!entry || !entry.py) return;
+  if (normPy(entry.py) !== normPy(py)) {
+    problems.push(
+      `${where} is read "${py}" but the curated story dictionary reads it "${entry.py}" ` +
+      `("${en}" vs "${entry.en}") — a child would hear one and see the other`
+    );
+  }
+}
 
 function checkVocabQuality(doc, name, problems) {
   const seen = (w, where) => {
@@ -80,7 +135,7 @@ function checkVocabQuality(doc, name, problems) {
   });
 }
 
-function checkLevel(doc, name) {
+function checkLevel(doc, name, problems) {
   // The level's size is no longer a magic 300: the ordinary-vocabulary
   // supplement grew each level, and pinning the constant here is what would
   // make adding a word look like a validation failure. The invariants that
@@ -109,29 +164,21 @@ function checkLevel(doc, name) {
         `${name}: ${w.zh} has a corrupted ${field} "${val}" — decoded with the wrong encoding`);
     }
 
-    for (const rule of HOMOGRAPH_WARN) {
-      if (w.zh !== rule.zh) continue;
-      if (rule.skipIfEn && rule.skipIfEn.test(en)) continue;
-      if (rule.badPy && rule.badPy.test(py)) {
-        console.warn(`${name}: homograph audit — ${rule.zh} pinyin "${py}" / "${en}" (${rule.hint})`);
-      }
-    }
+    checkReading(w.zh, py, en, `${name}: ${w.zh}`, problems);
   }
 
+  // The same defective row is copied into its gate's newWords and the next two
+  // gates' reviewWords, so report each character once rather than four times —
+  // the count should say how many words are wrong, not how many copies exist.
+  const seenInGates = new Set();
   for (const g of doc.gates) {
     for (const field of ["newWords", "reviewWords"]) {
       for (const w of g[field] || []) {
+        if (seenInGates.has(w.zh)) continue;
+        seenInGates.add(w.zh);
         const py = (w.pinyin || w.py || "").trim();
         const en = String(w.en || "");
-        for (const rule of HOMOGRAPH_WARN) {
-          if (w.zh !== rule.zh) continue;
-          if (rule.skipIfEn && rule.skipIfEn.test(en)) continue;
-          if (rule.badPy && rule.badPy.test(py)) {
-            console.warn(
-              `${name} gate ${g.gateId} ${field}: homograph audit — ${rule.zh} pinyin "${py}" / "${en}" (${rule.hint})`
-            );
-          }
-        }
+        checkReading(w.zh, py, en, `${name} gates: ${w.zh}`, problems);
       }
     }
   }
@@ -144,10 +191,11 @@ function main() {
   const h4 = readJson("hsk4.json");
   const culture = readJson("culture_stories.json");
 
-  checkLevel(h1, "hsk1");
-  checkLevel(h2, "hsk2");
-  checkLevel(h3, "hsk3");
-  checkLevel(h4, "hsk4");
+  const problems = [];
+  checkLevel(h1, "hsk1", problems);
+  checkLevel(h2, "hsk2", problems);
+  checkLevel(h3, "hsk3", problems);
+  checkLevel(h4, "hsk4", problems);
 
   const borrowed = h2.words.filter((w) => w.sourceTag === "HSK3_borrowed_for_HSK2").length;
   assert(borrowed === 103, `hsk2: borrowed words must be 103, got ${borrowed}`);
@@ -162,7 +210,6 @@ function main() {
   const familyRewardOK = culture.rewardCatalog.familyRewardTypes.includes("ask_parents_help");
   assert(familyRewardOK, "culture_stories: ask_parents_help reward missing");
 
-  const problems = [];
   [[h1, "hsk1"], [h2, "hsk2"], [h3, "hsk3"], [h4, "hsk4"]].forEach(([doc, name]) => {
     checkVocabQuality(doc, name, problems);
   });
