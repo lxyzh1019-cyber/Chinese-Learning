@@ -23,6 +23,21 @@ module.exports = {
   "老板": { py: "lǎo bǎn", en: "boss; shop owner" },
   "恶心": { py: "ě xin", en: "to feel sick; disgusting" },
 
+  // ── the 2026-09-09 audit: wrong on the most-tapped words in the stories ──
+  // 他 was "they" (219 tokens), 东西 "east and west" (74), 又 "after" (44),
+  // 故事 "old practice", 一起 "in the same place". A real English word passes
+  // every junk-gloss check, so validate_stories.js now pins these as well.
+  "他":   { py: "tā",      en: "he; him" },
+  "东西": { py: "dōng xi", en: "thing; things" },
+  "又":   { py: "yòu",     en: "again; both ... and" },
+  "故事": { py: "gù shi",  en: "story" },
+  "一起": { py: "yì qǐ",   en: "together" },
+  // Words the tokeniser was splitting into characters because no table
+  // carried them: 每|天 hid a movable time phrase from the sentence screens.
+  "每天": { py: "měi tiān", en: "every day" },
+  "骨头": { py: "gǔ tou",   en: "bone" },
+  "诗人": { py: "shī rén",  en: "poet" },
+
   // ── surname sense displacing the common word ──
   "也": { py: "yě",    en: "also; too" },
   "能": { py: "néng",  en: "can; to be able to" },

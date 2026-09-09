@@ -2657,3 +2657,93 @@ test("R1: finishing a gate quiz keeps a saved champion round, and resume picks t
   assert.equal(a.restoreGateQuizSession(), true);
   assert.equal(a.quizSt.isChampion, true, "the newer champion round is resumed");
 });
+
+// ── R2: the sentence builder must not score valid Chinese wrong ───────────
+// The generator's screens worked per chip, so 八|点 and 在|树|下 slipped
+// through and 我们八点出门 was served with 八点我们出门 scored wrong (audit
+// 2026-09-09). The screens now read chip pairs and part of speech, a reviewer
+// can list a second order, and a clause carries its sentence's English.
+
+const SB = require("../scripts/build_sentence_packs.js");
+
+test("R2: the screens reject the shapes the audit found served", () => {
+  const cases = [
+    [["我们", "八", "点", "出门"], "a time phrase can move"],
+    [["我们", "在", "树", "下", "看", "书"], "a place phrase can move"],
+    [["家里", "有", "米", "有", "肉"], "a repeated word reads both ways"],
+    [["让", "他", "想", "办法"], "opens without a subject"],
+    [["比", "房子", "还", "大"], "opens on a connective"],
+    [["他们", "每", "天", "骑", "马"], "a time phrase can move"],
+    [["有的", "时候", "我们", "也", "不", "同意"], "a …的时候 phrase can move"],
+    [["它", "妈妈", "说"], "a lead-in to speech, not a sentence"],
+  ];
+  cases.forEach(([words, why]) => {
+    assert.equal(SB.structuralReason(words), why, words.join("|"));
+  });
+  // and keeps a plain sentence
+  assert.equal(SB.structuralReason(["孔子", "是", "一", "位", "好", "老师"]), null);
+  assert.equal(SB.structuralReason(["纸", "很", "轻"]), null);
+});
+
+test("R2: an alternate must be the same chips in another order", () => {
+  const chips = ["我们", "八", "点", "出门", "。"];
+  assert.equal(SB.isChipPermutation(chips, "八点我们出门。"), true);
+  assert.equal(SB.isChipPermutation(chips, "我们八点出门。"), false, "the story's own order is not an alternate");
+  assert.equal(SB.isChipPermutation(chips, "八点出门。"), false, "a chip is missing");
+  assert.equal(SB.isChipPermutation(chips, "八点我们出门了。"), false, "a chip was added");
+});
+
+test("R2: checkSB accepts a reviewer-approved second order and pays it in full", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 2;
+  a.curriculumCache.levels[2] = { gates: [{ gateId: 1, sentenceTargetsPack: [["我们", "八", "点", "出门", "。"]],
+    sentenceTargetsMeta: { "我们八点出门。": { py: "wǒ men bā diǎn chū mén", en: null,
+      enContext: "We leave at eight, and it takes twenty minutes.", alt: ["八点我们出门。"] } } }] };
+  sbQuiz(a, [["我们", "八", "点", "出门", "。"]]);
+  a.launchConfetti = () => {};
+  a.sbBuilt = ["八", "点", "我们", "出门", "。"];
+  a.checkSB();
+  assert.equal(a.quizSt.quizCorrect, 1, "the other valid order is right");
+  assert.equal(a.quizSt.score, 20);
+  assert.equal(a.quizSt.sbRevealed, null, "and nothing was revealed as a correction");
+});
+
+test("R2: every served clause without English carries its sentence's English", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const g of doc.gates) {
+      for (const chips of g.sentenceTargetsPack || []) {
+        const m = g.sentenceTargetsMeta[chips.join("")];
+        assert.ok(m.en || m.enContext, `hsk${lv} gate ${g.gateId}: "${chips.join("")}" has no hint at all`);
+        if (m.borrowedFrom) assert.ok(Math.abs(m.borrowedFrom - g.gateId) <= 4, "borrowed from a neighbour");
+      }
+    }
+  }
+});
+
+test("R2: the served packs pass an independent reading of the screens", () => {
+  // Computed here with its own lists, not by calling structuralReason.
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const NUM = /^[一二三四五六七八九十百千两几半零]+$/;
+  const UNIT = /^(点|天|年|月|号|岁|个月|星期)$/;
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const g of doc.gates) {
+      for (const chips of g.sentenceTargetsPack || []) {
+        const w = chips.filter((c) => c !== "。");
+        const at = `hsk${lv} gate ${g.gateId} "${chips.join("")}"`;
+        assert.ok(!w.some((c) => /^(在|从|离|往|向)$/.test(c)), `${at}: place phrase`);
+        for (let i = 0; i + 1 < w.length; i++) {
+          assert.ok(!((NUM.test(w[i]) || w[i] === "每") && UNIT.test(w[i + 1])), `${at}: time phrase`);
+        }
+        const seen = new Set();
+        w.forEach((c) => { assert.ok(!(seen.has(c) && !/^(的|了|吗|呢|吧|啊)$/.test(c)), `${at}: repeated "${c}"`); seen.add(c); });
+        assert.ok(!/^(比|也|都|还|就|才|又|很|太|更|最)$/.test(w[0]), `${at}: opens on a connective`);
+      }
+    }
+  }
+});

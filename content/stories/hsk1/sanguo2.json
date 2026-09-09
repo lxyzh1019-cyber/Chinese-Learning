@@ -162,7 +162,8 @@
     },
     {
       "zh": "有的时候我们也不同意，可是很快就好了。",
-      "en": "Sometimes we disagree, but we make up quickly."
+      "en": "Sometimes we disagree, but we make up quickly.",
+      "seg": ["有的", "时候", "我们", "也", "不", "同意", "，", "可是", "很", "快", "就", "好", "了", "。"]
     },
     {
       "zh": "有一次，我生病了，朋友来看我。",
@@ -255,7 +256,7 @@
         {
           "zh": "他",
           "py": "tā",
-          "mn": "they"
+          "mn": "he"
         },
         {
           "zh": "们",

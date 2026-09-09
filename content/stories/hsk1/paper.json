@@ -338,7 +338,9 @@
     },
     {
       "zh": "学生可以带着书上学，老师可以写下课文。",
-      "en": "Students could carry books to school, and teachers could write out lessons."
+      "en": "Students could carry books to school, and teachers could write out lessons.",
+      "seg": ["学生", "可以", "带", "着", "书", "上学", "，", "老师", "可以",
+        {"zh": "写下", "py": "xiě xià", "mn": "to write down"}, "课文", "。"]
     },
     {
       "zh": "后来，纸从中国到了别的国家。",

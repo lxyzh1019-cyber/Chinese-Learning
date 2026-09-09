@@ -37,6 +37,71 @@ const warn = (m) => { warnings++; console.warn(`  warn  ${m}`); };
 const PUNCT_ANY = /[。！？，、；：“”‘’（）《》\s]/g;
 const stripPunct = (t) => String(t || "").replace(PUNCT_ANY, "");
 
+/**
+ * Screens re-stated here, independently of the builder's lists, for the
+ * shapes the 2026-09-09 audit found served: a time phrase split into chips
+ * (八|点), a place phrase behind a preposition (在|树|下), a repeated word
+ * (有米有肉) and a clause with its subject cut off (让他想办法). Part of
+ * speech is read straight from the curriculum tables, not through the builder.
+ */
+const IND = {
+  prep: /^(在|从|离|往|向|朝)$/,
+  num: /^[一二三四五六七八九十百千两几半零\d]+$/,
+  unit: /^(点|天|年|月|号|个月|星期|小时|分钟|岁)$/,
+  numTime: /^[一二三四五六七八九十百千两几半零\d]+(点|天|年|月|号|岁)$/,
+  particle: /^(的|了|吗|呢|吧|啊)$/,
+  nominal: /^(n|r|nr|ns|nz|s|t|m|mq|tg)$/,
+};
+let POS = null;
+function posOf(w) {
+  if (!POS) {
+    POS = {};
+    [1, 2, 3, 4].forEach((lv) => {
+      const f = path.join(ROOT, "data", `hsk${lv}.json`);
+      if (!fs.existsSync(f)) return;
+      (JSON.parse(fs.readFileSync(f, "utf8")).words || []).forEach((x) => {
+        if (!POS[x.zh]) POS[x.zh] = (x.meta && x.meta.pos) || [];
+      });
+    });
+  }
+  return POS[w] || null;
+}
+function independentReason(words) {
+  if (words.some((w) => IND.prep.test(w))) return "carries a place phrase that can move";
+  if (words.some((w) => /时候$/.test(w))) return "carries a 时候 phrase that can move";
+  for (let i = 0; i < words.length; i++) {
+    if (IND.numTime.test(words[i])) return `"${words[i]}" is a time phrase that can move`;
+    if (i + 1 < words.length && (IND.num.test(words[i]) || words[i] === "每") && IND.unit.test(words[i + 1])) {
+      return `"${words[i]}${words[i + 1]}" is a time phrase that can move`;
+    }
+  }
+  const seen = new Set();
+  for (const w of words) {
+    if (seen.has(w) && !IND.particle.test(w)) return `"${w}" repeats, so two orders read the same`;
+    seen.add(w);
+  }
+  const p0 = posOf(words[0]);
+  if (p0 && p0.length && !p0.some((t) => IND.nominal.test(t))) return `opens on "${words[0]}" (${p0.join(",")}) with no subject`;
+  return null;
+}
+/** Is `str` exactly the chips of `chips` in another order? */
+function isPermutation(chips, str) {
+  if (str === chips.join("")) return false;
+  const left = chips.slice();
+  const walk = (pos) => {
+    if (pos === str.length) return left.length === 0;
+    for (let i = 0; i < left.length; i++) {
+      if (str.startsWith(left[i], pos)) {
+        const c = left.splice(i, 1)[0];
+        if (walk(pos + c.length)) return true;
+        left.splice(i, 0, c);
+      }
+    }
+    return false;
+  };
+  return walk(0);
+}
+
 function storyTextForGate(lv, gateId) {
   const dir = path.join(ROOT, "content", "stories", `hsk${lv}`);
   if (!fs.existsSync(dir)) return "";
@@ -107,19 +172,33 @@ function main() {
         // becomes 人们说他是书圣 — the same words in the same order the child
         // read, with the typography removed. Comparing raw would report that as
         // invented text.
-        if (text && stripPunct(text).indexOf(stripPunct(words.join(""))) === -1) {
-          fail(`${at}: "${words.join("")}" is not in this gate's story text`);
+        // A borrowed entry (a short gate filled from a neighbour at the same
+        // level) must come from THAT gate's story, and say so.
+        const m = meta[answer];
+        const from = m && m.borrowedFrom ? Number(m.borrowedFrom) : gate.gateId;
+        const src = from === gate.gateId ? text : storyTextForGate(lv, from);
+        if (m && m.borrowedFrom && Math.abs(from - gate.gateId) > 4) {
+          fail(`${at}: borrowed from gate ${from}, which is not a neighbour`);
+        }
+        if (src && stripPunct(src).indexOf(stripPunct(words.join(""))) === -1) {
+          fail(`${at}: "${words.join("")}" is not in gate ${from}'s story text`);
         }
         // 2. Recomputed here, not taken from the builder.
         const why = B.structuralReason(words);
         if (why) fail(`${at}: "${answer}" — ${why}`);
+        const why2 = independentReason(words);
+        if (why2) fail(`${at}: "${answer}" — ${why2}`);
+        const alt = (m && Array.isArray(m.alt)) ? m.alt : [];
+        alt.forEach((s) => {
+          if (!isPermutation(chips, s)) fail(`${at}: alternate "${s}" is not the same chips in another order`);
+        });
         if (B.hasLicensedAlternative(model, words)) {
           fail(`${at}: "${answer}" can be rearranged into another sentence the corpus licenses, and checkSB would mark it wrong`);
         }
         // 3. Its metadata must be present and match.
-        const m = meta[answer];
         if (!m) fail(`${at}: no entry in sentenceTargetsMeta for "${answer}"`);
         else if (!m.storyId) fail(`${at}: metadata names no source story`);
+        else if (!m.whole && !m.en && !m.enContext) fail(`${at}: a clause with no English and no sentence context gives the child nothing to check against`);
       });
     });
 

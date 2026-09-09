@@ -7202,8 +7202,12 @@ function renderSBPhase(qc,scoreBar){
   const sbMeta=sbMetaFor(words.join(''),quizSt.did,!!quizSt.isChampion);
   // renderGateLesson's `esc` is scoped to that function; this needs its own.
   const sbEsc=(t)=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const sbHint=(sbMeta&&sbMeta.en)
-    ?`<div class="q-prompt-en" style="font-size:.82rem;color:var(--muted);margin:.1rem 0 .5rem;">${sbEsc(sbMeta.en)}</div>`
+  // A clause cut from a longer sentence has no English of its own; the
+  // sentence it came from does, and naming it tells the child which sentence
+  // is wanted. 207 of 253 entries had no hint at all before this.
+  const sbHintText=sbMeta?(sbMeta.en||(sbMeta.enContext?'Part of: '+sbMeta.enContext:'')):'';
+  const sbHint=sbHintText
+    ?`<div class="q-prompt-en" style="font-size:.82rem;color:var(--muted);margin:.1rem 0 .5rem;">${sbEsc(sbHintText)}</div>`
     :'';
   const shuffled=[...words].sort(()=>Math.random()-.5);
   qc.innerHTML=scoreBar+`
@@ -7267,7 +7271,12 @@ function checkSB(){
   if(!correct)return;
   if(!lockAnswer())return;
   const fb=document.getElementById('q-fb');
-  const isCorrect=sbBuilt.join('')===correct.join('');
+  // The story's order, plus any second order a reviewer has approved in the
+  // pack metadata (scripts/sentence-alternates.js). A child who builds good
+  // Chinese in a different order is not marked wrong (§9.6).
+  const built=sbBuilt.join('');
+  const sbAlt=(sbMetaFor(correct.join(''),quizSt.did,!!quizSt.isChampion)||{}).alt||[];
+  const isCorrect=built===correct.join('')||sbAlt.includes(built);
   // Has this sentence already been missed and its answer shown? The retry is
   // then practice: the child is rebuilding a sentence they were just given, so
   // it neither counts a second attempt nor pays again (§25 — being told is not

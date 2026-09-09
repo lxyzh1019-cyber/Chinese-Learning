@@ -130,6 +130,30 @@ function checkCrossLevelFacts() {
   });
 }
 
+/**
+ * Glosses that must read a certain way on the words a child taps most.
+ *
+ * Every check above catches a SHAPE of junk — a fragment, a code, a surname.
+ * The 2026-09-09 audit found the corpus glossing 他 "they" on 219 tokens,
+ * 东西 "east and west" on 74 and 又 "after" on 44: real English words, so no
+ * shape test could see them. A pinned list is the only guard for this class.
+ * Each entry is a pattern the gloss must match, case-insensitive.
+ */
+// Glosses are written in context, so a pattern must accept the inflection the
+// sentence needed: 说 is "said" as often as "to say".
+const PINNED_GLOSS = {
+  "他": /\b(he|him|his)\b/i, "她": /\b(she|her)\b/i, "它": /\b(it|its)\b/i, "我": /\b(I|me|my)\b/,
+  "你": /\byou\b/i, "东西": /thing/i, "又": /again|both|also|and/i, "故事": /stor(y|ies)|tale/i,
+  "一起": /together/i, "是": /\b(is|was|are|were|am|be)\b/i, "有": /\bha(ve|s|d)\b|there (is|was|are|were)/i,
+  "不": /\bno(t)?\b|n't|cannot/i, "没有": /not|no\b|n't|without/i, "人": /person|people|man|men/i,
+  "很": /very|really|so\b|many|much|quite/i, "都": /\ball\b|both|every/i, "也": /also|too|as well|either/i,
+  "和": /\band\b|with/i, "说": /sa(y|id|ys)|sp(eak|oke)|talk|t(ell|old)/i,
+  "看": /look|watch|s(ee|aw)|read/i, "去": /\bg(o|oes|one|oing)\b|went|leave|out|away/i,
+  "来": /com(e|es|ing)|came/i, "大": /big|large|great|huge|grow|loud/i, "小": /small|little|young/i,
+  "好": /good|well|fine|nice|better|ok/i, "中国": /China|Chinese/i, "学": /learn|stud/i,
+  "书": /book/i, "水": /water|flood/i,
+};
+
 function main() {
   const skip = new Set(pending().notLaddered || []);
   let checked = 0, laddered = 0;
@@ -186,6 +210,8 @@ function main() {
             fail(`${at}: "${zh}" is glossed "${en}" — a grammar code with a word stuck on it`);
           } else if (en.length < 2) {
             fail(`${at}: "${zh}" is glossed "${en}" — too short to be a meaning`);
+          } else if (PINNED_GLOSS[zh] && !PINNED_GLOSS[zh].test(en)) {
+            fail(`${at}: "${zh}" is glossed "${en}" — a real English word, but not this word's meaning`);
           }
         });
       });
