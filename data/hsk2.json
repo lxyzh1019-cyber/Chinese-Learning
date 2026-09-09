@@ -17777,9 +17777,9 @@
           "冷",
           "的",
           "时候",
+          "日子",
           "非常",
-          "难",
-          "过",
+          "苦",
           "。"
         ],
         [
@@ -17820,8 +17820,8 @@
           "sentIndex": 1,
           "whole": false
         },
-        "天冷的时候非常难过。": {
-          "py": "tiān lěng de shíhou fēi cháng nán guò",
+        "天冷的时候日子非常苦。": {
+          "py": "tiān lěng de shíhou rì zi fēi cháng kǔ",
           "en": null,
           "storyId": "rider",
           "sentIndex": 2,
@@ -18522,8 +18522,7 @@
         [
           "他",
           "家里",
-          "不",
-          "有",
+          "没有",
           "钱",
           "。"
         ],
@@ -18567,8 +18566,8 @@
         ]
       ],
       "sentenceTargetsMeta": {
-        "他家里不有钱。": {
-          "py": "tā jiā lǐ bù yǒu qián",
+        "他家里没有钱。": {
+          "py": "tā jiā lǐ méi yǒu qián",
           "en": null,
           "storyId": "scholar2",
           "sentIndex": 1,
@@ -19320,6 +19319,16 @@
           "。"
         ],
         [
+          "那",
+          "种",
+          "茶",
+          "里",
+          "放",
+          "了",
+          "牛奶",
+          "。"
+        ],
+        [
           "天",
           "冷",
           "的",
@@ -19334,13 +19343,6 @@
           "过",
           "了",
           "山",
-          "。"
-        ],
-        [
-          "有的",
-          "东西",
-          "很",
-          "香",
           "。"
         ]
       ],
@@ -19366,6 +19368,13 @@
           "sentIndex": 2,
           "whole": false
         },
+        "那种茶里放了牛奶。": {
+          "py": "nà zhòng chá lǐ fàng le niú nǎi",
+          "en": null,
+          "storyId": "yuan2",
+          "sentIndex": 4,
+          "whole": false
+        },
         "天冷的时候喝一杯。": {
           "py": "tiān lěng de shíhou hē yī bēi",
           "en": null,
@@ -19377,13 +19386,6 @@
           "py": "tā men guò le shān",
           "en": null,
           "storyId": "yuan",
-          "sentIndex": 7,
-          "whole": false
-        },
-        "有的东西很香。": {
-          "py": "yǒu de dōng xī hěn xiāng",
-          "en": null,
-          "storyId": "yuan2",
           "sentIndex": 7,
           "whole": false
         }
@@ -22380,7 +22382,7 @@
           "学校",
           "里",
           "教",
-          "数",
+          "数学",
           "。"
         ],
         [
@@ -22424,8 +22426,8 @@
           "sentIndex": 2,
           "whole": false
         },
-        "学校里教数。": {
-          "py": "xué xiào lǐ jiāo shù",
+        "学校里教数学。": {
+          "py": "xué xiào lǐ jiāo shù xué",
           "en": null,
           "storyId": "republic2",
           "sentIndex": 3,

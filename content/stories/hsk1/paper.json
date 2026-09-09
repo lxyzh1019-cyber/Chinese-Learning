@@ -349,62 +349,8 @@
       "en": "Many people around the world began writing on paper."
     },
     {
-      "zh": "蔡伦的发明改变中国和世界。",
-      "en": "Cai Lun's invention changed China and the world.",
-      "seg": [
-        {
-          "t": "n",
-          "zh": "蔡伦",
-          "py": "Cài Lún",
-          "mn": "Cai Lun"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "of; belonging to"
-        },
-        {
-          "zh": "发明",
-          "py": "fāmíng",
-          "mn": "invention",
-          "bonus": true
-        },
-        {
-          "zh": "改",
-          "py": "gǎi",
-          "mn": "changed"
-        },
-        {
-          "zh": "变",
-          "py": "biàn",
-          "mn": "changed"
-        },
-        {
-          "t": "n",
-          "zh": "中国",
-          "py": "Zhōngguó",
-          "mn": "China"
-        },
-        {
-          "zh": "和",
-          "py": "hé",
-          "mn": "and"
-        },
-        {
-          "zh": "世",
-          "py": "shì",
-          "mn": "world; age"
-        },
-        {
-          "zh": "界",
-          "py": "jiè",
-          "mn": "boundary; world"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
+      "zh": "蔡伦的发明改变了中国和世界。",
+      "en": "Cai Lun's invention changed China and the world."
     }
   ]
 }

@@ -5,7 +5,7 @@
   "title": "HSK1 Gate 5 · Qin Dynasty",
   "explanationEn": "Gate 5: Qin Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第5关：秦朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "秦始皇是中国第一个大王。他让中国的字都一样。北边有人常常来，所以他很想做一件事。他要做一个很大的长城。",
+  "passage": "秦始皇是中国第一个大王。他让中国的字都一样。北边有人常常来，所以他很想做一件事。他要建一个很大的长城。",
   "passageEn": "Qin Shi Huang was China's first great king. He made the characters of China all the same. People often came from the north, so he wanted very much to do one thing. He wanted to build a very large Great Wall.",
   "keyVocab": [
     {
@@ -34,19 +34,19 @@
       "en": "same"
     },
     {
-      "zh": "北",
-      "pinyin": "běi",
-      "en": "north"
-    },
-    {
-      "zh": "边",
-      "pinyin": "biān",
-      "en": "side; edge"
+      "zh": "北边",
+      "pinyin": "běi biān",
+      "en": "the north side"
     },
     {
       "zh": "有人",
       "pinyin": "yǒu rén",
       "en": "someone"
+    },
+    {
+      "zh": "常",
+      "pinyin": "cháng",
+      "en": "often; usual"
     }
   ],
   "comprehension": [
@@ -89,7 +89,7 @@
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o4",
@@ -115,7 +115,7 @@
         },
         {
           "id": "o2",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o3",
@@ -150,11 +150,11 @@
         },
         {
           "id": "o3",
-          "text": "Long ago, the waters of China were very high."
+          "text": "Long ago, great floods came to China."
         },
         {
           "id": "o4",
-          "text": "The water was very big; many people had no home."
+          "text": "The floods came, and many people had no home."
         }
       ],
       "answerId": "o2",

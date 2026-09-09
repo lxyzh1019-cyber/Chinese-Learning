@@ -10,8 +10,8 @@
   "keyVocab": [
     {
       "zh": "时候",
-      "pinyin": "shíhòu",
-      "en": "period"
+      "pinyin": "shíhou",
+      "en": "time; moment"
     },
     {
       "zh": "北",
@@ -31,7 +31,7 @@
     {
       "zh": "着",
       "pinyin": "zhe",
-      "en": "(-ing, still going on)"
+      "en": "(-ing, an action going on)"
     },
     {
       "zh": "多",
@@ -75,7 +75,7 @@
       "kind": "wordMeaning",
       "skill": "meaning",
       "zh": "时候",
-      "pinyin": "shíhòu",
+      "pinyin": "shíhou",
       "promptEn": "In the story, what does 时候 mean?",
       "prompt": "短文里的“时候”是什么意思？",
       "options": [
@@ -93,12 +93,12 @@
         },
         {
           "id": "o4",
-          "text": "period"
+          "text": "time; moment"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "时候 (shíhòu) means \"period\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhòu）的意思是“period”，就在上面的短文里。"
+      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
+      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_17_w2",
@@ -136,7 +136,7 @@
       "skill": "contextComprehension",
       "zh": "金朝的时候，北方住着很多不同的人。",
       "targetZh": "时候",
-      "targetPinyin": "shíhòu",
+      "targetPinyin": "shíhou",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [

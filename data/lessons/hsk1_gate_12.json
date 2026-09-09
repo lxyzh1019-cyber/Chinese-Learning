@@ -10,8 +10,8 @@
   "keyVocab": [
     {
       "zh": "时候",
-      "pinyin": "shíhòu",
-      "en": "period"
+      "pinyin": "shíhou",
+      "en": "time; moment"
     },
     {
       "zh": "大",
@@ -19,9 +19,9 @@
       "en": "great"
     },
     {
-      "zh": "名",
-      "pinyin": "míng",
-      "en": "name"
+      "zh": "有名",
+      "pinyin": "yǒu míng",
+      "en": "famous"
     },
     {
       "zh": "城",
@@ -75,13 +75,13 @@
       "kind": "wordMeaning",
       "skill": "meaning",
       "zh": "时候",
-      "pinyin": "shíhòu",
+      "pinyin": "shíhou",
       "promptEn": "In the story, what does 时候 mean?",
       "prompt": "短文里的“时候”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "period"
+          "text": "time; moment"
         },
         {
           "id": "o2",
@@ -93,12 +93,12 @@
         },
         {
           "id": "o4",
-          "text": "before"
+          "text": "from"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "时候 (shíhòu) means \"period\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhòu）的意思是“period”，就在上面的短文里。"
+      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
+      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_12_w2",
@@ -119,7 +119,7 @@
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "from"
         },
         {
           "id": "o4",
@@ -136,13 +136,13 @@
       "skill": "contextComprehension",
       "zh": "唐朝的时候，中国很大也很有名。",
       "targetZh": "时候",
-      "targetPinyin": "shíhòu",
+      "targetPinyin": "shíhou",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "The water was very big; many people had no home."
+          "text": "The floods came, and many people had no home."
         },
         {
           "id": "o2",
@@ -154,7 +154,7 @@
         },
         {
           "id": "o4",
-          "text": "Long ago, the waters of China were very high."
+          "text": "Long ago, great floods came to China."
         }
       ],
       "answerId": "o3",

@@ -2492,3 +2492,20 @@ test("C2: every pack sentence is buildable from its chips exactly once", () => {
     }
   }
 });
+
+// ── C4: the two tellings of one story must agree on the facts ────────────
+test("C4: Dayu is away for the same number of years at every level", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const years = {};
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "stories", `hsk${lv}.json`), "utf8"));
+    const story = doc.stories[`xia-h${lv}`];
+    const text = story.sents.map((s) => s.map((t) => (t.t === "p" ? t.tx : (t.tx || t.ch))).join("")).join("");
+    // Computed here from the text, not read from a fixture.
+    const m = text.match(/[一二三四五六七八九十]+(?=年)/g) || [];
+    years[lv] = m.filter((n) => n === "三十" || n === "十三");
+  }
+  assert.deepEqual(years[1], ["十三"], "HSK1 said 三十年 where HSK2 said 十三年");
+  assert.deepEqual(years[2], ["十三"]);
+});

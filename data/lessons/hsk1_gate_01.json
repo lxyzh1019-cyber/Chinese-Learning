@@ -5,8 +5,8 @@
   "title": "HSK1 Gate 1 · Xia Dynasty",
   "explanationEn": "Gate 1: Xia Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第1关：夏朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "很久以前，中国的水很大。水很大，很多人没有家。大禹是一位好人。王请他去看水，让他想办法。",
-  "passageEn": "Long ago, the waters of China were very high. The water was very big; many people had no home. Dayu was a good person. The king asked him to look at the water and find a way.",
+  "passage": "很久以前，中国发大水。大水来了，很多人没有家。大禹是一位好人。王请他去看水，让他想办法。",
+  "passageEn": "Long ago, great floods came to China. The floods came, and many people had no home. Dayu was a good person. The king asked him to look at the water and find a way.",
   "keyVocab": [
     {
       "zh": "久",
@@ -14,9 +14,19 @@
       "en": "long time"
     },
     {
-      "zh": "以前",
-      "pinyin": "yǐ qián",
+      "zh": "前",
+      "pinyin": "qián",
       "en": "before"
+    },
+    {
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
+    },
+    {
+      "zh": "大",
+      "pinyin": "dà",
+      "en": "big"
     },
     {
       "zh": "水",
@@ -24,9 +34,9 @@
       "en": "water"
     },
     {
-      "zh": "大",
-      "pinyin": "dà",
-      "en": "great"
+      "zh": "来",
+      "pinyin": "lái",
+      "en": "to come"
     },
     {
       "zh": "多",
@@ -36,25 +46,15 @@
     {
       "zh": "人",
       "pinyin": "rén",
-      "en": "person"
-    },
-    {
-      "zh": "没",
-      "pinyin": "méi",
-      "en": "no"
-    },
-    {
-      "zh": "家",
-      "pinyin": "jiā",
-      "en": "home"
+      "en": "people"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "Long ago, the waters of China were very high.",
-      "answer": "很久以前，中国的水很大。"
+      "answerEn": "Long ago, great floods came to China.",
+      "answer": "很久以前，中国发大水。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
@@ -104,10 +104,10 @@
       "id": "hsk1_gate_01_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "以前",
-      "pinyin": "yǐ qián",
-      "promptEn": "In the story, what does 以前 mean?",
-      "prompt": "短文里的“以前”是什么意思？",
+      "zh": "前",
+      "pinyin": "qián",
+      "promptEn": "In the story, what does 前 mean?",
+      "prompt": "短文里的“前”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -127,14 +127,14 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "以前 (yǐ qián) means \"before\" — you can find it in the passage above.",
-      "explanation": "“以前”（yǐ qián）的意思是“before”，就在上面的短文里。"
+      "explanationEn": "前 (qián) means \"before\" — you can find it in the passage above.",
+      "explanation": "“前”（qián）的意思是“before”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_01_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "很久以前，中国的水很大。",
+      "zh": "很久以前，中国发大水。",
       "targetZh": "久",
       "targetPinyin": "jiǔ",
       "promptEn": "What does this sentence say?",
@@ -146,7 +146,7 @@
         },
         {
           "id": "o2",
-          "text": "Long ago, the waters of China were very high."
+          "text": "Long ago, great floods came to China."
         },
         {
           "id": "o3",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o2",
-      "explanationEn": "\"很久以前，中国的水很大。\" means \"Long ago, the waters of China were very high.\".",
-      "explanation": "“很久以前，中国的水很大。”的意思是“Long ago, the waters of China were very high.”。"
+      "explanationEn": "\"很久以前，中国发大水。\" means \"Long ago, great floods came to China.\".",
+      "explanation": "“很久以前，中国发大水。”的意思是“Long ago, great floods came to China.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Xia Dynasty in two or three short Chinese sentences. Use words from the list above.",

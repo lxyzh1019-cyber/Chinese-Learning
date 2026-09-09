@@ -5,7 +5,7 @@
   "title": "HSK2 Gate 11 · Sui Dynasty",
   "explanationEn": "Gate 11: Sui Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第11关：隋朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "中国很大，北边和南边差得很远。北边天气冷，南边天气热。南边的田里可以种很多米。可是要把米送到北边去，非常不方便。",
+  "passage": "中国很大，北边和南边离得很远。北边天气冷，南边天气热。南边的田里可以种很多稻子。可是要把米送到北边去，非常不方便。",
   "passageEn": "China is large, and the north and south are far apart. The north is cold and the south is hot. A great deal of rice can be grown in the southern fields. But getting that rice to the north was very inconvenient.",
   "keyVocab": [
     {
@@ -14,29 +14,24 @@
       "en": "great"
     },
     {
-      "zh": "北",
-      "pinyin": "běi",
-      "en": "north"
+      "zh": "北边",
+      "pinyin": "běi biān",
+      "en": "the north side"
     },
     {
-      "zh": "边",
-      "pinyin": "biān",
-      "en": "side; edge"
+      "zh": "南边",
+      "pinyin": "nán bian",
+      "en": "the south"
     },
     {
-      "zh": "南",
-      "pinyin": "nán",
-      "en": "south"
-    },
-    {
-      "zh": "差",
-      "pinyin": "chā",
-      "en": "difference; discrepancy"
+      "zh": "离",
+      "pinyin": "lí",
+      "en": "away from"
     },
     {
       "zh": "得",
       "pinyin": "de",
-      "en": "(before how it is done)"
+      "en": "(joins a verb to how it is done)"
     },
     {
       "zh": "远",
@@ -44,9 +39,14 @@
       "en": "far"
     },
     {
-      "zh": "天",
-      "pinyin": "tiān",
-      "en": "day; sky"
+      "zh": "天气",
+      "pinyin": "tiān qì",
+      "en": "weather"
+    },
+    {
+      "zh": "冷",
+      "pinyin": "lěng",
+      "en": "cold"
     }
   ],
   "comprehension": [
@@ -54,13 +54,13 @@
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
       "answerEn": "China is large, and the north and south are far apart.",
-      "answer": "中国很大，北边和南边差得很远。"
+      "answer": "中国很大，北边和南边离得很远。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
       "answerEn": "A great deal of rice can be grown in the southern fields.",
-      "answer": "南边的田里可以种很多米。"
+      "answer": "南边的田里可以种很多稻子。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -104,14 +104,14 @@
       "id": "hsk2_gate_11_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "北",
-      "pinyin": "běi",
-      "promptEn": "In the story, what does 北 mean?",
-      "prompt": "短文里的“北”是什么意思？",
+      "zh": "北边",
+      "pinyin": "běi biān",
+      "promptEn": "In the story, what does 北边 mean?",
+      "prompt": "短文里的“北边”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "north"
+          "text": "the north side"
         },
         {
           "id": "o2",
@@ -127,14 +127,14 @@
         }
       ],
       "answerId": "o1",
-      "explanationEn": "北 (běi) means \"north\" — you can find it in the passage above.",
-      "explanation": "“北”（běi）的意思是“north”，就在上面的短文里。"
+      "explanationEn": "北边 (běi biān) means \"the north side\" — you can find it in the passage above.",
+      "explanation": "“北边”（běi biān）的意思是“the north side”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_11_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "中国很大，北边和南边差得很远。",
+      "zh": "中国很大，北边和南边离得很远。",
       "targetZh": "大",
       "targetPinyin": "dà",
       "promptEn": "What does this sentence say?",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o4",
-      "explanationEn": "\"中国很大，北边和南边差得很远。\" means \"China is large, and the north and south are far apart.\".",
-      "explanation": "“中国很大，北边和南边差得很远。”的意思是“China is large, and the north and south are far apart.”。"
+      "explanationEn": "\"中国很大，北边和南边离得很远。\" means \"China is large, and the north and south are far apart.\".",
+      "explanation": "“中国很大，北边和南边离得很远。”的意思是“China is large, and the north and south are far apart.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Sui Dynasty in two or three short Chinese sentences. Use words from the list above.",

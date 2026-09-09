@@ -48,8 +48,79 @@
       "en": "He loved learning new things."
     },
     {
-      "zh": "他学过数，也学过西边来的学问。",
-      "en": "He studied numbers, and learning that came from the west."
+      "zh": "他学过数学，也学过西边来的学问。",
+      "en": "He studied mathematics, and learning that came from the west.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to study"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(have done)"
+        },
+        {
+          "zh": "数学",
+          "py": "shù xué",
+          "mn": "mathematics",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to study"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(have done)"
+        },
+        {
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "learning"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "西边来的人给他讲天上的事情。",
@@ -60,7 +131,7 @@
       "en": "He also had many books made for him."
     },
     {
-      "zh": "他让人走过全国，做了一张很大的地图。",
+      "zh": "他让人走过全国，画了一张很大的地图。",
       "en": "He sent men across the whole country to make a great map."
     },
     {

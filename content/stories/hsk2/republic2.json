@@ -24,8 +24,69 @@
       "en": "They attended the new schools."
     },
     {
-      "zh": "学校里教数，也教西边的学问。",
-      "en": "The schools taught numbers, and western learning."
+      "zh": "学校里教数学，也教西边的学问。",
+      "en": "The schools taught mathematics, and western learning.",
+      "seg": [
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
+        },
+        {
+          "zh": "数学",
+          "py": "shù xué",
+          "mn": "mathematics",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
+        },
+        {
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "learning"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "有的人还去别的国家读书。",

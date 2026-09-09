@@ -35,8 +35,83 @@
       "en": "He went back to his own home and began to farm."
     },
     {
-      "zh": "他种米，也种菜，还种了很多花。",
-      "en": "He grew rice and vegetables, and many flowers as well."
+      "zh": "他种稻子，也种菜，还种了很多花。",
+      "en": "He grew rice and vegetables, and many flowers as well.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "to grow"
+        },
+        {
+          "zh": "稻子",
+          "py": "dào zi",
+          "mn": "rice plants",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "to grow"
+        },
+        {
+          "zh": "菜",
+          "py": "cài",
+          "mn": "vegetables"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "also"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "to grow"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "花",
+          "py": "huā",
+          "mn": "flowers"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "早上他去田里工作，晚上他写诗。",

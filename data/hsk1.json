@@ -7098,7 +7098,7 @@
         [
           "水",
           "很",
-          "大",
+          "深",
           "。"
         ],
         [
@@ -7136,11 +7136,11 @@
           "sentIndex": 4,
           "whole": true
         },
-        "水很大。": {
-          "py": "shuǐ hěn dà",
+        "水很深。": {
+          "py": "shuǐ hěn shēn",
           "en": null,
-          "storyId": "xia",
-          "sentIndex": 1,
+          "storyId": "xia2",
+          "sentIndex": 2,
           "whole": false
         },
         "让他想办法。": {
@@ -21885,7 +21885,7 @@
         [
           "他",
           "学",
-          "数",
+          "数学",
           "。"
         ],
         [
@@ -21903,8 +21903,8 @@
           "sentIndex": 1,
           "whole": true
         },
-        "他学数。": {
-          "py": "tā xué shù",
+        "他学数学。": {
+          "py": "tā xué shù xué",
           "en": null,
           "storyId": "qing",
           "sentIndex": 5,
