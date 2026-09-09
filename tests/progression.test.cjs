@@ -2056,3 +2056,56 @@ test("A26: a lesson with no checked questions keeps the old self-report flow", a
   assert.ok(html.includes("Reveal"), "HSK3 and HSK4 have no story to build questions from yet");
   assert.equal(html.indexOf("lchk-opts-0"), -1);
 });
+
+// ── F1: a flashcard pass must not cost a child their cleared gates ────────
+// The writer used `flashPassDone[String(did)]` while gameUnlockForDid reads
+// `flashPassDone[gateKeyOf(did)]`, so Trace never unlocked at all — and the
+// bare numeric key made GateIdentity.needsMigration treat an already-modern
+// save as legacy, whose remap then filtered every `h1-g01` key to NaN.
+
+test("F1: finishing a flashcard pass unlocks Trace for that gate", () => {
+  const a = app();
+  const p = F.oneQualifyingRead(a);
+  F.installState(a, { jenn: p });
+  assert.equal(a.gameUnlockForDid(1).trace, false, "not unlocked before the pass");
+
+  a.flashSt = { did: 1, level: 1, mode: "zh2en", sub: "review",
+                deck: [{ zh: "水", py: "shuǐ", en: "water" }], i: 1, flipped: false };
+  a.renderFlashCurrent();
+
+  // Computed here, not read back from the app: the key the reader must see.
+  assert.deepEqual(Object.keys(a.state.jenn.flashPassDone), ["h1-g01"],
+    "the pass is filed under the canonical gate key");
+  assert.equal(a.gameUnlockForDid(1).trace, true, "Trace unlocks");
+});
+
+test("F1: the pass is filed against the level it was earned in", () => {
+  const a = app();
+  a.curHSK = 2;
+  F.installState(a, { jenn: F.oneQualifyingRead(a, "xia-h2") });
+  a.flashSt = { did: 3, level: 2, mode: "zh2en", sub: "review",
+                deck: [{ zh: "水", py: "shuǐ", en: "water" }], i: 1, flipped: false };
+  a.renderFlashCurrent();
+  assert.deepEqual(Object.keys(a.state.jenn.flashPassDone), ["h2-g03"],
+    "an HSK2 pass must not be filed under HSK1");
+});
+
+test("F1: a flashcard pass does not discard cleared gates or their stars", () => {
+  const a = app();
+  const p = F.gateFullyQualified(a, 1, 1);
+  p.gatesCompleted = ["h1-g01"];
+  F.installState(a, { jenn: p });
+
+  a.flashSt = { did: 2, level: 1, mode: "zh2en", sub: "review",
+                deck: [{ zh: "水", py: "shuǐ", en: "water" }], i: 1, flipped: false };
+  a.renderFlashCurrent();
+  a.ensureState("jenn");
+
+  const s = a.state.jenn;
+  assert.deepEqual(s.gatesCompleted, ["h1-g01"], "the cleared gate survives normalization");
+  assert.deepEqual(s.gateGameStars["h1-g01"], { trace: 3, match: 3, rain: 3, listen: 3 },
+    "its game stars survive");
+  assert.deepEqual(s.gateBestQuiz["h1-g01"], { accPct: 95, quizStars: 3 },
+    "its best quiz survives");
+  assert.equal(s.flashPassDone["h1-g02"], true, "and the new pass is recorded");
+});

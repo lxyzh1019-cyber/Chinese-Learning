@@ -3829,7 +3829,7 @@ function persistFlashSession(){
   if(!curP||!state[curP]||!state[curP].pendingSessions)return;
   if(!flashSt.deck||!flashSt.deck.length){state[curP].pendingSessions.flash=null;return;}
   state[curP].pendingSessions.flash={
-    did:flashSt.did,mode:flashSt.mode,sub:flashSt.sub,i:flashSt.i||0,flipped:!!flashSt.flipped,
+    did:flashSt.did,level:Number(flashSt.level||curHSK||1),mode:flashSt.mode,sub:flashSt.sub,i:flashSt.i||0,flipped:!!flashSt.flipped,
     deck:flashSt.deck.map(w=>({zh:w.zh,py:w.py,en:w.en}))
   };
   touchSession('flash');
@@ -3866,7 +3866,7 @@ function openFlashCards(did){
   if(!unlocked){showToast('🔒 Finish the previous gate first to unlock this one!');return;}
   const deck=buildFlashDeckForDynasty(did);
   if(!deck.length){showToast('No words yet—read a story first, then come back!');return;}
-  flashSt={did,mode:null,sub:'review',deck,i:0,flipped:false};
+  flashSt={did,level:Number(curHSK||1),mode:null,sub:'review',deck,i:0,flipped:false};
   persistFlashSession();saveState();
   renderFlashModePicker();
   document.getElementById('flash-overlay').classList.add('show');
@@ -3899,8 +3899,12 @@ function renderFlashCurrent(){
     if(curP&&flashSt.did){
       const s=state[curP];
       if(!s.flashPassDone)s.flashPassDone={};
-      if(!s.flashPassDone[String(flashSt.did)]){
-        s.flashPassDone[String(flashSt.did)]=true;
+      // The reader is gameUnlockForDid, which looks this up by gate KEY. Writing
+      // the bare dynasty number left Trace locked forever AND made the save look
+      // legacy to GateIdentity.needsMigration (§14).
+      const fk=gateKeyOf(flashSt.did,flashSt.level);
+      if(fk&&!s.flashPassDone[fk]){
+        s.flashPassDone[fk]=true;
         showToast('Flashcard pass done! ✍️ Trace game is now unlocked for Dynasty.',2800);
       }
     }
@@ -3986,7 +3990,7 @@ function restoreFlashSession(){
   if(!curP||!state[curP].pendingSessions||!state[curP].pendingSessions.flash)return false;
   const ps=state[curP].pendingSessions.flash;
   if(!ps||!ps.deck||!ps.deck.length)return false;
-  flashSt={did:ps.did,mode:ps.mode,sub:ps.sub||'review',deck:ps.deck.map(w=>({...w})),i:ps.i||0,flipped:!!ps.flipped};
+  flashSt={did:ps.did,level:Number(ps.level||curHSK||1),mode:ps.mode,sub:ps.sub||'review',deck:ps.deck.map(w=>({...w})),i:ps.i||0,flipped:!!ps.flipped};
   document.getElementById('flash-overlay').classList.add('show');
   if(!flashSt.mode)renderFlashModePicker();else renderFlashCurrent();
   return true;
