@@ -2546,3 +2546,114 @@ test("C3: every culture reading teaches words it actually uses", () => {
     assert.equal((s.readerComprehension || []).length, 2, `${s.id}: needs two questions`);
   }
 });
+
+// ── R1: a Champion Challenge must be able to award a fresh passing result ──
+// updateBestQuizRecord wrote the champion best under `h{lv}-c{grp}` while
+// bestQuizForAttempt read the bare group number. The stored best was never
+// read back, so a flawless run showed "Best so far: 0%" and no trophy, ever.
+// Found by the 2026-09-09 audit and reproduced in Chromium.
+
+function championRound(a, { level = 1, group = 1, correct = 80, attempts = 80, score = 1000 } = {}) {
+  F.installState(a);
+  a.curHSK = level;
+  const s = a.state.jenn;
+  s.gatesCompleted = [1, 2, 3, 4, 5].map((g) => a.gateKeyOf(g, level));
+  s.dailyMission = { date: a.todayKey(), goalKey: "stars", progress: 1, target: 1, done: true, rewarded: true };
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === group * 5);
+  a.launchConfetti = () => {};
+  a.quizSt = {
+    did: group * 5, phase: 3, score, maxScore: 1082, phaseScores: [448, 434, 200],
+    vocab: [], questions: [], pyQ: [], sbPack: [], sbRound: 10, sbN: 10, mcqN: 32, pyN: 40,
+    isChampion: true, champGroup: group, champLevel: level, noMcqAssistance: true,
+    quizCorrect: correct, quizAttempts: attempts, gateAttempt: null,
+  };
+  return s;
+}
+
+test("R1: a perfect eligible champion round grants one trophy and pays once", () => {
+  const a = app();
+  const s = championRound(a);
+  const before = s.totalStars;
+  const qc = { innerHTML: "" };
+  a.renderQuizResult(qc);
+  // 80/80 is 100% and 3 stars — computed here, not read back from the app.
+  assert.equal(s.championBestQuiz["h1-c1"].accPct, 100, "the best is stored under the level key");
+  assert.equal(a.bestQuizForAttempt(s, true, 5, 1, 1).accPct, 100, "and read back from the same key");
+  assert.equal(s.championCleared["h1-c1"], 3, "the trophy is recorded under the level key");
+  assert.equal(s.championCleared[1], undefined, "not under a bare group number");
+  assert.ok(qc.innerHTML.includes("Cleared!"), "the result card says so");
+  assert.ok(qc.innerHTML.includes("Champion Trophy Earned"));
+  assert.ok(s.totalStars > before, "a first clear pays");
+  assert.ok(!qc.innerHTML.includes("Games at 3★ for this gate"),
+    "a champion has no game requirement, so it does not report one");
+
+  // Replay: the round's score shows, nothing is paid again.
+  const paid = s.totalStars;
+  a.quizSt = { ...a.quizSt, score: 900 };
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.totalStars, paid, "a replay pays nothing");
+  assert.equal(s.championCleared["h1-c1"], 3);
+});
+
+test("R1: a champion does not require gate 5's games at 3 stars", () => {
+  const a = app();
+  const s = championRound(a);
+  s.gateGameStars = {}; // a migrated save with no game record for gate 5
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.championCleared["h1-c1"], 3);
+});
+
+test("R1: the HSK2 trophy for the same group is independent of HSK1's", () => {
+  const a = app();
+  const s = championRound(a, { level: 2 });
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.championCleared["h2-c1"], 3);
+  assert.equal(s.championCleared["h1-c1"], undefined);
+  assert.equal(a.championStarsFor(s, 1, 1), 0, "the HSK1 map node stays open");
+  assert.equal(a.championStarsFor(s, 1, 2), 3);
+  assert.equal(a.championTrophyCount(s), 1);
+});
+
+test("R1: a legacy bare-key trophy is counted but mapped onto no level", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  s.championCleared = { 3: 2 }; // groups 3 and 4 straddled two historical levels
+  assert.equal(a.championTrophyCount(s), 1, "it is still a trophy");
+  [1, 2, 3, 4].forEach((lv) => assert.equal(a.championStarsFor(s, 3, lv), 0,
+    `it is not shown as done on the HSK${lv} map`));
+  assert.equal(a.championTrophyCount(s, 3), 0);
+});
+
+test("R1: finishing a gate quiz keeps a saved champion round, and resume picks the newer one", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  const saved = {
+    did: 5, phase: 1, score: 200, phaseScores: [200, 0, 0], vocab: [], questions: [], pyQ: [],
+    sbPack: [], sbRound: 0, isChampion: true, champGroup: 1, champLevel: 1, mcqN: 32, pyN: 40, sbN: 10,
+    maxScore: 1082, quizCorrect: 14, quizAttempts: 16, gateAttempt: null, updatedAt: 5000,
+  };
+  s.pendingSessions.champion = { ...saved };
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === 1);
+  a.launchConfetti = () => {};
+  a.quizSt = {
+    did: 1, phase: 3, score: 100, maxScore: 220, phaseScores: [50, 30, 20], vocab: [], questions: [],
+    pyQ: [], sbPack: [], sbRound: 3, sbN: 3, mcqN: 8, pyN: 10, isChampion: false,
+    quizCorrect: 10, quizAttempts: 20, gateAttempt: null,
+  };
+  a.renderQuizResult({ innerHTML: "" });
+  assert.ok(s.pendingSessions.champion, "the champion round survives a boss quiz finishing");
+  assert.equal(s.pendingSessions.gate, null);
+
+  // A newer gate save sits beside it: resume takes the one touched last.
+  s.pendingSessions.gate = { ...saved, did: 2, isChampion: false, champGroup: null, updatedAt: 9000 };
+  assert.equal(a.restoreGateQuizSession(), true);
+  assert.equal(a.quizSt.isChampion, false, "the newer gate round is resumed");
+  // Restoring re-stamps the gate round with the real clock, so the champion
+  // must be touched later than that to be the newer one.
+  s.pendingSessions.champion.updatedAt = Date.now() + 1000;
+  assert.equal(a.restoreGateQuizSession(), true);
+  assert.equal(a.quizSt.isChampion, true, "the newer champion round is resumed");
+});

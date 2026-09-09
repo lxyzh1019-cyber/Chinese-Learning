@@ -3480,7 +3480,10 @@ function gateAttemptBinding(s,did,level){
 function quizLevelOf(q){
   const gk=q&&q.gateAttempt&&q.gateAttempt.gateKey;
   const parsed=gk?GateIdentity.parseGateKey(gk):null;
-  return (parsed&&parsed.levelId)||Number(curHSK||1);
+  if(parsed&&parsed.levelId)return parsed.levelId;
+  // A champion carries its level directly: it has no gate binding.
+  if(q&&q.champLevel)return Number(q.champLevel);
+  return Number(curHSK||1);
 }
 
 function gateSessionQualifies(s,binding,did,level){
@@ -3596,11 +3599,33 @@ function gateTimerStatusLine(s,did,level){
 
 function bestQuizForAttempt(s,isChampion,did,group,level){
   if(isChampion){
-    const ck=String(group||0);
+    // The same key updateBestQuizRecord writes. It used to read the bare group
+    // number while the write used the level-qualified key, so the stored best
+    // was never read back and no champion round could ever pass.
+    const ck=championKeyOf(group,level);
     return(s.championBestQuiz&&s.championBestQuiz[ck])||{accPct:0,quizStars:0};
   }
   const k=gateKeyOf(did,level);
   return(s.gateBestQuiz&&s.gateBestQuiz[k])||{accPct:0,quizStars:0};
+}
+
+/**
+ * Champion records are keyed `h{level}-c{group}`, like gates. A trophy earned
+ * before the level model was keyed by the bare group number; groups 3 and 4
+ * straddled two historical levels, so those keys are never mapped onto a
+ * level's map — they are kept, and counted, as legacy trophies only.
+ */
+function championKeyOf(group,level){
+  return GateIdentity.championKey(Number(level||curHSK||1),Number(group||0));
+}
+function championStarsFor(s,group,level){
+  const m=(s&&s.championCleared)||{};
+  return m[championKeyOf(group,level)]||0;
+}
+function championTrophyCount(s,level){
+  const m=(s&&s.championCleared)||{};
+  if(level==null)return Object.keys(m).length;
+  return [1,2,3,4].filter(g=>championStarsFor(s,g,level)>0).length;
 }
 
 /**
@@ -3618,7 +3643,7 @@ function bestQuizForAttempt(s,isChampion,did,group,level){
 function updateBestQuizRecord(s,isChampion,did,group,accPct,quizStars,points,level){
   const store=isChampion?'championBestQuiz':'gateBestQuiz';
   const lv=Number(level||curHSK||1);
-  const key=isChampion?GateIdentity.championKey(lv,group||0):gateKeyOf(did,lv);
+  const key=isChampion?championKeyOf(group,lv):gateKeyOf(did,lv);
   if(!s[store])s[store]={};
   const prev=s[store][key]||null;
   const next={accPct:accPct||0,quizStars:quizStars||0,points:points||0,atKey:todayKey()};
@@ -4726,7 +4751,7 @@ function persistGateQuizState(){
     pyQ:(quizSt.pyQ||[]).map(q=>({...q})),
     sbPack:(quizSt.sbPack||[]).map(s=>[...s]),
     sbRound:quizSt.sbRound||0,sbRevealed:(typeof quizSt.sbRevealed==='number'?quizSt.sbRevealed:null),
-    isChampion:!!quizSt.isChampion,champGroup:quizSt.champGroup||null,
+    isChampion:!!quizSt.isChampion,champGroup:quizSt.champGroup||null,champLevel:quizSt.champLevel||null,
     hardMode:!!quizSt.hardMode,
     mcqN:quizSt.mcqN,pyN:quizSt.pyN,sbN:quizSt.sbN,maxScore:quizSt.maxScore,noMcqAssistance:!!quizSt.noMcqAssistance,
     mcqAnswered:typeof mcqAnswered==='number'?mcqAnswered:0,pyAnswered:typeof pyAnswered==='number'?pyAnswered:0,
@@ -4734,22 +4759,32 @@ function persistGateQuizState(){
     quizCorrect:quizSt.quizCorrect||0,quizAttempts:quizSt.quizAttempts||0,
     gateAttempt:quizSt.gateAttempt?{...quizSt.gateAttempt}:null
   };
-  touchSession('gate');
+  touchSession(key);
   if(quizSt&&quizSt.attemptExpired&&state[curP]&&state[curP].pendingSessions){
     const slot=quizSt.isChampion?'champion':'gate';
     if(state[curP].pendingSessions[slot])state[curP].pendingSessions[slot].attemptExpired=true;
   }
 }
 
-function clearGateQuizPending(){
+/**
+ * Clear one finished quiz's saved round. With no slot named, both are cleared
+ * (the explicit-exit path). Finishing a gate quiz used to clear the champion
+ * slot too, so a champion round saved mid-way was lost to any boss replay.
+ */
+function clearGateQuizPending(slot){
   if(!curP||!state[curP].pendingSessions)return;
+  if(slot){clearPendingSession(slot);return;}
   clearPendingSession('gate');
   clearPendingSession('champion');
 }
 
 function restoreGateQuizSession(){
   if(!curP||!state[curP].pendingSessions)return false;
-  const ps=state[curP].pendingSessions.gate||state[curP].pendingSessions.champion;
+  // Whichever quiz was touched last. Preferring the gate slot outright made a
+  // saved champion unreachable while any boss quiz was pending.
+  const slots=state[curP].pendingSessions;
+  const g=slots.gate,c=slots.champion;
+  const ps=(g&&c)?(((c.updatedAt||0)>(g.updatedAt||0))?c:g):(g||c);
   if(!ps||!ps.did)return false;
   const d=DYNASTIES.find(x=>x.id===ps.did);if(!d)return false;
   curDynasty=d;
@@ -4760,7 +4795,7 @@ function restoreGateQuizSession(){
     pyQ:(ps.pyQ||[]).map(q=>({...q})),
     sbPack:(ps.sbPack||[]).map(s=>[...s]),
     sbRound:ps.sbRound||0,sbRevealed:(typeof ps.sbRevealed==='number'?ps.sbRevealed:null),
-    isDaddy:false,isChampion:!!ps.isChampion,champGroup:ps.champGroup||null,
+    isDaddy:false,isChampion:!!ps.isChampion,champGroup:ps.champGroup||null,champLevel:ps.champLevel||null,
     hardMode:!!ps.hardMode,
     mcqN:ps.mcqN,pyN:ps.pyN,sbN:ps.sbN,maxScore:ps.maxScore,noMcqAssistance:ps.noMcqAssistance!==false,
     quizCorrect:ps.quizCorrect||0,quizAttempts:ps.quizAttempts||0,
@@ -5322,8 +5357,7 @@ function renderHub(){
     gatesClearedInLevel(s,curHSK)+' / '+GateIdentity.GATES_PER_LEVEL;
   document.getElementById('ts-stories').textContent=s.storiesCompleted.length;
   // Champion trophies
-  const champMap=s.championCleared||{};
-  const champCount=Object.keys(champMap).length;
+  const champCount=championTrophyCount(s,curHSK);
   const champRow=document.getElementById('ts-champ-row');
   if(champRow){
     if(champCount>0){
@@ -5475,8 +5509,8 @@ function renderHubContent(){
     // After every 5th gate (gates 5, 10, 15, 20), insert a Champion Challenge node
     if(d.id%5===0&&d.id<22){
       const grp=d.id/5;
-      const champDone=s.championCleared&&s.championCleared[grp];
-      const champStars=champDone||0;
+      const champStars=championStarsFor(s,grp,curHSK);
+      const champDone=champStars>0;
       // All 5 gates in this group must be done to unlock champion
       const groupDone=[1,2,3,4,5].every(i=>gateCleared(s,d.id-5+i));
 
@@ -6494,7 +6528,7 @@ function startChampionChallenge(group){
   const did=group*5;// e.g. group 1 → did=5, group 2 → did=10
   const d=DYNASTIES.find(x=>x.id===did);if(!d)return;curDynasty=d;
   sessionQuizCorrect=0;quizCelebrate={c3:false,c6:false};
-  document.getElementById('quiz-title').textContent='👑 CHAMPION CHALLENGE · '+group+'th Group · 大关挑战';
+  document.getElementById('quiz-title').textContent='👑 CHAMPION CHALLENGE · Group '+group+' · 大关挑战';
   const vocab=buildQuizVocab(d,true,did);// forChampion=true
   lastBossQuizThemeIdx=(lastBossQuizThemeIdx+1)%3;
   let mcqN=32,pyN=40,sbN=10;
@@ -6513,7 +6547,9 @@ function startChampionChallenge(group){
     questions,pyQ,sbPack,
     sbRound:0,isDaddy:false,isChampion:true,champGroup:group,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
     quizCorrect:0,quizAttempts:0,
-    gateAttempt:curP?gateAttemptBinding(state[curP],did,curHSK||1):null};
+    // No gate binding: a champion has no deadline of its own, and binding it to
+    // gate group*5's attempt let that gate's reset void a champion round.
+    gateAttempt:null,champLevel:curHSK||1};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
   recentStore[`c-${group}`]={mcq:quizSt.questions.map(q=>q.zh).slice(0,80),py:quizSt.pyQ.map(q=>q.zh).slice(0,80)};
   persistGateQuizState();saveState();
@@ -7312,12 +7348,19 @@ function renderQuizResult(qc){
   // sitting — the reset on the line above happens in the middle of this
   // function, and the flag never learns of it.
   const qlv=quizLevelOf(quizSt);
-  const qualifies=!quizSt.attemptExpired&&gateSessionQualifies(s,quizSt.gateAttempt||null,quizSt.did,qlv);
+  // A champion round has no timer and no game requirement of its own: it is
+  // unlocked by five cleared gates and passes on its quiz alone (§17). It used
+  // to be bound to gate `group*5`'s attempt and to demand that gate's four
+  // games at 3★ — a requirement nowhere in the blueprint that a migrated save
+  // with no game record could never meet.
+  const qualifies=quizSt.isChampion
+    ?!quizSt.attemptExpired
+    :!quizSt.attemptExpired&&gateSessionQualifies(s,quizSt.gateAttempt||null,quizSt.did,qlv);
   if(qualifies){
     updateBestQuizRecord(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,accPct,quizStars,score,qlv);
   }
   const bestQuiz=bestQuizForAttempt(s,!!quizSt.isChampion,quizSt.did,quizSt.champGroup,qlv);
-  const gamesOk=gateGamesAllThree(s,quizSt.did,qlv);
+  const gamesOk=quizSt.isChampion?true:gateGamesAllThree(s,quizSt.did,qlv);
   const quizPass=(bestQuiz.accPct||0)>=90&&(bestQuiz.quizStars||0)===3;
   const fullPass=qualifies&&quizPass&&gamesOk;
   const passedGate=!quizSt.isChampion&&fullPass;
@@ -7333,9 +7376,11 @@ function renderQuizResult(qc){
     if(passedChampion){
       // Champion trophies pay once too. The old code ran addEarnedStars on
       // every passing replay because the pass test read the stored best.
-      const firstClear=!(grp in s.championCleared);
-      const prev=s.championCleared[grp]||0;
-      if(quizStars>prev)s.championCleared[grp]=quizStars;
+      const ck=championKeyOf(grp,qlv);
+      if(!s.championCleared)s.championCleared={};
+      const firstClear=!(ck in s.championCleared);
+      const prev=s.championCleared[ck]||0;
+      if(quizStars>prev)s.championCleared[ck]=quizStars;
       if(firstClear){
         const pts=bestQuiz.points||score;
         if(pts>0)addEarnedStars(pts);
@@ -7352,7 +7397,7 @@ function renderQuizResult(qc){
     const outcome=evaluateGateCompletion(quizSt.did,qlv);
     if(outcome.justCleared&&score>=10)bumpCorrectCount(1);
   }
-  clearGateQuizPending();
+  clearGateQuizPending(quizSt.isChampion?'champion':'gate');
   saveState();
   if(qualifies)checkBadges(curP,{speedGate:!!quizSt.noMcqAssistance&&!quizSt.isChampion});
   saveState();
@@ -7366,7 +7411,7 @@ function renderQuizResult(qc){
     const bits=[];
     if(!quizPass)bits.push(`Quiz goal: score <b>90% or above</b> and earn 3 quiz stars. You are getting closer! <span class="lock-sub">Best so far: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★</span>`);
     if(!gamesOk)bits.push(`Game goal: earn 3★ in Trace, Memory, Rain, and Listen for this gate. <span class="lock-sub">Ready: ${g3}/4</span>`);
-    const timer=(s.gateTimers&&s.gateTimers[gateKeyOf(quizSt.did,qlv)])||null;
+    const timer=quizSt.isChampion?null:((s.gateTimers&&s.gateTimers[gateKeyOf(quizSt.did,qlv)])||null);
     if(timer&&timer.active){
       const left=gateTimerDaysLeft(timer);
       if(left<=1)bits.push('Timer goal: final day! Complete now to keep your progress.');
@@ -7381,7 +7426,7 @@ function renderQuizResult(qc){
     <div class="qr-title">${gateLabel} ${cleared?'Cleared! 🎉':qualifies?'Almost there!':'Practice round'}</div>
     ${qualifies?'':`<div class="qr-msg">${LATE_ROUND_MSG}</div>`}
     ${quizSt.isChampion&&passedChampion?'<div class="champion-badge">🏆 Champion Trophy Earned! Amazing work!</div>':''}
-    <div class="qr-msg">${d.zh} · ${d.en}\n\nThis try: ${accPct}% (${qcOk}/${qa}) · ${quizStars}★\nBest score: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★\nPoints: ${score}/${mx} (${pctPts}%)\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}\nGames at 3★ for this gate: ${g3}/4</div>
+    <div class="qr-msg">${d.zh} · ${d.en}\n\nThis try: ${accPct}% (${qcOk}/${qa}) · ${quizStars}★\nBest score: ${(bestQuiz.accPct||0)}% · ${(bestQuiz.quizStars||0)}★\nPoints: ${score}/${mx} (${pctPts}%)\nPhase 1 (MCQ ×${quizSt.mcqN||8}): ${quizSt.phaseScores[0]}\nPhase 2 (Pinyin ×${quizSt.pyN||10}): ${quizSt.phaseScores[1]}\nPhase 3 (Sentences ×${quizSt.sbN||3}): ${quizSt.phaseScores[2]}${quizSt.isChampion?'':`\nGames at 3★ for this gate: ${g3}/4`}</div>
     ${lockMsg}
     <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;">
       <button class="btn-g" onclick="exitQuiz()">${cleared?'✓ Done':'← Go Back'}</button>
@@ -7398,7 +7443,7 @@ function exitQuiz(){
     persistGateQuizState();
     showToast('Progress saved — finish the quiz to earn stars! 🏯',2400);
   }else{
-    clearGateQuizPending();
+    clearGateQuizPending(quizSt&&quizSt.isChampion?'champion':'gate');
   }
   // A pending goNext or reveal-card continuation would otherwise render a quiz
   // result after the child is already back on the hub.
@@ -7932,7 +7977,7 @@ function renderParentSummary(){
       ${isNow?`<div class="psr"><span class="psr-lbl">⏱ Today's Time</span><span class="psr-val">${mins}m</span></div>`:''}
       <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} days</span></div>
       <div class="psr"><span class="psr-lbl">💪 Practice Queue</span><span class="psr-val">${Object.keys(s.failedWords||{}).length} words</span></div>
-      ${Object.keys(s.championCleared||{}).length?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(Object.keys(s.championCleared).length)}</span></div>`:''}
+      ${championTrophyCount(s)?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(championTrophyCount(s))}</span></div>`:''}
       ${playedBeforeReadingHtml(s)}
       ${inheritedAccessHtml(s)}
     </div>`;
