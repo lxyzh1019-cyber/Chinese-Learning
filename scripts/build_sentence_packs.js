@@ -73,7 +73,7 @@ const SYMMETRIC_VERBS = ["是", "叫", "像", "比"];
 
 /** A clause that starts or ends on one of these is hanging off its neighbour. */
 const HANGING_FIRST = [
-  "也", "就", "还", "都", "才", "又", "而", "则",
+  "也", "就", "还", "都", "才", "又", "而", "则", "比",
   "却", "只", "再", "因为", "虽然", "如果",
   "所以", "但是", "而且", "于是", "然后",
   "可是", "不过", "并且",
@@ -90,6 +90,71 @@ const HANGING_LAST = [
 ];
 
 const FULL_STOP = "。";
+
+// ── screens added after the 2026-09-09 audit ──────────────────────────────
+// The lists above work per chip, so a time phrase the tokeniser split
+// (八|点) and a place phrase built from a preposition (在|树|下) both slipped
+// through, and 我们八点出门 was served with 八点我们出门 scored wrong. These
+// screens look at chip PAIRS and at part of speech, and stay eager.
+
+/** A preposition opens a place phrase, and a place phrase moves like a time word. */
+const PREPS = ["在", "从", "离", "往", "向", "朝", "自从", "沿着"];
+/** A number followed by one of these is a time phrase: 八点, 三天, 两年. */
+const NUM = /^[一二三四五六七八九十百千两几半零\d]+$/;
+const TIME_UNIT = ["点", "天", "年", "月", "号", "个月", "星期", "小时", "分钟", "岁", "点钟"];
+const NUM_TIME = /^[一二三四五六七八九十百千两几半零\d]+(点|天|年|月|号|岁)$/;
+/** Particles may repeat without giving a second reading; anything else may not. */
+const REPEATABLE = ["的", "了", "吗", "呢", "吧", "啊"];
+/** A clause ending on one of these is a lead-in to speech (它妈妈说), not a sentence. */
+const SPEECH_LAST = ["说", "问", "道", "回答"];
+/** Tags under which a chip can stand as a subject, and under which it is a predicate. */
+const NOMINAL = ["n", "r", "nr", "ns", "nz", "s", "t", "m", "mq", "tg"];
+const VERBAL = ["v", "vn", "a", "ad", "an", "z"];
+
+let POS_CACHE = null;
+/** Part of speech from the curriculum tables; null for a word they do not carry (a name). */
+function posOf(word) {
+  if (!POS_CACHE) {
+    POS_CACHE = {};
+    [1, 2, 3, 4].forEach((lv) => {
+      const f = path.join(ROOT, "data", `hsk${lv}.json`);
+      if (!fs.existsSync(f)) return;
+      const d = JSON.parse(fs.readFileSync(f, "utf8"));
+      (d.words || []).forEach((w) => { if (!POS_CACHE[w.zh]) POS_CACHE[w.zh] = (w.meta && w.meta.pos) || []; });
+    });
+  }
+  return POS_CACHE[word] || null;
+}
+
+/** Two-character words the tokeniser may have dealt as two single-character chips. */
+function compoundSet(dict) {
+  posOf("");
+  const set = new Set();
+  Object.keys(dict).forEach((k) => { if ([...k].length === 2) set.add(k); });
+  Object.keys(POS_CACHE).forEach((k) => { if ([...k].length === 2) set.add(k); });
+  return set;
+}
+
+/**
+ * Re-join a compound the authored segment split character by character.
+ * 妈|妈, 学|生, 故|事 and 出|门 were all dealt as two chips; rebuilding a word
+ * from its characters is a different exercise from building a sentence, and
+ * the split hid 八点 from the time screen.
+ */
+function mergeCompounds(tokens, compounds) {
+  const out = [];
+  for (let i = 0; i < tokens.length; i++) {
+    const a = tokens[i], b = tokens[i + 1];
+    if (a && b && a.t === "c" && b.t === "c" && a.ch && b.ch &&
+        [...a.ch].length === 1 && [...b.ch].length === 1 && compounds.has(a.ch + b.ch)) {
+      out.push({ t: "c", ch: a.ch + b.ch, py: [a.py, b.py].filter(Boolean).join(" "), mn: a.mn, merged: true });
+      i++;
+      continue;
+    }
+    out.push(a);
+  }
+  return out;
+}
 
 function isPunct(tok) { return tok.t === "p"; }
 function chipOf(tok) { return tok.t === "p" ? tok.tx : (tok.tx || tok.ch); }
@@ -157,7 +222,59 @@ function structuralReason(words) {
   if (words.length >= 4 && words.every((w) => [...w].length === 1)) {
     return "every chip is a single character";
   }
+  if (words.some((w) => PREPS.includes(w))) return "a place phrase can move";
+  if (words.some((w) => w === "时候" || /时候$/.test(w))) return "a …的时候 phrase can move";
+  if (SPEECH_LAST.includes(words[words.length - 1])) return "a lead-in to speech, not a sentence";
+  for (let i = 0; i < words.length; i++) {
+    if (NUM_TIME.test(words[i])) return "a time phrase can move";
+    if (i + 1 < words.length && (NUM.test(words[i]) || words[i] === "每") && TIME_UNIT.includes(words[i + 1])) {
+      return "a time phrase can move";
+    }
+  }
+  const seen = new Set();
+  for (const w of words) {
+    if (seen.has(w) && !REPEATABLE.includes(w)) return "a repeated word reads both ways";
+    seen.add(w);
+  }
+  // 让他想办法 and 喝了一些水 are predicates cut from a longer sentence; the
+  // subject is in the clause before. A name is not in the tables (null) and
+  // is a subject, so it passes.
+  const p0 = posOf(words[0]);
+  if (p0 && p0.length && !p0.some((t) => NOMINAL.includes(t))) return "opens without a subject";
+  const tags = words.map(posOf);
+  if (tags.every((t) => t && t.length) && !tags.some((t) => t.some((x) => VERBAL.includes(x)))) {
+    return "has no verb";
+  }
   return null;
+}
+
+/** The reviewer-approved second orders, keyed by the stored answer. */
+const ALTERNATES = (() => {
+  const f = path.join(__dirname, "sentence-alternates.js");
+  return fs.existsSync(f) ? (require(f) || {}) : {};
+})();
+
+/**
+ * Is `str` the same chips as `chips`, in some other order? Backtracks over the
+ * multiset, so 我们|八|点 can be matched against 八点我们 without a tokeniser.
+ */
+function isChipPermutation(chips, str) {
+  const target = String(str || "");
+  if (target === chips.join("")) return false;
+  const left = chips.slice();
+  const walk = (pos) => {
+    if (pos === target.length) return left.length === 0;
+    for (let i = 0; i < left.length; i++) {
+      const c = left[i];
+      if (target.startsWith(c, pos)) {
+        left.splice(i, 1);
+        if (walk(pos + c.length)) return true;
+        left.splice(i, 0, c);
+      }
+    }
+    return false;
+  };
+  return walk(0);
 }
 
 /** Split one tokenized sentence into clause-level candidates. */
@@ -186,13 +303,15 @@ function loadSources(lv) {
 function candidatesFor(lv, dict, baseNames) {
   const perGate = new Map();
   const allClauses = [];
+  const compounds = compoundSet(dict);
   loadSources(lv).forEach((story) => {
     const names = Object.assign({}, baseNames, story.names || {});
     (story.sents || []).forEach((sent, si) => {
       const r = sd.tokenize(sent.zh, dict, { names, seg: sent.seg, bonus: sent.bonus });
       if (r.unknown.length) return; // never guess a reading
-      const wholeLen = r.tokens.filter((t) => !isPunct(t)).length;
-      clausesOf(r.tokens).forEach((clause) => {
+      const tokens = mergeCompounds(r.tokens, compounds);
+      const wholeLen = tokens.filter((t) => !isPunct(t)).length;
+      clausesOf(tokens).forEach((clause) => {
         const words = clause.map(chipOf);
         allClauses.push(words);
         const isWhole = words.length === wholeLen;
@@ -200,6 +319,10 @@ function candidatesFor(lv, dict, baseNames) {
         list.push({
           words, storyId: story.id, sentIndex: si, isWhole,
           en: isWhole ? sent.en : null,
+          // A clause has no English of its own; the sentence it was cut from
+          // does, and that is the context the child needs to know which
+          // sentence is wanted.
+          enContext: isWhole ? null : (sent.en || null),
           py: clause.map((t) => t.py).filter(Boolean).join(" "),
         });
         perGate.set(story.did, list);
@@ -229,6 +352,8 @@ function main() {
     const doc = JSON.parse(fs.readFileSync(file, "utf8"));
     const levelFailures = [];
 
+    // First pass: what each gate's own story can supply.
+    const keptByGate = new Map();
     doc.gates.forEach((gate) => {
       const seen = new Set();
       const kept = [];
@@ -244,18 +369,47 @@ function main() {
       });
       // Whole sentences first: they carry the English that pins the meaning.
       kept.sort((a, b) => (b.isWhole ? 1 : 0) - (a.isWhole ? 1 : 0) || a.sentIndex - b.sentIndex);
-      const picked = kept.slice(0, PER_GATE);
+      keptByGate.set(gate.gateId, kept);
+    });
+
+    // Second pass: pick, and let a short gate borrow from its neighbours in
+    // the same level (nearest first). The stricter screens leave some gates
+    // under three; the owner chose borrowing over editing the stories, so the
+    // child still meets a sentence they have read at this level, and the hint
+    // names the story it came from.
+    doc.gates.forEach((gate) => {
+      const own = keptByGate.get(gate.gateId) || [];
+      const picked = own.slice(0, PER_GATE).map((c) => Object.assign({}, c, { borrowedFrom: null }));
+      if (picked.length < MIN_PER_GATE) {
+        const have = new Set(picked.map((c) => c.words.join("")));
+        for (let dist = 1; dist <= 4 && picked.length < MIN_PER_GATE; dist++) {
+          [gate.gateId - dist, gate.gateId + dist].forEach((gid) => {
+            (keptByGate.get(gid) || []).forEach((c) => {
+              if (picked.length >= MIN_PER_GATE) return;
+              const answer = c.words.join("");
+              if (have.has(answer)) return;
+              have.add(answer);
+              picked.push(Object.assign({}, c, { borrowedFrom: gid }));
+            });
+          });
+        }
+      }
       if (picked.length < MIN_PER_GATE) {
         levelFailures.push(
-          `hsk${lv} gate ${gate.gateId}: only ${picked.length} usable sentence(s); a round needs ${MIN_PER_GATE}`
+          `hsk${lv} gate ${gate.gateId}: only ${picked.length} usable sentence(s) with its neighbours; a round needs ${MIN_PER_GATE}`
         );
         return;
       }
       gate.sentenceTargetsPack = picked.map((c) => c.words.concat([FULL_STOP]));
       gate.sentenceTargetsMeta = {};
       picked.forEach((c) => {
-        gate.sentenceTargetsMeta[c.words.join("") + FULL_STOP] = {
-          py: c.py, en: c.en || null, storyId: c.storyId, sentIndex: c.sentIndex, whole: !!c.isWhole,
+        const answer = c.words.join("") + FULL_STOP;
+        const alt = (ALTERNATES[answer] || []).filter((s) => isChipPermutation(c.words.concat([FULL_STOP]), s));
+        gate.sentenceTargetsMeta[answer] = {
+          py: c.py, en: c.en || null, enContext: c.enContext || null,
+          storyId: c.storyId, sentIndex: c.sentIndex, whole: !!c.isWhole,
+          borrowedFrom: c.borrowedFrom || null,
+          alt: alt.length ? alt : undefined,
         };
       });
       wrote++;
@@ -279,4 +433,7 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { buildBigramModel, licensed, hasLicensedAlternative, structuralReason, clausesOf, candidatesFor, WINDOW, MAX_CHARS, MIN_PER_GATE };
+module.exports = {
+  buildBigramModel, licensed, hasLicensedAlternative, structuralReason, clausesOf, candidatesFor,
+  isChipPermutation, mergeCompounds, compoundSet, posOf, WINDOW, MAX_CHARS, MIN_PER_GATE, PER_GATE,
+};

@@ -249,6 +249,28 @@ Browser run (Chromium 1194, local http server), no page errors:
 Gate vocabulary is done: all four levels serve 793 rows each with no missing
 English, after T01 repaired 453 of them.
 
+## Audit ledger — third-party release audit, 2026-09-09
+
+The report (main `42566cf`) was validated before anything changed: its two open
+findings and its closed rows all reproduced. The wider read alongside it found
+the rest of this table. Owner decisions on the rule changes are recorded in
+`docs/STATUS-AND-BACKLOG.md`.
+
+| Finding | Paths | Tests | Change | Verification |
+|---|---|---|---|---|
+| R1 — a Champion Challenge could never pass (write `h1-c1`, read `1`) | `index.html` (`bestQuizForAttempt`, `championKeyOf`, `championStarsFor`, `championTrophyCount`, `renderQuizResult` champion branch, champion map node, hub and parent counts, `startChampionChallenge`, `quizLevelOf`, `clearGateQuizPending(slot)`, `restoreGateQuizSession`) | 5 in `tests/progression.test.cjs` ("R1: …") | One level-qualified key everywhere; legacy bare-key trophies counted, drawn on no level; champion passes on its quiz alone, with no gate binding; a gate quiz finishing clears only its own slot; resume takes the quiz touched last; `champLevel` survives save/restore; "Group 1" title. | Chromium: flawless eligible Group 1 → "Cleared!", trophy line, gold crown, count 1/4; replay pays nothing. |
+| R2 — the sentence builder scored valid Chinese wrong | `scripts/build_sentence_packs.js` (pair and POS screens, `mergeCompounds`, `enContext`, borrowing, `ALTERNATES`, `isChipPermutation`), `scripts/sentence-alternates.js`, `scripts/validate_sentence_packs.js` (independent screens, borrowed source, alternates), `index.html` (`renderSBPhase` hint, `checkSB` alternates), `data/hsk1.json`, `data/hsk2.json` | 5 ("R2: …"), the C2 rows | Rebuilt packs: 243 entries, every one with an English hint; an independent scan of time/place phrases, repeats and subject-drop reports 0; one gate borrows three from its neighbour; reviewer alternates accepted in full. | Chromium: Phase 3 shows "Part of: …" on a clause; wrong build → reveal → retry → rebuilt pays nothing. |
+| Glosses — 他 "they", 东西 "east and west", 又 "after", 故事 "old practice", 一起 "in the same place"; 第二个人 as 个人; 写下课文 as 下课文; 水果 as 水 "fruit" | `scripts/vocab-overrides.js`, `scripts/story-dictionary.js` (`NEVER_WORDS`), `scripts/validate_stories.js` (`PINNED_GLOSS`), three story sources, rebuilt `data/stories/*`, `data/lessons/*`, `data/hsk*.json`, `docs/vocab-repair-ledger.md` | validator | Overrides at the dictionary and the served vocabulary; 30 most-tapped words' glosses pinned by pattern so a real-English-word error is caught. | `validate:stories`, `validate:curriculum` green; token-level diff of the rebuilt corpus reviewed (66 sentences re-tokenised, all corrections). |
+| Toast cap dropped plain messages after eight | `index.html` (`showToast`, `selectPlayer`) | A09 | Cap applies to decorative kinds only; resets per profile. | unit |
+| Match resume scored on wall-clock start; save unstamped | `index.html` (`persistMatch`, `restoreMatch`) | A09 | `elapsedMs` carried and resumed; `touchSession('match')`. | unit + Chromium resume |
+| Forgiveness / alt-round read a stale global | `index.html` (`awardAltRound`, `consumeDynastyForgiveness`, eight call sites) | A09 | The round's own `gameTargetDid` is passed in. | unit |
+| Rain locked after a 0★ Listen | `index.html` (`updateGateGameBest`, `gameUnlockForDid`; field `listenPlayed`) | A09 | Played is recorded apart from stars. | unit |
+| HSK3/4 story files refetched every render | `index.html` (`loadLevelStories`) | A09 | A 404 is remembered for the session; a network failure is not. | unit |
+| Story payout 265 > gate 220 | `index.html` (`completeStory`) | A09 | Capped at 100 (owner). | unit |
+| Dashboard opened without PIN | `index.html` (`showParentSummary`) | — | Asks on open (owner). | Chromium |
+| Raw dictionary rows as options | `index.html` (`optionLabel`, six renderers; buttons carry `data-en`) | A09, T-T18 | First plain sense shown; answer key unchanged. | unit |
+| Culture reader ignored target words and answers (C3) | `index.html` (`openCultureReader`), CSS | — | Gloss strip (tap to hear), Show answer per question; nothing scored. | Chromium |
+
 ## Audit ledger — third-party milestone audit, 2026-09-08
 
 Each finding was reproduced against `main` before any change, then fixed in

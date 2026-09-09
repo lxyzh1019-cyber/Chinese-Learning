@@ -1656,7 +1656,9 @@ test("T-T18: the daily challenge never offers a second right answer", () => {
       // stub keeps one element per id, so clear it or options accumulate.
       a.document.getElementById("dw-opts").children.length = 0;
       a.openDailyWordChallenge();
-      const opts = (a.document.getElementById("dw-opts").children || []).map((c) => c.textContent);
+      // The button SHOWS optionLabel(gloss) and carries the gloss it stands for;
+      // the collision question is about the glosses.
+      const opts = (a.document.getElementById("dw-opts").children || []).map((c) => c.dataset.en || c.textContent);
       seen++;
       assert.equal(opts.length, 4, `${w.zh} "${w.en}" got ${opts.length} options`);
       assert.equal(new Set(opts).size, opts.length, `duplicate option in [${opts}]`);
@@ -2545,4 +2547,312 @@ test("C3: every culture reading teaches words it actually uses", () => {
     assert.ok(text.includes(s.title), `${s.id}: the reading never mentions ${s.title}`);
     assert.equal((s.readerComprehension || []).length, 2, `${s.id}: needs two questions`);
   }
+});
+
+// ── R1: a Champion Challenge must be able to award a fresh passing result ──
+// updateBestQuizRecord wrote the champion best under `h{lv}-c{grp}` while
+// bestQuizForAttempt read the bare group number. The stored best was never
+// read back, so a flawless run showed "Best so far: 0%" and no trophy, ever.
+// Found by the 2026-09-09 audit and reproduced in Chromium.
+
+function championRound(a, { level = 1, group = 1, correct = 80, attempts = 80, score = 1000 } = {}) {
+  F.installState(a);
+  a.curHSK = level;
+  const s = a.state.jenn;
+  s.gatesCompleted = [1, 2, 3, 4, 5].map((g) => a.gateKeyOf(g, level));
+  s.dailyMission = { date: a.todayKey(), goalKey: "stars", progress: 1, target: 1, done: true, rewarded: true };
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === group * 5);
+  a.launchConfetti = () => {};
+  a.quizSt = {
+    did: group * 5, phase: 3, score, maxScore: 1082, phaseScores: [448, 434, 200],
+    vocab: [], questions: [], pyQ: [], sbPack: [], sbRound: 10, sbN: 10, mcqN: 32, pyN: 40,
+    isChampion: true, champGroup: group, champLevel: level, noMcqAssistance: true,
+    quizCorrect: correct, quizAttempts: attempts, gateAttempt: null,
+  };
+  return s;
+}
+
+test("R1: a perfect eligible champion round grants one trophy and pays once", () => {
+  const a = app();
+  const s = championRound(a);
+  const before = s.totalStars;
+  const qc = { innerHTML: "" };
+  a.renderQuizResult(qc);
+  // 80/80 is 100% and 3 stars — computed here, not read back from the app.
+  assert.equal(s.championBestQuiz["h1-c1"].accPct, 100, "the best is stored under the level key");
+  assert.equal(a.bestQuizForAttempt(s, true, 5, 1, 1).accPct, 100, "and read back from the same key");
+  assert.equal(s.championCleared["h1-c1"], 3, "the trophy is recorded under the level key");
+  assert.equal(s.championCleared[1], undefined, "not under a bare group number");
+  assert.ok(qc.innerHTML.includes("Cleared!"), "the result card says so");
+  assert.ok(qc.innerHTML.includes("Champion Trophy Earned"));
+  assert.ok(s.totalStars > before, "a first clear pays");
+  assert.ok(!qc.innerHTML.includes("Games at 3★ for this gate"),
+    "a champion has no game requirement, so it does not report one");
+
+  // Replay: the round's score shows, nothing is paid again.
+  const paid = s.totalStars;
+  a.quizSt = { ...a.quizSt, score: 900 };
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.totalStars, paid, "a replay pays nothing");
+  assert.equal(s.championCleared["h1-c1"], 3);
+});
+
+test("R1: a champion does not require gate 5's games at 3 stars", () => {
+  const a = app();
+  const s = championRound(a);
+  s.gateGameStars = {}; // a migrated save with no game record for gate 5
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.championCleared["h1-c1"], 3);
+});
+
+test("R1: the HSK2 trophy for the same group is independent of HSK1's", () => {
+  const a = app();
+  const s = championRound(a, { level: 2 });
+  a.renderQuizResult({ innerHTML: "" });
+  assert.equal(s.championCleared["h2-c1"], 3);
+  assert.equal(s.championCleared["h1-c1"], undefined);
+  assert.equal(a.championStarsFor(s, 1, 1), 0, "the HSK1 map node stays open");
+  assert.equal(a.championStarsFor(s, 1, 2), 3);
+  assert.equal(a.championTrophyCount(s), 1);
+});
+
+test("R1: a legacy bare-key trophy is counted but mapped onto no level", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  s.championCleared = { 3: 2 }; // groups 3 and 4 straddled two historical levels
+  assert.equal(a.championTrophyCount(s), 1, "it is still a trophy");
+  [1, 2, 3, 4].forEach((lv) => assert.equal(a.championStarsFor(s, 3, lv), 0,
+    `it is not shown as done on the HSK${lv} map`));
+  assert.equal(a.championTrophyCount(s, 3), 0);
+});
+
+test("R1: finishing a gate quiz keeps a saved champion round, and resume picks the newer one", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 1;
+  const s = a.state.jenn;
+  const saved = {
+    did: 5, phase: 1, score: 200, phaseScores: [200, 0, 0], vocab: [], questions: [], pyQ: [],
+    sbPack: [], sbRound: 0, isChampion: true, champGroup: 1, champLevel: 1, mcqN: 32, pyN: 40, sbN: 10,
+    maxScore: 1082, quizCorrect: 14, quizAttempts: 16, gateAttempt: null, updatedAt: 5000,
+  };
+  s.pendingSessions.champion = { ...saved };
+  a.curDynasty = a.DYNASTIES.find((d) => d.id === 1);
+  a.launchConfetti = () => {};
+  a.quizSt = {
+    did: 1, phase: 3, score: 100, maxScore: 220, phaseScores: [50, 30, 20], vocab: [], questions: [],
+    pyQ: [], sbPack: [], sbRound: 3, sbN: 3, mcqN: 8, pyN: 10, isChampion: false,
+    quizCorrect: 10, quizAttempts: 20, gateAttempt: null,
+  };
+  a.renderQuizResult({ innerHTML: "" });
+  assert.ok(s.pendingSessions.champion, "the champion round survives a boss quiz finishing");
+  assert.equal(s.pendingSessions.gate, null);
+
+  // A newer gate save sits beside it: resume takes the one touched last.
+  s.pendingSessions.gate = { ...saved, did: 2, isChampion: false, champGroup: null, updatedAt: 9000 };
+  assert.equal(a.restoreGateQuizSession(), true);
+  assert.equal(a.quizSt.isChampion, false, "the newer gate round is resumed");
+  // Restoring re-stamps the gate round with the real clock, so the champion
+  // must be touched later than that to be the newer one.
+  s.pendingSessions.champion.updatedAt = Date.now() + 1000;
+  assert.equal(a.restoreGateQuizSession(), true);
+  assert.equal(a.quizSt.isChampion, true, "the newer champion round is resumed");
+});
+
+// ── R2: the sentence builder must not score valid Chinese wrong ───────────
+// The generator's screens worked per chip, so 八|点 and 在|树|下 slipped
+// through and 我们八点出门 was served with 八点我们出门 scored wrong (audit
+// 2026-09-09). The screens now read chip pairs and part of speech, a reviewer
+// can list a second order, and a clause carries its sentence's English.
+
+const SB = require("../scripts/build_sentence_packs.js");
+
+test("R2: the screens reject the shapes the audit found served", () => {
+  const cases = [
+    [["我们", "八", "点", "出门"], "a time phrase can move"],
+    [["我们", "在", "树", "下", "看", "书"], "a place phrase can move"],
+    [["家里", "有", "米", "有", "肉"], "a repeated word reads both ways"],
+    [["让", "他", "想", "办法"], "opens without a subject"],
+    [["比", "房子", "还", "大"], "opens on a connective"],
+    [["他们", "每", "天", "骑", "马"], "a time phrase can move"],
+    [["有的", "时候", "我们", "也", "不", "同意"], "a …的时候 phrase can move"],
+    [["它", "妈妈", "说"], "a lead-in to speech, not a sentence"],
+  ];
+  cases.forEach(([words, why]) => {
+    assert.equal(SB.structuralReason(words), why, words.join("|"));
+  });
+  // and keeps a plain sentence
+  assert.equal(SB.structuralReason(["孔子", "是", "一", "位", "好", "老师"]), null);
+  assert.equal(SB.structuralReason(["纸", "很", "轻"]), null);
+});
+
+test("R2: an alternate must be the same chips in another order", () => {
+  const chips = ["我们", "八", "点", "出门", "。"];
+  assert.equal(SB.isChipPermutation(chips, "八点我们出门。"), true);
+  assert.equal(SB.isChipPermutation(chips, "我们八点出门。"), false, "the story's own order is not an alternate");
+  assert.equal(SB.isChipPermutation(chips, "八点出门。"), false, "a chip is missing");
+  assert.equal(SB.isChipPermutation(chips, "八点我们出门了。"), false, "a chip was added");
+});
+
+test("R2: checkSB accepts a reviewer-approved second order and pays it in full", () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 2;
+  a.curriculumCache.levels[2] = { gates: [{ gateId: 1, sentenceTargetsPack: [["我们", "八", "点", "出门", "。"]],
+    sentenceTargetsMeta: { "我们八点出门。": { py: "wǒ men bā diǎn chū mén", en: null,
+      enContext: "We leave at eight, and it takes twenty minutes.", alt: ["八点我们出门。"] } } }] };
+  sbQuiz(a, [["我们", "八", "点", "出门", "。"]]);
+  a.launchConfetti = () => {};
+  a.sbBuilt = ["八", "点", "我们", "出门", "。"];
+  a.checkSB();
+  assert.equal(a.quizSt.quizCorrect, 1, "the other valid order is right");
+  assert.equal(a.quizSt.score, 20);
+  assert.equal(a.quizSt.sbRevealed, null, "and nothing was revealed as a correction");
+});
+
+test("R2: every served clause without English carries its sentence's English", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const g of doc.gates) {
+      for (const chips of g.sentenceTargetsPack || []) {
+        const m = g.sentenceTargetsMeta[chips.join("")];
+        assert.ok(m.en || m.enContext, `hsk${lv} gate ${g.gateId}: "${chips.join("")}" has no hint at all`);
+        if (m.borrowedFrom) assert.ok(Math.abs(m.borrowedFrom - g.gateId) <= 4, "borrowed from a neighbour");
+      }
+    }
+  }
+});
+
+test("R2: the served packs pass an independent reading of the screens", () => {
+  // Computed here with its own lists, not by calling structuralReason.
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const NUM = /^[一二三四五六七八九十百千两几半零]+$/;
+  const UNIT = /^(点|天|年|月|号|岁|个月|星期)$/;
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const g of doc.gates) {
+      for (const chips of g.sentenceTargetsPack || []) {
+        const w = chips.filter((c) => c !== "。");
+        const at = `hsk${lv} gate ${g.gateId} "${chips.join("")}"`;
+        assert.ok(!w.some((c) => /^(在|从|离|往|向)$/.test(c)), `${at}: place phrase`);
+        for (let i = 0; i + 1 < w.length; i++) {
+          assert.ok(!((NUM.test(w[i]) || w[i] === "每") && UNIT.test(w[i + 1])), `${at}: time phrase`);
+        }
+        const seen = new Set();
+        w.forEach((c) => { assert.ok(!(seen.has(c) && !/^(的|了|吗|呢|吧|啊)$/.test(c)), `${at}: repeated "${c}"`); seen.add(c); });
+        assert.ok(!/^(比|也|都|还|就|才|又|很|太|更|最)$/.test(w[0]), `${at}: opens on a connective`);
+      }
+    }
+  }
+});
+
+// ── 2026-09-09 audit: logic findings beyond the report ────────────────────
+
+test("A09: a plain toast is never dropped by the session cap, and the cap resets per profile", () => {
+  const a = app();
+  F.installState(a);
+  const shown = [];
+  const el = a.document.getElementById("toast");
+  for (let i = 0; i < 12; i++) { a.showToast(`saved ${i}`); shown.push(el.textContent); }
+  assert.equal(el.textContent, "saved 11", "the twelfth plain message still shows");
+  for (let i = 0; i < 9; i++) a.showToast(`micro ${i}`, 1000, "micro");
+  assert.equal(el.textContent, "micro 7", "the decorative kind is still capped at 8");
+  a.selectPlayer("jess");
+  a.__stopAllTimers(); // selectPlayer starts the wall clock and play-time intervals
+  a.showToast("after switch", 1000, "micro");
+  assert.equal(el.textContent, "after switch", "a profile switch starts the count again");
+});
+
+test("A09: a Match round resumes with the time it had played, not the wall clock", () => {
+  const a = app();
+  F.installState(a);
+  a.curP = "jenn";
+  a.curGameTargetDid = null;
+  a.startMemoryMatch([
+    { zh: "水", py: "shuǐ", en: "water" }, { zh: "山", py: "shān", en: "mountain" }, { zh: "火", py: "huǒ", en: "fire" },
+  ]);
+  // 30 s of play, then Save & Exit.
+  a.matchSt.start = Date.now() - 30000;
+  a.exitMatch();
+  const saved = a.state.jenn.pendingSessions.match;
+  assert.ok(saved.updatedAt > 0, "the save is stamped, so Resume picks it");
+  assert.ok(saved.elapsedMs >= 30000 && saved.elapsedMs < 31000, `elapsed ${saved.elapsedMs}`);
+  // Come back an hour later.
+  saved.start = Date.now() - 3600000;
+  assert.equal(a.restoreMatch(), true);
+  const played = Date.now() - a.matchSt.start;
+  assert.ok(played >= 30000 && played < 31000, `resumed at ${played} ms played, not an hour`);
+});
+
+test("A09: a resumed HSK round does not spend dynasty forgiveness tokens", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  s.dynastyForgiveness = { trace: 0, match: 0, rain: 0, listen: 2 };
+  a.curGameTargetDid = 3; // stale: the previous round was dynasty scope
+  // A round whose own scope is HSK (gameTargetDid null) must not consume.
+  assert.equal(a.consumeDynastyForgiveness("listen", null), false);
+  assert.equal(s.dynastyForgiveness.listen, 2);
+  // And the alt-round credit goes to the HSK round, whatever the global says.
+  a.awardAltRound("listen", 2, null);
+  assert.equal(s.altRoundProgress.listen, 1);
+  // A dynasty round still consumes.
+  assert.equal(a.consumeDynastyForgiveness("listen", 3), true);
+  assert.equal(s.dynastyForgiveness.listen, 1);
+});
+
+test("A09: Rain unlocks after Listen has been played, even at 0 stars", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  a.curHSK = 1;
+  s.storyReadCount = { "xia-h1": 2 };
+  s.flashPassDone = { "h1-g01": true };
+  assert.equal(a.gameUnlockForDid(1).rain, false, "not before Listen");
+  a.updateGateGameBest(1, "listen", 0, 1);
+  assert.equal(a.gameUnlockForDid(1).rain, true, "a 0★ Listen is still a Listen played");
+});
+
+test("A09: a story pays at most 100 stars a read", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  a.curDynasty = a.DYNASTIES[0];
+  a.curStory = { id: "xia-h1", sents: [] };
+  a.launchConfetti = () => {};
+  a.storyOpenTime = Date.now();
+  const before = s.totalStars;
+  a.newChars = new Set("一二三四五六七八九十百千万上下大小人口日月山水火木".split(""));
+  assert.equal(a.newChars.size, 25);
+  a.completeStory();
+  assert.equal(s.totalStars - before, 100, "25 new characters used to pay 145");
+});
+
+test("A09: a meaning option shows a plain sense, never a bare parenthetical", () => {
+  const a = app();
+  assert.equal(a.optionLabel("to be (followed by substantives only)"), "to be");
+  assert.equal(a.optionLabel("(measure word for people and things)"), "measure word for people and things");
+  assert.equal(a.optionLabel("to look; to watch; to read"), "to look");
+  assert.equal(a.optionLabel("water"), "water");
+  assert.equal(a.optionLabel("(-ing, an action going on)"), "-ing, an action going on");
+});
+
+test("A09: a level with no story file is fetched once, not on every hub render", async () => {
+  const a = app();
+  let calls = 0;
+  a.fetch = () => { calls++; return Promise.resolve({ ok: false, status: 404, json: () => Promise.resolve(null) }); };
+  a.curriculumCache.stories = {};
+  assert.equal(await a.loadLevelStories(3), null);
+  assert.equal(await a.loadLevelStories(3), null);
+  assert.equal(await a.loadLevelStories(3), null);
+  assert.equal(calls, 1, "the 404 is remembered for the session");
+  // A network failure is not remembered: a level that exists gets another try.
+  a.fetch = () => { calls++; return Promise.reject(new Error("Failed to fetch")); };
+  a.curriculumCache.stories = {};
+  await a.loadLevelStories(2); await a.loadLevelStories(2);
+  assert.equal(calls, 3);
 });

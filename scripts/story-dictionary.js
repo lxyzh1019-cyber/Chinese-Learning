@@ -162,6 +162,14 @@ function applyGlossOverrides(dict, glossOnly) {
   return unused;
 }
 
+/**
+ * Spans that are a dictionary word but never one word in a children's story.
+ * 个人 "individual" is real, but every 个人 in the corpus is 一个人 / 第二个人 —
+ * a counting word and 人 — and the longest-match tokeniser glossed all 26 of
+ * them "individual". Removed after assembly so the tokeniser splits them.
+ */
+const NEVER_WORDS = ["个人", "写下"];
+
 function build() {
   const dict = {};
   const stats = {};
@@ -171,6 +179,7 @@ function build() {
   stats.curriculum = fromCurriculum(dict);
   stats.glossOverrides = Object.keys(glossOnly).length;
   stats.unusedGlossOverrides = applyGlossOverrides(dict, glossOnly);
+  NEVER_WORDS.forEach((w) => { delete dict[w]; });
   stats.total = Object.keys(dict).length;
   stats.singleChar = Object.keys(dict).filter((k) => [...k].length === 1).length;
   return { dict, stats };

@@ -1,6 +1,6 @@
 # Chinese Adventure — status and backlog
 
-Last updated 2026-09-08. This is the standing hand-off document: what is
+Last updated 2026-09-09. This is the standing hand-off document: what is
 built and proven, what is left, and what is blocked on someone other than
 the next engineer. It supersedes `docs/NEXT-SESSION.md` as the entry point.
 
@@ -12,6 +12,40 @@ Companion documents:
 - `docs/assessment-method.md` — how the assessment measures and what it will not claim
 
 ---
+
+## The 2026-09-09 audit: what was acted on
+
+The third-party release audit of 2026-09-09 (main `42566cf`) was validated
+finding by finding before anything changed: its revision, test count and both
+open findings reproduced exactly, and every row it closed has a named
+regression test. It is accurate. It also missed things a wider read found.
+
+| ID | What was wrong | State |
+|---|---|---|
+| R1 | A Champion Challenge could never pass: the best was written under `h1-c1` and read under `1` | fixed, level-keyed throughout; champion no longer bound to gate 5's timer or games |
+| R2 | The sentence builder scored valid Chinese wrong: 20 of 253 had a second order, 49 were subject-dropped fragments, 207 had no hint | fixed: pair/POS screens, compound chips, "Part of:" hint on every entry, reviewer alternates, neighbour borrowing; independent scan reports 0 of 243 |
+| C3 | Culture reader ignored the target words and answers | fixed: gloss strip, Show answer |
+| — | 他 "they" (219 tokens), 东西 "east and west" (74), 又 "after" (44), 故事 "old practice", 一起 "in the same place" | fixed at the dictionary, the served vocabulary and three sources; glosses of the 30 most-tapped words are pinned in the validator |
+| — | Plain toasts capped at 8 per page load, never reset — "Progress saved" went silent | fixed |
+| — | A resumed Match was scored on its original wall-clock start; its save was unstamped, so Resume opened an older round | fixed |
+| — | Finishing a gate quiz wiped a saved champion round; a saved champion was unreachable behind any gate quiz | fixed |
+| — | Forgiveness tokens and cross-trainer credit read a stale global on resume | fixed |
+| — | Rain stayed locked after a 0★ Listen | fixed (`listenPlayed`) |
+| — | HSK3/4 story files refetched on every hub render | fixed |
+| — | A first story read paid 265 stars against 220 for a gate | capped at 100 (owner) |
+| — | Parent dashboard opened without the PIN | asks on open (owner) |
+| — | Raw dictionary rows as MCQ options ("(measure word for people and things)") | `optionLabel` |
+| — | Champion title "1th Group"; CLAUDE.md said the assessment was on the hub, the dashboard was PIN-gated, gate mystery boxes dropped | fixed / corrected |
+
+Verified: `npm run verify` (parse guard, seven validators, 321 tests), and a
+Chromium walkthrough of the champion, sentence, Match-resume, parent and
+culture flows. **Still not run:** the iPad, live Firestore. The owner's list
+is `docs/device-check.md`.
+
+Owner decisions recorded: family use only (Jenn and Jess); Champion fixed
+rather than hidden; sentence packs regenerated with stricter screens rather
+than hand-curated; short gates borrow from neighbours; story cap 100; PIN on
+dashboard open with the value left in code.
 
 ## The 2026-09-08-02 audit: what was acted on
 
@@ -211,9 +245,10 @@ leave junk behind.
 *Cannot be done from a sandbox. Two minutes in the console.*
 
 ### 2. Parent PIN is still `1234`
-`index.html`, `PARENT_PWD`. It is also the session-timer override, so it is what
-stands between a child and unlimited play time. Change before this is something
-they use daily.
+`index.html`, `PARENT_PWD`. It now gates the dashboard on open as well as the
+star edits, clear-all and the session-timer override, so it is what stands
+between a child and unlimited play time. Change before this is something they
+use daily. It is a household control: the value is in a public file.
 
 ### 3. HSK3 and HSK4 stories — 88 texts
 20 sentences at HSK3, 25 at HSK4, same background story per dynasty. 22 HSK3

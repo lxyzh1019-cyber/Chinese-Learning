@@ -64,6 +64,11 @@ items completed).
 A visible "Save & Exit" button in every activity is better than relying on a
 generic overlay-close X — it tells the kid exactly what happens.
 
+The message must actually appear. `showToast` caps only the decorative kinds
+(`celebrate`, `micro`, `mystery`, `soundboard`) per profile session; a plain
+message is never dropped. It used to cap plain messages at eight per page
+load, so the ninth "Progress saved" of the day was silent.
+
 ---
 
 ## 3. Learning-first gating — read before play
@@ -455,6 +460,7 @@ function defPlayer() {
     // ── Reading gates (§3/§4) ──
     storyReadCount: {},     // { storyId: number } — dwell-validated read count
     flashPassDone: {},      // { gateKey: true } — completed flashcard deck
+    listenPlayed: {},       // { gateKey: true } — Listen played once, any score; unlocks Rain
 
     // ── Badges ──
     badges: [],             // array of badge IDs (see §18)
@@ -608,7 +614,15 @@ cleared (N=1 is always open), and the level itself must be unlocked (§12).
 
 ### Champion challenges
 One Champion Challenge per 5-gate group per level, keyed `championKey(level, grp)`.
-Unlocks only when all 5 gates in that group of that level are cleared.
+Unlocks only when all 5 gates in that group of that level are cleared. It
+passes on its **quiz alone** (`accPct ≥ 90` and 3★): it has no timer, no game
+requirement and no gate binding. `championBestQuiz` and `championCleared` are
+both keyed by `championKey`; read them through `championKeyOf`,
+`championStarsFor` and `championTrophyCount`. Until 2026-09-09 the write used
+the level key and the read used the bare group number, so no champion round
+could ever pass. A trophy stored under a bare group number predates the level
+model; it is counted as a trophy but drawn on no level's map, because groups
+3 and 4 straddled two historical levels.
 
 ### Gate completion
 
@@ -697,7 +711,9 @@ Tapping a character reveals its pinyin + meaning, adds it to the character
 
 When all study characters are tapped → "Finish Story" button enables →
 `completeStory()` runs the dwell-time check (§4), awards stars, and launches
-the **story mini-quiz**.
+the **story mini-quiz**. A read pays 5 per new character plus 20, **capped at
+100** (owner decision, 2026-09-09): uncapped, one first read paid 265 against
+220 for a whole gate.
 
 ### 15.2 Story mini-quiz
 
@@ -783,7 +799,11 @@ depended on flip order. Removed.
 **Scoring:** time-based — `<120 s = 3★, <180 s = 2★, <240 s = 1★`. Called
 at natural end when `matched >= pairCount`.
 
-**Save/resume:** `pendingSessions.match` persisted after each flip.
+**Save/resume:** `pendingSessions.match` persisted after each flip, carrying
+`elapsedMs` (time played so far) and a timestamp. The restore resumes the
+clock from `elapsedMs`; saving the wall-clock start meant any round resumed
+after four minutes was already 0★, and an unstamped save lost the "Resume last
+activity" slot to an older round.
 
 ### 16.3 Rain (🌧️)
 
@@ -878,7 +898,20 @@ starsFromAccuracy(quizCorrect, quizAttempts)
 - MCQ: 30–34 questions (draws from all 5 group dynasties)
 - Pinyin: 38–42 questions
 - Sentences: 10
-- Passing stores `championCleared[grp]`
+- Passing stores `championCleared[championKey(level, grp)]`
+
+### Sentence builder rules
+Packs are built by `scripts/build_sentence_packs.js` from the gate's own story
+and checked by `validate_sentence_packs.js` **with its own lists**. `checkSB`
+accepts the story's order and any order listed under `alt` in the pack
+metadata (`scripts/sentence-alternates.js`, reviewer-authored, same chips
+only). A clause cut from a longer sentence carries that sentence's English as
+`enContext`, shown as "Part of: …" — a child must be able to tell which
+sentence is wanted. A gate short of three borrows from a same-level neighbour
+(`borrowedFrom`). The screens are eager on purpose: a time phrase (八点, 每天),
+a preposition (在, 从), a …的时候 phrase, a repeated word, a clause opening on a
+verb or a connective, or ending on 说/问, is rejected rather than served with a
+second right order (§9.6).
 
 ### Recent question deduplication
 `recentGateQuestions["g-{did}"]` stores the last 80 MCQ and 80 pinyin
@@ -949,8 +982,11 @@ correct. Word comes from `failedWords` if library has entries, else from
 
 ## 20. Parent dashboard
 
-Accessible from select screen via "Parent" button; password-protected (`'1234'`
-in dev — change for production). Available features:
+Accessible from select screen via "Parent" button. Opening it asks the parent
+PIN (`PARENT_PWD`, `'1234'` in dev — change for production), as do the star
+edits and clear-all. The PIN is a household control, not a data boundary: it
+sits in this file, and the Firestore rules are what keep the records private.
+Available features:
 
 - **Weekly / Daily tabs** — toggle between weekly summary and today's stats
 - **Star controls** — give or remove stars in custom amounts (parent decides)
@@ -1000,8 +1036,10 @@ Mascot unlocks and becomes interactive after the player clears their 5th gate
 
 Pending picks stored in `mysteryPicksPending`. Opened from a hub card. Prizes:
 star payouts based on `badgeFragments` and family co-op thresholds.
-`maybeGrantMysteryFromGate(did)` can automatically award a pick after clearing
-a gate if the gate's `rewards.mysteryBoxChance` > 0 in the curriculum JSON.
+`maybeGrantMysteryFromGate(did)` can award a pick after clearing a gate if the
+gate's `rewards.mysteryBoxChance` > 0 in the curriculum JSON — but only when
+the parent setting `mysteryFromMissionsOnly` is off. It defaults to **on**, so
+in practice picks come from the daily mission and the parent panel.
 
 ### 22.3 Rivalry / co-op strip
 
@@ -1073,7 +1111,8 @@ All other UI is **overlays** (CSS class `show`/`hide`):
 ## 24. Assessment (`Assessment · 学习评估`)
 
 A measurement instrument, deliberately outside the game economy. It is **always
-available** from the hub — no gate, no read count — and it awards no stars,
+available** from the profile-select screen (`enterAssessment(pid)`, so the play
+timer never runs during it) — no gate, no read count — and it awards no stars,
 starts no timers, clears no gates, touches no failure counters and consumes no
 forgiveness tokens. Nothing a child does in it changes anything a child does
 outside it.
