@@ -2405,3 +2405,90 @@ test("C1: an unmarked syllable is neutral tone, not first tone", () => {
   assert.equal(a.markedPinyinToClipKey("tīng"), "ting1");
   assert.equal(a.markedPinyinToClipKey("kàn"), "kan4");
 });
+
+// ── C2: Phase 3 must ask about the story the child just read ─────────────
+// buildSBPack read `sentenceTargetsPack`, which existed in none of the 88
+// gates, so the branch had never run. 52 of the 88 gate/level pairs fell
+// through to the same three generic sentences, and champions asked for ten
+// and were handed six.
+
+function withCurriculum(a) {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2, 3, 4]) {
+    a.curriculumCache.levels[lv] =
+      JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+  }
+  return a;
+}
+
+test("C2: every authored gate supplies a full round from its own story", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const g of doc.gates) {
+      assert.ok(Array.isArray(g.sentenceTargetsPack),
+        `hsk${lv} gate ${g.gateId} has no pack, so it falls back to the generic sentences`);
+      assert.ok(g.sentenceTargetsPack.length >= 3,
+        `hsk${lv} gate ${g.gateId} supplies ${g.sentenceTargetsPack.length}, a round asks for 3`);
+    }
+  }
+});
+
+test("C2: a normal round no longer serves the generic fallback", () => {
+  const a = withCurriculum(app());
+  a.curP = "jenn";
+  a.curHSK = 1;
+  const generic = ["我爱学习中文。", "我是中国人。", "我们一起读故事。"];
+  // GATE_SENTENCES only ever had gates 1, 5, 6, 8, 12, 14, 18, 19 and 20, so
+  // these are gates that really did serve the generic three, at every level.
+  [2, 7, 10, 11, 22].forEach((did) => {
+    const pack = a.buildSBPack(did, false, 3);
+    assert.equal(pack.length, 3, `gate ${did} should supply a full round`);
+    pack.forEach((s) => {
+      assert.ok(!generic.includes(s.join("")),
+        `gate ${did} served "${s.join("")}", which is the generic fallback and not its own story`);
+    });
+  });
+});
+
+test("C2: a champion round gets the ten sentences it asks for", () => {
+  const a = withCurriculum(app());
+  a.curP = "jenn";
+  a.curHSK = 1;
+  // Champion groups end at gates 5, 10, 15 and 20 and pool the five behind them.
+  [5, 10, 15, 20].forEach((did) => {
+    assert.equal(a.buildSBPack(did, true, 10).length, 10,
+      `champion at gate ${did} was short — the score maximum would not match the questions`);
+  });
+});
+
+test("C2: HSK1 and HSK2 ask different sentences for the same gate number", () => {
+  const a = withCurriculum(app());
+  a.curP = "jenn";
+  a.curHSK = 1;
+  const one = new Set(a.curriculumCache.levels[1].gates.find((g) => g.gateId === 1).sentenceTargetsPack.map((s) => s.join("")));
+  const two = new Set(a.curriculumCache.levels[2].gates.find((g) => g.gateId === 1).sentenceTargetsPack.map((s) => s.join("")));
+  const shared = [...one].filter((s) => two.has(s));
+  assert.notDeepEqual([...one], [...two],
+    "GATE_SENTENCES had no level dimension; the packs must follow the level's own text");
+  assert.ok(shared.length < one.size, `levels should not serve an identical set (${shared.length} shared)`);
+});
+
+test("C2: every pack sentence is buildable from its chips exactly once", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  for (const lv of [1, 2]) {
+    const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", `hsk${lv}.json`), "utf8"));
+    for (const g of doc.gates) {
+      for (const chips of g.sentenceTargetsPack || []) {
+        const answer = chips.join("");
+        // checkSB compares sbBuilt.join("") to correct.join("") — computed here.
+        assert.equal(chips.join(""), answer);
+        assert.ok(g.sentenceTargetsMeta && g.sentenceTargetsMeta[answer],
+          `hsk${lv} gate ${g.gateId}: "${answer}" has no metadata, so the reveal card has no reading`);
+      }
+    }
+  }
+});

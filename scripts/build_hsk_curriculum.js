@@ -225,10 +225,31 @@ async function main() {
   const hsk3 = levelDoc(3, hsk3Words, ["300-word custom level from HSK 3.0 new-3 list, excluding HSK2 borrowed entries"]);
   const hsk4 = levelDoc(4, hsk4Words, ["300-word custom level from HSK 3.0 new-4 list"]);
 
-  fs.writeFileSync(path.join(DATA_DIR, "hsk1.json"), JSON.stringify(hsk1, null, 2));
-  fs.writeFileSync(path.join(DATA_DIR, "hsk2.json"), JSON.stringify(hsk2, null, 2));
-  fs.writeFileSync(path.join(DATA_DIR, "hsk3.json"), JSON.stringify(hsk3, null, 2));
-  fs.writeFileSync(path.join(DATA_DIR, "hsk4.json"), JSON.stringify(hsk4, null, 2));
+  // This script REPLACES the level files wholesale from an upstream fetch, so
+  // anything a later pass wrote into a gate is destroyed unless it is carried
+  // across. The sentence packs are built from the story corpus, not from
+  // upstream, and losing them silently returns Phase 3 to the three generic
+  // sentences it used to serve. Same relationship the file already has with
+  // repair_vocab.js: rerun `npm run build:sentences` after a rebuild.
+  const carryForward = (doc, name) => {
+    const file = path.join(DATA_DIR, name);
+    if (!fs.existsSync(file)) return doc;
+    let prev;
+    try { prev = JSON.parse(fs.readFileSync(file, "utf8")); } catch (e) { return doc; }
+    const byId = new Map((prev.gates || []).map((g) => [g.gateId, g]));
+    (doc.gates || []).forEach((g) => {
+      const old = byId.get(g.gateId);
+      if (!old) return;
+      if (old.sentenceTargetsPack) g.sentenceTargetsPack = old.sentenceTargetsPack;
+      if (old.sentenceTargetsMeta) g.sentenceTargetsMeta = old.sentenceTargetsMeta;
+    });
+    return doc;
+  };
+
+  fs.writeFileSync(path.join(DATA_DIR, "hsk1.json"), JSON.stringify(carryForward(hsk1, "hsk1.json"), null, 2));
+  fs.writeFileSync(path.join(DATA_DIR, "hsk2.json"), JSON.stringify(carryForward(hsk2, "hsk2.json"), null, 2));
+  fs.writeFileSync(path.join(DATA_DIR, "hsk3.json"), JSON.stringify(carryForward(hsk3, "hsk3.json"), null, 2));
+  fs.writeFileSync(path.join(DATA_DIR, "hsk4.json"), JSON.stringify(carryForward(hsk4, "hsk4.json"), null, 2));
 
   const report = {
     generatedAt: new Date().toISOString(),

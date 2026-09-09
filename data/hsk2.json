@@ -6461,7 +6461,97 @@
           }
         }
       ],
-      "reviewWords": []
+      "reviewWords": [],
+      "sentenceTargetsPack": [
+        [
+          "其中",
+          "有",
+          "一",
+          "条",
+          "小龙",
+          "。"
+        ],
+        [
+          "大家",
+          "没有",
+          "地方",
+          "住",
+          "。"
+        ],
+        [
+          "看",
+          "起来",
+          "很",
+          "快乐",
+          "。"
+        ],
+        [
+          "问",
+          "大家",
+          "应该",
+          "怎么办",
+          "。"
+        ],
+        [
+          "小龙",
+          "也",
+          "想",
+          "下去",
+          "。"
+        ],
+        [
+          "大禹",
+          "是",
+          "个",
+          "好",
+          "人",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "其中有一条小龙。": {
+          "py": "qí zhōng yǒu yī tiáo Xiǎo Lóng",
+          "en": null,
+          "storyId": "xia2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "大家没有地方住。": {
+          "py": "dà jiā méi yǒu dì fāng zhù",
+          "en": null,
+          "storyId": "xia",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "看起来很快乐。": {
+          "py": "kàn qǐ lai hěn kuài lè",
+          "en": null,
+          "storyId": "xia2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "问大家应该怎么办。": {
+          "py": "wèn dà jiā yīng gāi zěn me bàn",
+          "en": null,
+          "storyId": "xia",
+          "sentIndex": 4,
+          "whole": false
+        },
+        "小龙也想下去。": {
+          "py": "Xiǎo Lóng yě xiǎng xià qù",
+          "en": null,
+          "storyId": "xia2",
+          "sentIndex": 4,
+          "whole": false
+        },
+        "大禹是个好人。": {
+          "py": "Dà Yǔ shì gè hǎo rén",
+          "en": null,
+          "storyId": "xia",
+          "sentIndex": 5,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 2,
@@ -6960,7 +7050,97 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "我们",
+          "八",
+          "点",
+          "出",
+          "门",
+          "。"
+        ],
+        [
+          "走",
+          "了",
+          "二",
+          "十",
+          "分钟",
+          "才",
+          "到",
+          "。"
+        ],
+        [
+          "有人",
+          "卖",
+          "水果",
+          "。"
+        ],
+        [
+          "有人",
+          "卖",
+          "鱼",
+          "。"
+        ],
+        [
+          "卖",
+          "水果",
+          "的",
+          "人",
+          "说",
+          "。"
+        ],
+        [
+          "他们",
+          "也",
+          "问",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "我们八点出门。": {
+          "py": "wǒ men bā diǎn chū mén",
+          "en": null,
+          "storyId": "shang2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "走了二十分钟才到。": {
+          "py": "zǒu le èr shí fēn zhōng cái dào",
+          "en": null,
+          "storyId": "shang2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "有人卖水果。": {
+          "py": "yǒu rén mài shuǐ guǒ",
+          "en": null,
+          "storyId": "shang2",
+          "sentIndex": 5,
+          "whole": false
+        },
+        "有人卖鱼。": {
+          "py": "yǒu rén mài yú",
+          "en": null,
+          "storyId": "shang2",
+          "sentIndex": 5,
+          "whole": false
+        },
+        "卖水果的人说。": {
+          "py": "mài shuǐ guǒ de rén shuō",
+          "en": null,
+          "storyId": "shang2",
+          "sentIndex": 6,
+          "whole": false
+        },
+        "他们也问。": {
+          "py": "tā men yě wèn",
+          "en": null,
+          "storyId": "shang",
+          "sentIndex": 8,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 3,
@@ -7631,7 +7811,101 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "比",
+          "学校",
+          "还",
+          "老",
+          "。"
+        ],
+        [
+          "它",
+          "很",
+          "高",
+          "。"
+        ],
+        [
+          "天",
+          "热",
+          "的",
+          "时候",
+          "下面",
+          "很",
+          "好",
+          "。"
+        ],
+        [
+          "我们",
+          "都",
+          "在",
+          "树",
+          "下",
+          "玩",
+          "。"
+        ],
+        [
+          "他",
+          "还",
+          "说",
+          "。"
+        ],
+        [
+          "天",
+          "就",
+          "让",
+          "他",
+          "一直",
+          "做",
+          "下去",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "比学校还老。": {
+          "py": "bǐ xué xiào hái lǎo",
+          "en": null,
+          "storyId": "zhou2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "它很高。": {
+          "py": "tā hěn gāo",
+          "en": null,
+          "storyId": "zhou2",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "天热的时候下面很好。": {
+          "py": "tiān rè de shíhou xià miàn hěn hǎo",
+          "en": null,
+          "storyId": "zhou2",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "我们都在树下玩。": {
+          "py": "wǒ men dōu zài shù xià wán",
+          "en": null,
+          "storyId": "zhou2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "他还说。": {
+          "py": "tā hái shuō",
+          "en": null,
+          "storyId": "zhou",
+          "sentIndex": 4,
+          "whole": false
+        },
+        "天就让他一直做下去。": {
+          "py": "tiān jiù ràng tā yī zhí zuò xià qù",
+          "en": null,
+          "storyId": "zhou",
+          "sentIndex": 5,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 4,
@@ -8302,7 +8576,98 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "他",
+          "的",
+          "名字",
+          "叫",
+          "孔子",
+          "。"
+        ],
+        [
+          "中国",
+          "有",
+          "一",
+          "位",
+          "老师",
+          "。"
+        ],
+        [
+          "房子",
+          "很",
+          "大",
+          "。"
+        ],
+        [
+          "里面",
+          "有",
+          "很",
+          "多",
+          "东西",
+          "。"
+        ],
+        [
+          "谁",
+          "想",
+          "学",
+          "。"
+        ],
+        [
+          "猫",
+          "在",
+          "门",
+          "后面",
+          "等",
+          "着",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "他的名字叫孔子。": {
+          "py": "tā de míng zi jiào Kǒngzǐ",
+          "en": "His name was Confucius.",
+          "storyId": "konfucius",
+          "sentIndex": 1,
+          "whole": true
+        },
+        "中国有一位老师。": {
+          "py": "Zhōngguó yǒu yī wèi lǎoshī",
+          "en": null,
+          "storyId": "konfucius",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "房子很大。": {
+          "py": "fáng zi hěn dà",
+          "en": null,
+          "storyId": "dongzhou2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "里面有很多东西。": {
+          "py": "lǐ miàn yǒu hěn duō dōng xī",
+          "en": null,
+          "storyId": "dongzhou2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "谁想学。": {
+          "py": "shéi xiǎng xué",
+          "en": null,
+          "storyId": "konfucius",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "猫在门后面等着。": {
+          "py": "māo zài mén hòu mian děng zhe",
+          "en": null,
+          "storyId": "dongzhou2",
+          "sentIndex": 4,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 5,
@@ -8980,7 +9345,106 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "我们",
+          "八",
+          "点",
+          "在",
+          "学校",
+          "门口",
+          "见到",
+          "。"
+        ],
+        [
+          "一",
+          "共",
+          "去",
+          "了",
+          "二",
+          "十",
+          "个人",
+          "。"
+        ],
+        [
+          "中国",
+          "有",
+          "很",
+          "多",
+          "小",
+          "国",
+          "。"
+        ],
+        [
+          "上",
+          "个",
+          "月",
+          "。"
+        ],
+        [
+          "老师",
+          "带",
+          "我们",
+          "去",
+          "爬",
+          "山",
+          "。"
+        ],
+        [
+          "大家",
+          "都",
+          "过",
+          "得",
+          "不",
+          "好",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "我们八点在学校门口见到。": {
+          "py": "wǒ men bā diǎn zài xué xiào mén kǒu jiàn dào",
+          "en": "We met at the school gate at eight.",
+          "storyId": "qin2",
+          "sentIndex": 2,
+          "whole": true
+        },
+        "一共去了二十个人。": {
+          "py": "yī gòng qù le èr shí gè rén",
+          "en": "Twenty of us went in all.",
+          "storyId": "qin2",
+          "sentIndex": 3,
+          "whole": true
+        },
+        "中国有很多小国。": {
+          "py": "Zhōngguó yǒu hěn duō xiǎo guó",
+          "en": null,
+          "storyId": "qin",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "上个月。": {
+          "py": "shàng gè yuè",
+          "en": null,
+          "storyId": "qin2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "老师带我们去爬山。": {
+          "py": "lǎoshī dài wǒ men qù pá shān",
+          "en": null,
+          "storyId": "qin2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "大家都过得不好。": {
+          "py": "dà jiā dōu guò de bù hǎo",
+          "en": null,
+          "storyId": "qin",
+          "sentIndex": 1,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 6,
@@ -9642,7 +10106,107 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "它",
+          "的",
+          "名字",
+          "叫",
+          "小白",
+          "。"
+        ],
+        [
+          "那",
+          "时候",
+          "它",
+          "还",
+          "很",
+          "小",
+          "。"
+        ],
+        [
+          "看",
+          "一",
+          "看",
+          "那里",
+          "的",
+          "情况",
+          "。"
+        ],
+        [
+          "它",
+          "都",
+          "会",
+          "叫",
+          "我",
+          "起床",
+          "。"
+        ],
+        [
+          "他们",
+          "说",
+          "西边",
+          "有",
+          "很",
+          "多",
+          "国家",
+          "。"
+        ],
+        [
+          "他们",
+          "带",
+          "着",
+          "中国",
+          "的",
+          "丝",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "它的名字叫小白。": {
+          "py": "tā de míng zi jiào Xiǎo Bái",
+          "en": null,
+          "storyId": "han2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "那时候它还很小。": {
+          "py": "nà shíhou tā hái hěn xiǎo",
+          "en": null,
+          "storyId": "han2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "看一看那里的情况。": {
+          "py": "kàn yī kàn nà li de qíng kuàng",
+          "en": null,
+          "storyId": "han",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "它都会叫我起床。": {
+          "py": "tā dōu huì jiào wǒ qǐ chuáng",
+          "en": null,
+          "storyId": "han2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "他们说西边有很多国家。": {
+          "py": "tā men shuō xī biān yǒu hěn duō guó jiā",
+          "en": null,
+          "storyId": "han",
+          "sentIndex": 4,
+          "whole": false
+        },
+        "他们带着中国的丝。": {
+          "py": "tā men dài zhe Zhōngguó de sī",
+          "en": null,
+          "storyId": "han",
+          "sentIndex": 6,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 7,
@@ -10304,7 +10868,101 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "他",
+          "的",
+          "名字",
+          "叫",
+          "蔡伦",
+          "。"
+        ],
+        [
+          "放",
+          "得到",
+          "处",
+          "都",
+          "是",
+          "。"
+        ],
+        [
+          "有的",
+          "已经",
+          "很",
+          "旧",
+          "了",
+          "。"
+        ],
+        [
+          "一",
+          "个人",
+          "拿",
+          "不",
+          "动",
+          "。"
+        ],
+        [
+          "里面",
+          "有",
+          "皇",
+          "帝",
+          "。"
+        ],
+        [
+          "有时候",
+          "我",
+          "看",
+          "得",
+          "太",
+          "认真",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "他的名字叫蔡伦。": {
+          "py": "tā de míng zi jiào Cài Lún",
+          "en": "His name was Cai Lun.",
+          "storyId": "paper",
+          "sentIndex": 6,
+          "whole": true
+        },
+        "放得到处都是。": {
+          "py": "fàng dé dào chǔ dōu shì",
+          "en": null,
+          "storyId": "paper2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "有的已经很旧了。": {
+          "py": "yǒu de yǐ jīng hěn jiù le",
+          "en": null,
+          "storyId": "paper2",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "一个人拿不动。": {
+          "py": "yī gè rén ná bù dòng",
+          "en": null,
+          "storyId": "paper",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "里面有皇帝。": {
+          "py": "lǐ miàn yǒu huáng dì",
+          "en": null,
+          "storyId": "paper2",
+          "sentIndex": 5,
+          "whole": false
+        },
+        "有时候我看得太认真。": {
+          "py": "yǒu shí hou wǒ kàn de tài rèn zhēn",
+          "en": null,
+          "storyId": "paper2",
+          "sentIndex": 8,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 8,
@@ -10956,7 +11614,103 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "中国",
+          "分",
+          "成",
+          "了",
+          "三",
+          "个",
+          "国家",
+          "。"
+        ],
+        [
+          "我们",
+          "在",
+          "一",
+          "个",
+          "学校",
+          "。"
+        ],
+        [
+          "我们",
+          "四",
+          "个人",
+          "一起",
+          "吃饭",
+          "。"
+        ],
+        [
+          "我们",
+          "也",
+          "常",
+          "常",
+          "一起",
+          "玩",
+          "。"
+        ],
+        [
+          "他",
+          "才",
+          "出来",
+          "做",
+          "事",
+          "。"
+        ],
+        [
+          "他",
+          "会",
+          "看",
+          "天气",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "中国分成了三个国家。": {
+          "py": "Zhōngguó fēn chéng le sān gè guó jiā",
+          "en": null,
+          "storyId": "sanguo",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "我们在一个学校。": {
+          "py": "wǒ men zài yī gè xué xiào",
+          "en": null,
+          "storyId": "sanguo2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "我们四个人一起吃饭。": {
+          "py": "wǒ men sì gè rén yī qǐ chī fàn",
+          "en": null,
+          "storyId": "sanguo2",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "我们也常常一起玩。": {
+          "py": "wǒ men yě cháng cháng yī qǐ wán",
+          "en": null,
+          "storyId": "sanguo2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "他才出来做事。": {
+          "py": "tā cái chū lái zuò shì",
+          "en": null,
+          "storyId": "sanguo",
+          "sentIndex": 4,
+          "whole": false
+        },
+        "他会看天气。": {
+          "py": "tā huì kàn tiān qì",
+          "en": null,
+          "storyId": "sanguo",
+          "sentIndex": 6,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 9,
@@ -11627,7 +12381,94 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "他",
+          "的",
+          "名字",
+          "叫",
+          "王羲之",
+          "。"
+        ],
+        [
+          "这",
+          "个",
+          "月",
+          "。"
+        ],
+        [
+          "我们",
+          "开始",
+          "学",
+          "写",
+          "汉字",
+          "。"
+        ],
+        [
+          "坐",
+          "得",
+          "直",
+          "。"
+        ],
+        [
+          "字",
+          "才",
+          "会",
+          "好看",
+          "。"
+        ],
+        [
+          "她",
+          "也",
+          "说",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "他的名字叫王羲之。": {
+          "py": "tā de míng zi jiào Wáng Xīzhī",
+          "en": "His name was Wang Xizhi.",
+          "storyId": "shufa",
+          "sentIndex": 2,
+          "whole": true
+        },
+        "这个月。": {
+          "py": "zhè gè yuè",
+          "en": null,
+          "storyId": "shufa2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "我们开始学写汉字。": {
+          "py": "wǒ men kāishǐ xué xiě hàn zì",
+          "en": null,
+          "storyId": "shufa2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "坐得直。": {
+          "py": "zuò de zhí",
+          "en": null,
+          "storyId": "shufa2",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "字才会好看。": {
+          "py": "zì cái huì hǎo kàn",
+          "en": null,
+          "storyId": "shufa2",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "她也说。": {
+          "py": "tā yě shuō",
+          "en": null,
+          "storyId": "shufa2",
+          "sentIndex": 3,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 10,
@@ -12299,7 +13140,100 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "过",
+          "了",
+          "一",
+          "点",
+          "时间",
+          "。"
+        ],
+        [
+          "做",
+          "官",
+          "可以",
+          "有",
+          "钱",
+          "。"
+        ],
+        [
+          "我",
+          "坐",
+          "在",
+          "窗",
+          "前面",
+          "。"
+        ],
+        [
+          "雨",
+          "打",
+          "在",
+          "地上",
+          "。"
+        ],
+        [
+          "有",
+          "很",
+          "好听",
+          "的",
+          "声音",
+          "。"
+        ],
+        [
+          "他",
+          "决定",
+          "不",
+          "做",
+          "了",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "过了一点时间。": {
+          "py": "guò le yī diǎn shí jiān",
+          "en": null,
+          "storyId": "tao2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "做官可以有钱。": {
+          "py": "zuò guān kě yǐ yǒu qián",
+          "en": null,
+          "storyId": "tao",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "我坐在窗前面。": {
+          "py": "wǒ zuò zài chuāng qián miàn",
+          "en": null,
+          "storyId": "tao2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "雨打在地上。": {
+          "py": "yǔ dǎ zài dì shang",
+          "en": null,
+          "storyId": "tao2",
+          "sentIndex": 4,
+          "whole": false
+        },
+        "有很好听的声音。": {
+          "py": "yǒu hěn hǎo tīng de shēng yīn",
+          "en": null,
+          "storyId": "tao2",
+          "sentIndex": 4,
+          "whole": false
+        },
+        "他决定不做了。": {
+          "py": "tā jué dìng bù zuò le",
+          "en": null,
+          "storyId": "tao",
+          "sentIndex": 5,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 11,
@@ -12975,7 +13909,94 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "中国",
+          "很",
+          "大",
+          "。"
+        ],
+        [
+          "上",
+          "个",
+          "月",
+          "。"
+        ],
+        [
+          "爸爸",
+          "带",
+          "我",
+          "去",
+          "坐",
+          "船",
+          "。"
+        ],
+        [
+          "北边",
+          "天气",
+          "冷",
+          "。"
+        ],
+        [
+          "南边",
+          "天气",
+          "热",
+          "。"
+        ],
+        [
+          "我",
+          "看见",
+          "很",
+          "多",
+          "船",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "中国很大。": {
+          "py": "Zhōngguó hěn dà",
+          "en": null,
+          "storyId": "canal",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "上个月。": {
+          "py": "shàng gè yuè",
+          "en": null,
+          "storyId": "canal2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "爸爸带我去坐船。": {
+          "py": "bà ba dài wǒ qù zuò chuán",
+          "en": null,
+          "storyId": "canal2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "北边天气冷。": {
+          "py": "běi biān tiān qì lěng",
+          "en": null,
+          "storyId": "canal",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "南边天气热。": {
+          "py": "nán bian tiān qì rè",
+          "en": null,
+          "storyId": "canal",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "我看见很多船。": {
+          "py": "wǒ kàn jiàn hěn duō chuán",
+          "en": null,
+          "storyId": "canal2",
+          "sentIndex": 3,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 12,
@@ -13643,7 +14664,103 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "唐朝",
+          "最",
+          "大",
+          "的",
+          "城",
+          "叫",
+          "长安",
+          "。"
+        ],
+        [
+          "他",
+          "一",
+          "开始",
+          "以为",
+          "地上",
+          "是",
+          "水",
+          "。"
+        ],
+        [
+          "那",
+          "天",
+          "天气",
+          "很",
+          "好",
+          "。"
+        ],
+        [
+          "他们",
+          "有的",
+          "来",
+          "做",
+          "买",
+          "卖",
+          "。"
+        ],
+        [
+          "有的",
+          "来",
+          "读书",
+          "。"
+        ],
+        [
+          "他们",
+          "带来",
+          "了",
+          "马",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "唐朝最大的城叫长安。": {
+          "py": "Táng Cháo zuì dà de chéng jiào Cháng’ān",
+          "en": "The Tang’s greatest city was Chang’an.",
+          "storyId": "tang",
+          "sentIndex": 1,
+          "whole": true
+        },
+        "他一开始以为地上是水。": {
+          "py": "tā yī kāishǐ yǐ wéi dì shang shì shuǐ",
+          "en": "At first he thought there was water on the ground.",
+          "storyId": "tang2",
+          "sentIndex": 7,
+          "whole": true
+        },
+        "那天天气很好。": {
+          "py": "nà tiān tiān qì hěn hǎo",
+          "en": null,
+          "storyId": "tang2",
+          "sentIndex": 5,
+          "whole": false
+        },
+        "他们有的来做买卖。": {
+          "py": "tā men yǒu de lái zuò mǎi mài",
+          "en": null,
+          "storyId": "tang",
+          "sentIndex": 6,
+          "whole": false
+        },
+        "有的来读书。": {
+          "py": "yǒu de lái dú shū",
+          "en": null,
+          "storyId": "tang",
+          "sentIndex": 6,
+          "whole": false
+        },
+        "他们带来了马。": {
+          "py": "tā men dài lái le mǎ",
+          "en": null,
+          "storyId": "tang",
+          "sentIndex": 7,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 13,
@@ -14313,7 +15430,101 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "书",
+          "从",
+          "地上",
+          "一直",
+          "放",
+          "到",
+          "上面",
+          "。"
+        ],
+        [
+          "人们",
+          "可以",
+          "写",
+          "书",
+          "了",
+          "。"
+        ],
+        [
+          "那",
+          "个",
+          "地方",
+          "很",
+          "大",
+          "。"
+        ],
+        [
+          "有时候",
+          "要",
+          "几",
+          "个",
+          "月",
+          "。"
+        ],
+        [
+          "一",
+          "进",
+          "去",
+          "。"
+        ],
+        [
+          "大家",
+          "就",
+          "不",
+          "说话",
+          "了",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "书从地上一直放到上面。": {
+          "py": "shū cóng dì shang yī zhí fàng dào shàng miàn",
+          "en": "The books went from the floor right up to the top.",
+          "storyId": "print2",
+          "sentIndex": 4,
+          "whole": true
+        },
+        "人们可以写书了。": {
+          "py": "rén men kě yǐ xiě shū le",
+          "en": null,
+          "storyId": "print",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "那个地方很大。": {
+          "py": "nà gè dì fāng hěn dà",
+          "en": null,
+          "storyId": "print2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "有时候要几个月。": {
+          "py": "yǒu shí hou yào jī gè yuè",
+          "en": null,
+          "storyId": "print",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "一进去。": {
+          "py": "yī jìn qù",
+          "en": null,
+          "storyId": "print2",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "大家就不说话了。": {
+          "py": "dà jiā jiù bù shuō huà le",
+          "en": null,
+          "storyId": "print2",
+          "sentIndex": 2,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 14,
@@ -14984,7 +16195,103 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "其中",
+          "最",
+          "有名",
+          "的",
+          "有",
+          "四",
+          "个",
+          "。"
+        ],
+        [
+          "第二",
+          "个",
+          "是",
+          "印",
+          "书",
+          "的",
+          "方法",
+          "。"
+        ],
+        [
+          "这样",
+          "的",
+          "钱",
+          "很",
+          "小",
+          "。"
+        ],
+        [
+          "那",
+          "还",
+          "可以",
+          "。"
+        ],
+        [
+          "人们",
+          "才",
+          "可以",
+          "写",
+          "书",
+          "。"
+        ],
+        [
+          "一",
+          "个人",
+          "拿",
+          "不",
+          "动",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "其中最有名的有四个。": {
+          "py": "qí zhōng zuì yǒu míng de yǒu sì gè",
+          "en": "Four of them are the most famous.",
+          "storyId": "song",
+          "sentIndex": 1,
+          "whole": true
+        },
+        "第二个是印书的方法。": {
+          "py": "dì èr gè shì Yìn shū de fāng fǎ",
+          "en": "The second is printing.",
+          "storyId": "song",
+          "sentIndex": 4,
+          "whole": true
+        },
+        "这样的钱很小。": {
+          "py": "zhè yàng de qián hěn xiǎo",
+          "en": null,
+          "storyId": "song2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "那还可以。": {
+          "py": "nà hái kě yǐ",
+          "en": null,
+          "storyId": "song2",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "人们才可以写书。": {
+          "py": "rén men cái kě yǐ xiě shū",
+          "en": null,
+          "storyId": "song",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "一个人拿不动。": {
+          "py": "yī gè rén ná bù dòng",
+          "en": null,
+          "storyId": "song2",
+          "sentIndex": 5,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 15,
@@ -15657,7 +16964,99 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "最后",
+          "才",
+          "慢慢",
+          "地",
+          "喝",
+          "。"
+        ],
+        [
+          "他们",
+          "觉得",
+          "这",
+          "不",
+          "只是",
+          "喝",
+          "东西",
+          "。"
+        ],
+        [
+          "到",
+          "了",
+          "宋朝",
+          "。"
+        ],
+        [
+          "有的",
+          "人",
+          "来",
+          "喝",
+          "茶",
+          "。"
+        ],
+        [
+          "有的",
+          "人",
+          "来",
+          "见",
+          "朋友",
+          "。"
+        ],
+        [
+          "他们",
+          "一边",
+          "喝",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "最后才慢慢地喝。": {
+          "py": "zuì hòu cái màn màn de hē",
+          "en": "Only then did they slowly drink.",
+          "storyId": "tea",
+          "sentIndex": 10,
+          "whole": true
+        },
+        "他们觉得这不只是喝东西。": {
+          "py": "tā men jué de zhè bù zhǐ shì hē dōng xī",
+          "en": "They felt this was not only drinking.",
+          "storyId": "tea",
+          "sentIndex": 11,
+          "whole": true
+        },
+        "到了宋朝。": {
+          "py": "dào le Sòng Cháo",
+          "en": null,
+          "storyId": "tea",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "有的人来喝茶。": {
+          "py": "yǒu de rén lái hē chá",
+          "en": null,
+          "storyId": "tea2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "有的人来见朋友。": {
+          "py": "yǒu de rén lái jiàn péng you",
+          "en": null,
+          "storyId": "tea2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "他们一边喝。": {
+          "py": "tā men yī biān hē",
+          "en": null,
+          "storyId": "tea2",
+          "sentIndex": 5,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 16,
@@ -16337,7 +17736,105 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "他们",
+          "从",
+          "小",
+          "就",
+          "学",
+          "骑",
+          "马",
+          "。"
+        ],
+        [
+          "他们",
+          "的",
+          "马",
+          "又",
+          "快",
+          "又",
+          "好",
+          "。"
+        ],
+        [
+          "那里",
+          "没有",
+          "山",
+          "。"
+        ],
+        [
+          "草",
+          "都",
+          "动",
+          "了",
+          "起来",
+          "。"
+        ],
+        [
+          "天",
+          "冷",
+          "的",
+          "时候",
+          "非常",
+          "难",
+          "过",
+          "。"
+        ],
+        [
+          "那里",
+          "住",
+          "着",
+          "一些",
+          "人",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "他们从小就学骑马。": {
+          "py": "tā men cóng xiǎo jiù xué qí mǎ",
+          "en": "They learned to ride from childhood.",
+          "storyId": "rider",
+          "sentIndex": 6,
+          "whole": true
+        },
+        "他们的马又快又好。": {
+          "py": "tā men de mǎ yòu kuài yòu hǎo",
+          "en": "Their horses were fast and fine.",
+          "storyId": "rider",
+          "sentIndex": 7,
+          "whole": true
+        },
+        "那里没有山。": {
+          "py": "nà li méi yǒu shān",
+          "en": null,
+          "storyId": "rider",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "草都动了起来。": {
+          "py": "cǎo dōu dòng le qǐ lai",
+          "en": null,
+          "storyId": "rider2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "天冷的时候非常难过。": {
+          "py": "tiān lěng de shíhou fēi cháng nán guò",
+          "en": null,
+          "storyId": "rider",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "那里住着一些人。": {
+          "py": "nà li zhù zhe yī xiē rén",
+          "en": null,
+          "storyId": "rider",
+          "sentIndex": 3,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 17,
@@ -17020,7 +18517,99 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "他",
+          "家里",
+          "不",
+          "有",
+          "钱",
+          "。"
+        ],
+        [
+          "他",
+          "看",
+          "什么",
+          "都",
+          "看",
+          "。"
+        ],
+        [
+          "一直",
+          "放",
+          "在",
+          "身上",
+          "。"
+        ],
+        [
+          "看到",
+          "好",
+          "的",
+          "东西",
+          "。"
+        ],
+        [
+          "他",
+          "就",
+          "马上",
+          "写",
+          "下来",
+          "。"
+        ],
+        [
+          "一",
+          "年",
+          "一",
+          "年",
+          "过去",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "他家里不有钱。": {
+          "py": "tā jiā lǐ bù yǒu qián",
+          "en": null,
+          "storyId": "scholar2",
+          "sentIndex": 1,
+          "whole": false
+        },
+        "他看什么都看。": {
+          "py": "tā kàn shén me dōu kàn",
+          "en": null,
+          "storyId": "scholar2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "一直放在身上。": {
+          "py": "yī zhí fàng zài shēn shang",
+          "en": null,
+          "storyId": "scholar2",
+          "sentIndex": 4,
+          "whole": false
+        },
+        "看到好的东西。": {
+          "py": "kàn dào hǎo de dōng xī",
+          "en": null,
+          "storyId": "scholar2",
+          "sentIndex": 5,
+          "whole": false
+        },
+        "他就马上写下来。": {
+          "py": "tā jiù mǎ shàng xiě xià lai",
+          "en": null,
+          "storyId": "scholar2",
+          "sentIndex": 5,
+          "whole": false
+        },
+        "一年一年过去。": {
+          "py": "yī nián yī nián guò qù",
+          "en": null,
+          "storyId": "scholar2",
+          "sentIndex": 7,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 18,
@@ -17702,7 +19291,103 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "那",
+          "时候",
+          "的",
+          "大",
+          "王",
+          "叫",
+          "忽必烈",
+          "。"
+        ],
+        [
+          "他",
+          "的",
+          "名字",
+          "叫",
+          "马可·波罗",
+          "。"
+        ],
+        [
+          "他",
+          "的",
+          "国家",
+          "非常",
+          "大",
+          "。"
+        ],
+        [
+          "天",
+          "冷",
+          "的",
+          "时候",
+          "喝",
+          "一",
+          "杯",
+          "。"
+        ],
+        [
+          "他们",
+          "过",
+          "了",
+          "山",
+          "。"
+        ],
+        [
+          "有的",
+          "东西",
+          "很",
+          "香",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "那时候的大王叫忽必烈。": {
+          "py": "nà shíhou de dà wáng jiào Hūbìliè",
+          "en": "Its great khan was called Kublai.",
+          "storyId": "yuan",
+          "sentIndex": 1,
+          "whole": true
+        },
+        "他的名字叫马可·波罗。": {
+          "py": "tā de míng zi jiào Mǎkě Bōluó",
+          "en": "His name was Marco Polo.",
+          "storyId": "yuan",
+          "sentIndex": 5,
+          "whole": true
+        },
+        "他的国家非常大。": {
+          "py": "tā de guó jiā fēi cháng dà",
+          "en": null,
+          "storyId": "yuan",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "天冷的时候喝一杯。": {
+          "py": "tiān lěng de shíhou hē yī bēi",
+          "en": null,
+          "storyId": "yuan2",
+          "sentIndex": 5,
+          "whole": false
+        },
+        "他们过了山。": {
+          "py": "tā men guò le shān",
+          "en": null,
+          "storyId": "yuan",
+          "sentIndex": 7,
+          "whole": false
+        },
+        "有的东西很香。": {
+          "py": "yǒu de dōng xī hěn xiāng",
+          "en": null,
+          "storyId": "yuan2",
+          "sentIndex": 7,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 19,
@@ -18388,7 +20073,106 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "他",
+          "也",
+          "自己",
+          "试",
+          "过",
+          "一些",
+          "草",
+          "。"
+        ],
+        [
+          "他们",
+          "没有",
+          "去",
+          "打",
+          "那些",
+          "国家",
+          "。"
+        ],
+        [
+          "郑和",
+          "一",
+          "共",
+          "走",
+          "了",
+          "七",
+          "次",
+          "。"
+        ],
+        [
+          "明朝",
+          "有",
+          "两",
+          "个人",
+          "。"
+        ],
+        [
+          "一",
+          "生",
+          "都",
+          "在",
+          "找",
+          "答案",
+          "。"
+        ],
+        [
+          "他",
+          "的",
+          "船",
+          "非常",
+          "大",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "他也自己试过一些草。": {
+          "py": "tā yě zì jǐ shì guò yī xiē cǎo",
+          "en": "He also tried some of the plants himself.",
+          "storyId": "ming2",
+          "sentIndex": 6,
+          "whole": true
+        },
+        "他们没有去打那些国家。": {
+          "py": "tā men méi yǒu qù dǎ nà xiē guó jiā",
+          "en": "They did not go to make war on those countries.",
+          "storyId": "ming",
+          "sentIndex": 10,
+          "whole": true
+        },
+        "郑和一共走了七次。": {
+          "py": "Zhèng Hé yī gòng zǒu le qī cì",
+          "en": "Zheng He made the voyage seven times in all.",
+          "storyId": "ming",
+          "sentIndex": 13,
+          "whole": true
+        },
+        "明朝有两个人。": {
+          "py": "Míng Cháo yǒu liǎng gè rén",
+          "en": null,
+          "storyId": "ming2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "一生都在找答案。": {
+          "py": "yī shēng dōu zài zhǎo dá àn",
+          "en": null,
+          "storyId": "ming2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "他的船非常大。": {
+          "py": "tā de chuán fēi cháng dà",
+          "en": null,
+          "storyId": "ming",
+          "sentIndex": 2,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 20,
@@ -19070,7 +20854,61 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "里面",
+          "有",
+          "九",
+          "千",
+          "多",
+          "个",
+          "房间",
+          "。"
+        ],
+        [
+          "问",
+          "过",
+          "很",
+          "多",
+          "地方",
+          "的",
+          "事",
+          "。"
+        ],
+        [
+          "一般",
+          "人",
+          "不",
+          "可以",
+          "进",
+          "去",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "里面有九千多个房间。": {
+          "py": "lǐ miàn yǒu jiǔ qiān duō gè fáng jiān",
+          "en": "Inside are more than nine thousand rooms.",
+          "storyId": "qing2",
+          "sentIndex": 3,
+          "whole": true
+        },
+        "问过很多地方的事。": {
+          "py": "wèn guò hěn duō dì fāng de shì",
+          "en": null,
+          "storyId": "qing",
+          "sentIndex": 12,
+          "whole": false
+        },
+        "一般人不可以进去。": {
+          "py": "yī bān rén bù kě yǐ jìn qù",
+          "en": null,
+          "storyId": "qing2",
+          "sentIndex": 13,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 21,
@@ -19745,7 +21583,105 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "他们",
+          "也",
+          "送",
+          "年轻",
+          "人",
+          "出去",
+          "读书",
+          "。"
+        ],
+        [
+          "做",
+          "这些",
+          "事情",
+          "非常",
+          "不",
+          "容易",
+          "。"
+        ],
+        [
+          "中国",
+          "有",
+          "很",
+          "多",
+          "难",
+          "事",
+          "。"
+        ],
+        [
+          "上海",
+          "还",
+          "只是",
+          "一",
+          "个",
+          "小",
+          "地方",
+          "。"
+        ],
+        [
+          "不用",
+          "风",
+          "也",
+          "可以",
+          "走",
+          "。"
+        ],
+        [
+          "我们",
+          "应该",
+          "怎么办",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "他们也送年轻人出去读书。": {
+          "py": "tā men yě sòng nián qīng rén chū qù dú shū",
+          "en": "They also sent young people abroad to study.",
+          "storyId": "reform",
+          "sentIndex": 9,
+          "whole": true
+        },
+        "做这些事情非常不容易。": {
+          "py": "zuò zhè xiē shì qing fēi cháng bù róng yì",
+          "en": "Doing all this was far from easy.",
+          "storyId": "reform",
+          "sentIndex": 12,
+          "whole": true
+        },
+        "中国有很多难事。": {
+          "py": "Zhōngguó yǒu hěn duō nán shì",
+          "en": null,
+          "storyId": "reform",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "上海还只是一个小地方。": {
+          "py": "Shànghǎi hái zhǐ shì yī gè xiǎo dì fāng",
+          "en": null,
+          "storyId": "reform2",
+          "sentIndex": 0,
+          "whole": false
+        },
+        "不用风也可以走。": {
+          "py": "bù yòng fēng yě kě yǐ zǒu",
+          "en": null,
+          "storyId": "reform",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "我们应该怎么办。": {
+          "py": "wǒ men yīng gāi zěn me bàn",
+          "en": null,
+          "storyId": "reform",
+          "sentIndex": 5,
+          "whole": false
+        }
+      }
     },
     {
       "gateId": 22,
@@ -20413,7 +22349,103 @@
             ]
           }
         }
-      ]
+      ],
+      "sentenceTargetsPack": [
+        [
+          "有",
+          "一",
+          "个人",
+          "叫",
+          "孙中山",
+          "。"
+        ],
+        [
+          "有的",
+          "人",
+          "还",
+          "去",
+          "别的",
+          "国家",
+          "读书",
+          "。"
+        ],
+        [
+          "中国",
+          "要",
+          "不",
+          "一样",
+          "。"
+        ],
+        [
+          "学校",
+          "里",
+          "教",
+          "数",
+          "。"
+        ],
+        [
+          "他",
+          "也",
+          "去",
+          "过",
+          "很",
+          "多",
+          "国家",
+          "。"
+        ],
+        [
+          "看",
+          "过",
+          "很",
+          "多",
+          "东西",
+          "。"
+        ]
+      ],
+      "sentenceTargetsMeta": {
+        "有一个人叫孙中山。": {
+          "py": "yǒu yī gè rén jiào Sūn Zhōngshān",
+          "en": "There was a man called Sun Yat-sen.",
+          "storyId": "republic",
+          "sentIndex": 3,
+          "whole": true
+        },
+        "有的人还去别的国家读书。": {
+          "py": "yǒu de rén hái qù bié de guó jiā dú shū",
+          "en": "Some even went abroad to study.",
+          "storyId": "republic2",
+          "sentIndex": 4,
+          "whole": true
+        },
+        "中国要不一样。": {
+          "py": "Zhōngguó yào bù yī yàng",
+          "en": null,
+          "storyId": "republic",
+          "sentIndex": 2,
+          "whole": false
+        },
+        "学校里教数。": {
+          "py": "xué xiào lǐ jiāo shù",
+          "en": null,
+          "storyId": "republic2",
+          "sentIndex": 3,
+          "whole": false
+        },
+        "他也去过很多国家。": {
+          "py": "tā yě qù guò hěn duō guó jiā",
+          "en": null,
+          "storyId": "republic",
+          "sentIndex": 5,
+          "whole": false
+        },
+        "看过很多东西。": {
+          "py": "kàn guò hěn duō dōng xī",
+          "en": null,
+          "storyId": "republic",
+          "sentIndex": 5,
+          "whole": false
+        }
+      }
     }
   ]
 }

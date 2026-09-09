@@ -6743,11 +6743,41 @@ function buildPYQ(vocab,n=10,avoidZh=[]){
   return pickBalancedVocab(vocab,n,avoidZh).map(w=>({zh:w.zh,correct:stripTones(w.py)}));
 }
 
-function buildSBPack(did,isDaddy=false,n=3){
-  const gateData=getGateCurriculum(did,curHSK);
-  if(gateData&&Array.isArray(gateData.sentenceTargetsPack)&&gateData.sentenceTargetsPack.length){
-    return gateData.sentenceTargetsPack.map(s=>[...s]).slice(0,n);
+/**
+ * The sentences for Phase 3, from the gate's own story where one exists.
+ *
+ * The pack branch read one gate and sliced, which for a champion — five gates,
+ * ten sentences — would have handed back that gate's six. Champions pool, the
+ * same way the GATE_SENTENCES fallback below always did.
+ */
+/**
+ * Pinyin and English for one pack sentence, if the curriculum carries them.
+ *
+ * Keyed by the joined answer — the exact string checkSB compares — because the
+ * pack itself must stay a plain array of chip strings: persistGateQuizState
+ * does `sbPack.map(s=>[...s])`, and an object would not survive save and resume.
+ */
+function sbMetaFor(answer,did,isDaddy){
+  const ids=[];
+  if(isDaddy){for(let d=Math.max(1,did-4);d<=did;d++)ids.push(d);}else ids.push(did);
+  for(const g of ids){
+    const gd=getGateCurriculum(g,curHSK);
+    const m=gd&&gd.sentenceTargetsMeta&&gd.sentenceTargetsMeta[answer];
+    if(m)return m;
   }
+  return null;
+}
+
+function buildSBPack(did,isDaddy=false,n=3){
+  const gateIds=[];
+  if(isDaddy){for(let d=Math.max(1,did-4);d<=did;d++)gateIds.push(d);}
+  else gateIds.push(did);
+  const pool=[];
+  gateIds.forEach(g=>{
+    const gd=getGateCurriculum(g,curHSK);
+    if(gd&&Array.isArray(gd.sentenceTargetsPack))pool.push(...gd.sentenceTargetsPack.map(s=>[...s]));
+  });
+  if(pool.length)return pool.sort(()=>Math.random()-.5).slice(0,n);
   if(isDaddy){
     // Mix sentences from all 5 dynasties in the group
     const sents=[];
@@ -7163,11 +7193,22 @@ function renderSBPhase(qc,scoreBar){
   const words=quizSt.sbPack&&quizSt.sbPack[quizSt.sbRound];
   if(!words||words.length<2){nextPhase();return;}
   sbBuilt=[];
+  // The screens in build_sentence_packs.js reject a sentence the corpus licenses
+  // in more than one order, but they are a lower bound, not a proof. Showing the
+  // English says which sentence is wanted, so a child who builds a different
+  // grammatical order is not marked wrong for a question that had two answers.
+  const sbMeta=sbMetaFor(words.join(''),quizSt.did,!!quizSt.isChampion);
+  // renderGateLesson's `esc` is scoped to that function; this needs its own.
+  const sbEsc=(t)=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const sbHint=(sbMeta&&sbMeta.en)
+    ?`<div class="q-prompt-en" style="font-size:.82rem;color:var(--muted);margin:.1rem 0 .5rem;">${sbEsc(sbMeta.en)}</div>`
+    :'';
   const shuffled=[...words].sort(()=>Math.random()-.5);
   qc.innerHTML=scoreBar+`
   <div class="quiz-card">
     <div class="q-phase-lbl">Phase 3: Sentence Builder · 句子排列 (${quizSt.sbRound+1}/${quizSt.sbN||3})</div>
     <div class="q-text">Arrange the words in the correct order:</div>
+    ${sbHint}
     <div class="q-prompt-row" style="justify-content:flex-start;margin:.4rem 0 .6rem;"><button type="button" class="q-speak" id="sb-speak-all" aria-label="Hear sentence hint">🔊</button><span style="font-size:.72rem;color:var(--muted);">Tap to hear all words out loud</span></div>
     <div class="sb-target" id="sb-target"></div>
     <div class="sb-words" id="sb-words"></div>
@@ -7258,7 +7299,9 @@ function checkSB(){
     fb.className='q-feedback err';fb.textContent='❌ Listen once more, then try again!';
     quizSt.sbRevealed=quizSt.sbRound;
     const sent=correct.join('');
-    showCorrectRevealCard({zh:sent,py:'',en:'Correct sentence',isSentence:true,onDone:()=>{
+    const meta=sbMetaFor(sent,quizSt.did,!!quizSt.isChampion);
+    showCorrectRevealCard({zh:sent,py:(meta&&meta.py)||'',
+      en:(meta&&meta.en)||'Correct sentence',isSentence:true,onDone:()=>{
       // The lock is what the "Try again" button needs released. Without this the
       // child could rearrange the chips but every further Check answer returned
       // at lockAnswer(), and only leaving the quiz cleared it.
