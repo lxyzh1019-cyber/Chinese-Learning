@@ -13,6 +13,27 @@ Companion documents:
 
 ---
 
+## Supported device workflow
+
+**One designated learning device per child.** Finish a sitting on it; take
+assessments and reviews on it. Another device may open the app to look at
+history, but must not be used to answer questions for the same child while the
+designated device holds unfinished work. The rule is per child: Jenn and Jess
+may use different devices and learn at the same time.
+
+This is a scope restriction, not a workaround for a defect. The defect it used
+to paper over — a compacted review history gaining a ladder rung merely by being
+merged — is **fixed** (`foldInto` now derives the checkpoint's stage from the
+same prefix as its successes; see `S1` in `tests/review.test.cjs`). Backup and
+read-back no longer move a review stage, so the policy is about keeping a
+child's sitting coherent rather than about protecting the merge.
+
+Simultaneous same-child learning on two devices remains outside the signed-off
+scope: assessment attempts are already device-locked by design (§24), and no
+two-device run has been exercised against live Firestore.
+
+---
+
 ## Where the project stands
 
 | Dimension | Done | Share |

@@ -122,7 +122,7 @@
     const sameSession = !!entry.sameSession;
     const history = (rec.attempts || []).concat([entry]);
     if (history.length > MAX_ATTEMPTS) {
-      rec.checkpoint = foldInto(rec.checkpoint, history.slice(0, history.length - MAX_ATTEMPTS), prev);
+      rec.checkpoint = foldInto(rec.checkpoint, history.slice(0, history.length - MAX_ATTEMPTS));
     }
     rec.attempts = history.slice(-MAX_ATTEMPTS);
     rec.lastSeenOn = todayKey;
@@ -159,26 +159,52 @@
    * Carry what is about to be trimmed away into the checkpoint.
    *
    * Only what a later replay cannot recompute: when this target was first
-   * taught, and which dates it was recalled unaided on. The stage comes from
-   * the record as it stood before this entry — it is a floor, and any miss in
-   * the surviving tail resets it during replay.
+   * taught, which dates it was recalled unaided on, and the stage those dates
+   * had reached.
+   *
+   * The stage is computed FROM THE SHED PREFIX ALONE. It used to be taken from
+   * `prev.stage` — the record as it stood after every RETAINED attempt — while
+   * `successes` collected only the dates of the shed ones. That checkpoint
+   * described two different points in the history at once, so a replay seeded
+   * from it re-advanced on every retained success whose date the seed did not
+   * carry: merging a record with an identical copy moved stage 2/due Sept 5 to
+   * stage 3/due Sept 9, and in some shapes two rungs at once, with no new
+   * learning event anywhere. Deriving both from the same prefix makes the
+   * checkpoint self-consistent, which is what makes the replay idempotent.
    */
-  function foldInto(cp, shed, prev) {
-    const out = {
-      count: (cp && cp.count) || 0,
-      stage: Math.max((cp && cp.stage) || 0, (prev && prev.stage) || 0),
-      firstTaughtOn: (cp && cp.firstTaughtOn) || (prev && prev.firstTaughtOn) || null,
+  function foldStep(state, e) {
+    const independent = e.correct && !e.supported && !e.sameSession;
+    if (independent) {
+      if (state.successes.indexOf(e.on) === -1) {
+        state.successes.push(e.on);
+        state.stage = Math.min(state.stage + 1, LADDER.length);
+      }
+      return;
+    }
+    // A miss returns the item to the start of the ladder, exactly as a replay
+    // through applyAttempt would. Being told, or answering again in the same
+    // sitting, leaves it where it is.
+    if (!e.correct) state.stage = 0;
+  }
+
+  function foldInto(cp, shed) {
+    const st = {
+      stage: (cp && cp.stage) || 0,
       successes: ((cp && cp.successes) || []).slice(),
     };
+    let count = (cp && cp.count) || 0;
+    let firstTaughtOn = (cp && cp.firstTaughtOn) || null;
     shed.forEach((e) => {
-      out.count++;
-      if (e.on && (!out.firstTaughtOn || e.on < out.firstTaughtOn)) out.firstTaughtOn = e.on;
-      if (e.correct && !e.supported && !e.sameSession && out.successes.indexOf(e.on) === -1) {
-        out.successes.push(e.on);
-      }
+      count++;
+      if (e.on && (!firstTaughtOn || e.on < firstTaughtOn)) firstTaughtOn = e.on;
+      foldStep(st, e);
     });
-    out.successes = out.successes.sort().slice(-20);
-    return out;
+    return {
+      count,
+      stage: st.stage,
+      firstTaughtOn,
+      successes: st.successes.sort().slice(-20),
+    };
   }
 
   /** Two views of the same folded prefix. Every field commutes. */
@@ -219,6 +245,12 @@
    * because the fold is pure and every checkpoint field commutes, merge(a, b)
    * and merge(b, a) land on the same schedule, and merging a record with
    * itself changes nothing.
+   *
+   * That last claim was false for two years' worth of shapes: it holds only
+   * while the checkpoint's stage and its successes describe the SAME prefix of
+   * the history. See foldInto — the stage used to come from after the retained
+   * attempts, so a replay of those attempts advanced the ladder a second time
+   * and a device could gain days of retention simply by syncing.
    *
    * Replaying an attempt the other side had already folded is harmless: an
    * independent success only advances the ladder once per date, and the seed
