@@ -2509,3 +2509,40 @@ test("C4: Dayu is away for the same number of years at every level", () => {
   assert.deepEqual(years[1], ["十三"], "HSK1 said 三十年 where HSK2 said 十三年");
   assert.deepEqual(years[2], ["十三"]);
 });
+
+// ── C3: an advertised reading must contain a reading ─────────────────────
+// All 29 culture entries shared one template: paragraphs 2 and 3 were
+// byte-identical across every entry, and both "comprehension" questions asked
+// about the reading instructions rather than about anything read.
+
+test("C3: no culture reading is a template shared with another", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "culture_stories.json"), "utf8"));
+  const stories = doc.tracks.flatMap((t) => t.stories || []);
+  assert.equal(stories.length, 29);
+
+  // Counted here: a paragraph two entries share is a template by definition.
+  const seen = new Map();
+  for (const s of stories) {
+    for (const p of s.readerParagraphs || []) seen.set(p, (seen.get(p) || 0) + 1);
+  }
+  const shared = [...seen.entries()].filter(([, n]) => n > 1).map(([p]) => p.slice(0, 20));
+  assert.deepEqual(shared, [], "these paragraphs appear in more than one reading");
+});
+
+test("C3: every culture reading teaches words it actually uses", () => {
+  const fs = require("node:fs");
+  const path = require("node:path");
+  const doc = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "culture_stories.json"), "utf8"));
+  for (const s of doc.tracks.flatMap((t) => t.stories || [])) {
+    assert.ok((s.targetWords || []).length > 0, `${s.id}: no target words`);
+    const text = (s.readerParagraphs || []).join("");
+    for (const w of s.targetWords) {
+      assert.ok(w.py && w.en, `${s.id}: ${w.zh} is missing a reading or a gloss`);
+      assert.ok(text.includes(w.zh), `${s.id}: teaches ${w.zh}, which its own text never uses`);
+    }
+    assert.ok(text.includes(s.title), `${s.id}: the reading never mentions ${s.title}`);
+    assert.equal((s.readerComprehension || []).length, 2, `${s.id}: needs two questions`);
+  }
+});

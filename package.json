@@ -7,7 +7,7 @@
     "check": "node scripts/parse_check.js",
     "validate:curriculum": "node scripts/validate_curriculum.js",
     "test": "node --test tests/*.test.cjs",
-    "verify": "npm run check && npm run validate:curriculum && npm run validate:stories && npm run validate:lessons && npm run validate:sentences && npm run validate:assessment && npm test",
+    "verify": "npm run check && npm run validate:curriculum && npm run validate:stories && npm run validate:lessons && npm run validate:sentences && npm run validate:culture && npm run validate:assessment && npm test",
     "validate:assessment": "node scripts/validate_assessment.js",
     "coverage:content": "node scripts/content_coverage.js",
     "validate:assessment:audio": "node scripts/validate_assessment.js --audio",
@@ -16,7 +16,9 @@
     "validate:lessons": "node scripts/validate_lessons.js",
     "build:lessons": "node scripts/build_gate_lessons.js",
     "build:sentences": "node scripts/build_sentence_packs.js",
-    "validate:sentences": "node scripts/validate_sentence_packs.js"
+    "validate:sentences": "node scripts/validate_sentence_packs.js",
+    "build:culture": "node scripts/build_culture_stories.js",
+    "validate:culture": "node scripts/validate_culture.js"
   },
   "engines": {
     "node": ">=20"

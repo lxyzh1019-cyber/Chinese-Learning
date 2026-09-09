@@ -5825,13 +5825,11 @@ function applyCultureReward(story){
   saveState();
   renderHub();
 }
-function cultureRewardBtn(story){
-  if(!story)return '';
-  const key=String(story.id||'').replace(/[^a-zA-Z0-9_\\-]/g,'');
-  const title=(story.title||story.id||'Story').replace(/"/g,'&quot;');
-  const stars=((story.rewards&&story.rewards.stars)||0);
-  return `<button class="btn-s" style="padding:.2rem .55rem;font-size:.66rem;" onclick="applyCultureRewardById('${key}')">Collect +${stars}⭐</button>`;
-}
+// cultureRewardBtn used to live here: a Collect-stars button with no
+// read-before-collect check. Its only caller was the dead copy of
+// openCultureStories, so it granted nothing — but an ungated star button
+// sitting in the file is one careless call away from paying for a reading the
+// child never opened. The live list builds its own button, behind that check.
 function applyCultureRewardById(storyId){
   const st=findCultureStoryById(storyId);
   if(st)applyCultureReward(st);
@@ -5867,43 +5865,11 @@ function finishCultureReader(){
   closeCultureReader();
   showToast('Great reading! Collect your stars in the list when ready.');
 }
-async function openCultureStories(){
-  const ov=document.getElementById('culture-overlay');if(!ov)return;
-  const body=document.getElementById('culture-body');if(!body)return;
-  body.innerHTML='<div class="dd-desc">Loading culture stories...</div>';
-  ov.classList.add('show');
-  // The fetch can outlive the profile that started it; without this the reads
-  // below land on whichever child is selected when it resolves.
-  const gen=sessionGen;
-  const data=await loadCultureCurriculum();
-  if(gen!==sessionGen)return;
-  if(!data||!Array.isArray(data.tracks)){body.innerHTML='<div class="dd-desc">Culture stories are unavailable right now.</div>';return;}
-  if(!curP)return;
-  ensureState(curP);
-  const seen=state[curP].cultureSeen||{};
-  const cards=[];
-  data.tracks.forEach(t=>{
-    const stories=t.stories||[];
-    const done=stories.filter(st=>seen[st.id]).length;
-    const pct=stories.length?Math.round(done/stories.length*100):0;
-    cards.push(`<div class="practice-box"><div class="culture-track-hdr"><span>${t.title||t.id}</span><span>${done}/${stories.length}</span></div>
-      <div class="culture-prog"><i style="width:${pct}%"></i></div>`);
-    stories.forEach(st=>{
-      const read=!!seen[st.id];
-      const sid=String(st.id||'').replace(/"/g,'&quot;');
-      const stTitleEn=st.titleEn?`<span style="font-size:.62rem;color:var(--muted);display:block;line-height:1.2;">${st.titleEn}</span>`:'';
-      cards.push(`<div class="culture-story-row">
-        <span class="pw-zh" style="display:flex;flex-direction:column;gap:.05rem;">${st.title||st.id}${read?' ✓':''}${stTitleEn}</span>
-        <span style="display:flex;gap:.3rem;flex-wrap:wrap;">
-          <button type="button" class="btn-s" style="padding:.2rem .45rem;font-size:.62rem;" data-culture-read="${sid}" onclick="openCultureReaderFromBtn(this)">Read</button>
-          ${cultureRewardBtn(st)}
-        </span>
-      </div>`);
-    });
-    cards.push('</div>');
-  });
-  body.innerHTML=cards.join('')||'<div class="dd-desc">No culture stories configured.</div>';
-}
+// openCultureStories is DEFINED TWICE in this file and the later definition
+// wins (CLAUDE.md §11). The copy that used to sit here was dead code, and it
+// rendered a Collect-stars button with no read-before-collect check — so if
+// the declaration order had ever changed, a child could have taken the stars
+// for a reading they never opened. The live one is below, with the guard.
 
 // ══════════════════════════════════════════════════════
 // READER SCREEN
