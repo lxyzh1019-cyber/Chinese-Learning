@@ -620,8 +620,8 @@
       ]
     },
     {
-      "zh": "有的人在这里做买卖，得到了很多钱，也有很多人过得很难。",
-      "en": "Some traded here and made a great deal of money, while many others lived very hard lives.",
+      "zh": "有的人在这里做买卖，赚了很多钱，也有很多人过得很难。",
+      "en": "Some traded here and earned a great deal of money, while many others lived very hard lives.",
       "seg": [
         {
           "zh": "有的",
@@ -654,9 +654,10 @@
           "tx": "，"
         },
         {
-          "zh": "得到",
-          "py": "dé dào",
-          "mn": "to get"
+          "zh": "赚",
+          "py": "zhuàn",
+          "mn": "to earn",
+          "bonus": true
         },
         {
           "zh": "了",

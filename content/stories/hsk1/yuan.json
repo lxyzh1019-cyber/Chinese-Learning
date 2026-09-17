@@ -124,8 +124,8 @@
       ]
     },
     {
-      "zh": "元朝的大王叫忽必烈，他的国家从东边一直到很远的西边。",
-      "en": "The great khan of the Yuan was Kublai, and his realm reached from the east far into the west.",
+      "zh": "元朝的皇帝叫忽必烈，他的国家从东边一直到很远的西边。",
+      "en": "The Yuan emperor was Kublai Khan, and his realm reached from the east far into the west.",
       "seg": [
         {
           "t": "n",
@@ -139,9 +139,9 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "大王",
-          "py": "dà wáng",
-          "mn": "great king",
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
           "bonus": true
         },
         {
@@ -591,8 +591,8 @@
       ]
     },
     {
-      "zh": "他说，中国的城比他自己国家的城大很多，这里的人还用纸做的钱。",
-      "en": "He said China's cities were far bigger than those of his own country, and that people here even used money made of paper.",
+      "zh": "他说，中国的城比他自己国家的城大很多，这里的人还用纸币。",
+      "en": "He said China's cities were far bigger than those of his own country, and that people here even used paper money.",
       "seg": [
         {
           "zh": "他",
@@ -701,25 +701,10 @@
           "mn": "to use"
         },
         {
-          "zh": "纸",
-          "py": "zhǐ",
-          "mn": "paper",
+          "zh": "纸币",
+          "py": "zhǐ bì",
+          "mn": "paper money",
           "bonus": true
-        },
-        {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "to make"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "钱",
-          "py": "qián",
-          "mn": "money"
         },
         {
           "t": "p",

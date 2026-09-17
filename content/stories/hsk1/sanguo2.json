@@ -398,7 +398,7 @@
       ]
     },
     {
-      "zh": "他们带来了水果和书，坐在我的床边，说学校里的事。",
+      "zh": "他们带来了水果和书，坐在我的床边，讲学校里的事。",
       "en": "They brought fruit and books, sat by my bed, and told me what was happening at school.",
       "seg": [
         {
@@ -472,9 +472,10 @@
           "tx": "，"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "to tell"
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
         },
         {
           "zh": "学校",

@@ -439,8 +439,8 @@
       ]
     },
     {
-      "zh": "有的地方非常热，有的地方非常远，他们见到了很多不一样的人。",
-      "en": "Some places were very hot, some very far, and they met many different peoples.",
+      "zh": "有的地方非常热，有的地方非常远，他们见到了很多不同国家的人。",
+      "en": "Some places were very hot, some very far, and they met people of many different countries.",
       "seg": [
         {
           "zh": "有的",
@@ -517,15 +517,20 @@
           "mn": "many"
         },
         {
-          "zh": "不一样",
-          "py": "bù yí yàng",
+          "zh": "不同",
+          "py": "bù tóng",
           "mn": "different",
           "bonus": true
         },
         {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
           "zh": "的",
           "py": "de",
-          "mn": "(makes a describing word)"
+          "mn": "of; belonging to"
         },
         {
           "zh": "人",

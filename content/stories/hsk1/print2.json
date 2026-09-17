@@ -288,8 +288,8 @@
       ]
     },
     {
-      "zh": "我找到了一本很久以前的故事书。",
-      "en": "I found a storybook about long ago.",
+      "zh": "我找到了一本讲古代故事的书。",
+      "en": "I found a book of stories from ancient times.",
       "seg": [
         {
           "zh": "我",
@@ -317,32 +317,32 @@
           "mn": "(counting word, books)"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "久",
-          "py": "jiǔ",
-          "mn": "long time",
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
           "bonus": true
         },
         {
-          "zh": "以前",
-          "py": "yǐ qián",
-          "mn": "before",
+          "zh": "古代",
+          "py": "gǔ dài",
+          "mn": "ancient times",
+          "bonus": true
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "stories",
           "bonus": true
         },
         {
           "zh": "的",
           "py": "de",
-          "mn": "of; belonging to"
+          "mn": "(makes a describing word)"
         },
         {
-          "zh": "故事书",
-          "py": "gù shi shū",
-          "mn": "storybook",
-          "bonus": true
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
         },
         {
           "t": "p",

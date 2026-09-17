@@ -8516,6 +8516,14 @@
           "。"
         ],
         [
+          "百姓",
+          "也",
+          "会",
+          "爱",
+          "王",
+          "。"
+        ],
+        [
           "我们",
           "都",
           "笑",
@@ -8541,13 +8549,6 @@
           "很",
           "好",
           "。"
-        ],
-        [
-          "我们",
-          "跑",
-          "进",
-          "教室",
-          "。"
         ]
       ],
       "sentenceTargetsMeta": {
@@ -8557,6 +8558,15 @@
           "enContext": "We play games, tell stories, and are very happy.",
           "storyId": "zhou2",
           "sentIndex": 4,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "百姓也会爱王。": {
+          "py": "bǎi xìng yě huì ài wáng",
+          "en": null,
+          "enContext": "So a king must care for the people, and the people will love the king too.",
+          "storyId": "zhou",
+          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         },
@@ -8570,7 +8580,7 @@
           "borrowedFrom": null
         },
         "老师来了。": {
-          "py": "lǎo shī lái le",
+          "py": "lǎoshī lái le",
           "en": null,
           "enContext": "The teacher came and said: \"Time for class!\"",
           "storyId": "zhou2",
@@ -8593,15 +8603,6 @@
           "enContext": "There was rice at home, and meat too, and life was good.",
           "storyId": "zhou",
           "sentIndex": 8,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "我们跑进教室。": {
-          "py": "wǒ men pǎo jìn jiào shì",
-          "en": null,
-          "enContext": "We ran into the classroom and started class.",
-          "storyId": "zhou2",
-          "sentIndex": 9,
           "whole": false,
           "borrowedFrom": null
         }
@@ -9353,7 +9354,7 @@
         [
           "老鼠",
           "很",
-          "怕",
+          "害怕",
           "。"
         ],
         [
@@ -9400,10 +9401,10 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "老鼠很怕。": {
-          "py": "lǎo shǔ hěn pà",
+        "老鼠很害怕。": {
+          "py": "lǎo shǔ hěn hài pà",
           "en": null,
-          "enContext": "The mouse was scared, ran out of the house, and ran all the way up the mountain.",
+          "enContext": "The mouse was frightened, ran out of the house, and ran all the way up the mountain.",
           "storyId": "dongzhou2",
           "sentIndex": 4,
           "whole": false,
@@ -13362,9 +13363,12 @@
           "。"
         ],
         [
-          "一起",
+          "他",
           "写",
-          "诗",
+          "的",
+          "字",
+          "非常",
+          "好看",
           "。"
         ]
       ],
@@ -13414,12 +13418,12 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "一起写诗。": {
-          "py": "yì qǐ xiě shī",
+        "他写的字非常好看。": {
+          "py": "tā xiě de zì fēi cháng hǎo kàn",
           "en": null,
-          "enContext": "One spring, he met many friends in the mountains, and they wrote poems together.",
+          "enContext": "The characters he wrote were beautiful; some were like wind, some like water.",
           "storyId": "shufa",
-          "sentIndex": 7,
+          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         }
@@ -15844,7 +15848,7 @@
         "他们带来了马。": {
           "py": "tā men dài lái le mǎ",
           "en": null,
-          "enContext": "They brought horses, fruit, and new music.",
+          "enContext": "They brought horses, fruit, and new instruments and music.",
           "storyId": "tang",
           "sentIndex": 5,
           "whole": false,
@@ -17451,7 +17455,7 @@
           "borrowedFrom": null
         },
         "印完了可以换。": {
-          "py": "Yìn wán le kě yǐ huàn",
+          "py": "yìn wán le kě yǐ huàn",
           "en": null,
           "enContext": "Song people carved the characters one by one on small wooden blocks, which could be swapped after printing.",
           "storyId": "song",
@@ -18206,7 +18210,7 @@
           "会",
           "有人",
           "来",
-          "说",
+          "讲",
           "故事",
           "。"
         ]
@@ -18257,8 +18261,8 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "会有人来说故事。": {
-          "py": "huì yǒu rén lái shuō gù shi",
+        "会有人来讲故事。": {
+          "py": "huì yǒu rén lái jiǎng gù shi",
           "en": null,
           "enContext": "In the afternoon, a storyteller would come.",
           "storyId": "tea2",
@@ -19798,7 +19802,7 @@
           "他",
           "就",
           "马上",
-          "写",
+          "抄",
           "下来",
           "。"
         ],
@@ -19843,10 +19847,10 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "他就马上写下来。": {
-          "py": "tā jiù mǎ shàng xiě xià lai",
+        "他就马上抄下来。": {
+          "py": "tā jiù mǎ shàng chāo xià lai",
           "en": null,
-          "enContext": "Whenever he saw something good, he wrote it down at once.",
+          "enContext": "Whenever he read a good sentence, he copied it down at once.",
           "storyId": "scholar2",
           "sentIndex": 4,
           "whole": false,
@@ -20570,7 +20574,7 @@
         [
           "元朝",
           "的",
-          "大王",
+          "皇帝",
           "叫",
           "忽必烈",
           "。"
@@ -20609,20 +20613,20 @@
           "。"
         ],
         [
-          "有人",
-          "写成",
-          "了",
-          "一",
-          "本",
-          "书",
+          "这里",
+          "的",
+          "人",
+          "还",
+          "用",
+          "纸币",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "元朝的大王叫忽必烈。": {
-          "py": "Yuán Cháo de dà wáng jiào Hūbìliè",
+        "元朝的皇帝叫忽必烈。": {
+          "py": "Yuán Cháo de huáng dì jiào Hūbìliè",
           "en": null,
-          "enContext": "The great khan of the Yuan was Kublai, and his realm reached from the east far into the west.",
+          "enContext": "The Yuan emperor was Kublai Khan, and his realm reached from the east far into the west.",
           "storyId": "yuan",
           "sentIndex": 1,
           "whole": false,
@@ -20664,12 +20668,12 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "有人写成了一本书。": {
-          "py": "yǒu rén xiě chéng le yī běn shū",
+        "这里的人还用纸币。": {
+          "py": "zhè lǐ de rén hái yòng zhǐ bì",
           "en": null,
-          "enContext": "After going home, he told others what he had seen, and someone wrote it into a book.",
+          "enContext": "He said China's cities were far bigger than those of his own country, and that people here even used paper money.",
           "storyId": "yuan",
-          "sentIndex": 8,
+          "sentIndex": 7,
           "whole": false,
           "borrowedFrom": null
         }
@@ -21473,7 +21477,7 @@
         "有的地方非常热。": {
           "py": "yǒu de dì fāng fēi cháng rè",
           "en": null,
-          "enContext": "Some places were very hot, some very far, and they met many different peoples.",
+          "enContext": "Some places were very hot, some very far, and they met people of many different countries.",
           "storyId": "ming",
           "sentIndex": 5,
           "whole": false,
@@ -23772,6 +23776,13 @@
           "。"
         ],
         [
+          "会",
+          "给",
+          "人",
+          "看病",
+          "。"
+        ],
+        [
           "有的",
           "人",
           "还",
@@ -23787,15 +23798,6 @@
           "很",
           "多",
           "国家",
-          "。"
-        ],
-        [
-          "他们",
-          "想",
-          "得",
-          "更",
-          "多",
-          "了",
           "。"
         ]
       ],
@@ -23827,6 +23829,15 @@
           "whole": false,
           "borrowedFrom": null
         },
+        "会给人看病。": {
+          "py": "huì gěi rén kàn bìng",
+          "en": null,
+          "enContext": "There was a man called Sun Yat-sen, who had studied medicine as a young man and could treat the sick.",
+          "storyId": "republic",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
         "有的人还去外国读书。": {
           "py": "yǒu de rén hái qù wài guó dú shū",
           "en": null,
@@ -23841,15 +23852,6 @@
           "en": null,
           "enContext": "He had been to many countries, and saw that other countries did well without an emperor.",
           "storyId": "republic",
-          "sentIndex": 3,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他们想得更多了。": {
-          "py": "tā men xiǎng de gèng duō le",
-          "en": null,
-          "enContext": "Because they saw so much that was new, they thought more deeply.",
-          "storyId": "republic2",
           "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null

@@ -443,8 +443,8 @@
       ]
     },
     {
-      "zh": "他和很多人一起做工，每天都很累。",
-      "en": "He worked together with many people, and every day was very tiring.",
+      "zh": "他带着很多人一起治水，每天都很累。",
+      "en": "He led many people in controlling the flood, and every day was very tiring.",
       "seg": [
         {
           "zh": "他",
@@ -452,9 +452,15 @@
           "mn": "he"
         },
         {
-          "zh": "和",
-          "py": "hé",
-          "mn": "with"
+          "zh": "带",
+          "py": "dài",
+          "mn": "to lead",
+          "bonus": true
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
         },
         {
           "zh": "很",
@@ -477,9 +483,9 @@
           "mn": "together"
         },
         {
-          "zh": "做工",
-          "py": "zuò gōng",
-          "mn": "to work",
+          "zh": "治水",
+          "py": "zhì shuǐ",
+          "mn": "to control the flood",
           "bonus": true
         },
         {
@@ -620,8 +626,8 @@
       ]
     },
     {
-      "zh": "后来水小了，人们回家了，都说大禹很好。",
-      "en": "Later the water went down, people went home, and everyone said Dayu was very good.",
+      "zh": "后来水小了，人们回家了，都很感谢大禹。",
+      "en": "Later the water went down, people went home, and everyone was grateful to Dayu.",
       "seg": [
         {
           "zh": "后来",
@@ -674,25 +680,21 @@
           "mn": "all"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "said"
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "感谢",
+          "py": "gǎn xiè",
+          "mn": "to be grateful to",
+          "bonus": true
         },
         {
           "t": "n",
           "zh": "大禹",
           "py": "Dà Yǔ",
           "mn": "Dayu"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "好",
-          "py": "hǎo",
-          "mn": "good"
         },
         {
           "t": "p",

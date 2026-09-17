@@ -91,8 +91,8 @@
       ]
     },
     {
-      "zh": "所以中国的吃的东西多了很多。",
-      "en": "So the food in China grew much more varied.",
+      "zh": "所以中国的食物多了很多种。",
+      "en": "So there were many more kinds of food in China.",
       "seg": [
         {
           "zh": "所以",
@@ -111,19 +111,10 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "吃",
-          "py": "chī",
-          "mn": "to eat"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food",
+          "bonus": true
         },
         {
           "zh": "多",
@@ -143,7 +134,13 @@
         {
           "zh": "多",
           "py": "duō",
-          "mn": "much"
+          "mn": "many"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "kinds",
+          "bonus": true
         },
         {
           "t": "p",
@@ -599,8 +596,8 @@
       ]
     },
     {
-      "zh": "所以一个国家里有很多种好吃的东西，在大城里，你可以吃到很远地方的东西。",
-      "en": "So one country had many kinds of good food, and in a big city you could eat things from far away.",
+      "zh": "所以一个国家里有很多种好吃的食物，在大城里，你可以吃到很远地方的食物。",
+      "en": "So one country had many kinds of good food, and in a big city you could eat food from far away.",
       "seg": [
         {
           "zh": "所以",
@@ -660,9 +657,10 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food",
+          "bonus": true
         },
         {
           "t": "p",
@@ -731,9 +729,10 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food",
+          "bonus": true
         },
         {
           "t": "p",
@@ -742,8 +741,8 @@
       ]
     },
     {
-      "zh": "马可·波罗把他吃过的东西也写了下来，他说，有的东西他自己的国家一点也没有。",
-      "en": "Marco Polo wrote down what he had eaten too, and said his own country had nothing like some of it.",
+      "zh": "马可·波罗把他吃过的食物也写了下来，他说，有的食物他自己的国家一点也没有。",
+      "en": "Marco Polo wrote down the food he had eaten too, and said his own country had nothing like some of it.",
       "seg": [
         {
           "t": "n",
@@ -778,9 +777,10 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food",
+          "bonus": true
         },
         {
           "zh": "也",
@@ -827,9 +827,10 @@
           "mn": "some"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food",
+          "bonus": true
         },
         {
           "zh": "他",

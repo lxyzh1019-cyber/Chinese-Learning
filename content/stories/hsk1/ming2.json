@@ -169,8 +169,8 @@
       ]
     },
     {
-      "zh": "他想知道哪些草可以做药，可是以前的书里有很多不对的地方。",
-      "en": "He wanted to know which plants could be medicine, but the old books had a great deal that was wrong.",
+      "zh": "他想知道哪些草可以做药，可是以前的书里有很多错误。",
+      "en": "He wanted to know which plants could be medicine, but the old books were full of mistakes.",
       "seg": [
         {
           "zh": "他",
@@ -263,20 +263,10 @@
           "mn": "many"
         },
         {
-          "zh": "不对",
-          "py": "bú duì",
-          "mn": "wrong",
+          "zh": "错误",
+          "py": "cuò wù",
+          "mn": "mistakes",
           "bonus": true
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "地方",
-          "py": "dì fāng",
-          "mn": "places"
         },
         {
           "t": "p",
@@ -719,8 +709,8 @@
       ]
     },
     {
-      "zh": "他每天晚上都写下白天看到的东西，写了几十年。",
-      "en": "Every evening he wrote down what he had seen that day, and he did so for decades.",
+      "zh": "他每天晚上都记下白天看到的山和水，记了几十年。",
+      "en": "Every evening he noted down the mountains and rivers he had seen that day, and he did so for decades.",
       "seg": [
         {
           "zh": "他",
@@ -744,9 +734,9 @@
           "mn": "all"
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "to write"
+          "zh": "记",
+          "py": "jì",
+          "mn": "to note"
         },
         {
           "zh": "下",
@@ -769,18 +759,28 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountains"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water; rivers"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "to write"
+          "zh": "记",
+          "py": "jì",
+          "mn": "to note"
         },
         {
           "zh": "了",
@@ -805,8 +805,8 @@
       ]
     },
     {
-      "zh": "他们两个人做的事情一样：自己去看，然后写下来。",
-      "en": "Both men did the same thing: go and see for themselves, then write it down.",
+      "zh": "他们两个人做的事情一样：自己去看，然后记下来。",
+      "en": "Both men did the same thing: go and see for themselves, then note it down.",
       "seg": [
         {
           "zh": "他们",
@@ -880,9 +880,9 @@
           "bonus": true
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "to write"
+          "zh": "记",
+          "py": "jì",
+          "mn": "to note"
         },
         {
           "zh": "下来",

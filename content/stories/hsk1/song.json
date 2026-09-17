@@ -12,8 +12,8 @@
   },
   "sents": [
     {
-      "zh": "中国人做出了很多有用的东西，最有名的有四个。",
-      "en": "Chinese people made many useful things, and four are the most famous.",
+      "zh": "中国人有很多有用的发明，最有名的有四个。",
+      "en": "Chinese people made many useful inventions, and four are the most famous.",
       "seg": [
         {
           "zh": "中国",
@@ -26,15 +26,9 @@
           "mn": "people"
         },
         {
-          "zh": "做出",
-          "py": "zuò chū",
-          "mn": "to make; to produce",
-          "bonus": true
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)"
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
         },
         {
           "zh": "很",
@@ -58,9 +52,10 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "发明",
+          "py": "fā míng",
+          "mn": "inventions",
+          "bonus": true
         },
         {
           "t": "p",
@@ -223,7 +218,7 @@
         },
         {
           "zh": "印",
-          "py": "Yìn",
+          "py": "yìn",
           "mn": "to print",
           "bonus": true
         },
@@ -338,7 +333,7 @@
         },
         {
           "zh": "印",
-          "py": "Yìn",
+          "py": "yìn",
           "mn": "to print",
           "bonus": true
         },
@@ -622,8 +617,8 @@
       ]
     },
     {
-      "zh": "后来，这四个东西慢慢到了别的国家。",
-      "en": "Later, these four things slowly reached other countries.",
+      "zh": "后来，这四个发明慢慢到了别的国家。",
+      "en": "Later, these four inventions slowly reached other countries.",
       "seg": [
         {
           "zh": "后来",
@@ -651,9 +646,10 @@
           "mn": "(counting word)"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "发明",
+          "py": "fā míng",
+          "mn": "inventions",
+          "bonus": true
         },
         {
           "zh": "慢慢",

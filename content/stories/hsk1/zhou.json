@@ -408,8 +408,8 @@
       ]
     },
     {
-      "zh": "所以王要爱人，人也会爱王。",
-      "en": "So a king must love the people, and the people will love the king too.",
+      "zh": "所以王要爱护百姓，百姓也会爱王。",
+      "en": "So a king must care for the people, and the people will love the king too.",
       "seg": [
         {
           "zh": "所以",
@@ -429,23 +429,26 @@
           "mn": "must"
         },
         {
-          "zh": "爱",
-          "py": "ài",
-          "mn": "to love"
+          "zh": "爱护",
+          "py": "ài hù",
+          "mn": "to care for",
+          "bonus": true
         },
         {
-          "zh": "人",
-          "py": "rén",
-          "mn": "people"
+          "zh": "百姓",
+          "py": "bǎi xìng",
+          "mn": "the common people",
+          "bonus": true
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "人",
-          "py": "rén",
-          "mn": "people"
+          "zh": "百姓",
+          "py": "bǎi xìng",
+          "mn": "the common people",
+          "bonus": true
         },
         {
           "zh": "也",
@@ -455,7 +458,7 @@
         {
           "zh": "会",
           "py": "huì",
-          "mn": "can; will"
+          "mn": "will"
         },
         {
           "zh": "爱",
@@ -475,8 +478,8 @@
       ]
     },
     {
-      "zh": "那时候，很多人在田里做工。",
-      "en": "In those days, many people worked in the fields.",
+      "zh": "那时候，很多人在田里种地。",
+      "en": "In those days, many people farmed the fields.",
       "seg": [
         {
           "zh": "那时候",
@@ -520,9 +523,9 @@
           "mn": "inside"
         },
         {
-          "zh": "做工",
-          "py": "zuò gōng",
-          "mn": "to work",
+          "zh": "种地",
+          "py": "zhòng dì",
+          "mn": "to farm the land",
           "bonus": true
         },
         {
@@ -532,7 +535,7 @@
       ]
     },
     {
-      "zh": "天气好，田里的东西长得很好。",
+      "zh": "天气好，田里的庄稼长得很好。",
       "en": "The weather was good, and the crops in the fields grew well.",
       "seg": [
         {
@@ -566,13 +569,14 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "庄稼",
+          "py": "zhuāng jia",
+          "mn": "crops",
+          "bonus": true
         },
         {
           "zh": "长",
-          "py": "zhǎng",
+          "py": "cháng",
           "mn": "to grow",
           "bonus": true
         },

@@ -469,8 +469,8 @@
       ]
     },
     {
-      "zh": "纸上写着：这是多少钱。",
-      "en": "On the paper was written how much money it stood for.",
+      "zh": "纸上写着它值多少钱。",
+      "en": "On the paper was written how much it was worth.",
       "seg": [
         {
           "zh": "纸",
@@ -494,18 +494,16 @@
           "mn": "(-ing, still going on)"
         },
         {
-          "t": "p",
-          "tx": "："
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
+          "bonus": true
         },
         {
-          "zh": "这",
-          "py": "zhè",
-          "mn": "this"
-        },
-        {
-          "zh": "是",
-          "py": "shì",
-          "mn": "is"
+          "zh": "值",
+          "py": "zhí",
+          "mn": "to be worth",
+          "bonus": true
         },
         {
           "zh": "多少",

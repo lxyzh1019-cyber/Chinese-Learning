@@ -429,8 +429,8 @@
       ]
     },
     {
-      "zh": "他们带来了马、水果，还有新的音乐。",
-      "en": "They brought horses, fruit, and new music.",
+      "zh": "他们带来了马、水果，还有新的乐器和音乐。",
+      "en": "They brought horses, fruit, and new instruments and music.",
       "seg": [
         {
           "zh": "他们",
@@ -483,6 +483,17 @@
           "mn": "(makes a describing word)"
         },
         {
+          "zh": "乐器",
+          "py": "yuè qì",
+          "mn": "musical instruments",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
           "zh": "音乐",
           "py": "yīn yuè",
           "mn": "music",
@@ -495,8 +506,8 @@
       ]
     },
     {
-      "zh": "所以城里的人可以吃到很远的地方来的东西。",
-      "en": "So people in the city could eat things that came from far away.",
+      "zh": "所以城里的人可以吃到很远的地方来的食物。",
+      "en": "So people in the city could eat food that came from far away.",
       "seg": [
         {
           "zh": "所以",
@@ -568,9 +579,10 @@
           "mn": "(the things that)"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food",
+          "bonus": true
         },
         {
           "t": "p",

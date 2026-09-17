@@ -299,8 +299,8 @@
       ]
     },
     {
-      "zh": "老鼠很怕，跑出了房子，一直跑到山上。",
-      "en": "The mouse was scared, ran out of the house, and ran all the way up the mountain.",
+      "zh": "老鼠很害怕，跑出了房子，一直跑到山上。",
+      "en": "The mouse was frightened, ran out of the house, and ran all the way up the mountain.",
       "seg": [
         {
           "zh": "老鼠",
@@ -314,9 +314,9 @@
           "mn": "very"
         },
         {
-          "zh": "怕",
-          "py": "pà",
-          "mn": "afraid",
+          "zh": "害怕",
+          "py": "hài pà",
+          "mn": "frightened",
           "bonus": true
         },
         {

@@ -626,8 +626,8 @@
       ]
     },
     {
-      "zh": "里面还放着很多好看的东西，有字，有书，还有金子做的东西。",
-      "en": "Many beautiful things are kept inside: writing, books, and things made of gold.",
+      "zh": "里面还放着很多宝物，有字画，有书，还有金子做的东西。",
+      "en": "Many treasures are kept inside: calligraphy and paintings, books, and things made of gold.",
       "seg": [
         {
           "zh": "里面",
@@ -661,19 +661,10 @@
           "mn": "many"
         },
         {
-          "zh": "好看",
-          "py": "hǎo kàn",
-          "mn": "beautiful"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "宝物",
+          "py": "bǎo wù",
+          "mn": "treasures",
+          "bonus": true
         },
         {
           "t": "p",
@@ -682,12 +673,13 @@
         {
           "zh": "有",
           "py": "yǒu",
-          "mn": "there is"
+          "mn": "there are"
         },
         {
-          "zh": "字",
-          "py": "zì",
-          "mn": "writing"
+          "zh": "字画",
+          "py": "zì huà",
+          "mn": "calligraphy and paintings",
+          "bonus": true
         },
         {
           "t": "p",

@@ -166,8 +166,8 @@
       ]
     },
     {
-      "zh": "有一个人叫孙中山，他年轻的时候学过给人看病。",
-      "en": "There was a man called Sun Yat-sen, who as a young man had studied medicine.",
+      "zh": "有一个人叫孙中山，他年轻的时候学过医，会给人看病。",
+      "en": "There was a man called Sun Yat-sen, who had studied medicine as a young man and could treat the sick.",
       "seg": [
         {
           "zh": "有",
@@ -234,6 +234,21 @@
           "zh": "过",
           "py": "guò",
           "mn": "(has done)"
+        },
+        {
+          "zh": "医",
+          "py": "yī",
+          "mn": "medicine",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "can"
         },
         {
           "zh": "给",
@@ -393,8 +408,8 @@
       ]
     },
     {
-      "zh": "他相信中国人自己可以做到，很多年轻人跟着他一起做事。",
-      "en": "He believed the Chinese people could do it themselves, and many young people worked alongside him.",
+      "zh": "他相信中国人自己可以做到，很多年轻人跟着他一起做这件事。",
+      "en": "He believed the Chinese people could do it themselves, and many young people joined him in the work.",
       "seg": [
         {
           "zh": "他",
@@ -476,10 +491,25 @@
           "mn": "together"
         },
         {
-          "zh": "做事",
-          "py": "zuò shì",
-          "mn": "to work",
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "件",
+          "py": "jiàn",
+          "mn": "(counting word, matters)",
           "bonus": true
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
         },
         {
           "t": "p",

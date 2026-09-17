@@ -372,8 +372,8 @@
       ]
     },
     {
-      "zh": "他把树皮和旧布放在水里，打得很碎。",
-      "en": "He put tree bark and old cloth in water and beat them into small pieces.",
+      "zh": "他把树皮和旧布放在水里，捣得很碎。",
+      "en": "He put tree bark and old cloth in water and pounded them into small pieces.",
       "seg": [
         {
           "zh": "他",
@@ -434,9 +434,10 @@
           "tx": "，"
         },
         {
-          "zh": "打",
-          "py": "dǎ",
-          "mn": "to beat"
+          "zh": "捣",
+          "py": "dǎo",
+          "mn": "to pound",
+          "bonus": true
         },
         {
           "zh": "得",
@@ -462,8 +463,8 @@
       ]
     },
     {
-      "zh": "然后他把它们做成薄薄的一片，等它干了，就是纸。",
-      "en": "Then he made them into a thin sheet, and when it dried, that was paper.",
+      "zh": "然后他把它们做成薄薄的一片，晒干以后，就成了纸。",
+      "en": "Then he made them into a thin sheet, and once it had dried in the sun, it was paper.",
       "seg": [
         {
           "zh": "然后",
@@ -521,35 +522,36 @@
           "tx": "，"
         },
         {
-          "zh": "等",
-          "py": "děng",
-          "mn": "to wait until"
-        },
-        {
-          "zh": "它",
-          "py": "tā",
-          "mn": "it",
+          "zh": "晒干",
+          "py": "shài gān",
+          "mn": "to dry in the sun",
           "bonus": true
         },
         {
-          "zh": "干",
-          "py": "gān",
-          "mn": "dry"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows a change)"
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after",
+          "bonus": true
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "就是",
-          "py": "jiù shì",
-          "mn": "that is",
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "成",
+          "py": "chéng",
+          "mn": "to become",
           "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
           "zh": "纸",

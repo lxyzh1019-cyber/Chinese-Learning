@@ -294,7 +294,7 @@
       ]
     },
     {
-      "zh": "路上的人都走得很快，一个小孩跑过去，身上都是水。",
+      "zh": "路上的人都走得很快，一个小孩跑过去，身上都湿了。",
       "en": "People in the street were walking fast; a child ran past, soaked through.",
       "seg": [
         {
@@ -389,14 +389,15 @@
           "mn": "all"
         },
         {
-          "zh": "是",
-          "py": "shì",
-          "mn": "is"
+          "zh": "湿",
+          "py": "shī",
+          "mn": "wet",
+          "bonus": true
         },
         {
-          "zh": "水",
-          "py": "shuǐ",
-          "mn": "water"
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
         },
         {
           "t": "p",
@@ -405,7 +406,7 @@
       ]
     },
     {
-      "zh": "我有一点没有意思，就拿了一本书看。",
+      "zh": "我觉得有点儿无聊，就拿了一本书看。",
       "en": "I felt a little bored, so I got a book to read.",
       "seg": [
         {
@@ -414,20 +415,20 @@
           "mn": "I; me"
         },
         {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "to have"
+          "zh": "觉得",
+          "py": "jué de",
+          "mn": "to feel"
         },
         {
-          "zh": "一点",
-          "py": "yì diǎn",
+          "zh": "有点儿",
+          "py": "yǒu diǎnr",
           "mn": "a little",
           "bonus": true
         },
         {
-          "zh": "没有意思",
-          "py": "méi yǒu yì si",
-          "mn": "boring",
+          "zh": "无聊",
+          "py": "wú liáo",
+          "mn": "bored",
           "bonus": true
         },
         {

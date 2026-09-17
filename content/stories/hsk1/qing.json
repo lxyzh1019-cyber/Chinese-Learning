@@ -325,8 +325,8 @@
       ]
     },
     {
-      "zh": "他每天很早就起来做事，也非常喜欢学新的东西。",
-      "en": "He got up very early every day to work, and he loved learning new things.",
+      "zh": "他每天很早就起来处理公务，也非常喜欢学新的东西。",
+      "en": "He got up very early every day to handle official business, and he loved learning new things.",
       "seg": [
         {
           "zh": "他",
@@ -360,9 +360,15 @@
           "mn": "to get up"
         },
         {
-          "zh": "做事",
-          "py": "zuò shì",
-          "mn": "to work",
+          "zh": "处理",
+          "py": "chǔ lǐ",
+          "mn": "to handle",
+          "bonus": true
+        },
+        {
+          "zh": "公务",
+          "py": "gōng wù",
+          "mn": "official business",
           "bonus": true
         },
         {
@@ -478,8 +484,8 @@
       ]
     },
     {
-      "zh": "从西方来的人给他讲天上的星星。",
-      "en": "People who came from the West told him about the stars in the sky.",
+      "zh": "从西方来的人给他讲天文。",
+      "en": "People who came from the West taught him astronomy.",
       "seg": [
         {
           "zh": "从",
@@ -520,24 +526,13 @@
         {
           "zh": "讲",
           "py": "jiǎng",
-          "mn": "to tell about",
+          "mn": "to teach; to explain",
           "bonus": true
         },
         {
-          "zh": "天上",
-          "py": "tiān shàng",
-          "mn": "in the sky",
-          "bonus": true
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "of; belonging to"
-        },
-        {
-          "zh": "星星",
-          "py": "xīng xing",
-          "mn": "stars",
+          "zh": "天文",
+          "py": "tiān wén",
+          "mn": "astronomy",
           "bonus": true
         },
         {

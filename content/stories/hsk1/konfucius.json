@@ -612,8 +612,8 @@
       ]
     },
     {
-      "zh": "两千年过去了，中国人还在说孔子的话。",
-      "en": "Two thousand years have passed, and Chinese people still repeat Confucius's words.",
+      "zh": "两千年过去了，中国人还记得孔子的话。",
+      "en": "Two thousand years have passed, and Chinese people still remember Confucius's words.",
       "seg": [
         {
           "zh": "两",
@@ -662,14 +662,9 @@
           "mn": "still"
         },
         {
-          "zh": "在",
-          "py": "zài",
-          "mn": "(is doing)"
-        },
-        {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "to say"
+          "zh": "记得",
+          "py": "jì de",
+          "mn": "to remember"
         },
         {
           "t": "n",

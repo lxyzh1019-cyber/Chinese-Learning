@@ -544,8 +544,8 @@
       ]
     },
     {
-      "zh": "西边的商人也来了，带来了马和新的水果。",
-      "en": "Merchants from the west came too, bringing horses and new fruits.",
+      "zh": "西边的商人也来了，带来了好马和葡萄。",
+      "en": "Merchants from the west came too, bringing fine horses and grapes.",
       "seg": [
         {
           "zh": "西边",
@@ -594,9 +594,14 @@
           "mn": "(shows it is finished)"
         },
         {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "fine"
+        },
+        {
           "zh": "马",
           "py": "mǎ",
-          "mn": "horse",
+          "mn": "horses",
           "bonus": true
         },
         {
@@ -605,19 +610,10 @@
           "mn": "and"
         },
         {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "水果",
-          "py": "shuǐ guǒ",
-          "mn": "fruit"
+          "zh": "葡萄",
+          "py": "pú tao",
+          "mn": "grapes",
+          "bonus": true
         },
         {
           "t": "p",

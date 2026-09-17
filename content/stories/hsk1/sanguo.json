@@ -641,14 +641,20 @@
       ]
     },
     {
-      "zh": "诸葛亮为国家做事，一直做到很老，今天人们还在说他的故事。",
-      "en": "Zhuge Liang served his state until he was very old, and people still tell his story today.",
+      "zh": "诸葛亮一生为国家做了很多事，今天人们还在讲他的故事。",
+      "en": "Zhuge Liang did a great deal for his state all his life, and people still tell his story today.",
       "seg": [
         {
           "t": "n",
           "zh": "诸葛亮",
           "py": "Zhūgě Liàng",
           "mn": "Zhuge Liang"
+        },
+        {
+          "zh": "一生",
+          "py": "yì shēng",
+          "mn": "whole life",
+          "bonus": true
         },
         {
           "zh": "为",
@@ -664,32 +670,12 @@
         {
           "zh": "做",
           "py": "zuò",
-          "mn": "to work"
-        },
-        {
-          "zh": "事",
-          "py": "shì",
-          "mn": "matter; thing"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "一直",
-          "py": "yī zhí",
-          "mn": "all along",
-          "bonus": true
-        },
-        {
-          "zh": "做",
-          "py": "zuò",
           "mn": "to do"
         },
         {
-          "zh": "到",
-          "py": "dào",
-          "mn": "until"
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
           "zh": "很",
@@ -697,9 +683,14 @@
           "mn": "very"
         },
         {
-          "zh": "老",
-          "py": "lǎo",
-          "mn": "old"
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
         },
         {
           "t": "p",
@@ -727,9 +718,10 @@
           "mn": "(is doing)"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "to tell"
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
         },
         {
           "zh": "他",

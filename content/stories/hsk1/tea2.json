@@ -352,7 +352,7 @@
       ]
     },
     {
-      "zh": "下午，会有人来说故事。",
+      "zh": "下午，会有人来讲故事。",
       "en": "In the afternoon, a storyteller would come.",
       "seg": [
         {
@@ -381,9 +381,10 @@
           "mn": "to come"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "to tell"
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
         },
         {
           "zh": "故事",
@@ -398,7 +399,7 @@
       ]
     },
     {
-      "zh": "他说得非常好，大家都不说话了。",
+      "zh": "他讲得非常好，大家都不说话了。",
       "en": "He told them so well that everyone fell silent.",
       "seg": [
         {
@@ -407,9 +408,10 @@
           "mn": "he"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "to tell"
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
         },
         {
           "zh": "得",
@@ -464,8 +466,8 @@
       ]
     },
     {
-      "zh": "故事里有大王，有兵，也有龙。",
-      "en": "In the stories were kings, soldiers, and dragons.",
+      "zh": "故事里有皇帝，有将军，也有龙。",
+      "en": "In the stories were emperors, generals, and dragons.",
       "seg": [
         {
           "zh": "故事",
@@ -484,9 +486,9 @@
           "mn": "there were"
         },
         {
-          "zh": "大王",
-          "py": "dà wáng",
-          "mn": "great king",
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperors",
           "bonus": true
         },
         {
@@ -499,9 +501,9 @@
           "mn": "there were"
         },
         {
-          "zh": "兵",
-          "py": "bīng",
-          "mn": "soldiers",
+          "zh": "将军",
+          "py": "jiāng jūn",
+          "mn": "generals",
           "bonus": true
         },
         {
@@ -531,8 +533,8 @@
       ]
     },
     {
-      "zh": "一个故事要说好几天，所以第二天大家还会再来。",
-      "en": "One story took several days, so everyone came back the next day.",
+      "zh": "一个故事要讲好几天，所以第二天大家还会再来。",
+      "en": "One story took several days to tell, so everyone came back the next day.",
       "seg": [
         {
           "zh": "一",
@@ -556,9 +558,10 @@
           "mn": "to need"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "to tell"
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
         },
         {
           "zh": "好几",
@@ -620,7 +623,7 @@
       ]
     },
     {
-      "zh": "茶馆也是听新事的地方，今天在中国，还能找到这样的茶馆。",
+      "zh": "茶馆也是听新闻的地方，今天在中国，还能找到这样的茶馆。",
       "en": "The teahouse was also where you heard the news; in China today you can still find teahouses like that.",
       "seg": [
         {
@@ -645,14 +648,10 @@
           "mn": "to hear"
         },
         {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
-        },
-        {
-          "zh": "事",
-          "py": "shì",
-          "mn": "matter; thing"
+          "zh": "新闻",
+          "py": "xīn wén",
+          "mn": "news",
+          "bonus": true
         },
         {
           "zh": "的",

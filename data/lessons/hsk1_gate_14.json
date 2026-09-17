@@ -5,8 +5,8 @@
   "title": "HSK1 Gate 14 · Northern Song",
   "explanationEn": "Gate 14: Northern Song. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第14关：北宋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "中国人做出了很多有用的东西，最有名的有四个。第一个是纸，有了纸，人们才可以写书。第二个是印刷，就是印书的方法。宋朝的人把字一个一个地刻在小木块上，印完了可以换。",
-  "passageEn": "Chinese people made many useful things, and four are the most famous. The first is paper; only with paper could people write books. The second is printing, the way of making books. Song people carved the characters one by one on small wooden blocks, which could be swapped after printing.",
+  "passage": "中国人有很多有用的发明，最有名的有四个。第一个是纸，有了纸，人们才可以写书。第二个是印刷，就是印书的方法。宋朝的人把字一个一个地刻在小木块上，印完了可以换。",
+  "passageEn": "Chinese people made many useful inventions, and four are the most famous. The first is paper; only with paper could people write books. The second is printing, the way of making books. Song people carved the characters one by one on small wooden blocks, which could be swapped after printing.",
   "keyVocab": [
     {
       "zh": "中国",
@@ -22,11 +22,6 @@
       "zh": "多",
       "pinyin": "duō",
       "en": "many"
-    },
-    {
-      "zh": "东西",
-      "pinyin": "dōng xi",
-      "en": "things"
     },
     {
       "zh": "最",
@@ -47,14 +42,19 @@
       "zh": "写",
       "pinyin": "xiě",
       "en": "to write"
+    },
+    {
+      "zh": "书",
+      "pinyin": "shū",
+      "en": "books"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "Chinese people made many useful things, and four are the most famous.",
-      "answer": "中国人做出了很多有用的东西，最有名的有四个。"
+      "answerEn": "Chinese people made many useful inventions, and four are the most famous.",
+      "answer": "中国人有很多有用的发明，最有名的有四个。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
@@ -134,7 +134,7 @@
       "id": "hsk1_gate_14_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "中国人做出了很多有用的东西，最有名的有四个。",
+      "zh": "中国人有很多有用的发明，最有名的有四个。",
       "targetZh": "中国",
       "targetPinyin": "Zhōngguó",
       "promptEn": "What does this sentence say?",
@@ -142,7 +142,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "Chinese people made many useful things, and four are the most famous."
+          "text": "Chinese people made many useful inventions, and four are the most famous."
         },
         {
           "id": "o2",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o1",
-      "explanationEn": "\"中国人做出了很多有用的东西，最有名的有四个。\" means \"Chinese people made many useful things, and four are the most famous.\".",
-      "explanation": "“中国人做出了很多有用的东西，最有名的有四个。”的意思是“Chinese people made many useful things, and four are the most famous.”。"
+      "explanationEn": "\"中国人有很多有用的发明，最有名的有四个。\" means \"Chinese people made many useful inventions, and four are the most famous.\".",
+      "explanation": "“中国人有很多有用的发明，最有名的有四个。”的意思是“Chinese people made many useful inventions, and four are the most famous.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Northern Song in two or three short Chinese sentences. Use words from the list above.",

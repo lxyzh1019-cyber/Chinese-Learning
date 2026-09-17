@@ -84,8 +84,8 @@
       ]
     },
     {
-      "zh": "那时候还没有纸，人们把字写在骨头上。",
-      "en": "At that time there was no paper yet, so people wrote characters on bones.",
+      "zh": "那时候还没有纸，人们把字刻在骨头上。",
+      "en": "At that time there was no paper yet, so people carved characters on bones.",
       "seg": [
         {
           "zh": "那时候",
@@ -131,9 +131,10 @@
           "mn": "character; writing"
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "to write"
+          "zh": "刻",
+          "py": "kè",
+          "mn": "to carve",
+          "bonus": true
         },
         {
           "zh": "在",
@@ -158,8 +159,8 @@
       ]
     },
     {
-      "zh": "骨头又大又白，上面可以写很多字。",
-      "en": "The bones were big and white, and many characters could be written on them.",
+      "zh": "骨头又大又白，上面可以刻很多字。",
+      "en": "The bones were big and white, and many characters could be carved on them.",
       "seg": [
         {
           "zh": "骨头",
@@ -206,9 +207,10 @@
           "bonus": true
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "to write"
+          "zh": "刻",
+          "py": "kè",
+          "mn": "to carve",
+          "bonus": true
         },
         {
           "zh": "很",
@@ -281,8 +283,8 @@
       ]
     },
     {
-      "zh": "他们有问题的时候，就在骨头上写字问神。",
-      "en": "When they had a question, they wrote it on a bone to ask the gods.",
+      "zh": "他们有问题的时候，就把问题刻在骨头上问神。",
+      "en": "When they had a question, they carved it on a bone to ask the gods.",
       "seg": [
         {
           "zh": "他们",
@@ -320,6 +322,24 @@
           "mn": "then"
         },
         {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)",
+          "bonus": true
+        },
+        {
+          "zh": "问题",
+          "py": "wèn tí",
+          "mn": "question",
+          "bonus": true
+        },
+        {
+          "zh": "刻",
+          "py": "kè",
+          "mn": "to carve",
+          "bonus": true
+        },
+        {
           "zh": "在",
           "py": "zài",
           "mn": "on"
@@ -334,16 +354,6 @@
           "zh": "上",
           "py": "shàng",
           "mn": "on top"
-        },
-        {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "to write"
-        },
-        {
-          "zh": "字",
-          "py": "zì",
-          "mn": "character; writing"
         },
         {
           "zh": "问",

@@ -190,7 +190,7 @@
         },
         {
           "zh": "时候",
-          "py": "shí hou",
+          "py": "shíhou",
           "mn": "time; moment"
         },
         {
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "zh": "我们做游戏，说故事，很快乐。",
+      "zh": "我们做游戏，讲故事，很快乐。",
       "en": "We play games, tell stories, and are very happy.",
       "seg": [
         {
@@ -254,9 +254,10 @@
           "tx": "，"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "to tell"
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
         },
         {
           "zh": "故事",
@@ -286,7 +287,7 @@
       ]
     },
     {
-      "zh": "我的朋友会说很多好听的故事。",
+      "zh": "我的朋友会讲很多好听的故事。",
       "en": "My friend can tell many lovely stories.",
       "seg": [
         {
@@ -307,12 +308,13 @@
         {
           "zh": "会",
           "py": "huì",
-          "mn": "can; will"
+          "mn": "can"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "to tell"
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
         },
         {
           "zh": "很",
@@ -347,7 +349,7 @@
       ]
     },
     {
-      "zh": "今天他说了一个很长的故事，我们都笑了。",
+      "zh": "今天他讲了一个很长的故事，我们都笑了。",
       "en": "Today he told a very long story, and we all laughed.",
       "seg": [
         {
@@ -361,9 +363,10 @@
           "mn": "he"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "to tell"
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
         },
         {
           "zh": "了",
@@ -387,7 +390,7 @@
         },
         {
           "zh": "长",
-          "py": "zhǎng",
+          "py": "cháng",
           "mn": "long",
           "bonus": true
         },
@@ -438,7 +441,7 @@
       "seg": [
         {
           "zh": "老师",
-          "py": "lǎo shī",
+          "py": "lǎoshī",
           "mn": "teacher"
         },
         {
@@ -580,7 +583,7 @@
         },
         {
           "zh": "开始",
-          "py": "kāi shǐ",
+          "py": "kāishǐ",
           "mn": "to start",
           "bonus": true
         },

@@ -205,7 +205,7 @@
       ]
     },
     {
-      "zh": "我起来以后，先给它吃的。",
+      "zh": "我起来以后，先喂它。",
       "en": "After I get up, the first thing I do is feed it.",
       "seg": [
         {
@@ -234,20 +234,15 @@
           "mn": "first"
         },
         {
-          "zh": "给",
-          "py": "gěi",
-          "mn": "to give"
+          "zh": "喂",
+          "py": "wèi",
+          "mn": "to feed",
+          "bonus": true
         },
         {
           "zh": "它",
           "py": "tā",
           "mn": "it",
-          "bonus": true
-        },
-        {
-          "zh": "吃的",
-          "py": "chī de",
-          "mn": "food",
           "bonus": true
         },
         {

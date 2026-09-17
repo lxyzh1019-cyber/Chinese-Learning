@@ -2141,9 +2141,9 @@
      },
      {
       "t": "c",
-      "ch": "怕",
-      "py": "pà",
-      "mn": "afraid",
+      "ch": "害怕",
+      "py": "hài pà",
+      "mn": "frightened",
       "bonus": true
      },
      {
@@ -2632,7 +2632,7 @@
     "Every day the cat wanted to eat the mouse, but the mouse ran very fast.",
     "One morning, the cat waited for the mouse behind the door.",
     "The moment the mouse came out, the cat jumped out.",
-    "The mouse was scared, ran out of the house, and ran all the way up the mountain.",
+    "The mouse was frightened, ran out of the house, and ran all the way up the mountain.",
     "The mountain path was too long, and the cat could run no more.",
     "The cat sat at the foot of the mountain, looked up, and said nothing.",
     "The mouse reached the top and saw water, flowers, and lots of good things to eat.",
@@ -3279,9 +3279,15 @@
      },
      {
       "t": "c",
+      "ch": "好",
+      "py": "hǎo",
+      "mn": "fine"
+     },
+     {
+      "t": "c",
       "ch": "马",
       "py": "mǎ",
-      "mn": "horse",
+      "mn": "horses",
       "bonus": true
      },
      {
@@ -3292,21 +3298,10 @@
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
-     },
-     {
-      "t": "c",
-      "ch": "水果",
-      "py": "shuǐ guǒ",
-      "mn": "fruit"
+      "ch": "葡萄",
+      "py": "pú tao",
+      "mn": "grapes",
+      "bonus": true
      },
      {
       "t": "p",
@@ -3519,7 +3514,7 @@
     "When Chinese merchants heard this, they wanted to go west to trade too.",
     "They carried silk, because people in the west loved silk.",
     "The road was long, over mountains and through very hot places; one journey took a year or two.",
-    "Merchants from the west came too, bringing horses and new fruits.",
+    "Merchants from the west came too, bringing fine horses and grapes.",
     "Because the most famous thing on the road was silk, people called it the Silk Road.",
     "This road joined China to places very far away."
    ]
@@ -3772,22 +3767,16 @@
      },
      {
       "t": "c",
-      "ch": "给",
-      "py": "gěi",
-      "mn": "to give"
+      "ch": "喂",
+      "py": "wèi",
+      "mn": "to feed",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "它",
       "py": "tā",
       "mn": "it",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "吃的",
-      "py": "chī de",
-      "mn": "food",
       "bonus": true
      },
      {
@@ -4989,15 +4978,9 @@
      },
      {
       "t": "c",
-      "ch": "在",
-      "py": "zài",
-      "mn": "(is doing)"
-     },
-     {
-      "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "to say"
+      "ch": "记得",
+      "py": "jì de",
+      "mn": "to remember"
      },
      {
       "t": "n",
@@ -5033,7 +5016,7 @@
     "He also said: \"If you do not know, just ask.\"",
     "A student asked him: \"What is a good person?\"",
     "He said: \"What you do not want yourself, do not give to others.\"",
-    "Two thousand years have passed, and Chinese people still repeat Confucius's words."
+    "Two thousand years have passed, and Chinese people still remember Confucius's words."
    ]
   },
   "ming-h1": {
@@ -5600,16 +5583,22 @@
      },
      {
       "t": "c",
-      "ch": "不一样",
-      "py": "bù yí yàng",
+      "ch": "不同",
+      "py": "bù tóng",
       "mn": "different",
       "bonus": true
      },
      {
       "t": "c",
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "countries"
+     },
+     {
+      "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "(makes a describing word)"
+      "mn": "of; belonging to"
      },
      {
       "t": "c",
@@ -5938,7 +5927,7 @@
     "His ships were enormous, bigger than many houses, and one ship could hold several hundred people.",
     "On board were water, rice, and Chinese silk and tea.",
     "The fleet set out from China, sailed west, and spent many days on the open sea.",
-    "Some places were very hot, some very far, and they met many different peoples.",
+    "Some places were very hot, some very far, and they met people of many different countries.",
     "They did not go to attack those countries; they only traded, and then came back.",
     "People of other lands gave them animals they had never seen; once it was a giraffe.",
     "Zheng He made the voyage seven times in all.",
@@ -6224,22 +6213,10 @@
      },
      {
       "t": "c",
-      "ch": "不对",
-      "py": "bú duì",
-      "mn": "wrong",
+      "ch": "错误",
+      "py": "cuò wù",
+      "mn": "mistakes",
       "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
-     },
-     {
-      "t": "c",
-      "ch": "地方",
-      "py": "dì fāng",
-      "mn": "places"
      },
      {
       "t": "p",
@@ -6756,9 +6733,9 @@
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "to write"
+      "ch": "记",
+      "py": "jì",
+      "mn": "to note"
      },
      {
       "t": "c",
@@ -6786,9 +6763,21 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "山",
+      "py": "shān",
+      "mn": "mountains"
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
+     },
+     {
+      "t": "c",
+      "ch": "水",
+      "py": "shuǐ",
+      "mn": "water; rivers"
      },
      {
       "t": "p",
@@ -6796,9 +6785,9 @@
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "to write"
+      "ch": "记",
+      "py": "jì",
+      "mn": "to note"
      },
      {
       "t": "c",
@@ -6910,9 +6899,9 @@
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "to write"
+      "ch": "记",
+      "py": "jì",
+      "mn": "to note"
      },
      {
       "t": "c",
@@ -6930,14 +6919,14 @@
    "trans": [
     "Two men of the Ming dynasty spent their whole lives looking for answers.",
     "The first was Li Shizhen, who loved the plants and trees of the hills.",
-    "He wanted to know which plants could be medicine, but the old books had a great deal that was wrong.",
+    "He wanted to know which plants could be medicine, but the old books were full of mistakes.",
     "So he decided to go and see for himself; he walked far and asked many people.",
     "He spent nearly thirty years writing a book with more than a thousand kinds of herbal medicine in it.",
     "The second was Xu Xiake, who loved walking, and loved looking at mountains and rivers.",
     "He went to many places no one else had been.",
     "Some paths were hard going, but he did not give up.",
-    "Every evening he wrote down what he had seen that day, and he did so for decades.",
-    "Both men did the same thing: go and see for themselves, then write it down."
+    "Every evening he noted down the mountains and rivers he had seen that day, and he did so for decades.",
+    "Both men did the same thing: go and see for themselves, then note it down."
    ]
   },
   "paper-h1": {
@@ -7405,9 +7394,10 @@
      },
      {
       "t": "c",
-      "ch": "打",
-      "py": "dǎ",
-      "mn": "to beat"
+      "ch": "捣",
+      "py": "dǎo",
+      "mn": "to pound",
+      "bonus": true
      },
      {
       "t": "c",
@@ -7501,28 +7491,17 @@
      },
      {
       "t": "c",
-      "ch": "等",
-      "py": "děng",
-      "mn": "to wait until"
-     },
-     {
-      "t": "c",
-      "ch": "它",
-      "py": "tā",
-      "mn": "it",
+      "ch": "晒干",
+      "py": "shài gān",
+      "mn": "to dry in the sun",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "干",
-      "py": "gān",
-      "mn": "dry"
-     },
-     {
-      "t": "c",
-      "ch": "了",
-      "py": "le",
-      "mn": "(shows a change)"
+      "ch": "以后",
+      "py": "yǐ hòu",
+      "mn": "after",
+      "bonus": true
      },
      {
       "t": "p",
@@ -7530,10 +7509,22 @@
      },
      {
       "t": "c",
-      "ch": "就是",
-      "py": "jiù shì",
-      "mn": "that is",
+      "ch": "就",
+      "py": "jiù",
+      "mn": "then"
+     },
+     {
+      "t": "c",
+      "ch": "成",
+      "py": "chéng",
+      "mn": "to become",
       "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
      },
      {
       "t": "c",
@@ -7802,8 +7793,8 @@
     "Bamboo is heavy; one book took a lot of bamboo, and one person could not carry it.",
     "In the Eastern Han, there was a man called Cai Lun.",
     "He thought: \"Could we make something light and cheap to write on?\"",
-    "He put tree bark and old cloth in water and beat them into small pieces.",
-    "Then he made them into a thin sheet, and when it dried, that was paper.",
+    "He put tree bark and old cloth in water and pounded them into small pieces.",
+    "Then he made them into a thin sheet, and once it had dried in the sun, it was paper.",
     "Paper was light and cheap, and easy to write on.",
     "With paper, students could carry books to school, and teachers could write down the lessons.",
     "Later, paper went from China to many countries around the world."
@@ -9015,9 +9006,9 @@
      },
      {
       "t": "c",
-      "ch": "木头",
-      "py": "mù tou",
-      "mn": "wood",
+      "ch": "木板",
+      "py": "mù bǎn",
+      "mn": "wooden board",
       "bonus": true
      },
      {
@@ -9064,9 +9055,9 @@
      },
      {
       "t": "c",
-      "ch": "木头",
-      "py": "mù tou",
-      "mn": "wood",
+      "ch": "木板",
+      "py": "mù bǎn",
+      "mn": "wooden board",
       "bonus": true
      },
      {
@@ -9077,22 +9068,16 @@
      },
      {
       "t": "c",
-      "ch": "放",
-      "py": "fàng",
-      "mn": "to put"
-     },
-     {
-      "t": "c",
-      "ch": "黑色",
-      "py": "hēi sè",
-      "mn": "black",
+      "ch": "刷",
+      "py": "shuā",
+      "mn": "to brush on",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
+      "ch": "上",
+      "py": "shàng",
+      "mn": "on"
      },
      {
       "t": "c",
@@ -9230,9 +9215,9 @@
      },
      {
       "t": "c",
-      "ch": "木头",
-      "py": "mù tou",
-      "mn": "wood",
+      "ch": "木板",
+      "py": "mù bǎn",
+      "mn": "wooden board",
       "bonus": true
      },
      {
@@ -9298,10 +9283,16 @@
      },
      {
       "t": "c",
-      "ch": "做出",
-      "py": "zuò chū",
-      "mn": "to make",
+      "ch": "印",
+      "py": "yìn",
+      "mn": "to print",
       "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "出",
+      "py": "chū",
+      "mn": "out"
      },
      {
       "t": "c",
@@ -9478,10 +9469,10 @@
     "But a book had to be written out one character at a time, and that took many days.",
     "So books were few and expensive, and only people with money could afford them.",
     "Later, someone thought of a good way.",
-    "They carved the characters into a block of wood.",
-    "Once carved, they put black ink on the wood, and then laid paper on it.",
+    "They carved the characters into a wooden board.",
+    "Once carved, they brushed ink onto the board, and then laid paper on it.",
     "One press with the hand, and the characters were on the paper.",
-    "One block of wood could be used many times, so many books could be made in a day.",
+    "One board could be used many times, so many books could be printed in a day.",
     "Books became cheap, and more people read.",
     "Later this method reached other countries, and changed the world."
    ]
@@ -9827,36 +9818,36 @@
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "久",
-      "py": "jiǔ",
-      "mn": "long time",
+      "ch": "讲",
+      "py": "jiǎng",
+      "mn": "to tell",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "以前",
-      "py": "yǐ qián",
-      "mn": "before",
+      "ch": "古代",
+      "py": "gǔ dài",
+      "mn": "ancient times",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "故事",
+      "py": "gù shi",
+      "mn": "stories",
       "bonus": true
      },
      {
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
-      "ch": "故事书",
-      "py": "gù shi shū",
-      "mn": "storybook",
-      "bonus": true
+      "ch": "书",
+      "py": "shū",
+      "mn": "book"
      },
      {
       "t": "p",
@@ -10289,7 +10280,7 @@
     "The library is big, with a great many books inside.",
     "The moment we went in, everyone stopped talking, because many people were reading.",
     "The teacher said: \"You may look for a book you want to read yourselves.\"",
-    "I found a storybook about long ago.",
+    "I found a book of stories from ancient times.",
     "In it were emperors, the Great Wall, and a very long road.",
     "I sat down, and once I started reading I read for two hours.",
     "I read so intently that I forgot the time; only when the teacher called me did I get up.",
@@ -10768,14 +10759,14 @@
      },
      {
       "t": "c",
-      "ch": "早上",
-      "py": "zǎo shang",
+      "ch": "早",
+      "py": "zǎo",
       "mn": "morning"
      },
      {
       "t": "c",
-      "ch": "做",
-      "py": "zuò",
+      "ch": "干",
+      "py": "gàn",
       "mn": "to work"
      },
      {
@@ -10786,8 +10777,8 @@
      },
      {
       "t": "c",
-      "ch": "晚上",
-      "py": "wǎn shang",
+      "ch": "晚",
+      "py": "wǎn",
       "mn": "night"
      },
      {
@@ -10816,9 +10807,10 @@
      },
      {
       "t": "c",
-      "ch": "难",
-      "py": "nán",
-      "mn": "hard"
+      "ch": "苦",
+      "py": "kǔ",
+      "mn": "hard; bitter",
+      "bonus": true
      },
      {
       "t": "p",
@@ -12240,9 +12232,16 @@
      },
      {
       "t": "c",
-      "ch": "做事",
-      "py": "zuò shì",
-      "mn": "to work",
+      "ch": "处理",
+      "py": "chǔ lǐ",
+      "mn": "to handle",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "公务",
+      "py": "gōng wù",
+      "mn": "official business",
       "bonus": true
      },
      {
@@ -12417,27 +12416,14 @@
       "t": "c",
       "ch": "讲",
       "py": "jiǎng",
-      "mn": "to tell about",
+      "mn": "to teach; to explain",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "天上",
-      "py": "tiān shàng",
-      "mn": "in the sky",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "星星",
-      "py": "xīng xing",
-      "mn": "stars",
+      "ch": "天文",
+      "py": "tiān wén",
+      "mn": "astronomy",
       "bonus": true
      },
      {
@@ -12684,9 +12670,9 @@
     "Because he was still so young, at first the ministers governed on his behalf.",
     "Only in his teens did he begin to govern the country himself.",
     "He was emperor for sixty-one years in all.",
-    "He got up very early every day to work, and he loved learning new things.",
+    "He got up very early every day to handle official business, and he loved learning new things.",
     "He studied mathematics, and science from the West.",
-    "People who came from the West told him about the stars in the sky.",
+    "People who came from the West taught him astronomy.",
     "He sent men across the whole country to draw a very large map.",
     "He cared about the farmers too, so many people say he was one of China's best emperors."
    ]
@@ -13405,21 +13391,10 @@
      },
      {
       "t": "c",
-      "ch": "好看",
-      "py": "hǎo kàn",
-      "mn": "beautiful"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
-     },
-     {
-      "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "宝物",
+      "py": "bǎo wù",
+      "mn": "treasures",
+      "bonus": true
      },
      {
       "t": "p",
@@ -13429,13 +13404,14 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "there is"
+      "mn": "there are"
      },
      {
       "t": "c",
-      "ch": "字",
-      "py": "zì",
-      "mn": "writing"
+      "ch": "字画",
+      "py": "zì huà",
+      "mn": "calligraphy and paintings",
+      "bonus": true
      },
      {
       "t": "p",
@@ -13626,7 +13602,7 @@
     "Its gates are high and great, and the palace halls are red and very beautiful.",
     "The emperor handled the affairs of state in the largest hall.",
     "Every morning many officials came to see him, and they dared not say one word more than they should.",
-    "Many beautiful things are kept inside: writing, books, and things made of gold.",
+    "Many treasures are kept inside: calligraphy and paintings, books, and things made of gold.",
     "In the past, ordinary people could not enter the Forbidden City.",
     "But today, anyone may go in and take a look."
    ]
@@ -15416,9 +15392,10 @@
      },
      {
       "t": "c",
-      "ch": "得到",
-      "py": "dé dào",
-      "mn": "to get"
+      "ch": "赚",
+      "py": "zhuàn",
+      "mn": "to earn",
+      "bonus": true
      },
      {
       "t": "c",
@@ -15655,7 +15632,7 @@
     "Cars appeared in the streets, and many shops.",
     "At night there were electric lights along the streets, and people could be seen out until very late.",
     "China's traditional old things and the new things that came in from the West were both in this city.",
-    "Some traded here and made a great deal of money, while many others lived very hard lives.",
+    "Some traded here and earned a great deal of money, while many others lived very hard lives.",
     "Some thought Shanghai was good, and some thought it was not.",
     "Shanghai's change was China's change in those years."
    ]
@@ -15909,6 +15886,23 @@
       "ch": "过",
       "py": "guò",
       "mn": "(has done)"
+     },
+     {
+      "t": "c",
+      "ch": "医",
+      "py": "yī",
+      "mn": "medicine",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "会",
+      "py": "huì",
+      "mn": "can"
      },
      {
       "t": "c",
@@ -16178,10 +16172,28 @@
      },
      {
       "t": "c",
-      "ch": "做事",
-      "py": "zuò shì",
-      "mn": "to work",
+      "ch": "做",
+      "py": "zuò",
+      "mn": "to do"
+     },
+     {
+      "t": "c",
+      "ch": "这",
+      "py": "zhè",
+      "mn": "this"
+     },
+     {
+      "t": "c",
+      "ch": "件",
+      "py": "jiàn",
+      "mn": "(counting word, matters)",
       "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "事",
+      "py": "shì",
+      "mn": "matter; thing"
      },
      {
       "t": "p",
@@ -16543,10 +16555,10 @@
    "trans": [
     "A little over a hundred years ago China still had an emperor, but life in those days was very hard.",
     "Many people thought: China must be different.",
-    "There was a man called Sun Yat-sen, who as a young man had studied medicine.",
+    "There was a man called Sun Yat-sen, who had studied medicine as a young man and could treat the sick.",
     "He had been to many countries, and saw that other countries did well without an emperor.",
     "So he said: the country belongs to everyone.",
-    "He believed the Chinese people could do it themselves, and many young people worked alongside him.",
+    "He believed the Chinese people could do it themselves, and many young people joined him in the work.",
     "They tried many times without success, but he never gave up.",
     "In 1912 the new state began, called the Republic of China.",
     "The new government built new-style schools and new roads.",
@@ -18569,14 +18581,10 @@
       "mn": "to go out"
      },
      {
-      "t": "p",
-      "tx": "，"
-     },
-     {
       "t": "c",
-      "ch": "看",
-      "py": "kàn",
-      "mn": "to watch"
+      "ch": "放",
+      "py": "fàng",
+      "mn": "to graze"
      },
      {
       "t": "c",
@@ -18587,9 +18595,9 @@
      },
      {
       "t": "c",
-      "ch": "和",
-      "py": "hé",
-      "mn": "and"
+      "ch": "放",
+      "py": "fàng",
+      "mn": "to graze"
      },
      {
       "t": "c",
@@ -18772,8 +18780,8 @@
      },
      {
       "t": "c",
-      "ch": "光",
-      "py": "guāng",
+      "ch": "灯光",
+      "py": "dēng guāng",
       "mn": "lights",
       "bonus": true
      },
@@ -19036,7 +19044,7 @@
     "When the wind comes the grass all moves, and from far off it looks like water.",
     "The children who live here learn to ride when they are very small.",
     "By three or four, they have a horse of their own.",
-    "In the morning they go out with the grown-ups and watch the cattle and horses.",
+    "In the morning they go out with the grown-ups to graze the cattle and horses.",
     "They eat outside at noon, and only come back in the evening.",
     "The night sky is dark, but the stars are very bright.",
     "A city has so many lights that you cannot see a sky like this there.",
@@ -19725,6 +19733,13 @@
      },
      {
       "t": "c",
+      "ch": "一生",
+      "py": "yì shēng",
+      "mn": "whole life",
+      "bonus": true
+     },
+     {
+      "t": "c",
       "ch": "为",
       "py": "wéi",
       "mn": "for",
@@ -19740,36 +19755,13 @@
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "to work"
-     },
-     {
-      "t": "c",
-      "ch": "事",
-      "py": "shì",
-      "mn": "matter; thing"
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "一直",
-      "py": "yī zhí",
-      "mn": "all along",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "做",
-      "py": "zuò",
       "mn": "to do"
      },
      {
       "t": "c",
-      "ch": "到",
-      "py": "dào",
-      "mn": "until"
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
      },
      {
       "t": "c",
@@ -19779,9 +19771,15 @@
      },
      {
       "t": "c",
-      "ch": "老",
-      "py": "lǎo",
-      "mn": "old"
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "事",
+      "py": "shì",
+      "mn": "matter; thing"
      },
      {
       "t": "p",
@@ -19814,9 +19812,10 @@
      },
      {
       "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "to tell"
+      "ch": "讲",
+      "py": "jiǎng",
+      "mn": "to tell",
+      "bonus": true
      },
      {
       "t": "c",
@@ -19853,7 +19852,7 @@
     "Zhuge Liang left the city gate open and sat alone on the city wall, reading.",
     "The enemy saw the gate open and thought: \"There must be many soldiers inside.\"",
     "They did not dare go in, and left.",
-    "Zhuge Liang served his state until he was very old, and people still tell his story today."
+    "Zhuge Liang did a great deal for his state all his life, and people still tell his story today."
    ]
   },
   "sanguo2-h1": {
@@ -20370,9 +20369,10 @@
      },
      {
       "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "to tell"
+      "ch": "讲",
+      "py": "jiǎng",
+      "mn": "to tell",
+      "bonus": true
      },
      {
       "t": "c",
@@ -20762,9 +20762,20 @@
      },
      {
       "t": "c",
-      "ch": "做事",
-      "py": "zuò shì",
-      "mn": "to work",
+      "ch": "生活",
+      "py": "shēng huó",
+      "mn": "to live",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "、"
+     },
+     {
+      "t": "c",
+      "ch": "做买卖",
+      "py": "zuò mǎi mai",
+      "mn": "to trade",
       "bonus": true
      },
      {
@@ -21187,34 +21198,27 @@
      },
      {
       "t": "c",
-      "ch": "可以",
-      "py": "kě yǐ",
-      "mn": "could",
-      "bonus": true
+      "ch": "能",
+      "py": "néng",
+      "mn": "can"
      },
      {
       "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "to do"
+      "ch": "找到",
+      "py": "zhǎo dào",
+      "mn": "to find"
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
+      "ch": "好",
+      "py": "hǎo",
+      "mn": "good"
      },
      {
       "t": "c",
-      "ch": "多",
-      "py": "duō",
-      "mn": "many"
-     },
-     {
-      "t": "c",
-      "ch": "事",
-      "py": "shì",
-      "mn": "matter; thing"
+      "ch": "工作",
+      "py": "gōng zuò",
+      "mn": "work"
      },
      {
       "t": "p",
@@ -21444,12 +21448,12 @@
    "trans": [
     "In the Jin dynasty, many different peoples lived in the north.",
     "They spoke differently and wrote differently.",
-    "Because everyone had to work together, many young people began to learn Chinese characters.",
+    "Because everyone had to live and trade together, many young people began to learn Chinese characters.",
     "They went to school very early every day.",
     "The teacher taught them to read first, and then to write.",
     "A character had to be written many times, and if it was not good, they wrote it once more.",
     "Some were still reading in the evening; with no light at home, they sat by the door to read.",
-    "Once they had learned the characters they could do many things; some became officials, some became merchants.",
+    "Once they had learned the characters they could find good work; some became officials, some became merchants.",
     "They did not forget their own writing either, and knew both scripts.",
     "They said: \"A person who has studied well can get on anywhere.\""
    ]
@@ -21751,9 +21755,10 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "thing"
+      "ch": "句子",
+      "py": "jù zi",
+      "mn": "sentence",
+      "bonus": true
      },
      {
       "t": "p",
@@ -21779,9 +21784,10 @@
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "to write"
+      "ch": "抄",
+      "py": "chāo",
+      "mn": "to copy",
+      "bonus": true
      },
      {
       "t": "c",
@@ -22167,9 +22173,10 @@
      },
      {
       "t": "c",
-      "ch": "看到",
-      "py": "kàn dào",
-      "mn": "to see"
+      "ch": "学到",
+      "py": "xué dào",
+      "mn": "to learn",
+      "bonus": true
      },
      {
       "t": "c",
@@ -22179,9 +22186,9 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "知识",
+      "py": "zhī shi",
+      "mn": "knowledge"
      },
      {
       "t": "p",
@@ -22283,11 +22290,11 @@
     "His family had no money, but it had many books.",
     "Every morning he read as soon as he got up, and he read every kind of book.",
     "He had a notebook, and always kept it on him.",
-    "Whenever he saw something good, he wrote it down at once.",
+    "Whenever he read a good sentence, he copied it down at once.",
     "Year after year the notebooks grew, and he kept them in a big chest.",
     "Later he grew old, his eyes were poor, and he could write no more.",
     "He gave the chest to his students.",
-    "Many years later people were still reading these notebooks, because in them was everything he had seen in his life.",
+    "Many years later people were still reading these notebooks, because in them was all the knowledge he had gathered in his life.",
     "He once said: \"If you do not write it down, you soon forget.\""
    ]
   },
@@ -22429,9 +22436,10 @@
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "to write"
+      "ch": "刻",
+      "py": "kè",
+      "mn": "to carve",
+      "bonus": true
      },
      {
       "t": "c",
@@ -22511,9 +22519,10 @@
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "to write"
+      "ch": "刻",
+      "py": "kè",
+      "mn": "to carve",
+      "bonus": true
      },
      {
       "t": "c",
@@ -22633,6 +22642,27 @@
      },
      {
       "t": "c",
+      "ch": "把",
+      "py": "bǎ",
+      "mn": "(puts the object first)",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "问题",
+      "py": "wèn tí",
+      "mn": "question",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "刻",
+      "py": "kè",
+      "mn": "to carve",
+      "bonus": true
+     },
+     {
+      "t": "c",
       "ch": "在",
       "py": "zài",
       "mn": "on"
@@ -22649,18 +22679,6 @@
       "ch": "上",
       "py": "shàng",
       "mn": "on top"
-     },
-     {
-      "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "to write"
-     },
-     {
-      "t": "c",
-      "ch": "字",
-      "py": "zì",
-      "mn": "character; writing"
      },
      {
       "t": "c",
@@ -23050,10 +23068,10 @@
    ],
    "trans": [
     "Long ago, China had a dynasty called the Shang.",
-    "At that time there was no paper yet, so people wrote characters on bones.",
-    "The bones were big and white, and many characters could be written on them.",
+    "At that time there was no paper yet, so people carved characters on bones.",
+    "The bones were big and white, and many characters could be carved on them.",
     "The Shang people believed there were gods in the sky.",
-    "When they had a question, they wrote it on a bone to ask the gods.",
+    "When they had a question, they carved it on a bone to ask the gods.",
     "They asked: \"Will the weather be good today?\"",
     "After asking, they burned the bone with fire.",
     "Cracks appeared on the bone, and they read the cracks to find the answer.",
@@ -24435,15 +24453,15 @@
      },
      {
       "t": "c",
-      "ch": "几",
-      "py": "jī",
-      "mn": "a few"
+      "ch": "一",
+      "py": "yī",
+      "mn": "one"
      },
      {
       "t": "c",
-      "ch": "句",
-      "py": "jù",
-      "mn": "(counting word, sentences)",
+      "ch": "段",
+      "py": "duàn",
+      "mn": "(counting word, passages)",
       "bonus": true
      },
      {
@@ -24462,26 +24480,20 @@
       "t": "c",
       "ch": "那",
       "py": "nà",
-      "mn": "those"
+      "mn": "that"
      },
      {
       "t": "c",
-      "ch": "几",
-      "py": "jī",
-      "mn": "a few"
-     },
-     {
-      "t": "c",
-      "ch": "句",
-      "py": "jù",
-      "mn": "(counting word, sentences)",
+      "ch": "段",
+      "py": "duàn",
+      "mn": "(counting word, passages)",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "话",
-      "py": "huà",
-      "mn": "words"
+      "ch": "字",
+      "py": "zì",
+      "mn": "writing"
      },
      {
       "t": "c",
@@ -24522,9 +24534,10 @@
      },
      {
       "t": "c",
-      "ch": "字",
-      "py": "zì",
-      "mn": "writing"
+      "ch": "书法",
+      "py": "shū fǎ",
+      "mn": "calligraphy",
+      "bonus": true
      },
      {
       "t": "p",
@@ -24569,22 +24582,15 @@
      },
      {
       "t": "c",
-      "ch": "写字",
-      "py": "xiě zì",
-      "mn": "writing",
-      "bonus": true
-     },
-     {
-      "t": "c",
       "ch": "的",
       "py": "de",
       "mn": "of; belonging to"
      },
      {
       "t": "c",
-      "ch": "方法",
-      "py": "fāng fǎ",
-      "mn": "way; method",
+      "ch": "书法",
+      "py": "shū fǎ",
+      "mn": "calligraphy",
       "bonus": true
      },
      {
@@ -24602,8 +24608,8 @@
     "The characters he wrote were beautiful; some were like wind, some like water.",
     "So people called him the \"Sage of Calligraphy\".",
     "One spring, he met many friends in the mountains, and they wrote poems together.",
-    "He put everyone's poems together and wrote a few lines at the front.",
-    "Those few lines became the most famous writing in China, and today people still learn his way of writing."
+    "He put everyone's poems together and wrote a passage at the front.",
+    "That piece became the most famous calligraphy in China, and today people still study his calligraphy."
    ]
   },
   "shufa2-h1": {
@@ -25437,16 +25443,9 @@
      },
      {
       "t": "c",
-      "ch": "做出",
-      "py": "zuò chū",
-      "mn": "to make; to produce",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "了",
-      "py": "le",
-      "mn": "(shows it is finished)"
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "to have"
      },
      {
       "t": "c",
@@ -25475,9 +25474,10 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "发明",
+      "py": "fā míng",
+      "mn": "inventions",
+      "bonus": true
      },
      {
       "t": "p",
@@ -25656,7 +25656,7 @@
      {
       "t": "c",
       "ch": "印",
-      "py": "Yìn",
+      "py": "yìn",
       "mn": "to print",
       "bonus": true
      },
@@ -25785,7 +25785,7 @@
      {
       "t": "c",
       "ch": "印",
-      "py": "Yìn",
+      "py": "yìn",
       "mn": "to print",
       "bonus": true
      },
@@ -26122,9 +26122,10 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "发明",
+      "py": "fā míng",
+      "mn": "inventions",
+      "bonus": true
      },
      {
       "t": "c",
@@ -26225,7 +26226,7 @@
     ]
    ],
    "trans": [
-    "Chinese people made many useful things, and four are the most famous.",
+    "Chinese people made many useful inventions, and four are the most famous.",
     "The first is paper; only with paper could people write books.",
     "The second is printing, the way of making books.",
     "Song people carved the characters one by one on small wooden blocks, which could be swapped after printing.",
@@ -26233,7 +26234,7 @@
     "Far from home at sea, a ship with a compass did not lose its way.",
     "The fourth is gunpowder.",
     "At first, people only used it to set off fireworks.",
-    "Later, these four things slowly reached other countries.",
+    "Later, these four inventions slowly reached other countries.",
     "Many people say they changed the world."
    ]
   },
@@ -26775,20 +26776,18 @@
       "mn": "(-ing, still going on)"
      },
      {
-      "t": "p",
-      "tx": "："
+      "t": "c",
+      "ch": "它",
+      "py": "tā",
+      "mn": "it",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "这",
-      "py": "zhè",
-      "mn": "this"
-     },
-     {
-      "t": "c",
-      "ch": "是",
-      "py": "shì",
-      "mn": "is"
+      "ch": "值",
+      "py": "zhí",
+      "mn": "to be worth",
+      "bonus": true
      },
      {
       "t": "c",
@@ -27129,7 +27128,7 @@
     "The money was too heavy for one person to carry, and the road was not safe.",
     "Song people thought of a way.",
     "They left the money in one place and took a piece of paper.",
-    "On the paper was written how much money it stood for.",
+    "On the paper was written how much it was worth.",
     "Paper is light and small, easy to carry on you.",
     "In another city that paper could be exchanged for the money; this was the earliest paper money.",
     "This let merchants travel further, and today many countries still use paper money."
@@ -27651,6 +27650,19 @@
      },
      {
       "t": "c",
+      "ch": "乐器",
+      "py": "yuè qì",
+      "mn": "musical instruments",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
+     },
+     {
+      "t": "c",
       "ch": "音乐",
       "py": "yīn yuè",
       "mn": "music",
@@ -27746,9 +27758,10 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "食物",
+      "py": "shí wù",
+      "mn": "food",
+      "bonus": true
      },
      {
       "t": "p",
@@ -28012,8 +28025,8 @@
     "More than a million people lived there, and the streets were straight and long.",
     "Because the Tang was so famous, people came from many countries.",
     "Some came to trade, and some came to study.",
-    "They brought horses, fruit, and new music.",
-    "So people in the city could eat things that came from far away.",
+    "They brought horses, fruit, and new instruments and music.",
+    "So people in the city could eat food that came from far away.",
     "The Tang also had many famous poets, and the most famous was called Li Bai.",
     "In those days, women could study, and could ride horses too.",
     "Many people say the Tang was one of China's best times."
@@ -28236,9 +28249,9 @@
      },
      {
       "t": "c",
-      "ch": "外面",
-      "py": "wài miàn",
-      "mn": "outside; away",
+      "ch": "外地",
+      "py": "wài dì",
+      "mn": "away from home",
       "bonus": true
      },
      {
@@ -30011,15 +30024,16 @@
      },
      {
       "t": "c",
-      "ch": "是",
-      "py": "shì",
-      "mn": "is"
+      "ch": "湿",
+      "py": "shī",
+      "mn": "wet",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "水",
-      "py": "shuǐ",
-      "mn": "water"
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows a change)"
      },
      {
       "t": "p",
@@ -30035,22 +30049,22 @@
      },
      {
       "t": "c",
-      "ch": "有",
-      "py": "yǒu",
-      "mn": "to have"
+      "ch": "觉得",
+      "py": "jué de",
+      "mn": "to feel"
      },
      {
       "t": "c",
-      "ch": "一点",
-      "py": "yì diǎn",
+      "ch": "有点儿",
+      "py": "yǒu diǎnr",
       "mn": "a little",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "没有意思",
-      "py": "méi yǒu yì si",
-      "mn": "boring",
+      "ch": "无聊",
+      "py": "wú liáo",
+      "mn": "bored",
       "bonus": true
      },
      {
@@ -30941,15 +30955,10 @@
      },
      {
       "t": "c",
-      "ch": "喝",
-      "py": "hē",
-      "mn": "to drink"
-     },
-     {
-      "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "解渴",
+      "py": "jiě kě",
+      "mn": "to quench thirst",
+      "bonus": true
      },
      {
       "t": "p",
@@ -31096,7 +31105,7 @@
     "The water must be neither too hot nor too cold; with the wrong water, even good tea leaves make a poor cup.",
     "Song people took their tea seriously.",
     "They looked at the tea first, then smelled it, and only then drank slowly.",
-    "They said drinking tea is not only drinking.",
+    "They said drinking tea is not only about quenching thirst.",
     "Over tea, a person can sit down and talk slowly.",
     "To this day, Chinese people still love drinking tea."
    ]
@@ -31512,9 +31521,10 @@
      },
      {
       "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "to tell"
+      "ch": "讲",
+      "py": "jiǎng",
+      "mn": "to tell",
+      "bonus": true
      },
      {
       "t": "c",
@@ -31537,9 +31547,10 @@
      },
      {
       "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "to tell"
+      "ch": "讲",
+      "py": "jiǎng",
+      "mn": "to tell",
+      "bonus": true
      },
      {
       "t": "c",
@@ -31622,9 +31633,9 @@
      },
      {
       "t": "c",
-      "ch": "大王",
-      "py": "dà wáng",
-      "mn": "great king",
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperors",
       "bonus": true
      },
      {
@@ -31639,9 +31650,9 @@
      },
      {
       "t": "c",
-      "ch": "兵",
-      "py": "bīng",
-      "mn": "soldiers",
+      "ch": "将军",
+      "py": "jiāng jūn",
+      "mn": "generals",
       "bonus": true
      },
      {
@@ -31700,9 +31711,10 @@
      },
      {
       "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "to tell"
+      "ch": "讲",
+      "py": "jiǎng",
+      "mn": "to tell",
+      "bonus": true
      },
      {
       "t": "c",
@@ -31799,15 +31811,10 @@
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
-     },
-     {
-      "t": "c",
-      "ch": "事",
-      "py": "shì",
-      "mn": "matter; thing"
+      "ch": "新闻",
+      "py": "xīn wén",
+      "mn": "news",
+      "bonus": true
      },
      {
       "t": "c",
@@ -31899,8 +31906,8 @@
     "Children came too, and sat at the back listening.",
     "In the afternoon, a storyteller would come.",
     "He told them so well that everyone fell silent.",
-    "In the stories were kings, soldiers, and dragons.",
-    "One story took several days, so everyone came back the next day.",
+    "In the stories were emperors, generals, and dragons.",
+    "One story took several days to tell, so everyone came back the next day.",
     "The teahouse was also where you heard the news; in China today you can still find teahouses like that."
    ]
   },
@@ -32392,9 +32399,16 @@
      },
      {
       "t": "c",
-      "ch": "和",
-      "py": "hé",
-      "mn": "with"
+      "ch": "带",
+      "py": "dài",
+      "mn": "to lead",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "着",
+      "py": "zhe",
+      "mn": "(-ing, still going on)"
      },
      {
       "t": "c",
@@ -32422,9 +32436,9 @@
      },
      {
       "t": "c",
-      "ch": "做工",
-      "py": "zuò gōng",
-      "mn": "to work",
+      "ch": "治水",
+      "py": "zhì shuǐ",
+      "mn": "to control the flood",
       "bonus": true
      },
      {
@@ -32636,27 +32650,22 @@
      },
      {
       "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "said"
-     },
-     {
-      "t": "n",
-      "tx": "大禹",
-      "py": "Dà Yǔ",
-      "mn": "Dayu"
-     },
-     {
-      "t": "c",
       "ch": "很",
       "py": "hěn",
       "mn": "very"
      },
      {
       "t": "c",
-      "ch": "好",
-      "py": "hǎo",
-      "mn": "good"
+      "ch": "感谢",
+      "py": "gǎn xiè",
+      "mn": "to be grateful to",
+      "bonus": true
+     },
+     {
+      "t": "n",
+      "tx": "大禹",
+      "py": "Dà Yǔ",
+      "mn": "Dayu"
      },
      {
       "t": "p",
@@ -32671,10 +32680,10 @@
     "Dayu was a good man, so the king asked him to go and control the flood.",
     "Dayu first looked at where the water came from, and then thought of a way.",
     "He opened a road for the water, and let it flow away to the sea.",
-    "He worked together with many people, and every day was very tiring.",
+    "He led many people in controlling the flood, and every day was very tiring.",
     "For thirteen years he did not go home.",
     "Three times he walked to his own door, and did not go in.",
-    "Later the water went down, people went home, and everyone said Dayu was very good."
+    "Later the water went down, people went home, and everyone was grateful to Dayu."
    ]
   },
   "xia2-h1": {
@@ -33589,9 +33598,9 @@
      },
      {
       "t": "c",
-      "ch": "大王",
-      "py": "dà wáng",
-      "mn": "great king",
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
       "bonus": true
      },
      {
@@ -34213,28 +34222,10 @@
      },
      {
       "t": "c",
-      "ch": "纸",
-      "py": "zhǐ",
-      "mn": "paper",
+      "ch": "纸币",
+      "py": "zhǐ bì",
+      "mn": "paper money",
       "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "to make"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
-     },
-     {
-      "t": "c",
-      "ch": "钱",
-      "py": "qián",
-      "mn": "money"
      },
      {
       "t": "p",
@@ -34456,13 +34447,13 @@
    ],
    "trans": [
     "More than seven hundred years ago, China had a great dynasty called the Yuan.",
-    "The great khan of the Yuan was Kublai, and his realm reached from the east far into the west.",
+    "The Yuan emperor was Kublai Khan, and his realm reached from the east far into the west.",
     "In those days the roads were safer than before, so more people travelled.",
     "A young man set out from Italy; his name was Marco Polo.",
     "He travelled with his family, and it took more than three years to reach China.",
     "After reaching China, he lived in Dadu for seventeen years.",
     "He saw many cities and many people.",
-    "He said China's cities were far bigger than those of his own country, and that people here even used money made of paper.",
+    "He said China's cities were far bigger than those of his own country, and that people here even used paper money.",
     "After going home, he told others what he had seen, and someone wrote it into a book.",
     "Because of this book, Europeans learned of the world to the east for the first time."
    ]
@@ -34579,21 +34570,10 @@
      },
      {
       "t": "c",
-      "ch": "吃",
-      "py": "chī",
-      "mn": "to eat"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
-     },
-     {
-      "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "食物",
+      "py": "shí wù",
+      "mn": "food",
+      "bonus": true
      },
      {
       "t": "c",
@@ -34617,7 +34597,14 @@
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "much"
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "种",
+      "py": "zhòng",
+      "mn": "kinds",
+      "bonus": true
      },
      {
       "t": "p",
@@ -35188,9 +35175,10 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "食物",
+      "py": "shí wù",
+      "mn": "food",
+      "bonus": true
      },
      {
       "t": "p",
@@ -35271,9 +35259,10 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "食物",
+      "py": "shí wù",
+      "mn": "food",
+      "bonus": true
      },
      {
       "t": "p",
@@ -35320,9 +35309,10 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "食物",
+      "py": "shí wù",
+      "mn": "food",
+      "bonus": true
      },
      {
       "t": "c",
@@ -35377,9 +35367,10 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "食物",
+      "py": "shí wù",
+      "mn": "food",
+      "bonus": true
      },
      {
       "t": "c",
@@ -35427,15 +35418,15 @@
    ],
    "trans": [
     "In the Yuan dynasty, people came to China from many places.",
-    "So the food in China grew much more varied.",
+    "So there were many more kinds of food in China.",
     "People from the north ate lamb from childhood.",
     "They also drank milk tea, which is tea boiled with milk, white and hot.",
     "A cup of it in cold weather warmed a person up at once.",
     "Merchants from the west brought new spices, which smelled wonderful in meat.",
     "Once the spices were added, the meat tasted quite different.",
     "People in the south still preferred rice and fish.",
-    "So one country had many kinds of good food, and in a big city you could eat things from far away.",
-    "Marco Polo wrote down what he had eaten too, and said his own country had nothing like some of it."
+    "So one country had many kinds of good food, and in a big city you could eat food from far away.",
+    "Marco Polo wrote down the food he had eaten too, and said his own country had nothing like some of it."
    ]
   },
   "zhou-h1": {
@@ -35896,15 +35887,17 @@
      },
      {
       "t": "c",
-      "ch": "爱",
-      "py": "ài",
-      "mn": "to love"
+      "ch": "爱护",
+      "py": "ài hù",
+      "mn": "to care for",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "people"
+      "ch": "百姓",
+      "py": "bǎi xìng",
+      "mn": "the common people",
+      "bonus": true
      },
      {
       "t": "p",
@@ -35912,9 +35905,10 @@
      },
      {
       "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "people"
+      "ch": "百姓",
+      "py": "bǎi xìng",
+      "mn": "the common people",
+      "bonus": true
      },
      {
       "t": "c",
@@ -35926,7 +35920,7 @@
       "t": "c",
       "ch": "会",
       "py": "huì",
-      "mn": "can; will"
+      "mn": "will"
      },
      {
       "t": "c",
@@ -35997,9 +35991,9 @@
      },
      {
       "t": "c",
-      "ch": "做工",
-      "py": "zuò gōng",
-      "mn": "to work",
+      "ch": "种地",
+      "py": "zhòng dì",
+      "mn": "to farm the land",
       "bonus": true
      },
      {
@@ -36045,14 +36039,15 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "庄稼",
+      "py": "zhuāng jia",
+      "mn": "crops",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "长",
-      "py": "zhǎng",
+      "py": "cháng",
       "mn": "to grow",
       "bonus": true
      },
@@ -36230,8 +36225,8 @@
     "He said that Heaven is always watching every king.",
     "If a king does well, Heaven lets him stay king.",
     "If a king does badly, Heaven no longer lets him be king.",
-    "So a king must love the people, and the people will love the king too.",
-    "In those days, many people worked in the fields.",
+    "So a king must care for the people, and the people will love the king too.",
+    "In those days, many people farmed the fields.",
     "The weather was good, and the crops in the fields grew well.",
     "There was rice at home, and meat too, and life was good.",
     "China at that time was very big and very beautiful."
@@ -36443,7 +36438,7 @@
      {
       "t": "c",
       "ch": "时候",
-      "py": "shí hou",
+      "py": "shíhou",
       "mn": "time; moment"
      },
      {
@@ -36512,9 +36507,10 @@
      },
      {
       "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "to tell"
+      "ch": "讲",
+      "py": "jiǎng",
+      "mn": "to tell",
+      "bonus": true
      },
      {
       "t": "c",
@@ -36568,13 +36564,14 @@
       "t": "c",
       "ch": "会",
       "py": "huì",
-      "mn": "can; will"
+      "mn": "can"
      },
      {
       "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "to tell"
+      "ch": "讲",
+      "py": "jiǎng",
+      "mn": "to tell",
+      "bonus": true
      },
      {
       "t": "c",
@@ -36627,9 +36624,10 @@
      },
      {
       "t": "c",
-      "ch": "说",
-      "py": "shuō",
-      "mn": "to tell"
+      "ch": "讲",
+      "py": "jiǎng",
+      "mn": "to tell",
+      "bonus": true
      },
      {
       "t": "c",
@@ -36658,7 +36656,7 @@
      {
       "t": "c",
       "ch": "长",
-      "py": "zhǎng",
+      "py": "cháng",
       "mn": "long",
       "bonus": true
      },
@@ -36712,7 +36710,7 @@
      {
       "t": "c",
       "ch": "老师",
-      "py": "lǎo shī",
+      "py": "lǎoshī",
       "mn": "teacher"
      },
      {
@@ -36863,7 +36861,7 @@
      {
       "t": "c",
       "ch": "开始",
-      "py": "kāi shǐ",
+      "py": "kāishǐ",
       "mn": "to start",
       "bonus": true
      },

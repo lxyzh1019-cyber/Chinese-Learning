@@ -319,8 +319,8 @@
       ]
     },
     {
-      "zh": "他们把字刻在一块木头上。",
-      "en": "They carved the characters into a block of wood.",
+      "zh": "他们把字刻在一块木板上。",
+      "en": "They carved the characters into a wooden board.",
       "seg": [
         {
           "zh": "他们",
@@ -360,9 +360,9 @@
           "mn": "(counting word, pieces)"
         },
         {
-          "zh": "木头",
-          "py": "mù tou",
-          "mn": "wood",
+          "zh": "木板",
+          "py": "mù bǎn",
+          "mn": "wooden board",
           "bonus": true
         },
         {
@@ -377,8 +377,8 @@
       ]
     },
     {
-      "zh": "刻好以后，在木头上放黑色的墨，再把纸放上去。",
-      "en": "Once carved, they put black ink on the wood, and then laid paper on it.",
+      "zh": "刻好以后，在木板上刷上墨，再把纸放上去。",
+      "en": "Once carved, they brushed ink onto the board, and then laid paper on it.",
       "seg": [
         {
           "zh": "刻",
@@ -407,9 +407,9 @@
           "mn": "on"
         },
         {
-          "zh": "木头",
-          "py": "mù tou",
-          "mn": "wood",
+          "zh": "木板",
+          "py": "mù bǎn",
+          "mn": "wooden board",
           "bonus": true
         },
         {
@@ -418,20 +418,15 @@
           "mn": "on"
         },
         {
-          "zh": "放",
-          "py": "fàng",
-          "mn": "to put"
-        },
-        {
-          "zh": "黑色",
-          "py": "hēi sè",
-          "mn": "black",
+          "zh": "刷",
+          "py": "shuā",
+          "mn": "to brush on",
           "bonus": true
         },
         {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
         },
         {
           "zh": "墨",
@@ -544,8 +539,8 @@
       ]
     },
     {
-      "zh": "一块木头可以用很多次，所以一天可以做出很多书。",
-      "en": "One block of wood could be used many times, so many books could be made in a day.",
+      "zh": "一块木板可以用很多次，所以一天可以印出很多书。",
+      "en": "One board could be used many times, so many books could be printed in a day.",
       "seg": [
         {
           "zh": "一",
@@ -558,9 +553,9 @@
           "mn": "(counting word, pieces)"
         },
         {
-          "zh": "木头",
-          "py": "mù tou",
-          "mn": "wood",
+          "zh": "木板",
+          "py": "mù bǎn",
+          "mn": "wooden board",
           "bonus": true
         },
         {
@@ -616,10 +611,15 @@
           "bonus": true
         },
         {
-          "zh": "做出",
-          "py": "zuò chū",
-          "mn": "to make",
+          "zh": "印",
+          "py": "yìn",
+          "mn": "to print",
           "bonus": true
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "out"
         },
         {
           "zh": "很",

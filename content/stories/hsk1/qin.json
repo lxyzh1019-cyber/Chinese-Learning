@@ -432,7 +432,7 @@
       ]
     },
     {
-      "zh": "他们从早上做到晚上，又累又难。",
+      "zh": "他们从早干到晚，又累又苦。",
       "en": "They worked from morning till night; it was tiring and hard.",
       "seg": [
         {
@@ -446,13 +446,13 @@
           "mn": "from"
         },
         {
-          "zh": "早上",
-          "py": "zǎo shang",
+          "zh": "早",
+          "py": "zǎo",
           "mn": "morning"
         },
         {
-          "zh": "做",
-          "py": "zuò",
+          "zh": "干",
+          "py": "gàn",
           "mn": "to work"
         },
         {
@@ -461,8 +461,8 @@
           "mn": "till"
         },
         {
-          "zh": "晚上",
-          "py": "wǎn shang",
+          "zh": "晚",
+          "py": "wǎn",
           "mn": "night"
         },
         {
@@ -487,9 +487,10 @@
           "bonus": true
         },
         {
-          "zh": "难",
-          "py": "nán",
-          "mn": "hard"
+          "zh": "苦",
+          "py": "kǔ",
+          "mn": "hard; bitter",
+          "bonus": true
         },
         {
           "t": "p",

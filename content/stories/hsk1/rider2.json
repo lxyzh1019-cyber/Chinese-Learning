@@ -299,8 +299,8 @@
       ]
     },
     {
-      "zh": "早上，他们跟着大人一起出去，看牛和马。",
-      "en": "In the morning they go out with the grown-ups and watch the cattle and horses.",
+      "zh": "早上，他们跟着大人一起出去放牛放马。",
+      "en": "In the morning they go out with the grown-ups to graze the cattle and horses.",
       "seg": [
         {
           "zh": "早上",
@@ -343,13 +343,9 @@
           "mn": "to go out"
         },
         {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "看",
-          "py": "kàn",
-          "mn": "to watch"
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to graze"
         },
         {
           "zh": "牛",
@@ -358,9 +354,9 @@
           "bonus": true
         },
         {
-          "zh": "和",
-          "py": "hé",
-          "mn": "and"
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to graze"
         },
         {
           "zh": "马",
@@ -510,7 +506,7 @@
       ]
     },
     {
-      "zh": "城里的光很多，在城里看不到这样的天。",
+      "zh": "城里的灯光很多，在城里看不到这样的天。",
       "en": "A city has so many lights that you cannot see a sky like this there.",
       "seg": [
         {
@@ -530,8 +526,8 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "光",
-          "py": "guāng",
+          "zh": "灯光",
+          "py": "dēng guāng",
           "mn": "lights",
           "bonus": true
         },

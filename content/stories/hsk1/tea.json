@@ -482,8 +482,8 @@
       ]
     },
     {
-      "zh": "他们说，喝茶不只是喝东西。",
-      "en": "They said drinking tea is not only drinking.",
+      "zh": "他们说，喝茶不只是解渴。",
+      "en": "They said drinking tea is not only about quenching thirst.",
       "seg": [
         {
           "zh": "他们",
@@ -517,14 +517,10 @@
           "bonus": true
         },
         {
-          "zh": "喝",
-          "py": "hē",
-          "mn": "to drink"
-        },
-        {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "解渴",
+          "py": "jiě kě",
+          "mn": "to quench thirst",
+          "bonus": true
         },
         {
           "t": "p",

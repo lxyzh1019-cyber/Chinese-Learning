@@ -150,8 +150,8 @@
       ]
     },
     {
-      "zh": "因为大家要一起做事，很多年轻人开始学汉字。",
-      "en": "Because everyone had to work together, many young people began to learn Chinese characters.",
+      "zh": "因为大家要一起生活、做买卖，很多年轻人开始学汉字。",
+      "en": "Because everyone had to live and trade together, many young people began to learn Chinese characters.",
       "seg": [
         {
           "zh": "因为",
@@ -176,9 +176,19 @@
           "mn": "together"
         },
         {
-          "zh": "做事",
-          "py": "zuò shì",
-          "mn": "to work",
+          "zh": "生活",
+          "py": "shēng huó",
+          "mn": "to live",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "做买卖",
+          "py": "zuò mǎi mai",
+          "mn": "to trade",
           "bonus": true
         },
         {
@@ -528,8 +538,8 @@
       ]
     },
     {
-      "zh": "学好了汉字，他们可以做很多事，有的人做官，有的人做买卖。",
-      "en": "Once they had learned the characters they could do many things; some became officials, some became merchants.",
+      "zh": "学好了汉字，他们能找到好工作，有的人做官，有的人做买卖。",
+      "en": "Once they had learned the characters they could find good work; some became officials, some became merchants.",
       "seg": [
         {
           "zh": "学",
@@ -561,30 +571,24 @@
           "mn": "they"
         },
         {
-          "zh": "可以",
-          "py": "kě yǐ",
-          "mn": "could",
-          "bonus": true
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
         },
         {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "to do"
+          "zh": "找到",
+          "py": "zhǎo dào",
+          "mn": "to find"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
         },
         {
-          "zh": "多",
-          "py": "duō",
-          "mn": "many"
-        },
-        {
-          "zh": "事",
-          "py": "shì",
-          "mn": "matter; thing"
+          "zh": "工作",
+          "py": "gōng zuò",
+          "mn": "work"
         },
         {
           "t": "p",

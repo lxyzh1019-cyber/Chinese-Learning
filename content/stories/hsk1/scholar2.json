@@ -259,8 +259,8 @@
       ]
     },
     {
-      "zh": "看到好的东西，他就马上写下来。",
-      "en": "Whenever he saw something good, he wrote it down at once.",
+      "zh": "看到好的句子，他就马上抄下来。",
+      "en": "Whenever he read a good sentence, he copied it down at once.",
       "seg": [
         {
           "zh": "看到",
@@ -278,9 +278,10 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "thing"
+          "zh": "句子",
+          "py": "jù zi",
+          "mn": "sentence",
+          "bonus": true
         },
         {
           "t": "p",
@@ -302,9 +303,10 @@
           "mn": "at once"
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "to write"
+          "zh": "抄",
+          "py": "chāo",
+          "mn": "to copy",
+          "bonus": true
         },
         {
           "zh": "下来",
@@ -561,8 +563,8 @@
       ]
     },
     {
-      "zh": "很多年以后，别人还在看这些本子，因为里面有他一生看到的东西。",
-      "en": "Many years later people were still reading these notebooks, because in them was everything he had seen in his life.",
+      "zh": "很多年以后，别人还在看这些本子，因为里面有他一生学到的知识。",
+      "en": "Many years later people were still reading these notebooks, because in them was all the knowledge he had gathered in his life.",
       "seg": [
         {
           "zh": "很",
@@ -652,9 +654,10 @@
           "bonus": true
         },
         {
-          "zh": "看到",
-          "py": "kàn dào",
-          "mn": "to see"
+          "zh": "学到",
+          "py": "xué dào",
+          "mn": "to learn",
+          "bonus": true
         },
         {
           "zh": "的",
@@ -662,9 +665,9 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "知识",
+          "py": "zhī shi",
+          "mn": "knowledge"
         },
         {
           "t": "p",
