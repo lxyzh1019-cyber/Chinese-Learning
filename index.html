@@ -740,6 +740,14 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 .lesson-step-num{font-size:.72rem;color:var(--muted);margin-bottom:.5rem;font-weight:600;}
 .lesson-body{font-size:.92rem;color:var(--ink);line-height:1.7;margin-bottom:1rem;}
 .lesson-nav{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-top:.8rem;}
+/* `hidden` has to win. The UA stylesheet's [hidden]{display:none} is beaten by
+   any inline `display`, and the lesson answer carried one — so the answer the
+   child was meant to think about first sat on screen from first paint and
+   Reveal only hid its own button. This rule is the guard, and the two inline
+   displays it replaced are now classes below. */
+[hidden]{display:none!important;}
+.lesson-ans{color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;}
+.lesson-verdict{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.25rem;}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -5723,20 +5731,32 @@ async function renderGateLesson(did,lessonRef){
   // answer without ever reading the passage. Think, tap Reveal, then say
   // whether you had it — a self-report, recorded as one, never as unaided
   // evidence and never for stars.
+  //
+  // This block is now the FALLBACK, not a companion. A lesson that has real
+  // checked questions asks them and nothing else: showing both meant HSK1 and
+  // HSK2 asked the same passage twice, once marked and once as a worked
+  // example whose "answer" was the sentence quoted back. And a lesson whose
+  // questions are the old template — Chinese-only, asking about the lesson
+  // rather than the text ("本关有几个生字？"), which is what HSK3 and HSK4
+  // still carry — shows nothing but a note, because an unreadable question a
+  // child cannot answer is worse than an honest gap.
   const gk=gateKeyOf(gate,curHSK)||String(gate);
   const prior=((state[curP]&&state[curP].lessonSelfCheck)||{})[gk]||{};
-  const qs=(lesson.comprehension||[]).map((q,i)=>{
+  const comprehension=lesson.comprehension||[];
+  const hasChecks=!!(lesson.check&&lesson.check.length);
+  const askable=comprehension.length>0&&comprehension.every(q=>q&&q.questionEn);
+  const qs=(hasChecks||!askable?[]:comprehension).map((q,i)=>{
     const said=prior[i]&&prior[i].result;
     const verdict=said
       ?`<div style="font-size:.7rem;color:var(--muted);margin-top:.2rem;">You said: ${said==='had'?'I had it 🌟':'Not yet 🌱'} — <button class="btn-s" style="font-size:.66rem;padding:.15rem .45rem;" onclick="lessonSelfCheck(${Number(gate)},${i},'${said==='had'?'notyet':'had'}')">change</button></div>`
-      :`<div id="lesson-check-${i}" hidden style="display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.25rem;">
+      :`<div id="lesson-check-${i}" class="lesson-verdict" hidden>
           <button class="btn-s" style="font-size:.7rem;" onclick="lessonSelfCheck(${Number(gate)},${i},'had')">I had it 🌟</button>
           <button class="btn-s" style="font-size:.7rem;" onclick="lessonSelfCheck(${Number(gate)},${i},'notyet')">Not yet 🌱</button>
         </div>`;
     return `<li style="margin:.45rem 0;">
       <span style="color:var(--ink);">${bi(q.questionEn,q.question)}</span>
       ${said?'':`<button id="lesson-reveal-${i}" class="btn-s" style="font-size:.7rem;margin-top:.2rem;" onclick="lessonRevealAnswer(${i})">Reveal 👀</button>`}
-      <span id="lesson-ans-${i}" ${said?'':'hidden'} style="color:var(--jade);font-size:.9em;display:block;margin-top:.15rem;">→ ${bi(q.answerEn,q.answer)}</span>
+      <span id="lesson-ans-${i}" class="lesson-ans" ${said?'':'hidden'}>→ ${bi(q.answerEn,q.answer)}</span>
       ${verdict}
     </li>`;
   }).join('');
@@ -5760,12 +5780,22 @@ async function renderGateLesson(did,lessonRef){
     ? `<div class="dd-desc" style="background:rgba(212,160,23,.07);border:1px solid rgba(212,160,23,.18);border-radius:8px;padding:.45rem .65rem;line-height:1.6;"><strong>🗣 Speaking · 口语</strong><br>${bi(lesson.speakingPromptEn,lesson.speakingPrompt)}</div>`
     : '';
 
+  // Neither kind of question. Say so: a section that is simply absent reads as
+  // something broken, and this gap is known work — the levels are listed in
+  // content/stories/PENDING.json and counted by validate_lessons.js.
+  const noQuestions=(!checks&&!qs)
+    ? `<div class="dd-desc" style="font-size:.72rem;color:var(--muted);line-height:1.6;">${bi(
+        'Questions for this level are still being written — read the passage aloud and try the speaking prompt.',
+        '这一级的练习题还在编写中——请先朗读短文，再做口语练习。')}</div>`
+    : '';
+
   box.innerHTML=`<div class="dd-icon-meaning"><strong>📖 Lesson · 课程 — ${esc(lvl)} Gate ${esc(gate)}</strong></div>
     ${intro}
     ${vocab?`<div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0;">${vocab}</div>`:''}
     ${passage}
     ${checks?`<div class="dd-desc"><strong>🎯 试一试 · Have a go</strong><div style="font-size:.68rem;color:var(--muted);margin:.2rem 0 .4rem;line-height:1.5;">Answer first — you will see why, either way.</div>${checks}</div>`:''}
     ${qs?`<div class="dd-desc"><strong>✅ 读一读，想一想 · Check understanding</strong><ol style="margin:.35rem 0 .1rem 1.1rem;line-height:1.7;">${qs}</ol></div>`:''}
+    ${noQuestions}
     ${speaking}`;
 }
 
