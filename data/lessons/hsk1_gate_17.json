@@ -5,13 +5,23 @@
   "title": "HSK1 Gate 17 · Jin Dynasty",
   "explanationEn": "Gate 17: Jin Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第17关：金朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "金朝的时候，很多年轻人开始学汉字。他们每天很早就去学校。老师先教他们读，再教他们写。一个字要写很多遍。",
-  "passageEn": "In the Jin dynasty many young people began to learn Chinese characters. They went to school very early every day. The teacher first taught them to read, then to write. One character had to be written many times.",
+  "passage": "金朝的时候，北方住着很多不同的人。他们说的话不一样，写的字也不一样。因为大家要一起做事，很多年轻人开始学汉字。他们每天很早就去学校。",
+  "passageEn": "In the Jin dynasty, many different peoples lived in the north. They spoke differently and wrote differently. Because everyone had to work together, many young people began to learn Chinese characters. They went to school very early every day.",
   "keyVocab": [
     {
       "zh": "时候",
       "pinyin": "shíhou",
-      "en": "time; moment"
+      "en": "time"
+    },
+    {
+      "zh": "住",
+      "pinyin": "zhù",
+      "en": "to live"
+    },
+    {
+      "zh": "着",
+      "pinyin": "zhe",
+      "en": "(-ing, still going on)"
     },
     {
       "zh": "多",
@@ -19,48 +29,38 @@
       "en": "many"
     },
     {
-      "zh": "年轻",
-      "pinyin": "nián qīng",
-      "en": "young"
-    },
-    {
       "zh": "人",
       "pinyin": "rén",
-      "en": "person"
-    },
-    {
-      "zh": "开始",
-      "pinyin": "kāishǐ",
-      "en": "started"
-    },
-    {
-      "zh": "学",
-      "pinyin": "xué",
-      "en": "to study"
-    },
-    {
-      "zh": "汉字",
-      "pinyin": "hàn zì",
-      "en": "Chinese character"
+      "en": "people"
     },
     {
       "zh": "他们",
       "pinyin": "tā men",
       "en": "they"
+    },
+    {
+      "zh": "说",
+      "pinyin": "shuō",
+      "en": "to speak"
+    },
+    {
+      "zh": "话",
+      "pinyin": "huà",
+      "en": "words; language"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "In the Jin dynasty many young people began to learn Chinese characters.",
-      "answer": "金朝的时候，很多年轻人开始学汉字。"
+      "answerEn": "In the Jin dynasty, many different peoples lived in the north.",
+      "answer": "金朝的时候，北方住着很多不同的人。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "The teacher first taught them to read, then to write.",
-      "answer": "老师先教他们读，再教他们写。"
+      "answerEn": "Because everyone had to work together, many young people began to learn Chinese characters.",
+      "answer": "因为大家要一起做事，很多年轻人开始学汉字。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -93,21 +93,21 @@
         },
         {
           "id": "o4",
-          "text": "time; moment"
+          "text": "time"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
+      "explanationEn": "时候 (shíhou) means \"time\" — you can find it in the passage above.",
+      "explanation": "“时候”（shíhou）的意思是“time”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_17_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "多",
-      "pinyin": "duō",
-      "promptEn": "In the story, what does 多 mean?",
-      "prompt": "短文里的“多”是什么意思？",
+      "zh": "住",
+      "pinyin": "zhù",
+      "promptEn": "In the story, what does 住 mean?",
+      "prompt": "短文里的“住”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -119,7 +119,7 @@
         },
         {
           "id": "o3",
-          "text": "many"
+          "text": "to live"
         },
         {
           "id": "o4",
@@ -127,14 +127,14 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "多 (duō) means \"many\" — you can find it in the passage above.",
-      "explanation": "“多”（duō）的意思是“many”，就在上面的短文里。"
+      "explanationEn": "住 (zhù) means \"to live\" — you can find it in the passage above.",
+      "explanation": "“住”（zhù）的意思是“to live”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_17_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "金朝的时候，很多年轻人开始学汉字。",
+      "zh": "金朝的时候，北方住着很多不同的人。",
       "targetZh": "时候",
       "targetPinyin": "shíhou",
       "promptEn": "What does this sentence say?",
@@ -146,7 +146,7 @@
         },
         {
           "id": "o2",
-          "text": "In the Jin dynasty many young people began to learn Chinese characters."
+          "text": "In the Jin dynasty, many different peoples lived in the north."
         },
         {
           "id": "o3",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o2",
-      "explanationEn": "\"金朝的时候，很多年轻人开始学汉字。\" means \"In the Jin dynasty many young people began to learn Chinese characters.\".",
-      "explanation": "“金朝的时候，很多年轻人开始学汉字。”的意思是“In the Jin dynasty many young people began to learn Chinese characters.”。"
+      "explanationEn": "\"金朝的时候，北方住着很多不同的人。\" means \"In the Jin dynasty, many different peoples lived in the north.\".",
+      "explanation": "“金朝的时候，北方住着很多不同的人。”的意思是“In the Jin dynasty, many different peoples lived in the north.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Jin Dynasty in two or three short Chinese sentences. Use words from the list above.",

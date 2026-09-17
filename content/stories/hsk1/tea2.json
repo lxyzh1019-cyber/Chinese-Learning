@@ -5,55 +5,725 @@
   "title": "茶馆的故事",
   "en": "Stories in the Teahouse",
   "names": {
-    "南宋": {
-      "py": "Nán Sòng",
-      "en": "Southern Song"
-    },
-    "临安": {
-      "py": "Lín'ān",
-      "en": "Lin'an"
+    "宋朝": {
+      "py": "Sòng Cháo",
+      "en": "the Song dynasty"
     }
   },
   "sents": [
     {
-      "zh": "宋朝的城里有很多喝茶的地方。",
-      "en": "In Song cities there were many places to drink tea."
+      "zh": "宋朝的城里有很多茶馆。",
+      "en": "Song cities had many teahouses.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "宋朝",
+          "py": "Sòng Cháo",
+          "mn": "the Song dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "茶馆",
+          "py": "chá guǎn",
+          "mn": "teahouse",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "早上，那里就有很多人。",
-      "en": "In the morning there were already many people there."
+      "zh": "茶馆一早就开门，因为很多人早上就来了。",
+      "en": "A teahouse opened early, because many people came in the morning.",
+      "seg": [
+        {
+          "zh": "茶馆",
+          "py": "chá guǎn",
+          "mn": "teahouse",
+          "bonus": true
+        },
+        {
+          "zh": "一早",
+          "py": "yì zǎo",
+          "mn": "early in the morning",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "开门",
+          "py": "kāi mén",
+          "mn": "to open",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有的人来喝茶，有的人来说话。",
-      "en": "Some came to drink tea, some came to talk."
+      "zh": "有的人来喝茶，有的人来见朋友。",
+      "en": "Some came to drink tea, some came to meet friends.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "喝茶",
+          "py": "hē chá",
+          "mn": "to drink tea",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "见",
+          "py": "jiàn",
+          "mn": "to meet"
+        },
+        {
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friends"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "商人在这里说买卖的事。",
-      "en": "Merchants talked business here."
+      "zh": "商人在这里说买卖的事，老人在这里说很久以前的事。",
+      "en": "Merchants talked business here; old people talked of times long past.",
+      "seg": [
+        {
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchant",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "这里",
+          "py": "zhè lǐ",
+          "mn": "here"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to talk"
+        },
+        {
+          "zh": "买卖",
+          "py": "mǎi mai",
+          "mn": "business",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "老人",
+          "py": "lǎo rén",
+          "mn": "old people"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "这里",
+          "py": "zhè lǐ",
+          "mn": "here"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to talk"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time",
+          "bonus": true
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "老人在这里说很久以前的事。",
-      "en": "Old people talked about times long past."
+      "zh": "小孩子也来，坐在后面听。",
+      "en": "Children came too, and sat at the back listening.",
+      "seg": [
+        {
+          "zh": "小孩子",
+          "py": "xiǎo hái zi",
+          "mn": "child",
+          "bonus": true
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "后面",
+          "py": "hòu mian",
+          "mn": "the back",
+          "bonus": true
+        },
+        {
+          "zh": "听",
+          "py": "tīng",
+          "mn": "to listen"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "也有人在这里给大家说故事。",
-      "en": "Some people told stories to everyone there."
+      "zh": "下午，会有人来说故事。",
+      "en": "In the afternoon, a storyteller would come.",
+      "seg": [
+        {
+          "zh": "下午",
+          "py": "xià wǔ",
+          "mn": "afternoon"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "will"
+        },
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "someone",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to tell"
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "story",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他说得很好，大家都不说话了。",
-      "en": "He told them so well that everyone fell silent."
+      "zh": "他说得非常好，大家都不说话了。",
+      "en": "He told them so well that everyone fell silent.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to tell"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
+          "bonus": true
+        },
+        {
+          "zh": "非常",
+          "py": "fēi cháng",
+          "mn": "extremely"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "说话",
+          "py": "shuō huà",
+          "mn": "to talk"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "小孩子也来听，一坐就是半天。",
-      "en": "Children came to listen too, and sat for half a day."
+      "zh": "故事里有大王，有兵，也有龙。",
+      "en": "In the stories were kings, soldiers, and dragons.",
+      "seg": [
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "story",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "大王",
+          "py": "dà wáng",
+          "mn": "great king",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "兵",
+          "py": "bīng",
+          "mn": "soldiers",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "龙",
+          "py": "lóng",
+          "mn": "dragons",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "喝茶的地方也是听新事的地方。",
-      "en": "The teahouse was also where you heard the news."
+      "zh": "一个故事要说好几天，所以第二天大家还会再来。",
+      "en": "One story took several days, so everyone came back the next day.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "story",
+          "bonus": true
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to need"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to tell"
+        },
+        {
+          "zh": "好几",
+          "py": "hǎo jǐ",
+          "mn": "several",
+          "bonus": true
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "days"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so",
+          "bonus": true
+        },
+        {
+          "zh": "第二天",
+          "py": "dì èr tiān",
+          "mn": "the next day",
+          "bonus": true
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone",
+          "bonus": true
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "will"
+        },
+        {
+          "zh": "再",
+          "py": "zài",
+          "mn": "again"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "今天，我们还能找到这样的地方。",
-      "en": "Today we can still find places like that."
+      "zh": "茶馆也是听新事的地方，今天在中国，还能找到这样的茶馆。",
+      "en": "The teahouse was also where you heard the news; in China today you can still find teahouses like that.",
+      "seg": [
+        {
+          "zh": "茶馆",
+          "py": "chá guǎn",
+          "mn": "teahouse",
+          "bonus": true
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "听",
+          "py": "tīng",
+          "mn": "to hear"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "place"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
+        },
+        {
+          "zh": "找到",
+          "py": "zhǎo dào",
+          "mn": "to find"
+        },
+        {
+          "zh": "这样",
+          "py": "zhè yàng",
+          "mn": "this kind",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "茶馆",
+          "py": "chá guǎn",
+          "mn": "teahouse",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }
