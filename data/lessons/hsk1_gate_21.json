@@ -5,18 +5,23 @@
   "title": "HSK1 Gate 21 · Late Qing",
   "explanationEn": "Gate 21: Late Qing. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第21关：清后期。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "清朝快要过去的时候，中国有很多难事。那时候，西方的国家做出了新的船，船又大又快，不用风也可以走。他们还有很多新东西，是中国没有的。因为这样，中国过了几十年很难的日子。",
-  "passageEn": "As the Qing dynasty was nearing its end, China faced many difficulties. By then, countries in the West had built new ships, large and fast, that could move without wind. They had many other new things too, which China did not have. Because of this, China went through several very hard decades.",
+  "passage": "清朝到了后来，国家出了很多问题。官不好好做事，人们的日子越来越不好过。很多人吃不饱饭，有的地方还有人打仗。这时候，西方的国家有了轮船和大炮，比中国的强很多。",
+  "passageEn": "Late in the Qing dynasty, the country ran into many problems. The officials did not do their jobs properly, and people's lives grew harder and harder. Many people did not have enough to eat, and in some places there was fighting. At this time the countries of the West had steamships and cannon, much stronger than China's.",
   "keyVocab": [
     {
-      "zh": "时候",
-      "pinyin": "shíhou",
-      "en": "time"
+      "zh": "到",
+      "pinyin": "dào",
+      "en": "to reach"
     },
     {
-      "zh": "中国",
-      "pinyin": "Zhōngguó",
-      "en": "China"
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "en": "country"
+    },
+    {
+      "zh": "出",
+      "pinyin": "chū",
+      "en": "to run into"
     },
     {
       "zh": "多",
@@ -24,43 +29,38 @@
       "en": "many"
     },
     {
-      "zh": "国家",
-      "pinyin": "guó jiā",
-      "en": "countries"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "people"
     },
     {
-      "zh": "新",
-      "pinyin": "xīn",
-      "en": "new"
+      "zh": "饭",
+      "pinyin": "fàn",
+      "en": "food"
     },
     {
-      "zh": "大",
-      "pinyin": "dà",
-      "en": "big"
+      "zh": "有的",
+      "pinyin": "yǒu de",
+      "en": "some"
     },
     {
-      "zh": "快",
-      "pinyin": "kuài",
-      "en": "fast"
-    },
-    {
-      "zh": "不用",
-      "pinyin": "bú yòng",
-      "en": "without needing"
+      "zh": "地方",
+      "pinyin": "dì fāng",
+      "en": "places"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "As the Qing dynasty was nearing its end, China faced many difficulties.",
-      "answer": "清朝快要过去的时候，中国有很多难事。"
+      "answerEn": "Late in the Qing dynasty, the country ran into many problems.",
+      "answer": "清朝到了后来，国家出了很多问题。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "They had many other new things too, which China did not have.",
-      "answer": "他们还有很多新东西，是中国没有的。"
+      "answerEn": "Many people did not have enough to eat, and in some places there was fighting.",
+      "answer": "很多人吃不饱饭，有的地方还有人打仗。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,10 +74,10 @@
       "id": "hsk1_gate_21_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "时候",
-      "pinyin": "shíhou",
-      "promptEn": "In the story, what does 时候 mean?",
-      "prompt": "短文里的“时候”是什么意思？",
+      "zh": "到",
+      "pinyin": "dào",
+      "promptEn": "In the story, what does 到 mean?",
+      "prompt": "短文里的“到”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -93,33 +93,33 @@
         },
         {
           "id": "o4",
-          "text": "time"
+          "text": "to reach"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "时候 (shíhou) means \"time\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhou）的意思是“time”，就在上面的短文里。"
+      "explanationEn": "到 (dào) means \"to reach\" — you can find it in the passage above.",
+      "explanation": "“到”（dào）的意思是“to reach”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_21_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "中国",
-      "pinyin": "Zhōngguó",
-      "promptEn": "In the story, what does 中国 mean?",
-      "prompt": "短文里的“中国”是什么意思？",
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "promptEn": "In the story, what does 国家 mean?",
+      "prompt": "短文里的“国家”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "(shows it is finished)"
+          "text": "China"
         },
         {
           "id": "o2",
-          "text": "to go into"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o3",
-          "text": "China"
+          "text": "country"
         },
         {
           "id": "o4",
@@ -127,16 +127,16 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
-      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
+      "explanationEn": "国家 (guó jiā) means \"country\" — you can find it in the passage above.",
+      "explanation": "“国家”（guó jiā）的意思是“country”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_21_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "清朝快要过去的时候，中国有很多难事。",
-      "targetZh": "时候",
-      "targetPinyin": "shíhou",
+      "zh": "清朝到了后来，国家出了很多问题。",
+      "targetZh": "到",
+      "targetPinyin": "dào",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
@@ -146,7 +146,7 @@
         },
         {
           "id": "o2",
-          "text": "As the Qing dynasty was nearing its end, China faced many difficulties."
+          "text": "Late in the Qing dynasty, the country ran into many problems."
         },
         {
           "id": "o3",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o2",
-      "explanationEn": "\"清朝快要过去的时候，中国有很多难事。\" means \"As the Qing dynasty was nearing its end, China faced many difficulties.\".",
-      "explanation": "“清朝快要过去的时候，中国有很多难事。”的意思是“As the Qing dynasty was nearing its end, China faced many difficulties.”。"
+      "explanationEn": "\"清朝到了后来，国家出了很多问题。\" means \"Late in the Qing dynasty, the country ran into many problems.\".",
+      "explanation": "“清朝到了后来，国家出了很多问题。”的意思是“Late in the Qing dynasty, the country ran into many problems.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Late Qing in two or three short Chinese sentences. Use words from the list above.",

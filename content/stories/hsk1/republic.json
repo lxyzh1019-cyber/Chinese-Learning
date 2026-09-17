@@ -646,8 +646,8 @@
       ]
     },
     {
-      "zh": "新的政府建了新的学校，也修了新的路。",
-      "en": "The new government built new schools and new roads.",
+      "zh": "新的政府建了新式的学校，也修了新的路。",
+      "en": "The new government built new-style schools and new roads.",
       "seg": [
         {
           "zh": "新",
@@ -677,9 +677,10 @@
           "mn": "(shows it is finished)"
         },
         {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
+          "zh": "新式",
+          "py": "xīn shì",
+          "mn": "new-style",
+          "bonus": true
         },
         {
           "zh": "的",

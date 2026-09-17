@@ -341,8 +341,8 @@
       ]
     },
     {
-      "zh": "船队从中国出发，一直向西，过了很大的海。",
-      "en": "The fleet set out from China, sailed west, and crossed a great sea.",
+      "zh": "船队从中国出发，一直向西，在大海上走了很多天。",
+      "en": "The fleet set out from China, sailed west, and spent many days on the open sea.",
       "seg": [
         {
           "zh": "船队",
@@ -392,9 +392,25 @@
           "tx": "，"
         },
         {
-          "zh": "过",
-          "py": "guò",
-          "mn": "to cross"
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "大海",
+          "py": "dà hǎi",
+          "mn": "the open sea",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to travel"
         },
         {
           "zh": "了",
@@ -407,20 +423,14 @@
           "mn": "very"
         },
         {
-          "zh": "大",
-          "py": "dà",
-          "mn": "big"
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
         },
         {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "海",
-          "py": "hǎi",
-          "mn": "sea",
-          "bonus": true
+          "zh": "天",
+          "py": "tiān",
+          "mn": "days"
         },
         {
           "t": "p",

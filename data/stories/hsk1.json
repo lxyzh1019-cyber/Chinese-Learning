@@ -5458,9 +5458,28 @@
      },
      {
       "t": "c",
-      "ch": "过",
-      "py": "guò",
-      "mn": "to cross"
+      "ch": "在",
+      "py": "zài",
+      "mn": "on"
+     },
+     {
+      "t": "c",
+      "ch": "大海",
+      "py": "dà hǎi",
+      "mn": "the open sea",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "上",
+      "py": "shàng",
+      "mn": "on"
+     },
+     {
+      "t": "c",
+      "ch": "走",
+      "py": "zǒu",
+      "mn": "to travel"
      },
      {
       "t": "c",
@@ -5476,22 +5495,15 @@
      },
      {
       "t": "c",
-      "ch": "大",
-      "py": "dà",
-      "mn": "big"
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
      },
      {
       "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
-     },
-     {
-      "t": "c",
-      "ch": "海",
-      "py": "hǎi",
-      "mn": "sea",
-      "bonus": true
+      "ch": "天",
+      "py": "tiān",
+      "mn": "days"
      },
      {
       "t": "p",
@@ -5925,7 +5937,7 @@
     "The man who led the fleet was called Zheng He.",
     "His ships were enormous, bigger than many houses, and one ship could hold several hundred people.",
     "On board were water, rice, and Chinese silk and tea.",
-    "The fleet set out from China, sailed west, and crossed a great sea.",
+    "The fleet set out from China, sailed west, and spent many days on the open sea.",
     "Some places were very hot, some very far, and they met many different peoples.",
     "They did not go to attack those countries; they only traded, and then came back.",
     "People of other lands gave them animals they had never seen; once it was a giraffe.",
@@ -6706,9 +6718,10 @@
      },
      {
       "t": "c",
-      "ch": "回去",
-      "py": "huí qu",
-      "mn": "to go back"
+      "ch": "放弃",
+      "py": "fàng qì",
+      "mn": "to give up",
+      "bonus": true
      },
      {
       "t": "p",
@@ -6922,7 +6935,7 @@
     "He spent nearly thirty years writing a book with more than a thousand kinds of herbal medicine in it.",
     "The second was Xu Xiake, who loved walking, and loved looking at mountains and rivers.",
     "He went to many places no one else had been.",
-    "Some paths were hard going, but he did not turn back.",
+    "Some paths were hard going, but he did not give up.",
     "Every evening he wrote down what he had seen that day, and he did so for decades.",
     "Both men did the same thing: go and see for themselves, then write it down."
    ]
@@ -12038,28 +12051,23 @@
      },
      {
       "t": "c",
-      "ch": "别人",
-      "py": "bié ren",
-      "mn": "other people"
+      "ch": "大臣",
+      "py": "dà chén",
+      "mn": "ministers",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "帮",
-      "py": "bāng",
-      "mn": "to help"
+      "ch": "辅佐",
+      "py": "fǔ zuǒ",
+      "mn": "to assist (a ruler)",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "他",
       "py": "tā",
       "mn": "him"
-     },
-     {
-      "t": "c",
-      "ch": "做事",
-      "py": "zuò shì",
-      "mn": "to do the work",
-      "bonus": true
      },
      {
       "t": "p",
@@ -12125,10 +12133,16 @@
      },
      {
       "t": "c",
-      "ch": "做事",
-      "py": "zuò shì",
-      "mn": "to do the work",
+      "ch": "管理",
+      "py": "guǎn lǐ",
+      "mn": "to govern; to manage",
       "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "country"
      },
      {
       "t": "p",
@@ -12667,8 +12681,8 @@
    "trans": [
     "The Qing dynasty had a very famous emperor called Kangxi.",
     "He became emperor at the age of eight.",
-    "Because he was still so young, others helped him at first.",
-    "Only in his teens did he begin to rule himself.",
+    "Because he was still so young, at first the ministers governed on his behalf.",
+    "Only in his teens did he begin to govern the country himself.",
     "He was emperor for sixty-one years in all.",
     "He got up very early every day to work, and he loved learning new things.",
     "He studied mathematics, and science from the West.",
@@ -13116,9 +13130,10 @@
      },
      {
       "t": "c",
-      "ch": "房子",
-      "py": "fáng zi",
-      "mn": "buildings"
+      "ch": "宫殿",
+      "py": "gōng diàn",
+      "mn": "palace hall",
+      "bonus": true
      },
      {
       "t": "c",
@@ -13600,7 +13615,7 @@
     "The Forbidden City was built for a Ming emperor more than six hundred years ago, and emperors used to live here.",
     "Building it took more than ten years, and inside there are more than nine thousand rooms.",
     "If you slept in a different room every night, it would take more than twenty years.",
-    "Its gates are high and great, and the buildings are red and very beautiful.",
+    "Its gates are high and great, and the palace halls are red and very beautiful.",
     "The emperor worked in the largest hall.",
     "Every morning many officials came to see him, and they dared not say one word more than they should.",
     "Many beautiful things are kept inside: writing, books, and things made of gold.",
@@ -13625,29 +13640,22 @@
      },
      {
       "t": "c",
-      "ch": "快要",
-      "py": "kuài yào",
-      "mn": "about to",
+      "ch": "到",
+      "py": "dào",
+      "mn": "to reach"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "c",
+      "ch": "后来",
+      "py": "hòu lái",
+      "mn": "later",
       "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "过去",
-      "py": "guò qù",
-      "mn": "to pass (of time)",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "时候",
-      "py": "shíhou",
-      "mn": "time"
      },
      {
       "t": "p",
@@ -13655,15 +13663,21 @@
      },
      {
       "t": "c",
-      "ch": "中国",
-      "py": "Zhōngguó",
-      "mn": "China"
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "country"
      },
      {
       "t": "c",
-      "ch": "有",
-      "py": "yǒu",
-      "mn": "had"
+      "ch": "出",
+      "py": "chū",
+      "mn": "to run into"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
      },
      {
       "t": "c",
@@ -13679,9 +13693,9 @@
      },
      {
       "t": "c",
-      "ch": "难事",
-      "py": "nán shì",
-      "mn": "difficulties",
+      "ch": "问题",
+      "py": "wèn tí",
+      "mn": "problems",
       "bonus": true
      },
      {
@@ -13692,9 +13706,159 @@
     [
      {
       "t": "c",
-      "ch": "那时候",
-      "py": "nà shí hou",
-      "mn": "at that time",
+      "ch": "官",
+      "py": "guān",
+      "mn": "officials",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "好好",
+      "py": "hǎo hǎo",
+      "mn": "properly",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "做事",
+      "py": "zuò shì",
+      "mn": "to do the work",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "人们",
+      "py": "rén men",
+      "mn": "people",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "日子",
+      "py": "rì zi",
+      "mn": "days; life",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "越来越",
+      "py": "yuè lái yuè",
+      "mn": "more and more",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "好过",
+      "py": "hǎo guò",
+      "mn": "easy to live",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "吃不饱",
+      "py": "chī bu bǎo",
+      "mn": "cannot eat one's fill",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "饭",
+      "py": "fàn",
+      "mn": "food"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "有的",
+      "py": "yǒu de",
+      "mn": "some"
+     },
+     {
+      "t": "c",
+      "ch": "地方",
+      "py": "dì fāng",
+      "mn": "places"
+     },
+     {
+      "t": "c",
+      "ch": "还",
+      "py": "hái",
+      "mn": "even"
+     },
+     {
+      "t": "c",
+      "ch": "有人",
+      "py": "yǒu rén",
+      "mn": "some people",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "打仗",
+      "py": "dǎ zhàng",
+      "mn": "to fight a war",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "这时候",
+      "py": "zhè shí hou",
+      "mn": "at this time",
       "bonus": true
      },
      {
@@ -13722,10 +13886,9 @@
      },
      {
       "t": "c",
-      "ch": "做出",
-      "py": "zuò chū",
-      "mn": "to make; to produce",
-      "bonus": true
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "to have"
      },
      {
       "t": "c",
@@ -13735,94 +13898,64 @@
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "轮船",
+      "py": "lún chuán",
+      "mn": "steamship",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
+     },
+     {
+      "t": "c",
+      "ch": "大炮",
+      "py": "dà pào",
+      "mn": "cannon",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "比",
+      "py": "bǐ",
+      "mn": "than"
+     },
+     {
+      "t": "c",
+      "ch": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
      },
      {
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "(makes a describing word)"
+      "mn": "(the ones of)"
      },
      {
       "t": "c",
-      "ch": "船",
-      "py": "chuán",
-      "mn": "ships",
-      "bonus": true
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "船",
-      "py": "chuán",
-      "mn": "ships",
+      "ch": "强",
+      "py": "qiáng",
+      "mn": "strong",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "又",
-      "py": "yòu",
-      "mn": "both",
-      "bonus": true
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
      },
      {
       "t": "c",
-      "ch": "大",
-      "py": "dà",
-      "mn": "big"
-     },
-     {
-      "t": "c",
-      "ch": "又",
-      "py": "yòu",
-      "mn": "and",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "快",
-      "py": "kuài",
-      "mn": "fast"
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "不用",
-      "py": "bú yòng",
-      "mn": "without needing"
-     },
-     {
-      "t": "c",
-      "ch": "风",
-      "py": "fēng",
-      "mn": "wind"
-     },
-     {
-      "t": "c",
-      "ch": "也",
-      "py": "yě",
-      "mn": "also; still"
-     },
-     {
-      "t": "c",
-      "ch": "可以",
-      "py": "kě yǐ",
-      "mn": "can",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "走",
-      "py": "zǒu",
-      "mn": "to move"
+      "ch": "多",
+      "py": "duō",
+      "mn": "much"
      },
      {
       "t": "p",
@@ -13838,49 +13971,9 @@
      },
      {
       "t": "c",
-      "ch": "还",
-      "py": "hái",
-      "mn": "also"
-     },
-     {
-      "t": "c",
-      "ch": "有",
-      "py": "yǒu",
-      "mn": "to have"
-     },
-     {
-      "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "多",
-      "py": "duō",
-      "mn": "many"
-     },
-     {
-      "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
-     },
-     {
-      "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "是",
-      "py": "shì",
-      "mn": "is"
+      "ch": "来到",
+      "py": "lái dào",
+      "mn": "to come to"
      },
      {
       "t": "c",
@@ -13889,52 +13982,14 @@
       "mn": "China"
      },
      {
-      "t": "c",
-      "ch": "没有",
-      "py": "méi yǒu",
-      "mn": "to have no"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(ends the description)"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "因为",
-      "py": "yīn wèi",
-      "mn": "because",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "这样",
-      "py": "zhè yàng",
-      "mn": "this",
-      "bonus": true
-     },
-     {
       "t": "p",
       "tx": "，"
      },
      {
       "t": "c",
-      "ch": "中国",
-      "py": "Zhōngguó",
-      "mn": "China"
-     },
-     {
-      "t": "c",
-      "ch": "过",
-      "py": "guò",
-      "mn": "to live through"
+      "ch": "打",
+      "py": "dǎ",
+      "mn": "to fight"
      },
      {
       "t": "c",
@@ -13944,40 +13999,142 @@
      },
      {
       "t": "c",
-      "ch": "几十",
-      "py": "jǐ shí",
-      "mn": "tens of",
+      "ch": "几",
+      "py": "jī",
+      "mn": "several"
+     },
+     {
+      "t": "c",
+      "ch": "次",
+      "py": "cì",
+      "mn": "times"
+     },
+     {
+      "t": "c",
+      "ch": "仗",
+      "py": "zhàng",
+      "mn": "war",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "n",
+      "tx": "清朝",
+      "py": "Qīng Cháo",
+      "mn": "the Qing dynasty"
+     },
+     {
+      "t": "c",
+      "ch": "都",
+      "py": "dōu",
+      "mn": "all"
+     },
+     {
+      "t": "c",
+      "ch": "输",
+      "py": "shū",
+      "mn": "to lose",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "年",
-      "py": "nián",
-      "mn": "years"
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
+      "ch": "里面",
+      "py": "lǐ miàn",
+      "mn": "inside",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "难",
-      "py": "nán",
-      "mn": "hard"
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "to have"
      },
      {
       "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
+      "ch": "问题",
+      "py": "wèn tí",
+      "mn": "problems",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
-      "ch": "日子",
-      "py": "rì zi",
-      "mn": "days; life",
+      "ch": "外面",
+      "py": "wài miàn",
+      "mn": "outside",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "又",
+      "py": "yòu",
+      "mn": "also",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "有人",
+      "py": "yǒu rén",
+      "mn": "some people",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "来",
+      "py": "lái",
+      "mn": "to come"
+     },
+     {
+      "t": "c",
+      "ch": "打",
+      "py": "dǎ",
+      "mn": "to attack"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "这",
+      "py": "zhè",
+      "mn": "this"
+     },
+     {
+      "t": "c",
+      "ch": "叫",
+      "py": "jiào",
+      "mn": "is called"
+     },
+     {
+      "t": "c",
+      "ch": "内忧外患",
+      "py": "nèi yōu wài huàn",
+      "mn": "trouble within, threats without",
       "bonus": true
      },
      {
@@ -14109,16 +14266,7 @@
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "所以",
-      "py": "suǒ yǐ",
-      "mn": "so",
-      "bonus": true
+      "tx": "，"
      },
      {
       "t": "c",
@@ -14135,13 +14283,6 @@
      },
      {
       "t": "c",
-      "ch": "开始",
-      "py": "kāishǐ",
-      "mn": "to begin",
-      "bonus": true
-     },
-     {
-      "t": "c",
       "ch": "建",
       "py": "jiàn",
       "mn": "to build",
@@ -14149,9 +14290,16 @@
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "c",
+      "ch": "新式",
+      "py": "xīn shì",
+      "mn": "new-style",
+      "bonus": true
      },
      {
       "t": "c",
@@ -14168,18 +14316,6 @@
      {
       "t": "p",
       "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "学校",
-      "py": "xué xiào",
-      "mn": "school"
-     },
-     {
-      "t": "c",
-      "ch": "里",
-      "py": "lǐ",
-      "mn": "inside"
      },
      {
       "t": "c",
@@ -14243,8 +14379,8 @@
      },
      {
       "t": "c",
-      "ch": "也",
-      "py": "yě",
+      "ch": "还",
+      "py": "hái",
       "mn": "also"
      },
      {
@@ -14328,9 +14464,9 @@
      },
      {
       "t": "c",
-      "ch": "船",
-      "py": "chuán",
-      "mn": "ships",
+      "ch": "轮船",
+      "py": "lún chuán",
+      "mn": "steamship",
       "bonus": true
      },
      {
@@ -14389,9 +14525,9 @@
      },
      {
       "t": "c",
-      "ch": "非常",
-      "py": "fēi cháng",
-      "mn": "extremely"
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
      },
      {
       "t": "c",
@@ -14479,10 +14615,8 @@
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
       "ch": "他们",
@@ -14541,16 +14675,16 @@
     ]
    ],
    "trans": [
-    "As the Qing dynasty was nearing its end, China faced many difficulties.",
-    "By then, countries in the West had built new ships, large and fast, that could move without wind.",
-    "They had many other new things too, which China did not have.",
-    "Because of this, China went through several very hard decades.",
+    "Late in the Qing dynasty, the country ran into many problems.",
+    "The officials did not do their jobs properly, and people's lives grew harder and harder.",
+    "Many people did not have enough to eat, and in some places there was fighting.",
+    "At this time the countries of the West had steamships and cannon, much stronger than China's.",
+    "They came to China and fought several wars, and the Qing lost every one.",
+    "Trouble inside and enemies attacking from outside: this is called 内忧外患.",
     "Many people began to ask: what should we do?",
-    "Some said: we must learn the science of the West.",
-    "So some officials began to found new schools, which taught mathematics and foreign languages.",
-    "They also sent young people abroad to study; when they came back, some built ships and some built railways.",
-    "Doing all this was far from easy, and many attempts failed, but they did not give up.",
-    "Their ideas changed the China that came after."
+    "Some said we must learn the science of the West, and some officials founded new-style schools that taught mathematics and foreign languages.",
+    "They also sent young people abroad to study; when they came back, some built steamships and some built railways.",
+    "None of this was easy, and many attempts failed, but they did not give up, and their ideas changed the China that came after."
    ]
   },
   "reform2-h1": {
@@ -14892,9 +15026,10 @@
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "新式",
+      "py": "xīn shì",
+      "mn": "new-style",
+      "bonus": true
      },
      {
       "t": "c",
@@ -15474,7 +15609,7 @@
     "A hundred years ago and more, Shanghai was still only a small place, with few people.",
     "Because it lies by the sea, many ships later came.",
     "People from many countries settled here, bringing new things and new ideas.",
-    "The city gained new schools, and newspapers that came out every day.",
+    "The city gained new-style schools, and newspapers that came out every day.",
     "Cars appeared in the streets, and many shops.",
     "At night the streets had electric lights, and there were people about until very late.",
     "The old China and the new things were both in this city.",
@@ -16218,9 +16353,10 @@
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "新式",
+      "py": "xīn shì",
+      "mn": "new-style",
+      "bonus": true
      },
      {
       "t": "c",
@@ -16371,7 +16507,7 @@
     "He believed the Chinese people could do it themselves, and many young people worked alongside him.",
     "They tried many times without success, but he never gave up.",
     "In 1912 the new state began, called the Republic of China.",
-    "The new government built new schools and new roads.",
+    "The new government built new-style schools and new roads.",
     "The road ahead was still hard, but people had hope in their hearts."
    ]
   },
@@ -16520,9 +16656,10 @@
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "新式",
+      "py": "xīn shì",
+      "mn": "new-style",
+      "bonus": true
      },
      {
       "t": "c",
@@ -17158,7 +17295,7 @@
    ],
    "trans": [
     "A hundred years ago China had many young people who were very different from those before them.",
-    "They attended the new schools, which taught mathematics and Western science.",
+    "They attended the new-style schools, which taught mathematics and Western science.",
     "Some even went abroad to study, and lived away for several years.",
     "Because they saw so much that was new, they thought more deeply.",
     "After finishing their studies, many came back.",

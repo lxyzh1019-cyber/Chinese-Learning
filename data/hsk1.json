@@ -22188,10 +22188,9 @@
         [
           "一开始",
           "有",
-          "别人",
-          "帮",
+          "大臣",
+          "辅佐",
           "他",
-          "做事",
           "。"
         ],
         [
@@ -22221,10 +22220,10 @@
         ]
       ],
       "sentenceTargetsMeta": {
-        "一开始有别人帮他做事。": {
-          "py": "yì kāi shǐ yǒu bié ren bāng tā zuò shì",
+        "一开始有大臣辅佐他。": {
+          "py": "yì kāi shǐ yǒu dà chén fǔ zuǒ tā",
           "en": null,
-          "enContext": "Because he was still so young, others helped him at first.",
+          "enContext": "Because he was still so young, at first the ministers governed on his behalf.",
           "storyId": "qing",
           "sentIndex": 2,
           "whole": false,
@@ -22964,103 +22963,104 @@
       ],
       "sentenceTargetsPack": [
         [
-          "中国",
-          "有",
+          "国家",
+          "出",
+          "了",
           "很",
           "多",
-          "难事",
+          "问题",
           "。"
         ],
         [
-          "我们",
-          "应该",
-          "怎么办",
+          "官",
+          "不",
+          "好好",
+          "做事",
           "。"
         ],
         [
-          "路",
-          "上",
-          "开始",
-          "有",
-          "汽车",
-          "。"
-        ],
-        [
-          "我们",
-          "要",
-          "学",
-          "西方",
+          "人们",
           "的",
-          "科学",
-          "。"
-        ],
-        [
-          "学校",
-          "里",
-          "教",
-          "数学",
+          "日子",
+          "越来越",
+          "不",
+          "好过",
           "。"
         ],
         [
           "有的",
-          "人",
-          "造",
-          "船",
+          "地方",
+          "还",
+          "有人",
+          "打仗",
+          "。"
+        ],
+        [
+          "他们",
+          "来到",
+          "中国",
+          "。"
+        ],
+        [
+          "清朝",
+          "都",
+          "输",
+          "了",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "中国有很多难事。": {
-          "py": "Zhōngguó yǒu hěn duō nán shì",
+        "国家出了很多问题。": {
+          "py": "guó jiā chū le hěn duō wèn tí",
           "en": null,
-          "enContext": "As the Qing dynasty was nearing its end, China faced many difficulties.",
+          "enContext": "Late in the Qing dynasty, the country ran into many problems.",
           "storyId": "reform",
           "sentIndex": 0,
           "whole": false,
           "borrowedFrom": null
         },
-        "我们应该怎么办。": {
-          "py": "wǒ men yīng gāi zěn me bàn",
+        "官不好好做事。": {
+          "py": "guān bù hǎo hǎo zuò shì",
           "en": null,
-          "enContext": "Many people began to ask: what should we do?",
+          "enContext": "The officials did not do their jobs properly, and people's lives grew harder and harder.",
+          "storyId": "reform",
+          "sentIndex": 1,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "人们的日子越来越不好过。": {
+          "py": "rén men de rì zi yuè lái yuè bù hǎo guò",
+          "en": null,
+          "enContext": "The officials did not do their jobs properly, and people's lives grew harder and harder.",
+          "storyId": "reform",
+          "sentIndex": 1,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "有的地方还有人打仗。": {
+          "py": "yǒu de dì fāng hái yǒu rén dǎ zhàng",
+          "en": null,
+          "enContext": "Many people did not have enough to eat, and in some places there was fighting.",
+          "storyId": "reform",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "他们来到中国。": {
+          "py": "tā men lái dào Zhōngguó",
+          "en": null,
+          "enContext": "They came to China and fought several wars, and the Qing lost every one.",
           "storyId": "reform",
           "sentIndex": 4,
           "whole": false,
           "borrowedFrom": null
         },
-        "路上开始有汽车。": {
-          "py": "lù shàng kāishǐ yǒu qì chē",
+        "清朝都输了。": {
+          "py": "Qīng Cháo dōu shū le",
           "en": null,
-          "enContext": "Cars appeared in the streets, and many shops.",
-          "storyId": "reform2",
+          "enContext": "They came to China and fought several wars, and the Qing lost every one.",
+          "storyId": "reform",
           "sentIndex": 4,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "我们要学西方的科学。": {
-          "py": "wǒ men yào xué xī fāng de kē xué",
-          "en": null,
-          "enContext": "Some said: we must learn the science of the West.",
-          "storyId": "reform",
-          "sentIndex": 5,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "学校里教数学。": {
-          "py": "xué xiào lǐ jiāo shù xué",
-          "en": null,
-          "enContext": "So some officials began to found new schools, which taught mathematics and foreign languages.",
-          "storyId": "reform",
-          "sentIndex": 6,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "有的人造船。": {
-          "py": "yǒu de rén zào chuán",
-          "en": null,
-          "enContext": "They also sent young people abroad to study; when they came back, some built ships and some built railways.",
-          "storyId": "reform",
-          "sentIndex": 7,
           "whole": false,
           "borrowedFrom": null
         }
@@ -23821,7 +23821,7 @@
         "学校里教数学。": {
           "py": "xué xiào lǐ jiāo shù xué",
           "en": null,
-          "enContext": "They attended the new schools, which taught mathematics and Western science.",
+          "enContext": "They attended the new-style schools, which taught mathematics and Western science.",
           "storyId": "republic2",
           "sentIndex": 1,
           "whole": false,

@@ -140,8 +140,8 @@
       ]
     },
     {
-      "zh": "因为他还很小，一开始有别人帮他做事。",
-      "en": "Because he was still so young, others helped him at first.",
+      "zh": "因为他还很小，一开始有大臣辅佐他。",
+      "en": "Because he was still so young, at first the ministers governed on his behalf.",
       "seg": [
         {
           "zh": "因为",
@@ -185,25 +185,21 @@
           "mn": "there were"
         },
         {
-          "zh": "别人",
-          "py": "bié ren",
-          "mn": "other people"
+          "zh": "大臣",
+          "py": "dà chén",
+          "mn": "ministers",
+          "bonus": true
         },
         {
-          "zh": "帮",
-          "py": "bāng",
-          "mn": "to help"
+          "zh": "辅佐",
+          "py": "fǔ zuǒ",
+          "mn": "to assist (a ruler)",
+          "bonus": true
         },
         {
           "zh": "他",
           "py": "tā",
           "mn": "him"
-        },
-        {
-          "zh": "做事",
-          "py": "zuò shì",
-          "mn": "to do the work",
-          "bonus": true
         },
         {
           "t": "p",
@@ -212,8 +208,8 @@
       ]
     },
     {
-      "zh": "他十几岁的时候，才开始自己做事。",
-      "en": "Only in his teens did he begin to rule himself.",
+      "zh": "他十几岁的时候，才开始自己管理国家。",
+      "en": "Only in his teens did he begin to govern the country himself.",
       "seg": [
         {
           "zh": "他",
@@ -264,10 +260,15 @@
           "bonus": true
         },
         {
-          "zh": "做事",
-          "py": "zuò shì",
-          "mn": "to do the work",
+          "zh": "管理",
+          "py": "guǎn lǐ",
+          "mn": "to govern; to manage",
           "bonus": true
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
         },
         {
           "t": "p",

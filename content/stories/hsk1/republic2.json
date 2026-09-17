@@ -106,8 +106,8 @@
       ]
     },
     {
-      "zh": "他们上的是新的学校，学校里教数学，也教西方的科学。",
-      "en": "They attended the new schools, which taught mathematics and Western science.",
+      "zh": "他们上的是新式的学校，学校里教数学，也教西方的科学。",
+      "en": "They attended the new-style schools, which taught mathematics and Western science.",
       "seg": [
         {
           "zh": "他们",
@@ -130,9 +130,10 @@
           "mn": "is"
         },
         {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
+          "zh": "新式",
+          "py": "xīn shì",
+          "mn": "new-style",
+          "bonus": true
         },
         {
           "zh": "的",

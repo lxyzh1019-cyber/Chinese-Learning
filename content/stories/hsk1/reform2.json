@@ -285,8 +285,8 @@
       ]
     },
     {
-      "zh": "城里有了新的学校，也有了每天出的报纸。",
-      "en": "The city gained new schools, and newspapers that came out every day.",
+      "zh": "城里有了新式的学校，也有了每天出的报纸。",
+      "en": "The city gained new-style schools, and newspapers that came out every day.",
       "seg": [
         {
           "zh": "城",
@@ -310,9 +310,10 @@
           "mn": "(shows a change)"
         },
         {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
+          "zh": "新式",
+          "py": "xīn shì",
+          "mn": "new-style",
+          "bonus": true
         },
         {
           "zh": "的",

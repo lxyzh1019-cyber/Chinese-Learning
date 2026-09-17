@@ -367,8 +367,8 @@
       ]
     },
     {
-      "zh": "故宫的门又高又大，房子是红色的，很好看。",
-      "en": "Its gates are high and great, and the buildings are red and very beautiful.",
+      "zh": "故宫的门又高又大，宫殿是红色的，很好看。",
+      "en": "Its gates are high and great, and the palace halls are red and very beautiful.",
       "seg": [
         {
           "t": "n",
@@ -413,9 +413,10 @@
           "tx": "，"
         },
         {
-          "zh": "房子",
-          "py": "fáng zi",
-          "mn": "buildings"
+          "zh": "宫殿",
+          "py": "gōng diàn",
+          "mn": "palace hall",
+          "bonus": true
         },
         {
           "zh": "是",

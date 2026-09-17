@@ -659,8 +659,8 @@
       ]
     },
     {
-      "zh": "有的路很难走，他也没有回去。",
-      "en": "Some paths were hard going, but he did not turn back.",
+      "zh": "有的路很难走，他也没有放弃。",
+      "en": "Some paths were hard going, but he did not give up.",
       "seg": [
         {
           "zh": "有的",
@@ -707,9 +707,10 @@
           "mn": "not"
         },
         {
-          "zh": "回去",
-          "py": "huí qu",
-          "mn": "to go back"
+          "zh": "放弃",
+          "py": "fàng qì",
+          "mn": "to give up",
+          "bonus": true
         },
         {
           "t": "p",

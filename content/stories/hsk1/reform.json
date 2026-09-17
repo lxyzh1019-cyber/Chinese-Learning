@@ -12,8 +12,8 @@
   },
   "sents": [
     {
-      "zh": "清朝快要过去的时候，中国有很多难事。",
-      "en": "As the Qing dynasty was nearing its end, China faced many difficulties.",
+      "zh": "清朝到了后来，国家出了很多问题。",
+      "en": "Late in the Qing dynasty, the country ran into many problems.",
       "seg": [
         {
           "t": "n",
@@ -22,40 +22,39 @@
           "mn": "the Qing dynasty"
         },
         {
-          "zh": "快要",
-          "py": "kuài yào",
-          "mn": "about to",
+          "zh": "到",
+          "py": "dào",
+          "mn": "to reach"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later",
           "bonus": true
-        },
-        {
-          "zh": "过去",
-          "py": "guò qù",
-          "mn": "to pass (of time)",
-          "bonus": true
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "of; belonging to"
-        },
-        {
-          "zh": "时候",
-          "py": "shíhou",
-          "mn": "time"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "中国",
-          "py": "Zhōngguó",
-          "mn": "China"
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
         },
         {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "had"
+          "zh": "出",
+          "py": "chū",
+          "mn": "to run into"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
           "zh": "很",
@@ -68,9 +67,9 @@
           "mn": "many"
         },
         {
-          "zh": "难事",
-          "py": "nán shì",
-          "mn": "difficulties",
+          "zh": "问题",
+          "py": "wèn tí",
+          "mn": "problems",
           "bonus": true
         },
         {
@@ -80,13 +79,151 @@
       ]
     },
     {
-      "zh": "那时候，西方的国家做出了新的船，船又大又快，不用风也可以走。",
-      "en": "By then, countries in the West had built new ships, large and fast, that could move without wind.",
+      "zh": "官不好好做事，人们的日子越来越不好过。",
+      "en": "The officials did not do their jobs properly, and people's lives grew harder and harder.",
       "seg": [
         {
-          "zh": "那时候",
-          "py": "nà shí hou",
-          "mn": "at that time",
+          "zh": "官",
+          "py": "guān",
+          "mn": "officials",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "好好",
+          "py": "hǎo hǎo",
+          "mn": "properly",
+          "bonus": true
+        },
+        {
+          "zh": "做事",
+          "py": "zuò shì",
+          "mn": "to do the work",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "日子",
+          "py": "rì zi",
+          "mn": "days; life",
+          "bonus": true
+        },
+        {
+          "zh": "越来越",
+          "py": "yuè lái yuè",
+          "mn": "more and more",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "好过",
+          "py": "hǎo guò",
+          "mn": "easy to live",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "很多人吃不饱饭，有的地方还有人打仗。",
+      "en": "Many people did not have enough to eat, and in some places there was fighting.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "吃不饱",
+          "py": "chī bu bǎo",
+          "mn": "cannot eat one's fill",
+          "bonus": true
+        },
+        {
+          "zh": "饭",
+          "py": "fàn",
+          "mn": "food"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "even"
+        },
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "some people",
+          "bonus": true
+        },
+        {
+          "zh": "打仗",
+          "py": "dǎ zhàng",
+          "mn": "to fight a war",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "这时候，西方的国家有了轮船和大炮，比中国的强很多。",
+      "en": "At this time the countries of the West had steamships and cannon, much stronger than China's.",
+      "seg": [
+        {
+          "zh": "这时候",
+          "py": "zhè shí hou",
+          "mn": "at this time",
           "bonus": true
         },
         {
@@ -110,10 +247,9 @@
           "mn": "countries"
         },
         {
-          "zh": "做出",
-          "py": "zuò chū",
-          "mn": "to make; to produce",
-          "bonus": true
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
         },
         {
           "zh": "了",
@@ -121,107 +257,46 @@
           "mn": "(shows it is finished)"
         },
         {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
+          "zh": "轮船",
+          "py": "lún chuán",
+          "mn": "steamship",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "大炮",
+          "py": "dà pào",
+          "mn": "cannon",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "比",
+          "py": "bǐ",
+          "mn": "than"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
         },
         {
           "zh": "的",
           "py": "de",
-          "mn": "(makes a describing word)"
+          "mn": "(the ones of)"
         },
         {
-          "zh": "船",
-          "py": "chuán",
-          "mn": "ships",
+          "zh": "强",
+          "py": "qiáng",
+          "mn": "strong",
           "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "船",
-          "py": "chuán",
-          "mn": "ships",
-          "bonus": true
-        },
-        {
-          "zh": "又",
-          "py": "yòu",
-          "mn": "both",
-          "bonus": true
-        },
-        {
-          "zh": "大",
-          "py": "dà",
-          "mn": "big"
-        },
-        {
-          "zh": "又",
-          "py": "yòu",
-          "mn": "and",
-          "bonus": true
-        },
-        {
-          "zh": "快",
-          "py": "kuài",
-          "mn": "fast"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "不用",
-          "py": "bú yòng",
-          "mn": "without needing"
-        },
-        {
-          "zh": "风",
-          "py": "fēng",
-          "mn": "wind"
-        },
-        {
-          "zh": "也",
-          "py": "yě",
-          "mn": "also; still"
-        },
-        {
-          "zh": "可以",
-          "py": "kě yǐ",
-          "mn": "can",
-          "bonus": true
-        },
-        {
-          "zh": "走",
-          "py": "zǒu",
-          "mn": "to move"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
-    },
-    {
-      "zh": "他们还有很多新东西，是中国没有的。",
-      "en": "They had many other new things too, which China did not have.",
-      "seg": [
-        {
-          "zh": "他们",
-          "py": "tā men",
-          "mn": "they"
-        },
-        {
-          "zh": "还",
-          "py": "hái",
-          "mn": "also"
-        },
-        {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "to have"
         },
         {
           "zh": "很",
@@ -231,41 +306,7 @@
         {
           "zh": "多",
           "py": "duō",
-          "mn": "many"
-        },
-        {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
-        },
-        {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "是",
-          "py": "shì",
-          "mn": "is"
-        },
-        {
-          "zh": "中国",
-          "py": "Zhōngguó",
-          "mn": "China"
-        },
-        {
-          "zh": "没有",
-          "py": "méi yǒu",
-          "mn": "to have no"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(ends the description)"
+          "mn": "much"
         },
         {
           "t": "p",
@@ -274,24 +315,18 @@
       ]
     },
     {
-      "zh": "因为这样，中国过了几十年很难的日子。",
-      "en": "Because of this, China went through several very hard decades.",
+      "zh": "他们来到中国，打了几次仗，清朝都输了。",
+      "en": "They came to China and fought several wars, and the Qing lost every one.",
       "seg": [
         {
-          "zh": "因为",
-          "py": "yīn wèi",
-          "mn": "because",
-          "bonus": true
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
         },
         {
-          "zh": "这样",
-          "py": "zhè yàng",
-          "mn": "this",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "，"
+          "zh": "来到",
+          "py": "lái dào",
+          "mn": "to come to"
         },
         {
           "zh": "中国",
@@ -299,9 +334,13 @@
           "mn": "China"
         },
         {
-          "zh": "过",
-          "py": "guò",
-          "mn": "to live through"
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "打",
+          "py": "dǎ",
+          "mn": "to fight"
         },
         {
           "zh": "了",
@@ -309,35 +348,129 @@
           "mn": "(shows it is finished)"
         },
         {
-          "zh": "几十",
-          "py": "jǐ shí",
-          "mn": "tens of",
+          "zh": "几",
+          "py": "jī",
+          "mn": "several"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "times"
+        },
+        {
+          "zh": "仗",
+          "py": "zhàng",
+          "mn": "war",
           "bonus": true
         },
         {
-          "zh": "年",
-          "py": "nián",
-          "mn": "years"
+          "t": "p",
+          "tx": "，"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "t": "n",
+          "zh": "清朝",
+          "py": "Qīng Cháo",
+          "mn": "the Qing dynasty"
         },
         {
-          "zh": "难",
-          "py": "nán",
-          "mn": "hard"
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
         },
         {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
+          "zh": "输",
+          "py": "shū",
+          "mn": "to lose",
+          "bonus": true
         },
         {
-          "zh": "日子",
-          "py": "rì zi",
-          "mn": "days; life",
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "中国里面有问题，外面又有人来打，这叫内忧外患。",
+      "en": "Trouble inside and enemies attacking from outside: this is called 内忧外患.",
+      "seg": [
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "里面",
+          "py": "lǐ miàn",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "问题",
+          "py": "wèn tí",
+          "mn": "problems",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "外面",
+          "py": "wài miàn",
+          "mn": "outside",
+          "bonus": true
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "also",
+          "bonus": true
+        },
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "some people",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "打",
+          "py": "dǎ",
+          "mn": "to attack"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "is called"
+        },
+        {
+          "zh": "内忧外患",
+          "py": "nèi yōu wài huàn",
+          "mn": "trouble within, threats without",
           "bonus": true
         },
         {
@@ -404,8 +537,8 @@
       ]
     },
     {
-      "zh": "有的人说，我们要学西方的科学。",
-      "en": "Some said: we must learn the science of the West.",
+      "zh": "有的人说，我们要学西方的科学，一些官建了新式的学校，教数学，也教外国的话。",
+      "en": "Some said we must learn the science of the West, and some officials founded new-style schools that taught mathematics and foreign languages.",
       "seg": [
         {
           "zh": "有的",
@@ -460,19 +593,7 @@
         },
         {
           "t": "p",
-          "tx": "。"
-        }
-      ]
-    },
-    {
-      "zh": "所以一些官开始建新的学校，学校里教数学，也教外国的话。",
-      "en": "So some officials began to found new schools, which taught mathematics and foreign languages.",
-      "seg": [
-        {
-          "zh": "所以",
-          "py": "suǒ yǐ",
-          "mn": "so",
-          "bonus": true
+          "tx": "，"
         },
         {
           "zh": "一些",
@@ -486,21 +607,21 @@
           "bonus": true
         },
         {
-          "zh": "开始",
-          "py": "kāishǐ",
-          "mn": "to begin",
-          "bonus": true
-        },
-        {
           "zh": "建",
           "py": "jiàn",
           "mn": "to build",
           "bonus": true
         },
         {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "新式",
+          "py": "xīn shì",
+          "mn": "new-style",
+          "bonus": true
         },
         {
           "zh": "的",
@@ -515,16 +636,6 @@
         {
           "t": "p",
           "tx": "，"
-        },
-        {
-          "zh": "学校",
-          "py": "xué xiào",
-          "mn": "school"
-        },
-        {
-          "zh": "里",
-          "py": "lǐ",
-          "mn": "inside"
         },
         {
           "zh": "教",
@@ -574,8 +685,8 @@
       ]
     },
     {
-      "zh": "他们也送年轻人去外国读书，年轻人回来以后，有的人造船，有的人修铁路。",
-      "en": "They also sent young people abroad to study; when they came back, some built ships and some built railways.",
+      "zh": "他们还送年轻人去外国读书，年轻人回来以后，有的人造轮船，有的人修铁路。",
+      "en": "They also sent young people abroad to study; when they came back, some built steamships and some built railways.",
       "seg": [
         {
           "zh": "他们",
@@ -583,8 +694,8 @@
           "mn": "they"
         },
         {
-          "zh": "也",
-          "py": "yě",
+          "zh": "还",
+          "py": "hái",
           "mn": "also"
         },
         {
@@ -656,9 +767,9 @@
           "bonus": true
         },
         {
-          "zh": "船",
-          "py": "chuán",
-          "mn": "ships",
+          "zh": "轮船",
+          "py": "lún chuán",
+          "mn": "steamship",
           "bonus": true
         },
         {
@@ -694,8 +805,8 @@
       ]
     },
     {
-      "zh": "做这些事非常不容易，很多次都没有成功，可是他们没有放弃。",
-      "en": "Doing all this was far from easy, and many attempts failed, but they did not give up.",
+      "zh": "做这些事很不容易，很多次都没有成功，可是他们没有放弃，他们的想法改变了后来的中国。",
+      "en": "None of this was easy, and many attempts failed, but they did not give up, and their ideas changed the China that came after.",
       "seg": [
         {
           "zh": "做",
@@ -713,9 +824,9 @@
           "mn": "matter; thing"
         },
         {
-          "zh": "非常",
-          "py": "fēi cháng",
-          "mn": "extremely"
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
         },
         {
           "zh": "不",
@@ -791,14 +902,8 @@
         },
         {
           "t": "p",
-          "tx": "。"
-        }
-      ]
-    },
-    {
-      "zh": "他们的想法改变了后来的中国。",
-      "en": "Their ideas changed the China that came after.",
-      "seg": [
+          "tx": "，"
+        },
         {
           "zh": "他们",
           "py": "tā men",
