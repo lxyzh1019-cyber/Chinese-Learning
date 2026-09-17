@@ -731,6 +731,155 @@ test("S02: after a conflict the next save is decisive rather than looping", asyn
   assert.equal(a.syncStatus.jenn, "synced");
 });
 
+// ── W03: clearing all progress, in the app ───────────────────────────────
+//
+// The button rebuilt defPlayer(), whose revision is 0, so every device that had
+// ever played out-ranked the wipe and ignored it — and the merge rules then
+// handed the stars and gates back. These pin the parts that make it land.
+
+function playedPlayer(a, over) {
+  return Object.assign(a.defPlayer(), {
+    totalStars: 4200, starsBaseline: 4200,
+    gatesCompleted: ["h1-g01", "h1-g02"],
+    library: { 水: { py: "shuǐ" } },
+    reviewRecords: { "水::meaning": { word: "水", skill: "meaning", stage: 4, attempts: [] } },
+    badges: ["first_story"], totalWrongAnswers: 310, revision: 57,
+  }, over || {});
+}
+
+test("W03: clearing progress empties both players and stamps the wipe", () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  a.state.jess = playedPlayer(a);
+  const writes = captureWrites(a);
+
+  a.clearAllProgress();
+
+  ["jenn", "jess"].forEach((pid) => {
+    const s = a.state[pid];
+    assert.equal(s.totalStars, 0, pid + ": stars cleared");
+    assert.deepEqual(s.gatesCompleted, [], pid + ": gates cleared");
+    assert.deepEqual(s.library, {}, pid + ": library cleared");
+    assert.deepEqual(s.reviewRecords, {}, pid + ": retention records cleared");
+    assert.deepEqual(s.badges, [], pid + ": badges cleared");
+    assert.ok(s.progressClearedAt > 0, pid + ": stamped with a wipe epoch");
+  });
+  assert.deepEqual(writes.map((w) => w.pid).sort(), ["jenn", "jess"],
+    "the one place a two-player write is correct");
+});
+
+test("W03: the cleared document is written with a revision the remote cannot out-rank", async () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  const db = txDb({ revision: 7, lastSaved: 999, totalStars: 900, gatesCompleted: ["h1-g01"] });
+  a.db = db;
+  a.remoteBaseRevision.jenn = 0;   // as on every page load
+
+  a.clearAllProgress();
+  await tick();
+  await tick();
+
+  // Without the opt-in retry this is 0: the first push is refused as stale
+  // because remoteBaseRevision starts at 0, and the wipe never reaches the
+  // server at all while the parent is told it has.
+  assert.equal(db.box.writes, 1, "the wipe reaches Firestore");
+  assert.equal(db.box.doc.totalStars, 0, "and what landed is the cleared document");
+  assert.ok(db.box.doc.progressClearedAt > 0, "carrying the epoch");
+  assert.ok(db.box.doc.revision > 7, "ahead of the other device");
+});
+
+test("W03: a stale device that pushes after the wipe clears itself instead", async () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);                    // this device never saw the wipe
+  const db = txDb(Object.assign(a.defPlayer(), {
+    revision: 80, lastSaved: 5000, progressClearedAt: 9_000_000,
+  }));
+  a.db = db;
+  a.remoteBaseRevision.jenn = 0;
+
+  a.savePlayer("jenn");
+  await tick();
+
+  const s = a.state.jenn;
+  assert.equal(s.totalStars, 0, "the stale side adopts the wipe rather than restoring");
+  assert.deepEqual(s.gatesCompleted, []);
+  assert.deepEqual(s.reviewRecords, {});
+  assert.equal(s.progressClearedAt, 9_000_000, "and carries the epoch onward");
+});
+
+test("W03: a device that scored after the wipe keeps those stars", async () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = Object.assign(a.defPlayer(), {
+    progressClearedAt: 9_000_000, totalStars: 12, starsBaseline: 12,
+    gatesCompleted: ["h1-g01"], revision: 3,
+  });
+  const db = txDb(Object.assign(a.defPlayer(), {
+    revision: 80, progressClearedAt: 9_000_000,
+  }));
+  a.db = db;
+  a.remoteBaseRevision.jenn = 0;
+
+  a.savePlayer("jenn");
+  await tick();
+
+  assert.equal(a.state.jenn.totalStars, 12, "equal epochs merge normally");
+  assert.deepEqual(a.state.jenn.gatesCompleted, ["h1-g01"]);
+});
+
+test("W03: a merge failure cannot restore pre-wipe progress", async () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  const real = a.MergeState.mergePlayers;
+  a.MergeState.mergePlayers = () => { throw new Error("merge exploded"); };
+  try {
+    a.noteSyncConflict("jenn", Object.assign(a.defPlayer(), {
+      revision: 80, progressClearedAt: 9_000_000,
+    }), 80);
+  } finally {
+    a.MergeState.mergePlayers = real;
+  }
+  assert.equal(a.state.jenn.totalStars, 0, "the swallowed catch must not keep the stale copy");
+  assert.deepEqual(a.state.jenn.gatesCompleted, []);
+});
+
+test("W03: the wipe rewrites the save key and leaves the other stores alone", () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  a.localStorage.setItem("zh_adv_eng_v1", JSON.stringify({ mascotDisabled: true }));
+  a.localStorage.setItem("zh_adv_device_v1", "device-abc");
+  a.localStorage.setItem("zh_adv_assess_v1", JSON.stringify({ attempts: { at1: {} } }));
+
+  a.clearAllProgress();
+
+  assert.equal(a.localStorage.getItem("zh_adv_eng_v1"), JSON.stringify({ mascotDisabled: true }),
+    "the parent's own settings are not a child's progress");
+  assert.equal(a.localStorage.getItem("zh_adv_device_v1"), "device-abc",
+    "a new device id would orphan a paused assessment attempt");
+  assert.equal(a.localStorage.getItem("zh_adv_assess_v1"), JSON.stringify({ attempts: { at1: {} } }),
+    "assessment attempts are kept, by decision and by firestore.rules");
+  const saved = JSON.parse(a.localStorage.getItem("zh_adv_v1"));
+  assert.equal(saved.jenn.totalStars, 0, "the save key is rewritten, never removed");
+  assert.ok(saved.jenn.progressClearedAt > 0, "with the epoch, or a reload would undo the wipe");
+});
+
+test("W03: nothing in flight can commit into the cleared document", () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  let ran = false;
+  a.laterCall("quiz", () => { ran = true; a.state.jenn.totalStars += 50; }, 0);
+  a.clearAllProgress();
+  a.runTimers ? a.runTimers() : null;
+  assert.equal(ran, false, "a deferred round callback is drained, not left to pay out");
+  assert.equal(a.state.jenn.totalStars, 0);
+});
+
 test("S02: the conflict log stays bounded", async () => {
   const a = app();
   F.installState(a);
@@ -1892,6 +2041,29 @@ test("A-T32 / F04: loadAssessmentBank loads by version from the manifest and cac
 
 // ── F06: lesson comprehension is think-then-reveal ──────────────────────────
 
+/**
+ * Is the element with this id actually hidden when the browser paints it?
+ *
+ * `assert.match(html, /id="lesson-ans-0" hidden/)` was the old test, and it
+ * passed for months while the answer sat in plain sight: the element carried
+ * BOTH `hidden` and an inline `display:block`, and an author-origin inline
+ * style beats the UA stylesheet's `[hidden]{display:none}`. The attribute was
+ * present, so the regex was happy. So compute the outcome the cascade produces
+ * instead of trusting that the attribute is there — an inline `display` on the
+ * same tag un-hides it unless the page ships an `!important` [hidden] rule.
+ */
+function hiddenInPractice(html, id, css) {
+  const tag = new RegExp(`<[^>]*\\sid="${id}"[^>]*>`).exec(html);
+  assert.ok(tag, `no element with id ${id}`);
+  if (!/\shidden[\s>]/.test(tag[0])) return false;
+  const inlineDisplay = /style="[^"]*\bdisplay\s*:/.test(tag[0]);
+  const importantRule = /\[hidden\]\s*\{[^}]*display\s*:\s*none\s*!important/.test(css || "");
+  return !inlineDisplay || importantRule;
+}
+
+const APP_CSS = require("fs").readFileSync(
+  require("path").join(__dirname, "..", "index.html"), "utf8");
+
 test("F06: a lesson question hides its answer until the child reveals it", async () => {
   const a = app();
   F.installState(a);
@@ -1903,7 +2075,8 @@ test("F06: a lesson question hides its answer until the child reveals it", async
   await a.renderGateLesson(1, "x");
   const html = a.document.getElementById("gate-lesson-box").innerHTML;
   assert.ok(html.includes("Who tamed the flood?"), "the question is shown");
-  assert.match(html, /id="lesson-ans-0" hidden/, "the answer element starts hidden");
+  assert.ok(hiddenInPractice(html, "lesson-ans-0", APP_CSS), "the answer element starts hidden");
+  assert.ok(hiddenInPractice(html, "lesson-check-0", APP_CSS), "and so do the verdict buttons");
   assert.ok(html.includes("Reveal"), "a Reveal button is offered");
   assert.ok(html.includes("lessonSelfCheck(1,0,'had')") && html.includes("lessonSelfCheck(1,0,'notyet')"), "both verdicts are offered after reveal");
   // The answer text appears exactly once, inside the hidden element.
@@ -1940,7 +2113,7 @@ test("F06: a prior self-report renders the answer open with the verdict", async 
   };
   await a.renderGateLesson(1, "x");
   const html = a.document.getElementById("gate-lesson-box").innerHTML;
-  assert.doesNotMatch(html, /id="lesson-ans-0" hidden/, "already answered: the answer is open");
+  assert.ok(!hiddenInPractice(html, "lesson-ans-0", APP_CSS), "already answered: the answer is open");
   assert.ok(html.includes("You said: I had it"));
   assert.ok(!html.includes("Reveal 👀"), "no reveal button to press again");
 });
@@ -2064,6 +2237,47 @@ test("A26: a lesson with no checked questions keeps the old self-report flow", a
   const html = a.document.getElementById("gate-lesson-box").innerHTML;
   assert.ok(html.includes("Reveal"), "HSK3 and HSK4 have no story to build questions from yet");
   assert.equal(html.indexOf("lchk-opts-0"), -1);
+});
+
+// ── One set of questions per lesson ───────────────────────────────────────
+// A lesson that marks its questions must not also print the worked-example
+// version underneath. HSK1 and HSK2 carried both: the same passage asked once
+// for real and once with its answer quoted back, which is what the screenshot
+// showed. And the old self-report is only worth showing when its questions are
+// readable — the 44 HSK3/HSK4 lessons still carry the pre-rewrite template,
+// Chinese-only and asking about the lesson ("本关有几个生字？") rather than the
+// text, which validate_lessons.js fails for every level it does check.
+
+test("A26: a lesson with checked questions asks them and nothing else", async () => {
+  const a = await lessonWithCheck();
+  const html = a.document.getElementById("gate-lesson-box").innerHTML;
+  assert.ok(html.includes("lchk-opts-0"), "the marked question is asked");
+  assert.equal(html.indexOf("lesson-ans-0"), -1, "no worked-example answer underneath");
+  assert.equal(html.indexOf("Reveal"), -1, "and nothing to reveal");
+  assert.equal(html.indexOf("Check understanding"), -1, "the self-report block is gone");
+  assert.equal(html.indexOf("大禹。"), -1, "the answer text appears nowhere on the page");
+});
+
+test("A26: a lesson still on the old template says so instead of asking it", async () => {
+  const a = app();
+  F.installState(a);
+  a.curHSK = 3;
+  a.curriculumCache.lessons["x"] = {
+    level: "HSK3", gateId: 5, passage: "大禹治水。", passageEn: "Yu tamed the flood.",
+    speakingPromptEn: "Say one sentence.", speakingPrompt: "说一句话。",
+    comprehension: [
+      { question: "本关有几个生字（新词）？", answer: "13个。" },
+      { question: "读完以后，你应该自己先做哪一步？", answer: "大声读词和短文。" },
+    ],
+  };
+  await a.renderGateLesson(5, "x");
+  const html = a.document.getElementById("gate-lesson-box").innerHTML;
+  assert.equal(html.indexOf("本关有几个生字"), -1, "the meta question is not asked");
+  assert.equal(html.indexOf("13个。"), -1, "and its answer is not printed");
+  assert.equal(html.indexOf("Reveal"), -1);
+  assert.ok(html.includes("still being written"), "the gap is named in English");
+  assert.ok(html.includes("还在编写中"), "and in Chinese");
+  assert.ok(html.includes("Say one sentence."), "the rest of the lesson still renders");
 });
 
 // ── F1: a flashcard pass must not cost a child their cleared gates ────────

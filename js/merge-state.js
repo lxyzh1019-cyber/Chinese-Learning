@@ -30,6 +30,69 @@
 
   const MAX_LEDGER = 500;
 
+  // ── clearing all progress ────────────────────────────────────────────────
+  //
+  // Every other rule in this file exists to stop an emptier copy erasing a
+  // fuller one — reviewRecords adopt the remote record whole when the local
+  // side is empty, sets union, counters max, the ledger's baseline takes the
+  // larger. That is right for sync and exactly wrong for a deliberate wipe,
+  // which IS an empty copy and must win anyway. Nothing in the document could
+  // express the difference, so a wipe stamps an epoch and the epoch decides.
+  //
+  // The whole side is taken, not merged field by field, because none of the
+  // fields a wipe must destroy carry a time to compare against: gatesCompleted
+  // is a bare array, library and storyReadCount are keyless maps, starsBaseline
+  // is a fold with no time in it. Only ledger events have an `at`.
+
+  /**
+   * The next epoch for a document, strictly newer than any wipe it has seen.
+   *
+   * Not a bare Date.now(): two devices' clocks differ, so a second wipe on a
+   * correct clock could otherwise land BEHIND a first wipe from a fast one and
+   * lose — the parent would watch the wipe fail. Real time is not needed here,
+   * only order.
+   */
+  function nextClearEpoch(prev, now) {
+    const seen = Number((prev && prev.progressClearedAt) || 0);
+    return Math.max(Number(now || Date.now()), seen + 1);
+  }
+
+  /**
+   * A freshly cleared player, stamped so it beats every pre-wipe copy.
+   *
+   * `revision` must NOT come from defPlayer()'s 0. Other devices accept a
+   * snapshot only when its revision is higher than theirs, so a wipe starting
+   * from 0 is ignored by every device that has ever played — the wipe would
+   * appear to work locally and be undone on the next sync.
+   */
+  function clearPlayer(fresh, prev, opts) {
+    const o = opts || {};
+    const p = prev || {};
+    const out = Object.assign({}, fresh);
+    out.progressClearedAt = nextClearEpoch(p, o.now);
+    out.revision = Math.max(Number(p.revision || 0), Number(o.revisionFloor || 0));
+    // A diagnostic log, not progress: a parent chasing a sync problem should
+    // not lose the evidence because they also cleared the stars.
+    out.syncConflicts = (p.syncConflicts || []).slice(-5);
+    return out;
+  }
+
+  /**
+   * Should this device take the remote snapshot? Epoch first, then revision,
+   * then the timestamp — the app's original rule with the wipe in front of it,
+   * so a wipe is adopted even though it arrives carrying less.
+   */
+  function shouldAdopt(local, remote) {
+    if (!remote) return false;
+    const lc = Number((local && local.progressClearedAt) || 0);
+    const rc = Number(remote.progressClearedAt || 0);
+    if (lc !== rc) return rc > lc;
+    const lr = Number((local && local.revision) || 0);
+    const rr = Number(remote.revision || 0);
+    if (lr || rr) return rr > lr;
+    return Number(remote.lastSaved || 0) > Number((local && local.lastSaved) || 0);
+  }
+
   // ── star ledger ──────────────────────────────────────────────────────────
 
   function newEventId(kind) {
@@ -294,7 +357,25 @@
     const b = ensureLedger(JSON.parse(JSON.stringify(remote || {})));
     const notes = [];
 
+    // A wipe outranks everything below. Max-wins, so this is commutative and
+    // idempotent like the rest of the file: both orders return the same side,
+    // and re-merging the result changes nothing. A device that has RECEIVED
+    // the wipe carries the same epoch, so its later work merges normally — only
+    // a copy that predates the wipe loses, and everything on it is pre-wipe.
+    const aCleared = Number(a.progressClearedAt || 0);
+    const bCleared = Number(b.progressClearedAt || 0);
+    if (aCleared !== bCleared) {
+      const winner = aCleared > bCleared ? a : b;
+      const cleared = JSON.parse(JSON.stringify(winner));
+      cleared.progressClearedAt = Math.max(aCleared, bCleared);
+      cleared.revision = Math.max(Number(a.revision || 0), Number(b.revision || 0)) + 1;
+      cleared.lastSaved = Date.now();
+      notes.push("progress was cleared from the parent dashboard; the older copy on this device was discarded");
+      return { player: cleared, notes, cleared: true };
+    }
+
     const out = Object.assign({}, b, a);
+    out.progressClearedAt = aCleared;
 
     // Stars: union the ledgers by event id and recompute. Applied once each,
     // whichever order they arrive in, deductions included.
@@ -383,6 +464,7 @@
   return {
     MAX_LEDGER, newEventId, ensureLedger, recordStarEvent, trimLedger,
     totalFromLedger, weekFromLedger, mergePlayers,
+    nextClearEpoch, clearPlayer, shouldAdopt,
     unionArray, unionById, maxNumericMap, mergeFailedWords, lastResetAt,
     resetMarker, resetNewer, mergeGateRecords, mergeGateTimers, mergeReviewRecords, mergeLessonSelfCheck,
   };

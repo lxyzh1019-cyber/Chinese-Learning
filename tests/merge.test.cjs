@@ -273,3 +273,166 @@ test("F06: lesson self-checks merge per question, later verdict wins", () => {
   assert.equal(m["h1-g02"][0].result, "had", "remote-only gate kept");
   assert.deepEqual(M.mergePlayers(remote, local).player.lessonSelfCheck, m, "order does not matter");
 });
+
+// ── W01: clearing all progress ────────────────────────────────────────────
+//
+// Every rule above exists to stop an emptier copy erasing a fuller one. A
+// deliberate wipe IS an emptier copy and has to win anyway, so it carries an
+// epoch and the epoch is checked before any of those rules run. Without it the
+// wipe was not merely ignored — it came back wrong: stars and gates restored
+// through the union rules while the fields with no rule stayed cleared.
+
+/** A device that has been playing and knows nothing of any wipe. */
+function stalePlayer() {
+  return player({
+    totalStars: 4200, starsBaseline: 4200, weekStars: 30,
+    gatesCompleted: ["h1-g01", "h1-g02", "h1-g03"],
+    badges: ["first_story", "gates_10"], stickerIds: ["s1"],
+    library: { 水: { py: "shuǐ" } },
+    failedWords: { 山: { zh: "山", failCount: 4 } },
+    traceStars: { 水: 3 }, storyReadCount: { "xia-h1": 2 },
+    gateStars: { "h1-g01": 3 }, gateGameStars: { "h1-g01": { trace: 3, match: 3 } },
+    gateBestQuiz: { "h1-g01": { accPct: 95, quizStars: 3 } },
+    gateAttemptHistory: { "h1-g01": [{ attemptId: "a-old", endedKey: "2026-09-01" }] },
+    gateResetSeq: { "h1-g01": 2 },
+    reviewRecords: { "水::meaning": { word: "水", skill: "meaning", stage: 4, attempts: [{ id: "x1", at: 1 }] } },
+    pendingSessions: { match: { updatedAt: 999, matched: 3 } },
+    totalWrongAnswers: 310, dailyWordTotal: 12,
+    revision: 57,
+  });
+}
+
+/**
+ * The same player right after the parent cleared everything.
+ *
+ * Every field the stale copy carries is present and empty here, because that is
+ * what the app writes: clearAllProgress builds this from defPlayer(), which
+ * declares them all. A fixture that simply omitted them would let an assertion
+ * pass on `undefined` and prove nothing about the merge.
+ */
+function wipedPlayer(epoch) {
+  return player({
+    progressClearedAt: epoch || 1000, revision: 58,
+    gateResetSeq: {}, reviewRecords: {}, pendingSessions: {},
+    totalWrongAnswers: 0, dailyWordTotal: 0,
+  });
+}
+
+test("W01: a wiped copy discards the other device's pre-wipe progress", () => {
+  const m = M.mergePlayers(wipedPlayer(), stalePlayer()).player;
+  assert.equal(m.totalStars, 0, "stars are gone");
+  assert.deepEqual(m.gatesCompleted, [], "and the gates with them");
+  assert.deepEqual(m.badges, []);
+  assert.deepEqual(m.library, {});
+  assert.deepEqual(m.failedWords, {});
+  assert.deepEqual(m.storyReadCount, {});
+  assert.equal(m.totalWrongAnswers, 0, "counters do not survive by max()");
+  assert.equal(m.dailyWordTotal, 0);
+  assert.deepEqual(m.pendingSessions, {}, "no half-finished round comes back");
+});
+
+test("W01: the wipe cannot be resurrected through the star baseline", () => {
+  // starsBaseline takes the LARGER of the two sides, so a wiped copy would
+  // otherwise inherit the full total from the stale one and recompute it.
+  const m = M.mergePlayers(wipedPlayer(), stalePlayer()).player;
+  assert.equal(m.starsBaseline, 0, "the baseline is not carried over");
+  assert.deepEqual(m.starLedger, [], "and no old event is replayed");
+  assert.equal(M.totalFromLedger(m), 0);
+});
+
+test("W01: a gate record from before the wipe does not come back", () => {
+  // An attempt id the other side has never seen normally wins outright, which
+  // is exactly the shape a freshly cleared document has.
+  const m = M.mergePlayers(wipedPlayer(), stalePlayer()).player;
+  assert.deepEqual(m.gateStars, {});
+  assert.deepEqual(m.gateGameStars, {});
+  assert.deepEqual(m.gateBestQuiz, {});
+  assert.deepEqual(m.gateAttemptHistory, {});
+  assert.deepEqual(m.gateResetSeq, {});
+});
+
+test("W01: review evidence from before the wipe is not adopted into the empty side", () => {
+  // mergeReviewRecords takes the other side's record whole when this side has
+  // none — the rule that stops a fresh device erasing a history.
+  const m = M.mergePlayers(wipedPlayer(), stalePlayer()).player;
+  assert.deepEqual(m.reviewRecords, {});
+});
+
+test("W01: the wipe wins from either merge order", () => {
+  const forward = M.mergePlayers(wipedPlayer(), stalePlayer()).player;
+  const backward = M.mergePlayers(stalePlayer(), wipedPlayer()).player;
+  // revision and lastSaved are derived symmetrically but carry a clock.
+  delete forward.lastSaved; delete backward.lastSaved;
+  assert.deepEqual(forward, backward, "merge order cannot change the outcome");
+});
+
+test("W01: merging the wipe twice changes nothing", () => {
+  const once = M.mergePlayers(wipedPlayer(), stalePlayer()).player;
+  const again = M.mergePlayers(once, stalePlayer()).player;
+  const settled = M.mergePlayers(once, JSON.parse(JSON.stringify(once))).player;
+  assert.equal(again.totalStars, 0);
+  assert.deepEqual(again.gatesCompleted, []);
+  assert.equal(settled.totalStars, 0, "and re-merging against itself is stable");
+  assert.equal(settled.progressClearedAt, once.progressClearedAt);
+});
+
+test("W01: progress earned after the wipe is not wiped again", () => {
+  // Both sides have SEEN the wipe, so they merge normally: the whole point of
+  // comparing epochs rather than treating any empty copy as authoritative.
+  const played = player({
+    progressClearedAt: 1000, totalStars: 12, starsBaseline: 12,
+    gatesCompleted: ["h1-g01"], revision: 60,
+  });
+  const bare = wipedPlayer(1000);
+  const m = M.mergePlayers(played, bare).player;
+  assert.equal(m.totalStars, 12, "the new stars survive");
+  assert.deepEqual(m.gatesCompleted, ["h1-g01"]);
+  assert.equal(m.progressClearedAt, 1000, "and the epoch is carried forward");
+});
+
+test("W01: a newer wipe beats an older one", () => {
+  const first = player({ progressClearedAt: 1000, totalStars: 30, starsBaseline: 30 });
+  const second = wipedPlayer(2000);
+  const m = M.mergePlayers(first, second).player;
+  assert.equal(m.totalStars, 0, "work done after the first wipe is cleared by the second");
+  assert.equal(m.progressClearedAt, 2000);
+});
+
+test("W01: a wipe absorbed from another device is reported, not silent", () => {
+  const r = M.mergePlayers(stalePlayer(), wipedPlayer());
+  assert.equal(r.cleared, true);
+  assert.ok(r.notes.length && /cleared/i.test(r.notes[0]));
+});
+
+test("W01: the wipe epoch never goes backwards on a fast clock", () => {
+  const seen = 5_000_000;
+  assert.equal(M.nextClearEpoch({ progressClearedAt: seen }, seen - 600000), seen + 1,
+    "a slower clock still produces a newer epoch than the wipe it has seen");
+  assert.ok(M.nextClearEpoch({}, 1234) === 1234, "and an untouched player just uses the clock");
+});
+
+test("W01: a cleared player keeps a revision the remote cannot out-rank", () => {
+  const fresh = player({ revision: 0, totalStars: 0 });
+  const out = M.clearPlayer(fresh, { revision: 57, syncConflicts: [{ at: 1 }] }, { revisionFloor: 60, now: 9000 });
+  assert.equal(out.revision, 60, "the floor is the last revision this device acknowledged");
+  assert.equal(out.progressClearedAt, 9000);
+  assert.equal(out.totalStars, 0);
+  assert.equal(out.syncConflicts.length, 1, "sync diagnostics are not progress");
+});
+
+test("W02: a remote carrying a newer wipe is adopted even at a lower revision", () => {
+  assert.equal(M.shouldAdopt({ revision: 57, progressClearedAt: 0 },
+                             { revision: 1, progressClearedAt: 9000 }), true);
+});
+
+test("W02: a pre-wipe remote is ignored after a local wipe", () => {
+  assert.equal(M.shouldAdopt({ revision: 2, progressClearedAt: 9000, lastSaved: 1 },
+                             { revision: 99, progressClearedAt: 0, lastSaved: 999 }), false);
+});
+
+test("W02: with no wipe on either side the original rule stands", () => {
+  assert.equal(M.shouldAdopt({ revision: 3 }, { revision: 4 }), true, "revision decides");
+  assert.equal(M.shouldAdopt({ revision: 4 }, { revision: 3 }), false);
+  assert.equal(M.shouldAdopt({ lastSaved: 10 }, { lastSaved: 20 }), true, "timestamp when neither has one");
+  assert.equal(M.shouldAdopt({ lastSaved: 20 }, { lastSaved: 10 }), false);
+});
