@@ -250,8 +250,8 @@
       ]
     },
     {
-      "zh": "宋朝的人把字做成一个一个的小块，用完了还可以再用。",
-      "en": "Song people made the characters into separate small blocks, which could be used again after use.",
+      "zh": "宋朝的人把字一个一个地刻在小木块上，印完了可以换。",
+      "en": "Song people carved the characters one by one on small wooden blocks, which could be swapped after printing.",
       "seg": [
         {
           "t": "n",
@@ -281,35 +281,40 @@
           "mn": "characters"
         },
         {
-          "zh": "做成",
-          "py": "zuò chéng",
-          "mn": "to make into",
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "(before how it is done)"
+        },
+        {
+          "zh": "刻",
+          "py": "kè",
+          "mn": "to carve",
           "bonus": true
         },
         {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one"
-        },
-        {
-          "zh": "个",
-          "py": "gè",
-          "mn": "(counting word)"
-        },
-        {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one"
-        },
-        {
-          "zh": "个",
-          "py": "gè",
-          "mn": "(counting word)"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
         },
         {
           "zh": "小",
@@ -317,18 +322,25 @@
           "mn": "small"
         },
         {
-          "zh": "块",
-          "py": "kuài",
-          "mn": "blocks"
+          "zh": "木块",
+          "py": "mù kuài",
+          "mn": "wooden block",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "用",
-          "py": "yòng",
-          "mn": "to use"
+          "zh": "印",
+          "py": "Yìn",
+          "mn": "to print",
+          "bonus": true
         },
         {
           "zh": "完",
@@ -342,25 +354,16 @@
           "mn": "(shows it is finished)"
         },
         {
-          "zh": "还",
-          "py": "hái",
-          "mn": "still"
-        },
-        {
           "zh": "可以",
           "py": "kě yǐ",
           "mn": "can",
           "bonus": true
         },
         {
-          "zh": "再",
-          "py": "zài",
-          "mn": "again"
-        },
-        {
-          "zh": "用",
-          "py": "yòng",
-          "mn": "to use"
+          "zh": "换",
+          "py": "huàn",
+          "mn": "to swap",
+          "bonus": true
         },
         {
           "t": "p",

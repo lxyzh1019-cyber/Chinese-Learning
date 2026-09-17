@@ -319,8 +319,8 @@
       ]
     },
     {
-      "zh": "他们从小就学骑马，马又快又好。",
-      "en": "They learned to ride from childhood, and their horses were fast and fine.",
+      "zh": "他们从小就学骑马，骑得又快又好。",
+      "en": "They learned to ride from childhood, and rode fast and well.",
       "seg": [
         {
           "zh": "他们",
@@ -354,9 +354,15 @@
           "tx": "，"
         },
         {
-          "zh": "马",
-          "py": "mǎ",
-          "mn": "horses",
+          "zh": "骑",
+          "py": "qí",
+          "mn": "to ride",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
           "bonus": true
         },
         {
@@ -379,7 +385,7 @@
         {
           "zh": "好",
           "py": "hǎo",
-          "mn": "fine"
+          "mn": "well"
         },
         {
           "t": "p",
@@ -388,47 +394,51 @@
       ]
     },
     {
-      "zh": "大人小孩都骑得很好。",
-      "en": "Grown-ups and children alike rode very well.",
+      "zh": "他们的马也又快又好。",
+      "en": "Their horses were fast and fine too.",
       "seg": [
         {
-          "zh": "大人",
-          "py": "dà rén",
-          "mn": "grown-ups",
-          "bonus": true
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they; their"
         },
         {
-          "zh": "小孩",
-          "py": "xiǎo hái",
-          "mn": "children",
-          "bonus": true
-        },
-        {
-          "zh": "都",
-          "py": "dōu",
-          "mn": "all"
-        },
-        {
-          "zh": "骑",
-          "py": "qí",
-          "mn": "to ride",
-          "bonus": true
-        },
-        {
-          "zh": "得",
+          "zh": "的",
           "py": "de",
-          "mn": "(how it is done)",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horses",
           "bonus": true
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both",
+          "bonus": true
+        },
+        {
+          "zh": "快",
+          "py": "kuài",
+          "mn": "fast"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and",
+          "bonus": true
         },
         {
           "zh": "好",
           "py": "hǎo",
-          "mn": "well"
+          "mn": "fine"
         },
         {
           "t": "p",

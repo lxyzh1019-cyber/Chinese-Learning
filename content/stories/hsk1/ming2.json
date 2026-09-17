@@ -391,8 +391,8 @@
       ]
     },
     {
-      "zh": "他用了差不多三十年，写成了一本很大的书，书里有一千多种草药。",
-      "en": "He spent nearly thirty years writing a great book, with more than a thousand kinds of herbal medicine in it.",
+      "zh": "他用了差不多三十年，写成了一本书，书里有一千多种草药。",
+      "en": "He spent nearly thirty years writing a book with more than a thousand kinds of herbal medicine in it.",
       "seg": [
         {
           "zh": "他",
@@ -450,21 +450,6 @@
           "zh": "本",
           "py": "běn",
           "mn": "(counting word, books)"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "大",
-          "py": "dà",
-          "mn": "big"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
         },
         {
           "zh": "书",

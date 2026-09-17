@@ -232,8 +232,8 @@
       ]
     },
     {
-      "zh": "水不能太热，也不能太冷，水不对，好茶也不好喝。",
-      "en": "The water must be neither too hot nor too cold; with the wrong water, even good tea tastes poor.",
+      "zh": "水不能太热，也不能太冷，水不对，好的茶叶也不好喝。",
+      "en": "The water must be neither too hot nor too cold; with the wrong water, even good tea leaves make a poor cup.",
       "seg": [
         {
           "zh": "水",
@@ -310,9 +310,15 @@
           "mn": "good"
         },
         {
-          "zh": "茶",
-          "py": "chá",
-          "mn": "tea"
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "茶叶",
+          "py": "chá yè",
+          "mn": "tea leaves",
+          "bonus": true
         },
         {
           "zh": "也",

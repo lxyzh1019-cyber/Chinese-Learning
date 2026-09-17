@@ -132,4 +132,7 @@ module.exports = {
   "海边":   { py: "hǎi biān",    en: "seaside" },
   "报纸":   { py: "bào zhǐ",     en: "newspaper" },
   "电灯":   { py: "diàn dēng",   en: "electric light" },
+  "茶叶":   { py: "chá yè",      en: "tea leaves" },
+  "木块":   { py: "mù kuài",     en: "wooden block" },
+  "换":     { py: "huàn",        en: "to swap; to change" },
 };

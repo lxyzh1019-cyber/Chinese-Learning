@@ -6423,24 +6423,6 @@
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "大",
-      "py": "dà",
-      "mn": "big"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
-     },
-     {
-      "t": "c",
       "ch": "书",
       "py": "shū",
       "mn": "book"
@@ -6937,7 +6919,7 @@
     "The first was Li Shizhen, who loved the plants and trees of the hills.",
     "He wanted to know which plants could be medicine, but the old books had a great deal that was wrong.",
     "So he decided to go and see for himself; he walked far and asked many people.",
-    "He spent nearly thirty years writing a great book, with more than a thousand kinds of herbal medicine in it.",
+    "He spent nearly thirty years writing a book with more than a thousand kinds of herbal medicine in it.",
     "The second was Xu Xiake, who loved walking, and loved looking at mountains and rivers.",
     "He went to many places no one else had been.",
     "Some paths were hard going, but he did not turn back.",
@@ -17565,9 +17547,16 @@
      },
      {
       "t": "c",
-      "ch": "马",
-      "py": "mǎ",
-      "mn": "horses",
+      "ch": "骑",
+      "py": "qí",
+      "mn": "to ride",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "得",
+      "py": "de",
+      "mn": "(how it is done)",
       "bonus": true
      },
      {
@@ -17594,7 +17583,7 @@
       "t": "c",
       "ch": "好",
       "py": "hǎo",
-      "mn": "fine"
+      "mn": "well"
      },
      {
       "t": "p",
@@ -17604,49 +17593,54 @@
     [
      {
       "t": "c",
-      "ch": "大人",
-      "py": "dà rén",
-      "mn": "grown-ups",
-      "bonus": true
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "they; their"
      },
      {
       "t": "c",
-      "ch": "小孩",
-      "py": "xiǎo hái",
-      "mn": "children",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "都",
-      "py": "dōu",
-      "mn": "all"
-     },
-     {
-      "t": "c",
-      "ch": "骑",
-      "py": "qí",
-      "mn": "to ride",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "得",
+      "ch": "的",
       "py": "de",
-      "mn": "(how it is done)",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "马",
+      "py": "mǎ",
+      "mn": "horses",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
+      "ch": "也",
+      "py": "yě",
+      "mn": "also"
+     },
+     {
+      "t": "c",
+      "ch": "又",
+      "py": "yòu",
+      "mn": "both",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "快",
+      "py": "kuài",
+      "mn": "fast"
+     },
+     {
+      "t": "c",
+      "ch": "又",
+      "py": "yòu",
+      "mn": "and",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "好",
       "py": "hǎo",
-      "mn": "well"
+      "mn": "fine"
      },
      {
       "t": "p",
@@ -17988,8 +17982,8 @@
     "There are no mountains there, only sky and grass.",
     "Long ago, a people lived there called the Khitan.",
     "The grassland was vast and they were always on the move, so they lived in tents, which could be taken up and carried away.",
-    "They learned to ride from childhood, and their horses were fast and fine.",
-    "Grown-ups and children alike rode very well.",
+    "They learned to ride from childhood, and rode fast and well.",
+    "Their horses were fast and fine too.",
     "They wanted to write their own language down, so later they made a writing of their own.",
     "They traded with the Song in the south, selling horses and buying tea and cloth.",
     "Sometimes the two sides fought, but trade never stopped.",
@@ -21184,6 +21178,12 @@
      },
      {
       "t": "c",
+      "ch": "好",
+      "py": "hǎo",
+      "mn": "well"
+     },
+     {
+      "t": "c",
       "ch": "的",
       "py": "de",
       "mn": "(makes a describing word)"
@@ -21249,7 +21249,7 @@
     "Some were still reading in the evening; with no light at home, they sat by the door to read.",
     "Once they had learned the characters they could do many things; some became officials, some became merchants.",
     "They did not forget their own writing either, and knew both scripts.",
-    "They said: \"A person who has studied can get on anywhere.\""
+    "They said: \"A person who has studied well can get on anywhere.\""
    ]
   },
   "scholar2-h1": {
@@ -25516,40 +25516,46 @@
      },
      {
       "t": "c",
-      "ch": "做成",
-      "py": "zuò chéng",
-      "mn": "to make into",
+      "ch": "一",
+      "py": "yī",
+      "mn": "one"
+     },
+     {
+      "t": "c",
+      "ch": "个",
+      "py": "gè",
+      "mn": "(counting word)"
+     },
+     {
+      "t": "c",
+      "ch": "一",
+      "py": "yī",
+      "mn": "one"
+     },
+     {
+      "t": "c",
+      "ch": "个",
+      "py": "gè",
+      "mn": "(counting word)"
+     },
+     {
+      "t": "c",
+      "ch": "地",
+      "py": "de",
+      "mn": "(before how it is done)"
+     },
+     {
+      "t": "c",
+      "ch": "刻",
+      "py": "kè",
+      "mn": "to carve",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "个",
-      "py": "gè",
-      "mn": "(counting word)"
-     },
-     {
-      "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "个",
-      "py": "gè",
-      "mn": "(counting word)"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "(makes a describing word)"
+      "ch": "在",
+      "py": "zài",
+      "mn": "on"
      },
      {
       "t": "c",
@@ -25559,9 +25565,16 @@
      },
      {
       "t": "c",
-      "ch": "块",
-      "py": "kuài",
-      "mn": "blocks"
+      "ch": "木块",
+      "py": "mù kuài",
+      "mn": "wooden block",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "上",
+      "py": "shàng",
+      "mn": "on"
      },
      {
       "t": "p",
@@ -25569,9 +25582,10 @@
      },
      {
       "t": "c",
-      "ch": "用",
-      "py": "yòng",
-      "mn": "to use"
+      "ch": "印",
+      "py": "Yìn",
+      "mn": "to print",
+      "bonus": true
      },
      {
       "t": "c",
@@ -25588,12 +25602,6 @@
      },
      {
       "t": "c",
-      "ch": "还",
-      "py": "hái",
-      "mn": "still"
-     },
-     {
-      "t": "c",
       "ch": "可以",
       "py": "kě yǐ",
       "mn": "can",
@@ -25601,15 +25609,10 @@
      },
      {
       "t": "c",
-      "ch": "再",
-      "py": "zài",
-      "mn": "again"
-     },
-     {
-      "t": "c",
-      "ch": "用",
-      "py": "yòng",
-      "mn": "to use"
+      "ch": "换",
+      "py": "huàn",
+      "mn": "to swap",
+      "bonus": true
      },
      {
       "t": "p",
@@ -26023,7 +26026,7 @@
     "Chinese people made many useful things, and four are the most famous.",
     "The first is paper; only with paper could people write books.",
     "The second is printing, the way of making books.",
-    "Song people made the characters into separate small blocks, which could be used again after use.",
+    "Song people carved the characters one by one on small wooden blocks, which could be swapped after printing.",
     "The third is the compass, which tells people the direction.",
     "Far from home at sea, a ship with a compass did not lose its way.",
     "The fourth is gunpowder.",
@@ -30511,9 +30514,16 @@
      },
      {
       "t": "c",
-      "ch": "茶",
-      "py": "chá",
-      "mn": "tea"
+      "ch": "的",
+      "py": "de",
+      "mn": "(makes a describing word)"
+     },
+     {
+      "t": "c",
+      "ch": "茶叶",
+      "py": "chá yè",
+      "mn": "tea leaves",
+      "bonus": true
      },
      {
       "t": "c",
@@ -30881,7 +30891,7 @@
     "By the Song dynasty, tea was already an everyday thing.",
     "Tea is made from the leaves of the tea tree.",
     "Before drinking tea, the water must first be boiled.",
-    "The water must be neither too hot nor too cold; with the wrong water, even good tea tastes poor.",
+    "The water must be neither too hot nor too cold; with the wrong water, even good tea leaves make a poor cup.",
     "Song people took their tea seriously.",
     "They looked at the tea first, then smelled it, and only then drank slowly.",
     "They said drinking tea is not only drinking.",

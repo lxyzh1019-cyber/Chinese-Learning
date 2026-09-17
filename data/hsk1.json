@@ -17396,9 +17396,11 @@
           "。"
         ],
         [
-          "一",
-          "个人",
-          "拿不动",
+          "印",
+          "完",
+          "了",
+          "可以",
+          "换",
           "。"
         ]
       ],
@@ -17448,11 +17450,11 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "一个人拿不动。": {
-          "py": "yī gè rén ná bu dòng",
+        "印完了可以换。": {
+          "py": "Yìn wán le kě yǐ huàn",
           "en": null,
-          "enContext": "The money was too heavy for one person to carry, and the road was not safe.",
-          "storyId": "song2",
+          "enContext": "Song people carved the characters one by one on small wooden blocks, which could be swapped after printing.",
+          "storyId": "song",
           "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
@@ -18240,7 +18242,7 @@
         "水不能太热。": {
           "py": "shuǐ bù néng tài rè",
           "en": null,
-          "enContext": "The water must be neither too hot nor too cold; with the wrong water, even good tea tastes poor.",
+          "enContext": "The water must be neither too hot nor too cold; with the wrong water, even good tea leaves make a poor cup.",
           "storyId": "tea",
           "sentIndex": 4,
           "whole": false,
@@ -21407,17 +21409,18 @@
           "。"
         ],
         [
-          "有的",
-          "地方",
-          "非常",
-          "热",
+          "写成",
+          "了",
+          "一",
+          "本",
+          "书",
           "。"
         ],
         [
           "有的",
           "地方",
           "非常",
-          "远",
+          "热",
           "。"
         ]
       ],
@@ -21458,17 +21461,17 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "有的地方非常热。": {
-          "py": "yǒu de dì fāng fēi cháng rè",
+        "写成了一本书。": {
+          "py": "xiě chéng le yī běn shū",
           "en": null,
-          "enContext": "Some places were very hot, some very far, and they met many different peoples.",
-          "storyId": "ming",
-          "sentIndex": 5,
+          "enContext": "He spent nearly thirty years writing a book with more than a thousand kinds of herbal medicine in it.",
+          "storyId": "ming2",
+          "sentIndex": 4,
           "whole": false,
           "borrowedFrom": null
         },
-        "有的地方非常远。": {
-          "py": "yǒu de dì fāng fēi cháng yuǎn",
+        "有的地方非常热。": {
+          "py": "yǒu de dì fāng fēi cháng rè",
           "en": null,
           "enContext": "Some places were very hot, some very far, and they met many different peoples.",
           "storyId": "ming",

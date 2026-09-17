@@ -688,8 +688,15 @@ the same background story, told at the level's difficulty.
 tokenizes them against the curated dictionary in `scripts/story-dictionary.js`
 (assembled only from already-validated sources) and **fails on any span it
 cannot vouch for**, naming the character rather than inventing a reading. A
-source sentence may carry its own `seg` with explicit glosses — the 44 reviewed
-HSK1 stories do, so a rebuild reproduces them token for token.
+source sentence may carry its own `seg` with explicit glosses. Every HSK1
+sentence does, word-level and glossed for that sentence, since the 2026-09-17
+rewrite (`scripts/seg_story.js` is how they are authored; `docs/chinese-style.md`
+§3–§4 are the rules); a rebuild reproduces them token for token. Until every
+HSK2 sentence does too, the dictionary layer the un-reviewed sentences are cut
+with is pinned in `scripts/story-dictionary-frozen.json`, so a rewrite changes
+only the story it rewrites. A reviewed token must be a name, a curriculum word,
+a compound of curriculum characters, or an entry in `scripts/story-supplement.js`,
+and an above-level word must be `bonus`; `build_stories.js` refuses anything else.
 
 A gloss is what the child reads when they tap a character, so
 `validate_stories.js` rejects a fragment of a longer word's English (`-tice`),
@@ -1391,6 +1398,10 @@ npm run build:lessons <lv>    # a level's lessons, from each gate's own story
 npm run build:sentences [lv]  # Phase 3 packs, from each gate's own story
 npm run build:culture         # the 29 culture readings
 npm run coverage:content      # what content exists behind the 88 gates
+
+node scripts/seg_story.js draft <story.json>            # a story as editable lines
+node scripts/seg_story.js apply <story.json> --from f   # lines back into reviewed seg
+node scripts/diff_story_tokens.js <before> <after>      # what a rebuild changed, by token
 ```
 
 **The build order matters.** Lessons and sentence packs both quote story

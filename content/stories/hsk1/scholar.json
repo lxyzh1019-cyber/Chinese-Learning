@@ -709,8 +709,8 @@
       ]
     },
     {
-      "zh": "他们说：“读书的人，走到哪里都可以。”",
-      "en": "They said: \"A person who has studied can get on anywhere.\"",
+      "zh": "他们说：“读书好的人，走到哪里都可以。”",
+      "en": "They said: \"A person who has studied well can get on anywhere.\"",
       "seg": [
         {
           "zh": "他们",
@@ -734,6 +734,11 @@
           "zh": "读书",
           "py": "dú shū",
           "mn": "to study"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
         },
         {
           "zh": "的",
