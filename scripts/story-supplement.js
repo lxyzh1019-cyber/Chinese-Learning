@@ -157,4 +157,6 @@ module.exports = {
   "知识":   { py: "zhī shi",     en: "knowledge" },
   "传":     { py: "chuán",       en: "to spread" },
   "广":     { py: "guǎng",       en: "wide" },
+  "处理":   { py: "chǔ lǐ",      en: "to handle; to deal with" },
+  "公务":   { py: "gōng wù",     en: "official business" },
 };

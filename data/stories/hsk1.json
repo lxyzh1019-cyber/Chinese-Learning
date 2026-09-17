@@ -13221,9 +13221,10 @@
      },
      {
       "t": "c",
-      "ch": "房间",
-      "py": "fáng jiān",
-      "mn": "room; hall"
+      "ch": "宫殿",
+      "py": "gōng diàn",
+      "mn": "palace hall",
+      "bonus": true
      },
      {
       "t": "c",
@@ -13233,9 +13234,16 @@
      },
      {
       "t": "c",
-      "ch": "做事",
-      "py": "zuò shì",
-      "mn": "to work",
+      "ch": "处理",
+      "py": "chǔ lǐ",
+      "mn": "to handle",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "公务",
+      "py": "gōng wù",
+      "mn": "official business",
       "bonus": true
      },
      {
@@ -13616,7 +13624,7 @@
     "Building it took more than ten years, and inside there are more than nine thousand rooms.",
     "If you slept in a different room every night, it would take more than twenty years.",
     "Its gates are high and great, and the palace halls are red and very beautiful.",
-    "The emperor worked in the largest hall.",
+    "The emperor handled the affairs of state in the largest hall.",
     "Every morning many officials came to see him, and they dared not say one word more than they should.",
     "Many beautiful things are kept inside: writing, books, and things made of gold.",
     "In the past, ordinary people could not enter the Forbidden City.",

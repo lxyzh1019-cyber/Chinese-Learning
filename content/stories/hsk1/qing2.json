@@ -455,8 +455,8 @@
       ]
     },
     {
-      "zh": "皇帝在最大的那个房间里做事。",
-      "en": "The emperor worked in the largest hall.",
+      "zh": "皇帝在最大的那个宫殿里处理公务。",
+      "en": "The emperor handled the affairs of state in the largest hall.",
       "seg": [
         {
           "zh": "皇帝",
@@ -495,9 +495,10 @@
           "mn": "(counting word)"
         },
         {
-          "zh": "房间",
-          "py": "fáng jiān",
-          "mn": "room; hall"
+          "zh": "宫殿",
+          "py": "gōng diàn",
+          "mn": "palace hall",
+          "bonus": true
         },
         {
           "zh": "里",
@@ -505,9 +506,15 @@
           "mn": "inside"
         },
         {
-          "zh": "做事",
-          "py": "zuò shì",
-          "mn": "to work",
+          "zh": "处理",
+          "py": "chǔ lǐ",
+          "mn": "to handle",
+          "bonus": true
+        },
+        {
+          "zh": "公务",
+          "py": "gōng wù",
+          "mn": "official business",
           "bonus": true
         },
         {
