@@ -4,28 +4,110 @@
   "level": 1,
   "title": "新时代的年轻人",
   "en": "Young People of a New Age",
-  "names": {
-    "民国": {
-      "py": "Mínguó",
-      "en": "Republic"
-    },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
-    }
-  },
+  "names": {},
   "sents": [
     {
-      "zh": "一百年以前，中国有很多年轻人。",
-      "en": "A hundred years ago China had many young people."
+      "zh": "一百年以前，中国有很多年轻人，他们和以前的年轻人很不一样。",
+      "en": "A hundred years ago China had many young people who were very different from those before them.",
+      "seg": [
+        {
+          "zh": "一百",
+          "py": "yì bǎi",
+          "mn": "one hundred",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "年轻人",
+          "py": "nián qīng rén",
+          "mn": "young people",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "with"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "年轻人",
+          "py": "nián qīng rén",
+          "mn": "young people",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "不一样",
+          "py": "bù yí yàng",
+          "mn": "different",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们上新的学校。",
-      "en": "They went to the new schools."
-    },
-    {
-      "zh": "他们学数学，学写字，也学西边的学问。",
-      "en": "They studied mathematics, writing, and western learning.",
+      "zh": "他们上的是新的学校，学校里教数学，也教西方的科学。",
+      "en": "They attended the new schools, which taught mathematics and Western science.",
       "seg": [
         {
           "zh": "他们",
@@ -33,9 +115,53 @@
           "mn": "they"
         },
         {
-          "zh": "学",
-          "py": "xué",
-          "mn": "to study"
+          "zh": "上",
+          "py": "shàng",
+          "mn": "to attend"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "schools"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
         },
         {
           "zh": "数学",
@@ -48,38 +174,20 @@
           "tx": "，"
         },
         {
-          "zh": "学",
-          "py": "xué",
-          "mn": "to study"
-        },
-        {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "to write"
-        },
-        {
-          "zh": "字",
-          "py": "zì",
-          "mn": "characters"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
           "zh": "也",
           "py": "yě",
           "mn": "also"
         },
         {
-          "zh": "学",
-          "py": "xué",
-          "mn": "to study"
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
         },
         {
-          "zh": "西边",
-          "py": "xī biān",
-          "mn": "the west"
+          "zh": "西方",
+          "py": "xī fāng",
+          "mn": "the West",
+          "bonus": true
         },
         {
           "zh": "的",
@@ -87,14 +195,10 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "学",
-          "py": "xué",
-          "mn": "learning"
-        },
-        {
-          "zh": "问",
-          "py": "wèn",
-          "mn": "to ask"
+          "zh": "科学",
+          "py": "kē xué",
+          "mn": "science",
+          "bonus": true
         },
         {
           "t": "p",
@@ -103,32 +207,509 @@
       ]
     },
     {
-      "zh": "有的人去别的国家读书。",
-      "en": "Some went to other countries to study."
+      "zh": "有的人还去外国读书，在外面住了几年。",
+      "en": "Some even went abroad to study, and lived away for several years.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "even"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "外国",
+          "py": "wài guó",
+          "mn": "foreign country",
+          "bonus": true
+        },
+        {
+          "zh": "读书",
+          "py": "dú shū",
+          "mn": "to study"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "外面",
+          "py": "wài miàn",
+          "mn": "outside; away",
+          "bonus": true
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "几",
+          "py": "jī",
+          "mn": "several"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们看到了很多新东西。",
-      "en": "They saw many new things."
+      "zh": "因为看到了很多新东西，他们想得更多了。",
+      "en": "Because they saw so much that was new, they thought more deeply.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
+        },
+        {
+          "zh": "看到",
+          "py": "kàn dào",
+          "mn": "to see"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
+          "bonus": true
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "even",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "学好了以后，很多人回来了。",
-      "en": "After finishing, many of them came back."
+      "en": "After finishing their studies, many came back.",
+      "seg": [
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to study"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "回来",
+          "py": "huí lai",
+          "mn": "to come back"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们做老师，做医生，也做事。",
-      "en": "They became teachers, doctors, and workers."
+      "zh": "有的人做老师，有的人做医生。",
+      "en": "Some became teachers, some became doctors.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to be"
+        },
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teachers"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to be"
+        },
+        {
+          "zh": "医生",
+          "py": "yī shēng",
+          "mn": "doctors"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们写新的书，也说新的话。",
-      "en": "They wrote new books and spoke in new ways."
+      "zh": "他们写新的书，用大家都懂的话写。",
+      "en": "They wrote new books, in language everyone could understand.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "懂",
+          "py": "dǒng",
+          "mn": "to understand",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "language"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们想让国家好起来。",
-      "en": "They wanted to make the country better."
+      "zh": "因为这样，看书的人越来越多。",
+      "en": "Because of this, more and more people read.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
+        },
+        {
+          "zh": "这样",
+          "py": "zhè yàng",
+          "mn": "this",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "看书",
+          "py": "kàn shū",
+          "mn": "to read",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "越来越",
+          "py": "yuè lái yuè",
+          "mn": "more and more",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们说，读书可以改变国家。",
-      "en": "They said that study can change a country."
+      "zh": "他们想让自己的国家好起来。",
+      "en": "They wanted to make their own country better.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to make",
+          "bonus": true
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "own",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "好起来",
+          "py": "hǎo qǐ lái",
+          "mn": "to get better",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们说：读书可以改变一个国家。",
+      "en": "They said: study can change a country.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "zh": "读书",
+          "py": "dú shū",
+          "mn": "to study"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can",
+          "bonus": true
+        },
+        {
+          "zh": "改变",
+          "py": "gǎi biàn",
+          "mn": "to change",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

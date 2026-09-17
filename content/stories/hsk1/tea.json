@@ -127,8 +127,8 @@
       ]
     },
     {
-      "zh": "茶是用山上一种树的叶子做的。",
-      "en": "Tea is made from the leaves of a tree that grows in the hills.",
+      "zh": "茶是用茶树的叶子做的。",
+      "en": "Tea is made from the leaves of the tea tree.",
       "seg": [
         {
           "zh": "茶",
@@ -146,30 +146,10 @@
           "mn": "to use"
         },
         {
-          "zh": "山",
-          "py": "shān",
-          "mn": "hills"
-        },
-        {
-          "zh": "上",
-          "py": "shàng",
-          "mn": "on"
-        },
-        {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one"
-        },
-        {
-          "zh": "种",
-          "py": "zhòng",
-          "mn": "kind",
+          "zh": "茶树",
+          "py": "chá shù",
+          "mn": "tea tree",
           "bonus": true
-        },
-        {
-          "zh": "树",
-          "py": "shù",
-          "mn": "tree"
         },
         {
           "zh": "的",

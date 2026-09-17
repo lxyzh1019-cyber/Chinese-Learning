@@ -5,8 +5,8 @@
   "title": "HSK1 Gate 20 · Early Qing",
   "explanationEn": "Gate 20: Early Qing. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第20关：清前期。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "清朝有一位很有名的大王，叫康熙。他很小的时候就做了王。他做了六十多年。他每天很早就起来做事。",
-  "passageEn": "The Qing dynasty had a famous ruler called Kangxi. He became ruler when he was very young. He ruled for more than sixty years. He got up very early every day to work.",
+  "passage": "清朝有一位很有名的皇帝，叫康熙。他八岁的时候就做了皇帝。因为他还很小，一开始有别人帮他做事。他十几岁的时候，才开始自己做事。",
+  "passageEn": "The Qing dynasty had a very famous emperor called Kangxi. He became emperor at the age of eight. Because he was still so young, others helped him at first. Only in his teens did he begin to rule himself.",
   "keyVocab": [
     {
       "zh": "一",
@@ -14,24 +14,9 @@
       "en": "one"
     },
     {
-      "zh": "位",
-      "pinyin": "wèi",
-      "en": "(counting word for people, polite)"
-    },
-    {
       "zh": "有名",
       "pinyin": "yǒu míng",
       "en": "famous"
-    },
-    {
-      "zh": "大",
-      "pinyin": "dà",
-      "en": "great"
-    },
-    {
-      "zh": "王",
-      "pinyin": "wáng",
-      "en": "king"
     },
     {
       "zh": "叫",
@@ -39,28 +24,43 @@
       "en": "called"
     },
     {
-      "zh": "小",
-      "pinyin": "xiǎo",
-      "en": "little"
+      "zh": "八",
+      "pinyin": "bā",
+      "en": "eight"
+    },
+    {
+      "zh": "岁",
+      "pinyin": "suì",
+      "en": "years old"
     },
     {
       "zh": "时候",
       "pinyin": "shíhou",
-      "en": "time; moment"
+      "en": "time"
+    },
+    {
+      "zh": "做",
+      "pinyin": "zuò",
+      "en": "to be"
+    },
+    {
+      "zh": "小",
+      "pinyin": "xiǎo",
+      "en": "young"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "The Qing dynasty had a famous ruler called Kangxi.",
-      "answer": "清朝有一位很有名的大王，叫康熙。"
+      "answerEn": "The Qing dynasty had a very famous emperor called Kangxi.",
+      "answer": "清朝有一位很有名的皇帝，叫康熙。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "He ruled for more than sixty years.",
-      "answer": "他做了六十多年。"
+      "answerEn": "Because he was still so young, others helped him at first.",
+      "answer": "因为他还很小，一开始有别人帮他做事。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -104,10 +104,10 @@
       "id": "hsk1_gate_20_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "位",
-      "pinyin": "wèi",
-      "promptEn": "In the story, what does 位 mean?",
-      "prompt": "短文里的“位”是什么意思？",
+      "zh": "有名",
+      "pinyin": "yǒu míng",
+      "promptEn": "In the story, what does 有名 mean?",
+      "prompt": "短文里的“有名”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -123,18 +123,18 @@
         },
         {
           "id": "o4",
-          "text": "(counting word for people, polite)"
+          "text": "famous"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "位 (wèi) means \"(counting word for people, polite)\" — you can find it in the passage above.",
-      "explanation": "“位”（wèi）的意思是“(counting word for people, polite)”，就在上面的短文里。"
+      "explanationEn": "有名 (yǒu míng) means \"famous\" — you can find it in the passage above.",
+      "explanation": "“有名”（yǒu míng）的意思是“famous”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_20_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "清朝有一位很有名的大王，叫康熙。",
+      "zh": "清朝有一位很有名的皇帝，叫康熙。",
       "targetZh": "一",
       "targetPinyin": "yī",
       "promptEn": "What does this sentence say?",
@@ -150,7 +150,7 @@
         },
         {
           "id": "o3",
-          "text": "The Qing dynasty had a famous ruler called Kangxi."
+          "text": "The Qing dynasty had a very famous emperor called Kangxi."
         },
         {
           "id": "o4",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "\"清朝有一位很有名的大王，叫康熙。\" means \"The Qing dynasty had a famous ruler called Kangxi.\".",
-      "explanation": "“清朝有一位很有名的大王，叫康熙。”的意思是“The Qing dynasty had a famous ruler called Kangxi.”。"
+      "explanationEn": "\"清朝有一位很有名的皇帝，叫康熙。\" means \"The Qing dynasty had a very famous emperor called Kangxi.\".",
+      "explanation": "“清朝有一位很有名的皇帝，叫康熙。”的意思是“The Qing dynasty had a very famous emperor called Kangxi.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Early Qing in two or three short Chinese sentences. Use words from the list above.",

@@ -199,8 +199,8 @@
       ]
     },
     {
-      "zh": "他们也喝一种茶，茶里放了牛奶，又白又热。",
-      "en": "They also drank a kind of tea with milk in it, white and hot.",
+      "zh": "他们也喝奶茶，奶茶是用牛奶煮的茶，又白又热。",
+      "en": "They also drank milk tea, which is tea boiled with milk, white and hot.",
       "seg": [
         {
           "zh": "他们",
@@ -218,49 +218,51 @@
           "mn": "to drink"
         },
         {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one"
-        },
-        {
-          "zh": "种",
-          "py": "zhòng",
-          "mn": "kind",
+          "zh": "奶茶",
+          "py": "nǎi chá",
+          "mn": "milk tea",
           "bonus": true
-        },
-        {
-          "zh": "茶",
-          "py": "chá",
-          "mn": "tea"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "茶",
-          "py": "chá",
-          "mn": "tea"
+          "zh": "奶茶",
+          "py": "nǎi chá",
+          "mn": "milk tea",
+          "bonus": true
         },
         {
-          "zh": "里",
-          "py": "lǐ",
-          "mn": "inside"
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
         },
         {
-          "zh": "放",
-          "py": "fàng",
-          "mn": "to put"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)"
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
         },
         {
           "zh": "牛奶",
           "py": "niú nǎi",
           "mn": "milk"
+        },
+        {
+          "zh": "煮",
+          "py": "zhǔ",
+          "mn": "to boil; to cook",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
         },
         {
           "t": "p",
@@ -375,8 +377,8 @@
       ]
     },
     {
-      "zh": "从西边来的商人带来了新东西，有的很香，可以放在肉里。",
-      "en": "Merchants from the west brought new things; some were fragrant and could be put in meat.",
+      "zh": "从西边来的商人带来了新的香料，放在肉里很香。",
+      "en": "Merchants from the west brought new spices, which smelled wonderful in meat.",
       "seg": [
         {
           "zh": "从",
@@ -421,39 +423,19 @@
           "mn": "new"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
         },
         {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "有的",
-          "py": "yǒu de",
-          "mn": "some"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "香",
-          "py": "xiāng",
-          "mn": "fragrant",
+          "zh": "香料",
+          "py": "xiāng liào",
+          "mn": "spices",
           "bonus": true
         },
         {
           "t": "p",
           "tx": "，"
-        },
-        {
-          "zh": "可以",
-          "py": "kě yǐ",
-          "mn": "can",
-          "bonus": true
         },
         {
           "zh": "放",
@@ -476,14 +458,25 @@
           "mn": "inside"
         },
         {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "香",
+          "py": "xiāng",
+          "mn": "fragrant",
+          "bonus": true
+        },
+        {
           "t": "p",
           "tx": "。"
         }
       ]
     },
     {
-      "zh": "放了以后，肉就不一样了。",
-      "en": "Once added, the meat tasted quite different.",
+      "zh": "放了香料以后，肉的味道就不一样了。",
+      "en": "Once the spices were added, the meat tasted quite different.",
       "seg": [
         {
           "zh": "放",
@@ -494,6 +487,12 @@
           "zh": "了",
           "py": "le",
           "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "香料",
+          "py": "xiāng liào",
+          "mn": "spices",
+          "bonus": true
         },
         {
           "zh": "以后",
@@ -509,6 +508,17 @@
           "zh": "肉",
           "py": "ròu",
           "mn": "meat"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "味道",
+          "py": "wèi dào",
+          "mn": "taste; flavour",
+          "bonus": true
         },
         {
           "zh": "就",

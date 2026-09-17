@@ -421,8 +421,8 @@
       ]
     },
     {
-      "zh": "诸葛亮不关城门，一个人坐在城上看书。",
-      "en": "Zhuge Liang left the city gate open and sat alone on the wall, reading.",
+      "zh": "诸葛亮不关城门，一个人坐在城墙上看书。",
+      "en": "Zhuge Liang left the city gate open and sat alone on the city wall, reading.",
       "seg": [
         {
           "t": "n",
@@ -476,8 +476,8 @@
           "mn": "on"
         },
         {
-          "zh": "城",
-          "py": "chéng",
+          "zh": "城墙",
+          "py": "chéng qiáng",
           "mn": "city wall",
           "bonus": true
         },

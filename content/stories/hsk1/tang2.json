@@ -335,8 +335,8 @@
       ]
     },
     {
-      "zh": "他看天上，才知道那是月亮的光。",
-      "en": "He looked up at the sky, and only then knew it was the light of the moon.",
+      "zh": "他看天上，才知道那是月光。",
+      "en": "He looked up at the sky, and only then knew it was moonlight.",
       "seg": [
         {
           "zh": "他",
@@ -380,20 +380,9 @@
           "mn": "was"
         },
         {
-          "zh": "月亮",
-          "py": "yuè liang",
-          "mn": "moon",
-          "bonus": true
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "of; belonging to"
-        },
-        {
-          "zh": "光",
-          "py": "guāng",
-          "mn": "light",
+          "zh": "月光",
+          "py": "yuè guāng",
+          "mn": "moonlight",
           "bonus": true
         },
         {

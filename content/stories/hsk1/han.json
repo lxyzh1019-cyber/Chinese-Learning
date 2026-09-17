@@ -12,6 +12,10 @@
     "丝绸之路": {
       "py": "Sīchóu zhī Lù",
       "en": "the Silk Road"
+    },
+    "张骞": {
+      "py": "Zhāng Qiān",
+      "en": "Zhang Qian"
     }
   },
   "sents": [
@@ -81,8 +85,8 @@
       ]
     },
     {
-      "zh": "皇帝让一个人去西边看看。",
-      "en": "The emperor sent a man to go west and take a look.",
+      "zh": "皇帝让一个叫张骞的人去西边看看。",
+      "en": "The emperor sent a man called Zhang Qian to go west and take a look.",
       "seg": [
         {
           "zh": "皇帝",
@@ -105,6 +109,22 @@
           "zh": "个",
           "py": "gè",
           "mn": "(counting word)"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "张骞",
+          "py": "Zhāng Qiān",
+          "mn": "Zhang Qian"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
         },
         {
           "zh": "人",

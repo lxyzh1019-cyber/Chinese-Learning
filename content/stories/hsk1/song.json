@@ -187,8 +187,8 @@
       ]
     },
     {
-      "zh": "第二个是印书的方法。",
-      "en": "The second is the way of printing books.",
+      "zh": "第二个是印刷，就是印书的方法。",
+      "en": "The second is printing, the way of making books.",
       "seg": [
         {
           "zh": "第二",
@@ -204,6 +204,22 @@
           "zh": "是",
           "py": "shì",
           "mn": "is"
+        },
+        {
+          "zh": "印刷",
+          "py": "yìn shuā",
+          "mn": "printing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就是",
+          "py": "jiù shì",
+          "mn": "that is",
+          "bonus": true
         },
         {
           "zh": "印",
@@ -353,8 +369,8 @@
       ]
     },
     {
-      "zh": "第三个是一个可以看方向的小东西。",
-      "en": "The third is a small thing that shows direction.",
+      "zh": "第三个是指南针，它可以告诉人们方向。",
+      "en": "The third is the compass, which tells people the direction.",
       "seg": [
         {
           "zh": "第三",
@@ -373,14 +389,20 @@
           "mn": "is"
         },
         {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one"
+          "zh": "指南针",
+          "py": "zhǐ nán zhēn",
+          "mn": "compass",
+          "bonus": true
         },
         {
-          "zh": "个",
-          "py": "gè",
-          "mn": "(counting word)"
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
+          "bonus": true
         },
         {
           "zh": "可以",
@@ -389,9 +411,15 @@
           "bonus": true
         },
         {
-          "zh": "看",
-          "py": "kàn",
-          "mn": "to see"
+          "zh": "告诉",
+          "py": "gào sù",
+          "mn": "to tell"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
+          "bonus": true
         },
         {
           "zh": "方向",
@@ -400,29 +428,14 @@
           "bonus": true
         },
         {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "小",
-          "py": "xiǎo",
-          "mn": "small"
-        },
-        {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "thing"
-        },
-        {
           "t": "p",
           "tx": "。"
         }
       ]
     },
     {
-      "zh": "在海上，船离家很远，人们用它就不会走错路。",
-      "en": "Far from home at sea, people used it and did not lose their way.",
+      "zh": "在海上，船离家很远，有了指南针就不会走错路。",
+      "en": "Far from home at sea, a ship with a compass did not lose its way.",
       "seg": [
         {
           "zh": "在",
@@ -476,20 +489,19 @@
           "tx": "，"
         },
         {
-          "zh": "人们",
-          "py": "rén men",
-          "mn": "people",
-          "bonus": true
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
         },
         {
-          "zh": "用",
-          "py": "yòng",
-          "mn": "to use"
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
-          "zh": "它",
-          "py": "tā",
-          "mn": "it",
+          "zh": "指南针",
+          "py": "zhǐ nán zhēn",
+          "mn": "compass",
           "bonus": true
         },
         {
@@ -553,8 +565,8 @@
       ]
     },
     {
-      "zh": "一开始，人们只用它做很好看的火。",
-      "en": "At first, people only used it to make beautiful fire.",
+      "zh": "一开始，人们只用它放烟花。",
+      "en": "At first, people only used it to set off fireworks.",
       "seg": [
         {
           "zh": "一开始",
@@ -590,29 +602,14 @@
           "bonus": true
         },
         {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "to make"
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to set off"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "好看",
-          "py": "hǎo kàn",
-          "mn": "beautiful"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "火",
-          "py": "huǒ",
-          "mn": "fire",
+          "zh": "烟花",
+          "py": "yān huā",
+          "mn": "fireworks",
           "bonus": true
         },
         {

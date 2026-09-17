@@ -283,7 +283,7 @@
       ]
     },
     {
-      "zh": "隋朝的皇帝想到了一个办法：建一条很长的河。",
+      "zh": "隋朝的皇帝想到了一个办法：挖一条很长的运河。",
       "en": "The Sui emperor thought of a plan: dig a very long canal.",
       "seg": [
         {
@@ -335,9 +335,9 @@
           "tx": "："
         },
         {
-          "zh": "建",
-          "py": "jiàn",
-          "mn": "to build; to dig",
+          "zh": "挖",
+          "py": "wā",
+          "mn": "to dig",
           "bonus": true
         },
         {
@@ -368,9 +368,9 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "河",
-          "py": "hé",
-          "mn": "canal; river",
+          "zh": "运河",
+          "py": "yùn hé",
+          "mn": "canal",
           "bonus": true
         },
         {
@@ -380,13 +380,13 @@
       ]
     },
     {
-      "zh": "河从南边一直到北边，很多人做了很多年。",
-      "en": "The canal ran from the south all the way to the north, and many people worked on it for many years.",
+      "zh": "运河从南边一直到北边，很多人挖了很多年。",
+      "en": "The canal ran from the south all the way to the north, and many people dug for many years.",
       "seg": [
         {
-          "zh": "河",
-          "py": "hé",
-          "mn": "canal; river",
+          "zh": "运河",
+          "py": "yùn hé",
+          "mn": "canal",
           "bonus": true
         },
         {
@@ -435,9 +435,10 @@
           "mn": "people"
         },
         {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "to work"
+          "zh": "挖",
+          "py": "wā",
+          "mn": "to dig",
+          "bonus": true
         },
         {
           "zh": "了",
@@ -466,19 +467,19 @@
       ]
     },
     {
-      "zh": "做完以后，船可以从南边开到北边。",
-      "en": "When it was done, boats could sail from the south to the north.",
+      "zh": "挖好以后，船可以从南边开到北边。",
+      "en": "When it was finished, boats could sail from the south to the north.",
       "seg": [
         {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "to work"
+          "zh": "挖",
+          "py": "wā",
+          "mn": "to dig",
+          "bonus": true
         },
         {
-          "zh": "完",
-          "py": "wán",
-          "mn": "to finish",
-          "bonus": true
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "done; well"
         },
         {
           "zh": "以后",
@@ -612,8 +613,8 @@
       ]
     },
     {
-      "zh": "船比走路快，东西也便宜了，河的两边有了很多城。",
-      "en": "A boat is faster than walking, so goods got cheaper, and towns grew up on both banks.",
+      "zh": "船比走路快，东西也便宜了，运河的两边有了很多城。",
+      "en": "A boat is faster than walking, so goods got cheaper, and towns grew up on both banks of the canal.",
       "seg": [
         {
           "zh": "船",
@@ -666,9 +667,9 @@
           "tx": "，"
         },
         {
-          "zh": "河",
-          "py": "hé",
-          "mn": "canal; river",
+          "zh": "运河",
+          "py": "yùn hé",
+          "mn": "canal",
           "bonus": true
         },
         {

@@ -6,8 +6,8 @@
   "en": "Wonderful Discoveries",
   "names": {
     "明朝": {
-      "py": "Míngcháo",
-      "en": "Ming Dynasty"
+      "py": "Míng Cháo",
+      "en": "the Ming dynasty"
     },
     "李时珍": {
       "py": "Lǐ Shízhēn",
@@ -16,52 +16,899 @@
     "徐霞客": {
       "py": "Xú Xiákè",
       "en": "Xu Xiake"
-    },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
     }
   },
   "sents": [
     {
-      "zh": "明朝有两个很有名的人。",
-      "en": "The Ming dynasty had two very famous men."
+      "zh": "明朝有两个人，一生都在找答案。",
+      "en": "Two men of the Ming dynasty spent their whole lives looking for answers.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "明朝",
+          "py": "Míng Cháo",
+          "mn": "the Ming dynasty"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一生",
+          "py": "yì shēng",
+          "mn": "whole life",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "找",
+          "py": "zhǎo",
+          "mn": "to look for"
+        },
+        {
+          "zh": "答案",
+          "py": "dá àn",
+          "mn": "answers",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "第一个人很喜欢草和树。",
-      "en": "The first loved plants and trees."
+      "zh": "第一个叫李时珍，他很喜欢山上的草和树。",
+      "en": "The first was Li Shizhen, who loved the plants and trees of the hills.",
+      "seg": [
+        {
+          "zh": "第一",
+          "py": "dì yī",
+          "mn": "first",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "李时珍",
+          "py": "Lǐ Shízhēn",
+          "mn": "Li Shizhen"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "hills"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "草",
+          "py": "cǎo",
+          "mn": "grass; plants",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "树",
+          "py": "shù",
+          "mn": "trees"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他想知道哪些可以做药。",
-      "en": "He wanted to know which of them could be used as medicine."
+      "zh": "他想知道哪些草可以做药，可是以前的书里有很多不对的地方。",
+      "en": "He wanted to know which plants could be medicine, but the old books had a great deal that was wrong.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "知道",
+          "py": "zhī dào",
+          "mn": "to know"
+        },
+        {
+          "zh": "哪些",
+          "py": "nǎ xiē",
+          "mn": "which",
+          "bonus": true
+        },
+        {
+          "zh": "草",
+          "py": "cǎo",
+          "mn": "plants",
+          "bonus": true
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to be used as"
+        },
+        {
+          "zh": "药",
+          "py": "yào",
+          "mn": "medicine",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "不对",
+          "py": "bú duì",
+          "mn": "wrong",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他走了很多路，看了很多山。",
-      "en": "He walked a great deal and saw many mountains."
+      "zh": "所以他决定自己去看，他走了很多路，问了很多人。",
+      "en": "So he decided to go and see for himself; he walked far and asked many people.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so",
+          "bonus": true
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "决定",
+          "py": "jué dìng",
+          "mn": "to decide",
+          "bonus": true
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "by himself",
+          "bonus": true
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to see"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to walk"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他用了差不多三十年，写成了一本书。",
-      "en": "He spent nearly thirty years and wrote a book."
+      "zh": "他用了差不多三十年，写成了一本很大的书，书里有一千多种草药。",
+      "en": "He spent nearly thirty years writing a great book, with more than a thousand kinds of herbal medicine in it.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "差不多",
+          "py": "chà bu duō",
+          "mn": "nearly",
+          "bonus": true
+        },
+        {
+          "zh": "三十",
+          "py": "sān shí",
+          "mn": "thirty",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "写成",
+          "py": "xiě chéng",
+          "mn": "to write into",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "(counting word, books)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "kinds",
+          "bonus": true
+        },
+        {
+          "zh": "草药",
+          "py": "cǎo yào",
+          "mn": "herbal medicine",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "书里有很多草和药。",
-      "en": "The book held a great many plants and medicines."
-    },
-    {
-      "zh": "第二个人喜欢走路，也喜欢看山看水。",
-      "en": "The second loved walking, and looking at mountains and rivers."
+      "zh": "第二个叫徐霞客，他喜欢走路，也喜欢看山看水。",
+      "en": "The second was Xu Xiake, who loved walking, and loved looking at mountains and rivers.",
+      "seg": [
+        {
+          "zh": "第二",
+          "py": "dì èr",
+          "mn": "second"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "徐霞客",
+          "py": "Xú Xiákè",
+          "mn": "Xu Xiake"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "走路",
+          "py": "zǒu lù",
+          "mn": "to walk"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look at"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountains"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look at"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water; rivers"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他去了很多别人没有去过的地方。",
-      "en": "He went to many places no one else had been."
+      "en": "He went to many places no one else had been.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "别人",
+          "py": "bié ren",
+          "mn": "other people"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(has done)"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他每天晚上写下白天看到的东西。",
-      "en": "Every evening he wrote down what he had seen that day."
+      "zh": "有的路很难走，他也没有回去。",
+      "en": "Some paths were hard going, but he did not turn back.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "paths"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "难",
+          "py": "nán",
+          "mn": "hard"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to walk"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also; still"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "回去",
+          "py": "huí qu",
+          "mn": "to go back"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们两个人都做了一件事：多看，多写。",
-      "en": "Both men did the same thing: look closely, and write it down."
+      "zh": "他每天晚上都写下白天看到的东西，写了几十年。",
+      "en": "Every evening he wrote down what he had seen that day, and he did so for decades.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "evening"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "down"
+        },
+        {
+          "zh": "白天",
+          "py": "bái tiān",
+          "mn": "daytime"
+        },
+        {
+          "zh": "看到",
+          "py": "kàn dào",
+          "mn": "to see"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "几十",
+          "py": "jǐ shí",
+          "mn": "tens of",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们两个人做的事情一样：自己去看，然后写下来。",
+      "en": "Both men did the same thing: go and see for themselves, then write it down.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "事情",
+          "py": "shì qing",
+          "mn": "things",
+          "bonus": true
+        },
+        {
+          "zh": "一样",
+          "py": "yī yàng",
+          "mn": "the same"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "by oneself",
+          "bonus": true
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to see"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "然后",
+          "py": "rán hòu",
+          "mn": "then",
+          "bonus": true
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "down",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

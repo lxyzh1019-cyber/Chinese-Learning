@@ -6,42 +6,412 @@
   "en": "Emperor Kangxi",
   "names": {
     "清朝": {
-      "py": "Qīngcháo",
-      "en": "Qing Dynasty"
+      "py": "Qīng Cháo",
+      "en": "the Qing dynasty"
     },
     "康熙": {
       "py": "Kāngxī",
       "en": "Kangxi"
-    },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
     }
   },
   "sents": [
     {
-      "zh": "清朝有一位很有名的大王，叫康熙。",
-      "en": "The Qing dynasty had a famous ruler called Kangxi."
+      "zh": "清朝有一位很有名的皇帝，叫康熙。",
+      "en": "The Qing dynasty had a very famous emperor called Kangxi.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "清朝",
+          "py": "Qīng Cháo",
+          "mn": "the Qing dynasty"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "(counting word for people, polite)",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "有名",
+          "py": "yǒu míng",
+          "mn": "famous"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "康熙",
+          "py": "Kāngxī",
+          "mn": "Kangxi"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他很小的时候就做了王。",
-      "en": "He became ruler when he was very young."
+      "zh": "他八岁的时候就做了皇帝。",
+      "en": "He became emperor at the age of eight.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "八",
+          "py": "bā",
+          "mn": "eight"
+        },
+        {
+          "zh": "岁",
+          "py": "suì",
+          "mn": "years old"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to be"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他做了六十多年。",
-      "en": "He ruled for more than sixty years."
+      "zh": "因为他还很小，一开始有别人帮他做事。",
+      "en": "Because he was still so young, others helped him at first.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "young"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一开始",
+          "py": "yì kāi shǐ",
+          "mn": "at first",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "别人",
+          "py": "bié ren",
+          "mn": "other people"
+        },
+        {
+          "zh": "帮",
+          "py": "bāng",
+          "mn": "to help"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "zh": "做事",
+          "py": "zuò shì",
+          "mn": "to do the work",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他每天很早就起来做事。",
-      "en": "He got up very early every day to work."
+      "zh": "他十几岁的时候，才开始自己做事。",
+      "en": "Only in his teens did he begin to rule himself.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "十几",
+          "py": "shí jǐ",
+          "mn": "ten-something",
+          "bonus": true
+        },
+        {
+          "zh": "岁",
+          "py": "suì",
+          "mn": "years old"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then",
+          "bonus": true
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin",
+          "bonus": true
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "by himself",
+          "bonus": true
+        },
+        {
+          "zh": "做事",
+          "py": "zuò shì",
+          "mn": "to do the work",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他也很喜欢学新东西。",
-      "en": "He also loved learning new things."
+      "zh": "他一共做了六十一年皇帝。",
+      "en": "He was emperor for sixty-one years in all.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "一共",
+          "py": "yí gòng",
+          "mn": "in all",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to be"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "六十一",
+          "py": "liù shí yī",
+          "mn": "sixty-one",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他学数学，也学西边来的学问。",
-      "en": "He studied mathematics, and learning that came from the west.",
+      "zh": "他每天很早就起来做事，也非常喜欢学新的东西。",
+      "en": "He got up very early every day to work, and he loved learning new things.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "早",
+          "py": "zǎo",
+          "mn": "early"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "起来",
+          "py": "qǐ lai",
+          "mn": "to get up"
+        },
+        {
+          "zh": "做事",
+          "py": "zuò shì",
+          "mn": "to work",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "非常",
+          "py": "fēi cháng",
+          "mn": "extremely"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他学过数学，也学过西方的科学。",
+      "en": "He studied mathematics, and science from the West.",
       "seg": [
         {
           "zh": "他",
@@ -52,6 +422,11 @@
           "zh": "学",
           "py": "xué",
           "mn": "to study"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(has done)"
         },
         {
           "zh": "数学",
@@ -74,9 +449,47 @@
           "mn": "to study"
         },
         {
-          "zh": "西边",
-          "py": "xī biān",
-          "mn": "the west"
+          "zh": "过",
+          "py": "guò",
+          "mn": "(has done)"
+        },
+        {
+          "zh": "西方",
+          "py": "xī fāng",
+          "mn": "the West",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "科学",
+          "py": "kē xué",
+          "mn": "science",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "从西方来的人给他讲天上的星星。",
+      "en": "People who came from the West told him about the stars in the sky.",
+      "seg": [
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "西方",
+          "py": "xī fāng",
+          "mn": "the West",
+          "bonus": true
         },
         {
           "zh": "来",
@@ -86,17 +499,45 @@
         {
           "zh": "的",
           "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "to"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell about",
+          "bonus": true
+        },
+        {
+          "zh": "天上",
+          "py": "tiān shàng",
+          "mn": "in the sky",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
           "mn": "of; belonging to"
         },
         {
-          "zh": "学",
-          "py": "xué",
-          "mn": "learning"
-        },
-        {
-          "zh": "问",
-          "py": "wèn",
-          "mn": "to ask"
+          "zh": "星星",
+          "py": "xīng xing",
+          "mn": "stars",
+          "bonus": true
         },
         {
           "t": "p",
@@ -105,20 +546,211 @@
       ]
     },
     {
-      "zh": "西边来的人给他讲天上的事。",
-      "en": "People from the west told him about the sky."
+      "zh": "他让人走过全国，画了一张很大的地图。",
+      "en": "He sent men across the whole country to draw a very large map.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to send; to let",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to travel"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(has done)"
+        },
+        {
+          "zh": "全国",
+          "py": "quán guó",
+          "mn": "the whole country",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "画",
+          "py": "huà",
+          "mn": "to draw",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "张",
+          "py": "zhāng",
+          "mn": "(counting word, flat things)",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地图",
+          "py": "dì tú",
+          "mn": "map",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他让人画了中国的大地图。",
-      "en": "He had a great map of China made."
-    },
-    {
-      "zh": "那时候，中国很大。",
-      "en": "At that time China was very large."
-    },
-    {
-      "zh": "很多人说，他是最好的王之一。",
-      "en": "Many people say he was one of the best rulers."
+      "zh": "他也关心种田的人，所以很多人说，他是中国最好的皇帝之一。",
+      "en": "He cared about the farmers too, so many people say he was one of China's best emperors.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "关心",
+          "py": "guān xīn",
+          "mn": "to care about",
+          "bonus": true
+        },
+        {
+          "zh": "种田",
+          "py": "zhòng tián",
+          "mn": "to farm",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperors",
+          "bonus": true
+        },
+        {
+          "zh": "之一",
+          "py": "zhī yī",
+          "mn": "one of",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

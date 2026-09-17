@@ -2,7 +2,7 @@
   "id": "song2",
   "did": 14,
   "level": 1,
-  "title": "纸钱的故事",
+  "title": "纸币的故事",
   "en": "The Story of Paper Money",
   "names": {
     "宋朝": {
@@ -593,8 +593,8 @@
       ]
     },
     {
-      "zh": "到了别的城，用这张纸就可以拿到钱。",
-      "en": "In another city, that paper could be exchanged for the money.",
+      "zh": "到了别的城，用这张纸就可以拿到钱，这就是最早的纸币。",
+      "en": "In another city that paper could be exchanged for the money; this was the earliest paper money.",
       "seg": [
         {
           "zh": "到",
@@ -667,13 +667,49 @@
         },
         {
           "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "就是",
+          "py": "jiù shì",
+          "mn": "that is",
+          "bonus": true
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "早",
+          "py": "zǎo",
+          "mn": "early"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "纸币",
+          "py": "zhǐ bì",
+          "mn": "paper money",
+          "bonus": true
+        },
+        {
+          "t": "p",
           "tx": "。"
         }
       ]
     },
     {
-      "zh": "这样，商人可以走得更远，今天很多国家用的还是纸做的钱。",
-      "en": "This let merchants travel further, and today many countries still use money made of paper.",
+      "zh": "这样，商人可以走得更远，今天很多国家用的还是纸币。",
+      "en": "This let merchants travel further, and today many countries still use paper money.",
       "seg": [
         {
           "zh": "这样",
@@ -759,25 +795,10 @@
           "mn": "still"
         },
         {
-          "zh": "纸",
-          "py": "zhǐ",
-          "mn": "paper",
+          "zh": "纸币",
+          "py": "zhǐ bì",
+          "mn": "paper money",
           "bonus": true
-        },
-        {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "to make"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "钱",
-          "py": "qián",
-          "mn": "money"
         },
         {
           "t": "p",

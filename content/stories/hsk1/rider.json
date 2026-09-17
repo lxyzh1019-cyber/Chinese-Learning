@@ -204,8 +204,8 @@
       ]
     },
     {
-      "zh": "草原很大，他们要常常走，所以他们的家可以拿起来带走。",
-      "en": "The grassland was vast, so they were always on the move, and their homes could be taken up and carried away.",
+      "zh": "草原很大，他们要常常走，所以他们住在帐篷里，帐篷可以拿起来带走。",
+      "en": "The grassland was vast and they were always on the move, so they lived in tents, which could be taken up and carried away.",
       "seg": [
         {
           "zh": "草原",
@@ -261,17 +261,38 @@
         {
           "zh": "他们",
           "py": "tā men",
-          "mn": "they; their"
+          "mn": "they"
         },
         {
-          "zh": "的",
-          "py": "de",
-          "mn": "of; belonging to"
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
         },
         {
-          "zh": "家",
-          "py": "jiā",
-          "mn": "home"
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "帐篷",
+          "py": "zhàng peng",
+          "mn": "tent",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "帐篷",
+          "py": "zhàng peng",
+          "mn": "tent",
+          "bonus": true
         },
         {
           "zh": "可以",
