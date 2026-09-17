@@ -363,8 +363,8 @@
       ]
     },
     {
-      "zh": "他和家里人一起走，过了山，也过了很热的地方，走了三年多才到中国。",
-      "en": "He travelled with his family, crossing mountains and very hot places, and it took more than three years to reach China.",
+      "zh": "他和家里人一起走，走了三年多才到中国。",
+      "en": "He travelled with his family, and it took more than three years to reach China.",
       "seg": [
         {
           "zh": "他",
@@ -391,64 +391,6 @@
           "zh": "走",
           "py": "zǒu",
           "mn": "to travel"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "过",
-          "py": "guò",
-          "mn": "to cross"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)"
-        },
-        {
-          "zh": "山",
-          "py": "shān",
-          "mn": "mountains"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "也",
-          "py": "yě",
-          "mn": "also"
-        },
-        {
-          "zh": "过",
-          "py": "guò",
-          "mn": "to cross"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "热",
-          "py": "rè",
-          "mn": "hot"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "地方",
-          "py": "dì fāng",
-          "mn": "places"
         },
         {
           "t": "p",
