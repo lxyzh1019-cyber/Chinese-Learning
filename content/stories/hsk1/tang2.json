@@ -3,11 +3,11 @@
   "did": 12,
   "level": 1,
   "title": "诗人看月亮",
-  "en": "The Poet Looks at the Moon",
+  "en": "The Poet and the Moon",
   "names": {
     "唐朝": {
-      "py": "Tángcháo",
-      "en": "Tang Dynasty"
+      "py": "Táng Cháo",
+      "en": "the Tang dynasty"
     },
     "李白": {
       "py": "Lǐ Bái",
@@ -16,44 +16,709 @@
   },
   "sents": [
     {
-      "zh": "唐朝有一位很有名的诗人，叫李白。",
-      "en": "The Tang dynasty had a very famous poet called Li Bai."
+      "zh": "唐朝有一个很有名的诗人，叫李白。",
+      "en": "The Tang dynasty had a very famous poet called Li Bai.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "唐朝",
+          "py": "Táng Cháo",
+          "mn": "the Tang dynasty"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "有名",
+          "py": "yǒu míng",
+          "mn": "famous"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "诗人",
+          "py": "shī rén",
+          "mn": "poet",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "李白",
+          "py": "Lǐ Bái",
+          "mn": "Li Bai"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他很喜欢看月亮。",
-      "en": "He loved looking at the moon."
+      "zh": "他走过很多地方，常常不在家。",
+      "en": "He travelled to many places and was often away from home.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to travel"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(has done)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "常常",
+          "py": "cháng cháng",
+          "mn": "often",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有一天晚上，他一个人坐在外面。",
-      "en": "One night he sat outside alone."
+      "zh": "有一天晚上，他一个人住在外面。",
+      "en": "One night he was staying away from home, alone.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "night"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to stay"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "外面",
+          "py": "wài miàn",
+          "mn": "outside; away",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "天上的月亮又大又亮。",
-      "en": "The moon in the sky was big and bright."
+      "zh": "他起来的时候，看见地上白白的。",
+      "en": "When he got up, he saw the ground was all white.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "起来",
+          "py": "qǐ lai",
+          "mn": "to get up"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "看见",
+          "py": "kàn jiàn",
+          "mn": "to see"
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "ground"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "白白",
+          "py": "bái bái",
+          "mn": "all white",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(ends the description)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "地上白白的，很亮。",
-      "en": "The ground was white and bright."
+      "zh": "他想：“地上是水吗？”",
+      "en": "He thought: \"Is that water on the ground?\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "ground"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "吗",
+          "py": "má",
+          "mn": "(makes a question)"
+        },
+        {
+          "t": "p",
+          "tx": "？"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "他想起了很远的家。",
-      "en": "He thought of his home far away."
+      "zh": "他看天上，才知道那是月亮的光。",
+      "en": "He looked up at the sky, and only then knew it was the light of the moon.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look"
+        },
+        {
+          "zh": "天上",
+          "py": "tiān shàng",
+          "mn": "the sky",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then",
+          "bonus": true
+        },
+        {
+          "zh": "知道",
+          "py": "zhī dào",
+          "mn": "to know"
+        },
+        {
+          "zh": "那",
+          "py": "nà",
+          "mn": "that"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "zh": "月亮",
+          "py": "yuè liang",
+          "mn": "moon",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "光",
+          "py": "guāng",
+          "mn": "light",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他的心里有一点难过。",
-      "en": "His heart felt a little sad."
+      "zh": "月亮又大又亮。",
+      "en": "The moon was big and bright.",
+      "seg": [
+        {
+          "zh": "月亮",
+          "py": "yuè liang",
+          "mn": "moon",
+          "bonus": true
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both",
+          "bonus": true
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and",
+          "bonus": true
+        },
+        {
+          "zh": "亮",
+          "py": "liàng",
+          "mn": "bright",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他写下了一首很有名的诗。",
-      "en": "He wrote a very famous poem."
+      "zh": "他看着月亮，想起了很远的家，心里有一点难过。",
+      "en": "Looking at the moon, he thought of his home far away, and felt a little sad.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "月亮",
+          "py": "yuè liang",
+          "mn": "moon",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "想起",
+          "py": "xiǎng qǐ",
+          "mn": "to think of",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "心里",
+          "py": "xīn lǐ",
+          "mn": "in the heart",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "一点",
+          "py": "yì diǎn",
+          "mn": "a little",
+          "bonus": true
+        },
+        {
+          "zh": "难过",
+          "py": "nán guò",
+          "mn": "sad",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "很多不在家的人读了这首诗。",
-      "en": "Many people away from home have read this poem."
+      "zh": "他写了一首很短的诗，只有四句，可是大家都记得。",
+      "en": "He wrote a very short poem, only four lines, but everyone remembers it.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "首",
+          "py": "shǒu",
+          "mn": "(counting word, poems)",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "短",
+          "py": "duǎn",
+          "mn": "short",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poem",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "只有",
+          "py": "zhǐ yǒu",
+          "mn": "only",
+          "bonus": true
+        },
+        {
+          "zh": "四",
+          "py": "sì",
+          "mn": "four"
+        },
+        {
+          "zh": "句",
+          "py": "jù",
+          "mn": "lines",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "记得",
+          "py": "jì de",
+          "mn": "to remember"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们看月亮的时候，也会想起家。",
-      "en": "When they look at the moon, they think of home too."
+      "zh": "不在家的人看月亮的时候，也会想起家。",
+      "en": "People away from home think of home too when they look at the moon.",
+      "seg": [
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look at"
+        },
+        {
+          "zh": "月亮",
+          "py": "yuè liang",
+          "mn": "moon",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "will"
+        },
+        {
+          "zh": "想起",
+          "py": "xiǎng qǐ",
+          "mn": "to think of",
+          "bonus": true
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

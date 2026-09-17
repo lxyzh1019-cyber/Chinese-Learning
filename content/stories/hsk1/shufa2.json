@@ -4,58 +4,56 @@
   "level": 1,
   "title": "学写汉字",
   "en": "Learning to Write Chinese Characters",
-  "names": {
-    "老师": {
-      "py": "lǎoshī",
-      "en": "teacher"
-    }
-  },
+  "names": {},
   "sents": [
     {
-      "zh": "我开始学习写汉字了。",
-      "en": "I started learning to write Chinese characters.",
+      "zh": "这个星期，我们开始学写汉字。",
+      "en": "This week, we started learning to write Chinese characters.",
       "seg": [
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "星期",
+          "py": "xīng qī",
+          "mn": "week"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
         },
         {
           "zh": "开始",
           "py": "kāishǐ",
-          "mn": "started",
+          "mn": "to begin",
           "bonus": true
         },
         {
           "zh": "学",
           "py": "xué",
-          "mn": "to study"
-        },
-        {
-          "zh": "习",
-          "py": "xí",
-          "mn": "to practise"
+          "mn": "to learn"
         },
         {
           "zh": "写",
           "py": "xiě",
-          "mn": "write"
+          "mn": "to write"
         },
         {
-          "zh": "汉",
-          "py": "Hàn",
-          "mn": "Han; Chinese"
-        },
-        {
-          "zh": "字",
-          "py": "zì",
-          "mn": "character; writing"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
+          "zh": "汉字",
+          "py": "hàn zì",
+          "mn": "Chinese characters"
         },
         {
           "t": "p",
@@ -64,31 +62,33 @@
       ]
     },
     {
-      "zh": "老师教我握笔的方法。",
-      "en": "The teacher taught me how to hold a pen.",
+      "zh": "老师先教我们拿笔。",
+      "en": "First the teacher taught us how to hold the pen.",
       "seg": [
         {
-          "t": "n",
           "zh": "老师",
           "py": "lǎoshī",
           "mn": "teacher"
         },
         {
+          "zh": "先",
+          "py": "xiān",
+          "mn": "first"
+        },
+        {
           "zh": "教",
-          "py": "jiào",
-          "mn": "to teach",
-          "bonus": true
+          "py": "jiāo",
+          "mn": "to teach"
         },
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "us"
         },
         {
-          "zh": "握",
-          "py": "wò",
-          "mn": "hold",
-          "bonus": true
+          "zh": "拿",
+          "py": "ná",
+          "mn": "to hold"
         },
         {
           "zh": "笔",
@@ -97,56 +97,98 @@
           "bonus": true
         },
         {
-          "zh": "的",
-          "py": "de",
-          "mn": "of; belonging to"
-        },
-        {
-          "zh": "方",
-          "py": "fāng",
-          "mn": "direction; square",
-          "bonus": true
-        },
-        {
-          "zh": "法",
-          "py": "fǎ",
-          "mn": "method; law",
-          "bonus": true
-        },
-        {
           "t": "p",
           "tx": "。"
         }
       ]
     },
     {
-      "zh": "她说，坐得直，字才好看。",
-      "en": "She said that if you sit up straight, your characters look better."
-    },
-    {
-      "zh": "我练习写“水”和“山”，写了很多遍。",
-      "en": "I practiced writing \"water\" and \"mountain\" many times.",
+      "zh": "她说：“坐得直，字才好看。”",
+      "en": "She said: \"Sit up straight, and only then do your characters look good.\"",
       "seg": [
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "她",
+          "py": "tā",
+          "mn": "she"
         },
         {
-          "zh": "练",
-          "py": "liàn",
-          "mn": "to practise",
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
           "bonus": true
         },
         {
-          "zh": "习",
-          "py": "xí",
-          "mn": "to practise"
+          "zh": "直",
+          "py": "zhí",
+          "mn": "straight",
+          "bonus": true
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "write"
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then",
+          "bonus": true
+        },
+        {
+          "zh": "好看",
+          "py": "hǎo kàn",
+          "mn": "good-looking"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
+    },
+    {
+      "zh": "我们先学“水”和“山”这两个字。",
+      "en": "We started with the two characters 水 and 山.",
+      "seg": [
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "先",
+          "py": "xiān",
+          "mn": "first"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
         },
         {
           "t": "p",
@@ -180,19 +222,132 @@
           "tx": "”"
         },
         {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "these"
+        },
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "这两个字看起来很容易，可是写好不容易。",
+      "en": "These two look easy, but writing them well is not.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "these"
+        },
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "zh": "看起来",
+          "py": "kàn qǐ lái",
+          "mn": "to look",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "容易",
+          "py": "róng yì",
+          "mn": "easy",
+          "bonus": true
+        },
+        {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "wrote"
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
+          "bonus": true
         },
         {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)",
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "容易",
+          "py": "róng yì",
+          "mn": "easy",
           "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "一个字有很多笔，先写哪一笔很重要。",
+      "en": "A character has many strokes, and which one to write first matters.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
         },
         {
           "zh": "很",
@@ -205,10 +360,50 @@
           "mn": "many"
         },
         {
-          "zh": "遍",
-          "py": "biàn",
-          "mn": "times",
+          "zh": "笔",
+          "py": "bǐ",
+          "mn": "strokes",
           "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "先",
+          "py": "xiān",
+          "mn": "first"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "哪",
+          "py": "nǎ",
+          "mn": "which"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "笔",
+          "py": "bǐ",
+          "mn": "stroke",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "重要",
+          "py": "zhòng yào",
+          "mn": "important"
         },
         {
           "t": "p",
@@ -217,34 +412,74 @@
       ]
     },
     {
-      "zh": "一个字有很多笔，先写哪一笔很重要。",
-      "en": "A character has many strokes, and which one comes first matters."
-    },
-    {
-      "zh": "刚开始写得不好，但是慢慢地变好了。",
-      "en": "At first my writing wasn't good, but slowly it got better.",
+      "zh": "我一个字写了三十多次，还是写得不好。",
+      "en": "I wrote one character more than thirty times, and it still was not good.",
       "seg": [
         {
-          "zh": "刚",
-          "py": "gāng",
-          "mn": "just",
-          "bonus": true
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
         },
         {
-          "zh": "开始",
-          "py": "kāishǐ",
-          "mn": "start",
-          "bonus": true
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character"
         },
         {
           "zh": "写",
           "py": "xiě",
-          "mn": "write"
+          "mn": "to write"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "三十",
+          "py": "sān shí",
+          "mn": "thirty",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "times"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还是",
+          "py": "hái shi",
+          "mn": "still"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
         },
         {
           "zh": "得",
           "py": "de",
-          "mn": "(before how it is done)"
+          "mn": "(how it is done)",
+          "bonus": true
         },
         {
           "zh": "不",
@@ -258,52 +493,121 @@
         },
         {
           "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "老师说：“不要快，慢慢写。”",
+      "en": "The teacher said: \"Don't rush, write slowly.\"",
+      "seg": [
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "不要",
+          "py": "bù yào",
+          "mn": "do not",
+          "bonus": true
+        },
+        {
+          "zh": "快",
+          "py": "kuài",
+          "mn": "fast"
+        },
+        {
+          "t": "p",
           "tx": "，"
         },
         {
-          "zh": "但",
-          "py": "dàn",
-          "mn": "but",
-          "bonus": true
-        },
-        {
-          "zh": "是",
-          "py": "shì",
-          "mn": "is"
-        },
-        {
-          "zh": "慢",
-          "py": "màn",
+          "zh": "慢慢",
+          "py": "màn màn",
           "mn": "slowly",
           "bonus": true
         },
         {
-          "zh": "慢",
-          "py": "màn",
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
+    },
+    {
+      "zh": "我慢慢写，一天比一天好。",
+      "en": "I wrote slowly, and got better day by day.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "慢慢",
+          "py": "màn màn",
           "mn": "slowly",
           "bonus": true
         },
         {
-          "zh": "地",
-          "py": "de",
-          "mn": "(before how it is done)"
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
         },
         {
-          "zh": "变",
-          "py": "biàn",
-          "mn": "became",
-          "bonus": true
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "比",
+          "py": "bǐ",
+          "mn": "than"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
         },
         {
           "zh": "好",
           "py": "hǎo",
-          "mn": "good"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
+          "mn": "better"
         },
         {
           "t": "p",
@@ -312,102 +616,109 @@
       ]
     },
     {
-      "zh": "老师看了说：“比昨天好。”",
-      "en": "The teacher looked and said: \"Better than yesterday.\""
-    },
-    {
-      "zh": "我把写好的字给妈妈看。",
-      "en": "I showed the finished characters to my mother."
-    },
-    {
-      "zh": "她说很好看，就放在她的房间里。",
-      "en": "She said they looked lovely and put them up in her room."
-    },
-    {
-      "zh": "现在我很喜欢写汉字，每个字都很美。",
-      "en": "Now I love writing Chinese characters; every character is beautiful.",
+      "zh": "我把写得最好的字给妈妈看，她放在了她的房间里。",
+      "en": "I showed Mum my best character, and she put it up in her room.",
       "seg": [
-        {
-          "zh": "现",
-          "py": "xiàn",
-          "mn": "now; to appear"
-        },
-        {
-          "zh": "在",
-          "py": "zài",
-          "mn": "at; in"
-        },
         {
           "zh": "我",
           "py": "wǒ",
           "mn": "I; me"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "喜",
-          "py": "xǐ",
-          "mn": "to like; joy",
-          "bonus": true
-        },
-        {
-          "zh": "欢",
-          "py": "huān",
-          "mn": "joy",
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)",
           "bonus": true
         },
         {
           "zh": "写",
           "py": "xiě",
-          "mn": "write"
+          "mn": "to write"
         },
         {
-          "zh": "汉",
-          "py": "Hàn",
-          "mn": "Han; Chinese"
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
+          "bonus": true
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
         },
         {
           "zh": "字",
           "py": "zì",
-          "mn": "character; writing"
+          "mn": "character"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "to give"
+        },
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "每",
-          "py": "měi",
-          "mn": "every"
+          "zh": "她",
+          "py": "tā",
+          "mn": "she"
         },
         {
-          "zh": "个",
-          "py": "gè",
-          "mn": "(counting word)"
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
         },
         {
-          "zh": "字",
-          "py": "zì",
-          "mn": "character; writing"
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
         },
         {
-          "zh": "都",
-          "py": "dōu",
-          "mn": "all"
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "zh": "她",
+          "py": "tā",
+          "mn": "she; her"
         },
         {
-          "zh": "美",
-          "py": "měi",
-          "mn": "beautiful",
-          "bonus": true
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "房间",
+          "py": "fáng jiān",
+          "mn": "room"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
         },
         {
           "t": "p",

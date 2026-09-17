@@ -6,24 +6,89 @@
   "en": "The Grand Canal",
   "names": {
     "隋朝": {
-      "py": "Suícháo",
-      "en": "Sui Dynasty"
+      "py": "Suí Cháo",
+      "en": "the Sui dynasty"
     },
     "大运河": {
       "py": "Dà Yùnhé",
-      "en": "Grand Canal"
+      "en": "the Grand Canal"
     }
   },
   "sents": [
     {
-      "zh": "隋朝的皇帝想建一条很长的河。",
-      "en": "The Sui Dynasty emperor wanted to build a very long canal.",
+      "zh": "中国很大，北边和南边离得很远。",
+      "en": "China is big, and the north and south are far apart.",
       "seg": [
         {
-          "t": "n",
-          "zh": "隋朝",
-          "py": "Suícháo",
-          "mn": "Sui Dynasty"
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "离",
+          "py": "lí",
+          "mn": "apart",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "南边的田里种很多稻子。",
+      "en": "The fields in the south grow a lot of rice.",
+      "seg": [
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
         },
         {
           "zh": "的",
@@ -31,34 +96,254 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "皇",
-          "py": "huáng",
+          "zh": "田",
+          "py": "tián",
+          "mn": "field",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "to grow",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "a lot of"
+        },
+        {
+          "zh": "稻子",
+          "py": "dào zi",
+          "mn": "rice plants",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "可是北边的人吃不到南边的米，因为路太远了。",
+      "en": "But people in the north could not get rice from the south, because the road was too far.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "吃不到",
+          "py": "chī bu dào",
+          "mn": "cannot get to eat",
+          "bonus": true
+        },
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "米",
+          "py": "mǐ",
+          "mn": "rice",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "走路要很多天，路上也不安全。",
+      "en": "It took many days on foot, and the road was not safe.",
+      "seg": [
+        {
+          "zh": "走路",
+          "py": "zǒu lù",
+          "mn": "to walk"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to need"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "days"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "安全",
+          "py": "ān quán",
+          "mn": "safe",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "隋朝的皇帝想到了一个办法：建一条很长的河。",
+      "en": "The Sui emperor thought of a plan: dig a very long canal.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "隋朝",
+          "py": "Suí Cháo",
+          "mn": "the Sui dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
           "mn": "emperor",
           "bonus": true
         },
         {
-          "zh": "帝",
-          "py": "dì",
-          "mn": "emperor",
+          "zh": "想到",
+          "py": "xiǎng dào",
+          "mn": "to think of",
           "bonus": true
         },
         {
-          "zh": "想",
-          "py": "xiǎng",
-          "mn": "wanted",
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "办法",
+          "py": "bàn fǎ",
+          "mn": "plan; way",
           "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "："
         },
         {
           "zh": "建",
           "py": "jiàn",
-          "mn": "build",
+          "mn": "to build; to dig",
           "bonus": true
         },
         {
           "zh": "一",
           "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "mn": "one"
         },
         {
           "zh": "条",
@@ -74,17 +359,18 @@
         {
           "zh": "长",
           "py": "cháng",
-          "mn": "long"
+          "mn": "long",
+          "bonus": true
         },
         {
           "zh": "的",
           "py": "de",
-          "mn": "of; belonging to"
+          "mn": "(makes a describing word)"
         },
         {
           "zh": "河",
           "py": "hé",
-          "mn": "canal",
+          "mn": "canal; river",
           "bonus": true
         },
         {
@@ -94,17 +380,45 @@
       ]
     },
     {
-      "zh": "那时候，北方和南方来往很不方便。",
-      "en": "At that time, travel between north and south was very difficult."
-    },
-    {
-      "zh": "走一次要很多天。",
-      "en": "One journey took many days."
-    },
-    {
-      "zh": "很多人一起工作，建了大运河。",
-      "en": "Many people worked together and built the Grand Canal.",
+      "zh": "河从南边一直到北边，很多人做了很多年。",
+      "en": "The canal ran from the south all the way to the north, and many people worked on it for many years.",
       "seg": [
+        {
+          "zh": "河",
+          "py": "hé",
+          "mn": "canal; river",
+          "bonus": true
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all the way",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
         {
           "zh": "很",
           "py": "hěn",
@@ -118,44 +432,307 @@
         {
           "zh": "人",
           "py": "rén",
-          "mn": "person"
+          "mn": "people"
         },
         {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one",
-          "bonus": true
-        },
-        {
-          "zh": "起",
-          "py": "qǐ",
-          "mn": "to rise; to get up",
-          "bonus": true
-        },
-        {
-          "zh": "工",
-          "py": "gōng",
-          "mn": "work"
-        },
-        {
-          "zh": "作",
+          "zh": "做",
           "py": "zuò",
-          "mn": "to do; work"
+          "mn": "to work"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "做完以后，船可以从南边开到北边。",
+      "en": "When it was done, boats could sail from the south to the north.",
+      "seg": [
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to work"
+        },
+        {
+          "zh": "完",
+          "py": "wán",
+          "mn": "to finish",
+          "bonus": true
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after",
+          "bonus": true
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "建",
-          "py": "jiàn",
-          "mn": "built",
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boat",
+          "bonus": true
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can",
+          "bonus": true
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "开",
+          "py": "kāi",
+          "mn": "to sail"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "商人坐船，把米和很多东西送到北边。",
+      "en": "Merchants took rice and many other things north by boat.",
+      "seg": [
+        {
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchant",
+          "bonus": true
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to ride"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boat",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)",
+          "bonus": true
+        },
+        {
+          "zh": "米",
+          "py": "mǐ",
+          "mn": "rice",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "送",
+          "py": "sòng",
+          "mn": "to send"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "船比走路快，东西也便宜了，河的两边有了很多城。",
+      "en": "A boat is faster than walking, so goods got cheaper, and towns grew up on both banks.",
+      "seg": [
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boat",
+          "bonus": true
+        },
+        {
+          "zh": "比",
+          "py": "bǐ",
+          "mn": "than"
+        },
+        {
+          "zh": "走路",
+          "py": "zǒu lù",
+          "mn": "walking"
+        },
+        {
+          "zh": "快",
+          "py": "kuài",
+          "mn": "fast"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "便宜",
+          "py": "pián yi",
+          "mn": "cheap",
           "bonus": true
         },
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "河",
+          "py": "hé",
+          "mn": "canal; river",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "两边",
+          "py": "liǎng biān",
+          "mn": "both sides",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "towns",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "人们叫它大运河，一千四百年过去了，今天人们还在用它。",
+      "en": "People call it the Grand Canal; fourteen hundred years have passed, and people still use it today.",
+      "seg": [
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
+          "bonus": true
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to call"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
           "bonus": true
         },
         {
@@ -166,238 +743,76 @@
         },
         {
           "t": "p",
-          "tx": "。"
-        }
-      ]
-    },
-    {
-      "zh": "这个工作很累，用了很多年。",
-      "en": "The work was hard and took many years."
-    },
-    {
-      "zh": "大运河从北方到南方，很长很长。",
-      "en": "The Grand Canal goes from north to south — very, very long.",
-      "seg": [
-        {
-          "t": "n",
-          "zh": "大运河",
-          "py": "Dà Yùnhé",
-          "mn": "Grand Canal"
+          "tx": "，"
         },
         {
-          "zh": "从",
-          "py": "cóng",
-          "mn": "from"
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
         },
         {
-          "zh": "北",
-          "py": "běi",
-          "mn": "north",
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand",
           "bonus": true
         },
         {
-          "zh": "方",
-          "py": "fāng",
-          "mn": "direction; square",
+          "zh": "四百",
+          "py": "sì bǎi",
+          "mn": "four hundred",
           "bonus": true
         },
         {
-          "zh": "到",
-          "py": "dào",
-          "mn": "to arrive"
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
         },
         {
-          "zh": "南",
-          "py": "nán",
-          "mn": "south",
+          "zh": "过去",
+          "py": "guò qù",
+          "mn": "to pass (of time)",
           "bonus": true
         },
         {
-          "zh": "方",
-          "py": "fāng",
-          "mn": "direction; square",
-          "bonus": true
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
         },
         {
-          "zh": "长",
-          "py": "cháng",
-          "mn": "long"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "长",
-          "py": "cháng",
-          "mn": "long"
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
-    },
-    {
-      "zh": "商人坐船在大运河上运送货物。",
-      "en": "Merchants sailed boats on the Canal to transport goods.",
-      "seg": [
-        {
-          "zh": "商",
-          "py": "shāng",
-          "mn": "trade; merchant"
-        },
-        {
-          "zh": "人",
-          "py": "rén",
-          "mn": "person"
-        },
-        {
-          "zh": "坐",
-          "py": "zuò",
-          "mn": "sat on",
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
           "bonus": true
-        },
-        {
-          "zh": "船",
-          "py": "chuán",
-          "mn": "boats",
-          "bonus": true
-        },
-        {
-          "zh": "在",
-          "py": "zài",
-          "mn": "at; in"
-        },
-        {
-          "t": "n",
-          "zh": "大运河",
-          "py": "Dà Yùnhé",
-          "mn": "Grand Canal"
-        },
-        {
-          "zh": "上",
-          "py": "shàng",
-          "mn": "on"
-        },
-        {
-          "zh": "运",
-          "py": "yùn",
-          "mn": "to move; to transport",
-          "bonus": true
-        },
-        {
-          "zh": "送",
-          "py": "sòng",
-          "mn": "to send; to see off",
-          "bonus": true
-        },
-        {
-          "zh": "货",
-          "py": "huò",
-          "mn": "goods",
-          "bonus": true
-        },
-        {
-          "zh": "物",
-          "py": "wù",
-          "mn": "thing",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
-    },
-    {
-      "zh": "南方的米也可以送到北方。",
-      "en": "Rice from the south could now be sent north."
-    },
-    {
-      "zh": "河边慢慢有了很多城。",
-      "en": "Over time many cities grew up along the canal."
-    },
-    {
-      "zh": "今天，大运河还在，人们还在用它。",
-      "en": "Today, the Canal still exists and people are still using it.",
-      "seg": [
-        {
-          "zh": "今",
-          "py": "jīn",
-          "mn": "now"
-        },
-        {
-          "zh": "天",
-          "py": "tiān",
-          "mn": "day; sky"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "t": "n",
-          "zh": "大运河",
-          "py": "Dà Yùnhé",
-          "mn": "Grand Canal"
         },
         {
           "zh": "还",
           "py": "hái",
-          "mn": "still",
-          "bonus": true
+          "mn": "still"
         },
         {
           "zh": "在",
           "py": "zài",
-          "mn": "at; in"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "人",
-          "py": "rén",
-          "mn": "person"
-        },
-        {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
-        },
-        {
-          "zh": "还",
-          "py": "hái",
-          "mn": "still",
-          "bonus": true
-        },
-        {
-          "zh": "在",
-          "py": "zài",
-          "mn": "at; in"
+          "mn": "(is doing)"
         },
         {
           "zh": "用",
           "py": "yòng",
-          "mn": "using",
-          "bonus": true
+          "mn": "to use"
         },
         {
           "zh": "它",
           "py": "tā",
-          "mn": "it"
+          "mn": "it",
+          "bonus": true
         },
         {
           "t": "p",

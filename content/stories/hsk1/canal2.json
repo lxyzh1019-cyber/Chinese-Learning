@@ -3,23 +3,17 @@
   "did": 11,
   "level": 1,
   "title": "坐船游玩",
-  "en": "Boat Trip Fun",
+  "en": "A Day on the Boat",
   "names": {},
   "sents": [
     {
-      "zh": "暑假，爸爸带我去坐船。",
-      "en": "During summer holiday, Dad took me for a boat ride.",
+      "zh": "上个月，爸爸妈妈带我去坐船。",
+      "en": "Last month, Mum and Dad took me out on a boat.",
       "seg": [
         {
-          "zh": "暑",
-          "py": "shǔ",
-          "mn": "summer heat",
-          "bonus": true
-        },
-        {
-          "zh": "假",
-          "py": "jià",
-          "mn": "holiday",
+          "zh": "上个月",
+          "py": "shàng ge yuè",
+          "mn": "last month",
           "bonus": true
         },
         {
@@ -27,21 +21,19 @@
           "tx": "，"
         },
         {
-          "zh": "爸",
-          "py": "bābā",
-          "mn": "father",
-          "bonus": true
+          "zh": "爸爸",
+          "py": "bà ba",
+          "mn": "father"
         },
         {
-          "zh": "爸",
-          "py": "bābā",
-          "mn": "father",
-          "bonus": true
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
         },
         {
           "zh": "带",
           "py": "dài",
-          "mn": "took",
+          "mn": "to take (someone)",
           "bonus": true
         },
         {
@@ -52,13 +44,12 @@
         {
           "zh": "去",
           "py": "qù",
-          "mn": "go"
+          "mn": "to go"
         },
         {
           "zh": "坐",
           "py": "zuò",
-          "mn": "ride",
-          "bonus": true
+          "mn": "to ride"
         },
         {
           "zh": "船",
@@ -73,13 +64,264 @@
       ]
     },
     {
-      "zh": "早上我们到了河边，船很大。",
-      "en": "We reached the river in the morning; the boat was big."
+      "zh": "我们早上六点就起床了，因为要坐很久的车。",
+      "en": "We got up at six, because it was a long drive.",
+      "seg": [
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
+        },
+        {
+          "zh": "六",
+          "py": "liù",
+          "mn": "six"
+        },
+        {
+          "zh": "点",
+          "py": "diǎn",
+          "mn": "o'clock"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "起床",
+          "py": "qǐ chuáng",
+          "mn": "to get up"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to need"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to ride"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "车",
+          "py": "chē",
+          "mn": "car"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "船在水上慢慢地走，很舒服。",
-      "en": "The boat moved slowly on the water — very comfortable.",
+      "zh": "到了河边，我看见很多船，我们的船不大，可是很干净。",
+      "en": "At the river I saw many boats; ours was small but very clean.",
       "seg": [
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "河边",
+          "py": "hé biān",
+          "mn": "riverside",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "看见",
+          "py": "kàn jiàn",
+          "mn": "to see"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boats",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we; our"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boat",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "干净",
+          "py": "gān jìng",
+          "mn": "clean"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "船开的时候，我有一点怕。",
+      "en": "When the boat set off, I was a little scared.",
+      "seg": [
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boat",
+          "bonus": true
+        },
+        {
+          "zh": "开",
+          "py": "kāi",
+          "mn": "to set off"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "一点",
+          "py": "yì diǎn",
+          "mn": "a little",
+          "bonus": true
+        },
+        {
+          "zh": "怕",
+          "py": "pà",
+          "mn": "afraid",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "可是船在水上走得很慢，很舒服，我就不怕了。",
+      "en": "But the boat moved slowly and gently on the water, so I was not scared any more.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
+          "bonus": true
+        },
         {
           "zh": "船",
           "py": "chuán",
@@ -89,7 +331,7 @@
         {
           "zh": "在",
           "py": "zài",
-          "mn": "at; in"
+          "mn": "on"
         },
         {
           "zh": "水",
@@ -102,26 +344,25 @@
           "mn": "on"
         },
         {
-          "zh": "慢",
-          "py": "màn",
-          "mn": "slowly",
-          "bonus": true
-        },
-        {
-          "zh": "慢",
-          "py": "màn",
-          "mn": "slowly",
-          "bonus": true
-        },
-        {
-          "zh": "地",
-          "py": "de",
-          "mn": "(before how it is done)"
-        },
-        {
           "zh": "走",
           "py": "zǒu",
-          "mn": "moved"
+          "mn": "to move"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "慢",
+          "py": "màn",
+          "mn": "slow"
         },
         {
           "t": "p",
@@ -133,16 +374,40 @@
           "mn": "very"
         },
         {
-          "zh": "舒",
-          "py": "shū",
-          "mn": "at ease",
+          "zh": "舒服",
+          "py": "shū fu",
+          "mn": "comfortable",
           "bonus": true
         },
         {
-          "zh": "服",
-          "py": "fù",
-          "mn": "clothes; to serve",
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "怕",
+          "py": "pà",
+          "mn": "afraid",
           "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
         },
         {
           "t": "p",
@@ -152,11 +417,49 @@
     },
     {
       "zh": "风吹过来，一点也不热。",
-      "en": "A breeze came across and it was not hot at all."
+      "en": "A breeze came across, and it was not hot at all.",
+      "seg": [
+        {
+          "zh": "风",
+          "py": "fēng",
+          "mn": "wind"
+        },
+        {
+          "zh": "吹",
+          "py": "chuī",
+          "mn": "to blow",
+          "bonus": true
+        },
+        {
+          "zh": "过来",
+          "py": "guò lái",
+          "mn": "over",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一点也不",
+          "py": "yì diǎn yě bù",
+          "mn": "not at all",
+          "bonus": true
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "mn": "hot"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "我看到了很多鱼和鸟。",
-      "en": "I saw many fish and birds.",
+      "zh": "我看见水里有很多鱼，天上有几只鸟一直跟着我们。",
+      "en": "I saw many fish in the water, and a few birds in the sky followed us the whole way.",
       "seg": [
         {
           "zh": "我",
@@ -164,20 +467,24 @@
           "mn": "I; me"
         },
         {
-          "zh": "看",
-          "py": "kàn",
-          "mn": "saw"
+          "zh": "看见",
+          "py": "kàn jiàn",
+          "mn": "to see"
         },
         {
-          "zh": "到",
-          "py": "dào",
-          "mn": "to arrive"
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
         },
         {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
         },
         {
           "zh": "很",
@@ -196,9 +503,30 @@
           "bonus": true
         },
         {
-          "zh": "和",
-          "py": "hé",
-          "mn": "and"
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "天上",
+          "py": "tiān shàng",
+          "mn": "in the sky",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "几",
+          "py": "jī",
+          "mn": "a few"
+        },
+        {
+          "zh": "只",
+          "py": "zhī",
+          "mn": "(counting word, animals)",
+          "bonus": true
         },
         {
           "zh": "鸟",
@@ -207,68 +535,119 @@
           "bonus": true
         },
         {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all the way",
+          "bonus": true
+        },
+        {
+          "zh": "跟",
+          "py": "gēn",
+          "mn": "to follow"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "us"
+        },
+        {
           "t": "p",
           "tx": "。"
         }
       ]
     },
     {
-      "zh": "鱼在水里游，鸟在天上飞。",
-      "en": "Fish swam in the water and birds flew in the sky."
-    },
-    {
-      "zh": "妈妈给我们准备好吃的午饭。",
-      "en": "Mum prepared a delicious lunch for us.",
+      "zh": "中午，妈妈拿出她早上做的饭，我们一边吃，一边看两边的山。",
+      "en": "At noon, Mum took out the food she had made that morning, and we ate while looking at the hills on both sides.",
       "seg": [
         {
-          "zh": "妈",
-          "py": "māmā",
-          "mn": "mother",
+          "zh": "中午",
+          "py": "zhōng wǔ",
+          "mn": "noon"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "拿出",
+          "py": "ná chū",
+          "mn": "to take out",
           "bonus": true
         },
         {
-          "zh": "妈",
-          "py": "māmā",
-          "mn": "mother",
-          "bonus": true
+          "zh": "她",
+          "py": "tā",
+          "mn": "she"
         },
         {
-          "zh": "给",
-          "py": "gěi",
-          "mn": "prepared",
-          "bonus": true
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
         },
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to make"
         },
         {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
         },
         {
-          "zh": "准",
-          "py": "zhǔn",
-          "mn": "to allow; accurate",
-          "bonus": true
+          "zh": "饭",
+          "py": "fàn",
+          "mn": "food"
         },
         {
-          "zh": "备",
-          "py": "bèi",
-          "mn": "to prepare",
-          "bonus": true
+          "t": "p",
+          "tx": "，"
         },
         {
-          "zh": "好",
-          "py": "hǎo",
-          "mn": "good"
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "一边",
+          "py": "yī biān",
+          "mn": "while"
         },
         {
           "zh": "吃",
           "py": "chī",
-          "mn": "eat"
+          "mn": "to eat"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一边",
+          "py": "yī biān",
+          "mn": "while"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look at"
+        },
+        {
+          "zh": "两边",
+          "py": "liǎng biān",
+          "mn": "both sides",
+          "bonus": true
         },
         {
           "zh": "的",
@@ -276,15 +655,59 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "午",
-          "py": "wǔ",
-          "mn": "midday",
+          "zh": "山",
+          "py": "shān",
+          "mn": "hills"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "下午三点，船回到了河边。",
+      "en": "At three in the afternoon, the boat came back to the bank.",
+      "seg": [
+        {
+          "zh": "下午",
+          "py": "xià wǔ",
+          "mn": "afternoon"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "点",
+          "py": "diǎn",
+          "mn": "o'clock"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boat",
           "bonus": true
         },
         {
-          "zh": "饭",
-          "py": "fàn",
-          "mn": "cooked rice; a meal",
+          "zh": "回到",
+          "py": "huí dào",
+          "mn": "to return to"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "河边",
+          "py": "hé biān",
+          "mn": "riverside",
           "bonus": true
         },
         {
@@ -294,16 +717,8 @@
       ]
     },
     {
-      "zh": "我们在船上一边吃一边说话。",
-      "en": "On the boat we ate and talked at the same time."
-    },
-    {
-      "zh": "晚上，船回来了。",
-      "en": "In the evening the boat came back."
-    },
-    {
-      "zh": "这一天，我玩得很开心，很难忘。",
-      "en": "That day I had so much fun — very unforgettable.",
+      "zh": "这一天过得很快，我到现在还记得。",
+      "en": "The day went by fast, and I still remember it now.",
       "seg": [
         {
           "zh": "这",
@@ -313,13 +728,33 @@
         {
           "zh": "一",
           "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "mn": "one"
         },
         {
           "zh": "天",
           "py": "tiān",
           "mn": "day"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "to pass"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "快",
+          "py": "kuài",
+          "mn": "fast"
         },
         {
           "t": "p",
@@ -331,51 +766,24 @@
           "mn": "I; me"
         },
         {
-          "zh": "玩",
-          "py": "wán",
-          "mn": "to play",
-          "bonus": true
+          "zh": "到",
+          "py": "dào",
+          "mn": "until"
         },
         {
-          "zh": "得",
-          "py": "de",
-          "mn": "(before how it is done)"
+          "zh": "现在",
+          "py": "xiàn zài",
+          "mn": "now"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
         },
         {
-          "zh": "开",
-          "py": "kāi",
-          "mn": "to open; to start"
-        },
-        {
-          "zh": "心",
-          "py": "xīn",
-          "mn": "heart"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "难",
-          "py": "nán",
-          "mn": "hard; difficult",
-          "bonus": true
-        },
-        {
-          "zh": "忘",
-          "py": "wàng",
-          "mn": "to forget",
-          "bonus": true
+          "zh": "记得",
+          "py": "jì de",
+          "mn": "to remember"
         },
         {
           "t": "p",

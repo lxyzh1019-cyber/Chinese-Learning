@@ -5,62 +5,62 @@
   "title": "HSK1 Gate 10 · Eastern Jin",
   "explanationEn": "Gate 10: Eastern Jin. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第10关：东晋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "东晋有一位诗人，他很喜欢在田里工作。他以前也做过官。可是他不喜欢那样的日子。他不喜欢做大官，他只爱大自然。",
-  "passageEn": "Eastern Jin had a poet who loved working in the fields. He had once been an official. But he did not like that kind of life. He didn't want to be a big official — he only loved nature.",
+  "passage": "晋朝有一位诗人，叫陶渊明。他年轻的时候做过官。做官有钱，也有名。可是他不喜欢，因为做官的人每天都要说不想说的话。",
+  "passageEn": "In the Jin dynasty there was a poet called Tao Yuanming. When he was young, he was an official. An official has money, and a name. But he did not like it, because an official has to say things every day that he does not want to say.",
   "keyVocab": [
     {
-      "zh": "工",
-      "pinyin": "gōng",
-      "en": "work"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "作",
-      "pinyin": "zuò",
-      "en": "to do; work"
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
     },
     {
-      "zh": "以前",
-      "pinyin": "yǐ qián",
-      "en": "before"
+      "zh": "时候",
+      "pinyin": "shíhou",
+      "en": "time"
     },
     {
       "zh": "做",
       "pinyin": "zuò",
-      "en": "do"
+      "en": "to be"
     },
     {
       "zh": "过",
       "pinyin": "guò",
-      "en": "pass"
+      "en": "(once did)"
     },
     {
-      "zh": "官",
-      "pinyin": "guān",
-      "en": "official"
+      "zh": "钱",
+      "pinyin": "qián",
+      "en": "money"
     },
     {
-      "zh": "可是",
-      "pinyin": "kě shì",
-      "en": "but; however"
+      "zh": "有名",
+      "pinyin": "yǒu míng",
+      "en": "famous"
     },
     {
       "zh": "喜欢",
       "pinyin": "xǐ huan",
-      "en": "to like; to be fond of"
+      "en": "to like"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "Eastern Jin had a poet who loved working in the fields.",
-      "answer": "东晋有一位诗人，他很喜欢在田里工作。"
+      "answerEn": "In the Jin dynasty there was a poet called Tao Yuanming.",
+      "answer": "晋朝有一位诗人，叫陶渊明。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "But he did not like that kind of life.",
-      "answer": "可是他不喜欢那样的日子。"
+      "answerEn": "An official has money, and a name.",
+      "answer": "做官有钱，也有名。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,10 +74,10 @@
       "id": "hsk1_gate_10_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "工",
-      "pinyin": "gōng",
-      "promptEn": "In the story, what does 工 mean?",
-      "prompt": "短文里的“工”是什么意思？",
+      "zh": "一",
+      "pinyin": "yī",
+      "promptEn": "In the story, what does 一 mean?",
+      "prompt": "短文里的“一”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -89,7 +89,7 @@
         },
         {
           "id": "o3",
-          "text": "work"
+          "text": "one"
         },
         {
           "id": "o4",
@@ -97,17 +97,17 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "工 (gōng) means \"work\" — you can find it in the passage above.",
-      "explanation": "“工”（gōng）的意思是“work”，就在上面的短文里。"
+      "explanationEn": "一 (yī) means \"one\" — you can find it in the passage above.",
+      "explanation": "“一”（yī）的意思是“one”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_10_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "作",
-      "pinyin": "zuò",
-      "promptEn": "In the story, what does 作 mean?",
-      "prompt": "短文里的“作”是什么意思？",
+      "zh": "叫",
+      "pinyin": "jiào",
+      "promptEn": "In the story, what does 叫 mean?",
+      "prompt": "短文里的“叫”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -115,7 +115,7 @@
         },
         {
           "id": "o2",
-          "text": "to do; work"
+          "text": "called"
         },
         {
           "id": "o3",
@@ -127,22 +127,22 @@
         }
       ],
       "answerId": "o2",
-      "explanationEn": "作 (zuò) means \"to do; work\" — you can find it in the passage above.",
-      "explanation": "“作”（zuò）的意思是“to do; work”，就在上面的短文里。"
+      "explanationEn": "叫 (jiào) means \"called\" — you can find it in the passage above.",
+      "explanation": "“叫”（jiào）的意思是“called”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_10_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "东晋有一位诗人，他很喜欢在田里工作。",
-      "targetZh": "工",
-      "targetPinyin": "gōng",
+      "zh": "晋朝有一位诗人，叫陶渊明。",
+      "targetZh": "一",
+      "targetPinyin": "yī",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "Eastern Jin had a poet who loved working in the fields."
+          "text": "In the Jin dynasty there was a poet called Tao Yuanming."
         },
         {
           "id": "o2",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o1",
-      "explanationEn": "\"东晋有一位诗人，他很喜欢在田里工作。\" means \"Eastern Jin had a poet who loved working in the fields.\".",
-      "explanation": "“东晋有一位诗人，他很喜欢在田里工作。”的意思是“Eastern Jin had a poet who loved working in the fields.”。"
+      "explanationEn": "\"晋朝有一位诗人，叫陶渊明。\" means \"In the Jin dynasty there was a poet called Tao Yuanming.\".",
+      "explanation": "“晋朝有一位诗人，叫陶渊明。”的意思是“In the Jin dynasty there was a poet called Tao Yuanming.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Eastern Jin in two or three short Chinese sentences. Use words from the list above.",

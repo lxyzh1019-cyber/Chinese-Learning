@@ -3,74 +3,83 @@
   "did": 9,
   "level": 1,
   "title": "写字高手",
-  "en": "Master of Calligraphy",
+  "en": "Master of the Brush",
   "names": {
-    "西晋": {
-      "py": "Xī Jìn",
-      "en": "Western Jin"
-    },
     "王羲之": {
       "py": "Wáng Xīzhī",
       "en": "Wang Xizhi"
     },
     "书圣": {
       "py": "Shū Shèng",
-      "en": "\"Sage of Calligraphy\", a title"
+      "en": "Sage of Calligraphy"
     },
-    "圣人": {
-      "py": "shèngrén",
-      "en": "a sage"
+    "晋朝": {
+      "py": "Jìn Cháo",
+      "en": "the Jin dynasty"
     }
   },
   "sents": [
     {
-      "zh": "西晋有一位很有名的人，叫王羲之。",
-      "en": "Western Jin had a very famous person named Wang Xizhi.",
+      "zh": "一千六百多年以前，晋朝有一个人，叫王羲之。",
+      "en": "More than sixteen hundred years ago, in the Jin dynasty, there was a man called Wang Xizhi.",
       "seg": [
         {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand",
+          "bonus": true
+        },
+        {
+          "zh": "六百",
+          "py": "liù bǎi",
+          "mn": "six hundred",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
           "t": "n",
-          "zh": "西晋",
-          "py": "Xī Jìn",
-          "mn": "Western Jin"
+          "zh": "晋朝",
+          "py": "Jìn Cháo",
+          "mn": "the Jin dynasty"
         },
         {
           "zh": "有",
           "py": "yǒu",
-          "mn": "to have"
+          "mn": "there was"
         },
         {
           "zh": "一",
           "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "mn": "one"
         },
         {
-          "zh": "位",
-          "py": "wèi",
-          "mn": "(counting word for people, polite)",
-          "bonus": true
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "to have",
-          "bonus": true
-        },
-        {
-          "zh": "名",
-          "py": "míng",
-          "mn": "name",
-          "bonus": true
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "of; belonging to"
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
         },
         {
           "zh": "人",
@@ -84,8 +93,7 @@
         {
           "zh": "叫",
           "py": "jiào",
-          "mn": "named",
-          "bonus": true
+          "mn": "called"
         },
         {
           "t": "n",
@@ -101,11 +109,7 @@
     },
     {
       "zh": "他很小的时候就开始学写字。",
-      "en": "He began learning to write when he was very young."
-    },
-    {
-      "zh": "他每天练习写字，从不停。",
-      "en": "He practiced writing every day, never stopping.",
+      "en": "He began learning to write when he was very small.",
       "seg": [
         {
           "zh": "他",
@@ -113,76 +117,14 @@
           "mn": "he"
         },
         {
-          "zh": "每",
-          "py": "měi",
-          "mn": "every"
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
         },
         {
-          "zh": "天",
-          "py": "tiān",
-          "mn": "day"
-        },
-        {
-          "zh": "练",
-          "py": "liàn",
-          "mn": "to practise",
-          "bonus": true
-        },
-        {
-          "zh": "习",
-          "py": "xí",
-          "mn": "to practise",
-          "bonus": true
-        },
-        {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "write"
-        },
-        {
-          "zh": "字",
-          "py": "zì",
-          "mn": "character; writing"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "从",
-          "py": "cóng",
-          "mn": "never",
-          "bonus": true
-        },
-        {
-          "zh": "不",
-          "py": "bù",
-          "mn": "not"
-        },
-        {
-          "zh": "停",
-          "py": "tíng",
-          "mn": "stop",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "。"
-        }
-      ]
-    },
-    {
-      "zh": "他写完字就去洗笔，水都变黑了。",
-      "en": "He washed his brush after writing, until the water turned black."
-    },
-    {
-      "zh": "他的字写得非常美。",
-      "en": "His characters were written extremely beautifully.",
-      "seg": [
-        {
-          "zh": "他",
-          "py": "tā",
-          "mn": "his"
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
         },
         {
           "zh": "的",
@@ -190,34 +132,30 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "字",
-          "py": "zì",
-          "mn": "character; writing"
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "written"
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
         },
         {
-          "zh": "得",
-          "py": "de",
-          "mn": "(before how it is done)"
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin",
+          "bonus": true
         },
         {
-          "zh": "非",
-          "py": "fēi",
-          "mn": "not"
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
         },
         {
-          "zh": "常",
-          "py": "cháng",
-          "mn": "often; usual"
-        },
-        {
-          "zh": "美",
-          "py": "měi",
-          "mn": "beautiful",
+          "zh": "写字",
+          "py": "xiě zì",
+          "mn": "to write",
           "bonus": true
         },
         {
@@ -227,24 +165,664 @@
       ]
     },
     {
-      "zh": "人们说他是“书圣”，意思是写字的圣人。",
-      "en": "People called him the \"Sage of Calligraphy\" — a saint of writing."
+      "zh": "他每天都练习，一天也没有停过。",
+      "en": "He practised every day and never stopped for a single day.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "练习",
+          "py": "liàn xí",
+          "mn": "to practise",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also; even"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "停",
+          "py": "tíng",
+          "mn": "to stop",
+          "bonus": true
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(ever)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他和朋友在山里写下了很有名的字。",
-      "en": "He and his friends wrote very famous characters in the mountains."
+      "zh": "写完字，他就去河边洗笔。",
+      "en": "After writing, he went to the river to wash his brush.",
+      "seg": [
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "完",
+          "py": "wán",
+          "mn": "to finish",
+          "bonus": true
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "河边",
+          "py": "hé biān",
+          "mn": "riverside",
+          "bonus": true
+        },
+        {
+          "zh": "洗",
+          "py": "xǐ",
+          "mn": "to wash"
+        },
+        {
+          "zh": "笔",
+          "py": "bǐ",
+          "mn": "brush",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "那些字到现在还有人看。",
-      "en": "People still look at those characters today."
+      "zh": "他洗了很多年，河里的水都变黑了。",
+      "en": "He washed it for so many years that the water in the river turned black.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "洗",
+          "py": "xǐ",
+          "mn": "to wash"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "河",
+          "py": "hé",
+          "mn": "river",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all; even"
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "to turn",
+          "bonus": true
+        },
+        {
+          "zh": "黑",
+          "py": "hēi",
+          "mn": "black",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "后来的人都想学他的字。",
-      "en": "People in later times all wanted to learn his hand."
+      "zh": "他写的字非常好看，有的像风，有的像水。",
+      "en": "The characters he wrote were beautiful; some were like wind, some like water.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the ones that)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "zh": "非常",
+          "py": "fēi cháng",
+          "mn": "extremely"
+        },
+        {
+          "zh": "好看",
+          "py": "hǎo kàn",
+          "mn": "beautiful"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "像",
+          "py": "xiàng",
+          "mn": "like",
+          "bonus": true
+        },
+        {
+          "zh": "风",
+          "py": "fēng",
+          "mn": "wind"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "像",
+          "py": "xiàng",
+          "mn": "like",
+          "bonus": true
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "今天，人们还学习他写字的方法。",
-      "en": "Today, people still learn his method of writing."
+      "zh": "所以人们叫他“书圣”。",
+      "en": "So people called him the \"Sage of Calligraphy\".",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so",
+          "bonus": true
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
+          "bonus": true
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to call"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "t": "n",
+          "zh": "书圣",
+          "py": "Shū Shèng",
+          "mn": "Sage of Calligraphy"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "有一年春天，他和很多朋友在山里见面，一起写诗。",
+      "en": "One spring, he met many friends in the mountains, and they wrote poems together.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "year"
+        },
+        {
+          "zh": "春天",
+          "py": "chūn tiān",
+          "mn": "spring",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "with"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friends"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "见面",
+          "py": "jiàn miàn",
+          "mn": "to meet"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poems",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他把大家的诗放在一起，还在前面写了几句话。",
+      "en": "He put everyone's poems together and wrote a few lines at the front.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)",
+          "bonus": true
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poems",
+          "bonus": true
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "also"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "前面",
+          "py": "qián miàn",
+          "mn": "the front",
+          "bonus": true
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "几",
+          "py": "jī",
+          "mn": "a few"
+        },
+        {
+          "zh": "句",
+          "py": "jù",
+          "mn": "(counting word, sentences)",
+          "bonus": true
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "那几句话成了中国最有名的字，今天人们还在学他写字的方法。",
+      "en": "Those few lines became the most famous writing in China, and today people still learn his way of writing.",
+      "seg": [
+        {
+          "zh": "那",
+          "py": "nà",
+          "mn": "those"
+        },
+        {
+          "zh": "几",
+          "py": "jī",
+          "mn": "a few"
+        },
+        {
+          "zh": "句",
+          "py": "jù",
+          "mn": "(counting word, sentences)",
+          "bonus": true
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "zh": "成",
+          "py": "chéng",
+          "mn": "to become",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "有名",
+          "py": "yǒu míng",
+          "mn": "famous"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "writing"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
+          "bonus": true
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "写字",
+          "py": "xiě zì",
+          "mn": "writing",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "方法",
+          "py": "fāng fǎ",
+          "mn": "way; method",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

@@ -5,62 +5,62 @@
   "title": "HSK1 Gate 9 · Western Jin",
   "explanationEn": "Gate 9: Western Jin. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第9关：西晋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "西晋有一位很有名的人，叫王羲之。他很小的时候就开始学写字。他每天练习写字，从不停。他写完字就去洗笔，水都变黑了。",
-  "passageEn": "Western Jin had a very famous person named Wang Xizhi. He began learning to write when he was very young. He practiced writing every day, never stopping. He washed his brush after writing, until the water turned black.",
+  "passage": "一千六百多年以前，晋朝有一个人，叫王羲之。他很小的时候就开始学写字。他每天都练习，一天也没有停过。写完字，他就去河边洗笔。",
+  "passageEn": "More than sixteen hundred years ago, in the Jin dynasty, there was a man called Wang Xizhi. He began learning to write when he was very small. He practised every day and never stopped for a single day. After writing, he went to the river to wash his brush.",
   "keyVocab": [
+    {
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
+    },
+    {
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "more than"
+    },
+    {
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "years"
+    },
     {
       "zh": "人",
       "pinyin": "rén",
       "en": "person"
     },
     {
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
+    },
+    {
       "zh": "小",
       "pinyin": "xiǎo",
-      "en": "little"
+      "en": "small"
     },
     {
       "zh": "时候",
       "pinyin": "shíhou",
-      "en": "time; moment"
-    },
-    {
-      "zh": "开始",
-      "pinyin": "kāishǐ",
-      "en": "started"
+      "en": "time"
     },
     {
       "zh": "学",
       "pinyin": "xué",
-      "en": "to study"
-    },
-    {
-      "zh": "写",
-      "pinyin": "xiě",
-      "en": "wrote"
-    },
-    {
-      "zh": "字",
-      "pinyin": "zì",
-      "en": "character; writing"
-    },
-    {
-      "zh": "每",
-      "pinyin": "měi",
-      "en": "every"
+      "en": "to learn"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "Western Jin had a very famous person named Wang Xizhi.",
-      "answer": "西晋有一位很有名的人，叫王羲之。"
+      "answerEn": "More than sixteen hundred years ago, in the Jin dynasty, there was a man called Wang Xizhi.",
+      "answer": "一千六百多年以前，晋朝有一个人，叫王羲之。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "He practiced writing every day, never stopping.",
-      "answer": "他每天练习写字，从不停。"
+      "answerEn": "He practised every day and never stopped for a single day.",
+      "answer": "他每天都练习，一天也没有停过。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,10 +74,10 @@
       "id": "hsk1_gate_09_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "人",
-      "pinyin": "rén",
-      "promptEn": "In the story, what does 人 mean?",
-      "prompt": "短文里的“人”是什么意思？",
+      "zh": "一",
+      "pinyin": "yī",
+      "promptEn": "In the story, what does 一 mean?",
+      "prompt": "短文里的“一”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -93,21 +93,21 @@
         },
         {
           "id": "o4",
-          "text": "person"
+          "text": "one"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "人 (rén) means \"person\" — you can find it in the passage above.",
-      "explanation": "“人”（rén）的意思是“person”，就在上面的短文里。"
+      "explanationEn": "一 (yī) means \"one\" — you can find it in the passage above.",
+      "explanation": "“一”（yī）的意思是“one”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_09_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "小",
-      "pinyin": "xiǎo",
-      "promptEn": "In the story, what does 小 mean?",
-      "prompt": "短文里的“小”是什么意思？",
+      "zh": "多",
+      "pinyin": "duō",
+      "promptEn": "In the story, what does 多 mean?",
+      "prompt": "短文里的“多”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -119,7 +119,7 @@
         },
         {
           "id": "o3",
-          "text": "little"
+          "text": "more than"
         },
         {
           "id": "o4",
@@ -127,16 +127,16 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "小 (xiǎo) means \"little\" — you can find it in the passage above.",
-      "explanation": "“小”（xiǎo）的意思是“little”，就在上面的短文里。"
+      "explanationEn": "多 (duō) means \"more than\" — you can find it in the passage above.",
+      "explanation": "“多”（duō）的意思是“more than”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_09_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "西晋有一位很有名的人，叫王羲之。",
-      "targetZh": "人",
-      "targetPinyin": "rén",
+      "zh": "一千六百多年以前，晋朝有一个人，叫王羲之。",
+      "targetZh": "一",
+      "targetPinyin": "yī",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
@@ -146,7 +146,7 @@
         },
         {
           "id": "o2",
-          "text": "Western Jin had a very famous person named Wang Xizhi."
+          "text": "More than sixteen hundred years ago, in the Jin dynasty, there was a man called Wang Xizhi."
         },
         {
           "id": "o3",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o2",
-      "explanationEn": "\"西晋有一位很有名的人，叫王羲之。\" means \"Western Jin had a very famous person named Wang Xizhi.\".",
-      "explanation": "“西晋有一位很有名的人，叫王羲之。”的意思是“Western Jin had a very famous person named Wang Xizhi.”。"
+      "explanationEn": "\"一千六百多年以前，晋朝有一个人，叫王羲之。\" means \"More than sixteen hundred years ago, in the Jin dynasty, there was a man called Wang Xizhi.\".",
+      "explanation": "“一千六百多年以前，晋朝有一个人，叫王羲之。”的意思是“More than sixteen hundred years ago, in the Jin dynasty, there was a man called Wang Xizhi.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Western Jin in two or three short Chinese sentences. Use words from the list above.",
