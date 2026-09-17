@@ -4,16 +4,26 @@
   "level": 1,
   "title": "我的小猫",
   "en": "My Little Cat",
-  "names": {},
+  "names": {
+    "小白": {
+      "py": "Xiǎo Bái",
+      "en": "Little White"
+    }
+  },
   "sents": [
     {
-      "zh": "我有一只小猫，名字叫小白。",
-      "en": "I have a little cat named Little White.",
+      "zh": "我家有一只小猫，它的名字叫小白。",
+      "en": "We have a little cat at home; its name is Little White.",
       "seg": [
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I; me"
+          "mn": "I; my"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
         },
         {
           "zh": "有",
@@ -23,8 +33,7 @@
         {
           "zh": "一",
           "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "mn": "one"
         },
         {
           "zh": "只",
@@ -48,33 +57,31 @@
           "tx": "，"
         },
         {
-          "zh": "名",
-          "py": "míng",
-          "mn": "name",
+          "zh": "它",
+          "py": "tā",
+          "mn": "it; its",
           "bonus": true
         },
         {
-          "zh": "字",
-          "py": "zì",
-          "mn": "character; writing"
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "名字",
+          "py": "míng zi",
+          "mn": "name"
         },
         {
           "zh": "叫",
           "py": "jiào",
-          "mn": "called",
-          "bonus": true
+          "mn": "to be called"
         },
         {
-          "zh": "小",
-          "py": "xiǎo",
-          "mn": "little",
-          "bonus": true
-        },
-        {
-          "zh": "白",
-          "py": "bái",
-          "mn": "white",
-          "bonus": true
+          "t": "n",
+          "zh": "小白",
+          "py": "Xiǎo Bái",
+          "mn": "Little White"
         },
         {
           "t": "p",
@@ -83,61 +90,113 @@
       ]
     },
     {
-      "zh": "它是白色的，眼睛很大。",
-      "en": "It is white, with big eyes."
-    },
-    {
-      "zh": "它每天早上叫我起床。",
-      "en": "It wakes me up every morning.",
+      "zh": "它是白色的，只有眼睛是黑的。",
+      "en": "It is white, and only its eyes are black.",
       "seg": [
         {
           "zh": "它",
           "py": "tā",
-          "mn": "it"
-        },
-        {
-          "zh": "每",
-          "py": "měi",
-          "mn": "every"
-        },
-        {
-          "zh": "天",
-          "py": "tiān",
-          "mn": "day"
-        },
-        {
-          "zh": "早",
-          "py": "zǎo",
-          "mn": "early; morning",
+          "mn": "it",
           "bonus": true
         },
         {
-          "zh": "上",
-          "py": "shàng",
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "白色",
+          "py": "bái sè",
+          "mn": "white",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(ends the description)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "只有",
+          "py": "zhǐ yǒu",
+          "mn": "only",
+          "bonus": true
+        },
+        {
+          "zh": "眼睛",
+          "py": "yǎn jing",
+          "mn": "eyes",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "are"
+        },
+        {
+          "zh": "黑",
+          "py": "hēi",
+          "mn": "black",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(ends the description)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "每天早上，它都叫我起床。",
+      "en": "Every morning it wakes me up.",
+      "seg": [
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "早上",
+          "py": "zǎo shang",
           "mn": "morning"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all; always"
         },
         {
           "zh": "叫",
           "py": "jiào",
-          "mn": "calls",
-          "bonus": true
+          "mn": "to call"
         },
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I; me"
+          "mn": "me"
         },
         {
-          "zh": "起",
-          "py": "qǐ",
-          "mn": "to rise; to get up",
-          "bonus": true
-        },
-        {
-          "zh": "床",
-          "py": "chuáng",
-          "mn": "up from bed",
-          "bonus": true
+          "zh": "起床",
+          "py": "qǐ chuáng",
+          "mn": "to get up"
         },
         {
           "t": "p",
@@ -147,38 +206,80 @@
     },
     {
       "zh": "我起来以后，先给它吃的。",
-      "en": "After I get up, I feed it first."
+      "en": "After I get up, the first thing I do is feed it.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "起来",
+          "py": "qǐ lai",
+          "mn": "to get up"
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "先",
+          "py": "xiān",
+          "mn": "first"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "to give"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
+          "bonus": true
+        },
+        {
+          "zh": "吃的",
+          "py": "chī de",
+          "mn": "food",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "它很喜欢吃鱼，也很喜欢玩球。",
-      "en": "It loves to eat fish and also loves to play with a ball.",
+      "zh": "它最喜欢吃鱼，吃完了就去玩球。",
+      "en": "It likes fish best, and when it has finished it goes to play with a ball.",
       "seg": [
         {
           "zh": "它",
           "py": "tā",
-          "mn": "it"
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "喜",
-          "py": "xǐ",
-          "mn": "to like; joy",
+          "mn": "it",
           "bonus": true
         },
         {
-          "zh": "欢",
-          "py": "huān",
-          "mn": "joy",
-          "bonus": true
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
         },
         {
           "zh": "吃",
           "py": "chī",
-          "mn": "eat"
+          "mn": "to eat"
         },
         {
           "zh": "鱼",
@@ -191,26 +292,30 @@
           "tx": "，"
         },
         {
-          "zh": "也",
-          "py": "yě",
-          "mn": "also"
+          "zh": "吃",
+          "py": "chī",
+          "mn": "to eat"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "喜",
-          "py": "xǐ",
-          "mn": "to like; joy",
+          "zh": "完",
+          "py": "wán",
+          "mn": "to finish",
           "bonus": true
         },
         {
-          "zh": "欢",
-          "py": "huān",
-          "mn": "joy",
-          "bonus": true
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
         },
         {
           "zh": "玩",
@@ -221,8 +326,7 @@
         {
           "zh": "球",
           "py": "qiú",
-          "mn": "ball",
-          "bonus": true
+          "mn": "ball"
         },
         {
           "t": "p",
@@ -231,44 +335,39 @@
       ]
     },
     {
-      "zh": "有时候它爬到我的书包上睡觉。",
-      "en": "Sometimes it climbs onto my school bag to sleep.",
+      "zh": "有时候，它跳到我的书上睡觉。",
+      "en": "Sometimes it jumps onto my books and goes to sleep.",
       "seg": [
         {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "to have"
+          "zh": "有时候",
+          "py": "yǒu shí hou",
+          "mn": "sometimes"
         },
         {
-          "zh": "时",
-          "py": "shí",
-          "mn": "times"
-        },
-        {
-          "zh": "候",
-          "py": "hòu",
-          "mn": "period"
+          "t": "p",
+          "tx": "，"
         },
         {
           "zh": "它",
           "py": "tā",
-          "mn": "it"
+          "mn": "it",
+          "bonus": true
         },
         {
-          "zh": "爬",
-          "py": "pá",
-          "mn": "to climb",
+          "zh": "跳",
+          "py": "tiào",
+          "mn": "to jump",
           "bonus": true
         },
         {
           "zh": "到",
           "py": "dào",
-          "mn": "to arrive"
+          "mn": "onto"
         },
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I; me"
+          "mn": "I; my"
         },
         {
           "zh": "的",
@@ -281,26 +380,216 @@
           "mn": "book"
         },
         {
-          "zh": "包",
-          "py": "bāo",
-          "mn": "bag; to wrap",
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "睡觉",
+          "py": "shuì jiào",
+          "mn": "to sleep"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "它在书上，我就不能看书了。",
+      "en": "With it on my books, I cannot read.",
+      "seg": [
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
           "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
         },
         {
           "zh": "上",
           "py": "shàng",
-          "mn": "on top"
+          "mn": "on"
         },
         {
-          "zh": "睡",
-          "py": "shuì",
-          "mn": "to sleep",
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "不能",
+          "py": "bù néng",
+          "mn": "cannot",
           "bonus": true
         },
         {
-          "zh": "觉",
+          "zh": "看书",
+          "py": "kàn shū",
+          "mn": "to read",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我去上学的时候，它在门口看着我。",
+      "en": "When I go to school, it watches me from the doorway.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "上学",
+          "py": "shàng xué",
+          "mn": "to go to school"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "门口",
+          "py": "mén kǒu",
+          "mn": "doorway"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to watch"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "me"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我回家的时候，它跑过来，叫一声。",
+      "en": "When I come home, it runs over and gives a little cry.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "回家",
+          "py": "huí jiā",
+          "mn": "to go home"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
+          "bonus": true
+        },
+        {
+          "zh": "跑",
+          "py": "pǎo",
+          "mn": "to run"
+        },
+        {
+          "zh": "过来",
+          "py": "guò lái",
+          "mn": "to come over",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
           "py": "jiào",
-          "mn": "to feel",
+          "mn": "to cry out"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "声",
+          "py": "shēng",
+          "mn": "sound",
           "bonus": true
         },
         {
@@ -310,46 +599,29 @@
       ]
     },
     {
-      "zh": "我要上学的时候，它就在门口看着我。",
-      "en": "When I leave for school, it watches me from the doorway."
-    },
-    {
-      "zh": "我回家的时候，它就跑过来。",
-      "en": "When I come home, it runs over to me."
-    },
-    {
-      "zh": "晚上它在我的床边睡觉。",
-      "en": "At night it sleeps beside my bed."
-    },
-    {
-      "zh": "我非常爱我的小猫，它是我最好的朋友。",
-      "en": "I love my little cat very much; it is my best friend.",
+      "zh": "晚上它在我的床边睡觉，它是我最好的朋友。",
+      "en": "At night it sleeps beside my bed; it is my best friend.",
       "seg": [
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "evening"
         },
         {
-          "zh": "非",
-          "py": "fēi",
-          "mn": "not"
-        },
-        {
-          "zh": "常",
-          "py": "cháng",
-          "mn": "often; usual"
-        },
-        {
-          "zh": "爱",
-          "py": "ài",
-          "mn": "love",
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
           "bonus": true
         },
         {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I; me"
+          "mn": "I; my"
         },
         {
           "zh": "的",
@@ -357,15 +629,20 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "小",
-          "py": "xiǎo",
-          "mn": "little"
+          "zh": "床",
+          "py": "chuáng",
+          "mn": "bed"
         },
         {
-          "zh": "猫",
-          "py": "māo",
-          "mn": "cat",
+          "zh": "边",
+          "py": "biān",
+          "mn": "side",
           "bonus": true
+        },
+        {
+          "zh": "睡觉",
+          "py": "shuì jiào",
+          "mn": "to sleep"
         },
         {
           "t": "p",
@@ -374,7 +651,8 @@
         {
           "zh": "它",
           "py": "tā",
-          "mn": "it"
+          "mn": "it",
+          "bonus": true
         },
         {
           "zh": "是",
@@ -384,13 +662,12 @@
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I; me"
+          "mn": "I; my"
         },
         {
           "zh": "最",
           "py": "zuì",
-          "mn": "best",
-          "bonus": true
+          "mn": "most"
         },
         {
           "zh": "好",
@@ -400,19 +677,12 @@
         {
           "zh": "的",
           "py": "de",
-          "mn": "of; belonging to"
+          "mn": "(makes a describing word)"
         },
         {
-          "zh": "朋",
-          "py": "péng",
-          "mn": "friend",
-          "bonus": true
-        },
-        {
-          "zh": "友",
-          "py": "yǒu",
-          "mn": "friend",
-          "bonus": true
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friend"
         },
         {
           "t": "p",

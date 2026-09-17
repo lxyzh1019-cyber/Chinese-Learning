@@ -7,66 +7,99 @@
   "names": {
     "秦始皇": {
       "py": "Qín Shǐhuáng",
-      "en": "First Emperor Qin"
-    },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+      "en": "Qin Shi Huang"
     },
     "长城": {
       "py": "Chángchéng",
-      "en": "Great Wall"
+      "en": "the Great Wall"
+    },
+    "万里长城": {
+      "py": "Wànlǐ Chángchéng",
+      "en": "the Ten-Thousand-Li Great Wall"
     }
   },
   "sents": [
     {
-      "zh": "秦始皇是中国第一个大王。",
-      "en": "Qin Shi Huang was China's first great king.",
+      "zh": "两千多年以前，中国有很多小国，常常打仗。",
+      "en": "More than two thousand years ago, China had many small states that were always fighting.",
       "seg": [
         {
-          "t": "n",
-          "zh": "秦始皇",
-          "py": "Qín Shǐhuáng",
-          "mn": "First Emperor Qin"
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
         },
         {
-          "zh": "是",
-          "py": "shì",
-          "mn": "is/was"
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand",
+          "bonus": true
         },
         {
-          "t": "n",
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
           "zh": "中国",
           "py": "Zhōngguó",
           "mn": "China"
         },
         {
-          "zh": "第",
-          "py": "dì",
-          "mn": "(makes a number an order: 1st, 2nd)",
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
+        },
+        {
+          "zh": "国",
+          "py": "guó",
+          "mn": "state",
           "bonus": true
         },
         {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one",
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "常常",
+          "py": "cháng cháng",
+          "mn": "often",
           "bonus": true
         },
         {
-          "zh": "个",
-          "py": "gè",
-          "mn": "(counting word)",
+          "zh": "打仗",
+          "py": "dǎ zhàng",
+          "mn": "to fight a war",
           "bonus": true
-        },
-        {
-          "zh": "大",
-          "py": "dà",
-          "mn": "great"
-        },
-        {
-          "zh": "王",
-          "py": "wáng",
-          "mn": "king"
         },
         {
           "t": "p",
@@ -75,21 +108,286 @@
       ]
     },
     {
-      "zh": "他让中国的字都一样。",
-      "en": "He made the characters of China all the same."
-    },
-    {
-      "zh": "北边有人常常来，所以他很想做一件事。",
-      "en": "People often came from the north, so he wanted very much to do one thing."
-    },
-    {
-      "zh": "他要建一个很大的长城。",
-      "en": "He wanted to build a very large Great Wall."
-    },
-    {
-      "zh": "很多人来做这个工作。",
-      "en": "Many people came to do this work.",
+      "zh": "后来，秦始皇打败了别的国，把中国变成了一个国家。",
+      "en": "Later, Qin Shi Huang defeated the other states and made China one country.",
       "seg": [
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "秦始皇",
+          "py": "Qín Shǐhuáng",
+          "mn": "Qin Shi Huang"
+        },
+        {
+          "zh": "打败",
+          "py": "dǎ bài",
+          "mn": "to defeat",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "国",
+          "py": "guó",
+          "mn": "state",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)",
+          "bonus": true
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "变成",
+          "py": "biàn chéng",
+          "mn": "to turn into",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他是中国的第一个皇帝。",
+      "en": "He was China's first emperor.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "第一",
+          "py": "dì yī",
+          "mn": "first",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他让全国的人写一样的字，用一样的钱。",
+      "en": "He made everyone in the country write the same characters and use the same money.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to make; to let",
+          "bonus": true
+        },
+        {
+          "zh": "全国",
+          "py": "quán guó",
+          "mn": "the whole country",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "一样",
+          "py": "yī yàng",
+          "mn": "the same"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "一样",
+          "py": "yī yàng",
+          "mn": "the same"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "可是北边常常有人来打中国。",
+      "en": "But people from the north often came to attack China.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "zh": "常常",
+          "py": "cháng cháng",
+          "mn": "often",
+          "bonus": true
+        },
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "some people",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "打",
+          "py": "dǎ",
+          "mn": "to attack"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "秦始皇让很多人在北边建城墙。",
+      "en": "So Qin Shi Huang had many people build a wall in the north.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "秦始皇",
+          "py": "Qín Shǐhuáng",
+          "mn": "Qin Shi Huang"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to make; to have",
+          "bonus": true
+        },
         {
           "zh": "很",
           "py": "hěn",
@@ -103,37 +401,29 @@
         {
           "zh": "人",
           "py": "rén",
-          "mn": "person"
+          "mn": "people"
         },
         {
-          "zh": "来",
-          "py": "lái",
-          "mn": "to come"
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
         },
         {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "do"
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
         },
         {
-          "zh": "这",
-          "py": "zhè",
-          "mn": "this"
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "to build",
+          "bonus": true
         },
         {
-          "zh": "个",
-          "py": "gè",
-          "mn": "(counting word)"
-        },
-        {
-          "zh": "工",
-          "py": "gōng",
-          "mn": "work"
-        },
-        {
-          "zh": "作",
-          "py": "zuò",
-          "mn": "to do; work"
+          "zh": "城墙",
+          "py": "chéng qiáng",
+          "mn": "city wall",
+          "bonus": true
         },
         {
           "t": "p",
@@ -142,23 +432,85 @@
       ]
     },
     {
-      "zh": "他们从早上做到晚上，很累。",
-      "en": "They worked from morning to night, and it was very hard."
-    },
-    {
-      "zh": "长城在山上，很长。",
-      "en": "The Great Wall is on the mountains, very long.",
+      "zh": "他们从早上做到晚上，又累又难。",
+      "en": "They worked from morning till night; it was tiring and hard.",
       "seg": [
         {
-          "t": "n",
-          "zh": "长城",
-          "py": "Chángchéng",
-          "mn": "Great Wall"
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to work"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "till"
+        },
+        {
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "night"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both",
+          "bonus": true
+        },
+        {
+          "zh": "累",
+          "py": "lèi",
+          "mn": "tired"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and",
+          "bonus": true
+        },
+        {
+          "zh": "难",
+          "py": "nán",
+          "mn": "hard"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "城墙在山上，一直建了很多年。",
+      "en": "The wall ran along the mountains and took many years to build.",
+      "seg": [
+        {
+          "zh": "城墙",
+          "py": "chéng qiáng",
+          "mn": "city wall",
+          "bonus": true
         },
         {
           "zh": "在",
           "py": "zài",
-          "mn": "at; in"
+          "mn": "on"
         },
         {
           "zh": "山",
@@ -168,11 +520,65 @@
         {
           "zh": "上",
           "py": "shàng",
-          "mn": "top"
+          "mn": "on top"
         },
         {
           "t": "p",
           "tx": "，"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "continuously",
+          "bonus": true
+        },
+        {
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "to build",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "因为它很长很长，人们叫它万里长城。",
+      "en": "Because it is so very long, people call it the Ten-Thousand-Li Great Wall.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
+          "bonus": true
         },
         {
           "zh": "很",
@@ -182,7 +588,46 @@
         {
           "zh": "长",
           "py": "cháng",
-          "mn": "long"
+          "mn": "long",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
+          "bonus": true
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to call"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "万里长城",
+          "py": "Wànlǐ Chángchéng",
+          "mn": "the Ten-Thousand-Li Great Wall"
         },
         {
           "t": "p",
@@ -191,40 +636,45 @@
       ]
     },
     {
-      "zh": "它有两万多里长，所以叫万里长城。",
-      "en": "It is more than twenty thousand li long, which is why it is called the Ten-Thousand-Li Great Wall."
-    },
-    {
-      "zh": "两千多年过去了，长城还在。",
-      "en": "More than two thousand years have passed, and the Great Wall is still there."
-    },
-    {
-      "zh": "今天，人们还可以看它。",
-      "en": "Today, people can still see it.",
+      "zh": "两千年过去了，长城还在，今天我们还可以去看它。",
+      "en": "Two thousand years have passed, the Great Wall is still there, and today we can still go and see it.",
       "seg": [
         {
-          "zh": "今",
-          "py": "jīn",
-          "mn": "today/now"
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
         },
         {
-          "zh": "天",
-          "py": "tiān",
-          "mn": "day"
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "过去",
+          "py": "guò qù",
+          "mn": "to pass (of time)",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "人",
-          "py": "rén",
-          "mn": "person"
-        },
-        {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
+          "t": "n",
+          "zh": "长城",
+          "py": "Chángchéng",
+          "mn": "the Great Wall"
         },
         {
           "zh": "还",
@@ -232,24 +682,50 @@
           "mn": "still"
         },
         {
-          "zh": "可",
-          "py": "kě",
-          "mn": "may; can"
+          "zh": "在",
+          "py": "zài",
+          "mn": "to be there"
         },
         {
-          "zh": "以",
-          "py": "yǐ",
-          "mn": "by means of"
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can",
+          "bonus": true
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
         },
         {
           "zh": "看",
           "py": "kàn",
-          "mn": "see"
+          "mn": "to see"
         },
         {
           "zh": "它",
           "py": "tā",
-          "mn": "it"
+          "mn": "it",
+          "bonus": true
         },
         {
           "t": "p",

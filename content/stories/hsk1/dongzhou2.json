@@ -7,19 +7,18 @@
   "names": {},
   "sents": [
     {
-      "zh": "有一只猫和一只老鼠。",
-      "en": "There was a cat and a mouse.",
+      "zh": "有一只猫和一只老鼠，住在一个大房子里。",
+      "en": "There was a cat and a mouse, and they lived in one big house.",
       "seg": [
         {
           "zh": "有",
           "py": "yǒu",
-          "mn": "to have"
+          "mn": "there was"
         },
         {
           "zh": "一",
           "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "mn": "one"
         },
         {
           "zh": "只",
@@ -41,8 +40,7 @@
         {
           "zh": "一",
           "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "mn": "one"
         },
         {
           "zh": "只",
@@ -51,16 +49,49 @@
           "bonus": true
         },
         {
-          "zh": "老",
-          "py": "lǎo",
-          "mn": "old",
+          "zh": "老鼠",
+          "py": "lǎo shǔ",
+          "mn": "mouse",
           "bonus": true
         },
         {
-          "zh": "鼠",
-          "py": "shǔ",
-          "mn": "rat; mouse",
-          "bonus": true
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "房子",
+          "py": "fáng zi",
+          "mn": "house"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
         },
         {
           "t": "p",
@@ -69,12 +100,8 @@
       ]
     },
     {
-      "zh": "它们住在一个很大的房子里。",
-      "en": "They lived in a very big house."
-    },
-    {
-      "zh": "猫要吃老鼠，老鼠跑得很快。",
-      "en": "The cat wanted to eat the mouse; the mouse ran very fast.",
+      "zh": "猫每天都想吃老鼠，可是老鼠跑得很快。",
+      "en": "Every day the cat wanted to eat the mouse, but the mouse ran very fast.",
       "seg": [
         {
           "zh": "猫",
@@ -83,25 +110,30 @@
           "bonus": true
         },
         {
-          "zh": "要",
-          "py": "yào",
-          "mn": "wanted to"
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
         },
         {
           "zh": "吃",
           "py": "chī",
-          "mn": "eat"
+          "mn": "to eat"
         },
         {
-          "zh": "老",
-          "py": "lǎo",
-          "mn": "old",
-          "bonus": true
-        },
-        {
-          "zh": "鼠",
-          "py": "shǔ",
-          "mn": "rat; mouse",
+          "zh": "老鼠",
+          "py": "lǎo shǔ",
+          "mn": "mouse",
           "bonus": true
         },
         {
@@ -109,27 +141,27 @@
           "tx": "，"
         },
         {
-          "zh": "老",
-          "py": "lǎo",
-          "mn": "old",
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
           "bonus": true
         },
         {
-          "zh": "鼠",
-          "py": "shǔ",
-          "mn": "rat; mouse",
+          "zh": "老鼠",
+          "py": "lǎo shǔ",
+          "mn": "mouse",
           "bonus": true
         },
         {
           "zh": "跑",
           "py": "pǎo",
-          "mn": "ran",
-          "bonus": true
+          "mn": "to run"
         },
         {
           "zh": "得",
           "py": "de",
-          "mn": "(before how it is done)"
+          "mn": "(how it is done)",
+          "bonus": true
         },
         {
           "zh": "很",
@@ -139,8 +171,7 @@
         {
           "zh": "快",
           "py": "kuài",
-          "mn": "fast; happy",
-          "bonus": true
+          "mn": "fast"
         },
         {
           "t": "p",
@@ -149,45 +180,23 @@
       ]
     },
     {
-      "zh": "老鼠跑进门里，猫跟在后面。",
-      "en": "The mouse ran through the door and the cat followed behind."
-    },
-    {
-      "zh": "老鼠跑到山上，猫没有追到。",
-      "en": "The mouse ran to the mountain and the cat couldn't catch it.",
+      "zh": "一天早上，猫在门后面等老鼠。",
+      "en": "One morning, the cat waited for the mouse behind the door.",
       "seg": [
         {
-          "zh": "老",
-          "py": "lǎo",
-          "mn": "old",
-          "bonus": true
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
         },
         {
-          "zh": "鼠",
-          "py": "shǔ",
-          "mn": "rat; mouse",
-          "bonus": true
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
         },
         {
-          "zh": "跑",
-          "py": "pǎo",
-          "mn": "ran to",
-          "bonus": true
-        },
-        {
-          "zh": "到",
-          "py": "dào",
-          "mn": "to arrive"
-        },
-        {
-          "zh": "山",
-          "py": "shān",
-          "mn": "mountain"
-        },
-        {
-          "zh": "上",
-          "py": "shàng",
-          "mn": "on top"
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
         },
         {
           "t": "p",
@@ -200,25 +209,31 @@
           "bonus": true
         },
         {
-          "zh": "没",
-          "py": "méi",
-          "mn": "did not"
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
         },
         {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "to have"
+          "zh": "门",
+          "py": "mén",
+          "mn": "door"
         },
         {
-          "zh": "追",
-          "py": "zhuī",
-          "mn": "chase",
+          "zh": "后面",
+          "py": "hòu mian",
+          "mn": "behind",
           "bonus": true
         },
         {
-          "zh": "到",
-          "py": "dào",
-          "mn": "to arrive"
+          "zh": "等",
+          "py": "děng",
+          "mn": "to wait for"
+        },
+        {
+          "zh": "老鼠",
+          "py": "lǎo shǔ",
+          "mn": "mouse",
+          "bonus": true
         },
         {
           "t": "p",
@@ -227,29 +242,294 @@
       ]
     },
     {
-      "zh": "猫太累了，坐在山下不动。",
-      "en": "The cat was too tired and sat at the foot of the mountain without moving."
-    },
-    {
-      "zh": "老鼠在山上找到很多好吃的东西。",
-      "en": "On the mountain the mouse found many delicious things.",
+      "zh": "老鼠一出来，猫就跳了出来。",
+      "en": "The moment the mouse came out, the cat jumped out.",
       "seg": [
         {
-          "zh": "老",
-          "py": "lǎo",
-          "mn": "old",
+          "zh": "老鼠",
+          "py": "lǎo shǔ",
+          "mn": "mouse",
           "bonus": true
         },
         {
-          "zh": "鼠",
-          "py": "shǔ",
-          "mn": "rat; mouse",
+          "zh": "一",
+          "py": "yī",
+          "mn": "as soon as"
+        },
+        {
+          "zh": "出来",
+          "py": "chū lái",
+          "mn": "to come out"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "猫",
+          "py": "māo",
+          "mn": "cat",
           "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "跳",
+          "py": "tiào",
+          "mn": "to jump",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "出来",
+          "py": "chū lái",
+          "mn": "to come out"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "老鼠很怕，跑出了房子，一直跑到山上。",
+      "en": "The mouse was scared, ran out of the house, and ran all the way up the mountain.",
+      "seg": [
+        {
+          "zh": "老鼠",
+          "py": "lǎo shǔ",
+          "mn": "mouse",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "怕",
+          "py": "pà",
+          "mn": "afraid",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "跑",
+          "py": "pǎo",
+          "mn": "to run"
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "out"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "房子",
+          "py": "fáng zi",
+          "mn": "house"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all the way",
+          "bonus": true
+        },
+        {
+          "zh": "跑",
+          "py": "pǎo",
+          "mn": "to run"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "up"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "山路太长了，猫跑不动了。",
+      "en": "The mountain path was too long, and the cat could run no more.",
+      "seg": [
+        {
+          "zh": "山路",
+          "py": "shān lù",
+          "mn": "mountain path",
+          "bonus": true
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "猫",
+          "py": "māo",
+          "mn": "cat",
+          "bonus": true
+        },
+        {
+          "zh": "跑",
+          "py": "pǎo",
+          "mn": "to run"
+        },
+        {
+          "zh": "不动",
+          "py": "bu dòng",
+          "mn": "(cannot go on)",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "猫坐在山下，看着山上，不说话。",
+      "en": "The cat sat at the foot of the mountain, looked up, and said nothing.",
+      "seg": [
+        {
+          "zh": "猫",
+          "py": "māo",
+          "mn": "cat",
+          "bonus": true
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
         },
         {
           "zh": "在",
           "py": "zài",
-          "mn": "at; in"
+          "mn": "at"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "below"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "up"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "说话",
+          "py": "shuō huà",
+          "mn": "to speak"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "老鼠到了山上，看见那里有水，有花，还有很多好吃的东西。",
+      "en": "The mouse reached the top and saw water, flowers, and lots of good things to eat.",
+      "seg": [
+        {
+          "zh": "老鼠",
+          "py": "lǎo shǔ",
+          "mn": "mouse",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
           "zh": "山",
@@ -262,14 +542,51 @@
           "mn": "top"
         },
         {
-          "zh": "找",
-          "py": "zhǎo",
-          "mn": "found"
+          "t": "p",
+          "tx": "，"
         },
         {
-          "zh": "到",
-          "py": "dào",
-          "mn": "to arrive"
+          "zh": "看见",
+          "py": "kàn jiàn",
+          "mn": "to see"
+        },
+        {
+          "zh": "那里",
+          "py": "nà li",
+          "mn": "there"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "花",
+          "py": "huā",
+          "mn": "flowers"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还有",
+          "py": "hái yǒu",
+          "mn": "and also"
         },
         {
           "zh": "很",
@@ -282,30 +599,73 @@
           "mn": "many"
         },
         {
+          "zh": "好吃",
+          "py": "hǎo chī",
+          "mn": "delicious"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "最好的是，山上没有猫。",
+      "en": "Best of all, there was no cat on the mountain.",
+      "seg": [
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
           "zh": "好",
           "py": "hǎo",
           "mn": "good"
         },
         {
-          "zh": "吃",
-          "py": "chī",
-          "mn": "eat"
-        },
-        {
           "zh": "的",
           "py": "de",
-          "mn": "of; belonging to"
+          "mn": "(the thing that)"
         },
         {
-          "zh": "东",
-          "py": "dōng",
-          "mn": "east",
-          "bonus": true
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
         },
         {
-          "zh": "西",
-          "py": "xī",
-          "mn": "west",
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "there was no"
+        },
+        {
+          "zh": "猫",
+          "py": "māo",
+          "mn": "cat",
           "bonus": true
         },
         {
@@ -315,21 +675,14 @@
       ]
     },
     {
-      "zh": "那里有水，也有很多花。",
-      "en": "There was water there, and many flowers too."
-    },
-    {
-      "zh": "猫回家了，老鼠住在山上。",
-      "en": "The cat went home, and the mouse stayed on the mountain."
-    },
-    {
-      "zh": "它说：“这里很好，我不下山了！”",
-      "en": "It said: \"This is great — I'm not going back down!\"",
+      "zh": "老鼠说：“我就住在这里，不下山了！”",
+      "en": "The mouse said: \"I will live right here, and I am not going down!\"",
       "seg": [
         {
-          "zh": "它",
-          "py": "tā",
-          "mn": "it"
+          "zh": "老鼠",
+          "py": "lǎo shǔ",
+          "mn": "mouse",
+          "bonus": true
         },
         {
           "zh": "说",
@@ -338,37 +691,40 @@
         },
         {
           "t": "p",
-          "tx": "：“"
-        },
-        {
-          "zh": "这",
-          "py": "zhè",
-          "mn": "here"
-        },
-        {
-          "zh": "里",
-          "py": "lǐ",
-          "mn": "inside",
-          "bonus": true
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "好",
-          "py": "hǎo",
-          "mn": "good"
+          "tx": "："
         },
         {
           "t": "p",
-          "tx": "，"
+          "tx": "“"
         },
         {
           "zh": "我",
           "py": "wǒ",
           "mn": "I; me"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "right; just"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "这里",
+          "py": "zhè lǐ",
+          "mn": "here"
+        },
+        {
+          "t": "p",
+          "tx": "，"
         },
         {
           "zh": "不",
@@ -378,8 +734,7 @@
         {
           "zh": "下",
           "py": "xià",
-          "mn": "below; to go down",
-          "bonus": true
+          "mn": "to go down"
         },
         {
           "zh": "山",
@@ -389,12 +744,15 @@
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
+          "mn": "(shows a change)"
         },
         {
           "t": "p",
-          "tx": "！”"
+          "tx": "！"
+        },
+        {
+          "t": "p",
+          "tx": "”"
         }
       ]
     }

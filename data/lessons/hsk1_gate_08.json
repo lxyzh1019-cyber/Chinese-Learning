@@ -5,18 +5,13 @@
   "title": "HSK1 Gate 8 · Three Kingdoms",
   "explanationEn": "Gate 8: Three Kingdoms. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第8关：三国。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "三国时候，中国有三个国。三个国常常打来打去。诸葛亮是一位很有智慧的人。他很会想办法，也很会看天气。",
-  "passageEn": "During the Three Kingdoms period, China had three kingdoms. The three kingdoms fought each other again and again. Zhuge Liang was a person of great wisdom. He was good at finding a way, and good at reading the weather.",
+  "passage": "汉朝以后，中国分成了三个国，叫三国。三个国常常打仗。那时候有一个很聪明的人，叫诸葛亮。刘备请了他三次，他才出来帮刘备。",
+  "passageEn": "After the Han, China split into three states, called the Three Kingdoms. The three states were always at war. At that time there was a very clever man called Zhuge Liang. Liu Bei asked him three times before he came out to help.",
   "keyVocab": [
     {
-      "zh": "时",
-      "pinyin": "shí",
-      "en": "time"
-    },
-    {
-      "zh": "候",
-      "pinyin": "hòu",
-      "en": "period"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
       "zh": "三",
@@ -24,43 +19,48 @@
       "en": "three"
     },
     {
-      "zh": "国",
-      "pinyin": "guó",
-      "en": "kingdoms"
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
     },
     {
-      "zh": "常",
-      "pinyin": "cháng",
-      "en": "often; usual"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "打",
-      "pinyin": "dǎ",
-      "en": "to hit; to play (a game)"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "person"
     },
     {
-      "zh": "来",
-      "pinyin": "lái",
-      "en": "to come"
+      "zh": "请",
+      "pinyin": "qǐng",
+      "en": "to ask; to invite"
     },
     {
-      "zh": "去",
-      "pinyin": "qù",
-      "en": "go"
+      "zh": "次",
+      "pinyin": "cì",
+      "en": "time (occasion) (occasion)"
+    },
+    {
+      "zh": "出来",
+      "pinyin": "chū lái",
+      "en": "to come out"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "During the Three Kingdoms period, China had three kingdoms.",
-      "answer": "三国时候，中国有三个国。"
+      "answerEn": "After the Han, China split into three states, called the Three Kingdoms.",
+      "answer": "汉朝以后，中国分成了三个国，叫三国。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "Zhuge Liang was a person of great wisdom.",
-      "answer": "诸葛亮是一位很有智慧的人。"
+      "answerEn": "At that time there was a very clever man called Zhuge Liang.",
+      "answer": "那时候有一个很聪明的人，叫诸葛亮。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,14 +74,14 @@
       "id": "hsk1_gate_08_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "时",
-      "pinyin": "shí",
-      "promptEn": "In the story, what does 时 mean?",
-      "prompt": "短文里的“时”是什么意思？",
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "promptEn": "In the story, what does 中国 mean?",
+      "prompt": "短文里的“中国”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "time"
+          "text": "China"
         },
         {
           "id": "o2",
@@ -89,25 +89,25 @@
         },
         {
           "id": "o3",
-          "text": "China"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o4",
-          "text": "(shows it is finished)"
+          "text": "to go into"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "时 (shí) means \"time\" — you can find it in the passage above.",
-      "explanation": "“时”（shí）的意思是“time”，就在上面的短文里。"
+      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
+      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_08_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "候",
-      "pinyin": "hòu",
-      "promptEn": "In the story, what does 候 mean?",
-      "prompt": "短文里的“候”是什么意思？",
+      "zh": "三",
+      "pinyin": "sān",
+      "promptEn": "In the story, what does 三 mean?",
+      "prompt": "短文里的“三”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -123,20 +123,20 @@
         },
         {
           "id": "o4",
-          "text": "period"
+          "text": "three"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "候 (hòu) means \"period\" — you can find it in the passage above.",
-      "explanation": "“候”（hòu）的意思是“period”，就在上面的短文里。"
+      "explanationEn": "三 (sān) means \"three\" — you can find it in the passage above.",
+      "explanation": "“三”（sān）的意思是“three”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_08_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "三国时候，中国有三个国。",
-      "targetZh": "时",
-      "targetPinyin": "shí",
+      "zh": "汉朝以后，中国分成了三个国，叫三国。",
+      "targetZh": "中国",
+      "targetPinyin": "Zhōngguó",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
@@ -150,7 +150,7 @@
         },
         {
           "id": "o3",
-          "text": "During the Three Kingdoms period, China had three kingdoms."
+          "text": "After the Han, China split into three states, called the Three Kingdoms."
         },
         {
           "id": "o4",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "\"三国时候，中国有三个国。\" means \"During the Three Kingdoms period, China had three kingdoms.\".",
-      "explanation": "“三国时候，中国有三个国。”的意思是“During the Three Kingdoms period, China had three kingdoms.”。"
+      "explanationEn": "\"汉朝以后，中国分成了三个国，叫三国。\" means \"After the Han, China split into three states, called the Three Kingdoms.\".",
+      "explanation": "“汉朝以后，中国分成了三个国，叫三国。”的意思是“After the Han, China split into three states, called the Three Kingdoms.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Three Kingdoms in two or three short Chinese sentences. Use words from the list above.",

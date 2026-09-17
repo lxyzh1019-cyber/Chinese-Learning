@@ -5,8 +5,8 @@
   "title": "HSK1 Gate 4 · Eastern Zhou",
   "explanationEn": "Gate 4: Eastern Zhou. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第4关：东周。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "两千多年以前，中国有一位老师，叫孔子。孔子是一位好老师。他有很多学生。他的学生有的大，有的小。",
-  "passageEn": "More than two thousand years ago there was a teacher in China called Confucius. Confucius was a good teacher. He had many students. Some of his students were older, some younger.",
+  "passage": "两千多年以前，中国有一位老师，叫孔子。那时候，只有有钱的人可以读书。孔子说：“谁想学，我就教谁。”所以他的学生很多，有大人，也有孩子。",
+  "passageEn": "More than two thousand years ago, there was a teacher in China called Confucius. At that time, only people with money could go to school. Confucius said: \"Whoever wants to learn, I will teach.\" So he had many students, grown-ups and children too.",
   "keyVocab": [
     {
       "zh": "两",
@@ -14,24 +14,19 @@
       "en": "two"
     },
     {
-      "zh": "千",
-      "pinyin": "qiān",
-      "en": "thousand"
-    },
-    {
       "zh": "多",
       "pinyin": "duō",
-      "en": "many"
+      "en": "more than"
     },
     {
       "zh": "年",
       "pinyin": "nián",
-      "en": "year"
+      "en": "years"
     },
     {
-      "zh": "以前",
-      "pinyin": "yǐ qián",
-      "en": "before"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
       "zh": "一",
@@ -39,28 +34,33 @@
       "en": "one"
     },
     {
-      "zh": "位",
-      "pinyin": "wèi",
-      "en": "(counting word for people, polite)"
+      "zh": "老师",
+      "pinyin": "lǎoshī",
+      "en": "teacher"
     },
     {
       "zh": "叫",
       "pinyin": "jiào",
       "en": "called"
+    },
+    {
+      "zh": "钱",
+      "pinyin": "qián",
+      "en": "money"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "More than two thousand years ago there was a teacher in China called Confucius.",
+      "answerEn": "More than two thousand years ago, there was a teacher in China called Confucius.",
       "answer": "两千多年以前，中国有一位老师，叫孔子。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "He had many students.",
-      "answer": "他有很多学生。"
+      "answerEn": "Confucius said: \"Whoever wants to learn, I will teach.\"",
+      "answer": "孔子说：“谁想学，我就教谁。”"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -104,10 +104,10 @@
       "id": "hsk1_gate_04_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "千",
-      "pinyin": "qiān",
-      "promptEn": "In the story, what does 千 mean?",
-      "prompt": "短文里的“千”是什么意思？",
+      "zh": "多",
+      "pinyin": "duō",
+      "promptEn": "In the story, what does 多 mean?",
+      "prompt": "短文里的“多”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -123,12 +123,12 @@
         },
         {
           "id": "o4",
-          "text": "thousand"
+          "text": "more than"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "千 (qiān) means \"thousand\" — you can find it in the passage above.",
-      "explanation": "“千”（qiān）的意思是“thousand”，就在上面的短文里。"
+      "explanationEn": "多 (duō) means \"more than\" — you can find it in the passage above.",
+      "explanation": "“多”（duō）的意思是“more than”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_04_s1",
@@ -150,7 +150,7 @@
         },
         {
           "id": "o3",
-          "text": "More than two thousand years ago there was a teacher in China called Confucius."
+          "text": "More than two thousand years ago, there was a teacher in China called Confucius."
         },
         {
           "id": "o4",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "\"两千多年以前，中国有一位老师，叫孔子。\" means \"More than two thousand years ago there was a teacher in China called Confucius.\".",
-      "explanation": "“两千多年以前，中国有一位老师，叫孔子。”的意思是“More than two thousand years ago there was a teacher in China called Confucius.”。"
+      "explanationEn": "\"两千多年以前，中国有一位老师，叫孔子。\" means \"More than two thousand years ago, there was a teacher in China called Confucius.\".",
+      "explanation": "“两千多年以前，中国有一位老师，叫孔子。”的意思是“More than two thousand years ago, there was a teacher in China called Confucius.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Eastern Zhou in two or three short Chinese sentences. Use words from the list above.",
