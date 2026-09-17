@@ -105,6 +105,7 @@ function apply(file, from) {
   const taught = taughtAtOrBelow(level);
   const names = authored.names;
   const fellBack = [];
+  const errors = [];   // every missing reading at once, not one per run
   const sents = [];
 
   authored.lines.forEach(({ zh, en, toks, n }) => {
@@ -124,8 +125,8 @@ function apply(file, from) {
         mn = (SUPP[word] && SUPP[word].en) || (dict[word] && dict[word].en);
         if (mn) fellBack.push(`${word} "${mn}"`);
       }
-      if (!py) throw new Error(`line ${n}: no reading for "${word}" — state it as ${word}/pīn yīn=gloss, or add it to scripts/story-supplement.js`);
-      if (!mn) throw new Error(`line ${n}: no gloss for "${word}"`);
+      if (!py) { errors.push(`line ${n}: no reading for "${word}" — state it as ${word}/pīn yīn=gloss, or add it to scripts/story-supplement.js`); rebuilt += word; return; }
+      if (!mn) { errors.push(`line ${n}: no gloss for "${word}"`); rebuilt += word; return; }
       const tok = { zh: word, py: py.trim(), mn: mn.trim() };
       if (!taught.has(word)) tok.bonus = true;
       seg.push(tok); rebuilt += word;
@@ -135,6 +136,7 @@ function apply(file, from) {
     sents.push({ zh, en, seg });
   });
 
+  if (errors.length) throw new Error(`\n  ${errors.join("\n  ")}`);
   const out = {
     id: src.id, did: src.did, level,
     title: authored.title || src.title, en: authored.en || src.en,
@@ -149,8 +151,13 @@ function apply(file, from) {
 
 function main() {
   const [mode, file, flag, from] = process.argv.slice(2);
-  if (mode === "draft" && file) return draft(file);
-  if (mode === "apply" && file && flag === "--from" && from) return apply(file, from);
+  try {
+    if (mode === "draft" && file) return draft(file);
+    if (mode === "apply" && file && flag === "--from" && from) return apply(file, from);
+  } catch (e) {
+    console.error(`${path.basename(file)}: ${e.message}`);
+    process.exit(1);
+  }
   console.error("usage:\n  seg_story.js draft <story.json>\n  seg_story.js apply <story.json> --from <lines.txt>");
   process.exit(2);
 }

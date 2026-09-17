@@ -19,7 +19,7 @@ const fs = require("fs");
 const args = process.argv.slice(2);
 const skipIdx = args.indexOf("--skip");
 const skip = new Set(skipIdx >= 0 ? args[skipIdx + 1].split(",") : []);
-const files = args.filter((a, i) => a !== "--skip" && i !== skipIdx + 1);
+const files = args.filter((a, i) => a !== "--skip" && (skipIdx < 0 || i !== skipIdx + 1));
 if (files.length !== 2) {
   console.error("usage: diff_story_tokens.js <before.json> <after.json> [--skip id,id]");
   process.exit(2);
