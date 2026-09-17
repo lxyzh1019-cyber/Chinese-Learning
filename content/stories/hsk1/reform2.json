@@ -433,8 +433,8 @@
       ]
     },
     {
-      "zh": "晚上路上有了电灯，一直到很晚都有人。",
-      "en": "At night the streets had electric lights, and there were people about until very late.",
+      "zh": "晚上路边有了电灯，一直到很晚都可以看到人。",
+      "en": "At night there were electric lights along the streets, and people could be seen out until very late.",
       "seg": [
         {
           "zh": "晚上",
@@ -442,14 +442,10 @@
           "mn": "evening"
         },
         {
-          "zh": "路",
-          "py": "lù",
-          "mn": "street"
-        },
-        {
-          "zh": "上",
-          "py": "shàng",
-          "mn": "on"
+          "zh": "路边",
+          "py": "lù biān",
+          "mn": "roadside",
+          "bonus": true
         },
         {
           "zh": "有",
@@ -498,9 +494,15 @@
           "mn": "all"
         },
         {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "there are"
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can",
+          "bonus": true
+        },
+        {
+          "zh": "看到",
+          "py": "kàn dào",
+          "mn": "to see"
         },
         {
           "zh": "人",
@@ -514,13 +516,19 @@
       ]
     },
     {
-      "zh": "老的中国和新的东西都在这个城里。",
-      "en": "The old China and the new things were both in this city.",
+      "zh": "中国传统的旧东西和西方传进来的新东西，都在这个城里。",
+      "en": "China's traditional old things and the new things that came in from the West were both in this city.",
       "seg": [
         {
-          "zh": "老",
-          "py": "lǎo",
-          "mn": "old"
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "传统",
+          "py": "chuán tǒng",
+          "mn": "traditional",
+          "bonus": true
         },
         {
           "zh": "的",
@@ -528,9 +536,15 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "中国",
-          "py": "Zhōngguó",
-          "mn": "China"
+          "zh": "旧",
+          "py": "jiù",
+          "mn": "old",
+          "bonus": true
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
         },
         {
           "zh": "和",
@@ -538,9 +552,16 @@
           "mn": "and"
         },
         {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
+          "zh": "西方",
+          "py": "xī fāng",
+          "mn": "the West",
+          "bonus": true
+        },
+        {
+          "zh": "传进来",
+          "py": "chuán jìn lái",
+          "mn": "to come in (spread in)",
+          "bonus": true
         },
         {
           "zh": "的",
@@ -548,9 +569,18 @@
           "mn": "(makes a describing word)"
         },
         {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
           "zh": "东西",
           "py": "dōng xi",
           "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "，"
         },
         {
           "zh": "都",

@@ -208,8 +208,8 @@
       ]
     },
     {
-      "zh": "有的人还去外国读书，在外面住了几年。",
-      "en": "Some even went abroad to study, and lived away for several years.",
+      "zh": "有的人还去外国读书，在外国住了几年。",
+      "en": "Some even went abroad to study, and lived in a foreign country for several years.",
       "seg": [
         {
           "zh": "有的",
@@ -249,12 +249,12 @@
         {
           "zh": "在",
           "py": "zài",
-          "mn": "at"
+          "mn": "in"
         },
         {
-          "zh": "外面",
-          "py": "wài miàn",
-          "mn": "outside; away",
+          "zh": "外国",
+          "py": "wài guó",
+          "mn": "foreign country",
           "bonus": true
         },
         {
@@ -480,37 +480,13 @@
       ]
     },
     {
-      "zh": "他们写新的书，用大家都懂的话写。",
-      "en": "They wrote new books, in language everyone could understand.",
+      "zh": "他们用大家都看得懂的语言写书。",
+      "en": "They wrote books in language everyone could read and understand.",
       "seg": [
         {
           "zh": "他们",
           "py": "tā men",
           "mn": "they"
-        },
-        {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "to write"
-        },
-        {
-          "zh": "新",
-          "py": "xīn",
-          "mn": "new"
-        },
-        {
-          "zh": "的",
-          "py": "de",
-          "mn": "(makes a describing word)"
-        },
-        {
-          "zh": "书",
-          "py": "shū",
-          "mn": "books"
-        },
-        {
-          "t": "p",
-          "tx": "，"
         },
         {
           "zh": "用",
@@ -529,9 +505,9 @@
           "mn": "all"
         },
         {
-          "zh": "懂",
-          "py": "dǒng",
-          "mn": "to understand",
+          "zh": "看得懂",
+          "py": "kàn de dǒng",
+          "mn": "can read and understand",
           "bonus": true
         },
         {
@@ -540,14 +516,20 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "话",
-          "py": "huà",
-          "mn": "language"
+          "zh": "语言",
+          "py": "yǔ yán",
+          "mn": "language",
+          "bonus": true
         },
         {
           "zh": "写",
           "py": "xiě",
           "mn": "to write"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
         },
         {
           "t": "p",
@@ -556,8 +538,8 @@
       ]
     },
     {
-      "zh": "因为这样，看书的人越来越多。",
-      "en": "Because of this, more and more people read.",
+      "zh": "因为这样，看懂书的人越来越多，知识传得越来越广。",
+      "en": "Because of this, more and more people could understand books, and knowledge spread wider and wider.",
       "seg": [
         {
           "zh": "因为",
@@ -576,10 +558,15 @@
           "tx": "，"
         },
         {
-          "zh": "看书",
-          "py": "kàn shū",
-          "mn": "to read",
+          "zh": "看懂",
+          "py": "kàn dǒng",
+          "mn": "to read and understand",
           "bonus": true
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
         },
         {
           "zh": "的",
@@ -601,6 +588,39 @@
           "zh": "多",
           "py": "duō",
           "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "知识",
+          "py": "zhī shi",
+          "mn": "knowledge"
+        },
+        {
+          "zh": "传",
+          "py": "chuán",
+          "mn": "to spread",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
+          "bonus": true
+        },
+        {
+          "zh": "越来越",
+          "py": "yuè lái yuè",
+          "mn": "more and more",
+          "bonus": true
+        },
+        {
+          "zh": "广",
+          "py": "guǎng",
+          "mn": "wide",
+          "bonus": true
         },
         {
           "t": "p",

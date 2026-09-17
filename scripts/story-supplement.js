@@ -151,4 +151,10 @@ module.exports = {
   "仗":     { py: "zhàng",       en: "war; battle" },
   "输":     { py: "shū",         en: "to lose" },
   "内忧外患": { py: "nèi yōu wài huàn", en: "trouble within, threats without" },
+  "路边":   { py: "lù biān",     en: "roadside" },
+  "传统":   { py: "chuán tǒng",  en: "traditional" },
+  "语言":   { py: "yǔ yán",      en: "language" },
+  "知识":   { py: "zhī shi",     en: "knowledge" },
+  "传":     { py: "chuán",       en: "to spread" },
+  "广":     { py: "guǎng",       en: "wide" },
 };
