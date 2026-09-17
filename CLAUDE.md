@@ -456,6 +456,8 @@ function defPlayer() {
     starLedger: [],         // star events with stable ids, §26
     starsBaseline: 0,       // the total that predates the ledger
     syncConflicts: [],      // divergences recorded rather than silently resolved (§26)
+    progressClearedAt: 0,   // ms of the last parent wipe; 0 = never. §26 — the
+                            // only field that lets an emptier copy win a merge
 
     // ── Reading gates (§3/§4) ──
     storyReadCount: {},     // { storyId: number } — dwell-validated read count
@@ -996,7 +998,12 @@ Available features:
 - **Failed words grid** — lists words each player struggled with this week
 - **Co-op goal setting** — set the family co-op star target (40–500 stars)
 - **Mascot toggle** — hide/show mascot bubble
-- **Clear all progress** — requires password confirmation
+- **Clear all progress** — requires password confirmation. Clears both players
+  to a fresh `defPlayer()` and stamps `progressClearedAt` so the wipe survives
+  the merge (§26); keeps the parent's own engagement settings, this device's id
+  and the Assessment attempts (§24). It reports whether the wipe actually
+  reached Firestore, because a transaction is not queued offline — a wipe made
+  with no connection has not reached the other device yet.
 
 Parent PIN is also the session timer override. When the 20-minute session
 timer expires, the kid enters the PIN to unlock an additional 20 minutes.
@@ -1245,6 +1252,24 @@ unreachable.
 answer until Reveal; the child's "I had it" / "Not yet" goes to
 `lessonSelfCheck`, never to `reviewRecords`, and pays nothing.
 
+That hiding only started working in the browser once the page shipped its own
+`[hidden]{display:none!important}`. The answer element carried the attribute
+*and* an inline `display:block`, which wins over the UA stylesheet's
+`[hidden]` rule — so the answer was on screen from first paint and Reveal only
+hid its own button, for every lesson, since the F06 fix was written. A test that
+matches the markup for `hidden` cannot see this; compute the rendered outcome.
+
+**One set of questions per lesson.** The self-report is the **fallback**, not a
+companion to `check`. A lesson with checked questions asks only those — showing
+both meant HSK1 and HSK2 asked the same passage twice, once marked and once as a
+worked example whose answer was the sentence quoted back. A lesson whose
+questions are the pre-rewrite template (Chinese-only, asking about the lesson
+rather than the text — what the 44 HSK3/HSK4 lessons still carry, listed in
+`content/stories/PENDING.json`) renders a bilingual line naming the gap instead.
+The gate is computed at render time, so a level starts asking real questions the
+moment its lessons are rebuilt; **no lesson JSON changes**, since
+`validate_lessons.js` hard-fails a lesson missing `comprehension`.
+
 **Lesson `check` questions are.** A lesson's `check` array carries questions
 with a right answer — options, an `answerId`, and a bilingual explanation —
 built by `scripts/build_gate_lessons.js` from the gate's own story, so the
@@ -1337,6 +1362,26 @@ carries that date. `pickFuller` is gone.
 plain object merge wrote a device's null over the other's live round. A null
 slot now adopts the other round unless `pendingSessionClearedAt[slot]` says this
 device cleared it after that round was last saved.
+
+**Clearing all progress is the one case an emptier copy must win.** Every rule
+above exists to stop a device with less erasing a device with more — which is
+exactly the shape of a deliberate wipe, so nothing in the document could tell
+the two apart. `clearAllProgress` stamps `progressClearedAt`, and `mergePlayers`
+compares epochs **before** any other rule: a strictly newer epoch takes its side
+**whole** (max-wins, so both merge orders agree and re-merging changes nothing).
+A device that has *received* the wipe carries the same epoch and merges normally,
+so work done after the wipe is kept; only a copy predating it loses. The side is
+taken whole rather than filtered field by field because none of the fields a wipe
+must destroy carry a time to compare against — `gatesCompleted` is a bare array,
+`library` a keyless map, `starsBaseline` a fold with no time in it.
+
+Two things made the old button a no-op across devices. It rebuilt `defPlayer()`,
+whose `revision` is **0**, so every device that had ever played out-ranked the
+wipe and the snapshot gate ignored it; and `remoteBaseRevision` starts at 0 on
+every page load and is only set when a snapshot is *adopted*, so the wipe's first
+push is refused as stale while the parent is told it succeeded. A wipe now takes
+a revision floor from the last acknowledged remote revision and asks for one
+retry, and the toast reports where the wipe actually landed.
 
 **Firestore rules.** `firestore.rules` is a **merge fragment, not a publishable
 ruleset** — the Firebase project serves other apps whose paths are not visible

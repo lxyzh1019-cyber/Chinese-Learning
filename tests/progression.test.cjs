@@ -731,6 +731,155 @@ test("S02: after a conflict the next save is decisive rather than looping", asyn
   assert.equal(a.syncStatus.jenn, "synced");
 });
 
+// ── W03: clearing all progress, in the app ───────────────────────────────
+//
+// The button rebuilt defPlayer(), whose revision is 0, so every device that had
+// ever played out-ranked the wipe and ignored it — and the merge rules then
+// handed the stars and gates back. These pin the parts that make it land.
+
+function playedPlayer(a, over) {
+  return Object.assign(a.defPlayer(), {
+    totalStars: 4200, starsBaseline: 4200,
+    gatesCompleted: ["h1-g01", "h1-g02"],
+    library: { 水: { py: "shuǐ" } },
+    reviewRecords: { "水::meaning": { word: "水", skill: "meaning", stage: 4, attempts: [] } },
+    badges: ["first_story"], totalWrongAnswers: 310, revision: 57,
+  }, over || {});
+}
+
+test("W03: clearing progress empties both players and stamps the wipe", () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  a.state.jess = playedPlayer(a);
+  const writes = captureWrites(a);
+
+  a.clearAllProgress();
+
+  ["jenn", "jess"].forEach((pid) => {
+    const s = a.state[pid];
+    assert.equal(s.totalStars, 0, pid + ": stars cleared");
+    assert.deepEqual(s.gatesCompleted, [], pid + ": gates cleared");
+    assert.deepEqual(s.library, {}, pid + ": library cleared");
+    assert.deepEqual(s.reviewRecords, {}, pid + ": retention records cleared");
+    assert.deepEqual(s.badges, [], pid + ": badges cleared");
+    assert.ok(s.progressClearedAt > 0, pid + ": stamped with a wipe epoch");
+  });
+  assert.deepEqual(writes.map((w) => w.pid).sort(), ["jenn", "jess"],
+    "the one place a two-player write is correct");
+});
+
+test("W03: the cleared document is written with a revision the remote cannot out-rank", async () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  const db = txDb({ revision: 7, lastSaved: 999, totalStars: 900, gatesCompleted: ["h1-g01"] });
+  a.db = db;
+  a.remoteBaseRevision.jenn = 0;   // as on every page load
+
+  a.clearAllProgress();
+  await tick();
+  await tick();
+
+  // Without the opt-in retry this is 0: the first push is refused as stale
+  // because remoteBaseRevision starts at 0, and the wipe never reaches the
+  // server at all while the parent is told it has.
+  assert.equal(db.box.writes, 1, "the wipe reaches Firestore");
+  assert.equal(db.box.doc.totalStars, 0, "and what landed is the cleared document");
+  assert.ok(db.box.doc.progressClearedAt > 0, "carrying the epoch");
+  assert.ok(db.box.doc.revision > 7, "ahead of the other device");
+});
+
+test("W03: a stale device that pushes after the wipe clears itself instead", async () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);                    // this device never saw the wipe
+  const db = txDb(Object.assign(a.defPlayer(), {
+    revision: 80, lastSaved: 5000, progressClearedAt: 9_000_000,
+  }));
+  a.db = db;
+  a.remoteBaseRevision.jenn = 0;
+
+  a.savePlayer("jenn");
+  await tick();
+
+  const s = a.state.jenn;
+  assert.equal(s.totalStars, 0, "the stale side adopts the wipe rather than restoring");
+  assert.deepEqual(s.gatesCompleted, []);
+  assert.deepEqual(s.reviewRecords, {});
+  assert.equal(s.progressClearedAt, 9_000_000, "and carries the epoch onward");
+});
+
+test("W03: a device that scored after the wipe keeps those stars", async () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = Object.assign(a.defPlayer(), {
+    progressClearedAt: 9_000_000, totalStars: 12, starsBaseline: 12,
+    gatesCompleted: ["h1-g01"], revision: 3,
+  });
+  const db = txDb(Object.assign(a.defPlayer(), {
+    revision: 80, progressClearedAt: 9_000_000,
+  }));
+  a.db = db;
+  a.remoteBaseRevision.jenn = 0;
+
+  a.savePlayer("jenn");
+  await tick();
+
+  assert.equal(a.state.jenn.totalStars, 12, "equal epochs merge normally");
+  assert.deepEqual(a.state.jenn.gatesCompleted, ["h1-g01"]);
+});
+
+test("W03: a merge failure cannot restore pre-wipe progress", async () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  const real = a.MergeState.mergePlayers;
+  a.MergeState.mergePlayers = () => { throw new Error("merge exploded"); };
+  try {
+    a.noteSyncConflict("jenn", Object.assign(a.defPlayer(), {
+      revision: 80, progressClearedAt: 9_000_000,
+    }), 80);
+  } finally {
+    a.MergeState.mergePlayers = real;
+  }
+  assert.equal(a.state.jenn.totalStars, 0, "the swallowed catch must not keep the stale copy");
+  assert.deepEqual(a.state.jenn.gatesCompleted, []);
+});
+
+test("W03: the wipe rewrites the save key and leaves the other stores alone", () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  a.localStorage.setItem("zh_adv_eng_v1", JSON.stringify({ mascotDisabled: true }));
+  a.localStorage.setItem("zh_adv_device_v1", "device-abc");
+  a.localStorage.setItem("zh_adv_assess_v1", JSON.stringify({ attempts: { at1: {} } }));
+
+  a.clearAllProgress();
+
+  assert.equal(a.localStorage.getItem("zh_adv_eng_v1"), JSON.stringify({ mascotDisabled: true }),
+    "the parent's own settings are not a child's progress");
+  assert.equal(a.localStorage.getItem("zh_adv_device_v1"), "device-abc",
+    "a new device id would orphan a paused assessment attempt");
+  assert.equal(a.localStorage.getItem("zh_adv_assess_v1"), JSON.stringify({ attempts: { at1: {} } }),
+    "assessment attempts are kept, by decision and by firestore.rules");
+  const saved = JSON.parse(a.localStorage.getItem("zh_adv_v1"));
+  assert.equal(saved.jenn.totalStars, 0, "the save key is rewritten, never removed");
+  assert.ok(saved.jenn.progressClearedAt > 0, "with the epoch, or a reload would undo the wipe");
+});
+
+test("W03: nothing in flight can commit into the cleared document", () => {
+  const a = app();
+  F.installState(a);
+  a.state.jenn = playedPlayer(a);
+  let ran = false;
+  a.laterCall("quiz", () => { ran = true; a.state.jenn.totalStars += 50; }, 0);
+  a.clearAllProgress();
+  a.runTimers ? a.runTimers() : null;
+  assert.equal(ran, false, "a deferred round callback is drained, not left to pay out");
+  assert.equal(a.state.jenn.totalStars, 0);
+});
+
 test("S02: the conflict log stays bounded", async () => {
   const a = app();
   F.installState(a);

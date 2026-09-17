@@ -1917,19 +1917,21 @@ function initFirestore(){
         ensureState(pid);
         dbgLog('snapshot received',{pid,remoteLastSaved:(remote&&remote.lastSaved)||0,localLastSaved:(state[pid]&&state[pid].lastSaved)||0});
         const remoteRev=(remote&&remote.revision)||0;
-        const localRev=(state[pid]&&state[pid].revision)||0;
-        // Revision decides when both sides have one; documents written before
-        // revisions existed still fall back to the timestamp.
-        const newer=(remoteRev||localRev)
-          ?remoteRev>localRev
-          :((remote&&remote.lastSaved||0)>(state[pid].lastSaved||0));
+        // A cleared document carries less than the copy it replaces, so the
+        // revision rule alone would reject it. The epoch is checked first.
+        const newer=MergeState.shouldAdopt(state[pid],remote);
         if(newer){
           // A shallow assign would drop anything this device did that the
           // other has not seen. Merge the two histories instead.
           try{
             state[pid]=MergeState.mergePlayers(state[pid],remote,mergeOptsFor(state[pid])).player;
           }catch(e){
-            state[pid]=mergePlayerState(state[pid],remote);
+            // The fallback keeps local-only keys, which would resurrect the
+            // progress a cleared remote has just discarded. Rebuild from a
+            // fresh player instead when the remote is the cleared one.
+            const base=(Number(remote.progressClearedAt||0)>Number((state[pid]&&state[pid].progressClearedAt)||0))
+              ?defPlayer():state[pid];
+            state[pid]=mergePlayerState(base,remote);
           }
           remoteBaseRevision[pid]=remoteRev;
           setSyncStatus(pid,'synced');
@@ -1960,7 +1962,7 @@ function defPlayer(){
     // A fresh player is already in the current model, so the migration must
     // not run over it and mistake its gate keys for legacy numeric ids.
     schemaVersion:GateIdentity.SCHEMA_VERSION,
-    revision:0,syncConflicts:[],
+    revision:0,syncConflicts:[],progressClearedAt:0,
     gatesCompleted:[],storiesCompleted:[],legacyStoriesCompleted:[],gateStars:{},
     library:{},failedWords:{},
     todayStats:{},dailyTimeMs:{},weeklyHistory:[],
@@ -2978,7 +2980,7 @@ function setSyncStatus(pid,status){
  * document, which would grow without limit.
  */
 function noteSyncConflict(pid,remote,remoteRev){
-  const s=state[pid];
+  let s=state[pid];
   if(!s)return;
   // Record what the two sides looked like BEFORE reconciling, so the log shows
   // the divergence rather than its resolution.
@@ -2990,9 +2992,23 @@ function noteSyncConflict(pid,remote,remoteRev){
   if(remote){
     try{
       const merged=MergeState.mergePlayers(s,remote,mergeOptsFor(s));
-      Object.keys(merged.player).forEach(k=>{s[k]=merged.player[k];});
+      if(merged.cleared){
+        // A key-by-key copy leaves behind whatever the cleared side no longer
+        // has — which is the whole point of clearing. Replace the document,
+        // then backfill so the fresh copy is a complete player.
+        state[pid]=merged.player;ensureState(pid);s=state[pid];
+      }else{
+        Object.keys(merged.player).forEach(k=>{s[k]=merged.player[k];});
+      }
       if(merged.notes.length)showToast(merged.notes[0],3200);
-    }catch(e){dbgLog('merge failed',String(e&&e.message||e));}
+    }catch(e){
+      dbgLog('merge failed',String(e&&e.message||e));
+      // Never keep a pre-wipe local copy over a cleared remote: the next push
+      // would put the cleared progress back on every device.
+      if(remote&&Number(remote.progressClearedAt||0)>Number(s.progressClearedAt||0)){
+        state[pid]=mergePlayerState(defPlayer(),remote);ensureState(pid);s=state[pid];
+      }
+    }
   }
   if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
   s.syncConflicts.push({
@@ -3022,7 +3038,7 @@ function noteSyncConflict(pid,remote,remoteRev){
  * lose work to whichever clock happened to be later. A stale write is now
  * refused rather than applied.
  */
-function pushPlayer(pid){
+function pushPlayer(pid,opts){
   if(!db||!state[pid])return;
   const ref=db.collection('chinese-adventure').doc(pid);
   const payload=JSON.parse(JSON.stringify(state[pid]));
@@ -3042,12 +3058,22 @@ function pushPlayer(pid){
     remoteBaseRevision[pid]=payload.revision||0;
     setSyncStatus(pid,'synced');
   }).catch(err=>{
-    if(err&&err.conflict)noteSyncConflict(pid,err.remote,err.remoteRev);
+    if(err&&err.conflict){
+      noteSyncConflict(pid,err.remote,err.remoteRev);
+      // `remoteBaseRevision` starts at 0 every page load and is only set when a
+      // snapshot is ADOPTED, so a device that loads already up to date has a
+      // base of 0 while the server is far ahead — its first push is refused as
+      // stale. Ordinary saves can wait for the next one; clearing progress
+      // cannot, so that caller asks for a retry. The conflict handler has by
+      // now set the base, so the second attempt lands.
+      const left=Number((opts&&opts.retries)||0);
+      if(left>0)laterCall('session',()=>pushPlayer(pid,{retries:left-1}),0);
+    }
     else setSyncStatus(pid,'local');
   });
 }
 
-function savePlayer(pid){
+function savePlayer(pid,opts){
   if(!pid||!state[pid])return;
   try{
     const s=state[pid];
@@ -3056,7 +3082,7 @@ function savePlayer(pid){
     dbgLog('savePlayer',{pid,revision:s.revision,curP:curP||null});
     localStorage.setItem(SK,JSON.stringify(state));
     setSyncStatus(pid,'local');
-    if(db)pushPlayer(pid);
+    if(db)pushPlayer(pid,opts);
     refreshOpenSummaries();
   }catch(e){}
 }
@@ -3099,6 +3125,8 @@ function ensureState(p){
   // "does not know what it means".
   if(!s.reviewRecords)s.reviewRecords={};
   if(typeof s.revision!=='number')s.revision=0;
+  // Never overwritten here: it is what makes a cleared document win a merge.
+  if(typeof s.progressClearedAt!=='number')s.progressClearedAt=0;
   MergeState.ensureLedger(s);
   if(!Array.isArray(s.syncConflicts))s.syncConflicts=[];
   if(!Array.isArray(s.legacyStoriesCompleted)){
@@ -7996,14 +8024,47 @@ function clearAllProgressWithParentPwd(){
   if(!askParentPwd('This clears all progress for Jenn and Jess.'))return;
   const ok=confirm('This will permanently reset all progress for Jenn and Jess. Continue?');
   if(!ok)return;
-  state={jenn:defPlayer(),jess:defPlayer()};
-  ensureState('jenn');ensureState('jess');
+  clearAllProgress();
+}
+
+/**
+ * Clear both players, in a way that survives the other device.
+ *
+ * The old version rebuilt defPlayer(), whose `revision` is 0 — so every device
+ * that had ever played out-ranked the wipe and ignored it, and the merge rules
+ * (built so an emptier copy can never erase a fuller one) handed the stars,
+ * gates and review records straight back. A wipe now carries an epoch that
+ * outranks the pre-wipe copies, and a revision that cannot be out-ranked.
+ *
+ * Not cleared, deliberately: the parent's own settings, this device's id, and
+ * the assessment attempts — a measurement record kept outside the game economy
+ * (§24), which firestore.rules forbids deleting in any case.
+ */
+function clearAllProgress(){
+  // A round in flight would otherwise commit its stars into the fresh document
+  // through a deferred callback (§27).
+  sessionGen++;
+  drainAllDeferred();
+  const now=Date.now();
+  ['jenn','jess'].forEach(pid=>{
+    // Assign per player: something else may be holding `state`.
+    state[pid]=MergeState.clearPlayer(defPlayer(),state[pid]||{},{now,revisionFloor:remoteBaseRevision[pid]||0});
+    ensureState(pid);
+  });
   // The one place a two-player write is correct.
-  savePlayer('jenn');savePlayer('jess');
+  savePlayer('jenn',{retries:1});savePlayer('jess',{retries:1});
   renderSelectBadges();
   if(curP)renderHub();
   renderParentSummary();
-  showToast('All progress has been cleared.');
+  // Tell the truth about where it landed. Transactions are not queued offline,
+  // so a wipe made with no connection has NOT reached the other device yet, and
+  // saying it has is how a parent ends up believing a wipe that never happened.
+  laterCall('session',()=>{
+    const done=syncStatus.jenn==='synced'&&syncStatus.jess==='synced';
+    showToast(done
+      ?'All progress cleared and synced. ✅'
+      :'Cleared on this device — it will sync when this device is back online.',3600);
+  },1200);
 }
 
 function setSumMode(m){
