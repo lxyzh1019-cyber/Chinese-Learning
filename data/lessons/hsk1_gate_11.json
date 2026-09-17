@@ -14,9 +14,9 @@
       "en": "long"
     },
     {
-      "zh": "时候",
-      "pinyin": "shíhou",
-      "en": "time; moment"
+      "zh": "那时候",
+      "pinyin": "nà shí hou",
+      "en": "at that time"
     },
     {
       "zh": "北",
@@ -81,7 +81,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "from"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o2",
@@ -93,7 +93,7 @@
         },
         {
           "id": "o4",
-          "text": "long time"
+          "text": "China"
         }
       ],
       "answerId": "o2",
@@ -104,14 +104,14 @@
       "id": "hsk1_gate_11_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "时候",
-      "pinyin": "shíhou",
-      "promptEn": "In the story, what does 时候 mean?",
-      "prompt": "短文里的“时候”是什么意思？",
+      "zh": "那时候",
+      "pinyin": "nà shí hou",
+      "promptEn": "In the story, what does 那时候 mean?",
+      "prompt": "短文里的“那时候”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "time; moment"
+          "text": "at that time"
         },
         {
           "id": "o2",
@@ -119,16 +119,16 @@
         },
         {
           "id": "o3",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o4",
-          "text": "from"
+          "text": "(shows it is finished)"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
+      "explanationEn": "那时候 (nà shí hou) means \"at that time\" — you can find it in the passage above.",
+      "explanation": "“那时候”（nà shí hou）的意思是“at that time”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_11_s1",
@@ -142,15 +142,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "Long ago, great floods came to China."
+          "text": "Long ago, a great flood came to China."
         },
         {
           "id": "o2",
-          "text": "The floods came, and many people had no home."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o3",
-          "text": "Dayu was a good person."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o4",

@@ -37,6 +37,11 @@ module.exports = {
   "每天": { py: "měi tiān", en: "every day" },
   "骨头": { py: "gǔ tou",   en: "bone" },
   "诗人": { py: "shī rén",  en: "poet" },
+  // The HSK1 gate 1-3 rewrite (2026-09-17) glosses words in context, so the
+  // dictionary entry these two used to take from the old 大禹 and 西周 texts
+  // ("returned", "soldier") fell through to a gate-list row that reads worse.
+  "回":   { py: "huí",     en: "to return; to go back" },
+  "兵":   { py: "bīng",    en: "soldier" },
 
   // ── surname sense displacing the common word ──
   "也": { py: "yě",    en: "also; too" },
