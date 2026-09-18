@@ -61,7 +61,7 @@ on the pre-fix code.
 | F3 | A quiz resumed the next day was judged against HSK1 whatever level it began in | fixed |
 | C1 | 23 words served an archaic, specialist or obscene reading; audio and text disagreed | fixed |
 | C2 | `sentenceTargetsPack` existed in 0 of 88 gates; 52 pairs served three generic sentences | fixed |
-| C3 | All 29 culture readings were one template with no content | authored |
+| C3 | All 29 culture readings were one template with no content | rewritten as stories with an English line per paragraph (2026-09-18) |
 | C4 | 大禹 away 三十年 at HSK1 and 十三年 at HSK2, plus unnatural phrasing throughout | fixed |
 | C5 | Two assessment passages had defective premises | fixed on bank 1.2.0 |
 | L1 | Lesson answers visible in the glossary counted as independent recall — all 88 of them | fixed |
@@ -191,6 +191,9 @@ disappearing.
   adult would use even above level (blue bonus tokens on an allow-list), a
   reviewed word-level seg on every sentence. HSK2 tells the same background
   story as HSK1 with the same names and numbers and one more causal step.
+  The allow-list (`scripts/story-supplement.js`) holds about 250 words, far
+  past the ~40 first planned: the owner's rule to name the thing (奶茶, 指南针,
+  纸币, 官府) rather than describe it in level words is what grew it.
   Authored with `scripts/seg_story.js`; rules in `docs/chinese-style.md`
   §3–§4; a sentence without seg now fails the build.
 - **All 29 culture readings rewritten as stories** (2026-09-18, owner-reviewed
