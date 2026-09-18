@@ -23264,35 +23264,6 @@
     [
      {
       "t": "c",
-      "ch": "因为",
-      "py": "yīn wèi",
-      "mn": "because"
-     },
-     {
-      "t": "c",
-      "ch": "草原",
-      "py": "cǎo yuán",
-      "mn": "grassland",
-      "bonus": true
-     },
-     {
-      "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "大",
-      "py": "dà",
-      "mn": "big"
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "c",
       "ch": "他们",
       "py": "tā men",
       "mn": "they"
@@ -23305,6 +23276,42 @@
      },
      {
       "t": "c",
+      "ch": "跟着",
+      "py": "gēn zhe",
+      "mn": "to follow",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "水",
+      "py": "shuǐ",
+      "mn": "water"
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
+     },
+     {
+      "t": "c",
+      "ch": "草",
+      "py": "cǎo",
+      "mn": "grass",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "走",
+      "py": "zǒu",
+      "mn": "to move"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
       "ch": "常常",
       "py": "cháng cháng",
       "mn": "often",
@@ -23312,9 +23319,10 @@
      },
      {
       "t": "c",
-      "ch": "走",
-      "py": "zǒu",
-      "mn": "to move on"
+      "ch": "搬家",
+      "py": "bān jiā",
+      "mn": "to move house",
+      "bonus": true
      },
      {
       "t": "p",
@@ -23325,12 +23333,6 @@
       "ch": "所以",
       "py": "suǒ yǐ",
       "mn": "so"
-     },
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
      },
      {
       "t": "c",
@@ -23378,9 +23380,9 @@
      },
      {
       "t": "c",
-      "ch": "拿起来",
-      "py": "ná qǐ lái",
-      "mn": "to pick up",
+      "ch": "收起来",
+      "py": "shōu qǐ lái",
+      "mn": "to fold up",
       "bonus": true
      },
      {
@@ -23432,15 +23434,9 @@
      },
      {
       "t": "c",
-      "ch": "放",
-      "py": "fàng",
-      "mn": "to put"
-     },
-     {
-      "t": "c",
-      "ch": "下",
-      "py": "xià",
-      "mn": "down"
+      "ch": "打开",
+      "py": "dǎ kāi",
+      "mn": "to open up"
      },
      {
       "t": "p",
@@ -24098,8 +24094,8 @@
     "There are no mountains there, only sky and grass.",
     "In winter life was very hard, with strong winds and heavy snow.",
     "Long ago, a people lived there called the Khitan.",
-    "Because the grassland was so wide, they were always on the move, so they lived in tents.",
-    "A tent could be taken up and carried away, and set down again in a new place.",
+    "They had to follow the water and the grass and move house often, so they lived in tents.",
+    "A tent could be folded up and carried away, and opened again in a new place.",
     "They learned to ride from childhood, and grown-ups and children alike rode fast and well.",
     "Their horses were fast and fine too.",
     "They wanted to write their own language down, so later they made a writing of their own.",
@@ -36191,9 +36187,23 @@
      },
      {
       "t": "c",
-      "ch": "店",
-      "py": "diàn",
-      "mn": "shop"
+      "ch": "特定",
+      "py": "tè dìng",
+      "mn": "particular",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "(makes a describing word)"
+     },
+     {
+      "t": "c",
+      "ch": "商铺",
+      "py": "shāng pù",
+      "mn": "shop",
+      "bonus": true
      },
      {
       "t": "c",
@@ -36207,15 +36217,10 @@
      },
      {
       "t": "c",
-      "ch": "店",
-      "py": "diàn",
-      "mn": "shop"
-     },
-     {
-      "t": "c",
-      "ch": "里",
-      "py": "lǐ",
-      "mn": "inside"
+      "ch": "商铺",
+      "py": "shāng pù",
+      "mn": "shop",
+      "bonus": true
      },
      {
       "t": "c",
@@ -36243,9 +36248,17 @@
      },
      {
       "t": "c",
-      "ch": "纸",
-      "py": "zhǐ",
-      "mn": "paper"
+      "ch": "纸质",
+      "py": "zhǐ zhì",
+      "mn": "made of paper",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "凭证",
+      "py": "píng zhèng",
+      "mn": "receipt; voucher",
+      "bonus": true
      },
      {
       "t": "p",
@@ -36255,9 +36268,10 @@
     [
      {
       "t": "c",
-      "ch": "纸",
-      "py": "zhǐ",
-      "mn": "paper"
+      "ch": "凭证",
+      "py": "píng zhèng",
+      "mn": "receipt; voucher",
+      "bonus": true
      },
      {
       "t": "c",
@@ -36314,9 +36328,10 @@
      },
      {
       "t": "c",
-      "ch": "店",
-      "py": "diàn",
-      "mn": "shop"
+      "ch": "商铺",
+      "py": "shāng pù",
+      "mn": "shop",
+      "bonus": true
      },
      {
       "t": "c",
@@ -36338,9 +36353,38 @@
     [
      {
       "t": "c",
+      "ch": "凭证",
+      "py": "píng zhèng",
+      "mn": "receipt; voucher",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
+     },
+     {
+      "t": "c",
       "ch": "纸",
       "py": "zhǐ",
       "mn": "paper"
+     },
+     {
+      "t": "c",
+      "ch": "做",
+      "py": "zuò",
+      "mn": "to make"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
@@ -36456,9 +36500,10 @@
      },
      {
       "t": "c",
-      "ch": "纸",
-      "py": "zhǐ",
-      "mn": "paper"
+      "ch": "凭证",
+      "py": "píng zhèng",
+      "mn": "receipt; voucher",
+      "bonus": true
      },
      {
       "t": "c",
@@ -36788,10 +36833,10 @@
     "The money was too heavy for one person to carry; it had to be pulled in a cart.",
     "And the road was not safe: there were people who made a living robbing merchants.",
     "Song people thought of a way.",
-    "A merchant left his money at a shop, and the shop gave him a piece of paper.",
-    "On the paper was written how much it was worth, and the shop's name.",
-    "Paper is light and small, easy to carry on you.",
-    "In another city, that paper could be exchanged for the money.",
+    "A merchant left his money at one particular shop, and the shop gave him a paper receipt.",
+    "On the receipt was written how much it was worth, and the shop's name.",
+    "The receipt was made of paper, light and small, easy to carry on you.",
+    "In another city, that receipt could be exchanged for the money.",
     "This was the earliest paper money in the world.",
     "With paper money, merchants could travel further, and trade in the cities grew and grew.",
     "Later, other countries began to use paper money too.",
@@ -41715,21 +41760,16 @@
      },
      {
       "t": "c",
-      "ch": "用",
-      "py": "yòng",
-      "mn": "to use"
-     },
-     {
-      "t": "c",
-      "ch": "手",
-      "py": "shǒu",
-      "mn": "hand"
+      "ch": "反复",
+      "py": "fǎn fù",
+      "mn": "over and over",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "炒",
       "py": "chǎo",
-      "mn": "to roast; to stir-fry",
+      "mn": "to roast",
       "bonus": true
      },
      {
@@ -42455,7 +42495,7 @@
     "By the Song dynasty, tea was already an everyday thing.",
     "Tea is made from the leaves of the tea tree.",
     "In spring, people pick the newly grown leaves.",
-    "Then the leaves are dried in the sun and worked by hand many times before they can be drunk.",
+    "Then the leaves are dried in the sun and roasted over and over before they can be drunk.",
     "Before drinking tea, the water must first be boiled.",
     "The water must be neither too hot nor too cold.",
     "With the wrong water, even good tea leaves make a poor cup.",
@@ -43009,21 +43049,28 @@
      },
      {
       "t": "c",
-      "ch": "不",
-      "py": "bù",
-      "mn": "not"
+      "ch": "聚精会神",
+      "py": "jù jīng huì shén",
+      "mn": "with full attention",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "说话",
-      "py": "shuō huà",
-      "mn": "to talk"
+      "ch": "地",
+      "py": "de",
+      "mn": "(makes an adverb)"
      },
      {
       "t": "c",
-      "ch": "了",
-      "py": "le",
-      "mn": "(shows a change)"
+      "ch": "听",
+      "py": "tīng",
+      "mn": "to listen"
+     },
+     {
+      "t": "c",
+      "ch": "着",
+      "py": "zhe",
+      "mn": "(-ing, still going on)"
      },
      {
       "t": "p",
@@ -43492,9 +43539,9 @@
      },
      {
       "t": "c",
-      "ch": "个",
-      "py": "gè",
-      "mn": "(counting word)"
+      "ch": "座",
+      "py": "zuò",
+      "mn": "(counting word, cities)"
      },
      {
       "t": "c",
@@ -43595,7 +43642,7 @@
     "Old people talked here about times long past.",
     "Children came too, and sat at the back listening.",
     "In the afternoon, a storyteller would come.",
-    "He told them so well that everyone fell silent.",
+    "He told them so well that everyone listened, rapt.",
     "In the stories were emperors, generals, and dragons.",
     "At the most gripping moment he would stop and say: \"More tomorrow.\"",
     "One story took several days, so everyone came back the next day.",

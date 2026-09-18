@@ -276,34 +276,9 @@
       ]
     },
     {
-      "zh": "因为草原很大，他们要常常走，所以他们住在帐篷里。",
-      "en": "Because the grassland was so wide, they were always on the move, so they lived in tents.",
+      "zh": "他们要跟着水和草走，常常搬家，所以住在帐篷里。",
+      "en": "They had to follow the water and the grass and move house often, so they lived in tents.",
       "seg": [
-        {
-          "zh": "因为",
-          "py": "yīn wèi",
-          "mn": "because"
-        },
-        {
-          "zh": "草原",
-          "py": "cǎo yuán",
-          "mn": "grassland",
-          "bonus": true
-        },
-        {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "大",
-          "py": "dà",
-          "mn": "big"
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
         {
           "zh": "他们",
           "py": "tā men",
@@ -315,15 +290,47 @@
           "mn": "must"
         },
         {
+          "zh": "跟着",
+          "py": "gēn zhe",
+          "mn": "to follow",
+          "bonus": true
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "草",
+          "py": "cǎo",
+          "mn": "grass",
+          "bonus": true
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to move"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
           "zh": "常常",
           "py": "cháng cháng",
           "mn": "often",
           "bonus": true
         },
         {
-          "zh": "走",
-          "py": "zǒu",
-          "mn": "to move on"
+          "zh": "搬家",
+          "py": "bān jiā",
+          "mn": "to move house",
+          "bonus": true
         },
         {
           "t": "p",
@@ -333,11 +340,6 @@
           "zh": "所以",
           "py": "suǒ yǐ",
           "mn": "so"
-        },
-        {
-          "zh": "他们",
-          "py": "tā men",
-          "mn": "they"
         },
         {
           "zh": "住",
@@ -367,8 +369,8 @@
       ]
     },
     {
-      "zh": "帐篷可以拿起来带走，到了新的地方再放下。",
-      "en": "A tent could be taken up and carried away, and set down again in a new place.",
+      "zh": "帐篷可以收起来带走，到了新的地方再打开。",
+      "en": "A tent could be folded up and carried away, and opened again in a new place.",
       "seg": [
         {
           "zh": "帐篷",
@@ -382,9 +384,9 @@
           "mn": "can"
         },
         {
-          "zh": "拿起来",
-          "py": "ná qǐ lái",
-          "mn": "to pick up",
+          "zh": "收起来",
+          "py": "shōu qǐ lái",
+          "mn": "to fold up",
           "bonus": true
         },
         {
@@ -428,14 +430,9 @@
           "mn": "then"
         },
         {
-          "zh": "放",
-          "py": "fàng",
-          "mn": "to put"
-        },
-        {
-          "zh": "下",
-          "py": "xià",
-          "mn": "down"
+          "zh": "打开",
+          "py": "dǎ kāi",
+          "mn": "to open up"
         },
         {
           "t": "p",

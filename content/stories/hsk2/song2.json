@@ -510,8 +510,8 @@
       ]
     },
     {
-      "zh": "商人把钱放在一家店里，店里给他一张纸。",
-      "en": "A merchant left his money at a shop, and the shop gave him a piece of paper.",
+      "zh": "商人把钱放在一家特定的商铺里，商铺给他一张纸质凭证。",
+      "en": "A merchant left his money at one particular shop, and the shop gave him a paper receipt.",
       "seg": [
         {
           "zh": "商人",
@@ -550,9 +550,21 @@
           "mn": "(counting word, shops)"
         },
         {
-          "zh": "店",
-          "py": "diàn",
-          "mn": "shop"
+          "zh": "特定",
+          "py": "tè dìng",
+          "mn": "particular",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "商铺",
+          "py": "shāng pù",
+          "mn": "shop",
+          "bonus": true
         },
         {
           "zh": "里",
@@ -564,14 +576,10 @@
           "tx": "，"
         },
         {
-          "zh": "店",
-          "py": "diàn",
-          "mn": "shop"
-        },
-        {
-          "zh": "里",
-          "py": "lǐ",
-          "mn": "inside"
+          "zh": "商铺",
+          "py": "shāng pù",
+          "mn": "shop",
+          "bonus": true
         },
         {
           "zh": "给",
@@ -594,9 +602,16 @@
           "mn": "(counting word, flat things)"
         },
         {
-          "zh": "纸",
-          "py": "zhǐ",
-          "mn": "paper"
+          "zh": "纸质",
+          "py": "zhǐ zhì",
+          "mn": "made of paper",
+          "bonus": true
+        },
+        {
+          "zh": "凭证",
+          "py": "píng zhèng",
+          "mn": "receipt; voucher",
+          "bonus": true
         },
         {
           "t": "p",
@@ -605,13 +620,14 @@
       ]
     },
     {
-      "zh": "纸上写着它值多少钱，还有店的名字。",
-      "en": "On the paper was written how much it was worth, and the shop's name.",
+      "zh": "凭证上写着它值多少钱，还有商铺的名字。",
+      "en": "On the receipt was written how much it was worth, and the shop's name.",
       "seg": [
         {
-          "zh": "纸",
-          "py": "zhǐ",
-          "mn": "paper"
+          "zh": "凭证",
+          "py": "píng zhèng",
+          "mn": "receipt; voucher",
+          "bonus": true
         },
         {
           "zh": "上",
@@ -659,9 +675,10 @@
           "mn": "and also"
         },
         {
-          "zh": "店",
-          "py": "diàn",
-          "mn": "shop"
+          "zh": "商铺",
+          "py": "shāng pù",
+          "mn": "shop",
+          "bonus": true
         },
         {
           "zh": "的",
@@ -680,13 +697,38 @@
       ]
     },
     {
-      "zh": "纸又轻又小，放在身上很方便。",
-      "en": "Paper is light and small, easy to carry on you.",
+      "zh": "凭证是纸做的，又轻又小，放在身上很方便。",
+      "en": "The receipt was made of paper, light and small, easy to carry on you.",
       "seg": [
+        {
+          "zh": "凭证",
+          "py": "píng zhèng",
+          "mn": "receipt; voucher",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
         {
           "zh": "纸",
           "py": "zhǐ",
           "mn": "paper"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to make"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "p",
+          "tx": "，"
         },
         {
           "zh": "又",
@@ -745,8 +787,8 @@
       ]
     },
     {
-      "zh": "到了别的城，用这张纸就可以拿到钱。",
-      "en": "In another city, that paper could be exchanged for the money.",
+      "zh": "到了别的城，用这张凭证就可以拿到钱。",
+      "en": "In another city, that receipt could be exchanged for the money.",
       "seg": [
         {
           "zh": "到",
@@ -789,9 +831,10 @@
           "mn": "(counting word, flat things)"
         },
         {
-          "zh": "纸",
-          "py": "zhǐ",
-          "mn": "paper"
+          "zh": "凭证",
+          "py": "píng zhèng",
+          "mn": "receipt; voucher",
+          "bonus": true
         },
         {
           "zh": "就",

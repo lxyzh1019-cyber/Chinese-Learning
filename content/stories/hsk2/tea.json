@@ -243,8 +243,8 @@
       ]
     },
     {
-      "zh": "然后把叶子放在太阳下晒，再用手炒很多次，才能喝。",
-      "en": "Then the leaves are dried in the sun and worked by hand many times before they can be drunk.",
+      "zh": "然后把叶子放在太阳下晒，再反复炒很多次，才能喝。",
+      "en": "Then the leaves are dried in the sun and roasted over and over before they can be drunk.",
       "seg": [
         {
           "zh": "然后",
@@ -298,19 +298,15 @@
           "mn": "then"
         },
         {
-          "zh": "用",
-          "py": "yòng",
-          "mn": "to use"
-        },
-        {
-          "zh": "手",
-          "py": "shǒu",
-          "mn": "hand"
+          "zh": "反复",
+          "py": "fǎn fù",
+          "mn": "over and over",
+          "bonus": true
         },
         {
           "zh": "炒",
           "py": "chǎo",
-          "mn": "to roast; to stir-fry",
+          "mn": "to roast",
           "bonus": true
         },
         {

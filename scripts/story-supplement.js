@@ -262,4 +262,13 @@ module.exports = {
   "过节":   { py: "guò jié",     en: "to celebrate a festival" },
   "道理":   { py: "dào lǐ",      en: "reason; principle" },
   "铜":     { py: "tóng",        en: "copper; bronze" },
+  "搬家":   { py: "bān jiā",     en: "to move house" },
+  "收起来": { py: "shōu qǐ lái", en: "to fold up; to pack away" },
+  "打开":   { py: "dǎ kāi",      en: "to open up" },
+  "聚精会神": { py: "jù jīng huì shén", en: "with full attention" },
+  "反复":   { py: "fǎn fù",      en: "over and over" },
+  "特定":   { py: "tè dìng",     en: "particular; specific" },
+  "商铺":   { py: "shāng pù",    en: "shop" },
+  "纸质":   { py: "zhǐ zhì",     en: "made of paper" },
+  "凭证":   { py: "píng zhèng",  en: "receipt; voucher" },
 };
