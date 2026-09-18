@@ -7368,9 +7368,16 @@
      },
      {
       "t": "c",
-      "ch": "有",
-      "py": "yǒu",
-      "mn": "had"
+      "ch": "组建",
+      "py": "zǔ jiàn",
+      "mn": "to put together",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
      },
      {
       "t": "c",
@@ -7780,9 +7787,32 @@
      },
      {
       "t": "c",
-      "ch": "一直",
-      "py": "yī zhí",
-      "mn": "all the way"
+      "ch": "一路",
+      "py": "yí lù",
+      "mn": "all the way",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "下",
+      "py": "xià",
+      "mn": "to go down to"
+     },
+     {
+      "t": "n",
+      "tx": "南洋",
+      "py": "Nányáng",
+      "mn": "the South Seas (Southeast Asia)"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "然后",
+      "py": "rán hòu",
+      "mn": "then"
      },
      {
       "t": "c",
@@ -7810,7 +7840,7 @@
       "t": "c",
       "ch": "大海",
       "py": "dà hǎi",
-      "mn": "the sea",
+      "mn": "the open sea",
       "bonus": true
      },
      {
@@ -8548,13 +8578,13 @@
     ]
    ],
    "trans": [
-    "More than six hundred years ago, the Ming had a great fleet.",
+    "More than six hundred years ago, the Ming dynasty put together a great fleet.",
     "The man who led the fleet was called Zheng He.",
     "His ships were enormous, bigger than many houses.",
     "One ship could hold several hundred people.",
     "On board were water, rice, and Chinese silk and tea.",
     "These were carried as gifts and as goods to trade.",
-    "The fleet set out from China and sailed west, many days on the open sea.",
+    "The fleet set out from China, sailed down through the South Seas, then turned west, many days on the open sea.",
     "Because the ships were so big, they had no fear of wind or waves.",
     "Some places were very hot, some very far, and they met people of many countries.",
     "They did not go to fight those countries; they only traded, and then came home.",
@@ -20195,22 +20225,22 @@
      },
      {
       "t": "c",
-      "ch": "站起来",
-      "py": "zhàn qǐ lái",
-      "mn": "to stand up",
+      "ch": "站出来",
+      "py": "zhàn chū lái",
+      "mn": "to stand up (against)",
       "bonus": true
      },
      {
       "t": "c",
-      "ch": "和",
-      "py": "hé",
+      "ch": "跟",
+      "py": "gēn",
       "mn": "with"
      },
      {
       "t": "c",
-      "ch": "官",
-      "py": "guān",
-      "mn": "officials",
+      "ch": "官府",
+      "py": "guān fǔ",
+      "mn": "the government offices",
       "bonus": true
      },
      {
@@ -21219,7 +21249,7 @@
     "Late in the Qing dynasty, the country ran into many problems.",
     "Many officials did not do their jobs properly, and thought only of lining their pockets.",
     "Life grew harder and harder, and many people could not get enough to eat.",
-    "In some places people rose up and fought the officials.",
+    "In some places people stood up and fought the government.",
     "At that moment the western countries had steamships and cannon, far stronger than China's.",
     "They came to China and fought several wars, and the Qing lost every one.",
     "After each defeat the Qing had to pay them large sums, and hand over some territory.",
@@ -23982,9 +24012,10 @@
      },
      {
       "t": "c",
-      "ch": "老",
-      "py": "lǎo",
-      "mn": "old"
+      "ch": "传统",
+      "py": "chuán tǒng",
+      "mn": "traditional",
+      "bonus": true
      },
      {
       "t": "c",
@@ -24016,9 +24047,10 @@
      },
      {
       "t": "c",
-      "ch": "老",
-      "py": "lǎo",
-      "mn": "old"
+      "ch": "传统",
+      "py": "chuán tǒng",
+      "mn": "traditional",
+      "bonus": true
      },
      {
       "t": "c",
@@ -24805,7 +24837,7 @@
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "to make"
+      "mn": "to do"
      },
      {
       "t": "c",
@@ -24821,9 +24853,10 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "things"
+      "ch": "学问",
+      "py": "xué wen",
+      "mn": "learning; scholarship",
+      "bonus": true
      },
      {
       "t": "p",
@@ -25087,7 +25120,7 @@
    ],
    "trans": [
     "A hundred years ago China had many young people, very different from those before them.",
-    "Young people before them read only the old books and learned to write the old essays.",
+    "Young people before them read only the traditional books and learned to write the traditional essays.",
     "These attended new-style schools that taught mathematics and western science.",
     "Some went abroad to study, and lived there for several years.",
     "Because they saw so much that was new, they thought more deeply.",
@@ -25097,7 +25130,7 @@
     "The old books were written in an ancient language that ordinary people could not read.",
     "They wrote books in a language everyone could read.",
     "Because of this, more and more people could read books, and knowledge spread wider and wider.",
-    "They made new things and asked new questions.",
+    "They took up new fields of learning and asked new questions.",
     "They wanted to make their country better.",
     "This was not the work of one person, but of many, many young people together.",
     "They said: study can change a country."

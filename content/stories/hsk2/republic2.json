@@ -110,8 +110,8 @@
       ]
     },
     {
-      "zh": "以前的年轻人只读老的书，学写老的文章。",
-      "en": "Young people before them read only the old books and learned to write the old essays.",
+      "zh": "以前的年轻人只读传统的书，学写传统的文章。",
+      "en": "Young people before them read only the traditional books and learned to write the traditional essays.",
       "seg": [
         {
           "zh": "以前",
@@ -140,9 +140,10 @@
           "mn": "to read"
         },
         {
-          "zh": "老",
-          "py": "lǎo",
-          "mn": "old"
+          "zh": "传统",
+          "py": "chuán tǒng",
+          "mn": "traditional",
+          "bonus": true
         },
         {
           "zh": "的",
@@ -169,9 +170,10 @@
           "mn": "to write"
         },
         {
-          "zh": "老",
-          "py": "lǎo",
-          "mn": "old"
+          "zh": "传统",
+          "py": "chuán tǒng",
+          "mn": "traditional",
+          "bonus": true
         },
         {
           "zh": "的",
@@ -872,8 +874,8 @@
       ]
     },
     {
-      "zh": "他们也做新的东西，问新的问题。",
-      "en": "They made new things and asked new questions.",
+      "zh": "他们也做新的学问，问新的问题。",
+      "en": "They took up new fields of learning and asked new questions.",
       "seg": [
         {
           "zh": "他们",
@@ -888,7 +890,7 @@
         {
           "zh": "做",
           "py": "zuò",
-          "mn": "to make"
+          "mn": "to do"
         },
         {
           "zh": "新",
@@ -901,9 +903,10 @@
           "mn": "(makes a describing word)"
         },
         {
-          "zh": "东西",
-          "py": "dōng xi",
-          "mn": "things"
+          "zh": "学问",
+          "py": "xué wen",
+          "mn": "learning; scholarship",
+          "bonus": true
         },
         {
           "t": "p",

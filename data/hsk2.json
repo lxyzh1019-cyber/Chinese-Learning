@@ -20290,6 +20290,12 @@
           "。"
         ],
         [
+          "一路",
+          "下",
+          "南洋",
+          "。"
+        ],
+        [
           "写成",
           "了",
           "一",
@@ -20313,13 +20319,6 @@
           "不",
           "怕",
           "。"
-        ],
-        [
-          "第二",
-          "个",
-          "叫",
-          "徐霞客",
-          "。"
         ]
       ],
       "sentenceTargetsMeta": {
@@ -20338,6 +20337,15 @@
           "enContext": "The first was Li Shizhen, who loved the plants and trees of the hills.",
           "storyId": "ming2",
           "sentIndex": 1,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "一路下南洋。": {
+          "py": "yí lù xià Nányáng",
+          "en": null,
+          "enContext": "The fleet set out from China, sailed down through the South Seas, then turned west, many days on the open sea.",
+          "storyId": "ming",
+          "sentIndex": 6,
           "whole": false,
           "borrowedFrom": null
         },
@@ -20364,15 +20372,6 @@
           "en": null,
           "enContext": "Because the ships were so big, they had no fear of wind or waves.",
           "storyId": "ming",
-          "sentIndex": 7,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "第二个叫徐霞客。": {
-          "py": "dì èr gè jiào Xú Xiákè",
-          "en": null,
-          "enContext": "The second was Xu Xiake, who loved walking, and looking at mountains and rivers.",
-          "storyId": "ming2",
           "sentIndex": 7,
           "whole": false,
           "borrowedFrom": null

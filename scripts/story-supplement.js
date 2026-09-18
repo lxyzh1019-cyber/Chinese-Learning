@@ -277,4 +277,10 @@ module.exports = {
   "浪":     { py: "làng",        en: "waves" },
   "亲眼":   { py: "qīn yǎn",     en: "with one's own eyes" },
   "大总统": { py: "dà zǒng tǒng", en: "president" },
+  // ── owner review of gates 19–22 ──
+  "组建":   { py: "zǔ jiàn",     en: "to put together; to form" },
+  "一路":   { py: "yí lù",       en: "all the way" },
+  "站出来": { py: "zhàn chū lái", en: "to stand up (against)" },
+  "官府":   { py: "guān fǔ",     en: "the government offices" },
+  "学问":   { py: "xué wen",     en: "learning; scholarship" },
 };

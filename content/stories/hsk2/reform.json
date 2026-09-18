@@ -224,8 +224,8 @@
       ]
     },
     {
-      "zh": "有的地方，人们站起来和官打仗。",
-      "en": "In some places people rose up and fought the officials.",
+      "zh": "有的地方，人们站出来跟官府打仗。",
+      "en": "In some places people stood up and fought the government.",
       "seg": [
         {
           "zh": "有的",
@@ -247,20 +247,20 @@
           "mn": "people"
         },
         {
-          "zh": "站起来",
-          "py": "zhàn qǐ lái",
-          "mn": "to stand up",
+          "zh": "站出来",
+          "py": "zhàn chū lái",
+          "mn": "to stand up (against)",
           "bonus": true
         },
         {
-          "zh": "和",
-          "py": "hé",
+          "zh": "跟",
+          "py": "gēn",
           "mn": "with"
         },
         {
-          "zh": "官",
-          "py": "guān",
-          "mn": "officials",
+          "zh": "官府",
+          "py": "guān fǔ",
+          "mn": "the government offices",
           "bonus": true
         },
         {

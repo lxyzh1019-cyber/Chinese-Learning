@@ -5051,7 +5051,7 @@
       "t": "c",
       "ch": "以前",
       "py": "yǐ qián",
-      "mn": "before",
+      "mn": "ago",
       "bonus": true
      },
      {
@@ -5066,9 +5066,16 @@
      },
      {
       "t": "c",
-      "ch": "有",
-      "py": "yǒu",
-      "mn": "had"
+      "ch": "组建",
+      "py": "zǔ jiàn",
+      "mn": "to put together",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
      },
      {
       "t": "c",
@@ -5417,9 +5424,32 @@
      },
      {
       "t": "c",
-      "ch": "一直",
-      "py": "yī zhí",
+      "ch": "一路",
+      "py": "yí lù",
       "mn": "all the way",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "下",
+      "py": "xià",
+      "mn": "to go down to"
+     },
+     {
+      "t": "n",
+      "tx": "南洋",
+      "py": "Nányáng",
+      "mn": "the South Seas (Southeast Asia)"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "然后",
+      "py": "rán hòu",
+      "mn": "then",
       "bonus": true
      },
      {
@@ -5922,11 +5952,11 @@
     ]
    ],
    "trans": [
-    "More than six hundred years ago, the Ming dynasty had a great fleet.",
+    "More than six hundred years ago, the Ming dynasty put together a great fleet.",
     "The man who led the fleet was called Zheng He.",
     "His ships were enormous, bigger than many houses, and one ship could hold several hundred people.",
     "On board were water, rice, and Chinese silk and tea.",
-    "The fleet set out from China, sailed west, and spent many days on the open sea.",
+    "The fleet set out from China, sailed down through the South Seas, then turned west, many days on the open sea.",
     "Some places were very hot, some very far, and they met people of many different countries.",
     "They did not go to attack those countries; they only traded, and then came back.",
     "People of other lands gave them animals they had never seen; once it was a giraffe.",
