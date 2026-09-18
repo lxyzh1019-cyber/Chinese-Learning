@@ -37,6 +37,8 @@ function main() {
 
   const paraCount = new Map();   // paragraph text -> how many entries use it
   const questionCount = new Map();
+  const enCount = new Map();
+  let untranslated = 0;
 
   stories.forEach((s) => {
     const at = `${s.id}`;
@@ -52,6 +54,22 @@ function main() {
       });
       paraCount.set(p, (paraCount.get(p) || 0) + 1);
     });
+
+    // The English under each paragraph: one line per paragraph, in English,
+    // and not shared with another reading (a shared line is a template too).
+    const en = s.readerParagraphsEn;
+    if (en === undefined) {
+      untranslated++;
+    } else {
+      if (!Array.isArray(en) || en.length !== paras.length) {
+        fail(`${at}: ${paras.length} paragraphs but ${Array.isArray(en) ? en.length : 0} English lines`);
+      }
+      (Array.isArray(en) ? en : []).forEach((line, i) => {
+        if (!/[a-z]/i.test(line || "")) fail(`${at} English line ${i + 1}: no English`);
+        if (CJK.test(line || "")) fail(`${at} English line ${i + 1}: contains Chinese`);
+        enCount.set(line, (enCount.get(line) || 0) + 1);
+      });
+    }
 
     // The subject has to appear in its own reading.
     if (s.title && !paras.some((p) => p.includes(s.title))) {
@@ -87,10 +105,14 @@ function main() {
   paraCount.forEach((n, text) => {
     if (n > 1) fail(`${n} readings share the paragraph "${text.slice(0, 24)}…" — that is a template, not a reading`);
   });
+  enCount.forEach((n, text) => {
+    if (n > 1) fail(`${n} readings share the English line "${text.slice(0, 32)}…"`);
+  });
   questionCount.forEach((n, text) => {
     if (n > 1) fail(`${n} readings ask "${text.slice(0, 24)}…" — a question that fits every text tests none of them`);
   });
 
+  if (untranslated) console.log(`  warn  ${untranslated} reading(s) have no English lines yet (the 2026-09-18 rewrite is in progress)`);
   console.log(`\nculture readings: ${stories.length} checked · ${failures ? "INVALID" : "valid"} — ${failures} error(s).`);
   if (failures) process.exit(1);
 }

@@ -627,7 +627,8 @@ body.season-autumn{--bg:#241307;--deep:#170b04;--surface:#3a1e0a;--surface2:#4a2
 #culture-overlay .mini-quiz-card{max-height:88vh;display:flex;flex-direction:column;}
 #culture-body{flex:1;overflow-y:auto;min-height:0;padding-right:.2rem;}
 .culture-reader-body{font-size:.88rem;line-height:1.65;color:var(--ink);max-height:62vh;overflow-y:auto;}
-.culture-reader-cn{font-family:var(--fzh);font-size:1.05rem;color:var(--gold);margin:.5rem 0;}
+.culture-reader-cn{font-family:var(--fzh);font-size:1.05rem;color:var(--gold);margin:.5rem 0 .1rem;}
+.culture-reader-en{font-size:.8rem;line-height:1.5;color:var(--muted);margin:0 0 .55rem;}
 .culture-words{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.6rem;}
 .culture-word{display:flex;flex-direction:column;align-items:center;gap:.05rem;padding:.3rem .5rem;border:1px solid var(--gold-dim);border-radius:8px;background:transparent;color:var(--ink);cursor:pointer;font-family:inherit;}
 .culture-word .cw-zh{font-family:var(--fzh);font-size:1rem;color:var(--gold);}
@@ -5946,7 +5947,10 @@ function openCultureReader(st){
     html+=words.map(w=>`<button type="button" class="culture-word" data-zh="${esc(w.zh)}"><span class="cw-zh">${esc(w.zh)}</span><span class="cw-py">${esc(w.py||'')}</span><span class="cw-en">${esc(w.en||'')}</span></button>`).join('');
     html+='</div>';
   }
-  html+=paras.map(p=>`<div class="culture-reader-cn">${esc(p)}</div>`).join('');
+  // One English line under each paragraph when the reading carries them
+  // (readerParagraphsEn, same length as readerParagraphs by construction).
+  const parasEn=(Array.isArray(st.readerParagraphsEn)&&st.readerParagraphsEn.length===paras.length)?st.readerParagraphsEn:null;
+  html+=paras.map((p,i)=>`<div class="culture-reader-cn">${esc(p)}</div>`+(parasEn?`<div class="culture-reader-en">${esc(parasEn[i])}</div>`:'')).join('');
   if(qs.length){
     html+='<div class="dd-desc" style="margin-top:.6rem;"><strong>Think about · 想一想</strong></div><ol style="margin:.3rem 0 0 1.1rem;font-size:.82rem;color:var(--muted);">';
     html+=qs.map((q,i)=>`<li>${esc(q&&q.question)}${(q&&q.answer)?` <button type="button" class="btn-s culture-answer-btn" data-i="${i}" style="font-size:.7rem;padding:.1rem .45rem;margin-left:.3rem;">Show answer</button><div class="culture-answer" id="culture-answer-${i}" hidden>${esc(q.answer)}</div>`:''}</li>`).join('');

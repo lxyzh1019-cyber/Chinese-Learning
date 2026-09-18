@@ -12,7 +12,12 @@
  * was no story.
  *
  * Each entry here says what the term or festival actually is, at the level its
- * `hskBand` claims, and asks two questions the passage answers. Reviewed by:
+ * `hskBand` claims, and asks two questions the passage answers. Since the
+ * 2026-09-18 rewrite (owner-reviewed, round by round) an entry is a short
+ * story with a line of cause — what nature does, what people do about it,
+ * why, one concrete custom, a line the child can relate to — `paragraphsEn`
+ * carries one English line per paragraph, shown under it in the reader, and
+ * the questions ask about the cause rather than restate a fact. Reviewed by:
  * model. **No educator has checked these**, the same standing caveat the
  * vocabulary and story corpora carry.
  */
@@ -20,9 +25,20 @@ module.exports = {
   // ── the 24 solar terms, in order round the year ────────────────────────
   term_01_li_chun: {
     paragraphs: [
-      "立春是二十四节气里的第一个。",
-      "这时候天还很冷，可是白天一天比一天长了。",
-      "有的地方在这一天吃春饼，这叫“咬春”。",
+      "立春是二十四节气里的第一个，一般在二月四日前后。",
+      "这时候天还很冷，可是白天一天比一天长，太阳也一天比一天暖。",
+      "老人说：“立春了，春天就在路上了。”",
+      "有的地方在这一天吃春饼，把菜卷在薄薄的饼里，一口咬下去，这叫“咬春”。",
+      "春饼里的菜是刚长出来的新菜，吃了它，就像把春天吃到了肚子里。",
+      "你家立春的时候吃什么？",
+    ],
+    paragraphsEn: [
+      "Lichun, the Start of Spring, is the first of the twenty-four solar terms, usually around the fourth of February.",
+      "It is still cold, but each day is a little longer than the last, and the sun a little warmer.",
+      "Old people say: \"Lichun has come, so spring is on its way.\"",
+      "In some places people eat spring pancakes on this day, rolling vegetables in a thin pancake and biting in: this is called \"biting the spring\".",
+      "The vegetables in the pancake are the first new ones of the year, so eating it is like eating spring itself.",
+      "What does your family eat at Lichun?",
     ],
     words: [
       { zh: "立春", py: "lì chūn", en: "Start of Spring" },
@@ -31,15 +47,26 @@ module.exports = {
       { zh: "白天", py: "bái tiān", en: "daytime" },
     ],
     questions: [
-      { question: "立春是第几个节气？", answer: "第一个。" },
-      { question: "有的地方在立春这一天吃什么？", answer: "春饼。" },
+      { question: "立春的时候天还很冷，为什么人们说春天来了？", answer: "因为白天一天比一天长，太阳也一天比一天暖。" },
+      { question: "吃春饼为什么叫“咬春”？", answer: "春饼里卷的是刚长出来的新菜，一口咬下去，就像把春天吃到了肚子里。" },
     ],
   },
   term_02_yu_shui: {
     paragraphs: [
-      "雨水的时候，天上下的雪慢慢变成了雨。",
-      "雨多了以后，田里的土也软了。",
-      "种田的人开始准备种东西。",
+      "雨水是春天的第二个节气。",
+      "这时候天气暖了一点，天上下的雪慢慢变成了雨。",
+      "雨多了以后，田里的土就软了，也湿了。",
+      "土软了，种子才能放进去，所以种田的人开始准备种东西。",
+      "他们把去年留下的种子拿出来，看一看，晒一晒。",
+      "一场春雨下过，地上的草就绿了一片。",
+    ],
+    paragraphsEn: [
+      "Yushui, Rain Water, is the second solar term of spring.",
+      "The weather is a little warmer now, and the snow slowly turns into rain.",
+      "After the rains, the soil in the fields turns soft and wet.",
+      "Only soft soil will take a seed, so farmers begin getting ready to sow.",
+      "They bring out the seeds kept from last year, look them over and dry them in the sun.",
+      "After one spring rain, the ground turns green with grass.",
     ],
     words: [
       { zh: "雨水", py: "yǔ shuǐ", en: "Rain Water" },
@@ -48,15 +75,26 @@ module.exports = {
       { zh: "准备", py: "zhǔn bèi", en: "to get ready" },
     ],
     questions: [
-      { question: "雨水的时候，雪变成了什么？", answer: "雨。" },
-      { question: "种田的人开始做什么？", answer: "准备种东西。" },
+      { question: "雨水的时候，为什么下的是雨，不是雪？", answer: "因为天气暖了一点。" },
+      { question: "种田的人为什么要等土软了才种东西？", answer: "土软了，种子才能放进去。" },
     ],
   },
   term_03_jing_zhe: {
     paragraphs: [
-      "惊蛰的时候，天上开始打雷。",
-      "睡了一个冬天的虫子听到雷声，就醒过来了。",
-      "“惊”是吓一跳的意思，所以这个节气叫惊蛰。",
+      "惊蛰的时候，天上开始打雷了。",
+      "很多虫子在土里睡了一个冬天，什么都听不到。",
+      "春天的第一声雷很响，虫子听到雷声，吓了一跳，就醒过来了。",
+      "“惊”是吓一跳的意思，“蛰”是虫子在土里睡觉，所以这个节气叫惊蛰。",
+      "虫子醒了，鸟也回来了，田里一下子热闹起来。",
+      "种田的人说：“惊蛰一到，地里就不能闲着了。”",
+    ],
+    paragraphsEn: [
+      "At Jingzhe, the Awakening of Insects, the first thunder of the year is heard.",
+      "Many insects have slept in the soil all winter and heard nothing.",
+      "The first spring thunder is loud; the insects hear it, get a fright, and wake up.",
+      "\"Jing\" means to be startled and \"zhe\" means insects sleeping in the ground, so that is the name of this term.",
+      "The insects wake, the birds come back, and the fields are suddenly full of life.",
+      "Farmers say: \"Once Jingzhe comes, the land cannot lie idle.\"",
     ],
     words: [
       { zh: "惊蛰", py: "jīng zhé", en: "Awakening of Insects" },
@@ -65,15 +103,26 @@ module.exports = {
       { zh: "醒", py: "xǐng", en: "to wake up" },
     ],
     questions: [
-      { question: "什么声音把虫子叫醒了？", answer: "雷声。" },
-      { question: "虫子睡了多久？", answer: "一个冬天。" },
+      { question: "虫子为什么在惊蛰的时候醒过来？", answer: "春天的第一声雷很响，虫子听到雷声，吓了一跳。" },
+      { question: "“惊蛰”这两个字是什么意思？", answer: "“惊”是吓一跳，“蛰”是虫子在土里睡觉。" },
     ],
   },
   term_04_chun_fen: {
     paragraphs: [
       "春分这一天，白天和晚上一样长。",
-      "春分以后，白天一天比一天长。",
-      "天气也慢慢暖和起来，草和花都开始长了。",
+      "春天从立春开始，到春分正好过了一半，所以叫“分”。",
+      "春分以后，白天一天比一天长，晚上一天比一天短。",
+      "白天长了，太阳晒的时间就多了，天气也慢慢暖和起来。",
+      "草绿了，花开了，燕子从南边飞回来了。",
+      "有的地方在这一天玩一个游戏：把鸡蛋立在桌子上，看谁能立起来。",
+    ],
+    paragraphsEn: [
+      "On Chunfen, the Spring Equinox, day and night are the same length.",
+      "Spring starts at Lichun, and by Chunfen it is exactly half over, which is why the name says \"divide\".",
+      "After Chunfen the days grow longer and the nights shorter.",
+      "Longer days mean more sunshine, so the weather slowly warms up.",
+      "The grass turns green, the flowers open, and the swallows fly back from the south.",
+      "In some places people play a game on this day: standing an egg on end on the table, to see who can do it.",
     ],
     words: [
       { zh: "春分", py: "chūn fēn", en: "Spring Equinox" },
@@ -82,15 +131,26 @@ module.exports = {
       { zh: "花", py: "huā", en: "flower" },
     ],
     questions: [
-      { question: "春分这一天，白天和晚上有什么关系？", answer: "一样长。" },
-      { question: "春分以后，白天怎么样？", answer: "一天比一天长。" },
+      { question: "为什么这个节气叫春分？", answer: "因为春天到这一天正好过了一半。" },
+      { question: "春分以后，为什么天气慢慢暖和起来？", answer: "白天长了，太阳晒的时间就多了。" },
     ],
   },
   term_05_qing_ming_term: {
     paragraphs: [
-      "到了清明，天气变得又清又明，所以叫清明。",
-      "这时候雨水多，草和树长得特别快。",
-      "很多人在这几天去种树，也去看过去的家人。",
+      "到了清明，冬天的冷已经走远了，天变得又清又明，所以叫清明。",
+      "这时候雨水多，太阳也暖，草和树长得特别快。",
+      "树好种，很多人在这几天去种树。",
+      "清明也是想念过去的家人的日子。",
+      "人们去看家人住过的地方，把那里打扫干净，放上花。",
+      "一边走在春天里，一边想着家里的老人，这就是清明。",
+    ],
+    paragraphsEn: [
+      "By Qingming, the cold of winter is far behind and the sky is clear and bright, which is what the name means.",
+      "There is plenty of rain and warm sun now, so grass and trees grow especially fast.",
+      "Trees take root easily, so many people plant trees in these few days.",
+      "Qingming is also a day for remembering family members who have died.",
+      "People go to the place where they rest, sweep it clean, and lay flowers there.",
+      "Walking in the spring and thinking of the old people of the family: that is Qingming.",
     ],
     words: [
       { zh: "清明", py: "qīng míng", en: "Clear and Bright" },
@@ -99,15 +159,26 @@ module.exports = {
       { zh: "种树", py: "zhòng shù", en: "to plant trees" },
     ],
     questions: [
-      { question: "为什么这个节气叫清明？", answer: "因为天气变得又清又明。" },
-      { question: "人们在清明这几天做什么？", answer: "去种树，也去看过去的家人。" },
+      { question: "为什么这个节气叫清明？", answer: "因为冬天的冷走远了，天变得又清又明。" },
+      { question: "人们为什么在清明这几天去种树？", answer: "这时候雨水多，太阳暖，树长得特别快。" },
     ],
   },
   term_06_gu_yu: {
     paragraphs: [
-      "谷雨是春天的最后一个节气。",
-      "这时候雨下得多，田里的谷子长得很快。",
-      "种田的人有一句话：“雨生百谷。”",
+      "谷雨是春天的最后一个节气，过了它，夏天就要来了。",
+      "这时候雨下得多，天气也暖了，田里的谷子长得很快。",
+      "谷子要长，最要紧的就是水，所以春天的雨对种田的人很宝贵。",
+      "种田的人有一句话：“雨生百谷。”意思是，一场春雨，一百种谷子都长起来了。",
+      "谷雨前后，南方的人开始摘茶，这时候的茶叫“雨前茶”，最好喝。",
+      "春天快过完了，人们要抓紧时间，把该种的都种下去。",
+    ],
+    paragraphsEn: [
+      "Guyu, Grain Rain, is the last solar term of spring; after it, summer is on its way.",
+      "It rains a great deal now and the weather is warm, so the grain in the fields grows fast.",
+      "What grain needs most is water, so spring rain is precious to farmers.",
+      "Farmers have a saying: \"Rain gives life to a hundred grains.\" One spring rain, and every kind of grain shoots up.",
+      "Around Guyu, people in the south begin picking tea; tea from these days is called \"pre-rain tea\" and is the best of all.",
+      "Spring is nearly over, so people hurry to get everything sown that needs sowing.",
     ],
     words: [
       { zh: "谷雨", py: "gǔ yǔ", en: "Grain Rain" },
@@ -116,15 +187,26 @@ module.exports = {
       { zh: "长", py: "zhǎng", en: "to grow" },
     ],
     questions: [
-      { question: "谷雨是春天的第几个节气？", answer: "最后一个。" },
-      { question: "为什么这个节气叫谷雨？", answer: "因为雨多，谷子长得快。" },
+      { question: "为什么这个节气叫谷雨？", answer: "因为这时候雨多，谷子长得很快。" },
+      { question: "“雨生百谷”是什么意思？", answer: "一场春雨，一百种谷子都长起来了。" },
     ],
   },
   term_07_li_xia: {
     paragraphs: [
       "立夏是夏天的第一个节气。",
-      "天气开始热起来，田里的东西长得很快。",
-      "有的地方在这一天吃鸡蛋，希望夏天身体好。",
+      "从这一天起，天气开始热起来，白天也越来越长。",
+      "太阳多了，雨也多了，田里的东西长得很快，一天一个样。",
+      "夏天热，人容易没有力气，也容易生病。",
+      "所以有的地方在这一天吃鸡蛋，说吃了鸡蛋，夏天身体好，不怕热。",
+      "孩子们还把鸡蛋放在小网里，挂在脖子上，和朋友比谁的蛋硬。",
+    ],
+    paragraphsEn: [
+      "Lixia, the Start of Summer, is the first solar term of summer.",
+      "From this day the weather begins to get hot, and the days keep growing longer.",
+      "With more sun and more rain, everything in the fields grows fast, different every day.",
+      "In the summer heat people easily lose their strength and easily fall ill.",
+      "So in some places people eat an egg on this day, saying it keeps the body strong all summer and unafraid of the heat.",
+      "Children also carry an egg in a little net around their neck, and see whose egg is the hardest.",
     ],
     words: [
       { zh: "立夏", py: "lì xià", en: "Start of Summer" },
@@ -133,15 +215,26 @@ module.exports = {
       { zh: "身体", py: "shēn tǐ", en: "body; health" },
     ],
     questions: [
-      { question: "立夏是哪个季节的第一个节气？", answer: "夏天。" },
-      { question: "有的地方在立夏这一天吃什么？", answer: "鸡蛋。" },
+      { question: "立夏以后，田里的东西为什么长得很快？", answer: "因为太阳多了，雨也多了。" },
+      { question: "有的地方在立夏吃鸡蛋，是希望什么？", answer: "夏天身体好，不怕热。" },
     ],
   },
   term_08_xiao_man: {
     paragraphs: [
-      "小满的时候，田里的麦子已经开始长了，可是还不满。",
-      "因为还没有满，所以这个节气叫小满。",
-      "种田的人知道，再过一些日子就可以收了。",
+      "小满的时候，田里的麦子已经长高了，麦粒也开始长了。",
+      "可是麦粒里还没有装满，只是小小的一点。",
+      "因为满了一点，还没有全满，所以这个节气叫小满。",
+      "种田的人天天去田里看，等麦粒一天一天变大。",
+      "他们知道，再过一些日子，麦子黄了，就可以收了。",
+      "老人说：“小满小满，麦粒渐满。”",
+    ],
+    paragraphsEn: [
+      "At Xiaoman, Grain Buds, the wheat in the fields has grown tall and the grains have begun to form.",
+      "But the grains are not yet full; there is only a little inside each one.",
+      "A little full, but not yet all full: that is why this term is called Xiaoman, \"small fullness\".",
+      "Farmers go to the fields every day to watch the grains swell day by day.",
+      "They know that in a few more days the wheat will turn yellow and be ready to harvest.",
+      "Old people say: \"Xiaoman, Xiaoman, the grains slowly fill.\"",
     ],
     words: [
       { zh: "小满", py: "xiǎo mǎn", en: "Grain Buds" },
@@ -150,15 +243,26 @@ module.exports = {
       { zh: "收", py: "shōu", en: "to harvest" },
     ],
     questions: [
-      { question: "小满的时候，麦子长满了没有？", answer: "还没有满。" },
-      { question: "为什么这个节气叫小满？", answer: "因为麦子开始长了，可是还不满。" },
+      { question: "为什么这个节气叫小满？", answer: "因为麦粒满了一点，还没有全满。" },
+      { question: "种田的人天天去田里看，是在等什么？", answer: "等麦粒一天一天变大，麦子黄了就可以收。" },
     ],
   },
   term_09_mang_zhong: {
     paragraphs: [
       "芒种是一年里最忙的时候。",
-      "种田的人一边收麦子，一边种稻子。",
-      "有一句话说：“芒种忙，两头忙。”",
+      "这时候麦子黄了，要马上收，晚了麦粒就掉在地里了。",
+      "麦子收完，又要马上种稻子，晚了稻子就长不好了。",
+      "所以种田的人一边收麦子，一边种稻子，一天到晚都在田里。",
+      "有一句话说：“芒种忙，两头忙。”两头就是收和种。",
+      "这几天，全家人都要去田里帮忙，小孩也不例外。",
+    ],
+    paragraphsEn: [
+      "Mangzhong, Grain in Ear, is the busiest time of the year.",
+      "The wheat is yellow and must be harvested at once; leave it, and the grains drop in the field.",
+      "As soon as the wheat is in, the rice must be planted; leave it, and the rice will not grow well.",
+      "So farmers harvest wheat and plant rice at the same time, in the fields from morning to night.",
+      "A saying goes: \"Mangzhong is busy, busy at both ends.\" The two ends are harvesting and planting.",
+      "In these days the whole family goes out to help in the fields, children included.",
     ],
     words: [
       { zh: "芒种", py: "máng zhòng", en: "Grain in Ear" },
@@ -167,15 +271,26 @@ module.exports = {
       { zh: "稻子", py: "dào zi", en: "rice plants" },
     ],
     questions: [
-      { question: "为什么芒种很忙？", answer: "因为一边收麦子，一边种稻子。" },
-      { question: "“两头忙”说的是哪两件事？", answer: "收麦子和种稻子。" },
+      { question: "芒种为什么是一年里最忙的时候？", answer: "因为要一边收麦子，一边种稻子，晚了都不行。" },
+      { question: "为什么麦子黄了要马上收？", answer: "晚了麦粒就掉在地里了。" },
     ],
   },
   term_10_xia_zhi: {
     paragraphs: [
       "夏至这一天，白天最长，晚上最短。",
+      "太阳在天上走得最高，中午的时候，人的影子最短。",
       "夏至以后，白天就一天比一天短了。",
-      "有的地方在这一天吃面，说吃了面夏天就好过。",
+      "可是天气不是马上变凉，最热的日子还在后面。",
+      "有的地方在这一天吃面，说：“冬至饺子夏至面。”",
+      "新收的麦子做成面，吃一碗凉凉的面，夏天就好过一点。",
+    ],
+    paragraphsEn: [
+      "On Xiazhi, the Summer Solstice, the day is longest and the night shortest.",
+      "The sun climbs highest in the sky, and at noon a person's shadow is shortest.",
+      "After Xiazhi, the days grow shorter one by one.",
+      "But the weather does not cool at once; the hottest days are still to come.",
+      "In some places people eat noodles on this day, saying: \"Dumplings at Dongzhi, noodles at Xiazhi.\"",
+      "The new wheat is made into noodles, and a bowl of cold noodles makes the summer a little easier to bear.",
     ],
     words: [
       { zh: "夏至", py: "xià zhì", en: "Summer Solstice" },
@@ -184,15 +299,26 @@ module.exports = {
       { zh: "面", py: "miàn", en: "noodles" },
     ],
     questions: [
-      { question: "夏至这一天，白天怎么样？", answer: "最长。" },
-      { question: "夏至以后，白天怎么样？", answer: "一天比一天短。" },
+      { question: "夏至这一天，为什么中午人的影子最短？", answer: "因为太阳在天上走得最高。" },
+      { question: "夏至以后白天短了，天气马上变凉吗？", answer: "不是，最热的日子还在后面。" },
     ],
   },
   term_11_xiao_shu: {
     paragraphs: [
       "小暑的时候，天气已经很热了，但是还不是一年里最热的时候。",
-      "这几天常常下大雨，雨停了以后反而更闷。",
-      "人们一般早上或者晚上出门，中午在家里休息。",
+      "“暑”就是热，“小暑”是热了，还没有热到头。",
+      "这几天常常下大雨，雨停了以后，太阳一出来，地上的水变成了热气，反而更闷。",
+      "中午太热，人们一般早上或者晚上出门，中午在家里休息。",
+      "老人们坐在树下，一边摇扇子，一边聊天。",
+      "小孩最喜欢的，是吃一块凉凉的西瓜。",
+    ],
+    paragraphsEn: [
+      "At Xiaoshu, Minor Heat, the weather is already very hot, but not yet the hottest of the year.",
+      "\"Shu\" means heat, and \"Xiaoshu\" means the heat has come but not yet reached its peak.",
+      "Heavy rain falls often in these days; when it stops and the sun comes out, the water on the ground turns to steam and it feels even more stifling.",
+      "Midday is too hot, so people go out in the morning or evening and rest at home at noon.",
+      "Old people sit under the trees, waving fans and chatting.",
+      "What children like best is a slice of cold watermelon.",
     ],
     words: [
       { zh: "小暑", py: "xiǎo shǔ", en: "Minor Heat" },
@@ -201,15 +327,26 @@ module.exports = {
       { zh: "出门", py: "chū mén", en: "to go out" },
     ],
     questions: [
-      { question: "小暑是一年里最热的时候吗？", answer: "不是，还不是最热的时候。" },
-      { question: "人们为什么中午在家里休息？", answer: "因为中午太热。" },
+      { question: "小暑的雨停了以后，为什么反而更闷？", answer: "太阳一出来，地上的水变成了热气。" },
+      { question: "人们为什么早上或者晚上出门？", answer: "因为中午太热。" },
     ],
   },
   term_12_da_shu: {
     paragraphs: [
       "大暑是一年里最热的时候。",
-      "太阳很大，地上的水很快就干了。",
+      "太阳很大，地上的水很快就干了，田里的土也裂开了。",
+      "所以种田的人要早早起来给田里浇水，太阳出来了就回家。",
       "老人常说，这些日子要多喝水，少在外面走。",
+      "因为人出很多汗，身体里的水少了，就容易头晕。",
+      "大暑过了，就是立秋，最热的日子终于要过去了。",
+    ],
+    paragraphsEn: [
+      "Dashu, Major Heat, is the hottest time of the year.",
+      "The sun is fierce; water on the ground dries in no time, and the soil in the fields cracks open.",
+      "So farmers get up very early to water the fields, and go home once the sun is up.",
+      "Old people often say that in these days you should drink plenty of water and not walk about outside too much.",
+      "Because you sweat so much, the body loses water and you easily feel dizzy.",
+      "After Dashu comes Liqiu, the Start of Autumn, and the hottest days are finally over.",
     ],
     words: [
       { zh: "大暑", py: "dà shǔ", en: "Major Heat" },
@@ -218,8 +355,8 @@ module.exports = {
       { zh: "喝水", py: "hē shuǐ", en: "to drink water" },
     ],
     questions: [
-      { question: "大暑是什么时候？", answer: "一年里最热的时候。" },
-      { question: "老人说这些日子要注意什么？", answer: "多喝水，少在外面走。" },
+      { question: "大暑的时候，种田的人为什么早早起来浇水？", answer: "因为太阳很大，地上的水很快就干了。" },
+      { question: "为什么这些日子要多喝水？", answer: "人出很多汗，身体里的水少了，容易头晕。" },
     ],
   },
   term_13_li_qiu: {

@@ -2575,6 +2575,12 @@ test("C3: every culture reading teaches words it actually uses", () => {
     }
     assert.ok(text.includes(s.title), `${s.id}: the reading never mentions ${s.title}`);
     assert.equal((s.readerComprehension || []).length, 2, `${s.id}: needs two questions`);
+    // The English line under each paragraph: exactly one per paragraph, so the
+    // reader can never show a translation under the wrong paragraph.
+    if (s.readerParagraphsEn !== undefined) {
+      assert.equal(s.readerParagraphsEn.length, s.readerParagraphs.length, `${s.id}: one English line per paragraph`);
+      for (const line of s.readerParagraphsEn) assert.match(line, /[a-z]/i, `${s.id}: an English line is English`);
+    }
   }
 });
 
