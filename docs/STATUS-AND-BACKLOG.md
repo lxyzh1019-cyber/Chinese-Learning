@@ -192,8 +192,11 @@ disappearing.
   reviewed word-level seg on every sentence. HSK2 tells the same background
   story as HSK1 with the same names and numbers and one more causal step.
   Authored with `scripts/seg_story.js`; rules in `docs/chinese-style.md`
-  §3–§4; a sentence without seg now fails the build. The culture readings
-  are next.
+  §3–§4; a sentence without seg now fails the build.
+- **All 29 culture readings rewritten as stories** (2026-09-18, owner-reviewed
+  round by round): five or six sentences with a line of cause, questions that
+  ask why, and one English line under every paragraph in the reader
+  (`paragraphsEn`, required by the builder, the validator and test C3).
 - **88 stories on the ladder** — HSK1 at 10 sentences, HSK2 at 15, the same
   background story per dynasty told at each level's difficulty. Gates 12–22 were
   rewritten rather than extended, because their texts used HSK3/HSK4 vocabulary.

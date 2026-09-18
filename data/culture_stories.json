@@ -1620,21 +1620,32 @@
             "familyRewardType": "ask_parents_help"
           },
           "readerParagraphs": [
-            "春节是中国最重要的节日。",
-            "这几天，家里的人都回家一起吃饭。",
-            "大人给小孩红包，大家见面都说：“新年好！”"
+            "春节是中国最重要的节日，也是一年的第一天。",
+            "春节以前，家家都要把房子打扫干净，门上贴红色的春联，因为新的一年要有新的样子。",
+            "这几天，在外面工作、读书的人都回家，一家人坐在一起吃一顿大大的年夜饭。",
+            "年夜饭里一定有鱼，因为“鱼”和“余”的声音一样，“年年有余”就是每年都有多的。",
+            "吃完饭，大人给小孩红包，红包里有钱，意思是新的一年平平安安。",
+            "第二天早上，大家见面都说：“新年好！”"
           ],
           "readerComprehension": [
             {
-              "question": "春节的时候，家里的人做什么？",
-              "answer": "都回家一起吃饭。"
+              "question": "春节以前，为什么家家都要打扫房子、贴春联？",
+              "answer": "因为新的一年要有新的样子。"
             },
             {
-              "question": "大人给小孩什么？",
-              "answer": "红包。"
+              "question": "年夜饭里为什么一定有鱼？",
+              "answer": "因为“鱼”和“余”的声音一样，“年年有余”就是每年都有多的。"
             }
           ],
-          "titleEn": "Spring Festival (Chinese New Year)"
+          "titleEn": "Spring Festival (Chinese New Year)",
+          "readerParagraphsEn": [
+            "The Spring Festival, Chinese New Year, is China's most important festival, and the first day of the year.",
+            "Before it, every family cleans the house and pastes red couplets on the door, because a new year should have a new look.",
+            "In these days everyone working or studying away from home comes back, and the family sits down together to a big New Year's Eve dinner.",
+            "There is always a fish on the table, because \"fish\" and \"plenty\" sound the same in Chinese: \"fish every year\" means \"plenty every year\".",
+            "After dinner the grown-ups give the children red envelopes with money inside, a wish for a safe and peaceful new year.",
+            "The next morning, everyone who meets says: \"Happy New Year!\""
+          ]
         },
         {
           "id": "festival_lantern",
@@ -1675,21 +1686,32 @@
             "familyRewardType": "movie_night"
           },
           "readerParagraphs": [
-            "元宵节在春节以后的第十五天。",
-            "这一天晚上，人们出门看灯，街上很热闹。",
-            "大家还吃元宵。元宵是圆的，白白的，里面很甜。"
+            "元宵节在春节以后的第十五天，是过年的最后一天。",
+            "这一天晚上的月亮是新年的第一个圆月。",
+            "很久以前，人们在这一天晚上点灯，是为了让天上的神看到，今年家里平平安安。",
+            "后来灯越做越好看：有鱼灯，有兔子灯，有龙灯，人们出门看灯，街上很热闹。",
+            "有的灯上写着一句话，让你猜一个字，猜对了有小礼物，这叫“猜灯谜”。",
+            "大家还吃元宵。元宵是圆的，白白的，里面很甜，一家人吃了，就像月亮一样团团圆圆。"
           ],
           "readerComprehension": [
             {
-              "question": "元宵节是春节以后的第几天？",
-              "answer": "第十五天。"
+              "question": "很久以前，人们为什么在元宵节晚上点灯？",
+              "answer": "为了让天上的神看到，今年家里平平安安。"
             },
             {
-              "question": "元宵是什么样子的？",
-              "answer": "圆的，白白的，里面很甜。"
+              "question": "为什么元宵节要吃圆圆的元宵？",
+              "answer": "一家人吃了，就像月亮一样团团圆圆。"
             }
           ],
-          "titleEn": "Lantern Festival"
+          "titleEn": "Lantern Festival",
+          "readerParagraphsEn": [
+            "The Lantern Festival falls on the fifteenth day after Chinese New Year, the last day of the holiday.",
+            "The moon that night is the first full moon of the new year.",
+            "Long ago people lit lamps on this night so that the gods in heaven could see that the family was safe and well.",
+            "Later the lanterns grew ever more beautiful, shaped like fish, rabbits and dragons, and people went out to see them, filling the streets.",
+            "Some lanterns carry a riddle whose answer is one character; guess right and you win a small prize. This is called \"guessing lantern riddles\".",
+            "Everyone also eats yuanxiao, round white sweet rice balls; a family that eats them together is whole and round, like the moon."
+          ]
         },
         {
           "id": "festival_qingming",
@@ -1729,21 +1751,32 @@
             "familyRewardType": "ask_parents_help"
           },
           "readerParagraphs": [
-            "清明节在春天，那时候天气很好。",
-            "这一天，人们去看过去的家人，给他们送花。",
-            "有的人也在这一天出去走一走，看看春天的草和树。"
+            "清明节在春天，天气很好，草绿了，花开了。",
+            "这一天，人们去看过去的家人。",
+            "家人不在了，可是人们没有忘记他们，所以每年这一天都要去看一看。",
+            "人们把那里的草拔干净，给他们送花，还说一说家里这一年的事。",
+            "这叫“扫墓”，意思是把家人住的地方打扫干净。",
+            "看完家人，很多人在春天里走一走，放风筝，看看草和树，这叫“踏青”。"
           ],
           "readerComprehension": [
             {
-              "question": "人们在清明节做什么？",
-              "answer": "去看过去的家人，给他们送花。"
+              "question": "人们为什么每年清明节都去看过去的家人？",
+              "answer": "家人不在了，可是人们没有忘记他们。"
             },
             {
-              "question": "清明节在哪个季节？",
-              "answer": "春天。"
+              "question": "“扫墓”是什么意思？",
+              "answer": "把家人住的地方打扫干净。"
             }
           ],
-          "titleEn": "Qingming Festival (Tomb-Sweeping Day)"
+          "titleEn": "Qingming Festival (Tomb-Sweeping Day)",
+          "readerParagraphsEn": [
+            "The Qingming Festival comes in spring, when the weather is fine, the grass is green and the flowers are out.",
+            "On this day people visit the family members who have died.",
+            "They are gone, but they are not forgotten, so every year on this day the family goes to see them.",
+            "People clear the weeds from the grave, bring flowers, and tell them what has happened in the family this year.",
+            "This is called \"sweeping the tombs\": cleaning the place where the family rests.",
+            "Afterwards many people walk in the spring, fly kites and look at the grass and trees; this is called \"treading the green\"."
+          ]
         },
         {
           "id": "festival_dragon_boat",
@@ -1784,22 +1817,32 @@
             "familyRewardType": "game_night"
           },
           "readerParagraphs": [
-            "端午节是为了记住一位古时候的诗人，他叫屈原。",
-            "屈原很爱自己的国家，后来跳进了河里。",
-            "人们坐船去找他，还把米放进水里，希望鱼不要吃他。",
-            "所以今天我们在端午节赛龙舟，也吃粽子。"
+            "端午节在夏天，是为了记住一位古时候的诗人，他叫屈原。",
+            "屈原很爱自己的国家，可是国王不听他的话，后来国家被别人打败了。",
+            "屈原非常难过，跳进了河里。",
+            "人们很爱屈原，坐船到河上去找他，可是没有找到。",
+            "他们把米放进水里，希望鱼吃米，不要吃他。",
+            "所以今天我们在端午节赛龙舟，也吃粽子：龙舟就是那时候找他的船，粽子就是那时候放进水里的米。"
           ],
           "readerComprehension": [
             {
-              "question": "端午节是为了记住谁？",
-              "answer": "古时候的诗人屈原。"
+              "question": "屈原为什么跳进了河里？",
+              "answer": "国王不听他的话，国家被别人打败了，他非常难过。"
             },
             {
-              "question": "今天人们在端午节做什么？",
-              "answer": "赛龙舟，也吃粽子。"
+              "question": "为什么今天我们在端午节赛龙舟、吃粽子？",
+              "answer": "龙舟就是那时候找他的船，粽子就是那时候放进水里的米。"
             }
           ],
-          "titleEn": "Dragon Boat Festival"
+          "titleEn": "Dragon Boat Festival",
+          "readerParagraphsEn": [
+            "The Dragon Boat Festival, in summer, remembers a poet of ancient times called Qu Yuan.",
+            "Qu Yuan loved his country, but the king would not listen to him, and later the country was defeated.",
+            "Qu Yuan was heartbroken, and threw himself into the river.",
+            "The people loved him and rowed out onto the river to look for him, but could not find him.",
+            "They threw rice into the water, hoping the fish would eat the rice and not him.",
+            "So today we race dragon boats and eat zongzi at the festival: the boats are the boats that searched for him, and the zongzi are the rice thrown into the water."
+          ]
         },
         {
           "id": "festival_mid_autumn",
@@ -1840,22 +1883,32 @@
             "familyRewardType": "choose_dinner"
           },
           "readerParagraphs": [
-            "中秋节在秋天，这一天晚上的月亮又大又圆。",
-            "家里的人一起看月亮，吃月饼。",
-            "老人常常说嫦娥的故事：她一个人住在月亮上面。",
-            "所以看到月亮的时候，不在家的人也会想起家里。"
+            "中秋节在秋天的中间，这一天晚上的月亮是一年里最大最圆的。",
+            "秋天田里的东西都收好了，人们有时间，也有好吃的，所以一家人晚上坐在一起看月亮。",
+            "他们吃月饼。月饼是圆的，和月亮一样，一个月饼切开，一家人一人一块。",
+            "老人常常说嫦娥的故事：她吃了一种药，飞到了月亮上，从此一个人住在那里，只有一只兔子和她做伴。",
+            "所以有人说，月亮上那些黑黑的地方，就是嫦娥和她的兔子。",
+            "月亮是圆的，家也应该是圆的，所以看到月亮的时候，不在家的人也会想起家里。"
           ],
           "readerComprehension": [
             {
-              "question": "中秋节的月亮是什么样子的？",
-              "answer": "又大又圆。"
+              "question": "为什么中秋节一家人晚上坐在一起看月亮？",
+              "answer": "田里的东西收好了，人们有时间，也有好吃的，这一天的月亮又最大最圆。"
             },
             {
-              "question": "老人说的故事里，谁住在月亮上面？",
-              "answer": "嫦娥。"
+              "question": "看到月亮的时候，不在家的人为什么会想起家里？",
+              "answer": "月亮是圆的，家也应该是圆的。"
             }
           ],
-          "titleEn": "Mid-Autumn Festival (Moon Festival)"
+          "titleEn": "Mid-Autumn Festival (Moon Festival)",
+          "readerParagraphsEn": [
+            "The Mid-Autumn Festival falls in the middle of autumn, when the moon that night is the biggest and roundest of the year.",
+            "The harvest is in, so people have time and good things to eat, and the family sits together in the evening to watch the moon.",
+            "They eat mooncakes. A mooncake is round like the moon, and one cake is cut so that everyone in the family has a piece.",
+            "Old people often tell the story of Chang'e: she took a magic medicine, flew up to the moon, and has lived there alone ever since with only a rabbit for company.",
+            "So some say the dark patches on the moon are Chang'e and her rabbit.",
+            "The moon is round and a family should be whole too, so anyone away from home who sees the moon thinks of home."
+          ]
         }
       ]
     }
