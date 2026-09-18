@@ -5,79 +5,1031 @@
   "title": "草原骑手",
   "en": "Riders of the Grassland",
   "names": {
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+    "契丹": {
+      "py": "Qìdān",
+      "en": "Khitan"
     },
     "宋朝": {
       "py": "Sòng Cháo",
       "en": "the Song dynasty"
-    },
-    "契丹": {
-      "py": "Qìdān",
-      "en": "the Khitan people"
     }
   },
   "sents": [
     {
-      "zh": "中国的北边有很大很大的草地。",
-      "en": "Far to the north of China lie vast grasslands."
+      "zh": "中国的北边有很大很大的草原。",
+      "en": "Far to the north of China lies a vast grassland.",
+      "seg": [
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there is"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "草原",
+          "py": "cǎo yuán",
+          "mn": "grassland",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "那里没有山，只有天和草。",
-      "en": "There are no mountains there, only sky and grass."
+      "en": "There are no mountains there, only sky and grass.",
+      "seg": [
+        {
+          "zh": "那里",
+          "py": "nà li",
+          "mn": "there"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "there are no"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountains"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "只有",
+          "py": "zhǐ yǒu",
+          "mn": "only"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "sky"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "草",
+          "py": "cǎo",
+          "mn": "grass",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "天冷的时候日子非常苦，风也很大。",
-      "en": "When the cold came life was very hard, and the wind was strong."
+      "zh": "冬天的时候日子非常苦，风大，雪也大。",
+      "en": "In winter life was very hard, with strong winds and heavy snow.",
+      "seg": [
+        {
+          "zh": "冬天",
+          "py": "dōng tiān",
+          "mn": "winter"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "zh": "日子",
+          "py": "rì zi",
+          "mn": "days; life"
+        },
+        {
+          "zh": "非常",
+          "py": "fēi cháng",
+          "mn": "extremely"
+        },
+        {
+          "zh": "苦",
+          "py": "kǔ",
+          "mn": "hard; bitter",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "风",
+          "py": "fēng",
+          "mn": "wind"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big; strong"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "雪",
+          "py": "xuě",
+          "mn": "snow"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big; heavy"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "很久以前，那里住着一些人，叫契丹。",
-      "en": "Long ago a people lived there called the Khitan."
+      "zh": "很久以前，那里住着一些人，叫契丹人。",
+      "en": "Long ago, a people lived there called the Khitan.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time",
+          "bonus": true
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "那里",
+          "py": "nà li",
+          "mn": "there"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "一些",
+          "py": "yī xiē",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "契丹",
+          "py": "Qìdān",
+          "mn": "Khitan"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为草地很大，所以他们要常常走。",
-      "en": "Because the grassland is so wide, they had to keep moving."
+      "zh": "他们要跟着水和草走，常常搬家，所以住在帐篷里。",
+      "en": "They had to follow the water and the grass and move house often, so they lived in tents.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "跟着",
+          "py": "gēn zhe",
+          "mn": "to follow",
+          "bonus": true
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "草",
+          "py": "cǎo",
+          "mn": "grass",
+          "bonus": true
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to move"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "常常",
+          "py": "cháng cháng",
+          "mn": "often",
+          "bonus": true
+        },
+        {
+          "zh": "搬家",
+          "py": "bān jiā",
+          "mn": "to move house",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "帐篷",
+          "py": "zhàng peng",
+          "mn": "tent",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们住的地方可以拿起来带走。",
-      "en": "Their homes could be taken up and carried away."
+      "zh": "帐篷可以收起来带走，到了新的地方再打开。",
+      "en": "A tent could be folded up and carried away, and opened again in a new place.",
+      "seg": [
+        {
+          "zh": "帐篷",
+          "py": "zhàng peng",
+          "mn": "tent",
+          "bonus": true
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "收起来",
+          "py": "shōu qǐ lái",
+          "mn": "to fold up",
+          "bonus": true
+        },
+        {
+          "zh": "带走",
+          "py": "dài zǒu",
+          "mn": "to carry away",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "place"
+        },
+        {
+          "zh": "再",
+          "py": "zài",
+          "mn": "then"
+        },
+        {
+          "zh": "打开",
+          "py": "dǎ kāi",
+          "mn": "to open up"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们从小就学骑马。",
-      "en": "They learned to ride from childhood."
+      "zh": "他们从小就学骑马，大人小孩都骑得又快又好。",
+      "en": "They learned to ride from childhood, and grown-ups and children alike rode fast and well.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "从小",
+          "py": "cóng xiǎo",
+          "mn": "from childhood",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
+        },
+        {
+          "zh": "骑马",
+          "py": "qí mǎ",
+          "mn": "to ride a horse",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "大人",
+          "py": "dà rén",
+          "mn": "grown-ups",
+          "bonus": true
+        },
+        {
+          "zh": "小孩",
+          "py": "xiǎo hái",
+          "mn": "children",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "骑",
+          "py": "qí",
+          "mn": "to ride"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "快",
+          "py": "kuài",
+          "mn": "fast"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们的马又快又好。",
-      "en": "Their horses were fast and fine."
+      "zh": "他们的马也又快又好。",
+      "en": "Their horses were fast and fine too.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they; their"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horses"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "快",
+          "py": "kuài",
+          "mn": "fast"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "fine"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "大人小孩都骑得很好。",
-      "en": "Grown-ups and children alike rode well."
-    },
-    {
-      "zh": "后来他们也造了自己的字。",
-      "en": "Later they made a writing of their own."
+      "zh": "他们想把自己的话写下来，所以后来也造了自己的字。",
+      "en": "They wanted to write their own language down, so later they made a writing of their own.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "own"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words; language"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "down"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "造",
+          "py": "zào",
+          "mn": "to make; to create",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "own"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "writing"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他们和南边的宋朝做买卖。",
-      "en": "They traded with the Song in the south."
+      "en": "They traded with the Song in the south.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "with"
+        },
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "n",
+          "zh": "宋朝",
+          "py": "Sòng Cháo",
+          "mn": "the Song dynasty"
+        },
+        {
+          "zh": "做买卖",
+          "py": "zuò mǎi mai",
+          "mn": "to trade",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他们卖马，买茶、布和别的东西。",
-      "en": "They sold horses and bought tea, cloth and other things."
+      "en": "They sold horses and bought tea, cloth and other things.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "卖",
+          "py": "mài",
+          "mn": "to sell"
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horses"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "买",
+          "py": "mǎi",
+          "mn": "to buy"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "布",
+          "py": "bù",
+          "mn": "cloth",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "虽然两边有时候也打，但是买卖一直没有停。",
-      "en": "Although the two sides sometimes fought, trade never stopped."
+      "zh": "虽然两边有时候也打仗，但是买卖一直没有停。",
+      "en": "Although the two sides sometimes fought, trade never stopped.",
+      "seg": [
+        {
+          "zh": "虽然",
+          "py": "suī rán",
+          "mn": "although"
+        },
+        {
+          "zh": "两边",
+          "py": "liǎng biān",
+          "mn": "both sides",
+          "bonus": true
+        },
+        {
+          "zh": "有时候",
+          "py": "yǒu shí hou",
+          "mn": "sometimes"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "打仗",
+          "py": "dǎ zhàng",
+          "mn": "to fight a war",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "但是",
+          "py": "dàn shì",
+          "mn": "but"
+        },
+        {
+          "zh": "买卖",
+          "py": "mǎi mai",
+          "mn": "trade",
+          "bonus": true
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all along"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "停",
+          "py": "tíng",
+          "mn": "to stop"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "所以南北的东西越来越像。",
-      "en": "So the things of north and south grew more alike."
+      "en": "So the things of north and south grew more and more alike.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "南北",
+          "py": "nán běi",
+          "mn": "north and south",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "越来越",
+          "py": "yuè lái yuè",
+          "mn": "more and more"
+        },
+        {
+          "zh": "像",
+          "py": "xiàng",
+          "mn": "alike"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他们在北方住了两百多年。",
-      "en": "They lived in the north for more than two hundred years."
+      "en": "They lived in the north for more than two hundred years.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "北方",
+          "py": "běi fāng",
+          "mn": "the north",
+          "bonus": true
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "两百",
+          "py": "liǎng bǎi",
+          "mn": "two hundred",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "今天，草原上还有人住在帐篷里，骑马放牛放马。",
+      "en": "Today there are still people on the grassland living in tents, riding and grazing their cattle and horses.",
+      "seg": [
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "草原",
+          "py": "cǎo yuán",
+          "mn": "grassland",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "some people"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "帐篷",
+          "py": "zhàng peng",
+          "mn": "tent",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "骑马",
+          "py": "qí mǎ",
+          "mn": "to ride a horse",
+          "bonus": true
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to graze"
+        },
+        {
+          "zh": "牛",
+          "py": "niú",
+          "mn": "cattle",
+          "bonus": true
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to graze"
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horses"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

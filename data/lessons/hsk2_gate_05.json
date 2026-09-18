@@ -5,8 +5,8 @@
   "title": "HSK2 Gate 5 · Qin Dynasty",
   "explanationEn": "Gate 5: Qin Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第5关：秦朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "两千多年以前，中国有很多小国。这些国常常打来打去，大家都过得不好。后来有一个人把它们都放在一起。他就是秦始皇，中国的第一个皇帝。",
-  "passageEn": "More than two thousand years ago, China had many small states. These states fought one another constantly, and life was hard for everyone. Later one man brought them all together. He was Qin Shi Huang, China’s first emperor.",
+  "passage": "两千多年以前，中国有很多小国。这些小国常常打仗，打了几百年，大家的日子都不好过。后来，秦始皇一个一个打败了别的国，把中国变成了一个国家。他是中国的第一个皇帝。",
+  "passageEn": "More than two thousand years ago, China had many small states. These states were always at war, for hundreds of years, and life was hard for everyone. Later, Qin Shi Huang defeated the other states one by one and made China one country. He was China's first emperor.",
   "keyVocab": [
     {
       "zh": "两",
@@ -21,12 +21,12 @@
     {
       "zh": "多",
       "pinyin": "duō",
-      "en": "many"
+      "en": "more than"
     },
     {
       "zh": "年",
       "pinyin": "nián",
-      "en": "year"
+      "en": "years"
     },
     {
       "zh": "以前",
@@ -34,14 +34,14 @@
       "en": "before"
     },
     {
-      "zh": "小",
-      "pinyin": "xiǎo",
-      "en": "little"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
-      "zh": "国",
-      "pinyin": "guó",
-      "en": "kingdoms"
+      "zh": "小",
+      "pinyin": "xiǎo",
+      "en": "small"
     },
     {
       "zh": "这些",
@@ -59,8 +59,8 @@
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "Later one man brought them all together.",
-      "answer": "后来有一个人把它们都放在一起。"
+      "answerEn": "Later, Qin Shi Huang defeated the other states one by one and made China one country.",
+      "answer": "后来，秦始皇一个一个打败了别的国，把中国变成了一个国家。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -85,11 +85,11 @@
         },
         {
           "id": "o2",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o4",
@@ -111,11 +111,11 @@
       "options": [
         {
           "id": "o1",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o2",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o3",
@@ -142,7 +142,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "The water came into the fields, and into many people’s homes."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o2",
@@ -150,11 +150,11 @@
         },
         {
           "id": "o3",
-          "text": "Very long ago, it rained in China for many days."
+          "text": "Long, long ago, it rained in China for many days, and a great flood came."
         },
         {
           "id": "o4",
-          "text": "Because there was so much rain, the water rose higher and higher."
+          "text": "The flood went into the fields, and into many people's homes."
         }
       ],
       "answerId": "o2",

@@ -5,8 +5,8 @@
   "title": "HSK2 Gate 13 · Five Dynasties",
   "explanationEn": "Gate 13: Five Dynasties. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第13关：五代。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "有了纸以后，人们可以写书了。可是那时候的书都是一个字一个字写出来的。写一本书要很多天，有时候要几个月。所以书很少，也很贵。",
-  "passageEn": "Once there was paper, people could write books. But books then were written out one character at a time. Writing one book took many days, sometimes months. So books were few, and expensive.",
+  "passage": "有了纸以后，人们可以写书了。可是那时候的书都是一个字一个字写出来的。写一本书要很多天，有时候要几个月。所以书很少，也很贵，只有很有钱的人才买得起。",
+  "passageEn": "Once there was paper, people could write books. But books then were written out one character at a time. Writing one book took many days, sometimes months. So books were few and expensive, and only the very wealthy could afford them.",
   "keyVocab": [
     {
       "zh": "纸",
@@ -26,27 +26,27 @@
     {
       "zh": "写",
       "pinyin": "xiě",
-      "en": "wrote"
+      "en": "to write"
     },
     {
       "zh": "书",
       "pinyin": "shū",
-      "en": "book"
+      "en": "books"
     },
     {
       "zh": "可是",
       "pinyin": "kě shì",
-      "en": "but; however"
-    },
-    {
-      "zh": "那时候",
-      "pinyin": "nà shí hou",
-      "en": "at that time"
+      "en": "but"
     },
     {
       "zh": "一",
       "pinyin": "yī",
       "en": "one"
+    },
+    {
+      "zh": "字",
+      "pinyin": "zì",
+      "en": "character"
     }
   ],
   "comprehension": [
@@ -85,11 +85,11 @@
         },
         {
           "id": "o2",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o4",
@@ -111,11 +111,11 @@
       "options": [
         {
           "id": "o1",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o2",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o3",
@@ -142,7 +142,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "The water came into the fields, and into many people’s homes."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o2",
@@ -150,11 +150,11 @@
         },
         {
           "id": "o3",
-          "text": "Very long ago, it rained in China for many days."
+          "text": "Long, long ago, it rained in China for many days, and a great flood came."
         },
         {
           "id": "o4",
-          "text": "Because there was so much rain, the water rose higher and higher."
+          "text": "The flood went into the fields, and into many people's homes."
         }
       ],
       "answerId": "o2",

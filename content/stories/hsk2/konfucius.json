@@ -9,71 +9,1240 @@
       "py": "Kǒngzǐ",
       "en": "Confucius"
     },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+    "论语": {
+      "py": "Lúnyǔ",
+      "en": "the Analects"
     }
   },
   "sents": [
     {
-      "zh": "两千五百多年以前，中国有一位老师。",
-      "en": "More than two thousand five hundred years ago, there was a teacher in China."
+      "zh": "两千五百多年以前，中国有一位老师，他的名字叫孔子。",
+      "en": "More than two thousand five hundred years ago, there was a teacher in China whose name was Confucius.",
+      "seg": [
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand"
+        },
+        {
+          "zh": "五百",
+          "py": "wǔ bǎi",
+          "mn": "five hundred",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "(counting word for people, polite)"
+        },
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "名字",
+          "py": "míng zi",
+          "mn": "name"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "孔子",
+          "py": "Kǒngzǐ",
+          "mn": "Confucius"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他的名字叫孔子。",
-      "en": "His name was Confucius."
+      "zh": "那时候，只有有钱人家的孩子才可以读书。",
+      "en": "In those days, only the children of wealthy families could go to school.",
+      "seg": [
+        {
+          "zh": "那时候",
+          "py": "nà shí hou",
+          "mn": "at that time",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "只有",
+          "py": "zhǐ yǒu",
+          "mn": "only"
+        },
+        {
+          "zh": "有钱",
+          "py": "yǒu qián",
+          "mn": "rich",
+          "bonus": true
+        },
+        {
+          "zh": "人家",
+          "py": "rén jiā",
+          "mn": "family",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "孩子",
+          "py": "hái zi",
+          "mn": "children"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "could"
+        },
+        {
+          "zh": "读书",
+          "py": "dú shū",
+          "mn": "to go to school; to study"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "那时候，只有很有钱的人才可以读书。",
-      "en": "In those days, only the wealthy could study."
+      "zh": "孔子说：“谁想学，我就教谁。”",
+      "en": "Confucius said: \"Whoever wants to learn, I will teach.\"",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "孔子",
+          "py": "Kǒngzǐ",
+          "mn": "Confucius"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "谁",
+          "py": "shéi",
+          "mn": "whoever"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
+        },
+        {
+          "zh": "谁",
+          "py": "shéi",
+          "mn": "whoever"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "但是孔子说，谁想学，他就教谁。",
-      "en": "But Confucius said he would teach anyone who wanted to learn."
+      "zh": "所以他的学生越来越多，有大人，也有年轻人。",
+      "en": "So his students grew more and more numerous, grown-ups and young people alike.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "学生",
+          "py": "xué sheng",
+          "mn": "student"
+        },
+        {
+          "zh": "越来越",
+          "py": "yuè lái yuè",
+          "mn": "more and more"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "大人",
+          "py": "dà rén",
+          "mn": "grown-up",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "年轻人",
+          "py": "nián qīng rén",
+          "mn": "young people",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所以他的学生越来越多。",
-      "en": "So his students grew more and more numerous."
+      "zh": "他们跟着孔子一起读书，一起讨论，一起出门游学。",
+      "en": "They read with Confucius, discussed with him, and travelled with him to learn.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "跟",
+          "py": "gēn",
+          "mn": "to follow"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "t": "n",
+          "zh": "孔子",
+          "py": "Kǒngzǐ",
+          "mn": "Confucius"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "读书",
+          "py": "dú shū",
+          "mn": "to study"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "讨论",
+          "py": "tǎo lùn",
+          "mn": "to discuss",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "出门",
+          "py": "chū mén",
+          "mn": "to go out",
+          "bonus": true
+        },
+        {
+          "zh": "游学",
+          "py": "yóu xué",
+          "mn": "to travel and study",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他的学生里有大人，也有很年轻的人。",
-      "en": "Among his students were grown men and very young people."
+      "zh": "孔子常常说：“学了以后，要常常想一想，才能真的学会。”",
+      "en": "Confucius often said: \"After you learn something, think it over often; only then do you truly learn it.\"",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "孔子",
+          "py": "Kǒngzǐ",
+          "mn": "Confucius"
+        },
+        {
+          "zh": "常常",
+          "py": "cháng cháng",
+          "mn": "often",
+          "bonus": true
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "常常",
+          "py": "cháng cháng",
+          "mn": "often",
+          "bonus": true
+        },
+        {
+          "zh": "想一想",
+          "py": "xiǎng yi xiǎng",
+          "mn": "to think it over",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
+        },
+        {
+          "zh": "真的",
+          "py": "zhēn de",
+          "mn": "really"
+        },
+        {
+          "zh": "学会",
+          "py": "xué huì",
+          "mn": "to learn how",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "他们一起读书，一起说话，一起走路。",
-      "en": "They read together, talked together and walked together."
-    },
-    {
-      "zh": "孔子常常说：“学了以后要常常想一想。”",
-      "en": "Confucius often said: \"After you learn, think it over often.\""
-    },
-    {
-      "zh": "他也说：“不知道的事情，问一问就好。”",
-      "en": "He also said: \"If you do not know a thing, simply ask.\""
+      "zh": "他也说：“不知道的事情，问一问就好，不要怕问。”",
+      "en": "He also said: \"If you do not know a thing, simply ask; do not be afraid to ask.\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "知道",
+          "py": "zhī dào",
+          "mn": "to know"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "事情",
+          "py": "shì qing",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "问一问",
+          "py": "wèn yi wèn",
+          "mn": "to ask",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "fine"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "不要",
+          "py": "bù yào",
+          "mn": "do not"
+        },
+        {
+          "zh": "怕",
+          "py": "pà",
+          "mn": "to be afraid"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
       "zh": "有学生问他：“什么是好人？”",
-      "en": "A student asked him: \"What is a good person?\""
+      "en": "A student asked him: \"What is a good person?\"",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "学生",
+          "py": "xué sheng",
+          "mn": "student"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "什么",
+          "py": "shén me",
+          "mn": "what"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "？"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
       "zh": "他说：“自己不想要的，就不要给别人。”",
-      "en": "He said: \"Do not give others what you would not want yourself.\""
+      "en": "He said: \"What you do not want yourself, do not give to others.\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "oneself"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "想要",
+          "py": "xiǎng yào",
+          "mn": "to want",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "不要",
+          "py": "bù yào",
+          "mn": "do not"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "to give"
+        },
+        {
+          "zh": "别人",
+          "py": "bié ren",
+          "mn": "other people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "虽然他一直想做官，但是没有成功。",
-      "en": "Although he long wanted to serve as an official, he did not succeed."
+      "zh": "他还说：“对爸爸妈妈好，对朋友好，这就是好人。”",
+      "en": "He also said: \"Be good to your parents and good to your friends; that is a good person.\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "also"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "对",
+          "py": "duì",
+          "mn": "to"
+        },
+        {
+          "zh": "爸爸",
+          "py": "bà ba",
+          "mn": "father"
+        },
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "对",
+          "py": "duì",
+          "mn": "to"
+        },
+        {
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friends"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "就是",
+          "py": "jiù shì",
+          "mn": "is exactly"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "所以他把时间都用在教学生上面。",
-      "en": "So he put all his time into teaching."
+      "zh": "虽然他一直想做官，帮国家做事，但是没有成功。",
+      "en": "Although he long wanted to serve as an official and work for the state, he did not succeed.",
+      "seg": [
+        {
+          "zh": "虽然",
+          "py": "suī rán",
+          "mn": "although"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all along"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "做官",
+          "py": "zuò guān",
+          "mn": "to be an official",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "帮",
+          "py": "bāng",
+          "mn": "to help"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "做事",
+          "py": "zuò shì",
+          "mn": "to work",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "但是",
+          "py": "dàn shì",
+          "mn": "but"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "成功",
+          "py": "chéng gōng",
+          "mn": "to succeed"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他走了以后，学生把他说过的话写了下来。",
-      "en": "After he died, his students wrote down what he had said."
+      "zh": "所以他把时间都用在教学生上。",
+      "en": "So he put all his time into teaching his students.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "时间",
+          "py": "shí jiān",
+          "mn": "time"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
+        },
+        {
+          "zh": "学生",
+          "py": "xué sheng",
+          "mn": "students"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为有这本书，所以今天我们还知道他的想法。",
-      "en": "Because of that book, we still know his thinking today."
+      "zh": "他走了以后，学生把他说过的话写成了一本书，叫《论语》。",
+      "en": "After he died, his students wrote down what he had said, in a book called the Analects.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to pass away"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "学生",
+          "py": "xué sheng",
+          "mn": "students"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(has done)"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "zh": "写成",
+          "py": "xiě chéng",
+          "mn": "to write into",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "(counting word, books)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "p",
+          "tx": "《"
+        },
+        {
+          "t": "n",
+          "zh": "论语",
+          "py": "Lúnyǔ",
+          "mn": "the Analects"
+        },
+        {
+          "t": "p",
+          "tx": "》"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "因为有这本书，今天我们还知道他的想法。",
+      "en": "Because of this book, we still know his thinking today.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there is"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "(counting word, books)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "知道",
+          "py": "zhī dào",
+          "mn": "to know"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "想法",
+          "py": "xiǎng fǎ",
+          "mn": "ideas",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "两千多年过去了，中国人还记得孔子的话。",
+      "en": "More than two thousand years have passed, and Chinese people still remember Confucius's words.",
+      "seg": [
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "过去",
+          "py": "guò qù",
+          "mn": "to pass (of time)"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "记得",
+          "py": "jì de",
+          "mn": "to remember"
+        },
+        {
+          "t": "n",
+          "zh": "孔子",
+          "py": "Kǒngzǐ",
+          "mn": "Confucius"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

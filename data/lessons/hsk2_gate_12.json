@@ -5,8 +5,8 @@
   "title": "HSK2 Gate 12 · Tang Dynasty",
   "explanationEn": "Gate 12: Tang Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第12关：唐朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "一千三百多年以前，中国有一个很大的朝代，叫唐朝。唐朝最大的城叫长安。那时候，它是世界上最大的城。城里住了一百多万人。",
-  "passageEn": "More than thirteen hundred years ago China had a great dynasty called the Tang. The Tang’s greatest city was Chang’an. At that time it was the largest city in the world. More than a million people lived in it.",
+  "passage": "一千三百多年以前，中国有一个很大的朝代，叫唐朝。唐朝最大的城叫长安。那时候，它是世界上最大的城，城里住了一百多万人。城里的路又直又长，走一次要很久。",
+  "passageEn": "More than thirteen hundred years ago, China had a great dynasty called the Tang. The Tang's biggest city was Chang'an. At that time it was the biggest city in the world, with more than a million people living in it. Its streets were straight and long, and took a long time to walk.",
   "keyVocab": [
     {
       "zh": "一",
@@ -19,24 +19,14 @@
       "en": "thousand"
     },
     {
-      "zh": "三",
-      "pinyin": "sān",
-      "en": "three"
-    },
-    {
-      "zh": "百",
-      "pinyin": "bǎi",
-      "en": "hundred"
-    },
-    {
       "zh": "多",
       "pinyin": "duō",
-      "en": "many"
+      "en": "more than"
     },
     {
       "zh": "年",
       "pinyin": "nián",
-      "en": "year"
+      "en": "years"
     },
     {
       "zh": "以前",
@@ -44,23 +34,33 @@
       "en": "before"
     },
     {
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
+    },
+    {
       "zh": "大",
       "pinyin": "dà",
       "en": "great"
+    },
+    {
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "More than thirteen hundred years ago China had a great dynasty called the Tang.",
+      "answerEn": "More than thirteen hundred years ago, China had a great dynasty called the Tang.",
       "answer": "一千三百多年以前，中国有一个很大的朝代，叫唐朝。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "At that time it was the largest city in the world.",
-      "answer": "那时候，它是世界上最大的城。"
+      "answerEn": "At that time it was the biggest city in the world, with more than a million people living in it.",
+      "answer": "那时候，它是世界上最大的城，城里住了一百多万人。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -89,11 +89,11 @@
         },
         {
           "id": "o3",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o4",
-          "text": "before"
+          "text": "China"
         }
       ],
       "answerId": "o1",
@@ -115,11 +115,11 @@
         },
         {
           "id": "o2",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o4",
@@ -142,24 +142,24 @@
       "options": [
         {
           "id": "o1",
-          "text": "Because there was so much rain, the water rose higher and higher."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o2",
-          "text": "The water came into the fields, and into many people’s homes."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o3",
-          "text": "More than thirteen hundred years ago China had a great dynasty called the Tang."
+          "text": "More than thirteen hundred years ago, China had a great dynasty called the Tang."
         },
         {
           "id": "o4",
-          "text": "Very long ago, it rained in China for many days."
+          "text": "Long, long ago, it rained in China for many days, and a great flood came."
         }
       ],
       "answerId": "o3",
-      "explanationEn": "\"一千三百多年以前，中国有一个很大的朝代，叫唐朝。\" means \"More than thirteen hundred years ago China had a great dynasty called the Tang.\".",
-      "explanation": "“一千三百多年以前，中国有一个很大的朝代，叫唐朝。”的意思是“More than thirteen hundred years ago China had a great dynasty called the Tang.”。"
+      "explanationEn": "\"一千三百多年以前，中国有一个很大的朝代，叫唐朝。\" means \"More than thirteen hundred years ago, China had a great dynasty called the Tang.\".",
+      "explanation": "“一千三百多年以前，中国有一个很大的朝代，叫唐朝。”的意思是“More than thirteen hundred years ago, China had a great dynasty called the Tang.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Tang Dynasty in two or three short Chinese sentences. Use words from the list above.",

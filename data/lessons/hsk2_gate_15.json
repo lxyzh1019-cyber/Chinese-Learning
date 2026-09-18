@@ -5,38 +5,33 @@
   "title": "HSK2 Gate 15 · Southern Song",
   "explanationEn": "Gate 15: Southern Song. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第15关：南宋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "中国人很早就开始喝茶了。到了宋朝，喝茶已经是每天的事。茶是用山上一种树上的东西做的。要先把它放到外面的光下面。",
-  "passageEn": "Chinese people began drinking tea very early. By the Song, tea was an everyday thing. Tea is made from something that grows on a plant in the hills. It must first be laid out in the light outside.",
+  "passage": "中国人很早就开始喝茶了。到了宋朝，喝茶已经是每天的事。茶是用茶树的叶子做的。春天，人们把新长出来的叶子摘下来。",
+  "passageEn": "Chinese people began drinking tea very early. By the Song dynasty, tea was already an everyday thing. Tea is made from the leaves of the tea tree. In spring, people pick the newly grown leaves.",
   "keyVocab": [
+    {
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
+    },
     {
       "zh": "人",
       "pinyin": "rén",
-      "en": "person"
+      "en": "people"
     },
     {
       "zh": "早",
       "pinyin": "zǎo",
-      "en": "early; morning"
+      "en": "early"
     },
     {
       "zh": "开始",
       "pinyin": "kāishǐ",
-      "en": "started"
-    },
-    {
-      "zh": "喝",
-      "pinyin": "hē",
-      "en": "drink"
-    },
-    {
-      "zh": "茶",
-      "pinyin": "chá",
-      "en": "tea"
+      "en": "to begin"
     },
     {
       "zh": "到",
       "pinyin": "dào",
-      "en": "to arrive"
+      "en": "to reach"
     },
     {
       "zh": "已经",
@@ -44,9 +39,14 @@
       "en": "already"
     },
     {
-      "zh": "每天",
-      "pinyin": "měi tiān",
-      "en": "every day"
+      "zh": "事",
+      "pinyin": "shì",
+      "en": "matter; thing"
+    },
+    {
+      "zh": "茶",
+      "pinyin": "chá",
+      "en": "tea"
     }
   ],
   "comprehension": [
@@ -59,8 +59,8 @@
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "Tea is made from something that grows on a plant in the hills.",
-      "answer": "茶是用山上一种树上的东西做的。"
+      "answerEn": "Tea is made from the leaves of the tea tree.",
+      "answer": "茶是用茶树的叶子做的。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,6 +74,36 @@
       "id": "hsk2_gate_15_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "promptEn": "In the story, what does 中国 mean?",
+      "prompt": "短文里的“中国”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "to fall"
+        },
+        {
+          "id": "o2",
+          "text": "China"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "before"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
+      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_15_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
       "zh": "人",
       "pinyin": "rén",
       "promptEn": "In the story, what does 人 mean?",
@@ -81,37 +111,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "before"
-        },
-        {
-          "id": "o2",
-          "text": "person"
-        },
-        {
-          "id": "o3",
-          "text": "very"
-        },
-        {
-          "id": "o4",
-          "text": "long time"
-        }
-      ],
-      "answerId": "o2",
-      "explanationEn": "人 (rén) means \"person\" — you can find it in the passage above.",
-      "explanation": "“人”（rén）的意思是“person”，就在上面的短文里。"
-    },
-    {
-      "id": "hsk2_gate_15_w2",
-      "kind": "wordMeaning",
-      "skill": "meaning",
-      "zh": "早",
-      "pinyin": "zǎo",
-      "promptEn": "In the story, what does 早 mean?",
-      "prompt": "短文里的“早”是什么意思？",
-      "options": [
-        {
-          "id": "o1",
-          "text": "early; morning"
+          "text": "people"
         },
         {
           "id": "o2",
@@ -119,38 +119,38 @@
         },
         {
           "id": "o3",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o4",
-          "text": "before"
+          "text": "China"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "早 (zǎo) means \"early; morning\" — you can find it in the passage above.",
-      "explanation": "“早”（zǎo）的意思是“early; morning”，就在上面的短文里。"
+      "explanationEn": "人 (rén) means \"people\" — you can find it in the passage above.",
+      "explanation": "“人”（rén）的意思是“people”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_15_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "中国人很早就开始喝茶了。",
-      "targetZh": "人",
-      "targetPinyin": "rén",
+      "targetZh": "中国",
+      "targetPinyin": "Zhōngguó",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "Very long ago, it rained in China for many days."
+          "text": "Long, long ago, it rained in China for many days, and a great flood came."
         },
         {
           "id": "o2",
-          "text": "Because there was so much rain, the water rose higher and higher."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o3",
-          "text": "The water came into the fields, and into many people’s homes."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o4",

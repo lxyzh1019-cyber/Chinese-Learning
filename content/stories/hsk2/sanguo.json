@@ -7,77 +7,1065 @@
   "names": {
     "诸葛亮": {
       "py": "Zhūgě Liàng",
-      "en": "Zhuge Liang, a famous strategist"
+      "en": "Zhuge Liang"
     },
     "刘备": {
       "py": "Liú Bèi",
-      "en": "Liu Bei, a ruler he served"
+      "en": "Liu Bei"
     },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+    "三国": {
+      "py": "Sān Guó",
+      "en": "the Three Kingdoms"
+    },
+    "汉朝": {
+      "py": "Hàn Cháo",
+      "en": "the Han dynasty"
     }
   },
   "sents": [
     {
-      "zh": "汉朝以后，中国分成了三个国家。",
-      "en": "After the Han, China split into three states."
+      "zh": "汉朝以后，中国分成了三个国，叫三国。",
+      "en": "After the Han, China split into three states, called the Three Kingdoms.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "汉朝",
+          "py": "Hàn Cháo",
+          "mn": "the Han dynasty"
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "分成",
+          "py": "fēn chéng",
+          "mn": "to split into",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "国",
+          "py": "guó",
+          "mn": "state",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "三国",
+          "py": "Sān Guó",
+          "mn": "the Three Kingdoms"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "这三个国常常打来打去。",
-      "en": "The three states fought one another constantly."
+      "zh": "这三个国常常打仗。",
+      "en": "The three states were always at war.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "these"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "国",
+          "py": "guó",
+          "mn": "state",
+          "bonus": true
+        },
+        {
+          "zh": "常常",
+          "py": "cháng cháng",
+          "mn": "often",
+          "bonus": true
+        },
+        {
+          "zh": "打仗",
+          "py": "dǎ zhàng",
+          "mn": "to fight a war",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "那时候有一个很聪明的人，叫诸葛亮。",
-      "en": "There was a very clever man of that time called Zhuge Liang."
+      "en": "At that time there was a very clever man called Zhuge Liang.",
+      "seg": [
+        {
+          "zh": "那时候",
+          "py": "nà shí hou",
+          "mn": "at that time",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "聪明",
+          "py": "cōng ming",
+          "mn": "clever",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "诸葛亮",
+          "py": "Zhūgě Liàng",
+          "mn": "Zhuge Liang"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他年轻的时候住在山里，天天看书。",
-      "en": "When he was young he lived in the hills and read every day."
+      "en": "When he was young he lived in the hills and read every day.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "年轻",
+          "py": "nián qīng",
+          "mn": "young"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "hills"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "天天",
+          "py": "tiān tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "看书",
+          "py": "kàn shū",
+          "mn": "to read",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "刘备去请了他三次，他才出来做事。",
-      "en": "Liu Bei went to ask him three times before he came out to serve."
+      "zh": "刘备去请了他三次，他才出来帮刘备。",
+      "en": "Liu Bei went to ask him three times before he came out to help.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "刘备",
+          "py": "Liú Bèi",
+          "mn": "Liu Bei"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "请",
+          "py": "qǐng",
+          "mn": "to ask; to invite"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "times"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then"
+        },
+        {
+          "zh": "出来",
+          "py": "chū lái",
+          "mn": "to come out"
+        },
+        {
+          "zh": "帮",
+          "py": "bāng",
+          "mn": "to help"
+        },
+        {
+          "t": "n",
+          "zh": "刘备",
+          "py": "Liú Bèi",
+          "mn": "Liu Bei"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "因为他知道的事情很多，所以大家都听他的。",
-      "en": "Because he knew so much, everyone listened to him."
+      "en": "Because he knew so much, everyone listened to him.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "知道",
+          "py": "zhī dào",
+          "mn": "to know"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "事情",
+          "py": "shì qing",
+          "mn": "things"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "听",
+          "py": "tīng",
+          "mn": "to listen to"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(what he says)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他会看天气，也会想办法。",
-      "en": "He could read the weather, and could find a way."
+      "zh": "他会看天气，也很会想办法。",
+      "en": "He could read the weather, and he was very good at finding a way.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "can"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "zh": "天气",
+          "py": "tiān qì",
+          "mn": "weather"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "to be good at"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think of"
+        },
+        {
+          "zh": "办法",
+          "py": "bàn fǎ",
+          "mn": "a way"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "有一次，敌人来了，可是城里的兵很少。",
-      "en": "Once the enemy came, but there were few soldiers in the city."
+      "en": "Once, the enemy came, but there were very few soldiers in the city.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "time (occasion)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "敌人",
+          "py": "dí rén",
+          "mn": "enemy",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "兵",
+          "py": "bīng",
+          "mn": "soldiers",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "少",
+          "py": "shǎo",
+          "mn": "few"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所有的人都很不放心。",
-      "en": "Everyone was uneasy."
+      "zh": "所有的人都很着急。",
+      "en": "Everyone was anxious.",
+      "seg": [
+        {
+          "zh": "所有",
+          "py": "suǒ yǒu",
+          "mn": "all"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "着急",
+          "py": "zháo jí",
+          "mn": "anxious",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "诸葛亮没有关门，还一个人坐在城上面。",
-      "en": "Zhuge Liang did not close the gates, and sat alone up on the wall."
+      "zh": "诸葛亮没有关城门，还一个人坐在城墙上弹琴。",
+      "en": "Zhuge Liang did not close the city gate; instead he sat alone on the wall playing the qin.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "诸葛亮",
+          "py": "Zhūgě Liàng",
+          "mn": "Zhuge Liang"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "关",
+          "py": "guān",
+          "mn": "to close"
+        },
+        {
+          "zh": "城门",
+          "py": "chéng mén",
+          "mn": "city gate",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "even"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "城墙",
+          "py": "chéng qiáng",
+          "mn": "city wall",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on top"
+        },
+        {
+          "zh": "弹琴",
+          "py": "tán qín",
+          "mn": "to play the qin",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "敌人来了以后，看见门开着，觉得很奇怪。",
-      "en": "When the enemy arrived and saw the gates open, they thought it strange."
+      "zh": "敌人来了以后，看见城门开着，觉得很奇怪。",
+      "en": "When the enemy arrived and saw the gate open, they thought it very strange.",
+      "seg": [
+        {
+          "zh": "敌人",
+          "py": "dí rén",
+          "mn": "enemy",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "看见",
+          "py": "kàn jiàn",
+          "mn": "to see"
+        },
+        {
+          "zh": "城门",
+          "py": "chéng mén",
+          "mn": "city gate",
+          "bonus": true
+        },
+        {
+          "zh": "开",
+          "py": "kāi",
+          "mn": "open"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "觉得",
+          "py": "jué de",
+          "mn": "to feel"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "奇怪",
+          "py": "qí guài",
+          "mn": "strange",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们以为城里一定有很多兵。",
-      "en": "They supposed the city must be full of soldiers."
+      "zh": "他们想：“城里一定有很多兵，进去太危险了。”",
+      "en": "They thought: \"There must be many soldiers inside; going in is too dangerous.\"",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "一定",
+          "py": "yī dìng",
+          "mn": "must"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "兵",
+          "py": "bīng",
+          "mn": "soldiers",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "进去",
+          "py": "jìn qù",
+          "mn": "to go in",
+          "bonus": true
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
+        },
+        {
+          "zh": "危险",
+          "py": "wēi xiǎn",
+          "mn": "dangerous",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "所以他们没有进去，走了。",
-      "en": "So they did not go in, and left."
+      "zh": "所以他们不敢进去，就走了。",
+      "en": "So they did not dare go in, and left.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "不敢",
+          "py": "bù gǎn",
+          "mn": "dare not",
+          "bonus": true
+        },
+        {
+          "zh": "进去",
+          "py": "jìn qù",
+          "mn": "to go in",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to leave"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他一直为国家做事，做到很老。",
-      "en": "He served his state until he was very old."
+      "zh": "诸葛亮一生为国家做了很多事，一直做到很老。",
+      "en": "Zhuge Liang did a great deal for his state all his life, until he was very old.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "诸葛亮",
+          "py": "Zhūgě Liàng",
+          "mn": "Zhuge Liang"
+        },
+        {
+          "zh": "一生",
+          "py": "yì shēng",
+          "mn": "whole life",
+          "bonus": true
+        },
+        {
+          "zh": "为",
+          "py": "wéi",
+          "mn": "for"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all along"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "until"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "老",
+          "py": "lǎo",
+          "mn": "old"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "到了今天，他的故事还有很多人在说。",
-      "en": "To this day many people still tell his story."
+      "zh": "到了今天，人们还在讲他的故事。",
+      "en": "To this day, people still tell his story.",
+      "seg": [
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to reach"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "story"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

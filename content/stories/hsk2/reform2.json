@@ -16,64 +16,1277 @@
   },
   "sents": [
     {
-      "zh": "一百多年以前，上海还只是一个小地方。",
-      "en": "A hundred years ago and more, Shanghai was still only a small place."
+      "zh": "一百多年以前，上海还只是一个小地方，人不多。",
+      "en": "A hundred-odd years ago, Shanghai was still only a small place with few people.",
+      "seg": [
+        {
+          "zh": "一百",
+          "py": "yì bǎi",
+          "mn": "one hundred",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "ago"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "上海",
+          "py": "Shànghǎi",
+          "mn": "Shanghai"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "只是",
+          "py": "zhǐ shì",
+          "mn": "only"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "place"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "那时候，那里的人不多。",
-      "en": "Few people lived there then."
+      "zh": "因为它在海边，也在一条大河的边上，后来很多船来了。",
+      "en": "Because it lies by the sea, and by the mouth of a great river, many ships later came.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "海边",
+          "py": "hǎi biān",
+          "mn": "seaside",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "mn": "(counting word, rivers)"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "河",
+          "py": "hé",
+          "mn": "river"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "边上",
+          "py": "biān shàng",
+          "mn": "beside",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "ships"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为它在海边，所以后来很多船来了。",
-      "en": "Because it lies by the sea, many ships later came."
+      "zh": "船带来了别的国家的东西，也带走了中国的茶和丝绸。",
+      "en": "The ships brought goods from other countries, and carried away Chinese tea and silk.",
+      "seg": [
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "ships"
+        },
+        {
+          "zh": "带来",
+          "py": "dài lái",
+          "mn": "to bring"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things; goods"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "带走",
+          "py": "dài zǒu",
+          "mn": "to carry away",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "丝绸",
+          "py": "sī chóu",
+          "mn": "silk",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "很多国家的人在这里住了下来。",
-      "en": "People from many countries settled there."
+      "zh": "很多国家的人在这里住了下来，带来了新的东西和新的想法。",
+      "en": "People from many countries settled here, bringing new things and new ideas.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "这里",
+          "py": "zhè lǐ",
+          "mn": "here"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "(to settle)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "带来",
+          "py": "dài lái",
+          "mn": "to bring"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "想法",
+          "py": "xiǎng fǎ",
+          "mn": "ideas",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们带来了新的东西和新的想法。",
-      "en": "They brought new things and new ideas."
+      "zh": "城里有了新式的学校，也有了每天出的报纸。",
+      "en": "The city gained new-style schools, and newspapers that came out every day.",
+      "seg": [
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "zh": "新式",
+          "py": "xīn shì",
+          "mn": "new-style",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "schools"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "出",
+          "py": "chū",
+          "mn": "to come out"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "报纸",
+          "py": "bào zhǐ",
+          "mn": "newspapers",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "城里有了新的学校。",
-      "en": "The city gained new schools."
+      "zh": "路上开始有汽车，还有很多商店。",
+      "en": "Cars appeared in the streets, along with many shops.",
+      "seg": [
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "汽车",
+          "py": "qì chē",
+          "mn": "cars"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还有",
+          "py": "hái yǒu",
+          "mn": "and also"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "商店",
+          "py": "shāng diàn",
+          "mn": "shops"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "也有了每天出的报。",
-      "en": "And newspapers that came out every day."
+      "zh": "晚上路边有了电灯，一直到很晚都可以看到人。",
+      "en": "Electric lamps lit the streets at night, and people were out until very late.",
+      "seg": [
+        {
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "evening"
+        },
+        {
+          "zh": "路边",
+          "py": "lù biān",
+          "mn": "roadside",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "zh": "电灯",
+          "py": "diàn dēng",
+          "mn": "electric lights",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all the way"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "until"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "晚",
+          "py": "wǎn",
+          "mn": "late"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all; still"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "看到",
+          "py": "kàn dào",
+          "mn": "to see"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "路上开始有车，还有很多店。",
-      "en": "Cars appeared in the streets, and many shops."
+      "zh": "中国传统的旧东西和西方传进来的新东西，都在这个城里。",
+      "en": "China's own old traditions and the new things arriving from the West were both in this one city.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "传统",
+          "py": "chuán tǒng",
+          "mn": "traditional",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "旧",
+          "py": "jiù",
+          "mn": "old",
+          "bonus": true
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "西方",
+          "py": "xī fāng",
+          "mn": "the West",
+          "bonus": true
+        },
+        {
+          "zh": "传",
+          "py": "chuán",
+          "mn": "to spread",
+          "bonus": true
+        },
+        {
+          "zh": "进来",
+          "py": "jìn lái",
+          "mn": "in",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all; both"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "晚上路上很亮，一直到很晚都有人。",
-      "en": "At night the streets were bright, with people out until late."
+      "zh": "有的人在这里做买卖，赚了很多钱，住很大的房子。",
+      "en": "Some traded here, made a great deal of money, and lived in big houses.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "这里",
+          "py": "zhè lǐ",
+          "mn": "here"
+        },
+        {
+          "zh": "做买卖",
+          "py": "zuò mǎi mài",
+          "mn": "to trade",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "赚",
+          "py": "zhuàn",
+          "mn": "to earn",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "much"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "房子",
+          "py": "fáng zi",
+          "mn": "houses"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "老的中国和新的东西都在这个城里。",
-      "en": "The old China and the new things were both in this city."
+      "zh": "也有很多人过得很难，每天工作很长时间，钱还是不够用。",
+      "en": "Many others lived hard lives, working long hours and still not earning enough.",
+      "seg": [
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "to live"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "难",
+          "py": "nán",
+          "mn": "hard"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "工作",
+          "py": "gōng zuò",
+          "mn": "to work"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long"
+        },
+        {
+          "zh": "时间",
+          "py": "shí jiān",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "zh": "还是",
+          "py": "hái shi",
+          "mn": "still"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "够",
+          "py": "gòu",
+          "mn": "enough",
+          "bonus": true
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有的人觉得很好，有的人觉得不好。",
-      "en": "Some thought it good, some did not."
+      "zh": "有的人觉得上海很好，因为这里什么都有。",
+      "en": "Some thought Shanghai was wonderful, because it had everything.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "觉得",
+          "py": "jué de",
+          "mn": "to think"
+        },
+        {
+          "t": "n",
+          "zh": "上海",
+          "py": "Shànghǎi",
+          "mn": "Shanghai"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "这里",
+          "py": "zhè lǐ",
+          "mn": "here"
+        },
+        {
+          "zh": "什么",
+          "py": "shén me",
+          "mn": "anything"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有的人在这里做买卖，得到了很多钱。",
-      "en": "Some traded here and made a great deal of money."
+      "zh": "有的人觉得不好，因为老的东西越来越少了。",
+      "en": "Others thought it was not, because the old ways were disappearing.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "觉得",
+          "py": "jué de",
+          "mn": "to think"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "老",
+          "py": "lǎo",
+          "mn": "old"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "越来越",
+          "py": "yuè lái yuè",
+          "mn": "more and more"
+        },
+        {
+          "zh": "少",
+          "py": "shǎo",
+          "mn": "few"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "也有很多人过得非常难。",
-      "en": "And many others lived very hard lives."
+      "zh": "可是不管好不好，变化已经开始了。",
+      "en": "But good or bad, the change had already begun.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "不管",
+          "py": "bù guǎn",
+          "mn": "no matter",
+          "bonus": true
+        },
+        {
+          "zh": "好不好",
+          "py": "hǎo bu hǎo",
+          "mn": "good or not",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "变化",
+          "py": "biàn huà",
+          "mn": "change",
+          "bonus": true
+        },
+        {
+          "zh": "已经",
+          "py": "yǐ jīng",
+          "mn": "already"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所以上海是一个又新又难的地方。",
-      "en": "So Shanghai was a place both new and hard."
+      "zh": "后来，上海成了中国最大的城。",
+      "en": "Later, Shanghai became China's largest city.",
+      "seg": [
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "上海",
+          "py": "Shànghǎi",
+          "mn": "Shanghai"
+        },
+        {
+          "zh": "成",
+          "py": "chéng",
+          "mn": "to become"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "它的变化，就是那时候中国的变化。",
-      "en": "Its change was China’s change in those years."
+      "zh": "上海的变化，就是那时候中国的变化。",
+      "en": "Shanghai's change was China's change in those years.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "上海",
+          "py": "Shànghǎi",
+          "mn": "Shanghai"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "变化",
+          "py": "biàn huà",
+          "mn": "change",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "just"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "那时候",
+          "py": "nà shí hou",
+          "mn": "at that time",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "变化",
+          "py": "biàn huà",
+          "mn": "change",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

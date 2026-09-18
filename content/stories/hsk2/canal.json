@@ -9,19 +9,120 @@
       "py": "Suí Cháo",
       "en": "the Sui dynasty"
     },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+    "大运河": {
+      "py": "Dà Yùnhé",
+      "en": "the Grand Canal"
     }
   },
   "sents": [
     {
       "zh": "中国很大，北边和南边离得很远。",
-      "en": "China is large, and the north and south are far apart."
+      "en": "China is large, and the north and south are far apart.",
+      "seg": [
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "离",
+          "py": "lí",
+          "mn": "apart",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "北边天气冷，南边天气热。",
-      "en": "The north is cold and the south is hot."
+      "en": "The north is cold and the south is hot.",
+      "seg": [
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "zh": "天气",
+          "py": "tiān qì",
+          "mn": "weather"
+        },
+        {
+          "zh": "冷",
+          "py": "lěng",
+          "mn": "cold"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "天气",
+          "py": "tiān qì",
+          "mn": "weather"
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "mn": "hot"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "南边的田里可以种很多稻子。",
@@ -40,12 +141,13 @@
         {
           "zh": "田",
           "py": "tián",
-          "mn": "field"
+          "mn": "field",
+          "bonus": true
         },
         {
           "zh": "里",
           "py": "lǐ",
-          "mn": "in"
+          "mn": "inside"
         },
         {
           "zh": "可以",
@@ -65,7 +167,7 @@
         {
           "zh": "多",
           "py": "duō",
-          "mn": "many"
+          "mn": "a lot of"
         },
         {
           "zh": "稻子",
@@ -81,51 +183,795 @@
     },
     {
       "zh": "可是要把米送到北边去，非常不方便。",
-      "en": "But getting that rice to the north was very inconvenient."
+      "en": "But getting that rice to the north was very inconvenient.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to want"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "米",
+          "py": "mǐ",
+          "mn": "rice"
+        },
+        {
+          "zh": "送",
+          "py": "sòng",
+          "mn": "to send"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "非常",
+          "py": "fēi cháng",
+          "mn": "extremely"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "方便",
+          "py": "fāng biàn",
+          "mn": "convenient"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "走路要很多天，而且路上不安全。",
-      "en": "It took many days on foot, and the road was not safe."
+      "en": "It took many days on foot, and the road was not safe.",
+      "seg": [
+        {
+          "zh": "走路",
+          "py": "zǒu lù",
+          "mn": "to walk"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to need"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "days"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "而且",
+          "py": "ér qiě",
+          "mn": "moreover"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "安全",
+          "py": "ān quán",
+          "mn": "safe"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "隋朝的皇帝想到了一个大办法。",
-      "en": "The Sui emperor thought of a great plan."
+      "en": "The Sui emperor thought of a great plan.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "隋朝",
+          "py": "Suí Cháo",
+          "mn": "the Sui dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "想到",
+          "py": "xiǎng dào",
+          "mn": "to think of"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "办法",
+          "py": "bàn fǎ",
+          "mn": "plan; way"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他决定建一条很长很长的河。",
-      "en": "He decided to make a very long waterway."
+      "zh": "他决定挖一条很长很长的运河。",
+      "en": "He decided to dig a very, very long canal.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "决定",
+          "py": "jué dìng",
+          "mn": "to decide"
+        },
+        {
+          "zh": "挖",
+          "py": "wā",
+          "mn": "to dig",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "mn": "(counting word, long things)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "运河",
+          "py": "yùn hé",
+          "mn": "canal",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "这条河从南边一直到北边。",
-      "en": "This waterway ran all the way from the south to the north."
+      "zh": "这条运河从南边一直到北边。",
+      "en": "This canal ran all the way from the south to the north.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "mn": "(counting word, long things)"
+        },
+        {
+          "zh": "运河",
+          "py": "yùn hé",
+          "mn": "canal",
+          "bonus": true
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all the way"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "很多人来做这个工作，用了很多年。",
-      "en": "Many people came to do the work, and it took many years."
+      "zh": "很多人来挖运河，一挖就是很多年。",
+      "en": "Many people came to dig it, and the digging went on for many years.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "挖",
+          "py": "wā",
+          "mn": "to dig",
+          "bonus": true
+        },
+        {
+          "zh": "运河",
+          "py": "yùn hé",
+          "mn": "canal",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "once"
+        },
+        {
+          "zh": "挖",
+          "py": "wā",
+          "mn": "to dig",
+          "bonus": true
+        },
+        {
+          "zh": "就是",
+          "py": "jiù shì",
+          "mn": "(went on for)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "工作又累又难，有的人再也没有回家。",
-      "en": "The work was hard and tiring, and some never went home again."
+      "zh": "工作又累又苦，有的人再也没有回家。",
+      "en": "The work was hard and tiring, and some never went home again.",
+      "seg": [
+        {
+          "zh": "工作",
+          "py": "gōng zuò",
+          "mn": "work"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "累",
+          "py": "lèi",
+          "mn": "tired"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "苦",
+          "py": "kǔ",
+          "mn": "hard; bitter",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "再也",
+          "py": "zài yě",
+          "mn": "never again",
+          "bonus": true
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "回家",
+          "py": "huí jiā",
+          "mn": "to go home"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "不过做完以后，南北就近了很多。",
-      "en": "But once it was finished, north and south were much closer."
+      "zh": "不过挖好以后，南北就近了很多。",
+      "en": "But once it was finished, north and south were much closer.",
+      "seg": [
+        {
+          "zh": "不过",
+          "py": "bù guò",
+          "mn": "but"
+        },
+        {
+          "zh": "挖",
+          "py": "wā",
+          "mn": "to dig",
+          "bonus": true
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "done; well"
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "南北",
+          "py": "nán běi",
+          "mn": "north and south",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "近",
+          "py": "jìn",
+          "mn": "near"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "much"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "商人坐船，可以把东西送到很远的地方。",
-      "en": "Merchants could go by boat and send goods far away."
+      "en": "Merchants could go by boat and send goods far away.",
+      "seg": [
+        {
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchant",
+          "bonus": true
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to ride"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boat"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "送",
+          "py": "sòng",
+          "mn": "to send"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "因为船比走路快，所以东西也便宜了。",
-      "en": "Because a boat is faster than walking, goods became cheaper too."
+      "en": "Because a boat is faster than walking, goods became cheaper too.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boat"
+        },
+        {
+          "zh": "比",
+          "py": "bǐ",
+          "mn": "than"
+        },
+        {
+          "zh": "走路",
+          "py": "zǒu lù",
+          "mn": "walking"
+        },
+        {
+          "zh": "快",
+          "py": "kuài",
+          "mn": "fast"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "便宜",
+          "py": "pián yi",
+          "mn": "cheap",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "河的两边慢慢有了很多城。",
-      "en": "Cities slowly grew up along both banks."
+      "zh": "运河的两边慢慢有了很多城。",
+      "en": "Towns slowly grew up along both banks of the canal.",
+      "seg": [
+        {
+          "zh": "运河",
+          "py": "yùn hé",
+          "mn": "canal",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "两边",
+          "py": "liǎng biān",
+          "mn": "both sides",
+          "bonus": true
+        },
+        {
+          "zh": "慢慢",
+          "py": "màn màn",
+          "mn": "slowly",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "towns",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "一千四百年过去了，今天人们还在用这条河。",
-      "en": "Fourteen hundred years have passed, and people still use it today."
+      "zh": "一千四百年过去了，今天人们还在用大运河。",
+      "en": "Fourteen hundred years have passed, and people still use the Grand Canal today.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand"
+        },
+        {
+          "zh": "四百",
+          "py": "sì bǎi",
+          "mn": "four hundred",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "过去",
+          "py": "guò qù",
+          "mn": "to pass (of time)"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "t": "n",
+          "zh": "大运河",
+          "py": "Dà Yùnhé",
+          "mn": "the Grand Canal"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

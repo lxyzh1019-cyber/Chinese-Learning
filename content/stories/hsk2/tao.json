@@ -4,39 +4,484 @@
   "level": 2,
   "title": "田里的诗人",
   "en": "The Poet in the Fields",
-  "names": {},
+  "names": {
+    "陶渊明": {
+      "py": "Táo Yuānmíng",
+      "en": "Tao Yuanming"
+    },
+    "晋朝": {
+      "py": "Jìn Cháo",
+      "en": "the Jin dynasty"
+    }
+  },
   "sents": [
     {
-      "zh": "一千六百多年以前，有一个很有名的诗人。",
-      "en": "More than sixteen hundred years ago there was a famous poet."
+      "zh": "一千六百多年以前，晋朝有一位很有名的诗人，叫陶渊明。",
+      "en": "More than sixteen hundred years ago, in the Jin dynasty, there was a famous poet called Tao Yuanming.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand"
+        },
+        {
+          "zh": "六百",
+          "py": "liù bǎi",
+          "mn": "six hundred",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "晋朝",
+          "py": "Jìn Cháo",
+          "mn": "the Jin dynasty"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "位",
+          "py": "wèi",
+          "mn": "(counting word for people, polite)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "有名",
+          "py": "yǒu míng",
+          "mn": "famous"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "诗人",
+          "py": "shī rén",
+          "mn": "poet",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "陶渊明",
+          "py": "Táo Yuānmíng",
+          "mn": "Tao Yuanming"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他年轻的时候也做过官。",
-      "en": "When he was young he had served as an official."
+      "zh": "他年轻的时候做过官。",
+      "en": "When he was young he served as an official.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "年轻",
+          "py": "nián qīng",
+          "mn": "young"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to be"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(once did)"
+        },
+        {
+          "zh": "官",
+          "py": "guān",
+          "mn": "official",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "做官可以有钱，也可以有名。",
-      "en": "An official could have money, and could have a name."
+      "en": "An official could have money, and could have a name.",
+      "seg": [
+        {
+          "zh": "做官",
+          "py": "zuò guān",
+          "mn": "to be an official",
+          "bonus": true
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "有名",
+          "py": "yǒu míng",
+          "mn": "famous"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "可是他一点也不喜欢那样的日子。",
-      "en": "But he did not like that kind of life at all."
+      "en": "But he did not like that life at all.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "一点也不",
+          "py": "yì diǎn yě bù",
+          "mn": "not at all",
+          "bonus": true
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "那样",
+          "py": "nà yàng",
+          "mn": "that kind"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "日子",
+          "py": "rì zi",
+          "mn": "days; life"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他觉得每天都要说不想说的话。",
-      "en": "He felt he had to say things every day that he did not want to say."
+      "zh": "因为做官的人每天都要说不想说的话，做不想做的事。",
+      "en": "Because an official has to say things he does not want to say every day, and do things he does not want to do.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "做官",
+          "py": "zuò guān",
+          "mn": "to be an official",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "所以有一天，他决定不做了。",
-      "en": "So one day he decided to stop."
+      "en": "So one day, he decided to stop.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "决定",
+          "py": "jué dìng",
+          "mn": "to decide"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他回到自己的家，开始种田。",
-      "en": "He went back to his own home and began to farm."
+      "en": "He went back to his own home and began to farm.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "回到",
+          "py": "huí dào",
+          "mn": "to return to"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "own"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin"
+        },
+        {
+          "zh": "种田",
+          "py": "zhòng tián",
+          "mn": "to farm",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他种稻子，也种菜，还种了很多花。",
-      "en": "He grew rice and vegetables, and many flowers as well.",
+      "en": "He grew rice and vegetables, and planted many flowers as well.",
       "seg": [
         {
           "zh": "他",
@@ -85,12 +530,12 @@
         {
           "zh": "种",
           "py": "zhòng",
-          "mn": "to grow"
+          "mn": "to plant"
         },
         {
           "zh": "了",
           "py": "le",
-          "mn": "(finished)"
+          "mn": "(shows it is finished)"
         },
         {
           "zh": "很",
@@ -114,32 +559,525 @@
       ]
     },
     {
-      "zh": "早上他去田里工作，晚上他写诗。",
-      "en": "In the morning he worked in the fields; in the evening he wrote poems."
+      "zh": "早上他去田里干活，晚上他写诗。",
+      "en": "In the morning he worked in the fields; in the evening he wrote poems.",
+      "seg": [
+        {
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "田",
+          "py": "tián",
+          "mn": "field",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "干活",
+          "py": "gàn huó",
+          "mn": "to work (with one's hands)",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "evening"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poems",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他写的诗不长，可是很美。",
-      "en": "His poems were not long, but beautiful."
+      "en": "His poems were not long, but very beautiful.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the ones that)"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poems",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "美",
+          "py": "měi",
+          "mn": "beautiful"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他在诗里说，在田里的时候，他的心很自由。",
-      "en": "In them he said that in the fields his heart was free."
+      "en": "In his poems he said that in the fields his heart was free.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poems",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "田",
+          "py": "tián",
+          "mn": "field",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "心",
+          "py": "xīn",
+          "mn": "heart"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "自由",
+          "py": "zì yóu",
+          "mn": "free",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "虽然他家里不富，但是他过得很快乐。",
-      "en": "Although his family was not rich, he lived happily."
+      "en": "Although his family was not rich, he lived happily.",
+      "seg": [
+        {
+          "zh": "虽然",
+          "py": "suī rán",
+          "mn": "although"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "家里",
+          "py": "jiā lǐ",
+          "mn": "home"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "富",
+          "py": "fù",
+          "mn": "rich",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "但是",
+          "py": "dàn shì",
+          "mn": "but"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "to live"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "快乐",
+          "py": "kuài lè",
+          "mn": "happy"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "有人问他：“你后来觉得这样好吗？”",
-      "en": "Someone asked him: \"Did you feel it had been the right thing?\""
+      "en": "Someone asked him: \"Looking back, do you think it was the right choice?\"",
+      "seg": [
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "someone"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "你",
+          "py": "nǐ",
+          "mn": "you"
+        },
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "zh": "觉得",
+          "py": "jué de",
+          "mn": "to feel"
+        },
+        {
+          "zh": "这样",
+          "py": "zhè yàng",
+          "mn": "this way"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "吗",
+          "py": "má",
+          "mn": "(makes a question)"
+        },
+        {
+          "t": "p",
+          "tx": "？"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
       "zh": "他说：“我要的不多，这样就好。”",
-      "en": "He said: \"I do not want much; this is enough.\""
+      "en": "He said: \"I do not want much; this is enough.\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to want"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "much"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "这样",
+          "py": "zhè yàng",
+          "mn": "this way"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "fine"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
       "zh": "一千多年过去了，中国人还在读他的诗。",
-      "en": "More than a thousand years have passed, and Chinese people still read his poems."
+      "en": "More than a thousand years have passed, and Chinese people still read his poems.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "千",
+          "py": "qiān",
+          "mn": "thousand"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "过去",
+          "py": "guò qù",
+          "mn": "to pass (of time)"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "to read"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "诗",
+          "py": "shī",
+          "mn": "poems",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

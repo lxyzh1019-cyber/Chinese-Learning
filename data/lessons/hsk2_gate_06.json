@@ -5,13 +5,28 @@
   "title": "HSK2 Gate 6 · Western Han",
   "explanationEn": "Gate 6: Western Han. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第6关：西汉。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "汉朝的时候，中国和西边的国家还很少来往。很多人不知道西边有什么。后来，皇帝让一些人向西走，看一看那里的情况。他们走了很多年才回来。",
-  "passageEn": "In the Han dynasty, China had little contact with the lands to the west. Many people did not know what lay to the west. Later the emperor sent men west to see what was there. They travelled for many years before returning.",
+  "passage": "汉朝的时候，中国人不知道西边有什么。皇帝想知道西边的情况，就让一个叫张骞的人去看看。张骞走了很多年才回来，路上遇到了很多困难。回来以后，他说：“西边有很多国家，有好马，也有很多新东西。”",
+  "passageEn": "In the Han dynasty, Chinese people did not know what lay to the west. The emperor wanted to know how things were in the west, so he sent a man called Zhang Qian to take a look. Zhang Qian travelled for many years before he came back, and met many hardships on the way. When he returned he said: \"There are many countries in the west, with fine horses and many new things.\"",
   "keyVocab": [
     {
       "zh": "时候",
       "pinyin": "shíhou",
-      "en": "time; moment"
+      "en": "time"
+    },
+    {
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
+    },
+    {
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "people"
+    },
+    {
+      "zh": "知道",
+      "pinyin": "zhī dào",
+      "en": "to know"
     },
     {
       "zh": "西边",
@@ -19,48 +34,33 @@
       "en": "the west"
     },
     {
-      "zh": "国家",
-      "pinyin": "guó jiā",
-      "en": "country"
+      "zh": "想",
+      "pinyin": "xiǎng",
+      "en": "to want"
     },
     {
-      "zh": "少",
-      "pinyin": "shǎo",
-      "en": "few"
+      "zh": "情况",
+      "pinyin": "qíng kuàng",
+      "en": "situation"
     },
     {
-      "zh": "来",
-      "pinyin": "lái",
-      "en": "to come"
-    },
-    {
-      "zh": "往",
-      "pinyin": "wǎng",
-      "en": "to go (in a direction)"
-    },
-    {
-      "zh": "多",
-      "pinyin": "duō",
-      "en": "many"
-    },
-    {
-      "zh": "人",
-      "pinyin": "rén",
-      "en": "person"
+      "zh": "让",
+      "pinyin": "ràng",
+      "en": "to send; to let"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "In the Han dynasty, China had little contact with the lands to the west.",
-      "answer": "汉朝的时候，中国和西边的国家还很少来往。"
+      "answerEn": "In the Han dynasty, Chinese people did not know what lay to the west.",
+      "answer": "汉朝的时候，中国人不知道西边有什么。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "Later the emperor sent men west to see what was there.",
-      "answer": "后来，皇帝让一些人向西走，看一看那里的情况。"
+      "answerEn": "Zhang Qian travelled for many years before he came back, and met many hardships on the way.",
+      "answer": "张骞走了很多年才回来，路上遇到了很多困难。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -81,15 +81,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "long time"
-        },
-        {
-          "id": "o2",
           "text": "before"
         },
         {
+          "id": "o2",
+          "text": "China"
+        },
+        {
           "id": "o3",
-          "text": "time; moment"
+          "text": "time"
         },
         {
           "id": "o4",
@@ -97,25 +97,25 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
+      "explanationEn": "时候 (shíhou) means \"time\" — you can find it in the passage above.",
+      "explanation": "“时候”（shíhou）的意思是“time”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_06_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "西边",
-      "pinyin": "xī biān",
-      "promptEn": "In the story, what does 西边 mean?",
-      "prompt": "短文里的“西边”是什么意思？",
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "promptEn": "In the story, what does 中国 mean?",
+      "prompt": "短文里的“中国”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "before"
+          "text": "to fall"
         },
         {
           "id": "o2",
-          "text": "the west"
+          "text": "China"
         },
         {
           "id": "o3",
@@ -123,18 +123,18 @@
         },
         {
           "id": "o4",
-          "text": "long time"
+          "text": "before"
         }
       ],
       "answerId": "o2",
-      "explanationEn": "西边 (xī biān) means \"the west\" — you can find it in the passage above.",
-      "explanation": "“西边”（xī biān）的意思是“the west”，就在上面的短文里。"
+      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
+      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_06_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "汉朝的时候，中国和西边的国家还很少来往。",
+      "zh": "汉朝的时候，中国人不知道西边有什么。",
       "targetZh": "时候",
       "targetPinyin": "shíhou",
       "promptEn": "What does this sentence say?",
@@ -142,24 +142,24 @@
       "options": [
         {
           "id": "o1",
-          "text": "In the Han dynasty, China had little contact with the lands to the west."
+          "text": "In the Han dynasty, Chinese people did not know what lay to the west."
         },
         {
           "id": "o2",
-          "text": "Very long ago, it rained in China for many days."
+          "text": "Long, long ago, it rained in China for many days, and a great flood came."
         },
         {
           "id": "o3",
-          "text": "Because there was so much rain, the water rose higher and higher."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o4",
-          "text": "The water came into the fields, and into many people’s homes."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         }
       ],
       "answerId": "o1",
-      "explanationEn": "\"汉朝的时候，中国和西边的国家还很少来往。\" means \"In the Han dynasty, China had little contact with the lands to the west.\".",
-      "explanation": "“汉朝的时候，中国和西边的国家还很少来往。”的意思是“In the Han dynasty, China had little contact with the lands to the west.”。"
+      "explanationEn": "\"汉朝的时候，中国人不知道西边有什么。\" means \"In the Han dynasty, Chinese people did not know what lay to the west.\".",
+      "explanation": "“汉朝的时候，中国人不知道西边有什么。”的意思是“In the Han dynasty, Chinese people did not know what lay to the west.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Western Han in two or three short Chinese sentences. Use words from the list above.",

@@ -3,7 +3,7 @@
   "did": 17,
   "level": 2,
   "title": "勤学的年轻人",
-  "en": "The Hard-Working Student",
+  "en": "The Hard-Working Students",
   "names": {
     "金朝": {
       "py": "Jīn Cháo",
@@ -13,63 +13,1003 @@
   "sents": [
     {
       "zh": "金朝的时候，北方住着很多不同的人。",
-      "en": "In the Jin dynasty many different peoples lived in the north."
+      "en": "In the Jin dynasty, many different peoples lived in the north.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "金朝",
+          "py": "Jīn Cháo",
+          "mn": "the Jin dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "北方",
+          "py": "běi fāng",
+          "mn": "the north",
+          "bonus": true
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "不同",
+          "py": "bù tóng",
+          "mn": "different"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他们说的话不一样，写的字也不一样。",
-      "en": "They spoke differently and wrote differently."
+      "en": "They spoke differently and wrote differently.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to speak"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words; language"
+        },
+        {
+          "zh": "不一样",
+          "py": "bù yí yàng",
+          "mn": "different",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "不一样",
+          "py": "bù yí yàng",
+          "mn": "different",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为要一起做事，所以很多年轻人开始学汉字。",
-      "en": "Because they had to work together, many young people began learning Chinese characters."
+      "zh": "因为大家要一起生活、做买卖，所以很多年轻人开始学汉字。",
+      "en": "Because everyone had to live and trade together, many young people began to learn Chinese characters.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "生活",
+          "py": "shēng huó",
+          "mn": "to live"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "做买卖",
+          "py": "zuò mǎi mai",
+          "mn": "to trade",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "年轻人",
+          "py": "nián qīng rén",
+          "mn": "young people",
+          "bonus": true
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
+        },
+        {
+          "zh": "汉字",
+          "py": "hàn zì",
+          "mn": "Chinese characters"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他们每天很早就去学校。",
-      "en": "They went to school very early each day."
+      "en": "They went to school very early every day.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "早",
+          "py": "zǎo",
+          "mn": "early"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "老师先教他们读，然后才教写。",
-      "en": "The teacher taught them to read first, and only then to write."
+      "en": "The teacher taught them to read first, and only then to write.",
+      "seg": [
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "zh": "先",
+          "py": "xiān",
+          "mn": "first"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "them"
+        },
+        {
+          "zh": "读",
+          "py": "dú",
+          "mn": "to read"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "然后",
+          "py": "rán hòu",
+          "mn": "then"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then"
+        },
+        {
+          "zh": "教",
+          "py": "jiāo",
+          "mn": "to teach"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "一个字要写很多很多次。",
-      "en": "One character had to be written many times over."
+      "en": "One character had to be written many times over.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "times"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "如果写得不好，就再写一次。",
-      "en": "If it was not good, they wrote it again."
+      "en": "If it was not good, they wrote it once more.",
+      "seg": [
+        {
+          "zh": "如果",
+          "py": "rú guǒ",
+          "mn": "if"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "再",
+          "py": "zài",
+          "mn": "again"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "time (occasion)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "有的人晚上还在看书。",
-      "en": "Some were still reading in the evening."
+      "en": "Some were still reading in the evening.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "evening"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "看书",
+          "py": "kàn shū",
+          "mn": "to read",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为家里没有很多光，所以他们坐到门口去看。",
-      "en": "Because there was little light at home, they sat by the door to read."
+      "zh": "因为家里没有灯，所以他们坐到门口去看。",
+      "en": "Because there was no lamp at home, they sat by the door to read.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "家里",
+          "py": "jiā lǐ",
+          "mn": "at home"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "there was no"
+        },
+        {
+          "zh": "灯",
+          "py": "dēng",
+          "mn": "lamp"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "门口",
+          "py": "mén kǒu",
+          "mn": "doorway"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "学好了以后，他们可以做很多事情。",
-      "en": "Once they had learned, they could do many things."
+      "zh": "学好了汉字，他们能找到好工作。",
+      "en": "Once they had learned the characters, they could find good work.",
+      "seg": [
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "汉字",
+          "py": "hàn zì",
+          "mn": "Chinese characters"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
+        },
+        {
+          "zh": "找到",
+          "py": "zhǎo dào",
+          "mn": "to find"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "工作",
+          "py": "gōng zuò",
+          "mn": "work"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有的人做官，有的人做买卖。",
-      "en": "Some became officials, some merchants."
+      "zh": "有的人做官，有的人做买卖，有的人当了老师。",
+      "en": "Some became officials, some merchants, and some teachers.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "做官",
+          "py": "zuò guān",
+          "mn": "to be an official",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "做买卖",
+          "py": "zuò mǎi mai",
+          "mn": "to trade",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "当",
+          "py": "dāng",
+          "mn": "to be"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teachers"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们也没有忘记自己的字。",
-      "en": "They did not forget their own writing either."
+      "zh": "他们也没有忘记自己的字，两种字都会。",
+      "en": "They did not forget their own writing either, and knew both scripts.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "忘记",
+          "py": "wàng jì",
+          "mn": "to forget"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "own"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "writing"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "kinds"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "writing"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "both"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "can"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所以他们两种字都会。",
-      "en": "So they knew both scripts."
+      "zh": "他们把两边的书放在一起看，知道的事情比别人多。",
+      "en": "They read the books of both sides together, and knew more than others.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "两边",
+          "py": "liǎng biān",
+          "mn": "both sides",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "知道",
+          "py": "zhī dào",
+          "mn": "to know"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "事情",
+          "py": "shì qing",
+          "mn": "things"
+        },
+        {
+          "zh": "比",
+          "py": "bǐ",
+          "mn": "than"
+        },
+        {
+          "zh": "别人",
+          "py": "bié ren",
+          "mn": "other people"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们把两边的书放在一起看。",
-      "en": "They read the books of both sides together."
+      "zh": "他们说：“读书好的人，走到哪里都可以。”",
+      "en": "They said: \"A person who has studied well can get on anywhere.\"",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "读书",
+          "py": "dú shū",
+          "mn": "to study"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to go"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "哪里",
+          "py": "nǎ lǐ",
+          "mn": "wherever"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "他们说：“读书的人，走到哪里都可以。”",
-      "en": "They said: \"A person who has studied can get on anywhere.\""
+      "zh": "今天我们学汉字，也是一样的道理。",
+      "en": "We learn Chinese characters today for the same reason.",
+      "seg": [
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
+        },
+        {
+          "zh": "汉字",
+          "py": "hàn zì",
+          "mn": "Chinese characters"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "一样",
+          "py": "yī yàng",
+          "mn": "the same"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "道理",
+          "py": "dào lǐ",
+          "mn": "reason; principle",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

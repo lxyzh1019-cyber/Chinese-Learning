@@ -5,8 +5,8 @@
   "title": "HSK2 Gate 10 · Eastern Jin",
   "explanationEn": "Gate 10: Eastern Jin. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第10关：东晋。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "一千六百多年以前，有一个很有名的诗人。他年轻的时候也做过官。做官可以有钱，也可以有名。可是他一点也不喜欢那样的日子。",
-  "passageEn": "More than sixteen hundred years ago there was a famous poet. When he was young he had served as an official. An official could have money, and could have a name. But he did not like that kind of life at all.",
+  "passage": "一千六百多年以前，晋朝有一位很有名的诗人，叫陶渊明。他年轻的时候做过官。做官可以有钱，也可以有名。可是他一点也不喜欢那样的日子。",
+  "passageEn": "More than sixteen hundred years ago, in the Jin dynasty, there was a famous poet called Tao Yuanming. When he was young he served as an official. An official could have money, and could have a name. But he did not like that life at all.",
   "keyVocab": [
     {
       "zh": "一",
@@ -19,24 +19,14 @@
       "en": "thousand"
     },
     {
-      "zh": "六",
-      "pinyin": "liù",
-      "en": "six"
-    },
-    {
-      "zh": "百",
-      "pinyin": "bǎi",
-      "en": "hundred"
-    },
-    {
       "zh": "多",
       "pinyin": "duō",
-      "en": "many"
+      "en": "more than"
     },
     {
       "zh": "年",
       "pinyin": "nián",
-      "en": "year"
+      "en": "years"
     },
     {
       "zh": "以前",
@@ -44,17 +34,27 @@
       "en": "before"
     },
     {
+      "zh": "位",
+      "pinyin": "wèi",
+      "en": "(counting word for people, polite)"
+    },
+    {
       "zh": "有名",
       "pinyin": "yǒu míng",
       "en": "famous"
+    },
+    {
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "More than sixteen hundred years ago there was a famous poet.",
-      "answer": "一千六百多年以前，有一个很有名的诗人。"
+      "answerEn": "More than sixteen hundred years ago, in the Jin dynasty, there was a famous poet called Tao Yuanming.",
+      "answer": "一千六百多年以前，晋朝有一位很有名的诗人，叫陶渊明。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
@@ -81,11 +81,11 @@
       "options": [
         {
           "id": "o1",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o2",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o3",
@@ -111,7 +111,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o2",
@@ -123,7 +123,7 @@
         },
         {
           "id": "o4",
-          "text": "long time"
+          "text": "before"
         }
       ],
       "answerId": "o2",
@@ -134,7 +134,7 @@
       "id": "hsk2_gate_10_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "一千六百多年以前，有一个很有名的诗人。",
+      "zh": "一千六百多年以前，晋朝有一位很有名的诗人，叫陶渊明。",
       "targetZh": "一",
       "targetPinyin": "yī",
       "promptEn": "What does this sentence say?",
@@ -142,24 +142,24 @@
       "options": [
         {
           "id": "o1",
-          "text": "More than sixteen hundred years ago there was a famous poet."
+          "text": "More than sixteen hundred years ago, in the Jin dynasty, there was a famous poet called Tao Yuanming."
         },
         {
           "id": "o2",
-          "text": "Very long ago, it rained in China for many days."
+          "text": "Long, long ago, it rained in China for many days, and a great flood came."
         },
         {
           "id": "o3",
-          "text": "Because there was so much rain, the water rose higher and higher."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o4",
-          "text": "The water came into the fields, and into many people’s homes."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         }
       ],
       "answerId": "o1",
-      "explanationEn": "\"一千六百多年以前，有一个很有名的诗人。\" means \"More than sixteen hundred years ago there was a famous poet.\".",
-      "explanation": "“一千六百多年以前，有一个很有名的诗人。”的意思是“More than sixteen hundred years ago there was a famous poet.”。"
+      "explanationEn": "\"一千六百多年以前，晋朝有一位很有名的诗人，叫陶渊明。\" means \"More than sixteen hundred years ago, in the Jin dynasty, there was a famous poet called Tao Yuanming.\".",
+      "explanation": "“一千六百多年以前，晋朝有一位很有名的诗人，叫陶渊明。”的意思是“More than sixteen hundred years ago, in the Jin dynasty, there was a famous poet called Tao Yuanming.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Eastern Jin in two or three short Chinese sentences. Use words from the list above.",

@@ -5,10 +5,6 @@
   "title": "中国的四大发明",
   "en": "China's Four Great Inventions",
   "names": {
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
-    },
     "宋朝": {
       "py": "Sòng Cháo",
       "en": "the Song dynasty"
@@ -16,64 +12,1071 @@
   },
   "sents": [
     {
-      "zh": "中国人做出了很多有用的东西。",
-      "en": "Chinese people made many useful things."
-    },
-    {
-      "zh": "其中最有名的有四个。",
-      "en": "Four of them are the most famous."
+      "zh": "中国人有很多有用的发明，其中最有名的有四个。",
+      "en": "Chinese people made many useful inventions, and four of them are the most famous.",
+      "seg": [
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "有用",
+          "py": "yǒu yòng",
+          "mn": "useful",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "发明",
+          "py": "fā míng",
+          "mn": "inventions",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "其中",
+          "py": "qí zhōng",
+          "mn": "among them"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "有名",
+          "py": "yǒu míng",
+          "mn": "famous"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "四",
+          "py": "sì",
+          "mn": "four"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "第一个是纸。",
-      "en": "The first is paper."
+      "en": "The first is paper.",
+      "seg": [
+        {
+          "zh": "第一",
+          "py": "dì yī",
+          "mn": "first",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为有了纸，人们才可以写书。",
-      "en": "It was paper that made books possible."
+      "zh": "因为有了纸，人们才可以写书，知识才能传得更远。",
+      "en": "It was paper that let people write books, and let knowledge travel further.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "could"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "知识",
+          "py": "zhī shi",
+          "mn": "knowledge"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
+        },
+        {
+          "zh": "传",
+          "py": "chuán",
+          "mn": "to spread",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "even"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "第二个是印书的方法。",
-      "en": "The second is printing."
+      "zh": "第二个是印刷。",
+      "en": "The second is printing.",
+      "seg": [
+        {
+          "zh": "第二",
+          "py": "dì èr",
+          "mn": "second"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "印刷",
+          "py": "yìn shuā",
+          "mn": "printing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "宋朝的人把字做成一个一个的小块。",
-      "en": "Song people made the characters into separate little blocks."
+      "zh": "宋朝的人把字一个一个地刻在小木块上，印完了可以换，这叫活字印刷。",
+      "en": "Song people carved the characters one by one on small wooden blocks that could be swapped after printing; this is called movable-type printing.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "宋朝",
+          "py": "Sòng Cháo",
+          "mn": "the Song dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "(before how it is done)"
+        },
+        {
+          "zh": "刻",
+          "py": "kè",
+          "mn": "to carve",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
+        },
+        {
+          "zh": "木块",
+          "py": "mù kuài",
+          "mn": "wooden block",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "印",
+          "py": "yìn",
+          "mn": "to print",
+          "bonus": true
+        },
+        {
+          "zh": "完",
+          "py": "wán",
+          "mn": "to finish"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "换",
+          "py": "huàn",
+          "mn": "to swap"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "is called"
+        },
+        {
+          "zh": "活字印刷",
+          "py": "huó zì yìn shuā",
+          "mn": "movable-type printing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "这样，用完了还可以再用一次。",
-      "en": "That way a block could be used again after use."
+      "zh": "有了印刷，书变得又多又便宜。",
+      "en": "With printing, books became plentiful and cheap.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "印刷",
+          "py": "yìn shuā",
+          "mn": "printing",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "变",
+          "py": "biàn",
+          "mn": "to become"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "便宜",
+          "py": "pián yi",
+          "mn": "cheap",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "第三个是可以看方向的东西。",
-      "en": "The third is the thing that shows direction."
+      "zh": "第三个是指南针。",
+      "en": "The third is the compass.",
+      "seg": [
+        {
+          "zh": "第三",
+          "py": "dì sān",
+          "mn": "third",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "指南针",
+          "py": "zhǐ nán zhēn",
+          "mn": "compass",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "它很小，可是在海上非常有用。",
-      "en": "It is small, but at sea it is extremely useful."
+      "zh": "它很小，可是它的针一直指着南边。",
+      "en": "It is small, but its needle always points south.",
+      "seg": [
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it; its"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "针",
+          "py": "zhēn",
+          "mn": "needle",
+          "bonus": true
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "always"
+        },
+        {
+          "zh": "指",
+          "py": "zhǐ",
+          "mn": "to point"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为有了它，船在很远的地方也不会走错。",
-      "en": "With it, a ship far from land would not lose its way."
+      "zh": "在海上，船离家很远，有了指南针就不会走错路。",
+      "en": "Far from home at sea, a ship with a compass did not lose its way.",
+      "seg": [
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "海",
+          "py": "hǎi",
+          "mn": "sea",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "boat"
+        },
+        {
+          "zh": "离",
+          "py": "lí",
+          "mn": "away from",
+          "bonus": true
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "指南针",
+          "py": "zhǐ nán zhēn",
+          "mn": "compass",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "不会",
+          "py": "bú huì",
+          "mn": "will not",
+          "bonus": true
+        },
+        {
+          "zh": "走错",
+          "py": "zǒu cuò",
+          "mn": "to go the wrong way",
+          "bonus": true
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "第四个是火药。",
-      "en": "The fourth is gunpowder."
+      "en": "The fourth is gunpowder.",
+      "seg": [
+        {
+          "zh": "第四",
+          "py": "dì sì",
+          "mn": "fourth",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "火药",
+          "py": "huǒ yào",
+          "mn": "gunpowder",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "一开始，人们只是用它做很好看的火。",
-      "en": "At first people used it only to make beautiful fire."
+      "zh": "一开始，人们只用它放烟花，过节的时候，天上又红又亮。",
+      "en": "At first people used it only for fireworks; at festivals the sky was red and bright.",
+      "seg": [
+        {
+          "zh": "一开始",
+          "py": "yì kāi shǐ",
+          "mn": "at first",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "只",
+          "py": "zhī",
+          "mn": "only"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to set off"
+        },
+        {
+          "zh": "烟花",
+          "py": "yān huā",
+          "mn": "fireworks",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "过节",
+          "py": "guò jié",
+          "mn": "to celebrate a festival",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "sky"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "红",
+          "py": "hóng",
+          "mn": "red"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "亮",
+          "py": "liàng",
+          "mn": "bright",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "后来它也被用在别的地方。",
-      "en": "Later it came to be used for other things too."
+      "en": "Later it came to be used for other things too.",
+      "seg": [
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "被",
+          "py": "bèi",
+          "mn": "(is done to)"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "这四个东西慢慢到了别的国家。",
-      "en": "These four things slowly reached other countries."
+      "zh": "这四个发明慢慢传到了别的国家。",
+      "en": "These four inventions slowly spread to other countries.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "these"
+        },
+        {
+          "zh": "四",
+          "py": "sì",
+          "mn": "four"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "发明",
+          "py": "fā míng",
+          "mn": "inventions",
+          "bonus": true
+        },
+        {
+          "zh": "慢慢",
+          "py": "màn màn",
+          "mn": "slowly",
+          "bonus": true
+        },
+        {
+          "zh": "传",
+          "py": "chuán",
+          "mn": "to spread",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所以有人说，它们改变了整个世界。",
-      "en": "So it is said that they changed the whole world."
+      "zh": "它们让人们可以读书、出海、过节，也改变了打仗的方法。",
+      "en": "They let people read, sail the seas and celebrate, and changed the way wars were fought.",
+      "seg": [
+        {
+          "zh": "它们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to let"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "读书",
+          "py": "dú shū",
+          "mn": "to read"
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "出海",
+          "py": "chū hǎi",
+          "mn": "to go to sea",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "过节",
+          "py": "guò jié",
+          "mn": "to celebrate a festival",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "改变",
+          "py": "gǎi biàn",
+          "mn": "to change"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "打仗",
+          "py": "dǎ zhàng",
+          "mn": "to fight a war",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "方法",
+          "py": "fāng fǎ",
+          "mn": "way; method"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "所以有人说，这四个发明改变了整个世界。",
+      "en": "So it is said that these four inventions changed the whole world.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "someone"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "these"
+        },
+        {
+          "zh": "四",
+          "py": "sì",
+          "mn": "four"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "发明",
+          "py": "fā míng",
+          "mn": "inventions",
+          "bonus": true
+        },
+        {
+          "zh": "改变",
+          "py": "gǎi biàn",
+          "mn": "to change"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "整个",
+          "py": "zhěng gè",
+          "mn": "whole"
+        },
+        {
+          "zh": "世界",
+          "py": "shì jiè",
+          "mn": "world"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

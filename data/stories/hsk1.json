@@ -5051,7 +5051,7 @@
       "t": "c",
       "ch": "以前",
       "py": "yǐ qián",
-      "mn": "before",
+      "mn": "ago",
       "bonus": true
      },
      {
@@ -5066,9 +5066,16 @@
      },
      {
       "t": "c",
-      "ch": "有",
-      "py": "yǒu",
-      "mn": "had"
+      "ch": "组建",
+      "py": "zǔ jiàn",
+      "mn": "to put together",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
      },
      {
       "t": "c",
@@ -5417,9 +5424,32 @@
      },
      {
       "t": "c",
-      "ch": "一直",
-      "py": "yī zhí",
+      "ch": "一路",
+      "py": "yí lù",
       "mn": "all the way",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "下",
+      "py": "xià",
+      "mn": "to go down to"
+     },
+     {
+      "t": "n",
+      "tx": "南洋",
+      "py": "Nányáng",
+      "mn": "the South Seas (Southeast Asia)"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "然后",
+      "py": "rán hòu",
+      "mn": "then",
       "bonus": true
      },
      {
@@ -5922,11 +5952,11 @@
     ]
    ],
    "trans": [
-    "More than six hundred years ago, the Ming dynasty had a great fleet.",
+    "More than six hundred years ago, the Ming dynasty put together a great fleet.",
     "The man who led the fleet was called Zheng He.",
     "His ships were enormous, bigger than many houses, and one ship could hold several hundred people.",
     "On board were water, rice, and Chinese silk and tea.",
-    "The fleet set out from China, sailed west, and spent many days on the open sea.",
+    "The fleet set out from China, sailed down through the South Seas, then turned west, many days on the open sea.",
     "Some places were very hot, some very far, and they met people of many different countries.",
     "They did not go to attack those countries; they only traded, and then came back.",
     "People of other lands gave them animals they had never seen; once it was a giraffe.",
@@ -19561,9 +19591,9 @@
      },
      {
       "t": "c",
-      "ch": "看书",
-      "py": "kàn shū",
-      "mn": "to read",
+      "ch": "弹琴",
+      "py": "tán qín",
+      "mn": "to play the qin",
       "bonus": true
      },
      {
@@ -19849,7 +19879,7 @@
     "Liu Bei asked him three times before he came out to help.",
     "He could read the weather, and he was very good at finding a way.",
     "Once, the enemy came, but there were very few soldiers in the city.",
-    "Zhuge Liang left the city gate open and sat alone on the city wall, reading.",
+    "Zhuge Liang left the city gate open and sat alone on the city wall, playing the qin.",
     "The enemy saw the gate open and thought: \"There must be many soldiers inside.\"",
     "They did not dare go in, and left.",
     "Zhuge Liang did a great deal for his state all his life, and people still tell his story today."
@@ -35015,7 +35045,7 @@
      {
       "t": "c",
       "ch": "味道",
-      "py": "wèi dào",
+      "py": "wèi dao",
       "mn": "taste; flavour",
       "bonus": true
      },

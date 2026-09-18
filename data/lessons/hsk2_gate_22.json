@@ -5,55 +5,55 @@
   "title": "HSK2 Gate 22 · Republic of China",
   "explanationEn": "Gate 22: Republic of China. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第22关：民国。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "一百多年以前，中国还有皇帝。可是那时候的日子很不好过。很多人想：中国要不一样。有一个人叫孙中山。",
-  "passageEn": "A little over a hundred years ago China still had an emperor. But life in those days was very hard. Many thought: China must be different. There was a man called Sun Yat-sen.",
+  "passage": "一百多年以前，中国还有皇帝。可是那时候的日子很不好过，国家里面有问题，外面也有问题。很多人想：中国要不一样。有一个人叫孙中山，他年轻的时候学过医，会给人看病。",
+  "passageEn": "A little over a hundred years ago, China still had an emperor. But life in those days was very hard, with trouble inside the country and outside it. Many thought: China must be different. There was a man called Sun Yat-sen, who had studied medicine when young and could treat the sick.",
   "keyVocab": [
-    {
-      "zh": "一",
-      "pinyin": "yī",
-      "en": "one"
-    },
-    {
-      "zh": "百",
-      "pinyin": "bǎi",
-      "en": "hundred"
-    },
     {
       "zh": "多",
       "pinyin": "duō",
-      "en": "many"
+      "en": "more than"
     },
     {
       "zh": "年",
       "pinyin": "nián",
-      "en": "year"
+      "en": "years"
     },
     {
       "zh": "以前",
       "pinyin": "yǐ qián",
-      "en": "before"
+      "en": "ago"
     },
     {
-      "zh": "还有",
-      "pinyin": "hái yǒu",
-      "en": "furthermore"
+      "zh": "可是",
+      "pinyin": "kě shì",
+      "en": "but"
     },
     {
-      "zh": "皇",
-      "pinyin": "huáng",
-      "en": "emperor"
+      "zh": "日子",
+      "pinyin": "rì zi",
+      "en": "life"
     },
     {
-      "zh": "帝",
-      "pinyin": "dì",
-      "en": "emperor"
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "en": "country"
+    },
+    {
+      "zh": "里面",
+      "pinyin": "lǐ miàn",
+      "en": "inside"
+    },
+    {
+      "zh": "问题",
+      "pinyin": "wèn tí",
+      "en": "problems"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "A little over a hundred years ago China still had an emperor.",
+      "answerEn": "A little over a hundred years ago, China still had an emperor.",
       "answer": "一百多年以前，中国还有皇帝。"
     },
     {
@@ -74,22 +74,22 @@
       "id": "hsk2_gate_22_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "一",
-      "pinyin": "yī",
-      "promptEn": "In the story, what does 一 mean?",
-      "prompt": "短文里的“一”是什么意思？",
+      "zh": "多",
+      "pinyin": "duō",
+      "promptEn": "In the story, what does 多 mean?",
+      "prompt": "短文里的“多”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "long time"
-        },
-        {
-          "id": "o2",
           "text": "before"
         },
         {
+          "id": "o2",
+          "text": "China"
+        },
+        {
           "id": "o3",
-          "text": "one"
+          "text": "more than"
         },
         {
           "id": "o4",
@@ -97,25 +97,25 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "一 (yī) means \"one\" — you can find it in the passage above.",
-      "explanation": "“一”（yī）的意思是“one”，就在上面的短文里。"
+      "explanationEn": "多 (duō) means \"more than\" — you can find it in the passage above.",
+      "explanation": "“多”（duō）的意思是“more than”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_22_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "百",
-      "pinyin": "bǎi",
-      "promptEn": "In the story, what does 百 mean?",
-      "prompt": "短文里的“百”是什么意思？",
+      "zh": "年",
+      "pinyin": "nián",
+      "promptEn": "In the story, what does 年 mean?",
+      "prompt": "短文里的“年”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o2",
-          "text": "hundred"
+          "text": "years"
         },
         {
           "id": "o3",
@@ -123,43 +123,43 @@
         },
         {
           "id": "o4",
-          "text": "long time"
+          "text": "before"
         }
       ],
       "answerId": "o2",
-      "explanationEn": "百 (bǎi) means \"hundred\" — you can find it in the passage above.",
-      "explanation": "“百”（bǎi）的意思是“hundred”，就在上面的短文里。"
+      "explanationEn": "年 (nián) means \"years\" — you can find it in the passage above.",
+      "explanation": "“年”（nián）的意思是“years”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_22_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "一百多年以前，中国还有皇帝。",
-      "targetZh": "一",
-      "targetPinyin": "yī",
+      "targetZh": "多",
+      "targetPinyin": "duō",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "A little over a hundred years ago China still had an emperor."
+          "text": "A little over a hundred years ago, China still had an emperor."
         },
         {
           "id": "o2",
-          "text": "Very long ago, it rained in China for many days."
+          "text": "Long, long ago, it rained in China for many days, and a great flood came."
         },
         {
           "id": "o3",
-          "text": "Because there was so much rain, the water rose higher and higher."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o4",
-          "text": "The water came into the fields, and into many people’s homes."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         }
       ],
       "answerId": "o1",
-      "explanationEn": "\"一百多年以前，中国还有皇帝。\" means \"A little over a hundred years ago China still had an emperor.\".",
-      "explanation": "“一百多年以前，中国还有皇帝。”的意思是“A little over a hundred years ago China still had an emperor.”。"
+      "explanationEn": "\"一百多年以前，中国还有皇帝。\" means \"A little over a hundred years ago, China still had an emperor.\".",
+      "explanation": "“一百多年以前，中国还有皇帝。”的意思是“A little over a hundred years ago, China still had an emperor.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Republic of China in two or three short Chinese sentences. Use words from the list above.",

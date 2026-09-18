@@ -6464,23 +6464,31 @@
       "reviewWords": [],
       "sentenceTargetsPack": [
         [
+          "大水",
+          "进",
+          "了",
+          "田",
+          "里",
+          "。"
+        ],
+        [
           "其中",
           "有",
           "一",
           "条",
-          "小龙",
+          "小",
+          "龙",
           "。"
         ],
         [
           "它",
           "还",
-          "不",
-          "会",
+          "不会",
           "游泳",
           "。"
         ],
         [
-          "大家",
+          "人们",
           "没有",
           "地方",
           "住",
@@ -6491,31 +6499,30 @@
           "住",
           "到",
           "山",
-          "上",
-          "去",
+          "上去",
           "。"
         ],
         [
-          "小龙",
-          "也",
-          "想",
-          "下去",
-          "。"
-        ],
-        [
-          "大禹",
-          "是",
-          "个",
-          "好",
-          "人",
+          "谁",
+          "能",
+          "治水",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "其中有一条小龙。": {
-          "py": "qí zhōng yǒu yī tiáo Xiǎo Lóng",
+        "大水进了田里。": {
+          "py": "dà shuǐ jìn le tián lǐ",
           "en": null,
-          "enContext": "Among them was a little dragon who could not yet swim.",
+          "enContext": "The flood went into the fields, and into many people's homes.",
+          "storyId": "xia",
+          "sentIndex": 1,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "其中有一条小龙。": {
+          "py": "qí zhōng yǒu yī tiáo xiǎo lóng",
+          "en": null,
+          "enContext": "Among them was one little dragon who still could not swim.",
           "storyId": "xia2",
           "sentIndex": 1,
           "whole": false,
@@ -6524,45 +6531,36 @@
         "它还不会游泳。": {
           "py": "tā hái bù huì yóu yǒng",
           "en": null,
-          "enContext": "Among them was a little dragon who could not yet swim.",
+          "enContext": "Among them was one little dragon who still could not swim.",
           "storyId": "xia2",
           "sentIndex": 1,
           "whole": false,
           "borrowedFrom": null
         },
-        "大家没有地方住。": {
-          "py": "dà jiā méi yǒu dì fāng zhù",
+        "人们没有地方住。": {
+          "py": "rén men méi yǒu dì fāng zhù",
           "en": null,
-          "enContext": "People had nowhere to live, and could only move up the mountains.",
+          "enContext": "People had nowhere to live, and could only go up the mountains to live.",
           "storyId": "xia",
-          "sentIndex": 3,
+          "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         },
         "只能住到山上去。": {
           "py": "zhǐ néng zhù dào shān shàng qù",
           "en": null,
-          "enContext": "People had nowhere to live, and could only move up the mountains.",
+          "enContext": "People had nowhere to live, and could only go up the mountains to live.",
+          "storyId": "xia",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "谁能治水。": {
+          "py": "shéi néng zhì shuǐ",
+          "en": null,
+          "enContext": "The king of that time was anxious, and asked everyone: \"Who can control the flood?\"",
           "storyId": "xia",
           "sentIndex": 3,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "小龙也想下去。": {
-          "py": "Xiǎo Lóng yě xiǎng xià qù",
-          "en": null,
-          "enContext": "Little Dragon wanted to go in too, but did not dare.",
-          "storyId": "xia2",
-          "sentIndex": 4,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "大禹是个好人。": {
-          "py": "Dà Yǔ shì gè hǎo rén",
-          "en": null,
-          "enContext": "Someone said: \"Dayu is a good man — let him come.\"",
-          "storyId": "xia",
-          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         }
@@ -7080,35 +7078,36 @@
           "。"
         ],
         [
-          "这",
-          "次",
-          "出去",
+          "苹果",
+          "很",
+          "甜",
           "。"
         ],
         [
-          "他们",
-          "用",
-          "火",
-          "烧",
-          "骨头",
+          "我",
+          "买",
+          "了",
+          "三",
+          "个",
+          "苹果",
           "。"
         ],
         [
-          "骨头",
-          "上",
-          "会",
-          "出现",
-          "一些",
-          "线",
+          "妈妈",
+          "买",
+          "了",
+          "一",
+          "条",
+          "鱼",
           "。"
         ],
         [
-          "他们",
-          "看",
-          "线",
+          "奶奶",
+          "要",
           "来",
-          "知道",
-          "答案",
+          "我们",
+          "家",
+          "吃饭",
           "。"
         ]
       ],
@@ -7116,54 +7115,54 @@
         "有人卖水果。": {
           "py": "yǒu rén mài shuǐ guǒ",
           "en": null,
-          "enContext": "Some sold fruit, some sold fish, and some sold vegetables.",
+          "enContext": "Some people sell fruit, some sell fish, and some sell vegetables and meat.",
           "storyId": "shang2",
-          "sentIndex": 5,
+          "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
         },
         "有人卖鱼。": {
           "py": "yǒu rén mài yú",
           "en": null,
-          "enContext": "Some sold fruit, some sold fish, and some sold vegetables.",
+          "enContext": "Some people sell fruit, some sell fish, and some sell vegetables and meat.",
+          "storyId": "shang2",
+          "sentIndex": 3,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "苹果很甜。": {
+          "py": "píng guǒ hěn tián",
+          "en": null,
+          "enContext": "The fruit seller calls out: \"Sweet apples, three yuan each!\"",
+          "storyId": "shang2",
+          "sentIndex": 4,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "我买了三个苹果。": {
+          "py": "wǒ mǎi le sān gè píng guǒ",
+          "en": null,
+          "enContext": "I buy three apples and eat one first; it really is sweet.",
           "storyId": "shang2",
           "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         },
-        "这次出去。": {
-          "py": "zhè cì chū qù",
+        "妈妈买了一条鱼。": {
+          "py": "mā ma mǎi le yī tiáo yú",
           "en": null,
-          "enContext": "They also asked: \"Will this journey go well?\"",
-          "storyId": "shang",
-          "sentIndex": 8,
+          "enContext": "Mum buys a fish, some vegetables, and a lot of fruit.",
+          "storyId": "shang2",
+          "sentIndex": 6,
           "whole": false,
           "borrowedFrom": null
         },
-        "他们用火烧骨头。": {
-          "py": "tā men yòng huǒ shāo gǔ tou",
+        "奶奶要来我们家吃饭。": {
+          "py": "nǎi nai yào lái wǒ men jiā chī fàn",
           "en": null,
-          "enContext": "After asking, they burned the bone with fire.",
-          "storyId": "shang",
-          "sentIndex": 9,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "骨头上会出现一些线。": {
-          "py": "gǔ tou shàng huì chū xiàn yī xiē xiàn",
-          "en": null,
-          "enContext": "Lines would appear on the bone, and they read the lines for the answer.",
-          "storyId": "shang",
-          "sentIndex": 10,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他们看线来知道答案。": {
-          "py": "tā men kàn xiàn lái zhī dào dá àn",
-          "en": null,
-          "enContext": "Lines would appear on the bone, and they read the lines for the answer.",
-          "storyId": "shang",
-          "sentIndex": 10,
+          "enContext": "She says: \"Tonight Grandma is coming to our house for dinner.\"",
+          "storyId": "shang2",
+          "sentIndex": 7,
           "whole": false,
           "borrowedFrom": null
         }
@@ -7841,9 +7840,28 @@
       ],
       "sentenceTargetsPack": [
         [
-          "它",
+          "这",
+          "棵",
+          "树",
+          "比",
+          "学校",
+          "还",
+          "老",
+          "。"
+        ],
+        [
+          "树",
+          "上",
+          "开满",
+          "了",
+          "花",
+          "。"
+        ],
+        [
+          "树",
+          "下",
           "很",
-          "高",
+          "凉快",
           "。"
         ],
         [
@@ -7857,44 +7875,45 @@
           "。"
         ],
         [
-          "大家",
-          "都",
-          "不",
-          "说话",
-          "了",
-          "。"
-        ],
-        [
-          "他",
-          "必须",
-          "关心",
-          "种",
-          "田",
-          "的",
-          "人",
-          "。"
-        ],
-        [
-          "故事",
-          "里",
-          "有",
-          "山",
-          "。"
-        ],
-        [
           "我们",
-          "听",
-          "得",
-          "很",
-          "认真",
+          "做",
+          "游戏",
+          "。"
+        ],
+        [
+          "天",
+          "就",
+          "会",
+          "把",
+          "王位",
+          "给",
+          "别人",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "它很高。": {
-          "py": "tā hěn gāo",
+        "这棵树比学校还老。": {
+          "py": "zhè kē shù bǐ xué xiào hái lǎo",
           "en": null,
-          "enContext": "It is tall, and it is pleasant underneath when the weather is hot.",
+          "enContext": "The teacher says the tree is older than the school; it is more than a hundred years old.",
+          "storyId": "zhou2",
+          "sentIndex": 1,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "树上开满了花。": {
+          "py": "shù shàng kāi mǎn le huā",
+          "en": null,
+          "enContext": "In spring the tree is covered in blossom; in summer it is cool underneath.",
+          "storyId": "zhou2",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "树下很凉快。": {
+          "py": "shù xià hěn liáng kuai",
+          "en": null,
+          "enContext": "In spring the tree is covered in blossom; in summer it is cool underneath.",
           "storyId": "zhou2",
           "sentIndex": 2,
           "whole": false,
@@ -7909,39 +7928,21 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "大家都不说话了。": {
-          "py": "dà jiā dōu bù shuō huà le",
+        "我们做游戏。": {
+          "py": "wǒ men zuò yóu xì",
           "en": null,
-          "enContext": "When he tells one, everybody goes quiet.",
+          "enContext": "We play games, tell stories, and race to see who runs fastest.",
           "storyId": "zhou2",
-          "sentIndex": 7,
+          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         },
-        "他必须关心种田的人。": {
-          "py": "tā bì xū guān xīn zhòng tián de rén",
+        "天就会把王位给别人。": {
+          "py": "tiān jiù huì bǎ wáng wèi gěi bié ren",
           "en": null,
-          "enContext": "He must care about the farmers, and about the soldiers.",
+          "enContext": "If a king does badly, Heaven gives the throne to someone else.",
           "storyId": "zhou",
-          "sentIndex": 8,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "故事里有山。": {
-          "py": "gù shi lǐ yǒu shān",
-          "en": null,
-          "enContext": "In the story there were mountains, water, and a dragon.",
-          "storyId": "zhou2",
-          "sentIndex": 9,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "我们听得很认真。": {
-          "py": "wǒ men tīng de hěn rèn zhēn",
-          "en": null,
-          "enContext": "We listened closely, because the story was so good.",
-          "storyId": "zhou2",
-          "sentIndex": 10,
+          "sentIndex": 6,
           "whole": false,
           "borrowedFrom": null
         }
@@ -8619,14 +8620,6 @@
       ],
       "sentenceTargetsPack": [
         [
-          "他",
-          "的",
-          "名字",
-          "叫",
-          "孔子",
-          "。"
-        ],
-        [
           "中国",
           "有",
           "一",
@@ -8635,9 +8628,11 @@
           "。"
         ],
         [
-          "房子",
-          "很",
-          "大",
+          "它",
+          "从来",
+          "没有",
+          "抓到",
+          "过",
           "。"
         ],
         [
@@ -8648,71 +8643,80 @@
         ],
         [
           "猫",
-          "就",
-          "跳",
+          "想到",
           "了",
-          "出去",
+          "一",
+          "个",
+          "办法",
           "。"
         ],
         [
           "他们",
+          "跟着",
+          "孔子",
           "一起",
           "读书",
+          "。"
+        ],
+        [
+          "一起",
+          "出门",
+          "游学",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "他的名字叫孔子。": {
-          "py": "tā de míng zi jiào Kǒngzǐ",
-          "en": "His name was Confucius.",
-          "enContext": null,
-          "storyId": "konfucius",
-          "sentIndex": 1,
-          "whole": true,
-          "borrowedFrom": null
-        },
         "中国有一位老师。": {
           "py": "Zhōngguó yǒu yī wèi lǎoshī",
           "en": null,
-          "enContext": "More than two thousand five hundred years ago, there was a teacher in China.",
+          "enContext": "More than two thousand five hundred years ago, there was a teacher in China whose name was Confucius.",
           "storyId": "konfucius",
           "sentIndex": 0,
           "whole": false,
           "borrowedFrom": null
         },
-        "房子很大。": {
-          "py": "fáng zi hěn dà",
+        "它从来没有抓到过。": {
+          "py": "tā cóng lái méi yǒu zhuā dào guò",
           "en": null,
-          "enContext": "The house was large, with many things in it.",
+          "enContext": "Every day the cat wanted to eat the mouse, but the mouse ran so fast that it had never once caught it.",
           "storyId": "dongzhou2",
-          "sentIndex": 1,
+          "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         },
         "谁想学。": {
           "py": "shéi xiǎng xué",
           "en": null,
-          "enContext": "But Confucius said he would teach anyone who wanted to learn.",
+          "enContext": "Confucius said: \"Whoever wants to learn, I will teach.\"",
           "storyId": "konfucius",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "猫想到了一个办法。": {
+          "py": "māo xiǎng dào le yī gè bàn fǎ",
+          "en": null,
+          "enContext": "One morning, the cat thought of a plan.",
+          "storyId": "dongzhou2",
           "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
         },
-        "猫就跳了出去。": {
-          "py": "māo jiù tiào le chū qù",
+        "他们跟着孔子一起读书。": {
+          "py": "tā men gēn zhe Kǒngzǐ yì qǐ dú shū",
           "en": null,
-          "enContext": "When the mouse came out, the cat sprang.",
-          "storyId": "dongzhou2",
-          "sentIndex": 5,
+          "enContext": "They read with Confucius, discussed with him, and travelled with him to learn.",
+          "storyId": "konfucius",
+          "sentIndex": 4,
           "whole": false,
           "borrowedFrom": null
         },
-        "他们一起读书。": {
-          "py": "tā men yì qǐ dú shū",
+        "一起出门游学。": {
+          "py": "yì qǐ chū mén yóu xué",
           "en": null,
-          "enContext": "They read together, talked together and walked together.",
+          "enContext": "They read with Confucius, discussed with him, and travelled with him to learn.",
           "storyId": "konfucius",
-          "sentIndex": 6,
+          "sentIndex": 4,
           "whole": false,
           "borrowedFrom": null
         }
@@ -9397,16 +9401,6 @@
       ],
       "sentenceTargetsPack": [
         [
-          "一",
-          "共",
-          "去",
-          "了",
-          "二",
-          "十",
-          "个人",
-          "。"
-        ],
-        [
           "中国",
           "有",
           "很",
@@ -9420,46 +9414,46 @@
           "带",
           "我们",
           "去",
-          "爬",
-          "山",
+          "爬山",
+          "。"
+        ],
+        [
+          "这些",
+          "小",
+          "国",
+          "常常",
+          "打仗",
           "。"
         ],
         [
           "大家",
-          "都",
-          "过",
-          "得",
-          "不",
-          "好",
-          "。"
-        ],
-        [
-          "他",
-          "就是",
-          "秦始皇",
-          "。"
-        ],
-        [
-          "中国",
           "的",
-          "第",
+          "日子",
+          "都",
+          "不",
+          "好过",
+          "。"
+        ],
+        [
+          "把",
+          "中国",
+          "变成",
+          "了",
           "一",
           "个",
-          "皇",
-          "帝",
+          "国家",
+          "。"
+        ],
+        [
+          "一共",
+          "去",
+          "了",
+          "二十",
+          "个人",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "一共去了二十个人。": {
-          "py": "yī gòng qù le èr shí gè rén",
-          "en": "Twenty of us went in all.",
-          "enContext": null,
-          "storyId": "qin2",
-          "sentIndex": 3,
-          "whole": true,
-          "borrowedFrom": null
-        },
         "中国有很多小国。": {
           "py": "Zhōngguó yǒu hěn duō xiǎo guó",
           "en": null,
@@ -9472,36 +9466,45 @@
         "老师带我们去爬山。": {
           "py": "lǎoshī dài wǒ men qù pá shān",
           "en": null,
-          "enContext": "Last month the teacher took us climbing.",
+          "enContext": "Last Saturday, the teacher took us to climb the mountain.",
           "storyId": "qin2",
           "sentIndex": 0,
           "whole": false,
           "borrowedFrom": null
         },
-        "大家都过得不好。": {
-          "py": "dà jiā dōu guò de bù hǎo",
+        "这些小国常常打仗。": {
+          "py": "zhè xiē xiǎo guó cháng cháng dǎ zhàng",
           "en": null,
-          "enContext": "These states fought one another constantly, and life was hard for everyone.",
+          "enContext": "These states were always at war, for hundreds of years, and life was hard for everyone.",
           "storyId": "qin",
           "sentIndex": 1,
           "whole": false,
           "borrowedFrom": null
         },
-        "他就是秦始皇。": {
-          "py": "tā jiù shì Qín Shǐhuáng",
+        "大家的日子都不好过。": {
+          "py": "dà jiā de rì zi dōu bù hǎo guò",
           "en": null,
-          "enContext": "He was Qin Shi Huang, China’s first emperor.",
+          "enContext": "These states were always at war, for hundreds of years, and life was hard for everyone.",
           "storyId": "qin",
-          "sentIndex": 3,
+          "sentIndex": 1,
           "whole": false,
           "borrowedFrom": null
         },
-        "中国的第一个皇帝。": {
-          "py": "Zhōngguó de dì yī gè huáng dì",
+        "把中国变成了一个国家。": {
+          "py": "bǎ Zhōngguó biàn chéng le yī gè guó jiā",
           "en": null,
-          "enContext": "He was Qin Shi Huang, China’s first emperor.",
+          "enContext": "Later, Qin Shi Huang defeated the other states one by one and made China one country.",
           "storyId": "qin",
-          "sentIndex": 3,
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "一共去了二十个人。": {
+          "py": "yí gòng qù le èr shí gè rén",
+          "en": null,
+          "enContext": "We met at the school gate at eight; twenty of us went in all.",
+          "storyId": "qin2",
+          "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         }
@@ -10170,11 +10173,48 @@
       ],
       "sentenceTargetsPack": [
         [
+          "中国",
+          "人",
+          "不",
+          "知道",
+          "西边",
+          "有",
+          "什么",
+          "。"
+        ],
+        [
           "它",
           "的",
           "名字",
           "叫",
           "小白",
+          "。"
+        ],
+        [
+          "皇帝",
+          "想",
+          "知道",
+          "西边",
+          "的",
+          "情况",
+          "。"
+        ],
+        [
+          "路",
+          "上",
+          "遇到",
+          "了",
+          "很",
+          "多",
+          "困难",
+          "。"
+        ],
+        [
+          "西边",
+          "有",
+          "很",
+          "多",
+          "国家",
           "。"
         ],
         [
@@ -10185,49 +10225,51 @@
           "我",
           "起床",
           "。"
-        ],
-        [
-          "他们",
-          "说",
-          "西边",
-          "有",
-          "很",
-          "多",
-          "国家",
-          "。"
-        ],
-        [
-          "他们",
-          "带",
-          "着",
-          "中国",
-          "的",
-          "丝",
-          "。"
-        ],
-        [
-          "它",
-          "最",
-          "喜欢",
-          "吃",
-          "鱼",
-          "。"
-        ],
-        [
-          "他们",
-          "带来",
-          "了",
-          "马",
-          "。"
         ]
       ],
       "sentenceTargetsMeta": {
+        "中国人不知道西边有什么。": {
+          "py": "Zhōngguó rén bù zhī dào xī biān yǒu shén me",
+          "en": null,
+          "enContext": "In the Han dynasty, Chinese people did not know what lay to the west.",
+          "storyId": "han",
+          "sentIndex": 0,
+          "whole": false,
+          "borrowedFrom": null
+        },
         "它的名字叫小白。": {
           "py": "tā de míng zi jiào Xiǎo Bái",
           "en": null,
-          "enContext": "We have a little cat at home called Little White.",
+          "enContext": "We have a little cat at home; its name is Little White.",
           "storyId": "han2",
           "sentIndex": 0,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "皇帝想知道西边的情况。": {
+          "py": "huáng dì xiǎng zhī dào xī biān de qíng kuàng",
+          "en": null,
+          "enContext": "The emperor wanted to know how things were in the west, so he sent a man called Zhang Qian to take a look.",
+          "storyId": "han",
+          "sentIndex": 1,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "路上遇到了很多困难。": {
+          "py": "lù shàng yù dào le hěn duō kùn nan",
+          "en": null,
+          "enContext": "Zhang Qian travelled for many years before he came back, and met many hardships on the way.",
+          "storyId": "han",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "西边有很多国家。": {
+          "py": "xī biān yǒu hěn duō guó jiā",
+          "en": null,
+          "enContext": "When he returned he said: \"There are many countries in the west, with fine horses and many new things.\"",
+          "storyId": "han",
+          "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
         },
@@ -10237,42 +10279,6 @@
           "enContext": "Every morning it wakes me up.",
           "storyId": "han2",
           "sentIndex": 3,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他们说西边有很多国家。": {
-          "py": "tā men shuō xī biān yǒu hěn duō guó jiā",
-          "en": null,
-          "enContext": "On their return they said there were many countries to the west, and many new things.",
-          "storyId": "han",
-          "sentIndex": 4,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他们带着中国的丝。": {
-          "py": "tā men dài zhe Zhōngguó de sī",
-          "en": null,
-          "enContext": "They carried Chinese silk, because people in the west liked it very much.",
-          "storyId": "han",
-          "sentIndex": 6,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "它最喜欢吃鱼。": {
-          "py": "tā zuì xǐ huan chī yú",
-          "en": null,
-          "enContext": "It likes fish best, and does not eat much else.",
-          "storyId": "han2",
-          "sentIndex": 6,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他们带来了马。": {
-          "py": "tā men dài lái le mǎ",
-          "en": null,
-          "enContext": "They brought horses, and new fruits.",
-          "storyId": "han",
-          "sentIndex": 11,
           "whole": false,
           "borrowedFrom": null
         }
@@ -10941,11 +10947,16 @@
       ],
       "sentenceTargetsPack": [
         [
-          "他",
-          "的",
-          "名字",
-          "叫",
-          "蔡伦",
+          "中国",
+          "还",
+          "没有",
+          "纸",
+          "。"
+        ],
+        [
+          "一",
+          "个人",
+          "拿不动",
           "。"
         ],
         [
@@ -10957,90 +10968,80 @@
           "。"
         ],
         [
-          "一",
-          "个人",
-          "拿",
-          "不",
-          "动",
+          "他",
+          "把",
+          "树皮",
           "。"
         ],
         [
-          "妈妈",
-          "叫",
           "我",
           "都",
-          "听",
-          "不",
-          "到",
+          "听不见",
           "。"
         ],
         [
-          "纸",
+          "看书",
+          "让",
+          "你",
+          "知道",
           "很",
-          "轻",
-          "。"
-        ],
-        [
-          "学生",
-          "可以",
-          "带",
-          "书",
-          "上学",
+          "多",
+          "事",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "他的名字叫蔡伦。": {
-          "py": "tā de míng zi jiào Cài Lún",
-          "en": "His name was Cai Lun.",
-          "enContext": null,
+        "中国还没有纸。": {
+          "py": "Zhōngguó hái méi yǒu zhǐ",
+          "en": null,
+          "enContext": "Long ago, China had no paper yet.",
           "storyId": "paper",
-          "sentIndex": 6,
-          "whole": true,
+          "sentIndex": 0,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "一个人拿不动。": {
+          "py": "yī gè rén ná bu dòng",
+          "en": null,
+          "enContext": "Bamboo was heavy and bulky, and one person could not carry it.",
+          "storyId": "paper",
+          "sentIndex": 2,
+          "whole": false,
           "borrowedFrom": null
         },
         "有的已经很旧了。": {
           "py": "yǒu de yǐ jīng hěn jiù le",
           "en": null,
-          "enContext": "Some are new, some are already old.",
+          "enContext": "Some are new, and some are already very old.",
           "storyId": "paper2",
           "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         },
-        "一个人拿不动。": {
-          "py": "yī gè rén ná bù dòng",
+        "他把树皮。": {
+          "py": "tā bǎ shù pí",
           "en": null,
-          "enContext": "So a book was heavy and bulky, and one person could not carry it.",
+          "enContext": "He put tree bark, old cloth and torn fishing nets in water, and pounded them into small pieces.",
           "storyId": "paper",
-          "sentIndex": 3,
+          "sentIndex": 7,
           "whole": false,
           "borrowedFrom": null
         },
-        "妈妈叫我都听不到。": {
-          "py": "mā ma jiào wǒ dōu tīng bù dào",
+        "我都听不见。": {
+          "py": "wǒ dōu tīng bu jiàn",
           "en": null,
-          "enContext": "Sometimes I read so intently that I do not hear my mother call.",
+          "enContext": "Sometimes I read so intently that I do not even hear Mum calling me.",
+          "storyId": "paper2",
+          "sentIndex": 7,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "看书让你知道很多事。": {
+          "py": "kàn shū ràng nǐ zhī dào hěn duō shì",
+          "en": null,
+          "enContext": "Mum says: \"Reading lets you know many things, and makes you a better person.\"",
           "storyId": "paper2",
           "sentIndex": 8,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "纸很轻。": {
-          "py": "zhǐ hěn qīng",
-          "en": null,
-          "enContext": "Paper is light, and not expensive.",
-          "storyId": "paper",
-          "sentIndex": 10,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "学生可以带书上学。": {
-          "py": "xué sheng kě yǐ dài shū shàng xué",
-          "en": null,
-          "enContext": "With paper, students could carry books to school.",
-          "storyId": "paper",
-          "sentIndex": 11,
           "whole": false,
           "borrowedFrom": null
         }
@@ -11699,13 +11700,21 @@
       ],
       "sentenceTargetsPack": [
         [
+          "这",
+          "三",
+          "个",
+          "国",
+          "常常",
+          "打仗",
+          "。"
+        ],
+        [
           "中国",
-          "分",
-          "成",
+          "分成",
           "了",
           "三",
           "个",
-          "国家",
+          "国",
           "。"
         ],
         [
@@ -11717,18 +11726,19 @@
           "。"
         ],
         [
-          "他",
-          "才",
-          "出来",
-          "做",
-          "事",
+          "我们",
+          "也",
+          "常常",
+          "一起",
+          "玩",
           "。"
         ],
         [
           "他",
-          "会",
-          "看",
-          "天气",
+          "才",
+          "出来",
+          "帮",
+          "刘备",
           "。"
         ],
         [
@@ -11736,19 +11746,22 @@
           "生病",
           "了",
           "。"
-        ],
-        [
-          "敌人",
-          "来",
-          "了",
-          "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "中国分成了三个国家。": {
-          "py": "Zhōngguó fēn chéng le sān gè guó jiā",
+        "这三个国常常打仗。": {
+          "py": "zhè sān gè guó cháng cháng dǎ zhàng",
+          "en": "The three states were always at war.",
+          "enContext": null,
+          "storyId": "sanguo",
+          "sentIndex": 1,
+          "whole": true,
+          "borrowedFrom": null
+        },
+        "中国分成了三个国。": {
+          "py": "Zhōngguó fēn chéng le sān gè guó",
           "en": null,
-          "enContext": "After the Han, China split into three states.",
+          "enContext": "After the Han, China split into three states, called the Three Kingdoms.",
           "storyId": "sanguo",
           "sentIndex": 0,
           "whole": false,
@@ -11757,27 +11770,27 @@
         "我们四个人一起吃饭。": {
           "py": "wǒ men sì gè rén yì qǐ chī fàn",
           "en": null,
-          "enContext": "Every day at noon the four of us eat together.",
+          "enContext": "Every day at noon, the four of us eat together.",
           "storyId": "sanguo2",
           "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         },
-        "他才出来做事。": {
-          "py": "tā cái chū lái zuò shì",
+        "我们也常常一起玩。": {
+          "py": "wǒ men yě cháng cháng yì qǐ wán",
           "en": null,
-          "enContext": "Liu Bei went to ask him three times before he came out to serve.",
-          "storyId": "sanguo",
-          "sentIndex": 4,
+          "enContext": "After class we often play together too.",
+          "storyId": "sanguo2",
+          "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
         },
-        "他会看天气。": {
-          "py": "tā huì kàn tiān qì",
+        "他才出来帮刘备。": {
+          "py": "tā cái chū lái bāng Liú Bèi",
           "en": null,
-          "enContext": "He could read the weather, and could find a way.",
+          "enContext": "Liu Bei went to ask him three times before he came out to help.",
           "storyId": "sanguo",
-          "sentIndex": 6,
+          "sentIndex": 4,
           "whole": false,
           "borrowedFrom": null
         },
@@ -11786,16 +11799,7 @@
           "en": null,
           "enContext": "Last month I fell ill and could not go to school.",
           "storyId": "sanguo2",
-          "sentIndex": 6,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "敌人来了。": {
-          "py": "dí rén lái le",
-          "en": null,
-          "enContext": "Once the enemy came, but there were few soldiers in the city.",
-          "storyId": "sanguo",
-          "sentIndex": 7,
+          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         }
@@ -12496,26 +12500,29 @@
           "。"
         ],
         [
-          "有的",
-          "字",
-          "像",
-          "风",
+          "写字",
+          "不要",
+          "太",
+          "快",
           "。"
         ],
         [
-          "有的",
-          "字",
-          "像",
-          "水",
+          "他",
+          "就",
+          "去",
+          "河边",
+          "洗",
+          "毛笔",
           "。"
         ],
         [
-          "我",
-          "写",
-          "得",
-          "越来越",
-          "好",
-          "了",
+          "这",
+          "两",
+          "个",
+          "字",
+          "看起来",
+          "很",
+          "容易",
           "。"
         ]
       ],
@@ -12532,7 +12539,7 @@
         "我们开始学写汉字。": {
           "py": "wǒ men kāishǐ xué xiě hàn zì",
           "en": null,
-          "enContext": "This month we began learning to write Chinese characters.",
+          "enContext": "This month, we started learning to write Chinese characters.",
           "storyId": "shufa2",
           "sentIndex": 0,
           "whole": false,
@@ -12541,36 +12548,36 @@
         "字才会好看。": {
           "py": "zì cái huì hǎo kàn",
           "en": null,
-          "enContext": "She said: \"Sit up straight, and your characters will look better.\"",
+          "enContext": "She said: \"Sit up straight, and only then will your characters look good.\"",
           "storyId": "shufa2",
           "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         },
-        "有的字像风。": {
-          "py": "yǒu de zì xiàng fēng",
+        "写字不要太快。": {
+          "py": "xiě zì bù yào tài kuài",
           "en": null,
-          "enContext": "Some were like wind, some like water.",
-          "storyId": "shufa",
-          "sentIndex": 8,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "有的字像水。": {
-          "py": "yǒu de zì xiàng shuǐ",
-          "en": null,
-          "enContext": "Some were like wind, some like water.",
-          "storyId": "shufa",
-          "sentIndex": 8,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "我写得越来越好了。": {
-          "py": "wǒ xiě de yuè lái yuè hǎo le",
-          "en": null,
-          "enContext": "But day by day I wrote them better and better.",
+          "enContext": "She also said not to write too fast.",
           "storyId": "shufa2",
-          "sentIndex": 9,
+          "sentIndex": 3,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "他就去河边洗毛笔。": {
+          "py": "tā jiù qù hé biān xǐ máo bǐ",
+          "en": null,
+          "enContext": "After writing, he went to the river to wash his brush.",
+          "storyId": "shufa",
+          "sentIndex": 5,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "这两个字看起来很容易。": {
+          "py": "zhè liǎng gè zì kàn qǐ lái hěn róng yì",
+          "en": null,
+          "enContext": "These two look easy, but writing them well is not.",
+          "storyId": "shufa2",
+          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         }
@@ -13249,6 +13256,34 @@
       ],
       "sentenceTargetsPack": [
         [
+          "我",
+          "本来",
+          "觉得",
+          "有点儿",
+          "无聊",
+          "。"
+        ],
+        [
+          "做官",
+          "可以",
+          "有钱",
+          "。"
+        ],
+        [
+          "我",
+          "不能",
+          "出去",
+          "玩",
+          "了",
+          "。"
+        ],
+        [
+          "声音",
+          "很",
+          "好听",
+          "。"
+        ],
+        [
           "他",
           "决定",
           "不",
@@ -13259,47 +13294,53 @@
         [
           "一",
           "个",
-          "小",
-          "孩",
+          "小孩",
           "跑",
           "过去",
-          "。"
-        ],
-        [
-          "身上",
-          "都",
-          "是",
-          "水",
-          "。"
-        ],
-        [
-          "他",
-          "种",
-          "稻子",
-          "。"
-        ],
-        [
-          "我们",
-          "两",
-          "个人",
-          "都",
-          "不",
-          "说话",
-          "。"
-        ],
-        [
-          "房间",
-          "里",
-          "很",
-          "好",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
+        "我本来觉得有点儿无聊。": {
+          "py": "wǒ běn lái jué de yǒu diǎnr wú liáo",
+          "en": "At first I felt a little bored.",
+          "enContext": null,
+          "storyId": "tao2",
+          "sentIndex": 6,
+          "whole": true,
+          "borrowedFrom": null
+        },
+        "做官可以有钱。": {
+          "py": "zuò guān kě yǐ yǒu qián",
+          "en": null,
+          "enContext": "An official could have money, and could have a name.",
+          "storyId": "tao",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "我不能出去玩了。": {
+          "py": "wǒ bù néng chū qù wán le",
+          "en": null,
+          "enContext": "The rain grew heavier and heavier, so I could not go out to play.",
+          "storyId": "tao2",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "声音很好听。": {
+          "py": "shēng yīn hěn hǎo tīng",
+          "en": null,
+          "enContext": "The rain hit the ground with a lovely sound.",
+          "storyId": "tao2",
+          "sentIndex": 4,
+          "whole": false,
+          "borrowedFrom": null
+        },
         "他决定不做了。": {
           "py": "tā jué dìng bù zuò le",
           "en": null,
-          "enContext": "So one day he decided to stop.",
+          "enContext": "So one day, he decided to stop.",
           "storyId": "tao",
           "sentIndex": 5,
           "whole": false,
@@ -13308,45 +13349,9 @@
         "一个小孩跑过去。": {
           "py": "yī gè xiǎo hái pǎo guò qù",
           "en": null,
-          "enContext": "A child ran past, soaked through.",
+          "enContext": "People in the street were walking fast; a child ran past, soaked through.",
           "storyId": "tao2",
-          "sentIndex": 6,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "身上都是水。": {
-          "py": "shēn shang dōu shì shuǐ",
-          "en": null,
-          "enContext": "A child ran past, soaked through.",
-          "storyId": "tao2",
-          "sentIndex": 6,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他种稻子。": {
-          "py": "tā zhòng dào zi",
-          "en": null,
-          "enContext": "He grew rice and vegetables, and many flowers as well.",
-          "storyId": "tao",
-          "sentIndex": 7,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "我们两个人都不说话。": {
-          "py": "wǒ men liǎng gè rén dōu bù shuō huà",
-          "en": null,
-          "enContext": "Neither of us spoke, and the room was pleasant.",
-          "storyId": "tao2",
-          "sentIndex": 11,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "房间里很好。": {
-          "py": "fáng jiān lǐ hěn hǎo",
-          "en": null,
-          "enContext": "Neither of us spoke, and the room was pleasant.",
-          "storyId": "tao2",
-          "sentIndex": 11,
+          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         }
@@ -14036,6 +14041,7 @@
         ],
         [
           "爸爸",
+          "妈妈",
           "带",
           "我",
           "去",
@@ -14082,10 +14088,10 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "爸爸带我去坐船。": {
-          "py": "bà ba dài wǒ qù zuò chuán",
+        "爸爸妈妈带我去坐船。": {
+          "py": "bà ba mā ma dài wǒ qù zuò chuán",
           "en": null,
-          "enContext": "Last month my father took me out on a boat.",
+          "enContext": "Last month, Mum and Dad took me out on a boat.",
           "storyId": "canal2",
           "sentIndex": 0,
           "whole": false,
@@ -14809,29 +14815,27 @@
         ],
         [
           "他",
-          "一",
-          "开始",
+          "一开始",
           "以为",
           "地上",
-          "是",
-          "水",
+          "有",
+          "霜",
           "。"
         ],
         [
-          "那",
-          "天",
-          "天气",
-          "很",
-          "好",
+          "城",
+          "里",
+          "住",
+          "了",
+          "一百多万",
+          "人",
           "。"
         ],
         [
           "他们",
           "有的",
           "来",
-          "做",
-          "买",
-          "卖",
+          "做买卖",
           "。"
         ],
         [
@@ -14841,30 +14845,58 @@
           "。"
         ],
         [
-          "他们",
-          "带来",
-          "了",
-          "马",
+          "那",
+          "天",
+          "天气",
+          "很",
+          "好",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
         "唐朝最大的城叫长安。": {
-          "py": "Táng Cháo zuì dà de chéng jiào Cháng’ān",
-          "en": "The Tang’s greatest city was Chang’an.",
+          "py": "Táng Cháo zuì dà de chéng jiào Cháng'ān",
+          "en": "The Tang's biggest city was Chang'an.",
           "enContext": null,
           "storyId": "tang",
           "sentIndex": 1,
           "whole": true,
           "borrowedFrom": null
         },
-        "他一开始以为地上是水。": {
-          "py": "tā yī kāishǐ yǐ wéi dì shang shì shuǐ",
-          "en": "At first he thought there was water on the ground.",
+        "他一开始以为地上有霜。": {
+          "py": "tā yì kāi shǐ yǐ wéi de shàng yǒu shuāng",
+          "en": "At first he thought there was frost on the ground.",
           "enContext": null,
           "storyId": "tang2",
           "sentIndex": 7,
           "whole": true,
+          "borrowedFrom": null
+        },
+        "城里住了一百多万人。": {
+          "py": "chéng lǐ zhù le yì bǎi duō wàn rén",
+          "en": null,
+          "enContext": "At that time it was the biggest city in the world, with more than a million people living in it.",
+          "storyId": "tang",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "他们有的来做买卖。": {
+          "py": "tā men yǒu de lái zuò mǎi mai",
+          "en": null,
+          "enContext": "Some came to trade, some to study, and some just to see the great city.",
+          "storyId": "tang",
+          "sentIndex": 5,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "有的来读书。": {
+          "py": "yǒu de lái dú shū",
+          "en": null,
+          "enContext": "Some came to trade, some to study, and some just to see the great city.",
+          "storyId": "tang",
+          "sentIndex": 5,
+          "whole": false,
           "borrowedFrom": null
         },
         "那天天气很好。": {
@@ -14873,33 +14905,6 @@
           "enContext": "The weather that night was fine, without a breath of wind.",
           "storyId": "tang2",
           "sentIndex": 5,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他们有的来做买卖。": {
-          "py": "tā men yǒu de lái zuò mǎi mài",
-          "en": null,
-          "enContext": "Some came to trade, some came to study.",
-          "storyId": "tang",
-          "sentIndex": 6,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "有的来读书。": {
-          "py": "yǒu de lái dú shū",
-          "en": null,
-          "enContext": "Some came to trade, some came to study.",
-          "storyId": "tang",
-          "sentIndex": 6,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他们带来了马。": {
-          "py": "tā men dài lái le mǎ",
-          "en": null,
-          "enContext": "They brought horses, fruit, and new music.",
-          "storyId": "tang",
-          "sentIndex": 7,
           "whole": false,
           "borrowedFrom": null
         }
@@ -15584,9 +15589,16 @@
           "。"
         ],
         [
-          "那",
-          "个",
-          "地方",
+          "老师",
+          "带",
+          "我们",
+          "去",
+          "了",
+          "图书馆",
+          "。"
+        ],
+        [
+          "图书馆",
           "很",
           "大",
           "。"
@@ -15597,16 +15609,6 @@
           "不",
           "说话",
           "了",
-          "。"
-        ],
-        [
-          "有人",
-          "想到",
-          "了",
-          "一",
-          "个",
-          "好",
-          "办法",
           "。"
         ],
         [
@@ -15635,10 +15637,19 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "那个地方很大。": {
-          "py": "nà gè dì fāng hěn dà",
+        "老师带我们去了图书馆。": {
+          "py": "lǎoshī dài wǒ men qù le tú shū guǎn",
           "en": null,
-          "enContext": "It was large, and tall.",
+          "enContext": "This afternoon, the teacher took us to the library.",
+          "storyId": "print2",
+          "sentIndex": 0,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "图书馆很大。": {
+          "py": "tú shū guǎn hěn dà",
+          "en": null,
+          "enContext": "The library is big and tall, and the books go from the floor right up to the top.",
           "storyId": "print2",
           "sentIndex": 1,
           "whole": false,
@@ -15647,36 +15658,27 @@
         "大家就不说话了。": {
           "py": "dà jiā jiù bù shuō huà le",
           "en": null,
-          "enContext": "The moment we went in, everyone stopped talking.",
+          "enContext": "The moment we went in, everyone stopped talking, because many people inside were reading.",
           "storyId": "print2",
           "sentIndex": 2,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "有人想到了一个好办法。": {
-          "py": "yǒu rén xiǎng dào le yī gè hǎo bàn fǎ",
-          "en": null,
-          "enContext": "Later someone thought of a good way.",
-          "storyId": "print",
-          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         },
         "有的书很新。": {
           "py": "yǒu de shū hěn xīn",
           "en": null,
-          "enContext": "Some books were new, some already old.",
+          "enContext": "Some books were new, and some already old.",
           "storyId": "print2",
-          "sentIndex": 5,
+          "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
         },
         "有的已经很旧了。": {
           "py": "yǒu de yǐ jīng hěn jiù le",
           "en": null,
-          "enContext": "Some books were new, some already old.",
+          "enContext": "Some books were new, and some already old.",
           "storyId": "print2",
-          "sentIndex": 5,
+          "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
         }
@@ -16354,6 +16356,34 @@
       ],
       "sentenceTargetsPack": [
         [
+          "第一",
+          "个",
+          "是",
+          "纸",
+          "。"
+        ],
+        [
+          "第二",
+          "个",
+          "是",
+          "印刷",
+          "。"
+        ],
+        [
+          "第三",
+          "个",
+          "是",
+          "指南针",
+          "。"
+        ],
+        [
+          "第四",
+          "个",
+          "是",
+          "火药",
+          "。"
+        ],
+        [
           "其中",
           "最",
           "有名",
@@ -16364,98 +16394,66 @@
           "。"
         ],
         [
-          "第二",
-          "个",
-          "是",
-          "印",
-          "书",
-          "的",
-          "方法",
-          "。"
-        ],
-        [
           "这样",
           "的",
           "钱",
           "很",
           "小",
           "。"
-        ],
-        [
-          "那",
-          "还",
-          "可以",
-          "。"
-        ],
-        [
-          "人们",
-          "才",
-          "可以",
-          "写",
-          "书",
-          "。"
-        ],
-        [
-          "一",
-          "个人",
-          "拿",
-          "不",
-          "动",
-          "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "其中最有名的有四个。": {
-          "py": "qí zhōng zuì yǒu míng de yǒu sì gè",
-          "en": "Four of them are the most famous.",
+        "第一个是纸。": {
+          "py": "dì yī gè shì zhǐ",
+          "en": "The first is paper.",
           "enContext": null,
           "storyId": "song",
           "sentIndex": 1,
           "whole": true,
           "borrowedFrom": null
         },
-        "第二个是印书的方法。": {
-          "py": "dì èr gè shì Yìn shū de fāng fǎ",
+        "第二个是印刷。": {
+          "py": "dì èr gè shì yìn shuā",
           "en": "The second is printing.",
           "enContext": null,
           "storyId": "song",
-          "sentIndex": 4,
+          "sentIndex": 3,
           "whole": true,
+          "borrowedFrom": null
+        },
+        "第三个是指南针。": {
+          "py": "dì sān gè shì zhǐ nán zhēn",
+          "en": "The third is the compass.",
+          "enContext": null,
+          "storyId": "song",
+          "sentIndex": 6,
+          "whole": true,
+          "borrowedFrom": null
+        },
+        "第四个是火药。": {
+          "py": "dì sì gè shì huǒ yào",
+          "en": "The fourth is gunpowder.",
+          "enContext": null,
+          "storyId": "song",
+          "sentIndex": 9,
+          "whole": true,
+          "borrowedFrom": null
+        },
+        "其中最有名的有四个。": {
+          "py": "qí zhōng zuì yǒu míng de yǒu sì gè",
+          "en": null,
+          "enContext": "Chinese people made many useful inventions, and four of them are the most famous.",
+          "storyId": "song",
+          "sentIndex": 0,
+          "whole": false,
           "borrowedFrom": null
         },
         "这样的钱很小。": {
           "py": "zhè yàng de qián hěn xiǎo",
           "en": null,
-          "enContext": "That money was small, but heavy.",
+          "enContext": "This money was small, but heavy.",
           "storyId": "song2",
           "sentIndex": 1,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "那还可以。": {
-          "py": "nà hái kě yǐ",
-          "en": null,
-          "enContext": "If you were buying only a little, it was fine.",
-          "storyId": "song2",
-          "sentIndex": 2,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "人们才可以写书。": {
-          "py": "rén men cái kě yǐ xiě shū",
-          "en": null,
-          "enContext": "It was paper that made books possible.",
-          "storyId": "song",
-          "sentIndex": 3,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "一个人拿不动。": {
-          "py": "yī gè rén ná bù dòng",
-          "en": null,
-          "enContext": "It was too heavy for one person to carry.",
-          "storyId": "song2",
-          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         }
@@ -17135,21 +17133,27 @@
       ],
       "sentenceTargetsPack": [
         [
-          "他们",
-          "觉得",
-          "这",
-          "不",
-          "只是",
-          "喝",
-          "东西",
+          "茶馆",
+          "也",
+          "是",
+          "听",
+          "新闻",
+          "的",
+          "地方",
+          "。"
+        ],
+        [
+          "茶馆",
+          "一早",
+          "就",
+          "开门",
           "。"
         ],
         [
           "有的",
           "人",
           "来",
-          "喝",
-          "茶",
+          "喝茶",
           "。"
         ],
         [
@@ -17161,80 +17165,71 @@
           "。"
         ],
         [
-          "他们",
-          "一边",
-          "喝",
-          "。"
-        ],
-        [
-          "会",
-          "有人",
+          "小孩子",
+          "也",
           "来",
-          "说",
-          "故事",
           "。"
         ],
         [
-          "他",
-          "说",
-          "得",
-          "非常",
-          "好",
+          "水",
+          "不能",
+          "太",
+          "热",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "他们觉得这不只是喝东西。": {
-          "py": "tā men jué de zhè bù zhǐ shì hē dōng xi",
-          "en": "They felt this was not only drinking.",
+        "茶馆也是听新闻的地方。": {
+          "py": "chá guǎn yě shì tīng xīn wén de dì fāng",
+          "en": "The teahouse was also where you heard the news.",
           "enContext": null,
-          "storyId": "tea",
+          "storyId": "tea2",
           "sentIndex": 11,
           "whole": true,
+          "borrowedFrom": null
+        },
+        "茶馆一早就开门。": {
+          "py": "chá guǎn yì zǎo jiù kāi mén",
+          "en": null,
+          "enContext": "A teahouse opened early, because many people came in the morning.",
+          "storyId": "tea2",
+          "sentIndex": 1,
+          "whole": false,
           "borrowedFrom": null
         },
         "有的人来喝茶。": {
           "py": "yǒu de rén lái hē chá",
           "en": null,
-          "enContext": "Some came for tea, some to meet friends.",
+          "enContext": "Some came to drink tea, some came to meet friends.",
           "storyId": "tea2",
-          "sentIndex": 3,
+          "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         },
         "有的人来见朋友。": {
           "py": "yǒu de rén lái jiàn péng you",
           "en": null,
-          "enContext": "Some came for tea, some to meet friends.",
+          "enContext": "Some came to drink tea, some came to meet friends.",
           "storyId": "tea2",
-          "sentIndex": 3,
+          "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         },
-        "他们一边喝。": {
-          "py": "tā men yī biān hē",
+        "小孩子也来。": {
+          "py": "xiǎo hái zi yě lái",
           "en": null,
-          "enContext": "They drank and discussed what to buy and sell.",
+          "enContext": "Children came too, and sat at the back listening.",
           "storyId": "tea2",
           "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         },
-        "会有人来说故事。": {
-          "py": "huì yǒu rén lái shuō gù shi",
+        "水不能太热。": {
+          "py": "shuǐ bù néng tài rè",
           "en": null,
-          "enContext": "In the afternoon someone would come to tell stories.",
-          "storyId": "tea2",
-          "sentIndex": 8,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他说得非常好。": {
-          "py": "tā shuō de fēi cháng hǎo",
-          "en": null,
-          "enContext": "He told them so well that everyone fell silent.",
-          "storyId": "tea2",
-          "sentIndex": 9,
+          "enContext": "The water must be neither too hot nor too cold.",
+          "storyId": "tea",
+          "sentIndex": 6,
           "whole": false,
           "borrowedFrom": null
         }
@@ -17935,6 +17930,18 @@
           "。"
         ],
         [
+          "雪",
+          "也",
+          "大",
+          "。"
+        ],
+        [
+          "就像",
+          "水",
+          "一样",
+          "。"
+        ],
+        [
           "那里",
           "住",
           "着",
@@ -17943,25 +17950,9 @@
           "。"
         ],
         [
-          "他们",
-          "骑",
-          "得",
-          "很",
-          "快",
-          "。"
-        ],
-        [
-          "他们",
-          "卖",
-          "马",
-          "。"
-        ],
-        [
-          "声音",
-          "传",
-          "得",
-          "很",
-          "远",
+          "叫",
+          "契丹",
+          "人",
           "。"
         ]
       ],
@@ -17984,39 +17975,39 @@
           "whole": false,
           "borrowedFrom": null
         },
+        "雪也大。": {
+          "py": "xuě yě dà",
+          "en": null,
+          "enContext": "In winter life was very hard, with strong winds and heavy snow.",
+          "storyId": "rider",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "就像水一样。": {
+          "py": "jiù xiàng shuǐ yī yàng",
+          "en": null,
+          "enContext": "From far off it looks like water.",
+          "storyId": "rider2",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
         "那里住着一些人。": {
           "py": "nà li zhù zhe yī xiē rén",
           "en": null,
-          "enContext": "Long ago a people lived there called the Khitan.",
+          "enContext": "Long ago, a people lived there called the Khitan.",
           "storyId": "rider",
           "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
         },
-        "他们骑得很快。": {
-          "py": "tā men qí de hěn kuài",
+        "叫契丹人。": {
+          "py": "jiào Qìdān rén",
           "en": null,
-          "enContext": "They ride fast, not slowly at all.",
-          "storyId": "rider2",
-          "sentIndex": 5,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他们卖马。": {
-          "py": "tā men mài mǎ",
-          "en": null,
-          "enContext": "They sold horses and bought tea, cloth and other things.",
+          "enContext": "Long ago, a people lived there called the Khitan.",
           "storyId": "rider",
-          "sentIndex": 11,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "声音传得很远。": {
-          "py": "shēng yīn chuán de hěn yuǎn",
-          "en": null,
-          "enContext": "They sing outside, and the sound carries far.",
-          "storyId": "rider2",
-          "sentIndex": 12,
+          "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
         }
@@ -18706,6 +18697,14 @@
       ],
       "sentenceTargetsPack": [
         [
+          "他们",
+          "说",
+          "的",
+          "话",
+          "不一样",
+          "。"
+        ],
+        [
           "他",
           "家里",
           "没有",
@@ -18716,7 +18715,7 @@
           "他",
           "就",
           "马上",
-          "写",
+          "抄",
           "下来",
           "。"
         ],
@@ -18727,41 +18726,43 @@
           "。"
         ],
         [
+          "他们",
+          "能",
+          "找到",
+          "好",
+          "工作",
+          "。"
+        ],
+        [
           "眼睛",
           "不",
           "好",
           "。"
-        ],
-        [
-          "有的",
-          "人",
-          "做",
-          "官",
-          "。"
-        ],
-        [
-          "有的",
-          "人",
-          "做",
-          "买",
-          "卖",
-          "。"
         ]
       ],
       "sentenceTargetsMeta": {
+        "他们说的话不一样。": {
+          "py": "tā men shuō de huà bù yí yàng",
+          "en": null,
+          "enContext": "They spoke differently and wrote differently.",
+          "storyId": "scholar",
+          "sentIndex": 1,
+          "whole": false,
+          "borrowedFrom": null
+        },
         "他家里没有钱。": {
           "py": "tā jiā lǐ méi yǒu qián",
           "en": null,
-          "enContext": "His family was not rich, but had many books.",
+          "enContext": "His family had no money, but it had many books.",
           "storyId": "scholar2",
           "sentIndex": 1,
           "whole": false,
           "borrowedFrom": null
         },
-        "他就马上写下来。": {
-          "py": "tā jiù mǎ shàng xiě xià lai",
+        "他就马上抄下来。": {
+          "py": "tā jiù mǎ shàng chāo xià lai",
           "en": null,
-          "enContext": "Whenever he saw something good, he wrote it down at once.",
+          "enContext": "Whenever he read a good sentence, he copied it down at once.",
           "storyId": "scholar2",
           "sentIndex": 5,
           "whole": false,
@@ -18770,36 +18771,27 @@
         "本子越来越多。": {
           "py": "běn zi yuè lái yuè duō",
           "en": null,
-          "enContext": "Year after year the notebooks piled up.",
+          "enContext": "Year after year, the notebooks grew.",
           "storyId": "scholar2",
           "sentIndex": 7,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "他们能找到好工作。": {
+          "py": "tā men néng zhǎo dào hǎo gōng zuò",
+          "en": null,
+          "enContext": "Once they had learned the characters, they could find good work.",
+          "storyId": "scholar",
+          "sentIndex": 9,
           "whole": false,
           "borrowedFrom": null
         },
         "眼睛不好。": {
           "py": "yǎn jing bù hǎo",
           "en": null,
-          "enContext": "Later he grew old, his eyes failed, and he could write no more.",
+          "enContext": "Later he grew old, his eyes were poor, and he could write no more.",
           "storyId": "scholar2",
           "sentIndex": 9,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "有的人做官。": {
-          "py": "yǒu de rén zuò guān",
-          "en": null,
-          "enContext": "Some became officials, some merchants.",
-          "storyId": "scholar",
-          "sentIndex": 10,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "有的人做买卖。": {
-          "py": "yǒu de rén zuò mǎi mài",
-          "en": null,
-          "enContext": "Some became officials, some merchants.",
-          "storyId": "scholar",
-          "sentIndex": 10,
           "whole": false,
           "borrowedFrom": null
         }
@@ -19488,6 +19480,41 @@
       ],
       "sentenceTargetsPack": [
         [
+          "元朝",
+          "的",
+          "皇帝",
+          "叫",
+          "忽必烈",
+          "。"
+        ],
+        [
+          "北边",
+          "的",
+          "人",
+          "从小",
+          "就",
+          "吃",
+          "羊肉",
+          "。"
+        ],
+        [
+          "他们",
+          "也",
+          "喝",
+          "奶茶",
+          "。"
+        ],
+        [
+          "奶茶",
+          "是",
+          "用",
+          "牛奶",
+          "煮",
+          "的",
+          "茶",
+          "。"
+        ],
+        [
           "他",
           "的",
           "名字",
@@ -19496,98 +19523,67 @@
           "。"
         ],
         [
-          "他",
-          "的",
-          "国家",
-          "非常",
-          "大",
-          "。"
-        ],
-        [
-          "那",
-          "种",
-          "茶",
-          "里",
-          "放",
-          "了",
-          "牛奶",
-          "。"
-        ],
-        [
-          "他们",
-          "过",
-          "了",
-          "山",
-          "。"
-        ],
-        [
-          "有的",
-          "东西",
-          "很",
-          "香",
-          "。"
-        ],
-        [
-          "肉",
+          "人",
+          "一下子",
           "就",
           "不",
-          "一样",
+          "冷",
           "了",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "他的名字叫马可·波罗。": {
-          "py": "tā de míng zi jiào Mǎkě Bōluó",
-          "en": "His name was Marco Polo.",
+        "元朝的皇帝叫忽必烈。": {
+          "py": "Yuán Cháo de huáng dì jiào Hūbìliè",
+          "en": "The Yuan emperor was Kublai Khan.",
           "enContext": null,
           "storyId": "yuan",
-          "sentIndex": 5,
+          "sentIndex": 1,
           "whole": true,
           "borrowedFrom": null
         },
-        "他的国家非常大。": {
-          "py": "tā de guó jiā fēi cháng dà",
-          "en": null,
-          "enContext": "His realm was vast, reaching from the east far into the west.",
-          "storyId": "yuan",
+        "北边的人从小就吃羊肉。": {
+          "py": "běi biān de rén cóng xiǎo jiù chī yáng ròu",
+          "en": "People from the north ate lamb from childhood.",
+          "enContext": null,
+          "storyId": "yuan2",
           "sentIndex": 2,
+          "whole": true,
+          "borrowedFrom": null
+        },
+        "他们也喝奶茶。": {
+          "py": "tā men yě hē nǎi chá",
+          "en": null,
+          "enContext": "They also drank milk tea, which is tea boiled with milk, white and hot.",
+          "storyId": "yuan2",
+          "sentIndex": 3,
           "whole": false,
           "borrowedFrom": null
         },
-        "那种茶里放了牛奶。": {
-          "py": "nà zhòng chá lǐ fàng le niú nǎi",
+        "奶茶是用牛奶煮的茶。": {
+          "py": "nǎi chá shì yòng niú nǎi zhǔ de chá",
           "en": null,
-          "enContext": "That tea had milk in it, and was white and hot.",
+          "enContext": "They also drank milk tea, which is tea boiled with milk, white and hot.",
           "storyId": "yuan2",
+          "sentIndex": 3,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "他的名字叫马可·波罗。": {
+          "py": "tā de míng zi jiào Mǎkě Bōluó",
+          "en": null,
+          "enContext": "In those days a young man set out from Italy; his name was Marco Polo.",
+          "storyId": "yuan",
           "sentIndex": 4,
           "whole": false,
           "borrowedFrom": null
         },
-        "他们过了山。": {
-          "py": "tā men guò le shān",
+        "人一下子就不冷了。": {
+          "py": "rén yí xià zi jiù bù lěng le",
           "en": null,
-          "enContext": "They crossed mountains, and very hot country.",
-          "storyId": "yuan",
-          "sentIndex": 7,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "有的东西很香。": {
-          "py": "yǒu de dōng xi hěn xiāng",
-          "en": null,
-          "enContext": "Some were fragrant and could be put into meat.",
+          "enContext": "A cup of it in cold weather warmed a person up at once.",
           "storyId": "yuan2",
-          "sentIndex": 7,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "肉就不一样了。": {
-          "py": "ròu jiù bù yī yàng le",
-          "en": null,
-          "enContext": "Once added, the meat was quite different.",
-          "storyId": "yuan2",
-          "sentIndex": 8,
+          "sentIndex": 4,
           "whole": false,
           "borrowedFrom": null
         }
@@ -20280,35 +20276,6 @@
       ],
       "sentenceTargetsPack": [
         [
-          "他",
-          "也",
-          "自己",
-          "试",
-          "过",
-          "一些",
-          "草",
-          "。"
-        ],
-        [
-          "他们",
-          "没有",
-          "去",
-          "打",
-          "那些",
-          "国家",
-          "。"
-        ],
-        [
-          "郑和",
-          "一",
-          "共",
-          "走",
-          "了",
-          "七",
-          "次",
-          "。"
-        ],
-        [
           "明朝",
           "有",
           "两",
@@ -20316,75 +20283,96 @@
           "。"
         ],
         [
-          "他",
-          "的",
-          "船",
-          "非常",
-          "大",
+          "第一",
+          "个",
+          "叫",
+          "李时珍",
+          "。"
+        ],
+        [
+          "一路",
+          "下",
+          "南洋",
+          "。"
+        ],
+        [
+          "写成",
+          "了",
+          "一",
+          "本",
+          "书",
+          "。"
+        ],
+        [
+          "书",
+          "里",
+          "有",
+          "一千",
+          "多",
+          "种",
+          "草药",
           "。"
         ],
         [
           "他们",
-          "带",
-          "着",
-          "中国",
-          "的",
-          "丝",
+          "也",
+          "不",
+          "怕",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "他也自己试过一些草。": {
-          "py": "tā yě zì jǐ shì guò yī xiē cǎo",
-          "en": "He also tried some of the plants himself.",
-          "enContext": null,
-          "storyId": "ming2",
-          "sentIndex": 6,
-          "whole": true,
-          "borrowedFrom": null
-        },
-        "他们没有去打那些国家。": {
-          "py": "tā men méi yǒu qù dǎ nà xiē guó jiā",
-          "en": "They did not go to make war on those countries.",
-          "enContext": null,
-          "storyId": "ming",
-          "sentIndex": 10,
-          "whole": true,
-          "borrowedFrom": null
-        },
-        "郑和一共走了七次。": {
-          "py": "Zhèng Hé yī gòng zǒu le qī cì",
-          "en": "Zheng He made the voyage seven times in all.",
-          "enContext": null,
-          "storyId": "ming",
-          "sentIndex": 13,
-          "whole": true,
-          "borrowedFrom": null
-        },
         "明朝有两个人。": {
           "py": "Míng Cháo yǒu liǎng gè rén",
           "en": null,
-          "enContext": "Two men of the Ming spent their lives looking for answers.",
+          "enContext": "Two men of the Ming spent their whole lives looking for answers.",
           "storyId": "ming2",
           "sentIndex": 0,
           "whole": false,
           "borrowedFrom": null
         },
-        "他的船非常大。": {
-          "py": "tā de chuán fēi cháng dà",
+        "第一个叫李时珍。": {
+          "py": "dì yī gè jiào Lǐ Shízhēn",
           "en": null,
-          "enContext": "His ships were enormous, bigger than many houses.",
-          "storyId": "ming",
-          "sentIndex": 2,
+          "enContext": "The first was Li Shizhen, who loved the plants and trees of the hills.",
+          "storyId": "ming2",
+          "sentIndex": 1,
           "whole": false,
           "borrowedFrom": null
         },
-        "他们带着中国的丝。": {
-          "py": "tā men dài zhe Zhōngguó de sī",
+        "一路下南洋。": {
+          "py": "yí lù xià Nányáng",
           "en": null,
-          "enContext": "They carried Chinese silk, tea and beautiful goods.",
+          "enContext": "The fleet set out from China, sailed down through the South Seas, then turned west, many days on the open sea.",
           "storyId": "ming",
-          "sentIndex": 5,
+          "sentIndex": 6,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "写成了一本书。": {
+          "py": "xiě chéng le yī běn shū",
+          "en": null,
+          "enContext": "He spent nearly thirty years writing a book with more than a thousand kinds of herbal medicine.",
+          "storyId": "ming2",
+          "sentIndex": 6,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "书里有一千多种草药。": {
+          "py": "shū lǐ yǒu yì qiān duō zhòng cǎo yào",
+          "en": null,
+          "enContext": "He spent nearly thirty years writing a book with more than a thousand kinds of herbal medicine.",
+          "storyId": "ming2",
+          "sentIndex": 6,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "他们也不怕。": {
+          "py": "tā men yě bù pà",
+          "en": null,
+          "enContext": "Because the ships were so big, they had no fear of wind or waves.",
+          "storyId": "ming",
+          "sentIndex": 7,
           "whole": false,
           "borrowedFrom": null
         }
@@ -21074,61 +21062,108 @@
       "sentenceTargetsPack": [
         [
           "他",
-          "也",
+          "就",
           "自己",
-          "试",
-          "过",
-          "一些",
-          "草",
+          "看",
+          "星星",
           "。"
         ],
         [
-          "他们",
-          "没有",
-          "去",
-          "打",
-          "那些",
-          "国家",
-          "。"
-        ],
-        [
-          "郑和",
-          "一",
-          "共",
+          "他",
+          "让",
+          "人",
           "走",
-          "了",
-          "七",
-          "次",
+          "过",
+          "全国",
+          "。"
+        ],
+        [
+          "他",
+          "知道",
+          "哪里",
+          "有",
+          "山",
+          "。"
+        ],
+        [
+          "哪里",
+          "有",
+          "河",
+          "。"
+        ],
+        [
+          "哪里",
+          "的",
+          "人",
+          "最",
+          "多",
+          "。"
+        ],
+        [
+          "他",
+          "就",
+          "让",
+          "人",
+          "送",
+          "米",
+          "过去",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "他也自己试过一些草。": {
-          "py": "tā yě zì jǐ shì guò yī xiē cǎo",
-          "en": "He also tried some of the plants himself.",
-          "enContext": null,
-          "storyId": "ming2",
-          "sentIndex": 6,
-          "whole": true,
-          "borrowedFrom": 19
+        "他就自己看星星。": {
+          "py": "tā jiù zì jǐ kàn xīng xing",
+          "en": null,
+          "enContext": "People from the West taught him astronomy, and he watched the stars and the moon himself.",
+          "storyId": "qing",
+          "sentIndex": 8,
+          "whole": false,
+          "borrowedFrom": null
         },
-        "他们没有去打那些国家。": {
-          "py": "tā men méi yǒu qù dǎ nà xiē guó jiā",
-          "en": "They did not go to make war on those countries.",
-          "enContext": null,
-          "storyId": "ming",
+        "他让人走过全国。": {
+          "py": "tā ràng rén zǒu guò quán guó",
+          "en": null,
+          "enContext": "He sent men across the whole country to draw a great map.",
+          "storyId": "qing",
+          "sentIndex": 9,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "他知道哪里有山。": {
+          "py": "tā zhī dào nǎ lǐ yǒu shān",
+          "en": null,
+          "enContext": "With the map he knew where the mountains and rivers were, and where the most people lived.",
+          "storyId": "qing",
           "sentIndex": 10,
-          "whole": true,
-          "borrowedFrom": 19
+          "whole": false,
+          "borrowedFrom": null
         },
-        "郑和一共走了七次。": {
-          "py": "Zhèng Hé yī gòng zǒu le qī cì",
-          "en": "Zheng He made the voyage seven times in all.",
-          "enContext": null,
-          "storyId": "ming",
-          "sentIndex": 13,
-          "whole": true,
-          "borrowedFrom": 19
+        "哪里有河。": {
+          "py": "nǎ lǐ yǒu hé",
+          "en": null,
+          "enContext": "With the map he knew where the mountains and rivers were, and where the most people lived.",
+          "storyId": "qing",
+          "sentIndex": 10,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "哪里的人最多。": {
+          "py": "nǎ lǐ de rén zuì duō",
+          "en": null,
+          "enContext": "With the map he knew where the mountains and rivers were, and where the most people lived.",
+          "storyId": "qing",
+          "sentIndex": 10,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "他就让人送米过去。": {
+          "py": "tā jiù ràng rén sòng mǐ guò qù",
+          "en": null,
+          "enContext": "Wherever rice ran short, he had rice sent there.",
+          "storyId": "qing",
+          "sentIndex": 12,
+          "whole": false,
+          "borrowedFrom": null
         }
       }
     },
@@ -21809,21 +21844,21 @@
       "sentenceTargetsPack": [
         [
           "他们",
-          "也",
+          "还",
           "送",
-          "年轻",
-          "人",
-          "出去",
+          "年轻人",
+          "去",
+          "外国",
           "读书",
           "。"
         ],
         [
-          "中国",
-          "有",
+          "国家",
+          "出",
+          "了",
           "很",
           "多",
-          "难",
-          "事",
+          "问题",
           "。"
         ],
         [
@@ -21837,41 +21872,42 @@
           "。"
         ],
         [
-          "我们",
-          "应该",
-          "怎么办",
+          "人们",
+          "的",
+          "日子",
+          "越来越",
+          "不",
+          "好过",
           "。"
         ],
         [
-          "路",
-          "上",
-          "开始",
-          "有",
-          "车",
+          "他们",
+          "来到",
+          "中国",
           "。"
         ],
         [
-          "学校",
-          "里",
-          "教",
-          "数学",
+          "清朝",
+          "都",
+          "输",
+          "了",
           "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "他们也送年轻人出去读书。": {
-          "py": "tā men yě sòng nián qīng rén chū qù dú shū",
+        "他们还送年轻人去外国读书。": {
+          "py": "tā men hái sòng nián qīng rén qù wài guó dú shū",
           "en": "They also sent young people abroad to study.",
           "enContext": null,
           "storyId": "reform",
-          "sentIndex": 9,
+          "sentIndex": 11,
           "whole": true,
           "borrowedFrom": null
         },
-        "中国有很多难事。": {
-          "py": "Zhōngguó yǒu hěn duō nán shì",
+        "国家出了很多问题。": {
+          "py": "guó jiā chū le hěn duō wèn tí",
           "en": null,
-          "enContext": "As the Qing dynasty neared its end, China faced many difficulties.",
+          "enContext": "Late in the Qing dynasty, the country ran into many problems.",
           "storyId": "reform",
           "sentIndex": 0,
           "whole": false,
@@ -21880,36 +21916,36 @@
         "上海还只是一个小地方。": {
           "py": "Shànghǎi hái zhǐ shì yī gè xiǎo dì fāng",
           "en": null,
-          "enContext": "A hundred years ago and more, Shanghai was still only a small place.",
+          "enContext": "A hundred-odd years ago, Shanghai was still only a small place with few people.",
           "storyId": "reform2",
           "sentIndex": 0,
           "whole": false,
           "borrowedFrom": null
         },
-        "我们应该怎么办。": {
-          "py": "wǒ men yīng gāi zěn me bàn",
+        "人们的日子越来越不好过。": {
+          "py": "rén men de rì zi yuè lái yuè bù hǎo guò",
           "en": null,
-          "enContext": "Many began to ask: what should we do?",
+          "enContext": "Life grew harder and harder, and many people could not get enough to eat.",
+          "storyId": "reform",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "他们来到中国。": {
+          "py": "tā men lái dào Zhōngguó",
+          "en": null,
+          "enContext": "They came to China and fought several wars, and the Qing lost every one.",
           "storyId": "reform",
           "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         },
-        "路上开始有车。": {
-          "py": "lù shàng kāishǐ yǒu chē",
+        "清朝都输了。": {
+          "py": "Qīng Cháo dōu shū le",
           "en": null,
-          "enContext": "Cars appeared in the streets, and many shops.",
-          "storyId": "reform2",
-          "sentIndex": 7,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "学校里教数学。": {
-          "py": "xué xiào lǐ jiāo shù xué",
-          "en": null,
-          "enContext": "Those schools taught mathematics, and other countries' languages.",
+          "enContext": "They came to China and fought several wars, and the Qing lost every one.",
           "storyId": "reform",
-          "sentIndex": 8,
+          "sentIndex": 5,
           "whole": false,
           "borrowedFrom": null
         }
@@ -22584,20 +22620,45 @@
       ],
       "sentenceTargetsPack": [
         [
-          "有的",
-          "人",
-          "还",
-          "去",
-          "别的",
+          "他",
+          "相信",
+          "中国人",
+          "自己",
+          "可以",
+          "做到",
+          "。"
+        ],
+        [
+          "他们",
+          "想",
+          "让",
+          "自己",
+          "的",
           "国家",
-          "读书",
+          "好起来",
+          "。"
+        ],
+        [
+          "国家",
+          "里面",
+          "有",
+          "问题",
           "。"
         ],
         [
           "中国",
           "要",
-          "不",
-          "一样",
+          "不一样",
+          "。"
+        ],
+        [
+          "他们",
+          "上",
+          "的",
+          "是",
+          "新式",
+          "的",
+          "学校",
           "。"
         ],
         [
@@ -22606,44 +22667,38 @@
           "教",
           "数学",
           "。"
-        ],
-        [
-          "他",
-          "也",
-          "去",
-          "过",
-          "很",
-          "多",
-          "国家",
-          "。"
-        ],
-        [
-          "有的",
-          "人",
-          "做",
-          "老师",
-          "。"
-        ],
-        [
-          "有的",
-          "人",
-          "做",
-          "医生",
-          "。"
         ]
       ],
       "sentenceTargetsMeta": {
-        "有的人还去别的国家读书。": {
-          "py": "yǒu de rén hái qù bié de guó jiā dú shū",
-          "en": "Some even went abroad to study.",
+        "他相信中国人自己可以做到。": {
+          "py": "tā xiāng xìn Zhōngguó rén zì jǐ kě yǐ zuò dào",
+          "en": "He believed the Chinese people could do it themselves.",
           "enContext": null,
-          "storyId": "republic2",
-          "sentIndex": 4,
+          "storyId": "republic",
+          "sentIndex": 7,
           "whole": true,
           "borrowedFrom": null
         },
+        "他们想让自己的国家好起来。": {
+          "py": "tā men xiǎng ràng zì jǐ de guó jiā hǎo qǐ lái",
+          "en": "They wanted to make their country better.",
+          "enContext": null,
+          "storyId": "republic2",
+          "sentIndex": 12,
+          "whole": true,
+          "borrowedFrom": null
+        },
+        "国家里面有问题。": {
+          "py": "guó jiā lǐ miàn yǒu wèn tí",
+          "en": null,
+          "enContext": "But life in those days was very hard, with trouble inside the country and outside it.",
+          "storyId": "republic",
+          "sentIndex": 1,
+          "whole": false,
+          "borrowedFrom": null
+        },
         "中国要不一样。": {
-          "py": "Zhōngguó yào bù yī yàng",
+          "py": "Zhōngguó yào bù yí yàng",
           "en": null,
           "enContext": "Many thought: China must be different.",
           "storyId": "republic",
@@ -22651,39 +22706,21 @@
           "whole": false,
           "borrowedFrom": null
         },
+        "他们上的是新式的学校。": {
+          "py": "tā men shàng de shì xīn shì de xué xiào",
+          "en": null,
+          "enContext": "These attended new-style schools that taught mathematics and western science.",
+          "storyId": "republic2",
+          "sentIndex": 2,
+          "whole": false,
+          "borrowedFrom": null
+        },
         "学校里教数学。": {
           "py": "xué xiào lǐ jiāo shù xué",
           "en": null,
-          "enContext": "The schools taught mathematics, and western learning.",
+          "enContext": "These attended new-style schools that taught mathematics and western science.",
           "storyId": "republic2",
-          "sentIndex": 3,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "他也去过很多国家。": {
-          "py": "tā yě qù guò hěn duō guó jiā",
-          "en": null,
-          "enContext": "He had been to many countries and seen a great deal.",
-          "storyId": "republic",
-          "sentIndex": 5,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "有的人做老师。": {
-          "py": "yǒu de rén zuò lǎoshī",
-          "en": null,
-          "enContext": "Some became teachers, some doctors.",
-          "storyId": "republic2",
-          "sentIndex": 8,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "有的人做医生。": {
-          "py": "yǒu de rén zuò yī shēng",
-          "en": null,
-          "enContext": "Some became teachers, some doctors.",
-          "storyId": "republic2",
-          "sentIndex": 8,
+          "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         }

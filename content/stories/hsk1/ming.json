@@ -9,6 +9,10 @@
       "py": "Míng Cháo",
       "en": "the Ming dynasty"
     },
+    "南洋": {
+      "py": "Nányáng",
+      "en": "the South Seas (Southeast Asia)"
+    },
     "郑和": {
       "py": "Zhèng Hé",
       "en": "Zheng He"
@@ -16,8 +20,8 @@
   },
   "sents": [
     {
-      "zh": "六百多年以前，明朝有一个很大的船队。",
-      "en": "More than six hundred years ago, the Ming dynasty had a great fleet.",
+      "zh": "六百多年以前，明朝组建了一个很大的船队。",
+      "en": "More than six hundred years ago, the Ming dynasty put together a great fleet.",
       "seg": [
         {
           "zh": "六百",
@@ -38,7 +42,7 @@
         {
           "zh": "以前",
           "py": "yǐ qián",
-          "mn": "before",
+          "mn": "ago",
           "bonus": true
         },
         {
@@ -52,9 +56,15 @@
           "mn": "the Ming dynasty"
         },
         {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "had"
+          "zh": "组建",
+          "py": "zǔ jiàn",
+          "mn": "to put together",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
           "zh": "一",
@@ -341,8 +351,8 @@
       ]
     },
     {
-      "zh": "船队从中国出发，一直向西，在大海上走了很多天。",
-      "en": "The fleet set out from China, sailed west, and spent many days on the open sea.",
+      "zh": "船队从中国出发，一路下南洋，然后向西，在大海上走了很多天。",
+      "en": "The fleet set out from China, sailed down through the South Seas, then turned west, many days on the open sea.",
       "seg": [
         {
           "zh": "船队",
@@ -371,9 +381,30 @@
           "tx": "，"
         },
         {
-          "zh": "一直",
-          "py": "yī zhí",
+          "zh": "一路",
+          "py": "yí lù",
           "mn": "all the way",
+          "bonus": true
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "to go down to"
+        },
+        {
+          "t": "n",
+          "zh": "南洋",
+          "py": "Nányáng",
+          "mn": "the South Seas (Southeast Asia)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "然后",
+          "py": "rán hòu",
+          "mn": "then",
           "bonus": true
         },
         {

@@ -76,19 +76,21 @@ function buildLevel(lv, dict) {
 
   const stories = {};
   const problems = [];
-  const notes = [];
   const cov = coverage();
   const taught = cov.taughtAtOrBelow(lv);
 
   files.forEach((f) => {
     const src = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
     const key = `${src.id}-h${lv}`;
-    // A file is under the token contract once EVERY sentence carries `seg` —
-    // that is what a rewrite through seg_story.js produces. The old partial
-    // segs (five sentences of character splits, 皇/帝, 骨/头) are reported
-    // until the story is rewritten, not failed: failing them would block the
-    // build on exactly the files the rewrite has not reached yet.
-    const reviewedFile = (src.sents || []).length > 0 && (src.sents || []).every((s) => s.seg && s.seg.length);
+    // Every sentence carries a reviewed `seg` — that is what a rewrite through
+    // seg_story.js produces, and since the 2026-09-18 close of the HSK1/HSK2
+    // rewrite it is the contract for every finished level. A sentence cut by
+    // longest match would take its glosses from whatever the dictionary holds
+    // that day, so a missing seg fails the build rather than being noted.
+    const unsegged = (src.sents || []).filter((s) => !(s.seg && s.seg.length)).length;
+    if (unsegged) {
+      problems.push(`${f}: ${unsegged} sentence(s) without a reviewed seg — author it with scripts/seg_story.js`);
+    }
     const sents = [];
     const trans = [];
 
@@ -103,13 +105,11 @@ function buildLevel(lv, dict) {
       if (!sent.en || !String(sent.en).trim()) {
         problems.push(`${f} sentence ${i + 1}: no English translation`);
       }
-      const reviewed = reviewedFile;
       tokens.forEach((t) => {
         if (t.t !== "c") return;
         if (!cov.covered(t.ch)) {
-          const msg = `${f} sentence ${i + 1}: "${t.ch}" is not a curriculum word, a compound of curriculum characters, or a story-supplement.js entry`;
-          (reviewed ? problems : notes).push(msg);
-        } else if (reviewed && !t.bonus && !taught.has(t.ch)) {
+          problems.push(`${f} sentence ${i + 1}: "${t.ch}" is not a curriculum word, a compound of curriculum characters, or a story-supplement.js entry`);
+        } else if (!t.bonus && !taught.has(t.ch)) {
           problems.push(`${f} sentence ${i + 1}: "${t.ch}" is not taught at HSK${lv} or below, so it must be a bonus token`);
         }
       });
@@ -123,7 +123,7 @@ function buildLevel(lv, dict) {
     };
   });
 
-  return { stories, problems, notes, drafts };
+  return { stories, problems, drafts };
 }
 
 function main() {
@@ -150,13 +150,6 @@ function main() {
     fs.mkdirSync(path.dirname(out), { recursive: true });
     fs.writeFileSync(out, JSON.stringify({ level: lv, stories: built.stories }, null, 1) + "\n");
     if (built.drafts.length) console.log(`  HSK${lv}: ${built.drafts.length} draft source(s) skipped`);
-    // Sentences still cut by longest match are not held to the token contract
-    // yet — that lands when they are rewritten with `seg` — but they are named.
-    if (built.notes.length) {
-      console.log(`  HSK${lv}: ${built.notes.length} unreviewed token(s) outside the curriculum (not failing until the sentence is rewritten)`);
-      built.notes.slice(0, 8).forEach((n) => console.log(`    ${n}`));
-      if (built.notes.length > 8) console.log(`    ...and ${built.notes.length - 8} more`);
-    }
     const n = Object.keys(built.stories).length;
     const sents = Object.values(built.stories).map((s) => s.sents.length);
     const study = Object.values(built.stories)
