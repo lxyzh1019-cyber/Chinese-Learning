@@ -8,63 +8,920 @@
   "sents": [
     {
       "zh": "今天早上，我一起床就发现天很黑。",
-      "en": "This morning, the moment I got up I saw the sky was dark."
+      "en": "This morning, the moment I got up I saw the sky was dark.",
+      "seg": [
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "as soon as"
+        },
+        {
+          "zh": "起床",
+          "py": "qǐ chuáng",
+          "mn": "to get up"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "发现",
+          "py": "fāxiàn",
+          "mn": "to find; to notice"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "sky"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "黑",
+          "py": "hēi",
+          "mn": "dark"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "过了一点时间，就开始下雨了。",
-      "en": "A little later it began to rain."
+      "zh": "过了一会儿，就开始下雨了。",
+      "en": "A little later, it began to rain.",
+      "seg": [
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "to pass"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一会儿",
+          "py": "yī huì r",
+          "mn": "a while"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin"
+        },
+        {
+          "zh": "下雨",
+          "py": "xià yǔ",
+          "mn": "to rain"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "雨越下越大，所以我不能出去玩。",
-      "en": "The rain grew heavier, so I could not go out to play."
+      "zh": "雨越下越大，我不能出去玩了。",
+      "en": "The rain grew heavier and heavier, so I could not go out to play.",
+      "seg": [
+        {
+          "zh": "雨",
+          "py": "yǔ",
+          "mn": "rain"
+        },
+        {
+          "zh": "越",
+          "py": "yuè",
+          "mn": "the more"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "to fall"
+        },
+        {
+          "zh": "越",
+          "py": "yuè",
+          "mn": "the more"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "不能",
+          "py": "bù néng",
+          "mn": "cannot",
+          "bonus": true
+        },
+        {
+          "zh": "出去",
+          "py": "chū qù",
+          "mn": "to go out"
+        },
+        {
+          "zh": "玩",
+          "py": "wán",
+          "mn": "to play",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "我坐在窗前面，看着外面。",
-      "en": "I sat by the window and looked outside."
+      "zh": "我坐在窗边，看着外面的雨。",
+      "en": "I sat by the window and watched the rain outside.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "窗边",
+          "py": "chuāng biān",
+          "mn": "by the window",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to watch"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "外面",
+          "py": "wài miàn",
+          "mn": "outside",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "雨",
+          "py": "yǔ",
+          "mn": "rain"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "雨打在地上，有很好听的声音。",
-      "en": "The rain struck the ground with a lovely sound."
+      "zh": "雨打在地上，声音很好听。",
+      "en": "The rain hit the ground with a lovely sound.",
+      "seg": [
+        {
+          "zh": "雨",
+          "py": "yǔ",
+          "mn": "rain"
+        },
+        {
+          "zh": "打",
+          "py": "dǎ",
+          "mn": "to hit"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "ground"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "声音",
+          "py": "shēng yīn",
+          "mn": "sound"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好听",
+          "py": "hǎo tīng",
+          "mn": "nice to hear"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "路上的人都走得很快。",
-      "en": "People in the street were all walking fast."
+      "zh": "路上的人都走得很快，一个小孩跑过去，身上都湿了。",
+      "en": "People in the street were walking fast; a child ran past, soaked through.",
+      "seg": [
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "street"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to walk"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "快",
+          "py": "kuài",
+          "mn": "fast"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "小孩",
+          "py": "xiǎo hái",
+          "mn": "child",
+          "bonus": true
+        },
+        {
+          "zh": "跑",
+          "py": "pǎo",
+          "mn": "to run"
+        },
+        {
+          "zh": "过去",
+          "py": "guò qù",
+          "mn": "past"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "身上",
+          "py": "shēn shang",
+          "mn": "on the body"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "湿",
+          "py": "shī",
+          "mn": "wet",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "一个小孩跑过去，身上都是水。",
-      "en": "A child ran past, soaked through."
-    },
-    {
-      "zh": "我本来觉得有一点没有意思。",
-      "en": "At first I felt a little bored."
+      "zh": "我本来觉得有点儿无聊。",
+      "en": "At first I felt a little bored.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "本来",
+          "py": "běn lái",
+          "mn": "at first",
+          "bonus": true
+        },
+        {
+          "zh": "觉得",
+          "py": "jué de",
+          "mn": "to feel"
+        },
+        {
+          "zh": "有点儿",
+          "py": "yǒu diǎnr",
+          "mn": "a little",
+          "bonus": true
+        },
+        {
+          "zh": "无聊",
+          "py": "wú liáo",
+          "mn": "bored",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "后来我决定在家看书。",
-      "en": "Then I decided to read at home."
+      "en": "Then I decided to read at home.",
+      "seg": [
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "决定",
+          "py": "jué dìng",
+          "mn": "to decide"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "zh": "看书",
+          "py": "kàn shū",
+          "mn": "to read",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "妈妈给我做了一杯热的东西。",
-      "en": "Mother made me something hot to drink."
+      "zh": "妈妈给我做了一杯热茶。",
+      "en": "Mum made me a cup of hot tea.",
+      "seg": [
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "for"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to make"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "杯",
+          "py": "bēi",
+          "mn": "cup"
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "mn": "hot"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "她也拿了一本书，坐在我前面。",
-      "en": "She took a book too, and sat down in front of me."
+      "zh": "她也拿了一本书，坐在我旁边。",
+      "en": "She took a book too, and sat down beside me.",
+      "seg": [
+        {
+          "zh": "她",
+          "py": "tā",
+          "mn": "she"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "拿",
+          "py": "ná",
+          "mn": "to take"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "(counting word, books)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "旁边",
+          "py": "páng biān",
+          "mn": "beside"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "我们两个人都不说话，房间里很好。",
-      "en": "Neither of us spoke, and the room was pleasant."
+      "zh": "我们两个人都不说话，房间里很安静。",
+      "en": "Neither of us spoke, and the room was very quiet.",
+      "seg": [
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "both"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "说话",
+          "py": "shuō huà",
+          "mn": "to talk"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "房间",
+          "py": "fáng jiān",
+          "mn": "room"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "安静",
+          "py": "ān jìng",
+          "mn": "quiet"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "到了下午，雨慢慢小了。",
-      "en": "By the afternoon the rain slowly eased."
+      "en": "By the afternoon the rain slowly eased.",
+      "seg": [
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to reach"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "下午",
+          "py": "xià wǔ",
+          "mn": "afternoon"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "雨",
+          "py": "yǔ",
+          "mn": "rain"
+        },
+        {
+          "zh": "慢慢",
+          "py": "màn màn",
+          "mn": "slowly",
+          "bonus": true
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small; to ease"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "天亮了一些，外面看起来很干净。",
-      "en": "The sky brightened a little, and outside looked clean."
+      "en": "The sky brightened a little, and outside looked very clean.",
+      "seg": [
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "sky"
+        },
+        {
+          "zh": "亮",
+          "py": "liàng",
+          "mn": "bright",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "zh": "一些",
+          "py": "yī xiē",
+          "mn": "a little"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "外面",
+          "py": "wài miàn",
+          "mn": "outside",
+          "bonus": true
+        },
+        {
+          "zh": "看起来",
+          "py": "kàn qǐ lái",
+          "mn": "to look",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "干净",
+          "py": "gān jìng",
+          "mn": "clean"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "树叶上都是水，太阳一出来，亮亮的。",
+      "en": "The leaves were covered in water, and when the sun came out they shone.",
+      "seg": [
+        {
+          "zh": "树叶",
+          "py": "shù yè",
+          "mn": "leaves",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "太阳",
+          "py": "tài yang",
+          "mn": "sun"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "as soon as"
+        },
+        {
+          "zh": "出来",
+          "py": "chū lái",
+          "mn": "to come out"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "亮亮",
+          "py": "liàng liàng",
+          "mn": "shining",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(ends the description)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "我想，下雨天也有它好的地方。",
-      "en": "I think a rainy day has its good side too."
+      "en": "I think a rainy day has its good side too.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "下雨",
+          "py": "xià yǔ",
+          "mn": "rain"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it; its"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "side; place"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

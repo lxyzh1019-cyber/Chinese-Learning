@@ -242,4 +242,10 @@ module.exports = {
   "弹琴":   { py: "tán qín",     en: "to play the qin (a stringed instrument)" },
   "喝酒":   { py: "hē jiǔ",      en: "to drink wine" },
   "天天":   { py: "tiān tiān",   en: "every day" },
+  // ── HSK2 gates 10–13 ──
+  "抬头":   { py: "tái tóu",     en: "to look up" },
+  "背":     { py: "bèi",         en: "to recite from memory" },
+  "跳舞":   { py: "tiào wǔ",     en: "to dance" },
+  "霜":     { py: "shuāng",      en: "frost" },
+  "干活":   { py: "gàn huó",     en: "to work (with one's hands)" },
 };
