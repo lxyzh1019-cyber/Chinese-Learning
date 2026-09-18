@@ -5,13 +5,28 @@
   "title": "HSK1 Gate 12 · Tang Dynasty",
   "explanationEn": "Gate 12: Tang Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第12关：唐朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "唐朝的时候，中国很大也很有名。唐朝的大城叫长安。那时候，长安是世界上最大的城。城里有很多路，路很直很长。",
-  "passageEn": "In the Tang dynasty China was large and well known. The great city of the Tang was called Chang’an. At that time Chang’an was the largest city in the world. The city had many streets, straight and long.",
+  "passage": "一千三百多年以前，中国有一个很大的朝代，叫唐朝。唐朝最大的城叫长安，那时候，它是世界上最大的城。城里住了一百多万人，路又直又长。因为唐朝很有名，很多国家的人都来了。",
+  "passageEn": "More than thirteen hundred years ago, China had a great dynasty called the Tang. The Tang's biggest city was Chang'an, and at that time it was the biggest city in the world. More than a million people lived there, and the streets were straight and long. Because the Tang was so famous, people came from many countries.",
   "keyVocab": [
     {
-      "zh": "时候",
-      "pinyin": "shíhou",
-      "en": "time; moment"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
+    },
+    {
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "more than"
+    },
+    {
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "years"
+    },
+    {
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
       "zh": "大",
@@ -19,48 +34,33 @@
       "en": "great"
     },
     {
-      "zh": "有名",
-      "pinyin": "yǒu míng",
-      "en": "famous"
-    },
-    {
-      "zh": "城",
-      "pinyin": "chéng",
-      "en": "city; wall"
-    },
-    {
       "zh": "叫",
       "pinyin": "jiào",
       "en": "called"
     },
     {
-      "zh": "世界",
-      "pinyin": "shì jiè",
-      "en": "world"
+      "zh": "最",
+      "pinyin": "zuì",
+      "en": "most"
     },
     {
       "zh": "上",
       "pinyin": "shàng",
-      "en": "up; on; above"
-    },
-    {
-      "zh": "最",
-      "pinyin": "zuì",
-      "en": "most; -est"
+      "en": "in"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "In the Tang dynasty China was large and well known.",
-      "answer": "唐朝的时候，中国很大也很有名。"
+      "answerEn": "More than thirteen hundred years ago, China had a great dynasty called the Tang.",
+      "answer": "一千三百多年以前，中国有一个很大的朝代，叫唐朝。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "At that time Chang’an was the largest city in the world.",
-      "answer": "那时候，长安是世界上最大的城。"
+      "answerEn": "More than a million people lived there, and the streets were straight and long.",
+      "answer": "城里住了一百多万人，路又直又长。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,14 +74,14 @@
       "id": "hsk1_gate_12_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "时候",
-      "pinyin": "shíhou",
-      "promptEn": "In the story, what does 时候 mean?",
-      "prompt": "短文里的“时候”是什么意思？",
+      "zh": "一",
+      "pinyin": "yī",
+      "promptEn": "In the story, what does 一 mean?",
+      "prompt": "短文里的“一”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "time; moment"
+          "text": "one"
         },
         {
           "id": "o2",
@@ -89,25 +89,25 @@
         },
         {
           "id": "o3",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o4",
-          "text": "from"
+          "text": "(shows it is finished)"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
+      "explanationEn": "一 (yī) means \"one\" — you can find it in the passage above.",
+      "explanation": "“一”（yī）的意思是“one”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_12_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "大",
-      "pinyin": "dà",
-      "promptEn": "In the story, what does 大 mean?",
-      "prompt": "短文里的“大”是什么意思？",
+      "zh": "多",
+      "pinyin": "duō",
+      "promptEn": "In the story, what does 多 mean?",
+      "prompt": "短文里的“多”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -115,51 +115,51 @@
         },
         {
           "id": "o2",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o3",
-          "text": "from"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o4",
-          "text": "great"
+          "text": "more than"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "大 (dà) means \"great\" — you can find it in the passage above.",
-      "explanation": "“大”（dà）的意思是“great”，就在上面的短文里。"
+      "explanationEn": "多 (duō) means \"more than\" — you can find it in the passage above.",
+      "explanation": "“多”（duō）的意思是“more than”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_12_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "唐朝的时候，中国很大也很有名。",
-      "targetZh": "时候",
-      "targetPinyin": "shíhou",
+      "zh": "一千三百多年以前，中国有一个很大的朝代，叫唐朝。",
+      "targetZh": "一",
+      "targetPinyin": "yī",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "The floods came, and many people had no home."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o2",
-          "text": "Dayu was a good person."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o3",
-          "text": "In the Tang dynasty China was large and well known."
+          "text": "More than thirteen hundred years ago, China had a great dynasty called the Tang."
         },
         {
           "id": "o4",
-          "text": "Long ago, great floods came to China."
+          "text": "Long ago, a great flood came to China."
         }
       ],
       "answerId": "o3",
-      "explanationEn": "\"唐朝的时候，中国很大也很有名。\" means \"In the Tang dynasty China was large and well known.\".",
-      "explanation": "“唐朝的时候，中国很大也很有名。”的意思是“In the Tang dynasty China was large and well known.”。"
+      "explanationEn": "\"一千三百多年以前，中国有一个很大的朝代，叫唐朝。\" means \"More than thirteen hundred years ago, China had a great dynasty called the Tang.\".",
+      "explanation": "“一千三百多年以前，中国有一个很大的朝代，叫唐朝。”的意思是“More than thirteen hundred years ago, China had a great dynasty called the Tang.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Tang Dynasty in two or three short Chinese sentences. Use words from the list above.",

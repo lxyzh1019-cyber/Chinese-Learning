@@ -5,55 +5,737 @@
   "title": "图书馆的一天",
   "en": "A Day at the Library",
   "names": {
-    "老师": {
-      "py": "lǎoshī",
-      "en": "teacher"
-    },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+    "长城": {
+      "py": "Chángchéng",
+      "en": "the Great Wall"
     }
   },
   "sents": [
     {
-      "zh": "今天老师带我们去看书的地方。",
-      "en": "Today the teacher took us to the place with the books."
+      "zh": "今天下午，老师带我们去图书馆。",
+      "en": "This afternoon, the teacher took us to the library.",
+      "seg": [
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "下午",
+          "py": "xià wǔ",
+          "mn": "afternoon"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "to take (someone)",
+          "bonus": true
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "us"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "图书馆",
+          "py": "tú shū guǎn",
+          "mn": "library"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "那里很大，没有人说话。",
-      "en": "It was large, and no one was talking."
+      "zh": "图书馆很大，里面有很多很多书。",
+      "en": "The library is big, with a great many books inside.",
+      "seg": [
+        {
+          "zh": "图书馆",
+          "py": "tú shū guǎn",
+          "mn": "library"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "里面",
+          "py": "lǐ miàn",
+          "mn": "inside",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "里面有很多很多书。",
-      "en": "Inside there were a great many books."
+      "zh": "一进去，大家就不说话了，因为很多人在看书。",
+      "en": "The moment we went in, everyone stopped talking, because many people were reading.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "as soon as"
+        },
+        {
+          "zh": "进去",
+          "py": "jìn qù",
+          "mn": "to go in",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "说话",
+          "py": "shuō huà",
+          "mn": "to talk"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "看书",
+          "py": "kàn shū",
+          "mn": "to read",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有的书很新，有的书很旧。",
-      "en": "Some books were new, some were old."
+      "zh": "老师说：“你们可以自己找想看的书。”",
+      "en": "The teacher said: \"You may look for a book you want to read yourselves.\"",
+      "seg": [
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "你们",
+          "py": "nǐ men",
+          "mn": "you (all)"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "may",
+          "bonus": true
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "by yourselves",
+          "bonus": true
+        },
+        {
+          "zh": "找",
+          "py": "zhǎo",
+          "mn": "to look for"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "我找到了一本很久以前的故事书。",
-      "en": "I found a story book about long ago."
+      "zh": "我找到了一本讲古代故事的书。",
+      "en": "I found a book of stories from ancient times.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "找到",
+          "py": "zhǎo dào",
+          "mn": "to find"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "(counting word, books)"
+        },
+        {
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
+        },
+        {
+          "zh": "古代",
+          "py": "gǔ dài",
+          "mn": "ancient times",
+          "bonus": true
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "stories",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "我坐下来，开始看。",
-      "en": "I sat down and began to read."
+      "zh": "书里有皇帝，有长城，还有很长的路。",
+      "en": "In it were emperors, the Great Wall, and a very long road.",
+      "seg": [
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperors",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "t": "n",
+          "zh": "长城",
+          "py": "Chángchéng",
+          "mn": "the Great Wall"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还有",
+          "py": "hái yǒu",
+          "mn": "and also"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "书里有大王，有长城，也有马。",
-      "en": "In the book there were kings, the Great Wall, and horses."
+      "zh": "我坐下来，一看就看了两个小时。",
+      "en": "I sat down, and once I started reading I read for two hours.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "down",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "once"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "小时",
+          "py": "xiǎo shí",
+          "mn": "hours"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "我看了很久，忘了时间。",
-      "en": "I read for a long time and forgot the time."
+      "zh": "我看得太认真，忘了时间，老师叫我，我才起来。",
+      "en": "I read so intently that I forgot the time; only when the teacher called me did I get up.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)",
+          "bonus": true
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
+        },
+        {
+          "zh": "认真",
+          "py": "rèn zhēn",
+          "mn": "attentive"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "忘",
+          "py": "wàng",
+          "mn": "to forget"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "时间",
+          "py": "shí jiān",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to call"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then",
+          "bonus": true
+        },
+        {
+          "zh": "起来",
+          "py": "qǐ lai",
+          "mn": "to get up"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "老师说：“要回学校了。”",
-      "en": "The teacher said: \"It is time to go back to school.\""
+      "zh": "我带了三本书回家，妈妈说：“这么多，你看得完吗？”",
+      "en": "I took three books home, and Mum said: \"So many, can you finish them?\"",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "to carry",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "(counting word, books)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "回家",
+          "py": "huí jiā",
+          "mn": "to go home"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "这么",
+          "py": "zhè me",
+          "mn": "so",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "你",
+          "py": "nǐ",
+          "mn": "you"
+        },
+        {
+          "zh": "看得完",
+          "py": "kàn de wán",
+          "mn": "can finish reading",
+          "bonus": true
+        },
+        {
+          "zh": "吗",
+          "py": "má",
+          "mn": "(makes a question)"
+        },
+        {
+          "t": "p",
+          "tx": "？"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "我带了三本书回家。",
-      "en": "I took three books home with me."
+      "zh": "我说：“一定可以！”",
+      "en": "I said: \"I certainly can!\"",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "一定",
+          "py": "yī dìng",
+          "mn": "certainly",
+          "bonus": true
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "！"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     }
   ]
 }

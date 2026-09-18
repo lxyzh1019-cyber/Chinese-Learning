@@ -5,23 +5,28 @@
   "title": "HSK1 Gate 3 · Western Zhou",
   "explanationEn": "Gate 3: Western Zhou. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第3关：西周。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "商朝以后，中国有了西周。西周的王说：“天让我做王。”他说，天看着每一个王。王要爱人，人也要爱王。",
-  "passageEn": "After the Shang, China had the Western Zhou. The Western Zhou king said: \"Heaven lets me be king.\" He said that Heaven watches every king. The king must love the people; the people must also love the king.",
+  "passage": "商朝以后，中国有了一个新的朝代，叫西周。西周的王说：“是天让我做王的。”他说，天一直在看着每一个王。王做得好，天就让他一直做王。",
+  "passageEn": "After the Shang, China had a new dynasty called the Western Zhou. The Western Zhou king said: \"It is Heaven that made me king.\" He said that Heaven is always watching every king. If a king does well, Heaven lets him stay king.",
   "keyVocab": [
     {
-      "zh": "商朝",
-      "pinyin": "Shāngcháo",
-      "en": "Shang Dynasty"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
-      "zh": "以后",
-      "pinyin": "yǐ hòu",
-      "en": "after"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "王",
-      "pinyin": "wáng",
-      "en": "king"
+      "zh": "新",
+      "pinyin": "xīn",
+      "en": "new"
+    },
+    {
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
     },
     {
       "zh": "说",
@@ -29,38 +34,33 @@
       "en": "said"
     },
     {
-      "zh": "做",
-      "pinyin": "zuò",
-      "en": "be"
-    },
-    {
       "zh": "天",
       "pinyin": "tiān",
-      "en": "day; sky"
+      "en": "Heaven"
+    },
+    {
+      "zh": "做",
+      "pinyin": "zuò",
+      "en": "to be"
     },
     {
       "zh": "看",
       "pinyin": "kàn",
-      "en": "to look; to watch; to read"
-    },
-    {
-      "zh": "着",
-      "pinyin": "zhe",
-      "en": "(-ing, an action going on)"
+      "en": "to watch"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "After the Shang, China had the Western Zhou.",
-      "answer": "商朝以后，中国有了西周。"
+      "answerEn": "After the Shang, China had a new dynasty called the Western Zhou.",
+      "answer": "商朝以后，中国有了一个新的朝代，叫西周。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "He said that Heaven watches every king.",
-      "answer": "他说，天看着每一个王。"
+      "answerEn": "He said that Heaven is always watching every king.",
+      "answer": "他说，天一直在看着每一个王。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,18 +74,18 @@
       "id": "hsk1_gate_03_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "商朝",
-      "pinyin": "Shāngcháo",
-      "promptEn": "In the story, what does 商朝 mean?",
-      "prompt": "短文里的“商朝”是什么意思？",
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "promptEn": "In the story, what does 中国 mean?",
+      "prompt": "短文里的“中国”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "from"
+          "text": "to go into"
         },
         {
           "id": "o2",
-          "text": "Shang Dynasty"
+          "text": "China"
         },
         {
           "id": "o3",
@@ -93,25 +93,25 @@
         },
         {
           "id": "o4",
-          "text": "long time"
+          "text": "(shows it is finished)"
         }
       ],
       "answerId": "o2",
-      "explanationEn": "商朝 (Shāngcháo) means \"Shang Dynasty\" — you can find it in the passage above.",
-      "explanation": "“商朝”（Shāngcháo）的意思是“Shang Dynasty”，就在上面的短文里。"
+      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
+      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_03_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "以后",
-      "pinyin": "yǐ hòu",
-      "promptEn": "In the story, what does 以后 mean?",
-      "prompt": "短文里的“以后”是什么意思？",
+      "zh": "一",
+      "pinyin": "yī",
+      "promptEn": "In the story, what does 一 mean?",
+      "prompt": "短文里的“一”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "after"
+          "text": "one"
         },
         {
           "id": "o2",
@@ -119,47 +119,47 @@
         },
         {
           "id": "o3",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o4",
-          "text": "from"
+          "text": "(shows it is finished)"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "以后 (yǐ hòu) means \"after\" — you can find it in the passage above.",
-      "explanation": "“以后”（yǐ hòu）的意思是“after”，就在上面的短文里。"
+      "explanationEn": "一 (yī) means \"one\" — you can find it in the passage above.",
+      "explanation": "“一”（yī）的意思是“one”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_03_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "商朝以后，中国有了西周。",
-      "targetZh": "商朝",
-      "targetPinyin": "Shāngcháo",
+      "zh": "商朝以后，中国有了一个新的朝代，叫西周。",
+      "targetZh": "中国",
+      "targetPinyin": "Zhōngguó",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "Long ago, great floods came to China."
+          "text": "Long ago, a great flood came to China."
         },
         {
           "id": "o2",
-          "text": "The floods came, and many people had no home."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o3",
-          "text": "Dayu was a good person."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o4",
-          "text": "After the Shang, China had the Western Zhou."
+          "text": "After the Shang, China had a new dynasty called the Western Zhou."
         }
       ],
       "answerId": "o4",
-      "explanationEn": "\"商朝以后，中国有了西周。\" means \"After the Shang, China had the Western Zhou.\".",
-      "explanation": "“商朝以后，中国有了西周。”的意思是“After the Shang, China had the Western Zhou.”。"
+      "explanationEn": "\"商朝以后，中国有了一个新的朝代，叫西周。\" means \"After the Shang, China had a new dynasty called the Western Zhou.\".",
+      "explanation": "“商朝以后，中国有了一个新的朝代，叫西周。”的意思是“After the Shang, China had a new dynasty called the Western Zhou.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Western Zhou in two or three short Chinese sentences. Use words from the list above.",

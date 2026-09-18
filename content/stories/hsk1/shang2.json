@@ -11,14 +11,9 @@
       "en": "Today is market day.",
       "seg": [
         {
-          "zh": "今",
-          "py": "jīn",
+          "zh": "今天",
+          "py": "jīn tiān",
           "mn": "today"
-        },
-        {
-          "zh": "天",
-          "py": "tiān",
-          "mn": "day"
         },
         {
           "zh": "是",
@@ -26,15 +21,9 @@
           "mn": "is"
         },
         {
-          "zh": "市",
-          "py": "shì",
-          "mn": "market; city",
-          "bonus": true
-        },
-        {
-          "zh": "场",
-          "py": "chǎng",
-          "mn": "place; ground",
+          "zh": "市场",
+          "py": "shì chǎng",
+          "mn": "market",
           "bonus": true
         },
         {
@@ -43,15 +32,9 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "日",
-          "py": "rì",
+          "zh": "日子",
+          "py": "rì zi",
           "mn": "day",
-          "bonus": true
-        },
-        {
-          "zh": "子",
-          "py": "zi",
-          "mn": "(word ending)",
           "bonus": true
         },
         {
@@ -61,22 +44,120 @@
       ]
     },
     {
-      "zh": "早上，市场里有很多人。",
-      "en": "In the morning there are many people at the market."
+      "zh": "早上，我和妈妈一起去市场。",
+      "en": "In the morning, Mum and I go to the market together.",
+      "seg": [
+        {
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "市场",
+          "py": "shì chǎng",
+          "mn": "market",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有人卖水果，有人卖鱼。",
-      "en": "Some people sell fruit; some people sell fish.",
+      "zh": "市场里有很多人，很热闹。",
+      "en": "There are many people at the market; it is very lively.",
       "seg": [
+        {
+          "zh": "市场",
+          "py": "shì chǎng",
+          "mn": "market",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
         {
           "zh": "有",
           "py": "yǒu",
-          "mn": "to have"
+          "mn": "there are"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
         },
         {
           "zh": "人",
           "py": "rén",
-          "mn": "person"
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "热闹",
+          "py": "rè nao",
+          "mn": "lively",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "有人卖水果，有人卖鱼，也有人卖菜和肉。",
+      "en": "Some people sell fruit, some sell fish, and some sell vegetables and meat.",
+      "seg": [
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "some people",
+          "bonus": true
         },
         {
           "zh": "卖",
@@ -87,22 +168,17 @@
         {
           "zh": "水果",
           "py": "shuǐ guǒ",
-          "mn": "fruit",
-          "bonus": true
+          "mn": "fruit"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "to have"
-        },
-        {
-          "zh": "人",
-          "py": "rén",
-          "mn": "person"
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "some people",
+          "bonus": true
         },
         {
           "zh": "卖",
@@ -118,17 +194,105 @@
         },
         {
           "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "some people",
+          "bonus": true
+        },
+        {
+          "zh": "卖",
+          "py": "mài",
+          "mn": "to sell",
+          "bonus": true
+        },
+        {
+          "zh": "菜",
+          "py": "cài",
+          "mn": "vegetables"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "肉",
+          "py": "ròu",
+          "mn": "meat"
+        },
+        {
+          "t": "p",
           "tx": "。"
         }
       ]
     },
     {
-      "zh": "也有人卖菜和肉。",
-      "en": "Some people also sell vegetables and meat."
+      "zh": "苹果很红，一个三块钱。",
+      "en": "The apples are very red, three yuan each.",
+      "seg": [
+        {
+          "zh": "苹果",
+          "py": "píng guǒ",
+          "mn": "apple",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "红",
+          "py": "hóng",
+          "mn": "red",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "块",
+          "py": "kuài",
+          "mn": "yuan (money); a piece"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "我买了三个苹果，很好吃。",
-      "en": "I bought three apples — very delicious.",
+      "zh": "我买了三个苹果，吃了一个，很好吃。",
+      "en": "I bought three apples and ate one; it was delicious.",
       "seg": [
         {
           "zh": "我",
@@ -138,14 +302,12 @@
         {
           "zh": "买",
           "py": "mǎi",
-          "mn": "to buy",
-          "bonus": true
+          "mn": "to buy"
         },
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
+          "mn": "(shows it is finished)"
         },
         {
           "zh": "三",
@@ -155,20 +317,37 @@
         {
           "zh": "个",
           "py": "gè",
-          "mn": "(counting word)",
-          "bonus": true
+          "mn": "(counting word)"
         },
         {
-          "zh": "苹",
-          "py": "píng",
+          "zh": "苹果",
+          "py": "píng guǒ",
           "mn": "apple",
           "bonus": true
         },
         {
-          "zh": "果",
-          "py": "guǒ",
-          "mn": "fruit; result",
-          "bonus": true
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "to eat"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
         },
         {
           "t": "p",
@@ -180,14 +359,9 @@
           "mn": "very"
         },
         {
-          "zh": "好",
-          "py": "hǎo",
-          "mn": "good"
-        },
-        {
-          "zh": "吃",
-          "py": "chī",
-          "mn": "eat"
+          "zh": "好吃",
+          "py": "hǎo chī",
+          "mn": "delicious"
         },
         {
           "t": "p",
@@ -196,41 +370,68 @@
       ]
     },
     {
-      "zh": "苹果很红，一个三块钱。",
-      "en": "The apples were red, three yuan each."
-    },
-    {
-      "zh": "妈妈买了很多东西。",
-      "en": "Mum bought many things.",
+      "zh": "妈妈买了鱼、菜和水果。",
+      "en": "Mum bought fish, vegetables and fruit.",
       "seg": [
         {
-          "zh": "妈",
-          "py": "māmā",
-          "mn": "mother",
-          "bonus": true
-        },
-        {
-          "zh": "妈",
-          "py": "māmā",
-          "mn": "mother",
-          "bonus": true
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
         },
         {
           "zh": "买",
           "py": "mǎi",
-          "mn": "to buy",
-          "bonus": true
+          "mn": "to buy"
         },
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "鱼",
+          "py": "yú",
+          "mn": "fish",
           "bonus": true
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "菜",
+          "py": "cài",
+          "mn": "vegetables"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "水果",
+          "py": "shuǐ guǒ",
+          "mn": "fruit"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "东西太多了，我帮妈妈拿。",
+      "en": "There were too many things, so I helped Mum carry them.",
+      "seg": [
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
         },
         {
           "zh": "多",
@@ -238,16 +439,33 @@
           "mn": "many"
         },
         {
-          "zh": "东",
-          "py": "dōng",
-          "mn": "east",
-          "bonus": true
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
         },
         {
-          "zh": "西",
-          "py": "xī",
-          "mn": "west",
-          "bonus": true
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "帮",
+          "py": "bāng",
+          "mn": "to help"
+        },
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "拿",
+          "py": "ná",
+          "mn": "to carry; to hold"
         },
         {
           "t": "p",
@@ -256,59 +474,103 @@
       ]
     },
     {
-      "zh": "她买了鱼、菜和水果。",
-      "en": "She bought fish, vegetables and fruit."
-    },
-    {
-      "zh": "东西太多了，我帮她拿。",
-      "en": "There were too many things, so I helped her carry them."
-    },
-    {
-      "zh": "我们一起回家吃饭。",
-      "en": "We went home together to eat.",
+      "zh": "我们一起回家，妈妈做了鱼和菜。",
+      "en": "We went home together, and Mum cooked the fish and vegetables.",
       "seg": [
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
         },
         {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
         },
         {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one",
+          "zh": "回家",
+          "py": "huí jiā",
+          "mn": "to go home"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to make; to cook"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "鱼",
+          "py": "yú",
+          "mn": "fish",
           "bonus": true
         },
         {
-          "zh": "起",
-          "py": "qǐ",
-          "mn": "to rise; to get up",
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "菜",
+          "py": "cài",
+          "mn": "vegetables"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我们一家人一起吃饭，很开心。",
+      "en": "Our whole family ate together, very happy.",
+      "seg": [
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "一家人",
+          "py": "yī jiā rén",
+          "mn": "the whole family",
           "bonus": true
         },
         {
-          "zh": "回",
-          "py": "huí",
-          "mn": "returned",
-          "bonus": true
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
         },
         {
-          "zh": "家",
-          "py": "jiā",
-          "mn": "home"
+          "zh": "吃饭",
+          "py": "chī fàn",
+          "mn": "to eat a meal"
         },
         {
-          "zh": "吃",
-          "py": "chī",
-          "mn": "eat"
+          "t": "p",
+          "tx": "，"
         },
         {
-          "zh": "饭",
-          "py": "fàn",
-          "mn": "cooked rice; a meal",
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "开心",
+          "py": "kāi xīn",
+          "mn": "happy",
           "bonus": true
         },
         {

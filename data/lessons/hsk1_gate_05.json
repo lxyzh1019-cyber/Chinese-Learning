@@ -5,62 +5,62 @@
   "title": "HSK1 Gate 5 · Qin Dynasty",
   "explanationEn": "Gate 5: Qin Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第5关：秦朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "秦始皇是中国第一个大王。他让中国的字都一样。北边有人常常来，所以他很想做一件事。他要建一个很大的长城。",
-  "passageEn": "Qin Shi Huang was China's first great king. He made the characters of China all the same. People often came from the north, so he wanted very much to do one thing. He wanted to build a very large Great Wall.",
+  "passage": "两千多年以前，中国有很多小国，常常打仗。后来，秦始皇打败了别的国，把中国变成了一个国家。他是中国的第一个皇帝。他让全国的人写一样的字，用一样的钱。",
+  "passageEn": "More than two thousand years ago, China had many small states that were always fighting. Later, Qin Shi Huang defeated the other states and made China one country. He was China's first emperor. He made everyone in the country write the same characters and use the same money.",
   "keyVocab": [
     {
-      "zh": "大",
-      "pinyin": "dà",
-      "en": "great"
+      "zh": "两",
+      "pinyin": "liǎng",
+      "en": "two"
     },
     {
-      "zh": "王",
-      "pinyin": "wáng",
-      "en": "king"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "more than"
     },
     {
-      "zh": "让",
-      "pinyin": "ràng",
-      "en": "made"
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "years"
     },
     {
-      "zh": "字",
-      "pinyin": "zì",
-      "en": "character; writing"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
-      "zh": "一样",
-      "pinyin": "yī yàng",
-      "en": "same"
+      "zh": "小",
+      "pinyin": "xiǎo",
+      "en": "small"
     },
     {
-      "zh": "北边",
-      "pinyin": "běi biān",
-      "en": "the north side"
+      "zh": "别的",
+      "pinyin": "bié de",
+      "en": "other"
     },
     {
-      "zh": "有人",
-      "pinyin": "yǒu rén",
-      "en": "someone"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "常",
-      "pinyin": "cháng",
-      "en": "often; usual"
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "en": "country"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "Qin Shi Huang was China's first great king.",
-      "answer": "秦始皇是中国第一个大王。"
+      "answerEn": "More than two thousand years ago, China had many small states that were always fighting.",
+      "answer": "两千多年以前，中国有很多小国，常常打仗。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "People often came from the north, so he wanted very much to do one thing.",
-      "answer": "北边有人常常来，所以他很想做一件事。"
+      "answerEn": "He was China's first emperor.",
+      "answer": "他是中国的第一个皇帝。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,10 +74,10 @@
       "id": "hsk1_gate_05_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "大",
-      "pinyin": "dà",
-      "promptEn": "In the story, what does 大 mean?",
-      "prompt": "短文里的“大”是什么意思？",
+      "zh": "两",
+      "pinyin": "liǎng",
+      "promptEn": "In the story, what does 两 mean?",
+      "prompt": "短文里的“两”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -85,41 +85,41 @@
         },
         {
           "id": "o2",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o3",
-          "text": "from"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o4",
-          "text": "great"
+          "text": "two"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "大 (dà) means \"great\" — you can find it in the passage above.",
-      "explanation": "“大”（dà）的意思是“great”，就在上面的短文里。"
+      "explanationEn": "两 (liǎng) means \"two\" — you can find it in the passage above.",
+      "explanation": "“两”（liǎng）的意思是“two”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_05_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "王",
-      "pinyin": "wáng",
-      "promptEn": "In the story, what does 王 mean?",
-      "prompt": "短文里的“王”是什么意思？",
+      "zh": "多",
+      "pinyin": "duō",
+      "promptEn": "In the story, what does 多 mean?",
+      "prompt": "短文里的“多”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o2",
-          "text": "from"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o3",
-          "text": "king"
+          "text": "more than"
         },
         {
           "id": "o4",
@@ -127,39 +127,39 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "王 (wáng) means \"king\" — you can find it in the passage above.",
-      "explanation": "“王”（wáng）的意思是“king”，就在上面的短文里。"
+      "explanationEn": "多 (duō) means \"more than\" — you can find it in the passage above.",
+      "explanation": "“多”（duō）的意思是“more than”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_05_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "秦始皇是中国第一个大王。",
-      "targetZh": "大",
-      "targetPinyin": "dà",
+      "zh": "两千多年以前，中国有很多小国，常常打仗。",
+      "targetZh": "两",
+      "targetPinyin": "liǎng",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "Dayu was a good person."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o2",
-          "text": "Qin Shi Huang was China's first great king."
+          "text": "More than two thousand years ago, China had many small states that were always fighting."
         },
         {
           "id": "o3",
-          "text": "Long ago, great floods came to China."
+          "text": "Long ago, a great flood came to China."
         },
         {
           "id": "o4",
-          "text": "The floods came, and many people had no home."
+          "text": "The flood went into the fields, and into many people's homes."
         }
       ],
       "answerId": "o2",
-      "explanationEn": "\"秦始皇是中国第一个大王。\" means \"Qin Shi Huang was China's first great king.\".",
-      "explanation": "“秦始皇是中国第一个大王。”的意思是“Qin Shi Huang was China's first great king.”。"
+      "explanationEn": "\"两千多年以前，中国有很多小国，常常打仗。\" means \"More than two thousand years ago, China had many small states that were always fighting.\".",
+      "explanation": "“两千多年以前，中国有很多小国，常常打仗。”的意思是“More than two thousand years ago, China had many small states that were always fighting.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Qin Dynasty in two or three short Chinese sentences. Use words from the list above.",

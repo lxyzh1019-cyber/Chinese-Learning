@@ -5,28 +5,23 @@
   "title": "HSK1 Gate 18 · Yuan Dynasty",
   "explanationEn": "Gate 18: Yuan Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第18关：元朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "元朝的时候，中国很大。那时候的大王叫忽必烈。有一个人从很远的地方来。他叫马可·波罗，从意大利来。",
-  "passageEn": "In the Yuan dynasty China was very large. The great khan of that time was called Kublai. A man came from a place very far away. He was called Marco Polo, and he came from Italy.",
+  "passage": "七百多年以前，中国有一个很大的朝代，叫元朝。元朝的皇帝叫忽必烈，他的国家从东边一直到很远的西边。那时候路上比以前安全，来往的人多了。有一个年轻人从意大利出发，他叫马可·波罗。",
+  "passageEn": "More than seven hundred years ago, China had a great dynasty called the Yuan. The Yuan emperor was Kublai Khan, and his realm reached from the east far into the west. In those days the roads were safer than before, so more people travelled. A young man set out from Italy; his name was Marco Polo.",
   "keyVocab": [
     {
-      "zh": "时候",
-      "pinyin": "shíhou",
-      "en": "time; moment"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "more than"
     },
     {
-      "zh": "大",
-      "pinyin": "dà",
-      "en": "great"
+      "zh": "年",
+      "pinyin": "nián",
+      "en": "years"
     },
     {
-      "zh": "王",
-      "pinyin": "wáng",
-      "en": "king"
-    },
-    {
-      "zh": "叫",
-      "pinyin": "jiào",
-      "en": "called"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
       "zh": "一",
@@ -34,33 +29,38 @@
       "en": "one"
     },
     {
-      "zh": "人",
-      "pinyin": "rén",
-      "en": "person"
+      "zh": "大",
+      "pinyin": "dà",
+      "en": "great"
     },
     {
-      "zh": "远",
-      "pinyin": "yuǎn",
-      "en": "far"
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
     },
     {
-      "zh": "地方",
-      "pinyin": "dì fāng",
-      "en": "region"
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "en": "country"
+    },
+    {
+      "zh": "东边",
+      "pinyin": "dōng bian",
+      "en": "the east"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "In the Yuan dynasty China was very large.",
-      "answer": "元朝的时候，中国很大。"
+      "answerEn": "More than seven hundred years ago, China had a great dynasty called the Yuan.",
+      "answer": "七百多年以前，中国有一个很大的朝代，叫元朝。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "A man came from a place very far away.",
-      "answer": "有一个人从很远的地方来。"
+      "answerEn": "In those days the roads were safer than before, so more people travelled.",
+      "answer": "那时候路上比以前安全，来往的人多了。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,22 +74,22 @@
       "id": "hsk1_gate_18_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "时候",
-      "pinyin": "shíhou",
-      "promptEn": "In the story, what does 时候 mean?",
-      "prompt": "短文里的“时候”是什么意思？",
+      "zh": "多",
+      "pinyin": "duō",
+      "promptEn": "In the story, what does 多 mean?",
+      "prompt": "短文里的“多”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o2",
-          "text": "from"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o3",
-          "text": "time; moment"
+          "text": "more than"
         },
         {
           "id": "o4",
@@ -97,25 +97,25 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "时候 (shíhou) means \"time; moment\" — you can find it in the passage above.",
-      "explanation": "“时候”（shíhou）的意思是“time; moment”，就在上面的短文里。"
+      "explanationEn": "多 (duō) means \"more than\" — you can find it in the passage above.",
+      "explanation": "“多”（duō）的意思是“more than”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_18_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "大",
-      "pinyin": "dà",
-      "promptEn": "In the story, what does 大 mean?",
-      "prompt": "短文里的“大”是什么意思？",
+      "zh": "年",
+      "pinyin": "nián",
+      "promptEn": "In the story, what does 年 mean?",
+      "prompt": "短文里的“年”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "from"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o2",
-          "text": "great"
+          "text": "years"
         },
         {
           "id": "o3",
@@ -123,43 +123,43 @@
         },
         {
           "id": "o4",
-          "text": "long time"
+          "text": "China"
         }
       ],
       "answerId": "o2",
-      "explanationEn": "大 (dà) means \"great\" — you can find it in the passage above.",
-      "explanation": "“大”（dà）的意思是“great”，就在上面的短文里。"
+      "explanationEn": "年 (nián) means \"years\" — you can find it in the passage above.",
+      "explanation": "“年”（nián）的意思是“years”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_18_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "元朝的时候，中国很大。",
-      "targetZh": "时候",
-      "targetPinyin": "shíhou",
+      "zh": "七百多年以前，中国有一个很大的朝代，叫元朝。",
+      "targetZh": "多",
+      "targetPinyin": "duō",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "In the Yuan dynasty China was very large."
+          "text": "More than seven hundred years ago, China had a great dynasty called the Yuan."
         },
         {
           "id": "o2",
-          "text": "Long ago, great floods came to China."
+          "text": "Long ago, a great flood came to China."
         },
         {
           "id": "o3",
-          "text": "The floods came, and many people had no home."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o4",
-          "text": "Dayu was a good person."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         }
       ],
       "answerId": "o1",
-      "explanationEn": "\"元朝的时候，中国很大。\" means \"In the Yuan dynasty China was very large.\".",
-      "explanation": "“元朝的时候，中国很大。”的意思是“In the Yuan dynasty China was very large.”。"
+      "explanationEn": "\"七百多年以前，中国有一个很大的朝代，叫元朝。\" means \"More than seven hundred years ago, China had a great dynasty called the Yuan.\".",
+      "explanation": "“七百多年以前，中国有一个很大的朝代，叫元朝。”的意思是“More than seven hundred years ago, China had a great dynasty called the Yuan.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Yuan Dynasty in two or three short Chinese sentences. Use words from the list above.",

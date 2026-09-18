@@ -6,32 +6,28 @@
   "en": "The Silk Road",
   "names": {
     "汉朝": {
-      "py": "Hàncháo",
-      "en": "Han Dynasty"
-    },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+      "py": "Hàn Cháo",
+      "en": "the Han dynasty"
     },
     "丝绸之路": {
-      "py": "Sīchóu Zhī Lù",
-      "en": "Silk Road"
+      "py": "Sīchóu zhī Lù",
+      "en": "the Silk Road"
+    },
+    "张骞": {
+      "py": "Zhāng Qiān",
+      "en": "Zhang Qian"
     }
   },
   "sents": [
     {
-      "zh": "汉朝的时候，中国和西边很少来往。",
-      "en": "In the Han dynasty, China and the lands to the west had little contact."
-    },
-    {
-      "zh": "汉朝的人向西走了很远。",
-      "en": "Han Dynasty people walked very far towards the west.",
+      "zh": "汉朝的时候，中国人不知道西边有什么。",
+      "en": "In the Han dynasty, Chinese people did not know what lay to the west.",
       "seg": [
         {
           "t": "n",
           "zh": "汉朝",
-          "py": "Hàncháo",
-          "mn": "Han Dynasty"
+          "py": "Hàn Cháo",
+          "mn": "the Han dynasty"
         },
         {
           "zh": "的",
@@ -39,24 +35,137 @@
           "mn": "of; belonging to"
         },
         {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "知道",
+          "py": "zhī dào",
+          "mn": "to know"
+        },
+        {
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "什么",
+          "py": "shén me",
+          "mn": "what"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "皇帝让一个叫张骞的人去西边看看。",
+      "en": "The emperor sent a man called Zhang Qian to go west and take a look.",
+      "seg": [
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to let; to make",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "张骞",
+          "py": "Zhāng Qiān",
+          "mn": "Zhang Qian"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
           "zh": "人",
           "py": "rén",
           "mn": "person"
         },
         {
-          "zh": "向",
-          "py": "xiàng",
-          "mn": "towards"
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
         },
         {
-          "zh": "西",
-          "py": "xī",
-          "mn": "west"
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "看看",
+          "py": "kàn kan",
+          "mn": "to take a look",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他走了很多年才回来。",
+      "en": "He travelled for many years before he came back.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
         },
         {
           "zh": "走",
           "py": "zǒu",
-          "mn": "walked"
+          "mn": "to travel"
         },
         {
           "zh": "了",
@@ -69,9 +178,25 @@
           "mn": "very"
         },
         {
-          "zh": "远",
-          "py": "yuǎn",
-          "mn": "far"
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then",
+          "bonus": true
+        },
+        {
+          "zh": "回来",
+          "py": "huí lai",
+          "mn": "to come back"
         },
         {
           "t": "p",
@@ -80,12 +205,8 @@
       ]
     },
     {
-      "zh": "路很长，走一次要很多个月。",
-      "en": "The road was long; one journey took many months."
-    },
-    {
-      "zh": "他们带着中国的丝绸去做买卖。",
-      "en": "They carried Chinese silk to trade.",
+      "zh": "他说：“西边有很多国家，也有很多新东西。”",
+      "en": "He said: \"There are many countries in the west, and many new things.\"",
       "seg": [
         {
           "zh": "他",
@@ -93,22 +214,92 @@
           "mn": "he"
         },
         {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
         },
         {
-          "zh": "带",
-          "py": "dài",
-          "mn": "carried"
+          "t": "p",
+          "tx": "："
         },
         {
-          "zh": "着",
-          "py": "zhe",
-          "mn": "(-ing, still going on)"
+          "t": "p",
+          "tx": "“"
         },
         {
-          "t": "n",
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
+    },
+    {
+      "zh": "中国的商人听了，也想去西边做买卖。",
+      "en": "When Chinese merchants heard this, they wanted to go west to trade too.",
+      "seg": [
+        {
           "zh": "中国",
           "py": "Zhōngguó",
           "mn": "China"
@@ -119,34 +310,50 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "丝",
-          "py": "sī",
-          "mn": "silk"
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchant",
+          "bonus": true
         },
         {
-          "zh": "绸",
-          "py": "chóu",
-          "mn": "silk"
+          "zh": "听",
+          "py": "tīng",
+          "mn": "to hear"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
         },
         {
           "zh": "去",
           "py": "qù",
-          "mn": "go"
+          "mn": "to go"
         },
         {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "do"
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
         },
         {
-          "zh": "买",
-          "py": "mǎi",
-          "mn": "to buy"
-        },
-        {
-          "zh": "卖",
-          "py": "mài",
-          "mn": "to sell"
+          "zh": "做买卖",
+          "py": "zuò mǎi mai",
+          "mn": "to trade",
+          "bonus": true
         },
         {
           "t": "p",
@@ -155,18 +362,45 @@
       ]
     },
     {
-      "zh": "西方的商人带来了金子，和很多好东西。",
-      "en": "Western merchants brought gold and many good things.",
+      "zh": "他们带着丝绸，因为西边的人很喜欢丝绸。",
+      "en": "They carried silk, because people in the west loved silk.",
       "seg": [
         {
-          "zh": "西",
-          "py": "xī",
-          "mn": "west"
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
         },
         {
-          "zh": "方",
-          "py": "fāng",
-          "mn": "direction; square"
+          "zh": "带",
+          "py": "dài",
+          "mn": "to carry",
+          "bonus": true
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "丝绸",
+          "py": "sī chóu",
+          "mn": "silk",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
+        },
+        {
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
         },
         {
           "zh": "的",
@@ -174,19 +408,165 @@
           "mn": "of; belonging to"
         },
         {
-          "zh": "商",
-          "py": "shāng",
-          "mn": "trade; merchant"
-        },
-        {
           "zh": "人",
           "py": "rén",
-          "mn": "person"
+          "mn": "people"
         },
         {
-          "zh": "带",
-          "py": "dài",
-          "mn": "brought"
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "丝绸",
+          "py": "sī chóu",
+          "mn": "silk",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "路很长，有山，也有很热的地方，一次要走一两年。",
+      "en": "The road was long, over mountains and through very hot places; one journey took a year or two.",
+      "seg": [
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountains"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "mn": "hot"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "time (occasion)"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to need"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to travel"
+        },
+        {
+          "zh": "一两",
+          "py": "yì liǎng",
+          "mn": "one or two",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "西边的商人也来了，带来了好马和葡萄。",
+      "en": "Merchants from the west came too, bringing fine horses and grapes.",
+      "seg": [
+        {
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchant",
+          "bonus": true
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
         },
         {
           "zh": "来",
@@ -199,53 +579,40 @@
           "mn": "(shows it is finished)"
         },
         {
-          "zh": "金",
-          "py": "jīn",
-          "mn": "gold"
-        },
-        {
-          "zh": "子",
-          "py": "zi",
-          "mn": "(word ending)"
-        },
-        {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "和",
-          "py": "hé",
-          "mn": "and",
+          "zh": "带来",
+          "py": "dài lái",
+          "mn": "to bring",
           "bonus": true
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very",
-          "bonus": true
-        },
-        {
-          "zh": "多",
-          "py": "duō",
-          "mn": "many",
-          "bonus": true
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
           "zh": "好",
           "py": "hǎo",
-          "mn": "good",
+          "mn": "fine"
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horses",
           "bonus": true
         },
         {
-          "zh": "东",
-          "py": "dōng",
-          "mn": "east",
-          "bonus": true
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
         },
         {
-          "zh": "西",
-          "py": "xī",
-          "mn": "west",
+          "zh": "葡萄",
+          "py": "pú tao",
+          "mn": "grapes",
           "bonus": true
         },
         {
@@ -255,42 +622,70 @@
       ]
     },
     {
-      "zh": "他们也带来了新的水果和马。",
-      "en": "They also brought new fruits and horses."
-    },
-    {
-      "zh": "两边的人通过这条路认识了彼此。",
-      "en": "People on both sides got to know each other through this road.",
+      "zh": "因为路上最有名的东西是丝绸，人们叫这条路丝绸之路。",
+      "en": "Because the most famous thing on the road was silk, people called it the Silk Road.",
       "seg": [
         {
-          "zh": "两",
-          "py": "liǎng",
-          "mn": "two"
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because",
+          "bonus": true
         },
         {
-          "zh": "边",
-          "py": "biān",
-          "mn": "side; edge"
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "有名",
+          "py": "yǒu míng",
+          "mn": "famous"
         },
         {
           "zh": "的",
           "py": "de",
-          "mn": "of; belonging to"
+          "mn": "(makes a describing word)"
         },
         {
-          "zh": "人",
-          "py": "rén",
-          "mn": "person"
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "thing"
         },
         {
-          "zh": "通",
-          "py": "tōng",
-          "mn": "through"
+          "zh": "是",
+          "py": "shì",
+          "mn": "was"
         },
         {
-          "zh": "过",
-          "py": "guò",
-          "mn": "pass"
+          "zh": "丝绸",
+          "py": "sī chóu",
+          "mn": "silk",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
+          "bonus": true
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to call"
         },
         {
           "zh": "这",
@@ -300,7 +695,8 @@
         {
           "zh": "条",
           "py": "tiáo",
-          "mn": "(counting word, long things)"
+          "mn": "(counting word, long things)",
+          "bonus": true
         },
         {
           "zh": "路",
@@ -308,29 +704,10 @@
           "mn": "road"
         },
         {
-          "zh": "认",
-          "py": "rèn",
-          "mn": "to recognise"
-        },
-        {
-          "zh": "识",
-          "py": "shí",
-          "mn": "to know"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)"
-        },
-        {
-          "zh": "彼",
-          "py": "bǐ",
-          "mn": "the other"
-        },
-        {
-          "zh": "此",
-          "py": "cǐ",
-          "mn": "this"
+          "t": "n",
+          "zh": "丝绸之路",
+          "py": "Sīchóu zhī Lù",
+          "mn": "the Silk Road"
         },
         {
           "t": "p",
@@ -339,30 +716,32 @@
       ]
     },
     {
-      "zh": "中国的纸和字也从这条路走了出去。",
-      "en": "Chinese paper and writing travelled out along this road too."
-    },
-    {
-      "zh": "后来，人们把这条路叫做丝绸之路。",
-      "en": "Later, people called this road the Silk Road."
-    },
-    {
-      "zh": "丝绸之路让中国和世界连在一起。",
-      "en": "The Silk Road connected China and the world together.",
+      "zh": "这条路让中国和很远的地方连在了一起。",
+      "en": "This road joined China to places very far away.",
       "seg": [
         {
-          "t": "n",
-          "zh": "丝绸之路",
-          "py": "Sīchóu Zhī Lù",
-          "mn": "Silk Road"
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "mn": "(counting word, long things)",
+          "bonus": true
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
         },
         {
           "zh": "让",
           "py": "ràng",
-          "mn": "made"
+          "mn": "to let; to make",
+          "bonus": true
         },
         {
-          "t": "n",
           "zh": "中国",
           "py": "Zhōngguó",
           "mn": "China"
@@ -373,36 +752,45 @@
           "mn": "and"
         },
         {
-          "zh": "世",
-          "py": "shì",
-          "mn": "world; age"
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
         },
         {
-          "zh": "界",
-          "py": "jiè",
-          "mn": "boundary; world"
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
         },
         {
           "zh": "连",
           "py": "lián",
-          "mn": "connect"
+          "mn": "to join",
+          "bonus": true
         },
         {
           "zh": "在",
           "py": "zài",
-          "mn": "at; in"
+          "mn": "(at)"
         },
         {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
-          "zh": "起",
-          "py": "qǐ",
-          "mn": "to rise; to get up",
-          "bonus": true
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
         },
         {
           "t": "p",

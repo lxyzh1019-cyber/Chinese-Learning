@@ -5,18 +5,18 @@
   "title": "HSK1 Gate 13 · Five Dynasties",
   "explanationEn": "Gate 13: Five Dynasties. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第13关：五代。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "很久以前，一本书要一个字一个字地写。写一本书要很多天。所以书很少，也很贵。后来，人们想到了一个好办法。",
-  "passageEn": "Long ago, a book had to be written out one character at a time. Writing one book took many days. So books were few, and expensive. Later, people thought of a good way.",
+  "passage": "有了纸以后，人们可以写书了。可是一本书要一个字一个字地写，要写很多天。所以书很少，也很贵，只有有钱的人买得起。后来，有人想到了一个好办法。",
+  "passageEn": "Once there was paper, people could write books. But a book had to be written out one character at a time, and that took many days. So books were few and expensive, and only people with money could afford them. Later, someone thought of a good way.",
   "keyVocab": [
     {
-      "zh": "久",
-      "pinyin": "jiǔ",
-      "en": "long time"
+      "zh": "写",
+      "pinyin": "xiě",
+      "en": "to write"
     },
     {
-      "zh": "以前",
-      "pinyin": "yǐ qián",
-      "en": "before"
+      "zh": "书",
+      "pinyin": "shū",
+      "en": "books"
     },
     {
       "zh": "一",
@@ -26,17 +26,12 @@
     {
       "zh": "本",
       "pinyin": "běn",
-      "en": "root; a book"
-    },
-    {
-      "zh": "书",
-      "pinyin": "shū",
-      "en": "book"
+      "en": "(counting word, books)"
     },
     {
       "zh": "字",
       "pinyin": "zì",
-      "en": "character; writing"
+      "en": "character"
     },
     {
       "zh": "地",
@@ -44,23 +39,28 @@
       "en": "(before how it is done)"
     },
     {
-      "zh": "写",
-      "pinyin": "xiě",
-      "en": "wrote"
+      "zh": "多",
+      "pinyin": "duō",
+      "en": "many"
+    },
+    {
+      "zh": "天",
+      "pinyin": "tiān",
+      "en": "days"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "Long ago, a book had to be written out one character at a time.",
-      "answer": "很久以前，一本书要一个字一个字地写。"
+      "answerEn": "Once there was paper, people could write books.",
+      "answer": "有了纸以后，人们可以写书了。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "So books were few, and expensive.",
-      "answer": "所以书很少，也很贵。"
+      "answerEn": "So books were few and expensive, and only people with money could afford them.",
+      "answer": "所以书很少，也很贵，只有有钱的人买得起。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,10 +74,10 @@
       "id": "hsk1_gate_13_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "久",
-      "pinyin": "jiǔ",
-      "promptEn": "In the story, what does 久 mean?",
-      "prompt": "短文里的“久”是什么意思？",
+      "zh": "写",
+      "pinyin": "xiě",
+      "promptEn": "In the story, what does 写 mean?",
+      "prompt": "短文里的“写”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -85,41 +85,41 @@
         },
         {
           "id": "o2",
-          "text": "from"
+          "text": "China"
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o4",
-          "text": "long time"
+          "text": "to write"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "久 (jiǔ) means \"long time\" — you can find it in the passage above.",
-      "explanation": "“久”（jiǔ）的意思是“long time”，就在上面的短文里。"
+      "explanationEn": "写 (xiě) means \"to write\" — you can find it in the passage above.",
+      "explanation": "“写”（xiě）的意思是“to write”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_13_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "以前",
-      "pinyin": "yǐ qián",
-      "promptEn": "In the story, what does 以前 mean?",
-      "prompt": "短文里的“以前”是什么意思？",
+      "zh": "书",
+      "pinyin": "shū",
+      "promptEn": "In the story, what does 书 mean?",
+      "prompt": "短文里的“书”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o2",
-          "text": "from"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "books"
         },
         {
           "id": "o4",
@@ -127,39 +127,39 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "以前 (yǐ qián) means \"before\" — you can find it in the passage above.",
-      "explanation": "“以前”（yǐ qián）的意思是“before”，就在上面的短文里。"
+      "explanationEn": "书 (shū) means \"books\" — you can find it in the passage above.",
+      "explanation": "“书”（shū）的意思是“books”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_13_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "很久以前，一本书要一个字一个字地写。",
-      "targetZh": "久",
-      "targetPinyin": "jiǔ",
+      "zh": "有了纸以后，人们可以写书了。",
+      "targetZh": "写",
+      "targetPinyin": "xiě",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "Dayu was a good person."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o2",
-          "text": "Long ago, a book had to be written out one character at a time."
+          "text": "Once there was paper, people could write books."
         },
         {
           "id": "o3",
-          "text": "Long ago, great floods came to China."
+          "text": "Long ago, a great flood came to China."
         },
         {
           "id": "o4",
-          "text": "The floods came, and many people had no home."
+          "text": "The flood went into the fields, and into many people's homes."
         }
       ],
       "answerId": "o2",
-      "explanationEn": "\"很久以前，一本书要一个字一个字地写。\" means \"Long ago, a book had to be written out one character at a time.\".",
-      "explanation": "“很久以前，一本书要一个字一个字地写。”的意思是“Long ago, a book had to be written out one character at a time.”。"
+      "explanationEn": "\"有了纸以后，人们可以写书了。\" means \"Once there was paper, people could write books.\".",
+      "explanation": "“有了纸以后，人们可以写书了。”的意思是“Once there was paper, people could write books.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Five Dynasties in two or three short Chinese sentences. Use words from the list above.",

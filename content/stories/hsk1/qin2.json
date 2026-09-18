@@ -7,48 +7,59 @@
   "names": {},
   "sents": [
     {
-      "zh": "今天，我们去爬山。",
-      "en": "Today, we went to climb the mountain.",
+      "zh": "今天天气很好，老师带我们去爬山。",
+      "en": "The weather is fine today, so the teacher takes us to climb the mountain.",
       "seg": [
         {
-          "zh": "今",
-          "py": "jīn",
+          "zh": "今天",
+          "py": "jīn tiān",
           "mn": "today"
         },
         {
-          "zh": "天",
-          "py": "tiān",
-          "mn": "day"
+          "zh": "天气",
+          "py": "tiān qì",
+          "mn": "weather"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
         },
         {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
+          "zh": "带",
+          "py": "dài",
+          "mn": "to take (someone)",
+          "bonus": true
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "us"
         },
         {
           "zh": "去",
           "py": "qù",
-          "mn": "go"
+          "mn": "to go"
         },
         {
-          "zh": "爬",
-          "py": "pá",
-          "mn": "to climb",
+          "zh": "爬山",
+          "py": "pá shān",
+          "mn": "to climb a mountain",
           "bonus": true
-        },
-        {
-          "zh": "山",
-          "py": "shān",
-          "mn": "mountain"
         },
         {
           "t": "p",
@@ -57,52 +68,84 @@
       ]
     },
     {
-      "zh": "早上天气很好，我们八点出门。",
-      "en": "The weather was fine in the morning, and we left at eight."
-    },
-    {
-      "zh": "山很大，我们走了很久。",
-      "en": "The mountain was very big; we walked for a long time.",
+      "zh": "我们八点在学校门口见面，一共二十个人。",
+      "en": "We meet at the school gate at eight; twenty of us in all.",
       "seg": [
         {
-          "zh": "山",
-          "py": "shān",
-          "mn": "mountain"
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "zh": "八",
+          "py": "bā",
+          "mn": "eight"
         },
         {
-          "zh": "大",
-          "py": "dà",
-          "mn": "big"
+          "zh": "点",
+          "py": "diǎn",
+          "mn": "o'clock; dot"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
+        },
+        {
+          "zh": "门口",
+          "py": "mén kǒu",
+          "mn": "gate"
+        },
+        {
+          "zh": "见面",
+          "py": "jiàn miàn",
+          "mn": "to meet"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
-        },
-        {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
-        },
-        {
-          "zh": "走",
-          "py": "zǒu",
-          "mn": "walked",
+          "zh": "一共",
+          "py": "yí gòng",
+          "mn": "in all",
           "bonus": true
         },
         {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)",
+          "zh": "二十",
+          "py": "èr shí",
+          "mn": "twenty",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "山路很长，路的两边都是树。",
+      "en": "The mountain path is long, with trees on both sides.",
+      "seg": [
+        {
+          "zh": "山路",
+          "py": "shān lù",
+          "mn": "mountain path",
           "bonus": true
         },
         {
@@ -111,9 +154,113 @@
           "mn": "very"
         },
         {
-          "zh": "久",
-          "py": "jiǔ",
-          "mn": "long time",
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "path"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "两边",
+          "py": "liǎng biān",
+          "mn": "both sides",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "are"
+        },
+        {
+          "zh": "树",
+          "py": "shù",
+          "mn": "trees"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我们一边走，一边说话，还看见了小鸟。",
+      "en": "We walk and talk at the same time, and we even see little birds.",
+      "seg": [
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "一边",
+          "py": "yī biān",
+          "mn": "while"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to walk"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一边",
+          "py": "yī biān",
+          "mn": "while"
+        },
+        {
+          "zh": "说话",
+          "py": "shuō huà",
+          "mn": "to talk"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "also"
+        },
+        {
+          "zh": "看见",
+          "py": "kàn jiàn",
+          "mn": "to see"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "little"
+        },
+        {
+          "zh": "鸟",
+          "py": "niǎo",
+          "mn": "bird",
           "bonus": true
         },
         {
@@ -123,13 +270,38 @@
       ]
     },
     {
-      "zh": "路上有很多树，也有小鸟。",
-      "en": "There were many trees along the way, and small birds too."
-    },
-    {
-      "zh": "我累了，说：“不想走了。”",
-      "en": "I was tired and said: \"I don't want to walk anymore.\"",
+      "zh": "走了一个小时，我累了，不想走了。",
+      "en": "After an hour of walking, I am tired and do not want to go on.",
       "seg": [
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to walk"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "小时",
+          "py": "xiǎo shí",
+          "mn": "hour"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
         {
           "zh": "我",
           "py": "wǒ",
@@ -138,27 +310,16 @@
         {
           "zh": "累",
           "py": "lèi",
-          "mn": "tired",
-          "bonus": true
+          "mn": "tired"
         },
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
+          "mn": "(shows a change)"
         },
         {
           "t": "p",
           "tx": "，"
-        },
-        {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "said"
-        },
-        {
-          "t": "p",
-          "tx": "：“"
         },
         {
           "zh": "不",
@@ -168,61 +329,120 @@
         {
           "zh": "想",
           "py": "xiǎng",
-          "mn": "want",
-          "bonus": true
+          "mn": "to want"
         },
         {
           "zh": "走",
           "py": "zǒu",
-          "mn": "walk",
-          "bonus": true
+          "mn": "to walk"
         },
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
+          "mn": "(shows a change)"
         },
         {
           "t": "p",
-          "tx": "。”"
+          "tx": "。"
         }
       ]
     },
     {
-      "zh": "我坐下来，喝了一些水。",
-      "en": "I sat down and drank some water."
-    },
-    {
-      "zh": "朋友说：“快到了！加油！”",
-      "en": "A friend said: \"Almost there! Keep going!\"",
+      "zh": "我坐在树下，喝了一些水。",
+      "en": "I sit under a tree and drink some water.",
       "seg": [
         {
-          "zh": "朋",
-          "py": "péng",
-          "mn": "friend",
-          "bonus": true
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
         },
         {
-          "zh": "友",
-          "py": "yǒu",
-          "mn": "friend",
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "树",
+          "py": "shù",
+          "mn": "tree"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "under"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "to drink"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一些",
+          "py": "yī xiē",
+          "mn": "some"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "朋友走过来说：“快到了，加油！”",
+      "en": "A friend comes over and says: \"Almost there, keep going!\"",
+      "seg": [
+        {
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friend"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to walk"
+        },
+        {
+          "zh": "过来",
+          "py": "guò lái",
+          "mn": "to come over",
           "bonus": true
         },
         {
           "zh": "说",
           "py": "shuō",
-          "mn": "said"
+          "mn": "to say"
         },
         {
           "t": "p",
-          "tx": "：“"
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
         },
         {
           "zh": "快",
           "py": "kuài",
-          "mn": "fast; happy",
-          "bonus": true
+          "mn": "soon"
         },
         {
           "zh": "到",
@@ -232,7 +452,16 @@
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "加油",
+          "py": "jiā yóu",
+          "mn": "keep going",
           "bonus": true
         },
         {
@@ -240,30 +469,78 @@
           "tx": "！"
         },
         {
-          "zh": "加",
-          "py": "jiā",
-          "mn": "add",
-          "bonus": true
-        },
-        {
-          "zh": "油",
-          "py": "yóu",
-          "mn": "oil",
-          "bonus": true
-        },
-        {
           "t": "p",
-          "tx": "！”"
+          "tx": "”"
         }
       ]
     },
     {
-      "zh": "我想了想，站起来又走。",
-      "en": "I thought about it, stood up and walked on."
+      "zh": "我想了想，站起来，又走了。",
+      "en": "I think for a moment, stand up, and walk on.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "站",
+          "py": "zhàn",
+          "mn": "to stand"
+        },
+        {
+          "zh": "起来",
+          "py": "qǐ lai",
+          "mn": "up"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "again",
+          "bonus": true
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to walk"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "到了山顶，我们很高兴，大声说：“我们做到了！”",
-      "en": "We reached the top and happily shouted: \"We did it!\"",
+      "zh": "到了山顶，我们大声说：“我们做到了！”",
+      "en": "At the top, we shout: \"We did it!\"",
       "seg": [
         {
           "zh": "到",
@@ -273,8 +550,76 @@
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "山顶",
+          "py": "shān dǐng",
+          "mn": "mountain top",
           "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "大声",
+          "py": "dà shēng",
+          "mn": "loudly",
+          "bonus": true
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "做到",
+          "py": "zuò dào",
+          "mn": "to manage to do",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "！"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
+    },
+    {
+      "zh": "从山上看下去，学校小得像一个点。",
+      "en": "Looking down from the mountain, the school looks as small as a dot.",
+      "seg": [
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
         },
         {
           "zh": "山",
@@ -282,9 +627,19 @@
           "mn": "mountain"
         },
         {
-          "zh": "顶",
-          "py": "dǐng",
-          "mn": "top",
+          "zh": "上",
+          "py": "shàng",
+          "mn": "top"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look"
+        },
+        {
+          "zh": "下去",
+          "py": "xià qù",
+          "mn": "down",
           "bonus": true
         },
         {
@@ -292,89 +647,47 @@
           "tx": "，"
         },
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
         },
         {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "高",
-          "py": "gāo",
-          "mn": "tall; high"
-        },
-        {
-          "zh": "兴",
-          "py": "xìng",
-          "mn": "excitement",
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is)",
           "bonus": true
         },
         {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "大",
-          "py": "dà",
-          "mn": "loudly"
-        },
-        {
-          "zh": "声",
-          "py": "shēng",
-          "mn": "sound; voice"
-        },
-        {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "said"
-        },
-        {
-          "t": "p",
-          "tx": "：“"
-        },
-        {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
-        },
-        {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
-        },
-        {
-          "zh": "做",
-          "py": "zuò",
-          "mn": "did"
-        },
-        {
-          "zh": "到",
-          "py": "dào",
-          "mn": "to arrive"
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)",
+          "zh": "像",
+          "py": "xiàng",
+          "mn": "like",
           "bonus": true
         },
         {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "点",
+          "py": "diǎn",
+          "mn": "o'clock; dot"
+        },
+        {
           "t": "p",
-          "tx": "！”"
+          "tx": "。"
         }
       ]
-    },
-    {
-      "zh": "从山上看下去，家很小很小。",
-      "en": "Looking down from the mountain, home looked very, very small."
     }
   ]
 }

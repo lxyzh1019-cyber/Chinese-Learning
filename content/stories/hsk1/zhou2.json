@@ -4,49 +4,31 @@
   "level": 1,
   "title": "大树下的朋友",
   "en": "Friends Under the Big Tree",
-  "names": {
-    "老师": {
-      "py": "lǎoshī",
-      "en": "teacher"
-    }
-  },
+  "names": {},
   "sents": [
     {
       "zh": "学校门口有一棵大树。",
       "en": "There is a big tree at the school gate.",
       "seg": [
         {
-          "zh": "学",
-          "py": "xué",
-          "mn": "to study"
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
         },
         {
-          "zh": "校",
-          "py": "xiào",
-          "mn": "school",
-          "bonus": true
-        },
-        {
-          "zh": "门",
-          "py": "mén",
-          "mn": "gate"
-        },
-        {
-          "zh": "口",
-          "py": "kǒu",
-          "mn": "entrance",
-          "bonus": true
+          "zh": "门口",
+          "py": "mén kǒu",
+          "mn": "gate; entrance"
         },
         {
           "zh": "有",
           "py": "yǒu",
-          "mn": "to have"
+          "mn": "there is"
         },
         {
           "zh": "一",
           "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "mn": "one"
         },
         {
           "zh": "棵",
@@ -62,8 +44,7 @@
         {
           "zh": "树",
           "py": "shù",
-          "mn": "tree",
-          "bonus": true
+          "mn": "tree"
         },
         {
           "t": "p",
@@ -73,10 +54,61 @@
     },
     {
       "zh": "那棵树很高，也很老。",
-      "en": "That tree is very tall and very old."
+      "en": "That tree is very tall and very old.",
+      "seg": [
+        {
+          "zh": "那",
+          "py": "nà",
+          "mn": "that"
+        },
+        {
+          "zh": "棵",
+          "py": "kē",
+          "mn": "(counting word, plants)",
+          "bonus": true
+        },
+        {
+          "zh": "树",
+          "py": "shù",
+          "mn": "tree"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "高",
+          "py": "gāo",
+          "mn": "tall"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "老",
+          "py": "lǎo",
+          "mn": "old"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "我和我的朋友每天在大树下玩。",
+      "zh": "我和朋友们每天在大树下玩。",
       "en": "My friends and I play under the big tree every day.",
       "seg": [
         {
@@ -90,41 +122,25 @@
           "mn": "and"
         },
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friend"
         },
         {
-          "zh": "的",
-          "py": "de",
-          "mn": "of; belonging to"
+          "zh": "们",
+          "py": "men",
+          "mn": "(more than one)"
         },
         {
-          "zh": "朋",
-          "py": "péng",
-          "mn": "friend",
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
           "bonus": true
-        },
-        {
-          "zh": "友",
-          "py": "yǒu",
-          "mn": "friend",
-          "bonus": true
-        },
-        {
-          "zh": "每",
-          "py": "měi",
-          "mn": "every"
-        },
-        {
-          "zh": "天",
-          "py": "tiān",
-          "mn": "day"
         },
         {
           "zh": "在",
           "py": "zài",
-          "mn": "at; in"
+          "mn": "at"
         },
         {
           "zh": "大",
@@ -134,14 +150,12 @@
         {
           "zh": "树",
           "py": "shù",
-          "mn": "tree",
-          "bonus": true
+          "mn": "tree"
         },
         {
           "zh": "下",
           "py": "xià",
-          "mn": "below; to go down",
-          "bonus": true
+          "mn": "under"
         },
         {
           "zh": "玩",
@@ -157,38 +171,82 @@
     },
     {
       "zh": "天气好的时候，我们在树下看书。",
-      "en": "When the weather is nice, we read under the tree."
+      "en": "When the weather is nice, we read under the tree.",
+      "seg": [
+        {
+          "zh": "天气",
+          "py": "tiān qì",
+          "mn": "weather"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "nice"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time; moment"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "树",
+          "py": "shù",
+          "mn": "tree"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "under"
+        },
+        {
+          "zh": "看书",
+          "py": "kàn shū",
+          "mn": "to read",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "我们做游戏，说故事，很快乐。",
+      "zh": "我们做游戏，讲故事，很快乐。",
       "en": "We play games, tell stories, and are very happy.",
       "seg": [
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
-        },
-        {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
         },
         {
           "zh": "做",
           "py": "zuò",
-          "mn": "play",
-          "bonus": true
+          "mn": "to play"
         },
         {
-          "zh": "游",
-          "py": "yóu",
-          "mn": "to swim; to travel",
-          "bonus": true
-        },
-        {
-          "zh": "戏",
-          "py": "xì",
-          "mn": "play; drama",
+          "zh": "游戏",
+          "py": "yóu xì",
+          "mn": "game",
           "bonus": true
         },
         {
@@ -196,20 +254,15 @@
           "tx": "，"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "tell"
-        },
-        {
-          "zh": "故",
-          "py": "gù",
-          "mn": "reason; old",
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
           "bonus": true
         },
         {
-          "zh": "事",
-          "py": "shì",
-          "mn": "matter; thing",
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "story",
           "bonus": true
         },
         {
@@ -222,15 +275,9 @@
           "mn": "very"
         },
         {
-          "zh": "快",
-          "py": "kuài",
-          "mn": "fast; happy",
-          "bonus": true
-        },
-        {
-          "zh": "乐",
-          "py": "lè",
-          "mn": "happy; music",
+          "zh": "快乐",
+          "py": "kuài lè",
+          "mn": "happy",
           "bonus": true
         },
         {
@@ -240,19 +287,159 @@
       ]
     },
     {
-      "zh": "我的朋友会说很多好听的故事。",
-      "en": "My friend can tell many lovely stories."
+      "zh": "我的朋友会讲很多好听的故事。",
+      "en": "My friend can tell many lovely stories.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friend"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "can"
+        },
+        {
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "好听",
+          "py": "hǎo tīng",
+          "mn": "nice to hear"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "story",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "今天他说了一个很长的故事。",
-      "en": "Today he told a very long story."
+      "zh": "今天他讲了一个很长的故事，我们都笑了。",
+      "en": "Today he told a very long story, and we all laughed.",
+      "seg": [
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "long",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "story",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "笑",
+          "py": "xiào",
+          "mn": "to laugh"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "老师来，说：“要上课了！”",
+      "zh": "老师来了，说：“要上课了！”",
       "en": "The teacher came and said: \"Time for class!\"",
       "seg": [
         {
-          "t": "n",
           "zh": "老师",
           "py": "lǎoshī",
           "mn": "teacher"
@@ -261,6 +448,11 @@
           "zh": "来",
           "py": "lái",
           "mn": "to come"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
         },
         {
           "t": "p",
@@ -273,77 +465,116 @@
         },
         {
           "t": "p",
-          "tx": "：“"
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
         },
         {
           "zh": "要",
           "py": "yào",
-          "mn": "time to"
+          "mn": "going to"
         },
         {
-          "zh": "上",
-          "py": "shàng",
-          "mn": "go to",
-          "bonus": true
-        },
-        {
-          "zh": "课",
-          "py": "kè",
-          "mn": "lesson; class",
-          "bonus": true
+          "zh": "上课",
+          "py": "shàng kè",
+          "mn": "to have class"
         },
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
+          "mn": "(shows a change)"
         },
         {
           "t": "p",
-          "tx": "！”"
+          "tx": "！"
+        },
+        {
+          "t": "p",
+          "tx": "”"
         }
       ]
     },
     {
       "zh": "我们都说：“再见，大树！”",
-      "en": "We all said: \"Goodbye, big tree!\""
-    },
-    {
-      "zh": "我们跑进教室，开始学习。",
-      "en": "We ran into the classroom and started studying.",
+      "en": "We all said: \"Goodbye, big tree!\"",
       "seg": [
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
         },
         {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "再见",
+          "py": "zài jiàn",
+          "mn": "goodbye"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "树",
+          "py": "shù",
+          "mn": "tree"
+        },
+        {
+          "t": "p",
+          "tx": "！"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
+    },
+    {
+      "zh": "我们跑进教室，开始上课。",
+      "en": "We ran into the classroom and started class.",
+      "seg": [
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
         },
         {
           "zh": "跑",
           "py": "pǎo",
-          "mn": "ran",
-          "bonus": true
+          "mn": "to run"
         },
         {
           "zh": "进",
           "py": "jìn",
-          "mn": "into",
-          "bonus": true
+          "mn": "into"
         },
         {
-          "zh": "教",
-          "py": "jiào",
-          "mn": "to teach",
-          "bonus": true
-        },
-        {
-          "zh": "室",
-          "py": "shì",
-          "mn": "room",
+          "zh": "教室",
+          "py": "jiào shì",
+          "mn": "classroom",
           "bonus": true
         },
         {
@@ -351,25 +582,15 @@
           "tx": "，"
         },
         {
-          "zh": "开",
-          "py": "kāi",
-          "mn": "to open; to start"
-        },
-        {
-          "zh": "始",
-          "py": "shǐ",
-          "mn": "begin",
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to start",
           "bonus": true
         },
         {
-          "zh": "学",
-          "py": "xué",
-          "mn": "to study"
-        },
-        {
-          "zh": "习",
-          "py": "xí",
-          "mn": "to practise"
+          "zh": "上课",
+          "py": "shàng kè",
+          "mn": "to have class"
         },
         {
           "t": "p",

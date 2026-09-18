@@ -4,52 +4,760 @@
   "level": 1,
   "title": "草原上的风",
   "en": "Wind on the Grassland",
-  "names": {
-    "契丹": {
-      "py": "Qì Dān",
-      "en": "Khitan"
-    }
-  },
+  "names": {},
   "sents": [
     {
-      "zh": "草地上的风很大。",
-      "en": "The wind on the grassland is strong."
+      "zh": "草原上的风很大，一年到头都在吹。",
+      "en": "The wind on the grassland is strong, and it blows all year round.",
+      "seg": [
+        {
+          "zh": "草原",
+          "py": "cǎo yuán",
+          "mn": "grassland",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "风",
+          "py": "fēng",
+          "mn": "wind"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big; strong"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一年到头",
+          "py": "yì nián dào tóu",
+          "mn": "all year round",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "吹",
+          "py": "chuī",
+          "mn": "to blow",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "风吹过来，草都动了。",
-      "en": "When the wind comes, all the grass moves."
+      "zh": "风吹过来，草都动了，从远处看，就像水一样。",
+      "en": "When the wind comes the grass all moves, and from far off it looks like water.",
+      "seg": [
+        {
+          "zh": "风",
+          "py": "fēng",
+          "mn": "wind"
+        },
+        {
+          "zh": "吹",
+          "py": "chuī",
+          "mn": "to blow",
+          "bonus": true
+        },
+        {
+          "zh": "过来",
+          "py": "guò lái",
+          "mn": "over",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "草",
+          "py": "cǎo",
+          "mn": "grass",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "动",
+          "py": "dòng",
+          "mn": "to move"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "远处",
+          "py": "yuǎn chù",
+          "mn": "far away",
+          "bonus": true
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就像",
+          "py": "jiù xiàng",
+          "mn": "just like",
+          "bonus": true
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "一样",
+          "py": "yī yàng",
+          "mn": "the same"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "孩子们很小就学骑马。",
-      "en": "The children learn to ride when they are very small."
+      "zh": "住在这里的孩子很小就学骑马。",
+      "en": "The children who live here learn to ride when they are very small.",
+      "seg": [
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "这里",
+          "py": "zhè lǐ",
+          "mn": "here"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "孩子",
+          "py": "hái zi",
+          "mn": "children"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to learn"
+        },
+        {
+          "zh": "骑马",
+          "py": "qí mǎ",
+          "mn": "to ride a horse",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们骑得又快又好。",
-      "en": "They rode fast and well."
+      "zh": "三四岁的时候，他们就有自己的马了。",
+      "en": "By three or four, they have a horse of their own.",
+      "seg": [
+        {
+          "zh": "三四",
+          "py": "sān sì",
+          "mn": "three or four",
+          "bonus": true
+        },
+        {
+          "zh": "岁",
+          "py": "suì",
+          "mn": "years old"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "own",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horse",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "早上，他们和大人一起出去。",
-      "en": "In the morning they go out with the grown-ups."
+      "zh": "早上，他们跟着大人一起出去放牛放马。",
+      "en": "In the morning they go out with the grown-ups to graze the cattle and horses.",
+      "seg": [
+        {
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "跟",
+          "py": "gēn",
+          "mn": "to follow"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "大人",
+          "py": "dà rén",
+          "mn": "grown-ups",
+          "bonus": true
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "出去",
+          "py": "chū qù",
+          "mn": "to go out"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to graze"
+        },
+        {
+          "zh": "牛",
+          "py": "niú",
+          "mn": "cattle",
+          "bonus": true
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to graze"
+        },
+        {
+          "zh": "马",
+          "py": "mǎ",
+          "mn": "horses",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "晚上，他们才回来。",
-      "en": "Only in the evening do they come back."
+      "zh": "中午在外面吃饭，到了晚上才回来。",
+      "en": "They eat outside at noon, and only come back in the evening.",
+      "seg": [
+        {
+          "zh": "中午",
+          "py": "zhōng wǔ",
+          "mn": "noon"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "外面",
+          "py": "wài miàn",
+          "mn": "outside",
+          "bonus": true
+        },
+        {
+          "zh": "吃饭",
+          "py": "chī fàn",
+          "mn": "to eat a meal"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to reach"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "evening"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then",
+          "bonus": true
+        },
+        {
+          "zh": "回来",
+          "py": "huí lai",
+          "mn": "to come back"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "晚上的天比城里的天好看。",
-      "en": "The night sky there is finer than the sky in the city."
+      "zh": "晚上的天很黑，可是天上的星星很亮。",
+      "en": "The night sky is dark, but the stars are very bright.",
+      "seg": [
+        {
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "evening"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "sky"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "黑",
+          "py": "hēi",
+          "mn": "dark",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "天上",
+          "py": "tiān shàng",
+          "mn": "in the sky",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "星星",
+          "py": "xīng xing",
+          "mn": "stars",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "亮",
+          "py": "liàng",
+          "mn": "bright",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们在外面吃饭，也在外面唱歌。",
-      "en": "They eat outside and sing outside."
+      "zh": "城里的灯光很多，在城里看不到这样的天。",
+      "en": "A city has so many lights that you cannot see a sky like this there.",
+      "seg": [
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "灯光",
+          "py": "dēng guāng",
+          "mn": "lights",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "看不到",
+          "py": "kàn bu dào",
+          "mn": "cannot see",
+          "bonus": true
+        },
+        {
+          "zh": "这样",
+          "py": "zhè yàng",
+          "mn": "this kind",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "sky"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "草地上的日子不容易。",
-      "en": "Life on the grassland is not easy."
+      "zh": "他们在外面唱歌，很远的地方都能听到。",
+      "en": "They sing outside, and you can hear it from far away.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "外面",
+          "py": "wài miàn",
+          "mn": "outside",
+          "bonus": true
+        },
+        {
+          "zh": "唱歌",
+          "py": "chàng gē",
+          "mn": "to sing"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "place"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all; even"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
+        },
+        {
+          "zh": "听到",
+          "py": "tīng dào",
+          "mn": "to hear"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "可是他们很爱这个地方。",
-      "en": "But they love this place very much."
+      "zh": "草原上的日子不容易，可是他们说：“这是我们的地方。”",
+      "en": "Life on the grassland is not easy, but they say: \"This is our place.\"",
+      "seg": [
+        {
+          "zh": "草原",
+          "py": "cǎo yuán",
+          "mn": "grassland",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "日子",
+          "py": "rì zi",
+          "mn": "life; days",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "容易",
+          "py": "róng yì",
+          "mn": "easy",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but",
+          "bonus": true
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we; our"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "place"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     }
   ]
 }

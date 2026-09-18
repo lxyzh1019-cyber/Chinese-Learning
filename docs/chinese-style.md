@@ -59,6 +59,44 @@ For grammar, say what the word **does**, in words a child can read:
 For a character that is half of a longer word, give **that character's own**
 meaning: 习 "to practise", 友 "friend", 鼠 "rat; mouse".
 
+## 3. Tell a story, not a word list
+
+**The rule.** A story has a cause and a consequence a child can follow, in the
+Chinese an adult would say to a child. No sentence exists to carry a target word.
+
+**Why.** The owner read gates 1–3 and could not follow them. Sentences had been
+written around the gate vocabulary, so the plot never held:
+
+| Shipped | Fault | Now |
+|---|---|---|
+| `王请他去看水` | why look at a flood rather than fix it? | `王请他去治水`, then he finds where the water comes from |
+| `一个字就是一个东西` | says nothing | gone; the bones get their why: no paper, a question for the gods, fire, cracks, answer |
+| `它去河里…它不想下水` | in the river, yet unwilling to enter it | it stands on the bank |
+| `他要建一个很大的长城` | no reason | `北边常常有人来打中国`, so the wall |
+| `喝茶的地方` ×3 | the word is 茶馆 | `茶馆` |
+
+Working rules: one causal step per sentence or two; keep one short natural
+sentence every few lines (the sentence builder needs 3–6 chips); the HSK2
+telling of the same dynasty keeps the same names and numbers and may add a
+step, never contradict one.
+
+## 4. Name the thing, even above level
+
+**The rule.** Say the word a Chinese adult would use, not a description of it.
+An above-level word is allowed when the sentence needs it: it is written as a
+`bonus` token (blue, optional, never quizzed) and listed in
+`scripts/story-supplement.js` with its reading and a child-facing gloss.
+
+**Why.** Talking around a word reads as evasion to a native reader and teaches
+nothing: `一种茶，茶里放了牛奶` is `奶茶`; `肉就不一样了` is `肉的味道不一样了`;
+`可以看方向的小东西` is `指南针`; `很好看的火` is `烟花`; `纸做的钱` is `纸币`
+(and `纸钱` is the paper burned for the dead — a title that shipped).
+
+`build_stories.js` enforces the list: in a file whose every sentence is
+reviewed, a token that is not a name, a curriculum word, a compound of
+curriculum characters or a supplement entry fails the build, and so does an
+above-level word that is not `bonus`.
+
 ---
 
 ## Enforcement

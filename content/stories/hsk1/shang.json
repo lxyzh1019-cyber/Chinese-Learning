@@ -8,20 +8,234 @@
     "商朝": {
       "py": "Shāngcháo",
       "en": "Shang Dynasty"
-    },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
     }
   },
   "sents": [
     {
-      "zh": "很久以前，中国有一个朝代叫商朝。",
-      "en": "Long ago, China had a dynasty called the Shang."
+      "zh": "很久以前，中国有一个朝代，叫商朝。",
+      "en": "Long ago, China had a dynasty called the Shang.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time",
+          "bonus": true
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "朝代",
+          "py": "cháo dài",
+          "mn": "dynasty",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "商朝",
+          "py": "Shāngcháo",
+          "mn": "Shang Dynasty"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "商朝的人在骨头上写字。",
-      "en": "Shang Dynasty people wrote characters on bones.",
+      "zh": "那时候还没有纸，人们把字刻在骨头上。",
+      "en": "At that time there was no paper yet, so people carved characters on bones.",
+      "seg": [
+        {
+          "zh": "那时候",
+          "py": "nà shí hou",
+          "mn": "at that time",
+          "bonus": true
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still; yet"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not; did not have"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
+          "bonus": true
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)",
+          "bonus": true
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character; writing"
+        },
+        {
+          "zh": "刻",
+          "py": "kè",
+          "mn": "to carve",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "骨头",
+          "py": "gǔ tou",
+          "mn": "bone",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on top"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "骨头又大又白，上面可以刻很多字。",
+      "en": "The bones were big and white, and many characters could be carved on them.",
+      "seg": [
+        {
+          "zh": "骨头",
+          "py": "gǔ tou",
+          "mn": "bone",
+          "bonus": true
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both",
+          "bonus": true
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and",
+          "bonus": true
+        },
+        {
+          "zh": "白",
+          "py": "bái",
+          "mn": "white"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "上面",
+          "py": "shàng miàn",
+          "mn": "on top",
+          "bonus": true
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can",
+          "bonus": true
+        },
+        {
+          "zh": "刻",
+          "py": "kè",
+          "mn": "to carve",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character; writing"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "商朝的人相信天上有神。",
+      "en": "The Shang people believed there were gods in the sky.",
       "seg": [
         {
           "t": "n",
@@ -37,39 +251,30 @@
         {
           "zh": "人",
           "py": "rén",
-          "mn": "person"
+          "mn": "people"
         },
         {
-          "zh": "在",
-          "py": "zài",
-          "mn": "at; in"
-        },
-        {
-          "zh": "骨",
-          "py": "gǔ",
-          "mn": "bone",
+          "zh": "相信",
+          "py": "xiāng xìn",
+          "mn": "to believe",
           "bonus": true
         },
         {
-          "zh": "头",
-          "py": "tou",
-          "mn": "(bone)",
+          "zh": "天上",
+          "py": "tiān shàng",
+          "mn": "in the sky",
           "bonus": true
         },
         {
-          "zh": "上",
-          "py": "shàng",
-          "mn": "on top"
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
         },
         {
-          "zh": "写",
-          "py": "xiě",
-          "mn": "wrote"
-        },
-        {
-          "zh": "字",
-          "py": "zì",
-          "mn": "character; writing"
+          "zh": "神",
+          "py": "shén",
+          "mn": "god",
+          "bonus": true
         },
         {
           "t": "p",
@@ -78,25 +283,292 @@
       ]
     },
     {
-      "zh": "骨头很大，上面可以写很多字。",
-      "en": "The bones were big, and many characters could be written on them."
-    },
-    {
-      "zh": "他们用这些字问神：“今天好吗？”",
-      "en": "They used these characters to ask the gods: \"Will today be good?\""
-    },
-    {
-      "zh": "他们想知道天气好不好。",
-      "en": "They wanted to know whether the weather would be good."
-    },
-    {
-      "zh": "这是中国最早的字。",
-      "en": "These are China's earliest characters.",
+      "zh": "他们有问题的时候，就把问题刻在骨头上问神。",
+      "en": "When they had a question, they carved it on a bone to ask the gods.",
       "seg": [
         {
-          "zh": "这",
-          "py": "zhè",
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "问题",
+          "py": "wèn tí",
+          "mn": "question",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time; moment"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)",
+          "bonus": true
+        },
+        {
+          "zh": "问题",
+          "py": "wèn tí",
+          "mn": "question",
+          "bonus": true
+        },
+        {
+          "zh": "刻",
+          "py": "kè",
+          "mn": "to carve",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "骨头",
+          "py": "gǔ tou",
+          "mn": "bone",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on top"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "zh": "神",
+          "py": "shén",
+          "mn": "god",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "他们问：“今天的天气好吗？”",
+      "en": "They asked: \"Will the weather be good today?\"",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "天气",
+          "py": "tiān qì",
+          "mn": "weather"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "吗",
+          "py": "má",
+          "mn": "(makes a question)"
+        },
+        {
+          "t": "p",
+          "tx": "？"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
+    },
+    {
+      "zh": "问完以后，他们用火烧骨头。",
+      "en": "After asking, they burned the bone with fire.",
+      "seg": [
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "zh": "完",
+          "py": "wán",
+          "mn": "to finish",
+          "bonus": true
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "火",
+          "py": "huǒ",
+          "mn": "fire",
+          "bonus": true
+        },
+        {
+          "zh": "烧",
+          "py": "shāo",
+          "mn": "to burn",
+          "bonus": true
+        },
+        {
+          "zh": "骨头",
+          "py": "gǔ tou",
+          "mn": "bone",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "骨头上有了裂纹，他们看裂纹找答案。",
+      "en": "Cracks appeared on the bone, and they read the cracks to find the answer.",
+      "seg": [
+        {
+          "zh": "骨头",
+          "py": "gǔ tou",
+          "mn": "bone",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on top"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "裂纹",
+          "py": "liè wén",
+          "mn": "cracks",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look at"
+        },
+        {
+          "zh": "裂纹",
+          "py": "liè wén",
+          "mn": "cracks",
+          "bonus": true
+        },
+        {
+          "zh": "找",
+          "py": "zhǎo",
+          "mn": "to look for"
+        },
+        {
+          "zh": "答案",
+          "py": "dá àn",
+          "mn": "answer",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "这些字是中国最早的字。",
+      "en": "These characters are China's earliest characters.",
+      "seg": [
+        {
+          "zh": "这些",
+          "py": "zhè xiē",
           "mn": "these"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character; writing"
         },
         {
           "zh": "是",
@@ -104,7 +576,6 @@
           "mn": "are"
         },
         {
-          "t": "n",
           "zh": "中国",
           "py": "Zhōngguó",
           "mn": "China"
@@ -112,14 +583,12 @@
         {
           "zh": "最",
           "py": "zuì",
-          "mn": "most",
-          "bonus": true
+          "mn": "most"
         },
         {
           "zh": "早",
           "py": "zǎo",
-          "mn": "early; morning",
-          "bonus": true
+          "mn": "early"
         },
         {
           "zh": "的",
@@ -138,86 +607,75 @@
       ]
     },
     {
-      "zh": "字很小，很美。",
-      "en": "The characters are small and beautiful.",
+      "zh": "后来人们在地里找到了这些骨头，今天我们还能看到上面的字。",
+      "en": "Later people found these bones in the ground, and today we can still see the characters on them.",
       "seg": [
         {
-          "zh": "字",
-          "py": "zì",
-          "mn": "character; writing"
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later",
+          "bonus": true
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people",
+          "bonus": true
         },
         {
-          "zh": "小",
-          "py": "xiǎo",
-          "mn": "small"
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
         },
         {
-          "t": "p",
-          "tx": "，"
+          "zh": "地",
+          "py": "de",
+          "mn": "ground"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
         },
         {
-          "zh": "美",
-          "py": "měi",
-          "mn": "beautiful",
+          "zh": "找到",
+          "py": "zhǎo dào",
+          "mn": "to find"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "这些",
+          "py": "zhè xiē",
+          "mn": "these"
+        },
+        {
+          "zh": "骨头",
+          "py": "gǔ tou",
+          "mn": "bone",
           "bonus": true
         },
         {
           "t": "p",
-          "tx": "。"
-        }
-      ]
-    },
-    {
-      "zh": "一个字就是一个东西，很好看。",
-      "en": "One character is one thing, and it looks beautiful."
-    },
-    {
-      "zh": "后来，人们在地里找到了这些骨头。",
-      "en": "Later, people found these bones in the ground."
-    },
-    {
-      "zh": "今天，我们还能看到这字。",
-      "en": "Today, we can still see these characters.",
-      "seg": [
-        {
-          "zh": "今",
-          "py": "jīn",
-          "mn": "now"
-        },
-        {
-          "zh": "天",
-          "py": "tiān",
-          "mn": "day; sky"
-        },
-        {
-          "t": "p",
           "tx": "，"
         },
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
         },
         {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
         },
         {
           "zh": "还",
           "py": "hái",
-          "mn": "still",
-          "bonus": true
+          "mn": "still"
         },
         {
           "zh": "能",
@@ -225,19 +683,20 @@
           "mn": "can"
         },
         {
-          "zh": "看",
-          "py": "kàn",
-          "mn": "see"
+          "zh": "看到",
+          "py": "kàn dào",
+          "mn": "to see"
         },
         {
-          "zh": "到",
-          "py": "dào",
-          "mn": "to arrive"
+          "zh": "上面",
+          "py": "shàng miàn",
+          "mn": "on top",
+          "bonus": true
         },
         {
-          "zh": "这",
-          "py": "zhè",
-          "mn": "these"
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
         },
         {
           "zh": "字",

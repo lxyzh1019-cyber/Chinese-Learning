@@ -5,23 +5,23 @@
   "title": "HSK1 Gate 21 · Late Qing",
   "explanationEn": "Gate 21: Late Qing. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第21关：清后期。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "清朝快要过去的时候，中国有很多难事。西边的国家有新的船和新的东西。他们的船很快，也很大。很多中国人开始想：我们要学新的东西。",
-  "passageEn": "As the Qing dynasty was ending, China had many difficulties. Countries to the west had new ships and new things. Their ships were fast and large. Many Chinese began to think: we must learn new things.",
+  "passage": "清朝到了后来，国家出了很多问题。官不好好做事，人们的日子越来越不好过。很多人吃不饱饭，有的地方还有人打仗。这时候，西方的国家有了轮船和大炮，比中国的强很多。",
+  "passageEn": "Late in the Qing dynasty, the country ran into many problems. The officials did not do their jobs properly, and people's lives grew harder and harder. Many people did not have enough to eat, and in some places there was fighting. At this time the countries of the West had steamships and cannon, much stronger than China's.",
   "keyVocab": [
     {
-      "zh": "快",
-      "pinyin": "kuài",
-      "en": "fast; happy"
+      "zh": "到",
+      "pinyin": "dào",
+      "en": "to reach"
     },
     {
-      "zh": "过去",
-      "pinyin": "guò qù",
-      "en": "(in the) past"
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "en": "country"
     },
     {
-      "zh": "时候",
-      "pinyin": "shíhou",
-      "en": "time; moment"
+      "zh": "出",
+      "pinyin": "chū",
+      "en": "to run into"
     },
     {
       "zh": "多",
@@ -29,38 +29,38 @@
       "en": "many"
     },
     {
-      "zh": "难",
-      "pinyin": "nán",
-      "en": "hard; difficult"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "people"
     },
     {
-      "zh": "事",
-      "pinyin": "shì",
-      "en": "matter; thing"
+      "zh": "饭",
+      "pinyin": "fàn",
+      "en": "food"
     },
     {
-      "zh": "西边",
-      "pinyin": "xī biān",
-      "en": "the west"
+      "zh": "有的",
+      "pinyin": "yǒu de",
+      "en": "some"
     },
     {
-      "zh": "国家",
-      "pinyin": "guó jiā",
-      "en": "country"
+      "zh": "地方",
+      "pinyin": "dì fāng",
+      "en": "places"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "As the Qing dynasty was ending, China had many difficulties.",
-      "answer": "清朝快要过去的时候，中国有很多难事。"
+      "answerEn": "Late in the Qing dynasty, the country ran into many problems.",
+      "answer": "清朝到了后来，国家出了很多问题。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "Their ships were fast and large.",
-      "answer": "他们的船很快，也很大。"
+      "answerEn": "Many people did not have enough to eat, and in some places there was fighting.",
+      "answer": "很多人吃不饱饭，有的地方还有人打仗。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,10 +74,10 @@
       "id": "hsk1_gate_21_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "快",
-      "pinyin": "kuài",
-      "promptEn": "In the story, what does 快 mean?",
-      "prompt": "短文里的“快”是什么意思？",
+      "zh": "到",
+      "pinyin": "dào",
+      "promptEn": "In the story, what does 到 mean?",
+      "prompt": "短文里的“到”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -85,41 +85,41 @@
         },
         {
           "id": "o2",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o3",
-          "text": "from"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o4",
-          "text": "fast; happy"
+          "text": "to reach"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "快 (kuài) means \"fast; happy\" — you can find it in the passage above.",
-      "explanation": "“快”（kuài）的意思是“fast; happy”，就在上面的短文里。"
+      "explanationEn": "到 (dào) means \"to reach\" — you can find it in the passage above.",
+      "explanation": "“到”（dào）的意思是“to reach”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_21_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "过去",
-      "pinyin": "guò qù",
-      "promptEn": "In the story, what does 过去 mean?",
-      "prompt": "短文里的“过去”是什么意思？",
+      "zh": "国家",
+      "pinyin": "guó jiā",
+      "promptEn": "In the story, what does 国家 mean?",
+      "prompt": "短文里的“国家”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o2",
-          "text": "from"
+          "text": "(shows it is finished)"
         },
         {
           "id": "o3",
-          "text": "(in the) past"
+          "text": "country"
         },
         {
           "id": "o4",
@@ -127,39 +127,39 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "过去 (guò qù) means \"(in the) past\" — you can find it in the passage above.",
-      "explanation": "“过去”（guò qù）的意思是“(in the) past”，就在上面的短文里。"
+      "explanationEn": "国家 (guó jiā) means \"country\" — you can find it in the passage above.",
+      "explanation": "“国家”（guó jiā）的意思是“country”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_21_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "清朝快要过去的时候，中国有很多难事。",
-      "targetZh": "快",
-      "targetPinyin": "kuài",
+      "zh": "清朝到了后来，国家出了很多问题。",
+      "targetZh": "到",
+      "targetPinyin": "dào",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "Dayu was a good person."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o2",
-          "text": "As the Qing dynasty was ending, China had many difficulties."
+          "text": "Late in the Qing dynasty, the country ran into many problems."
         },
         {
           "id": "o3",
-          "text": "Long ago, great floods came to China."
+          "text": "Long ago, a great flood came to China."
         },
         {
           "id": "o4",
-          "text": "The floods came, and many people had no home."
+          "text": "The flood went into the fields, and into many people's homes."
         }
       ],
       "answerId": "o2",
-      "explanationEn": "\"清朝快要过去的时候，中国有很多难事。\" means \"As the Qing dynasty was ending, China had many difficulties.\".",
-      "explanation": "“清朝快要过去的时候，中国有很多难事。”的意思是“As the Qing dynasty was ending, China had many difficulties.”。"
+      "explanationEn": "\"清朝到了后来，国家出了很多问题。\" means \"Late in the Qing dynasty, the country ran into many problems.\".",
+      "explanation": "“清朝到了后来，国家出了很多问题。”的意思是“Late in the Qing dynasty, the country ran into many problems.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Late Qing in two or three short Chinese sentences. Use words from the list above.",

@@ -28,8 +28,7 @@
         {
           "zh": "个",
           "py": "gè",
-          "mn": "(counting word)",
-          "bonus": true
+          "mn": "(counting word)"
         },
         {
           "zh": "很",
@@ -44,20 +43,12 @@
         {
           "zh": "的",
           "py": "de",
-          "mn": "of; belonging to",
-          "bonus": true
+          "mn": "(makes a describing word)"
         },
         {
-          "zh": "朋",
-          "py": "péng",
-          "mn": "friend",
-          "bonus": true
-        },
-        {
-          "zh": "友",
-          "py": "yǒu",
-          "mn": "friend",
-          "bonus": true
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friends"
         },
         {
           "t": "p",
@@ -67,11 +58,238 @@
     },
     {
       "zh": "我们在一个学校，也在一个班。",
-      "en": "We are at the same school and in the same class."
+      "en": "We are at the same school and in the same class.",
+      "seg": [
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "班",
+          "py": "bān",
+          "mn": "class"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "我们一起学习，一起吃饭，一起玩。",
-      "en": "We study, eat, and play together.",
+      "zh": "每天中午，我们四个人一起吃饭。",
+      "en": "Every day at noon, the four of us eat together.",
+      "seg": [
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "中午",
+          "py": "zhōng wǔ",
+          "mn": "noon"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "四",
+          "py": "sì",
+          "mn": "four"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "吃饭",
+          "py": "chī fàn",
+          "mn": "to eat a meal"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "有时候我们想的不一样，说一说就好了。",
+      "en": "Sometimes we think differently, but after we talk it is fine again.",
+      "seg": [
+        {
+          "zh": "有时候",
+          "py": "yǒu shí hou",
+          "mn": "sometimes"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
+        },
+        {
+          "zh": "不一样",
+          "py": "bù yí yàng",
+          "mn": "different",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "说一说",
+          "py": "shuō yi shuō",
+          "mn": "to talk it over",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "fine"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "上个月我生病了，不能去学校。",
+      "en": "Last month I got sick and could not go to school.",
+      "seg": [
+        {
+          "zh": "上个月",
+          "py": "shàng ge yuè",
+          "mn": "last month",
+          "bonus": true
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "生病",
+          "py": "shēng bìng",
+          "mn": "to get sick"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "不能",
+          "py": "bù néng",
+          "mn": "could not",
+          "bonus": true
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "我一个人在家，很没有意思。",
+      "en": "I was at home alone, and it was very boring.",
       "seg": [
         {
           "zh": "我",
@@ -79,79 +297,43 @@
           "mn": "I; me"
         },
         {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
-        },
-        {
           "zh": "一",
           "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "mn": "one"
         },
         {
-          "zh": "起",
-          "py": "qǐ",
-          "mn": "to rise; to get up",
-          "bonus": true
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
         },
         {
-          "zh": "学",
-          "py": "xué",
-          "mn": "to study"
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
         },
         {
-          "zh": "习",
-          "py": "xí",
-          "mn": "to practise"
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one",
-          "bonus": true
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
         },
         {
-          "zh": "起",
-          "py": "qǐ",
-          "mn": "to rise; to get up",
-          "bonus": true
-        },
-        {
-          "zh": "吃",
-          "py": "chī",
-          "mn": "eat"
-        },
-        {
-          "zh": "饭",
-          "py": "fàn",
-          "mn": "cooked rice; a meal",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one",
-          "bonus": true
-        },
-        {
-          "zh": "起",
-          "py": "qǐ",
-          "mn": "to rise; to get up",
-          "bonus": true
-        },
-        {
-          "zh": "玩",
-          "py": "wán",
-          "mn": "to play",
+          "zh": "没有意思",
+          "py": "méi yǒu yì si",
+          "mn": "boring",
           "bonus": true
         },
         {
@@ -161,72 +343,38 @@
       ]
     },
     {
-      "zh": "有的时候我们也不同意，可是很快就好了。",
-      "en": "Sometimes we disagree, but we make up quickly.",
-      "seg": ["有的", "时候", "我们", "也", "不", "同意", "，", "可是", "很", "快", "就", "好", "了", "。"]
-    },
-    {
-      "zh": "有一次，我生病了，朋友来看我。",
-      "en": "One time I got sick and my friends came to visit.",
+      "zh": "第三天，三个朋友来看我。",
+      "en": "On the third day, my three friends came to see me.",
       "seg": [
         {
-          "zh": "有",
-          "py": "yǒu",
-          "mn": "to have"
-        },
-        {
-          "zh": "一",
-          "py": "yī",
-          "mn": "one",
+          "zh": "第三",
+          "py": "dì sān",
+          "mn": "third",
           "bonus": true
         },
         {
-          "zh": "次",
-          "py": "cì",
-          "mn": "time"
+          "zh": "天",
+          "py": "tiān",
+          "mn": "day"
         },
         {
           "t": "p",
           "tx": "，"
         },
         {
-          "zh": "我",
-          "py": "wǒ",
-          "mn": "I; me"
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
         },
         {
-          "zh": "生",
-          "py": "shēng",
-          "mn": "to be born; student",
-          "bonus": true
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
         },
         {
-          "zh": "病",
-          "py": "bìng",
-          "mn": "sick",
-          "bonus": true
-        },
-        {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
-        },
-        {
-          "t": "p",
-          "tx": "，"
-        },
-        {
-          "zh": "朋",
-          "py": "péng",
-          "mn": "friend",
-          "bonus": true
-        },
-        {
-          "zh": "友",
-          "py": "yǒu",
-          "mn": "friend",
-          "bonus": true
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friends"
         },
         {
           "zh": "来",
@@ -236,12 +384,12 @@
         {
           "zh": "看",
           "py": "kàn",
-          "mn": "see/visit"
+          "mn": "to see; to visit"
         },
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I; me"
+          "mn": "me"
         },
         {
           "t": "p",
@@ -250,47 +398,29 @@
       ]
     },
     {
-      "zh": "他们带来了食物和书，陪我说话。",
-      "en": "They brought food and books and kept me company.",
+      "zh": "他们带来了水果和书，坐在我的床边，讲学校里的事。",
+      "en": "They brought fruit and books, sat by my bed, and told me what was happening at school.",
       "seg": [
         {
-          "zh": "他",
-          "py": "tā",
-          "mn": "he"
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
         },
         {
-          "zh": "们",
-          "py": "men",
-          "mn": "(more than one)"
-        },
-        {
-          "zh": "带",
-          "py": "dài",
-          "mn": "brought",
+          "zh": "带来",
+          "py": "dài lái",
+          "mn": "to bring",
           "bonus": true
-        },
-        {
-          "zh": "来",
-          "py": "lái",
-          "mn": "to come"
         },
         {
           "zh": "了",
           "py": "le",
-          "mn": "(shows it is finished)",
-          "bonus": true
+          "mn": "(shows it is finished)"
         },
         {
-          "zh": "食",
-          "py": "shí",
-          "mn": "food; to eat",
-          "bonus": true
-        },
-        {
-          "zh": "物",
-          "py": "wù",
-          "mn": "thing",
-          "bonus": true
+          "zh": "水果",
+          "py": "shuǐ guǒ",
+          "mn": "fruit"
         },
         {
           "zh": "和",
@@ -307,26 +437,65 @@
           "tx": "，"
         },
         {
-          "zh": "陪",
-          "py": "péi",
-          "mn": "keep",
-          "bonus": true
+          "zh": "坐",
+          "py": "zuò",
+          "mn": "to sit"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
         },
         {
           "zh": "我",
           "py": "wǒ",
-          "mn": "I; me"
+          "mn": "I; my"
         },
         {
-          "zh": "说",
-          "py": "shuō",
-          "mn": "talk"
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
         },
         {
-          "zh": "话",
-          "py": "huà",
-          "mn": "words",
+          "zh": "床",
+          "py": "chuáng",
+          "mn": "bed"
+        },
+        {
+          "zh": "边",
+          "py": "biān",
+          "mn": "side",
           "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell",
+          "bonus": true
+        },
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "school"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
         },
         {
           "t": "p",
@@ -335,59 +504,78 @@
       ]
     },
     {
-      "zh": "一个朋友还给我说了学校里的事。",
-      "en": "One friend told me what had been happening at school."
-    },
-    {
-      "zh": "我听了很高兴，忘了自己生病。",
-      "en": "I was so glad to hear it that I forgot I was ill."
-    },
-    {
-      "zh": "第二天，我就想去上学了。",
-      "en": "The next day I wanted to go back to school."
-    },
-    {
-      "zh": "好朋友的力量让我很快就好了。",
-      "en": "The power of good friends made me get well very quickly.",
+      "zh": "我听了很高兴，忘了自己在生病。",
+      "en": "I was so happy listening that I forgot I was sick.",
       "seg": [
         {
-          "zh": "好",
-          "py": "hǎo",
-          "mn": "good"
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
         },
         {
-          "zh": "朋",
-          "py": "péng",
-          "mn": "friend",
+          "zh": "听",
+          "py": "tīng",
+          "mn": "to listen"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "高兴",
+          "py": "gāo xìng",
+          "mn": "happy"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "忘",
+          "py": "wàng",
+          "mn": "to forget"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "myself",
           "bonus": true
         },
         {
-          "zh": "友",
-          "py": "yǒu",
-          "mn": "friend",
-          "bonus": true
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
         },
         {
-          "zh": "的",
-          "py": "de",
-          "mn": "of; belonging to"
+          "zh": "生病",
+          "py": "shēng bìng",
+          "mn": "to be sick"
         },
         {
-          "zh": "力",
-          "py": "lì",
-          "mn": "strength",
-          "bonus": true
-        },
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "第二天我就好多了，好朋友真的能让人快点好起来。",
+      "en": "The next day I felt much better; good friends really can help a person get well faster.",
+      "seg": [
         {
-          "zh": "量",
-          "py": "liàng",
-          "mn": "amount",
-          "bonus": true
-        },
-        {
-          "zh": "让",
-          "py": "ràng",
-          "mn": "made",
+          "zh": "第二天",
+          "py": "dì èr tiān",
+          "mn": "the next day",
           "bonus": true
         },
         {
@@ -396,21 +584,19 @@
           "mn": "I; me"
         },
         {
-          "zh": "很",
-          "py": "hěn",
-          "mn": "very"
-        },
-        {
-          "zh": "快",
-          "py": "kuài",
-          "mn": "fast; happy",
-          "bonus": true
-        },
-        {
           "zh": "就",
           "py": "jiù",
-          "mn": "then",
+          "mn": "then"
+        },
+        {
+          "zh": "好多了",
+          "py": "hǎo duō le",
+          "mn": "much better",
           "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
         },
         {
           "zh": "好",
@@ -418,9 +604,41 @@
           "mn": "good"
         },
         {
-          "zh": "了",
-          "py": "le",
-          "mn": "(shows it is finished)",
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friends"
+        },
+        {
+          "zh": "真的",
+          "py": "zhēn de",
+          "mn": "really"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to make",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "a person"
+        },
+        {
+          "zh": "快点",
+          "py": "kuài diǎn",
+          "mn": "faster",
+          "bonus": true
+        },
+        {
+          "zh": "好起来",
+          "py": "hǎo qǐ lái",
+          "mn": "to get well",
           "bonus": true
         },
         {

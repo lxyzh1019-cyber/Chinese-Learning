@@ -6472,10 +6472,27 @@
           "。"
         ],
         [
+          "它",
+          "还",
+          "不",
+          "会",
+          "游泳",
+          "。"
+        ],
+        [
           "大家",
           "没有",
           "地方",
           "住",
+          "。"
+        ],
+        [
+          "只能",
+          "住",
+          "到",
+          "山",
+          "上",
+          "去",
           "。"
         ],
         [
@@ -6492,20 +6509,6 @@
           "好",
           "人",
           "。"
-        ],
-        [
-          "妈妈",
-          "问",
-          "它",
-          "。"
-        ],
-        [
-          "你",
-          "为什么",
-          "不",
-          "下来",
-          "呢",
-          "。"
         ]
       ],
       "sentenceTargetsMeta": {
@@ -6518,8 +6521,26 @@
           "whole": false,
           "borrowedFrom": null
         },
+        "它还不会游泳。": {
+          "py": "tā hái bù huì yóu yǒng",
+          "en": null,
+          "enContext": "Among them was a little dragon who could not yet swim.",
+          "storyId": "xia2",
+          "sentIndex": 1,
+          "whole": false,
+          "borrowedFrom": null
+        },
         "大家没有地方住。": {
           "py": "dà jiā méi yǒu dì fāng zhù",
+          "en": null,
+          "enContext": "People had nowhere to live, and could only move up the mountains.",
+          "storyId": "xia",
+          "sentIndex": 3,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "只能住到山上去。": {
+          "py": "zhǐ néng zhù dào shān shàng qù",
           "en": null,
           "enContext": "People had nowhere to live, and could only move up the mountains.",
           "storyId": "xia",
@@ -6542,24 +6563,6 @@
           "enContext": "Someone said: \"Dayu is a good man — let him come.\"",
           "storyId": "xia",
           "sentIndex": 5,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "妈妈问它。": {
-          "py": "mā ma wèn tā",
-          "en": null,
-          "enContext": "Its mother asked: \"Why don’t you come in?\"",
-          "storyId": "xia2",
-          "sentIndex": 6,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "你为什么不下来呢。": {
-          "py": "nǐ wèi shén me bù xià lai ne",
-          "en": null,
-          "enContext": "Its mother asked: \"Why don’t you come in?\"",
-          "storyId": "xia2",
-          "sentIndex": 6,
           "whole": false,
           "borrowedFrom": null
         }
@@ -15589,12 +15592,6 @@
           "。"
         ],
         [
-          "一",
-          "进",
-          "去",
-          "。"
-        ],
-        [
           "大家",
           "就",
           "不",
@@ -15618,6 +15615,14 @@
           "很",
           "新",
           "。"
+        ],
+        [
+          "有的",
+          "已经",
+          "很",
+          "旧",
+          "了",
+          "。"
         ]
       ],
       "sentenceTargetsMeta": {
@@ -15636,15 +15641,6 @@
           "enContext": "It was large, and tall.",
           "storyId": "print2",
           "sentIndex": 1,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "一进去。": {
-          "py": "yī jìn qù",
-          "en": null,
-          "enContext": "The moment we went in, everyone stopped talking.",
-          "storyId": "print2",
-          "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         },
@@ -15668,6 +15664,15 @@
         },
         "有的书很新。": {
           "py": "yǒu de shū hěn xīn",
+          "en": null,
+          "enContext": "Some books were new, some already old.",
+          "storyId": "print2",
+          "sentIndex": 5,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "有的已经很旧了。": {
+          "py": "yǒu de yǐ jīng hěn jiù le",
           "en": null,
           "enContext": "Some books were new, some already old.",
           "storyId": "print2",

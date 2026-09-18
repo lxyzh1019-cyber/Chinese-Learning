@@ -5,13 +5,23 @@
   "title": "HSK1 Gate 7 · Eastern Han",
   "explanationEn": "Gate 7: Eastern Han. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第7关：东汉。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "以前，人们在竹子上写字，很重。一本书要用很多竹子，一个人拿不动。东汉时候，一位叫蔡伦的人发现可以用树皮做纸。他用树皮、旧布和水，做出了纸。",
-  "passageEn": "Before, people wrote on bamboo sticks — very heavy. One book took a great deal of bamboo — one person could not carry it. During the Eastern Han, Cai Lun discovered he could make paper from tree bark. He used tree bark, old cloth and water to make paper.",
+  "passage": "很久以前，中国还没有纸。人们把字写在竹子上。竹子很重，一本书要用很多竹子，一个人拿不动。东汉的时候，有一个人叫蔡伦。",
+  "passageEn": "Long ago, China had no paper yet. People wrote characters on bamboo. Bamboo is heavy; one book took a lot of bamboo, and one person could not carry it. In the Eastern Han, there was a man called Cai Lun.",
   "keyVocab": [
     {
-      "zh": "人",
-      "pinyin": "rén",
-      "en": "person"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
+    },
+    {
+      "zh": "字",
+      "pinyin": "zì",
+      "en": "characters"
+    },
+    {
+      "zh": "写",
+      "pinyin": "xiě",
+      "en": "to write"
     },
     {
       "zh": "上",
@@ -19,14 +29,9 @@
       "en": "on"
     },
     {
-      "zh": "写",
-      "pinyin": "xiě",
-      "en": "wrote"
-    },
-    {
-      "zh": "字",
-      "pinyin": "zì",
-      "en": "character; writing"
+      "zh": "重",
+      "pinyin": "zhòng",
+      "en": "heavy"
     },
     {
       "zh": "一",
@@ -36,31 +41,26 @@
     {
       "zh": "本",
       "pinyin": "běn",
-      "en": "root; a book"
+      "en": "(counting word, books)"
     },
     {
       "zh": "书",
       "pinyin": "shū",
       "en": "book"
-    },
-    {
-      "zh": "用",
-      "pinyin": "yòng",
-      "en": "using"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "Before, people wrote on bamboo sticks — very heavy.",
-      "answer": "以前，人们在竹子上写字，很重。"
+      "answerEn": "Long ago, China had no paper yet.",
+      "answer": "很久以前，中国还没有纸。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "During the Eastern Han, Cai Lun discovered he could make paper from tree bark.",
-      "answer": "东汉时候，一位叫蔡伦的人发现可以用树皮做纸。"
+      "answerEn": "Bamboo is heavy; one book took a lot of bamboo, and one person could not carry it.",
+      "answer": "竹子很重，一本书要用很多竹子，一个人拿不动。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,18 +74,18 @@
       "id": "hsk1_gate_07_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "人",
-      "pinyin": "rén",
-      "promptEn": "In the story, what does 人 mean?",
-      "prompt": "短文里的“人”是什么意思？",
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "promptEn": "In the story, what does 中国 mean?",
+      "prompt": "短文里的“中国”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "from"
+          "text": "to go into"
         },
         {
           "id": "o2",
-          "text": "person"
+          "text": "China"
         },
         {
           "id": "o3",
@@ -93,25 +93,25 @@
         },
         {
           "id": "o4",
-          "text": "long time"
+          "text": "(shows it is finished)"
         }
       ],
       "answerId": "o2",
-      "explanationEn": "人 (rén) means \"person\" — you can find it in the passage above.",
-      "explanation": "“人”（rén）的意思是“person”，就在上面的短文里。"
+      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
+      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_07_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "上",
-      "pinyin": "shàng",
-      "promptEn": "In the story, what does 上 mean?",
-      "prompt": "短文里的“上”是什么意思？",
+      "zh": "字",
+      "pinyin": "zì",
+      "promptEn": "In the story, what does 字 mean?",
+      "prompt": "短文里的“字”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "on"
+          "text": "characters"
         },
         {
           "id": "o2",
@@ -119,47 +119,47 @@
         },
         {
           "id": "o3",
-          "text": "long time"
+          "text": "China"
         },
         {
           "id": "o4",
-          "text": "from"
+          "text": "(shows it is finished)"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "上 (shàng) means \"on\" — you can find it in the passage above.",
-      "explanation": "“上”（shàng）的意思是“on”，就在上面的短文里。"
+      "explanationEn": "字 (zì) means \"characters\" — you can find it in the passage above.",
+      "explanation": "“字”（zì）的意思是“characters”，就在上面的短文里。"
     },
     {
       "id": "hsk1_gate_07_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "以前，人们在竹子上写字，很重。",
-      "targetZh": "人",
-      "targetPinyin": "rén",
+      "zh": "很久以前，中国还没有纸。",
+      "targetZh": "中国",
+      "targetPinyin": "Zhōngguó",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
         {
           "id": "o1",
-          "text": "Long ago, great floods came to China."
+          "text": "Long ago, a great flood came to China."
         },
         {
           "id": "o2",
-          "text": "The floods came, and many people had no home."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o3",
-          "text": "Dayu was a good person."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o4",
-          "text": "Before, people wrote on bamboo sticks — very heavy."
+          "text": "Long ago, China had no paper yet."
         }
       ],
       "answerId": "o4",
-      "explanationEn": "\"以前，人们在竹子上写字，很重。\" means \"Before, people wrote on bamboo sticks — very heavy.\".",
-      "explanation": "“以前，人们在竹子上写字，很重。”的意思是“Before, people wrote on bamboo sticks — very heavy.”。"
+      "explanationEn": "\"很久以前，中国还没有纸。\" means \"Long ago, China had no paper yet.\".",
+      "explanation": "“很久以前，中国还没有纸。”的意思是“Long ago, China had no paper yet.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Eastern Han in two or three short Chinese sentences. Use words from the list above.",
