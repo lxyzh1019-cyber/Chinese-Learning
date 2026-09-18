@@ -4,67 +4,1089 @@
   "level": 2,
   "title": "书里的世界",
   "en": "The World Inside Books",
-  "names": {},
+  "names": {
+    "大禹": {
+      "py": "Dà Yǔ",
+      "en": "Dayu"
+    },
+    "长城": {
+      "py": "Chángchéng",
+      "en": "the Great Wall"
+    }
+  },
   "sents": [
     {
       "zh": "我最喜欢的东西是书。",
-      "en": "My favourite thing is books."
+      "en": "My favourite thing is books.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; my"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "thing"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "我的房间里有很多书，放得到处都是。",
-      "en": "My room is full of books, all over the place."
+      "en": "My room is full of books, all over the place.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; my"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "房间",
+          "py": "fáng jiān",
+          "mn": "room"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "到处",
+          "py": "dào chù",
+          "mn": "everywhere",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "有的是新的，有的已经很旧了。",
-      "en": "Some are new, some are already old."
+      "en": "Some are new, and some are already very old.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "are"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(ones)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "已经",
+          "py": "yǐ jīng",
+          "mn": "already"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "旧",
+          "py": "jiù",
+          "mn": "old",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "书里有很多有意思的故事。",
-      "en": "Books hold many interesting stories."
+      "en": "Books are full of interesting stories.",
+      "seg": [
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "有意思",
+          "py": "yǒu yì si",
+          "mn": "interesting",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "stories"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有的书说的是很久以前的事情。",
-      "en": "Some are about things from long ago."
+      "zh": "有的书讲很久以前的事，里面有皇帝，有长城，还有大禹。",
+      "en": "Some books tell of things long ago: emperors, the Great Wall, and Dayu.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time",
+          "bonus": true
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "里面",
+          "py": "lǐ miàn",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperors",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there is"
+        },
+        {
+          "t": "n",
+          "zh": "长城",
+          "py": "Chángchéng",
+          "mn": "the Great Wall"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还有",
+          "py": "hái yǒu",
+          "mn": "and also"
+        },
+        {
+          "t": "n",
+          "zh": "大禹",
+          "py": "Dà Yǔ",
+          "mn": "Dayu"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "里面有皇帝，有长城，还有大禹。",
-      "en": "In them are emperors, the Great Wall, and Dayu."
-    },
-    {
-      "zh": "有的书说的是天上和水里的动物。",
-      "en": "Some are about the animals of the sky and the water."
+      "zh": "有的书讲天上的鸟和水里的鱼。",
+      "en": "Some books tell of the birds in the sky and the fish in the water.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell"
+        },
+        {
+          "zh": "天上",
+          "py": "tiān shàng",
+          "mn": "in the sky",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "鸟",
+          "py": "niǎo",
+          "mn": "birds"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "鱼",
+          "py": "yú",
+          "mn": "fish"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "我看书的时候，就像去了很远的地方。",
-      "en": "When I read, it is as if I have gone somewhere far away."
+      "en": "When I read, it is as if I have gone somewhere far away.",
+      "seg": [
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "看书",
+          "py": "kàn shū",
+          "mn": "to read",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就像",
+          "py": "jiù xiàng",
+          "mn": "just like",
+          "bonus": true
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "place"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有时候我看得太认真，妈妈叫我都听不到。",
-      "en": "Sometimes I read so intently that I do not hear my mother call."
+      "zh": "有时候我看得太认真，妈妈叫我，我都听不见。",
+      "en": "Sometimes I read so intently that I do not even hear Mum calling me.",
+      "seg": [
+        {
+          "zh": "有时候",
+          "py": "yǒu shí hou",
+          "mn": "sometimes"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
+        },
+        {
+          "zh": "认真",
+          "py": "rèn zhēn",
+          "mn": "attentive"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to call"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "me"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all; even"
+        },
+        {
+          "zh": "听不见",
+          "py": "tīng bu jiàn",
+          "mn": "cannot hear",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "她说：“看书让你成为一个更好的人。”",
-      "en": "She says: \"Reading makes you a better person.\""
+      "zh": "妈妈说：“看书让你知道很多事，也让你成为一个更好的人。”",
+      "en": "Mum says: \"Reading lets you know many things, and makes you a better person.\"",
+      "seg": [
+        {
+          "zh": "妈妈",
+          "py": "mā ma",
+          "mn": "mother"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "看书",
+          "py": "kàn shū",
+          "mn": "reading",
+          "bonus": true
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to let"
+        },
+        {
+          "zh": "你",
+          "py": "nǐ",
+          "mn": "you"
+        },
+        {
+          "zh": "知道",
+          "py": "zhī dào",
+          "mn": "to know"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to make"
+        },
+        {
+          "zh": "你",
+          "py": "nǐ",
+          "mn": "you"
+        },
+        {
+          "zh": "成为",
+          "py": "chéng wéi",
+          "mn": "to become"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "even"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
       "zh": "她还说，不认识的字可以问她。",
-      "en": "She also says I can ask her about any character I do not know."
+      "en": "She also says I can ask her about any character I do not know.",
+      "seg": [
+        {
+          "zh": "她",
+          "py": "tā",
+          "mn": "she"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "also"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "认识",
+          "py": "rèn shi",
+          "mn": "to know (a character)"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "zh": "她",
+          "py": "tā",
+          "mn": "her"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所以我常常放着一本小本子。",
-      "en": "So I often keep a small notebook to hand."
+      "zh": "所以我身上常常带着一个小本子。",
+      "en": "So I often keep a small notebook with me.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "身上",
+          "py": "shēn shang",
+          "mn": "on the body"
+        },
+        {
+          "zh": "常常",
+          "py": "cháng cháng",
+          "mn": "often",
+          "bonus": true
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "to carry"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
+        },
+        {
+          "zh": "本子",
+          "py": "běn zi",
+          "mn": "notebook"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "看到新的字，我就写下来。",
-      "en": "When I meet a new character, I write it down."
+      "zh": "看到新的字，我就把它写下来。",
+      "en": "When I meet a new character, I write it down.",
+      "seg": [
+        {
+          "zh": "看到",
+          "py": "kàn dào",
+          "mn": "to see"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "character"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "down"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "每天晚上，我都要看一会书。",
-      "en": "Every evening I read for a while."
+      "zh": "每天晚上，我都要看一会儿书。",
+      "en": "Every evening I read for a while.",
+      "seg": [
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "晚上",
+          "py": "wǎn shang",
+          "mn": "evening"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all; always"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to want"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "zh": "一会儿",
+          "py": "yī huì r",
+          "mn": "a while"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "虽然我已经看了很多书，但是我还想看更多。",
-      "en": "Although I have already read many books, I want to read more."
+      "en": "Although I have already read many books, I want to read more.",
+      "seg": [
+        {
+          "zh": "虽然",
+          "py": "suī rán",
+          "mn": "although"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "已经",
+          "py": "yǐ jīng",
+          "mn": "already"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "但是",
+          "py": "dàn shì",
+          "mn": "but"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "even"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "书里的世界，比我们的房间大得多。",
+      "en": "The world inside books is far bigger than our room.",
+      "seg": [
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "世界",
+          "py": "shì jiè",
+          "mn": "world"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "比",
+          "py": "bǐ",
+          "mn": "than"
+        },
+        {
+          "zh": "我们",
+          "py": "wǒ men",
+          "mn": "we; our"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "房间",
+          "py": "fáng jiān",
+          "mn": "room"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "得多",
+          "py": "de duō",
+          "mn": "by far",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

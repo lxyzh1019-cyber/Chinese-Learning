@@ -5,23 +5,18 @@
   "title": "HSK2 Gate 7 · Eastern Han",
   "explanationEn": "Gate 7: Eastern Han. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第7关：东汉。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "很久以前，人们不在纸上写字，因为那时候还没有纸。他们把字写在竹子上面。一本书要用很多很多竹子。所以书又重又大，一个人拿不动。",
-  "passageEn": "Long ago people did not write on paper, because there was none. They wrote on strips of bamboo. One book took a great deal of bamboo. So a book was heavy and bulky, and one person could not carry it.",
+  "passage": "很久以前，中国还没有纸。人们把字写在竹子上，一本书要用很多竹子。竹子又重又大，一个人拿不动。如果要送一本书给朋友，那是很难的事。",
+  "passageEn": "Long ago, China had no paper yet. People wrote characters on bamboo, and one book took a great deal of bamboo. Bamboo was heavy and bulky, and one person could not carry it. If you wanted to send a friend a book, it was a hard thing to do.",
   "keyVocab": [
-    {
-      "zh": "久",
-      "pinyin": "jiǔ",
-      "en": "long time"
-    },
     {
       "zh": "以前",
       "pinyin": "yǐ qián",
       "en": "before"
     },
     {
-      "zh": "人们",
-      "pinyin": "rén men",
-      "en": "people"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
       "zh": "纸",
@@ -29,38 +24,43 @@
       "en": "paper"
     },
     {
-      "zh": "上",
-      "pinyin": "shàng",
-      "en": "up; on; above"
-    },
-    {
-      "zh": "写",
-      "pinyin": "xiě",
-      "en": "wrote"
+      "zh": "人们",
+      "pinyin": "rén men",
+      "en": "people"
     },
     {
       "zh": "字",
       "pinyin": "zì",
-      "en": "character; writing"
+      "en": "characters"
     },
     {
-      "zh": "因为",
-      "pinyin": "yīn wèi",
-      "en": "because"
+      "zh": "写",
+      "pinyin": "xiě",
+      "en": "to write"
+    },
+    {
+      "zh": "上",
+      "pinyin": "shàng",
+      "en": "on"
+    },
+    {
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "Long ago people did not write on paper, because there was none.",
-      "answer": "很久以前，人们不在纸上写字，因为那时候还没有纸。"
+      "answerEn": "Long ago, China had no paper yet.",
+      "answer": "很久以前，中国还没有纸。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "One book took a great deal of bamboo.",
-      "answer": "一本书要用很多很多竹子。"
+      "answerEn": "Bamboo was heavy and bulky, and one person could not carry it.",
+      "answer": "竹子又重又大，一个人拿不动。"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -74,36 +74,6 @@
       "id": "hsk2_gate_07_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "久",
-      "pinyin": "jiǔ",
-      "promptEn": "In the story, what does 久 mean?",
-      "prompt": "短文里的“久”是什么意思？",
-      "options": [
-        {
-          "id": "o1",
-          "text": "China"
-        },
-        {
-          "id": "o2",
-          "text": "long time"
-        },
-        {
-          "id": "o3",
-          "text": "very"
-        },
-        {
-          "id": "o4",
-          "text": "before"
-        }
-      ],
-      "answerId": "o2",
-      "explanationEn": "久 (jiǔ) means \"long time\" — you can find it in the passage above.",
-      "explanation": "“久”（jiǔ）的意思是“long time”，就在上面的短文里。"
-    },
-    {
-      "id": "hsk2_gate_07_w2",
-      "kind": "wordMeaning",
-      "skill": "meaning",
       "zh": "以前",
       "pinyin": "yǐ qián",
       "promptEn": "In the story, what does 以前 mean?",
@@ -111,7 +81,37 @@
       "options": [
         {
           "id": "o1",
+          "text": "to fall"
+        },
+        {
+          "id": "o2",
           "text": "before"
+        },
+        {
+          "id": "o3",
+          "text": "very"
+        },
+        {
+          "id": "o4",
+          "text": "China"
+        }
+      ],
+      "answerId": "o2",
+      "explanationEn": "以前 (yǐ qián) means \"before\" — you can find it in the passage above.",
+      "explanation": "“以前”（yǐ qián）的意思是“before”，就在上面的短文里。"
+    },
+    {
+      "id": "hsk2_gate_07_w2",
+      "kind": "wordMeaning",
+      "skill": "meaning",
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "promptEn": "In the story, what does 中国 mean?",
+      "prompt": "短文里的“中国”是什么意思？",
+      "options": [
+        {
+          "id": "o1",
+          "text": "China"
         },
         {
           "id": "o2",
@@ -119,7 +119,7 @@
         },
         {
           "id": "o3",
-          "text": "China"
+          "text": "before"
         },
         {
           "id": "o4",
@@ -127,16 +127,16 @@
         }
       ],
       "answerId": "o1",
-      "explanationEn": "以前 (yǐ qián) means \"before\" — you can find it in the passage above.",
-      "explanation": "“以前”（yǐ qián）的意思是“before”，就在上面的短文里。"
+      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
+      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_07_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "很久以前，人们不在纸上写字，因为那时候还没有纸。",
-      "targetZh": "久",
-      "targetPinyin": "jiǔ",
+      "zh": "很久以前，中国还没有纸。",
+      "targetZh": "以前",
+      "targetPinyin": "yǐ qián",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
@@ -154,12 +154,12 @@
         },
         {
           "id": "o4",
-          "text": "Long ago people did not write on paper, because there was none."
+          "text": "Long ago, China had no paper yet."
         }
       ],
       "answerId": "o4",
-      "explanationEn": "\"很久以前，人们不在纸上写字，因为那时候还没有纸。\" means \"Long ago people did not write on paper, because there was none.\".",
-      "explanation": "“很久以前，人们不在纸上写字，因为那时候还没有纸。”的意思是“Long ago people did not write on paper, because there was none.”。"
+      "explanationEn": "\"很久以前，中国还没有纸。\" means \"Long ago, China had no paper yet.\".",
+      "explanation": "“很久以前，中国还没有纸。”的意思是“Long ago, China had no paper yet.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Eastern Han in two or three short Chinese sentences. Use words from the list above.",

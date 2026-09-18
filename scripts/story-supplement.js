@@ -231,4 +231,15 @@ module.exports = {
   "躲":     { py: "duǒ",         en: "to hide" },
   "喘气":   { py: "chuǎn qì",    en: "to pant" },
   "吓了一跳": { py: "xià le yí tiào", en: "to get a fright" },
+  // ── HSK2 gates 6–9 ──
+  "沙漠":   { py: "shā mò",      en: "desert" },
+  "来回":   { py: "lái huí",     en: "round trip" },
+  "大门":   { py: "dà mén",      en: "great door; gate" },
+  "全身":   { py: "quán shēn",   en: "whole body" },
+  "渔网":   { py: "yú wǎng",     en: "fishing net" },
+  "好用":   { py: "hǎo yòng",    en: "useful; easy to use" },
+  "到处":   { py: "dào chù",     en: "everywhere" },
+  "弹琴":   { py: "tán qín",     en: "to play the qin (a stringed instrument)" },
+  "喝酒":   { py: "hē jiǔ",      en: "to drink wine" },
+  "天天":   { py: "tiān tiān",   en: "every day" },
 };

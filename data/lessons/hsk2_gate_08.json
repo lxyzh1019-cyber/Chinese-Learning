@@ -5,28 +5,18 @@
   "title": "HSK2 Gate 8 · Three Kingdoms",
   "explanationEn": "Gate 8: Three Kingdoms. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第8关：三国。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "汉朝以后，中国分成了三个国家。这三个国常常打来打去。那时候有一个很聪明的人，叫诸葛亮。他年轻的时候住在山里，天天看书。",
-  "passageEn": "After the Han, China split into three states. The three states fought one another constantly. There was a very clever man of that time called Zhuge Liang. When he was young he lived in the hills and read every day.",
+  "passage": "汉朝以后，中国分成了三个国，叫三国。这三个国常常打仗。那时候有一个很聪明的人，叫诸葛亮。他年轻的时候住在山里，天天看书。",
+  "passageEn": "After the Han, China split into three states, called the Three Kingdoms. The three states were always at war. At that time there was a very clever man called Zhuge Liang. When he was young he lived in the hills and read every day.",
   "keyVocab": [
-    {
-      "zh": "汉朝",
-      "pinyin": "Hàncháo",
-      "en": "Han Dynasty"
-    },
     {
       "zh": "以后",
       "pinyin": "yǐ hòu",
       "en": "after"
     },
     {
-      "zh": "分",
-      "pinyin": "fēn",
-      "en": "share"
-    },
-    {
-      "zh": "成",
-      "pinyin": "chéng",
-      "en": "to become; to succeed"
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
       "zh": "三",
@@ -34,32 +24,42 @@
       "en": "three"
     },
     {
-      "zh": "国家",
-      "pinyin": "guó jiā",
-      "en": "country"
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "called"
     },
     {
-      "zh": "国",
-      "pinyin": "guó",
-      "en": "kingdoms"
+      "zh": "一",
+      "pinyin": "yī",
+      "en": "one"
     },
     {
-      "zh": "常",
-      "pinyin": "cháng",
-      "en": "often; usual"
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "person"
+    },
+    {
+      "zh": "年轻",
+      "pinyin": "nián qīng",
+      "en": "young"
+    },
+    {
+      "zh": "时候",
+      "pinyin": "shíhou",
+      "en": "time"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "After the Han, China split into three states.",
-      "answer": "汉朝以后，中国分成了三个国家。"
+      "answerEn": "After the Han, China split into three states, called the Three Kingdoms.",
+      "answer": "汉朝以后，中国分成了三个国，叫三国。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "There was a very clever man of that time called Zhuge Liang.",
+      "answerEn": "At that time there was a very clever man called Zhuge Liang.",
       "answer": "那时候有一个很聪明的人，叫诸葛亮。"
     },
     {
@@ -74,14 +74,14 @@
       "id": "hsk2_gate_08_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "汉朝",
-      "pinyin": "Hàncháo",
-      "promptEn": "In the story, what does 汉朝 mean?",
-      "prompt": "短文里的“汉朝”是什么意思？",
+      "zh": "以后",
+      "pinyin": "yǐ hòu",
+      "promptEn": "In the story, what does 以后 mean?",
+      "prompt": "短文里的“以后”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "Han Dynasty"
+          "text": "after"
         },
         {
           "id": "o2",
@@ -97,17 +97,17 @@
         }
       ],
       "answerId": "o1",
-      "explanationEn": "汉朝 (Hàncháo) means \"Han Dynasty\" — you can find it in the passage above.",
-      "explanation": "“汉朝”（Hàncháo）的意思是“Han Dynasty”，就在上面的短文里。"
+      "explanationEn": "以后 (yǐ hòu) means \"after\" — you can find it in the passage above.",
+      "explanation": "“以后”（yǐ hòu）的意思是“after”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_08_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "以后",
-      "pinyin": "yǐ hòu",
-      "promptEn": "In the story, what does 以后 mean?",
-      "prompt": "短文里的“以后”是什么意思？",
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "promptEn": "In the story, what does 中国 mean?",
+      "prompt": "短文里的“中国”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -119,24 +119,24 @@
         },
         {
           "id": "o3",
-          "text": "China"
+          "text": "to fall"
         },
         {
           "id": "o4",
-          "text": "after"
+          "text": "China"
         }
       ],
       "answerId": "o4",
-      "explanationEn": "以后 (yǐ hòu) means \"after\" — you can find it in the passage above.",
-      "explanation": "“以后”（yǐ hòu）的意思是“after”，就在上面的短文里。"
+      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
+      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_08_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "汉朝以后，中国分成了三个国家。",
-      "targetZh": "汉朝",
-      "targetPinyin": "Hàncháo",
+      "zh": "汉朝以后，中国分成了三个国，叫三国。",
+      "targetZh": "以后",
+      "targetPinyin": "yǐ hòu",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
@@ -150,7 +150,7 @@
         },
         {
           "id": "o3",
-          "text": "After the Han, China split into three states."
+          "text": "After the Han, China split into three states, called the Three Kingdoms."
         },
         {
           "id": "o4",
@@ -158,8 +158,8 @@
         }
       ],
       "answerId": "o3",
-      "explanationEn": "\"汉朝以后，中国分成了三个国家。\" means \"After the Han, China split into three states.\".",
-      "explanation": "“汉朝以后，中国分成了三个国家。”的意思是“After the Han, China split into three states.”。"
+      "explanationEn": "\"汉朝以后，中国分成了三个国，叫三国。\" means \"After the Han, China split into three states, called the Three Kingdoms.\".",
+      "explanation": "“汉朝以后，中国分成了三个国，叫三国。”的意思是“After the Han, China split into three states, called the Three Kingdoms.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Three Kingdoms in two or three short Chinese sentences. Use words from the list above.",

@@ -7,73 +7,1146 @@
   "names": {
     "蔡伦": {
       "py": "Cài Lún",
-      "en": "Cai Lun, who improved paper-making"
+      "en": "Cai Lun"
     },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+    "东汉": {
+      "py": "Dōng Hàn",
+      "en": "the Eastern Han"
     }
   },
   "sents": [
     {
-      "zh": "很久以前，人们不在纸上写字，因为那时候还没有纸。",
-      "en": "Long ago people did not write on paper, because there was none."
+      "zh": "很久以前，中国还没有纸。",
+      "en": "Long ago, China had no paper yet.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time",
+          "bonus": true
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "yet"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "did not have"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们把字写在竹子上面。",
-      "en": "They wrote on strips of bamboo."
+      "zh": "人们把字写在竹子上，一本书要用很多竹子。",
+      "en": "People wrote characters on bamboo, and one book took a great deal of bamboo.",
+      "seg": [
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "竹子",
+          "py": "zhú zi",
+          "mn": "bamboo",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "(counting word, books)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to need"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "竹子",
+          "py": "zhú zi",
+          "mn": "bamboo",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "一本书要用很多很多竹子。",
-      "en": "One book took a great deal of bamboo."
-    },
-    {
-      "zh": "所以书又重又大，一个人拿不动。",
-      "en": "So a book was heavy and bulky, and one person could not carry it."
+      "zh": "竹子又重又大，一个人拿不动。",
+      "en": "Bamboo was heavy and bulky, and one person could not carry it.",
+      "seg": [
+        {
+          "zh": "竹子",
+          "py": "zhú zi",
+          "mn": "bamboo",
+          "bonus": true
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "重",
+          "py": "zhòng",
+          "mn": "heavy"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "拿不动",
+          "py": "ná bu dòng",
+          "mn": "cannot lift",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "如果要送一本书给朋友，那是很难的事。",
-      "en": "If you wanted to send a friend a book, it was a hard thing to do."
+      "en": "If you wanted to send a friend a book, it was a hard thing to do.",
+      "seg": [
+        {
+          "zh": "如果",
+          "py": "rú guǒ",
+          "mn": "if"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to want"
+        },
+        {
+          "zh": "送",
+          "py": "sòng",
+          "mn": "to send"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "本",
+          "py": "běn",
+          "mn": "(counting word, books)"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "book"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "to"
+        },
+        {
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friend"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "那",
+          "py": "nà",
+          "mn": "that"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "难",
+          "py": "nán",
+          "mn": "hard"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "后来，有一个人想到了一个办法。",
-      "en": "Later a man thought of a way."
+      "zh": "有钱人也把字写在丝绸上，可是丝绸太贵了。",
+      "en": "The wealthy also wrote on silk, but silk was too expensive.",
+      "seg": [
+        {
+          "zh": "有钱",
+          "py": "yǒu qián",
+          "mn": "rich",
+          "bonus": true
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "丝绸",
+          "py": "sī chóu",
+          "mn": "silk",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "丝绸",
+          "py": "sī chóu",
+          "mn": "silk",
+          "bonus": true
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
+        },
+        {
+          "zh": "贵",
+          "py": "guì",
+          "mn": "expensive"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他的名字叫蔡伦。",
-      "en": "His name was Cai Lun."
+      "zh": "东汉的时候，有一个人叫蔡伦。",
+      "en": "In the Eastern Han, there was a man called Cai Lun.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "东汉",
+          "py": "Dōng Hàn",
+          "mn": "the Eastern Han"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "蔡伦",
+          "py": "Cài Lún",
+          "mn": "Cai Lun"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他用树皮和旧布，先放到水里。",
-      "en": "He took tree bark and old cloth and put them in water."
+      "zh": "他想：“能不能做一种又轻又便宜的东西来写字？”",
+      "en": "He thought: \"Could we make something light and cheap to write on?\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "能不能",
+          "py": "néng bu néng",
+          "mn": "could we",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to make"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "kind"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "轻",
+          "py": "qīng",
+          "mn": "light",
+          "bonus": true
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "便宜",
+          "py": "pián yi",
+          "mn": "cheap",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "thing"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come; (in order to)"
+        },
+        {
+          "zh": "写字",
+          "py": "xiě zì",
+          "mn": "to write",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "？"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "然后他把它们做得又白又轻。",
-      "en": "Then he worked them until they were white and light."
+      "zh": "他把树皮、旧布和破渔网放在水里，捣得很碎。",
+      "en": "He put tree bark, old cloth and torn fishing nets in water, and pounded them into small pieces.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "树皮",
+          "py": "shù pí",
+          "mn": "tree bark",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "、"
+        },
+        {
+          "zh": "旧",
+          "py": "jiù",
+          "mn": "old",
+          "bonus": true
+        },
+        {
+          "zh": "布",
+          "py": "bù",
+          "mn": "cloth",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "破",
+          "py": "pò",
+          "mn": "torn",
+          "bonus": true
+        },
+        {
+          "zh": "渔网",
+          "py": "yú wǎng",
+          "mn": "fishing net",
+          "bonus": true
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "捣",
+          "py": "dǎo",
+          "mn": "to pound",
+          "bonus": true
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "碎",
+          "py": "suì",
+          "mn": "into small pieces",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "等干了以后，就成了纸。",
-      "en": "Once dry, it became paper."
+      "zh": "然后他把它们做成薄薄的一片，晒干以后，就成了纸。",
+      "en": "Then he made them into a thin sheet, and once it had dried in the sun, it was paper.",
+      "seg": [
+        {
+          "zh": "然后",
+          "py": "rán hòu",
+          "mn": "then"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "它们",
+          "py": "tā men",
+          "mn": "them"
+        },
+        {
+          "zh": "做成",
+          "py": "zuò chéng",
+          "mn": "to make into",
+          "bonus": true
+        },
+        {
+          "zh": "薄薄",
+          "py": "báo báo",
+          "mn": "very thin",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "片",
+          "py": "piān",
+          "mn": "sheet"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "晒干",
+          "py": "shài gān",
+          "mn": "to dry in the sun",
+          "bonus": true
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "成",
+          "py": "chéng",
+          "mn": "to become"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "纸很轻，而且不贵。",
-      "en": "Paper is light, and not expensive."
+      "zh": "纸又轻又便宜，写字很方便。",
+      "en": "Paper was light and cheap, and easy to write on.",
+      "seg": [
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "轻",
+          "py": "qīng",
+          "mn": "light",
+          "bonus": true
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "便宜",
+          "py": "pián yi",
+          "mn": "cheap",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "写字",
+          "py": "xiě zì",
+          "mn": "to write",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "方便",
+          "py": "fāng biàn",
+          "mn": "convenient"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有了纸，学生可以带书上学。",
-      "en": "With paper, students could carry books to school."
+      "zh": "有了纸，学生可以带书上学，老师也可以把课文写下来给大家看。",
+      "en": "With paper, students could carry books to school, and teachers could write out the lesson for everyone to read.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "学生",
+          "py": "xué sheng",
+          "mn": "students"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "to carry"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "zh": "上学",
+          "py": "shàng xué",
+          "mn": "to go to school"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "老师",
+          "py": "lǎoshī",
+          "mn": "teacher"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "课文",
+          "py": "kè wén",
+          "mn": "lesson text"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "down"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "for"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to read"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "老师也可以把课文写下来给大家看。",
-      "en": "Teachers could write out lessons for everyone to read."
+      "zh": "因为纸很好用，它慢慢传到了别的国家。",
+      "en": "Because paper was so useful, it slowly spread to other countries.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好用",
+          "py": "hǎo yòng",
+          "mn": "useful; easy to use",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "慢慢",
+          "py": "màn màn",
+          "mn": "slowly",
+          "bonus": true
+        },
+        {
+          "zh": "传",
+          "py": "chuán",
+          "mn": "to spread",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为纸很好用，所以它慢慢到了别的国家。",
-      "en": "Because paper was so useful, it slowly reached other countries."
+      "zh": "今天，世界上的人都在用纸。",
+      "en": "Today, people all over the world use paper.",
+      "seg": [
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "世界",
+          "py": "shì jiè",
+          "mn": "world"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "今天，世界上的人都在用纸，这是从中国开始的。",
-      "en": "Today people all over the world use paper, and it began in China."
+      "zh": "这是从中国开始的。",
+      "en": "And it began in China.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(ends the description)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "蔡伦的发明改变了中国，也改变了世界。",
+      "en": "Cai Lun's invention changed China, and changed the world.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "蔡伦",
+          "py": "Cài Lún",
+          "mn": "Cai Lun"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "发明",
+          "py": "fā míng",
+          "mn": "invention",
+          "bonus": true
+        },
+        {
+          "zh": "改变",
+          "py": "gǎi biàn",
+          "mn": "to change"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "改变",
+          "py": "gǎi biàn",
+          "mn": "to change"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "世界",
+          "py": "shì jiè",
+          "mn": "world"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }
