@@ -12,68 +12,1056 @@
     "孙中山": {
       "py": "Sūn Zhōngshān",
       "en": "Sun Yat-sen"
+    },
+    "中华民国": {
+      "py": "Zhōnghuá Mínguó",
+      "en": "the Republic of China"
     }
   },
   "sents": [
     {
       "zh": "一百多年以前，中国还有皇帝。",
-      "en": "A little over a hundred years ago China still had an emperor."
+      "en": "A little over a hundred years ago, China still had an emperor.",
+      "seg": [
+        {
+          "zh": "一百",
+          "py": "yì bǎi",
+          "mn": "one hundred",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "ago"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "可是那时候的日子很不好过。",
-      "en": "But life in those days was very hard."
+      "zh": "可是那时候的日子很不好过，国家里面有问题，外面也有问题。",
+      "en": "But life in those days was very hard, with trouble inside the country and outside it.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "那时候",
+          "py": "nà shí hou",
+          "mn": "at that time",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "日子",
+          "py": "rì zi",
+          "mn": "life"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "好过",
+          "py": "hǎo guò",
+          "mn": "easy to bear",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "里面",
+          "py": "lǐ miàn",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "问题",
+          "py": "wèn tí",
+          "mn": "problems"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "外面",
+          "py": "wài miàn",
+          "mn": "outside",
+          "bonus": true
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "问题",
+          "py": "wèn tí",
+          "mn": "problems"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "很多人想：中国要不一样。",
-      "en": "Many thought: China must be different."
+      "en": "Many thought: China must be different.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "不一样",
+          "py": "bù yí yàng",
+          "mn": "different",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有一个人叫孙中山。",
-      "en": "There was a man called Sun Yat-sen."
+      "zh": "有一个人叫孙中山，他年轻的时候学过医，会给人看病。",
+      "en": "There was a man called Sun Yat-sen, who had studied medicine when young and could treat the sick.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to be called"
+        },
+        {
+          "t": "n",
+          "zh": "孙中山",
+          "py": "Sūn Zhōngshān",
+          "mn": "Sun Yat-sen"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "年轻",
+          "py": "nián qīng",
+          "mn": "young"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "zh": "学",
+          "py": "xué",
+          "mn": "to study"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(have done before)"
+        },
+        {
+          "zh": "医",
+          "py": "yī",
+          "mn": "medicine",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "to know how"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "for"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "看病",
+          "py": "kàn bìng",
+          "mn": "to treat illness"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他年轻的时候学过给人看病。",
-      "en": "When he was young he studied how to treat the sick."
+      "zh": "他去过很多国家，看到别的国家没有皇帝也很好。",
+      "en": "He had been to many countries, and saw that they did well without an emperor.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(have done before)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "看到",
+          "py": "kàn dào",
+          "mn": "to see"
+        },
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not to have"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also; still"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他也去过很多国家，看过很多东西。",
-      "en": "He had been to many countries and seen a great deal."
-    },
-    {
-      "zh": "他发现，别的国家没有皇帝也很好。",
-      "en": "He found that other countries did well without an emperor."
+      "zh": "他想：国家不是皇帝一个人的。",
+      "en": "He thought: the country does not belong to the emperor alone.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "所以他说：国家是大家的。",
-      "en": "So he said: the country belongs to everyone."
+      "en": "So he said: the country belongs to everyone.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他相信中国人自己可以做到。",
-      "en": "He believed the Chinese people could do it themselves."
+      "en": "He believed the Chinese people could do it themselves.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "相信",
+          "py": "xiāng xìn",
+          "mn": "to believe"
+        },
+        {
+          "zh": "中国人",
+          "py": "Zhōngguó rén",
+          "mn": "Chinese people",
+          "bonus": true
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "themselves"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "做到",
+          "py": "zuò dào",
+          "mn": "to achieve"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "很多年轻人跟着他一起做事。",
-      "en": "Many young people worked with him."
+      "zh": "很多年轻人跟着他一起做这件事。",
+      "en": "Many young people worked with him on it.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "年轻人",
+          "py": "nián qīng rén",
+          "mn": "young people",
+          "bonus": true
+        },
+        {
+          "zh": "跟着",
+          "py": "gēn zhe",
+          "mn": "to follow",
+          "bonus": true
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "件",
+          "py": "jiàn",
+          "mn": "(counting word, matters)"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们做了很多次，都没有成功。",
-      "en": "They tried many times without success."
+      "zh": "他们做了很多次，都没有成功，有的人还因为这件事死了。",
+      "en": "They tried many times without success, and some even died for it.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "times"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "did not"
+        },
+        {
+          "zh": "成功",
+          "py": "chéng gōng",
+          "mn": "to succeed"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "even"
+        },
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because of"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "件",
+          "py": "jiàn",
+          "mn": "(counting word, matters)"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter"
+        },
+        {
+          "zh": "死",
+          "py": "sǐ",
+          "mn": "to die"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "不过他一直没有放弃。",
-      "en": "But he never gave up."
+      "zh": "可是他一直没有放弃。",
+      "en": "But he never gave up.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all along"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "did not"
+        },
+        {
+          "zh": "放弃",
+          "py": "fàng qì",
+          "mn": "to give up",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "一九一二年，新的国家开始了。",
-      "en": "In 1912 the new state began."
+      "zh": "一九一二年，新的国家开始了，叫中华民国。",
+      "en": "In 1912 the new state began, called the Republic of China.",
+      "seg": [
+        {
+          "zh": "一九一二年",
+          "py": "yī jiǔ yī èr nián",
+          "mn": "the year 1912",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "state"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to be called"
+        },
+        {
+          "t": "n",
+          "zh": "中华民国",
+          "py": "Zhōnghuá Mínguó",
+          "mn": "the Republic of China"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "新的政府建了新的学校，也修了新的路。",
-      "en": "The new government built new schools and new roads."
+      "zh": "中国没有皇帝了，孙中山做了第一任大总统。",
+      "en": "China no longer had an emperor, and Sun Yat-sen became the first president.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "no longer there"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "孙中山",
+          "py": "Sūn Zhōngshān",
+          "mn": "Sun Yat-sen"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to become"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "第一",
+          "py": "dì yī",
+          "mn": "first",
+          "bonus": true
+        },
+        {
+          "zh": "任",
+          "py": "rèn",
+          "mn": "(counting word, terms of office)",
+          "bonus": true
+        },
+        {
+          "zh": "大总统",
+          "py": "dà zǒng tǒng",
+          "mn": "president",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "虽然前面的路还很难，但是大家心里有希望。",
-      "en": "Although the road ahead was still hard, people had hope."
+      "zh": "新的政府建了新式的学校，也修了新的路。",
+      "en": "The new government built new-style schools and new roads.",
+      "seg": [
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "政府",
+          "py": "zhèng fǔ",
+          "mn": "government",
+          "bonus": true
+        },
+        {
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "to build",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "新式",
+          "py": "xīn shì",
+          "mn": "new-style",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "学校",
+          "py": "xué xiào",
+          "mn": "schools"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "修",
+          "py": "xiū",
+          "mn": "to build",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "roads"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "前面的路还很难，可是大家心里有希望。",
+      "en": "The road ahead was still hard, but people had hope in their hearts.",
+      "seg": [
+        {
+          "zh": "前面",
+          "py": "qián miàn",
+          "mn": "ahead",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "难",
+          "py": "nán",
+          "mn": "hard"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "zh": "心里",
+          "py": "xīn lǐ",
+          "mn": "in the heart",
+          "bonus": true
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "希望",
+          "py": "xī wàng",
+          "mn": "hope"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

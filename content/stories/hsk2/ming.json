@@ -11,7 +11,7 @@
     },
     "郑和": {
       "py": "Zhèng Hé",
-      "en": "Zheng He, admiral of the treasure fleet"
+      "en": "Zheng He"
     },
     "中国": {
       "py": "Zhōngguó",
@@ -21,63 +21,1113 @@
   "sents": [
     {
       "zh": "六百多年以前，明朝有一个很大的船队。",
-      "en": "More than six hundred years ago the Ming had a great fleet."
+      "en": "More than six hundred years ago, the Ming had a great fleet.",
+      "seg": [
+        {
+          "zh": "六百",
+          "py": "liù bǎi",
+          "mn": "six hundred",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "ago"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "t": "n",
+          "zh": "明朝",
+          "py": "Míng Cháo",
+          "mn": "the Ming dynasty"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "船队",
+          "py": "chuán duì",
+          "mn": "fleet",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "带着船队的人叫郑和。",
-      "en": "The man who led it was called Zheng He."
+      "zh": "带船队的人叫郑和。",
+      "en": "The man who led the fleet was called Zheng He.",
+      "seg": [
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "to lead"
+        },
+        {
+          "zh": "船队",
+          "py": "chuán duì",
+          "mn": "fleet",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "man"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to be called"
+        },
+        {
+          "t": "n",
+          "zh": "郑和",
+          "py": "Zhèng Hé",
+          "mn": "Zheng He"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他的船非常大，比很多房子还大。",
-      "en": "His ships were enormous, bigger than many houses."
+      "en": "His ships were enormous, bigger than many houses.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "ship"
+        },
+        {
+          "zh": "非常",
+          "py": "fēi cháng",
+          "mn": "extremely"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "比",
+          "py": "bǐ",
+          "mn": "than"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "房子",
+          "py": "fáng zi",
+          "mn": "house"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "even"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "一条船上可以住几百个人。",
-      "en": "One ship could hold several hundred people."
+      "en": "One ship could hold several hundred people.",
+      "seg": [
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "mn": "(counting word, ships)"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "ship"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "几百",
+          "py": "jǐ bǎi",
+          "mn": "several hundred",
+          "bonus": true
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "船上有水，有米，还有很多别的东西。",
-      "en": "On board were water, rice and many other things."
+      "zh": "船上有水，有米，还有中国的丝绸和茶。",
+      "en": "On board were water, rice, and Chinese silk and tea.",
+      "seg": [
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "ship"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "米",
+          "py": "mǐ",
+          "mn": "rice"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还有",
+          "py": "hái yǒu",
+          "mn": "and also"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "丝绸",
+          "py": "sī chóu",
+          "mn": "silk",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们带着中国的丝、茶和很好看的东西。",
-      "en": "They carried Chinese silk, tea and beautiful goods."
+      "zh": "这些东西是带去送人和做买卖的。",
+      "en": "These were carried as gifts and as goods to trade.",
+      "seg": [
+        {
+          "zh": "这些",
+          "py": "zhè xiē",
+          "mn": "these"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "were"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "to bring"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "送",
+          "py": "sòng",
+          "mn": "to give"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "做买卖",
+          "py": "zuò mǎi mài",
+          "mn": "to trade",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "船队从中国出发，一直向西走。",
-      "en": "The fleet set out from China and sailed west."
+      "zh": "船队从中国出发，一直向西，在大海上走了很多天。",
+      "en": "The fleet set out from China and sailed west, many days on the open sea.",
+      "seg": [
+        {
+          "zh": "船队",
+          "py": "chuán duì",
+          "mn": "fleet",
+          "bonus": true
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "出发",
+          "py": "chū fā",
+          "mn": "to set out"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all the way"
+        },
+        {
+          "zh": "向",
+          "py": "xiàng",
+          "mn": "towards"
+        },
+        {
+          "zh": "西",
+          "py": "xī",
+          "mn": "west"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "大海",
+          "py": "dà hǎi",
+          "mn": "the sea",
+          "bonus": true
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to travel"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "days"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们过了很大的海。",
-      "en": "They crossed a great sea."
+      "zh": "因为船很大，所以风大浪大的时候，他们也不怕。",
+      "en": "Because the ships were so big, they had no fear of wind or waves.",
+      "seg": [
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "船",
+          "py": "chuán",
+          "mn": "ship"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "风",
+          "py": "fēng",
+          "mn": "wind"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "浪",
+          "py": "làng",
+          "mn": "waves",
+          "bonus": true
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also; even"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "怕",
+          "py": "pà",
+          "mn": "to fear"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有的地方非常热，有的地方非常远。",
-      "en": "Some places were very hot, some very far."
+      "zh": "有的地方非常热，有的地方非常远，他们见到了很多不同国家的人。",
+      "en": "Some places were very hot, some very far, and they met people of many countries.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "zh": "非常",
+          "py": "fēi cháng",
+          "mn": "extremely"
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "mn": "hot"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "zh": "非常",
+          "py": "fēi cháng",
+          "mn": "extremely"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "见到",
+          "py": "jiàn dào",
+          "mn": "to meet"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "不同",
+          "py": "bù tóng",
+          "mn": "different"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们见到了很多不一样的人。",
-      "en": "They met many different peoples."
+      "zh": "他们没有去打那些国家，只是做买卖，然后回来。",
+      "en": "They did not go to fight those countries; they only traded, and then came home.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "did not"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "打",
+          "py": "dǎ",
+          "mn": "to fight"
+        },
+        {
+          "zh": "那些",
+          "py": "nà xiē",
+          "mn": "those"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "只是",
+          "py": "zhǐ shì",
+          "mn": "only"
+        },
+        {
+          "zh": "做买卖",
+          "py": "zuò mǎi mài",
+          "mn": "to trade",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "然后",
+          "py": "rán hòu",
+          "mn": "then"
+        },
+        {
+          "zh": "回来",
+          "py": "huí lai",
+          "mn": "to come back"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们没有去打那些国家。",
-      "en": "They did not go to make war on those countries."
+      "zh": "别的国家的人送给他们从来没有见过的动物。",
+      "en": "People of other lands gave them animals they had never seen.",
+      "seg": [
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "送给",
+          "py": "sòng gěi",
+          "mn": "to give",
+          "bonus": true
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "them"
+        },
+        {
+          "zh": "从来",
+          "py": "cóng lái",
+          "mn": "ever",
+          "bonus": true
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "见",
+          "py": "jiàn",
+          "mn": "to see"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(have done before)"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "动物",
+          "py": "dòng wù",
+          "mn": "animals"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们只是做买卖，然后回来。",
-      "en": "They only traded, and then came back."
+      "zh": "有一次，他们带回来一只长颈鹿，京城里的人都跑来看。",
+      "en": "Once they brought back a giraffe, and everyone in the capital ran to see it.",
+      "seg": [
+        {
+          "zh": "有一次",
+          "py": "yǒu yí cì",
+          "mn": "once",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "to bring"
+        },
+        {
+          "zh": "回来",
+          "py": "huí lai",
+          "mn": "back"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "只",
+          "py": "zhī",
+          "mn": "(counting word, animals)"
+        },
+        {
+          "zh": "长颈鹿",
+          "py": "cháng jǐng lù",
+          "mn": "giraffe",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "京城",
+          "py": "jīng chéng",
+          "mn": "the capital",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "跑",
+          "py": "pǎo",
+          "mn": "to run"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "别的国家的人给了他们从来没有见过的动物。",
-      "en": "People of other lands gave them animals they had never seen."
-    },
-    {
-      "zh": "郑和一共走了七次。",
-      "en": "Zheng He made the voyage seven times in all."
+      "zh": "郑和一共走了七次，每次都要走两三年。",
+      "en": "Zheng He made the voyage seven times, and each took two or three years.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "郑和",
+          "py": "Zhèng Hé",
+          "mn": "Zheng He"
+        },
+        {
+          "zh": "一共",
+          "py": "yí gòng",
+          "mn": "in all",
+          "bonus": true
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to travel"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "七",
+          "py": "qī",
+          "mn": "seven"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "times"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "每次",
+          "py": "měi cì",
+          "mn": "each time",
+          "bonus": true
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all; every"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to travel"
+        },
+        {
+          "zh": "两三",
+          "py": "liǎng sān",
+          "mn": "two or three",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "所以那时候，很多国家都知道中国。",
-      "en": "So in those days many countries knew of China."
+      "en": "So in those days, many countries knew of China.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "那时候",
+          "py": "nà shí hou",
+          "mn": "at that time",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "知道",
+          "py": "zhī dào",
+          "mn": "to know"
+        },
+        {
+          "t": "n",
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "今天，那些地方还有关于郑和的故事。",
+      "en": "Today those places still tell stories about Zheng He.",
+      "seg": [
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "那些",
+          "py": "nà xiē",
+          "mn": "those"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "关于",
+          "py": "guān yú",
+          "mn": "about",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "郑和",
+          "py": "Zhèng Hé",
+          "mn": "Zheng He"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "stories"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

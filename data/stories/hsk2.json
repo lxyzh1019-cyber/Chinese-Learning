@@ -7333,33 +7333,28 @@
     [
      {
       "t": "c",
-      "ch": "六",
-      "py": "liù",
-      "mn": "six"
-     },
-     {
-      "t": "c",
-      "ch": "百",
-      "py": "bǎi",
-      "mn": "hundred"
+      "ch": "六百",
+      "py": "liù bǎi",
+      "mn": "six hundred",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "more than"
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "c",
       "ch": "以前",
       "py": "yǐ qián",
-      "mn": "before"
+      "mn": "ago"
      },
      {
       "t": "p",
@@ -7375,7 +7370,7 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "had"
      },
      {
       "t": "c",
@@ -7387,7 +7382,7 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
@@ -7399,25 +7394,20 @@
       "t": "c",
       "ch": "大",
       "py": "dà",
-      "mn": "great"
+      "mn": "big"
      },
      {
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
-      "ch": "船",
-      "py": "chuán",
-      "mn": "boats"
-     },
-     {
-      "t": "c",
-      "ch": "队",
-      "py": "duì",
-      "mn": "team; line"
+      "ch": "船队",
+      "py": "chuán duì",
+      "mn": "fleet",
+      "bonus": true
      },
      {
       "t": "p",
@@ -7429,25 +7419,14 @@
       "t": "c",
       "ch": "带",
       "py": "dài",
-      "mn": "took"
+      "mn": "to lead"
      },
      {
       "t": "c",
-      "ch": "着",
-      "py": "zhe",
-      "mn": "(-ing, an action going on)"
-     },
-     {
-      "t": "c",
-      "ch": "船",
-      "py": "chuán",
-      "mn": "boats"
-     },
-     {
-      "t": "c",
-      "ch": "队",
-      "py": "duì",
-      "mn": "team; line"
+      "ch": "船队",
+      "py": "chuán duì",
+      "mn": "fleet",
+      "bonus": true
      },
      {
       "t": "c",
@@ -7459,19 +7438,19 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "man"
      },
      {
       "t": "c",
       "ch": "叫",
       "py": "jiào",
-      "mn": "called"
+      "mn": "to be called"
      },
      {
       "t": "n",
       "tx": "郑和",
       "py": "Zhèng Hé",
-      "mn": "Zheng He, admiral of the treasure fleet"
+      "mn": "Zheng He"
      },
      {
       "t": "p",
@@ -7483,7 +7462,7 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he; his"
      },
      {
       "t": "c",
@@ -7495,19 +7474,19 @@
       "t": "c",
       "ch": "船",
       "py": "chuán",
-      "mn": "boats"
+      "mn": "ship"
      },
      {
       "t": "c",
       "ch": "非常",
       "py": "fēi cháng",
-      "mn": "very; really"
+      "mn": "extremely"
      },
      {
       "t": "c",
       "ch": "大",
       "py": "dà",
-      "mn": "great"
+      "mn": "big"
      },
      {
       "t": "p",
@@ -7517,7 +7496,7 @@
       "t": "c",
       "ch": "比",
       "py": "bǐ",
-      "mn": "to compare"
+      "mn": "than"
      },
      {
       "t": "c",
@@ -7541,13 +7520,13 @@
       "t": "c",
       "ch": "还",
       "py": "hái",
-      "mn": "still"
+      "mn": "even"
      },
      {
       "t": "c",
       "ch": "大",
       "py": "dà",
-      "mn": "great"
+      "mn": "big"
      },
      {
       "t": "p",
@@ -7565,19 +7544,19 @@
       "t": "c",
       "ch": "条",
       "py": "tiáo",
-      "mn": "(counting word, long things)"
+      "mn": "(counting word, ships)"
      },
      {
       "t": "c",
       "ch": "船",
       "py": "chuán",
-      "mn": "boats"
+      "mn": "ship"
      },
      {
       "t": "c",
       "ch": "上",
       "py": "shàng",
-      "mn": "up; on; above"
+      "mn": "on"
      },
      {
       "t": "c",
@@ -7593,27 +7572,22 @@
      },
      {
       "t": "c",
-      "ch": "几",
-      "py": "jī",
-      "mn": "small table"
-     },
-     {
-      "t": "c",
-      "ch": "百",
-      "py": "bǎi",
-      "mn": "hundred"
+      "ch": "几百",
+      "py": "jǐ bǎi",
+      "mn": "several hundred",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "p",
@@ -7625,19 +7599,19 @@
       "t": "c",
       "ch": "船",
       "py": "chuán",
-      "mn": "boats"
+      "mn": "ship"
      },
      {
       "t": "c",
       "ch": "上",
       "py": "shàng",
-      "mn": "up; on; above"
+      "mn": "on"
      },
      {
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there was"
      },
      {
       "t": "c",
@@ -7653,13 +7627,13 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there was"
      },
      {
       "t": "c",
       "ch": "米",
       "py": "mǐ",
-      "mn": "rice; metre"
+      "mn": "rice"
      },
      {
       "t": "p",
@@ -7669,55 +7643,7 @@
       "t": "c",
       "ch": "还有",
       "py": "hái yǒu",
-      "mn": "furthermore"
-     },
-     {
-      "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "多",
-      "py": "duō",
-      "mn": "many"
-     },
-     {
-      "t": "c",
-      "ch": "别的",
-      "py": "bié de",
-      "mn": "other"
-     },
-     {
-      "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "thing; things"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
-     },
-     {
-      "t": "c",
-      "ch": "带",
-      "py": "dài",
-      "mn": "took"
-     },
-     {
-      "t": "c",
-      "ch": "着",
-      "py": "zhe",
-      "mn": "(-ing, an action going on)"
+      "mn": "and also"
      },
      {
       "t": "n",
@@ -7733,49 +7659,22 @@
      },
      {
       "t": "c",
-      "ch": "丝",
-      "py": "sī",
-      "mn": "silk"
+      "ch": "丝绸",
+      "py": "sī chóu",
+      "mn": "silk",
+      "bonus": true
      },
      {
-      "t": "p",
-      "tx": "、"
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
      },
      {
       "t": "c",
       "ch": "茶",
       "py": "chá",
       "mn": "tea"
-     },
-     {
-      "t": "c",
-      "ch": "和",
-      "py": "hé",
-      "mn": "and; with"
-     },
-     {
-      "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "好看",
-      "py": "hǎo kàn",
-      "mn": "good-looking"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "thing; things"
      },
      {
       "t": "p",
@@ -7785,21 +7684,83 @@
     [
      {
       "t": "c",
-      "ch": "船",
-      "py": "chuán",
-      "mn": "boats"
+      "ch": "这些",
+      "py": "zhè xiē",
+      "mn": "these"
      },
      {
       "t": "c",
-      "ch": "队",
-      "py": "duì",
-      "mn": "team; line"
+      "ch": "东西",
+      "py": "dōng xi",
+      "mn": "things"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "were"
+     },
+     {
+      "t": "c",
+      "ch": "带",
+      "py": "dài",
+      "mn": "to bring"
+     },
+     {
+      "t": "c",
+      "ch": "去",
+      "py": "qù",
+      "mn": "to go"
+     },
+     {
+      "t": "c",
+      "ch": "送",
+      "py": "sòng",
+      "mn": "to give"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
+     },
+     {
+      "t": "c",
+      "ch": "做买卖",
+      "py": "zuò mǎi mài",
+      "mn": "to trade",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "船队",
+      "py": "chuán duì",
+      "mn": "fleet",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "从",
       "py": "cóng",
-      "mn": "from; to follow"
+      "mn": "from"
      },
      {
       "t": "n",
@@ -7811,7 +7772,7 @@
       "t": "c",
       "ch": "出发",
       "py": "chū fā",
-      "mn": "to set off"
+      "mn": "to set out"
      },
      {
       "t": "p",
@@ -7821,13 +7782,13 @@
       "t": "c",
       "ch": "一直",
       "py": "yī zhí",
-      "mn": "always"
+      "mn": "all the way"
      },
      {
       "t": "c",
       "ch": "向",
       "py": "xiàng",
-      "mn": "towards; direction"
+      "mn": "towards"
      },
      {
       "t": "c",
@@ -7836,28 +7797,33 @@
       "mn": "west"
      },
      {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "在",
+      "py": "zài",
+      "mn": "on"
+     },
+     {
+      "t": "c",
+      "ch": "大海",
+      "py": "dà hǎi",
+      "mn": "the sea",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "上",
+      "py": "shàng",
+      "mn": "on"
+     },
+     {
       "t": "c",
       "ch": "走",
       "py": "zǒu",
-      "mn": "moved"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
-     },
-     {
-      "t": "c",
-      "ch": "过",
-      "py": "guò",
-      "mn": "pass"
+      "mn": "to travel"
      },
      {
       "t": "c",
@@ -7873,9 +7839,80 @@
      },
      {
       "t": "c",
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "天",
+      "py": "tiān",
+      "mn": "days"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "因为",
+      "py": "yīn wèi",
+      "mn": "because"
+     },
+     {
+      "t": "c",
+      "ch": "船",
+      "py": "chuán",
+      "mn": "ship"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
       "ch": "大",
       "py": "dà",
-      "mn": "great"
+      "mn": "big"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "所以",
+      "py": "suǒ yǐ",
+      "mn": "so"
+     },
+     {
+      "t": "c",
+      "ch": "风",
+      "py": "fēng",
+      "mn": "wind"
+     },
+     {
+      "t": "c",
+      "ch": "大",
+      "py": "dà",
+      "mn": "big"
+     },
+     {
+      "t": "c",
+      "ch": "浪",
+      "py": "làng",
+      "mn": "waves",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "大",
+      "py": "dà",
+      "mn": "big"
      },
      {
       "t": "c",
@@ -7885,9 +7922,37 @@
      },
      {
       "t": "c",
-      "ch": "海",
-      "py": "hǎi",
-      "mn": "sea"
+      "ch": "时候",
+      "py": "shíhou",
+      "mn": "time"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "they"
+     },
+     {
+      "t": "c",
+      "ch": "也",
+      "py": "yě",
+      "mn": "also; even"
+     },
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "怕",
+      "py": "pà",
+      "mn": "to fear"
      },
      {
       "t": "p",
@@ -7899,19 +7964,19 @@
       "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "地方",
       "py": "dì fāng",
-      "mn": "place"
+      "mn": "places"
      },
      {
       "t": "c",
       "ch": "非常",
       "py": "fēi cháng",
-      "mn": "very; really"
+      "mn": "extremely"
      },
      {
       "t": "c",
@@ -7927,19 +7992,19 @@
       "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "地方",
       "py": "dì fāng",
-      "mn": "place"
+      "mn": "places"
      },
      {
       "t": "c",
       "ch": "非常",
       "py": "fēi cháng",
-      "mn": "very; really"
+      "mn": "extremely"
      },
      {
       "t": "c",
@@ -7949,10 +8014,8 @@
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
       "ch": "他们",
@@ -7963,7 +8026,7 @@
       "t": "c",
       "ch": "见到",
       "py": "jiàn dào",
-      "mn": "to see"
+      "mn": "to meet"
      },
      {
       "t": "c",
@@ -7985,15 +8048,15 @@
      },
      {
       "t": "c",
-      "ch": "不",
-      "py": "bù",
-      "mn": "not"
+      "ch": "不同",
+      "py": "bù tóng",
+      "mn": "different"
      },
      {
       "t": "c",
-      "ch": "一样",
-      "py": "yī yàng",
-      "mn": "same"
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "countries"
      },
      {
       "t": "c",
@@ -8005,7 +8068,7 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "p",
@@ -8023,19 +8086,19 @@
       "t": "c",
       "ch": "没有",
       "py": "méi yǒu",
-      "mn": "not; did not have"
+      "mn": "did not"
      },
      {
       "t": "c",
       "ch": "去",
       "py": "qù",
-      "mn": "go"
+      "mn": "to go"
      },
      {
       "t": "c",
       "ch": "打",
       "py": "dǎ",
-      "mn": "to hit; to play (a game)"
+      "mn": "to fight"
      },
      {
       "t": "c",
@@ -8047,43 +8110,24 @@
       "t": "c",
       "ch": "国家",
       "py": "guó jiā",
-      "mn": "country"
+      "mn": "countries"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
+      "tx": "，"
      },
      {
       "t": "c",
       "ch": "只是",
       "py": "zhǐ shì",
-      "mn": "merely; only; just; nothing but"
+      "mn": "only"
      },
      {
       "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
-     },
-     {
-      "t": "c",
-      "ch": "买",
-      "py": "mǎi",
-      "mn": "to buy"
-     },
-     {
-      "t": "c",
-      "ch": "卖",
-      "py": "mài",
-      "mn": "to sell"
+      "ch": "做买卖",
+      "py": "zuò mǎi mài",
+      "mn": "to trade",
+      "bonus": true
      },
      {
       "t": "p",
@@ -8093,13 +8137,13 @@
       "t": "c",
       "ch": "然后",
       "py": "rán hòu",
-      "mn": "then; after that; afterwards"
+      "mn": "then"
      },
      {
       "t": "c",
       "ch": "回来",
       "py": "huí lai",
-      "mn": "to return; to come back"
+      "mn": "to come back"
      },
      {
       "t": "p",
@@ -8117,7 +8161,7 @@
       "t": "c",
       "ch": "国家",
       "py": "guó jiā",
-      "mn": "country"
+      "mn": "countries"
      },
      {
       "t": "c",
@@ -8129,19 +8173,74 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
-      "ch": "给",
-      "py": "gěi",
-      "mn": "prepared"
+      "ch": "送给",
+      "py": "sòng gěi",
+      "mn": "to give",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "了",
-      "py": "le",
-      "mn": "(shows it is finished)"
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "them"
+     },
+     {
+      "t": "c",
+      "ch": "从来",
+      "py": "cóng lái",
+      "mn": "ever",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "没有",
+      "py": "méi yǒu",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "见",
+      "py": "jiàn",
+      "mn": "to see"
+     },
+     {
+      "t": "c",
+      "ch": "过",
+      "py": "guò",
+      "mn": "(have done before)"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "(makes a describing word)"
+     },
+     {
+      "t": "c",
+      "ch": "动物",
+      "py": "dòng wù",
+      "mn": "animals"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "有一次",
+      "py": "yǒu yí cì",
+      "mn": "once",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
@@ -8151,27 +8250,51 @@
      },
      {
       "t": "c",
-      "ch": "从来",
-      "py": "cóng lái",
-      "mn": "always"
+      "ch": "带",
+      "py": "dài",
+      "mn": "to bring"
      },
      {
       "t": "c",
-      "ch": "没有",
-      "py": "méi yǒu",
-      "mn": "not; did not have"
+      "ch": "回来",
+      "py": "huí lai",
+      "mn": "back"
      },
      {
       "t": "c",
-      "ch": "见",
-      "py": "jiàn",
-      "mn": "meet"
+      "ch": "一",
+      "py": "yī",
+      "mn": "one"
      },
      {
       "t": "c",
-      "ch": "过",
-      "py": "guò",
-      "mn": "pass"
+      "ch": "只",
+      "py": "zhī",
+      "mn": "(counting word, animals)"
+     },
+     {
+      "t": "c",
+      "ch": "长颈鹿",
+      "py": "cháng jǐng lù",
+      "mn": "giraffe",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "京城",
+      "py": "jīng chéng",
+      "mn": "the capital",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "里",
+      "py": "lǐ",
+      "mn": "in"
      },
      {
       "t": "c",
@@ -8181,9 +8304,33 @@
      },
      {
       "t": "c",
-      "ch": "动物",
-      "py": "dòng wù",
-      "mn": "animal"
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "都",
+      "py": "dōu",
+      "mn": "all"
+     },
+     {
+      "t": "c",
+      "ch": "跑",
+      "py": "pǎo",
+      "mn": "to run"
+     },
+     {
+      "t": "c",
+      "ch": "来",
+      "py": "lái",
+      "mn": "to come"
+     },
+     {
+      "t": "c",
+      "ch": "看",
+      "py": "kàn",
+      "mn": "to look"
      },
      {
       "t": "p",
@@ -8195,25 +8342,20 @@
       "t": "n",
       "tx": "郑和",
       "py": "Zhèng Hé",
-      "mn": "Zheng He, admiral of the treasure fleet"
+      "mn": "Zheng He"
      },
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "共",
-      "py": "gòng",
-      "mn": "common"
+      "ch": "一共",
+      "py": "yí gòng",
+      "mn": "in all",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "走",
       "py": "zǒu",
-      "mn": "moved"
+      "mn": "to travel"
      },
      {
       "t": "c",
@@ -8235,6 +8377,48 @@
      },
      {
       "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "每次",
+      "py": "měi cì",
+      "mn": "each time",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "都",
+      "py": "dōu",
+      "mn": "all; every"
+     },
+     {
+      "t": "c",
+      "ch": "要",
+      "py": "yào",
+      "mn": "must"
+     },
+     {
+      "t": "c",
+      "ch": "走",
+      "py": "zǒu",
+      "mn": "to travel"
+     },
+     {
+      "t": "c",
+      "ch": "两三",
+      "py": "liǎng sān",
+      "mn": "two or three",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "年",
+      "py": "nián",
+      "mn": "years"
+     },
+     {
+      "t": "p",
       "tx": "。"
      }
     ],
@@ -8249,7 +8433,8 @@
       "t": "c",
       "ch": "那时候",
       "py": "nà shí hou",
-      "mn": "at that time"
+      "mn": "at that time",
+      "bonus": true
      },
      {
       "t": "p",
@@ -8271,7 +8456,7 @@
       "t": "c",
       "ch": "国家",
       "py": "guó jiā",
-      "mn": "country"
+      "mn": "countries"
      },
      {
       "t": "c",
@@ -8283,7 +8468,7 @@
       "t": "c",
       "ch": "知道",
       "py": "zhī dào",
-      "mn": "to know; to become aware of"
+      "mn": "to know"
      },
      {
       "t": "n",
@@ -8295,24 +8480,89 @@
       "t": "p",
       "tx": "。"
      }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "今天",
+      "py": "jīn tiān",
+      "mn": "today"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "那些",
+      "py": "nà xiē",
+      "mn": "those"
+     },
+     {
+      "t": "c",
+      "ch": "地方",
+      "py": "dì fāng",
+      "mn": "places"
+     },
+     {
+      "t": "c",
+      "ch": "还",
+      "py": "hái",
+      "mn": "still"
+     },
+     {
+      "t": "c",
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "there are"
+     },
+     {
+      "t": "c",
+      "ch": "关于",
+      "py": "guān yú",
+      "mn": "about",
+      "bonus": true
+     },
+     {
+      "t": "n",
+      "tx": "郑和",
+      "py": "Zhèng Hé",
+      "mn": "Zheng He"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "故事",
+      "py": "gù shi",
+      "mn": "stories"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
     ]
    ],
    "trans": [
-    "More than six hundred years ago the Ming had a great fleet.",
-    "The man who led it was called Zheng He.",
+    "More than six hundred years ago, the Ming had a great fleet.",
+    "The man who led the fleet was called Zheng He.",
     "His ships were enormous, bigger than many houses.",
     "One ship could hold several hundred people.",
-    "On board were water, rice and many other things.",
-    "They carried Chinese silk, tea and beautiful goods.",
-    "The fleet set out from China and sailed west.",
-    "They crossed a great sea.",
-    "Some places were very hot, some very far.",
-    "They met many different peoples.",
-    "They did not go to make war on those countries.",
-    "They only traded, and then came back.",
+    "On board were water, rice, and Chinese silk and tea.",
+    "These were carried as gifts and as goods to trade.",
+    "The fleet set out from China and sailed west, many days on the open sea.",
+    "Because the ships were so big, they had no fear of wind or waves.",
+    "Some places were very hot, some very far, and they met people of many countries.",
+    "They did not go to fight those countries; they only traded, and then came home.",
     "People of other lands gave them animals they had never seen.",
-    "Zheng He made the voyage seven times in all.",
-    "So in those days many countries knew of China."
+    "Once they brought back a giraffe, and everyone in the capital ran to see it.",
+    "Zheng He made the voyage seven times, and each took two or three years.",
+    "So in those days, many countries knew of China.",
+    "Today those places still tell stories about Zheng He."
    ]
   },
   "ming2-h2": {
@@ -8334,7 +8584,7 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there were"
      },
      {
       "t": "c",
@@ -8346,13 +8596,13 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "p",
@@ -8360,39 +8610,35 @@
      },
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "生",
-      "py": "shēng",
-      "mn": "to be born; student"
+      "ch": "一生",
+      "py": "yì shēng",
+      "mn": "whole life",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "都",
       "py": "dōu",
-      "mn": "all"
+      "mn": "all; always"
      },
      {
       "t": "c",
       "ch": "在",
       "py": "zài",
-      "mn": "at; in"
+      "mn": "(-ing)"
      },
      {
       "t": "c",
       "ch": "找",
       "py": "zhǎo",
-      "mn": "found"
+      "mn": "to look for"
      },
      {
       "t": "c",
       "ch": "答案",
       "py": "dá àn",
-      "mn": "answer"
+      "mn": "answers",
+      "bonus": true
      },
      {
       "t": "p",
@@ -8402,27 +8648,38 @@
     [
      {
       "t": "c",
-      "ch": "第",
-      "py": "dì",
-      "mn": "(makes a number an order: 1st, 2nd)"
-     },
-     {
-      "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
+      "ch": "第一",
+      "py": "dì yī",
+      "mn": "first",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
+      "ch": "叫",
+      "py": "jiào",
+      "mn": "to be called"
+     },
+     {
+      "t": "n",
+      "tx": "李时珍",
+      "py": "Lǐ Shízhēn",
+      "mn": "Li Shizhen"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "他",
+      "py": "tā",
+      "mn": "he"
      },
      {
       "t": "c",
@@ -8434,7 +8691,7 @@
       "t": "c",
       "ch": "喜欢",
       "py": "xǐ huan",
-      "mn": "to like; to be fond of"
+      "mn": "to like"
      },
      {
       "t": "c",
@@ -8446,7 +8703,7 @@
       "t": "c",
       "ch": "上",
       "py": "shàng",
-      "mn": "up; on; above"
+      "mn": "on"
      },
      {
       "t": "c",
@@ -8458,19 +8715,20 @@
       "t": "c",
       "ch": "草",
       "py": "cǎo",
-      "mn": "grass"
+      "mn": "plants",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "和",
       "py": "hé",
-      "mn": "and; with"
+      "mn": "and"
      },
      {
       "t": "c",
       "ch": "树",
       "py": "shù",
-      "mn": "tree"
+      "mn": "trees"
      },
      {
       "t": "p",
@@ -8482,31 +8740,33 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "想",
       "py": "xiǎng",
-      "mn": "wanted"
+      "mn": "to want"
      },
      {
       "t": "c",
       "ch": "知道",
       "py": "zhī dào",
-      "mn": "to know; to become aware of"
+      "mn": "to know"
      },
      {
       "t": "c",
-      "ch": "哪",
-      "py": "nǎ",
-      "mn": "how"
+      "ch": "哪些",
+      "py": "nǎ xiē",
+      "mn": "which",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "些",
-      "py": "xiē",
-      "mn": "some; a few"
+      "ch": "草",
+      "py": "cǎo",
+      "mn": "plants",
+      "bonus": true
      },
      {
       "t": "c",
@@ -8518,7 +8778,7 @@
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to make"
      },
      {
       "t": "c",
@@ -8534,9 +8794,9 @@
     [
      {
       "t": "c",
-      "ch": "因为",
-      "py": "yīn wèi",
-      "mn": "because"
+      "ch": "可是",
+      "py": "kě shì",
+      "mn": "but"
      },
      {
       "t": "c",
@@ -8554,19 +8814,19 @@
       "t": "c",
       "ch": "书",
       "py": "shū",
-      "mn": "book"
+      "mn": "books"
      },
      {
       "t": "c",
       "ch": "里",
       "py": "lǐ",
-      "mn": "inside; in"
+      "mn": "in"
      },
      {
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there were"
      },
      {
       "t": "c",
@@ -8582,27 +8842,62 @@
      },
      {
       "t": "c",
-      "ch": "不",
-      "py": "bù",
-      "mn": "not"
+      "ch": "错误",
+      "py": "cuò wù",
+      "mn": "mistakes",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
-      "ch": "对",
-      "py": "duì",
-      "mn": "toward"
+      "ch": "有的",
+      "py": "yǒu de",
+      "mn": "some"
      },
      {
       "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
+      "ch": "药",
+      "py": "yào",
+      "mn": "medicines"
      },
      {
       "t": "c",
-      "ch": "地方",
-      "py": "dì fāng",
-      "mn": "place"
+      "ch": "吃",
+      "py": "chī",
+      "mn": "to take"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "c",
+      "ch": "会",
+      "py": "huì",
+      "mn": "would"
+     },
+     {
+      "t": "c",
+      "ch": "让",
+      "py": "ràng",
+      "mn": "to make"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "生病",
+      "py": "shēng bìng",
+      "mn": "to fall ill"
      },
      {
       "t": "p",
@@ -8620,31 +8915,31 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "决定",
       "py": "jué dìng",
-      "mn": "to decide (to do something)"
+      "mn": "to decide"
      },
      {
       "t": "c",
       "ch": "自己",
       "py": "zì jǐ",
-      "mn": "oneself"
+      "mn": "himself"
      },
      {
       "t": "c",
       "ch": "去",
       "py": "qù",
-      "mn": "go"
+      "mn": "to go"
      },
      {
       "t": "c",
       "ch": "看",
       "py": "kàn",
-      "mn": "to look; to watch; to read"
+      "mn": "to look"
      },
      {
       "t": "p",
@@ -8656,13 +8951,13 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "走",
       "py": "zǒu",
-      "mn": "moved"
+      "mn": "to walk"
      },
      {
       "t": "c",
@@ -8686,7 +8981,7 @@
       "t": "c",
       "ch": "路",
       "py": "lù",
-      "mn": "road; way"
+      "mn": "roads"
      },
      {
       "t": "p",
@@ -8720,43 +9015,35 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他",
-      "py": "tā",
-      "mn": "he; him"
+      "tx": "，"
      },
      {
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also"
      },
      {
       "t": "c",
       "ch": "自己",
       "py": "zì jǐ",
-      "mn": "oneself"
+      "mn": "himself"
      },
      {
       "t": "c",
       "ch": "试",
       "py": "shì",
-      "mn": "to test"
+      "mn": "to try"
      },
      {
       "t": "c",
       "ch": "过",
       "py": "guò",
-      "mn": "pass"
+      "mn": "(have done before)"
      },
      {
       "t": "c",
@@ -8768,7 +9055,8 @@
       "t": "c",
       "ch": "草",
       "py": "cǎo",
-      "mn": "grass"
+      "mn": "plants",
+      "bonus": true
      },
      {
       "t": "p",
@@ -8780,13 +9068,13 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "用",
       "py": "yòng",
-      "mn": "using"
+      "mn": "to use"
      },
      {
       "t": "c",
@@ -8798,25 +9086,20 @@
       "t": "c",
       "ch": "差不多",
       "py": "chà bu duō",
-      "mn": "about the same"
+      "mn": "nearly"
      },
      {
       "t": "c",
-      "ch": "三",
-      "py": "sān",
-      "mn": "three"
-     },
-     {
-      "t": "c",
-      "ch": "十",
-      "py": "shí",
-      "mn": "ten"
+      "ch": "三十",
+      "py": "sān shí",
+      "mn": "thirty",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "p",
@@ -8824,15 +9107,10 @@
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "wrote"
-     },
-     {
-      "t": "c",
-      "ch": "成",
-      "py": "chéng",
-      "mn": "to become; to succeed"
+      "ch": "写成",
+      "py": "xiě chéng",
+      "mn": "to write (into)",
+      "bonus": true
      },
      {
       "t": "c",
@@ -8850,25 +9128,7 @@
       "t": "c",
       "ch": "本",
       "py": "běn",
-      "mn": "root; a book"
-     },
-     {
-      "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "大",
-      "py": "dà",
-      "mn": "great"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(counting word, books)"
      },
      {
       "t": "c",
@@ -8878,10 +9138,8 @@
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
       "ch": "书",
@@ -8892,55 +9150,39 @@
       "t": "c",
       "ch": "里",
       "py": "lǐ",
-      "mn": "inside; in"
+      "mn": "in"
      },
      {
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there are"
      },
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "千",
-      "py": "qiān",
-      "mn": "thousand"
+      "ch": "一千",
+      "py": "yì qiān",
+      "mn": "one thousand",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "more than"
      },
      {
       "t": "c",
       "ch": "种",
       "py": "zhòng",
-      "mn": "kind; type; (measure word)"
+      "mn": "kinds"
      },
      {
       "t": "c",
-      "ch": "草",
-      "py": "cǎo",
-      "mn": "grass"
-     },
-     {
-      "t": "c",
-      "ch": "和",
-      "py": "hé",
-      "mn": "and; with"
-     },
-     {
-      "t": "c",
-      "ch": "药",
-      "py": "yào",
-      "mn": "medicine"
+      "ch": "草药",
+      "py": "cǎo yào",
+      "mn": "herbal medicine",
+      "bonus": true
      },
      {
       "t": "p",
@@ -8958,19 +9200,35 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
+      "ch": "叫",
+      "py": "jiào",
+      "mn": "to be called"
+     },
+     {
+      "t": "n",
+      "tx": "徐霞客",
+      "py": "Xú Xiákè",
+      "mn": "Xu Xiake"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "他",
+      "py": "tā",
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "喜欢",
       "py": "xǐ huan",
-      "mn": "to like; to be fond of"
+      "mn": "to like"
      },
      {
       "t": "c",
@@ -8986,37 +9244,37 @@
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also"
      },
      {
       "t": "c",
       "ch": "喜欢",
       "py": "xǐ huan",
-      "mn": "to like; to be fond of"
+      "mn": "to like"
      },
      {
       "t": "c",
       "ch": "看",
       "py": "kàn",
-      "mn": "to look; to watch; to read"
+      "mn": "to look"
      },
      {
       "t": "c",
       "ch": "山",
       "py": "shān",
-      "mn": "mountain"
+      "mn": "mountains"
      },
      {
       "t": "c",
       "ch": "看",
       "py": "kàn",
-      "mn": "to look; to watch; to read"
+      "mn": "to look"
      },
      {
       "t": "c",
       "ch": "水",
       "py": "shuǐ",
-      "mn": "water"
+      "mn": "water; rivers"
      },
      {
       "t": "p",
@@ -9028,13 +9286,13 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "去",
       "py": "qù",
-      "mn": "go"
+      "mn": "to go"
      },
      {
       "t": "c",
@@ -9058,37 +9316,37 @@
       "t": "c",
       "ch": "别人",
       "py": "bié ren",
-      "mn": "other people; others; other person"
+      "mn": "others"
      },
      {
       "t": "c",
       "ch": "没有",
       "py": "méi yǒu",
-      "mn": "not; did not have"
+      "mn": "not"
      },
      {
       "t": "c",
       "ch": "去",
       "py": "qù",
-      "mn": "go"
+      "mn": "to go"
      },
      {
       "t": "c",
       "ch": "过",
       "py": "guò",
-      "mn": "pass"
+      "mn": "(have done before)"
      },
      {
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
       "ch": "地方",
       "py": "dì fāng",
-      "mn": "place"
+      "mn": "places"
      },
      {
       "t": "p",
@@ -9100,13 +9358,13 @@
       "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "路",
       "py": "lù",
-      "mn": "road; way"
+      "mn": "roads"
      },
      {
       "t": "c",
@@ -9118,13 +9376,61 @@
       "t": "c",
       "ch": "难",
       "py": "nán",
-      "mn": "hard; difficult"
+      "mn": "hard"
      },
      {
       "t": "c",
       "ch": "走",
       "py": "zǒu",
-      "mn": "moved"
+      "mn": "to walk"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "有时候",
+      "py": "yǒu shí hou",
+      "mn": "sometimes"
+     },
+     {
+      "t": "c",
+      "ch": "好几",
+      "py": "hǎo jǐ",
+      "mn": "several",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "天",
+      "py": "tiān",
+      "mn": "days"
+     },
+     {
+      "t": "c",
+      "ch": "见不到",
+      "py": "jiàn bu dào",
+      "mn": "cannot meet",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "一",
+      "py": "yī",
+      "mn": "one"
+     },
+     {
+      "t": "c",
+      "ch": "个",
+      "py": "gè",
+      "mn": "(counting word)"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "person"
      },
      {
       "t": "p",
@@ -9134,25 +9440,26 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also; still"
      },
      {
       "t": "c",
       "ch": "没有",
       "py": "méi yǒu",
-      "mn": "not; did not have"
+      "mn": "did not"
      },
      {
       "t": "c",
-      "ch": "回去",
-      "py": "huí qu",
-      "mn": "to return"
+      "ch": "放弃",
+      "py": "fàng qì",
+      "mn": "to give up",
+      "bonus": true
      },
      {
       "t": "p",
@@ -9164,13 +9471,14 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "每天",
       "py": "měi tiān",
-      "mn": "every day"
+      "mn": "every day",
+      "bonus": true
      },
      {
       "t": "c",
@@ -9182,19 +9490,14 @@
       "t": "c",
       "ch": "都",
       "py": "dōu",
-      "mn": "all"
+      "mn": "all; always"
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "wrote"
-     },
-     {
-      "t": "c",
-      "ch": "下",
-      "py": "xià",
-      "mn": "below; to go down"
+      "ch": "记下",
+      "py": "jì xià",
+      "mn": "to note down",
+      "bonus": true
      },
      {
       "t": "c",
@@ -9216,9 +9519,21 @@
      },
      {
       "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "thing; things"
+      "ch": "山",
+      "py": "shān",
+      "mn": "mountains"
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
+     },
+     {
+      "t": "c",
+      "ch": "水",
+      "py": "shuǐ",
+      "mn": "water; rivers"
      },
      {
       "t": "p",
@@ -9230,13 +9545,13 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "wrote"
+      "ch": "记",
+      "py": "jì",
+      "mn": "to note down"
      },
      {
       "t": "c",
@@ -9246,21 +9561,16 @@
      },
      {
       "t": "c",
-      "ch": "几",
-      "py": "jī",
-      "mn": "small table"
-     },
-     {
-      "t": "c",
-      "ch": "十",
-      "py": "shí",
-      "mn": "ten"
+      "ch": "几十",
+      "py": "jǐ shí",
+      "mn": "several tens of",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "p",
@@ -9270,7 +9580,7 @@
       "t": "c",
       "ch": "写",
       "py": "xiě",
-      "mn": "wrote"
+      "mn": "to write"
      },
      {
       "t": "c",
@@ -9294,7 +9604,132 @@
       "t": "c",
       "ch": "本",
       "py": "běn",
-      "mn": "root; a book"
+      "mn": "(counting word, books)"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "今天",
+      "py": "jīn tiān",
+      "mn": "today"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "还",
+      "py": "hái",
+      "mn": "still"
+     },
+     {
+      "t": "c",
+      "ch": "在",
+      "py": "zài",
+      "mn": "(-ing)"
+     },
+     {
+      "t": "c",
+      "ch": "看",
+      "py": "kàn",
+      "mn": "to read"
+     },
+     {
+      "t": "c",
+      "ch": "他",
+      "py": "tā",
+      "mn": "he; his"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "书",
+      "py": "shū",
+      "mn": "books"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "因为",
+      "py": "yīn wèi",
+      "mn": "because"
+     },
+     {
+      "t": "c",
+      "ch": "里面",
+      "py": "lǐ miàn",
+      "mn": "inside"
+     },
+     {
+      "t": "c",
+      "ch": "写",
+      "py": "xiě",
+      "mn": "to write"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "都",
+      "py": "dōu",
+      "mn": "all"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "are"
+     },
+     {
+      "t": "c",
+      "ch": "他",
+      "py": "tā",
+      "mn": "he"
+     },
+     {
+      "t": "c",
+      "ch": "亲眼",
+      "py": "qīn yǎn",
+      "mn": "with his own eyes",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "看到",
+      "py": "kàn dào",
+      "mn": "to see"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
      },
      {
       "t": "p",
@@ -9318,19 +9753,19 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to do"
      },
      {
       "t": "c",
@@ -9342,13 +9777,13 @@
       "t": "c",
       "ch": "事情",
       "py": "shì qing",
-      "mn": "affair; matter; thing; business"
+      "mn": "things"
      },
      {
       "t": "c",
       "ch": "一样",
       "py": "yī yàng",
-      "mn": "same"
+      "mn": "the same"
      },
      {
       "t": "p",
@@ -9364,13 +9799,13 @@
       "t": "c",
       "ch": "去",
       "py": "qù",
-      "mn": "go"
+      "mn": "to go"
      },
      {
       "t": "c",
       "ch": "看",
       "py": "kàn",
-      "mn": "to look; to watch; to read"
+      "mn": "to look"
      },
      {
       "t": "p",
@@ -9380,19 +9815,132 @@
       "t": "c",
       "ch": "然后",
       "py": "rán hòu",
-      "mn": "then; after that; afterwards"
+      "mn": "then"
      },
      {
       "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "wrote"
+      "ch": "记下来",
+      "py": "jì xià lái",
+      "mn": "to note down",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
      },
      {
       "t": "c",
-      "ch": "下来",
-      "py": "xià lai",
-      "mn": "to come down"
+      "ch": "相信",
+      "py": "xiāng xìn",
+      "mn": "to believe"
+     },
+     {
+      "t": "c",
+      "ch": "书",
+      "py": "shū",
+      "mn": "books"
+     },
+     {
+      "t": "c",
+      "ch": "上",
+      "py": "shàng",
+      "mn": "on"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "话",
+      "py": "huà",
+      "mn": "words"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "自己",
+      "py": "zì jǐ",
+      "mn": "oneself"
+     },
+     {
+      "t": "c",
+      "ch": "去",
+      "py": "qù",
+      "mn": "to go"
+     },
+     {
+      "t": "c",
+      "ch": "找",
+      "py": "zhǎo",
+      "mn": "to look for"
+     },
+     {
+      "t": "c",
+      "ch": "答案",
+      "py": "dá àn",
+      "mn": "answers",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "这",
+      "py": "zhè",
+      "mn": "this"
+     },
+     {
+      "t": "c",
+      "ch": "就",
+      "py": "jiù",
+      "mn": "just"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
+     },
+     {
+      "t": "c",
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "they; their"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "奇妙",
+      "py": "qí miào",
+      "mn": "wonderful",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "发现",
+      "py": "fāxiàn",
+      "mn": "discovery"
      },
      {
       "t": "p",
@@ -9401,21 +9949,21 @@
     ]
    ],
    "trans": [
-    "Two men of the Ming spent their lives looking for answers.",
-    "The first loved the plants and trees of the hills.",
-    "He wanted to know which of them could be medicine.",
-    "Because the old books had a great deal that was wrong.",
+    "Two men of the Ming spent their whole lives looking for answers.",
+    "The first was Li Shizhen, who loved the plants and trees of the hills.",
+    "He wanted to know which plants could be made into medicine.",
+    "But the old books had many mistakes, and some medicines made people ill.",
     "So he decided to go and see for himself.",
-    "He walked a great deal and asked a great many people.",
-    "He also tried some of the plants himself.",
-    "He spent nearly thirty years and wrote a great book.",
-    "In it were more than a thousand kinds of plant and medicine.",
-    "The second loved walking, and looking at mountains and rivers.",
+    "He walked a long way, asked many people, and tried some plants himself.",
+    "He spent nearly thirty years writing a book with more than a thousand kinds of herbal medicine.",
+    "The second was Xu Xiake, who loved walking, and looking at mountains and rivers.",
     "He went to many places no one else had been.",
-    "Some paths were hard going, but he did not turn back.",
-    "Every evening he wrote down what he had seen that day.",
-    "He wrote for decades, filling many volumes.",
-    "Both men did the same thing: go and see for themselves, then write it down."
+    "Some paths were hard, and sometimes he met no one for days, but he did not give up.",
+    "Every evening he noted down the mountains and rivers he had seen that day.",
+    "He kept notes for decades, filling many volumes.",
+    "People still read his books today, because everything in them he saw with his own eyes.",
+    "Both men did the same thing: go and see for themselves, then write it down.",
+    "Not trusting what books said, but finding the answers themselves: that was their wonderful discovery."
    ]
   },
   "paper-h2": {
@@ -16815,7 +17363,7 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there was"
      },
      {
       "t": "c",
@@ -16825,9 +17373,9 @@
      },
      {
       "t": "c",
-      "ch": "个",
-      "py": "gè",
-      "mn": "(measure word for people and things)"
+      "ch": "位",
+      "py": "wèi",
+      "mn": "(counting word, respected people)"
      },
      {
       "t": "c",
@@ -16845,19 +17393,14 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
-      "ch": "皇",
-      "py": "huáng",
-      "mn": "emperor"
-     },
-     {
-      "t": "c",
-      "ch": "帝",
-      "py": "dì",
-      "mn": "emperor"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
      },
      {
       "t": "p",
@@ -16867,13 +17410,13 @@
       "t": "c",
       "ch": "叫",
       "py": "jiào",
-      "mn": "called"
+      "mn": "to be called"
      },
      {
       "t": "n",
       "tx": "康熙",
       "py": "Kāngxī",
-      "mn": "the Kangxi Emperor"
+      "mn": "Kangxi"
      },
      {
       "t": "p",
@@ -16885,19 +17428,19 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "八",
       "py": "bā",
-      "mn": "eight; 8"
+      "mn": "eight"
      },
      {
       "t": "c",
       "ch": "岁",
       "py": "suì",
-      "mn": "year of age"
+      "mn": "years old"
      },
      {
       "t": "c",
@@ -16909,19 +17452,19 @@
       "t": "c",
       "ch": "时候",
       "py": "shíhou",
-      "mn": "time; moment"
+      "mn": "time"
      },
      {
       "t": "c",
       "ch": "就",
       "py": "jiù",
-      "mn": "then"
+      "mn": "already"
      },
      {
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to become"
      },
      {
       "t": "c",
@@ -16931,15 +17474,10 @@
      },
      {
       "t": "c",
-      "ch": "皇",
-      "py": "huáng",
-      "mn": "emperor"
-     },
-     {
-      "t": "c",
-      "ch": "帝",
-      "py": "dì",
-      "mn": "emperor"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
      },
      {
       "t": "p",
@@ -16957,7 +17495,7 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
@@ -16975,7 +17513,7 @@
       "t": "c",
       "ch": "小",
       "py": "xiǎo",
-      "mn": "little"
+      "mn": "small"
      },
      {
       "t": "p",
@@ -16983,45 +17521,36 @@
      },
      {
       "t": "c",
-      "ch": "所以",
-      "py": "suǒ yǐ",
-      "mn": "so"
-     },
-     {
-      "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "开始",
-      "py": "kāishǐ",
-      "mn": "started"
+      "ch": "一开始",
+      "py": "yì kāi shǐ",
+      "mn": "at first",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there were"
      },
      {
       "t": "c",
-      "ch": "别人",
-      "py": "bié ren",
-      "mn": "other people; others; other person"
+      "ch": "大臣",
+      "py": "dà chén",
+      "mn": "ministers",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "帮",
-      "py": "bāng",
-      "mn": "to help"
+      "ch": "辅佐",
+      "py": "fǔ zuǒ",
+      "mn": "to assist (a ruler)",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "him"
      },
      {
       "t": "p",
@@ -17033,25 +17562,20 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
-      "ch": "十",
-      "py": "shí",
-      "mn": "ten"
-     },
-     {
-      "t": "c",
-      "ch": "几",
-      "py": "jī",
-      "mn": "small table"
+      "ch": "十几",
+      "py": "shí jǐ",
+      "mn": "ten-something",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "岁",
       "py": "suì",
-      "mn": "year of age"
+      "mn": "years old"
      },
      {
       "t": "c",
@@ -17063,7 +17587,7 @@
       "t": "c",
       "ch": "时候",
       "py": "shíhou",
-      "mn": "time; moment"
+      "mn": "time"
      },
      {
       "t": "p",
@@ -17073,31 +17597,32 @@
       "t": "c",
       "ch": "才",
       "py": "cái",
-      "mn": "ability; talent"
+      "mn": "only then"
      },
      {
       "t": "c",
       "ch": "开始",
       "py": "kāishǐ",
-      "mn": "started"
+      "mn": "to begin"
      },
      {
       "t": "c",
       "ch": "自己",
       "py": "zì jǐ",
-      "mn": "oneself"
+      "mn": "himself"
      },
      {
       "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
+      "ch": "管理",
+      "py": "guǎn lǐ",
+      "mn": "to govern",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "事",
-      "py": "shì",
-      "mn": "matter; thing"
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "country"
      },
      {
       "t": "p",
@@ -17109,25 +17634,20 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "共",
-      "py": "gòng",
-      "mn": "common"
+      "ch": "一共",
+      "py": "yí gòng",
+      "mn": "in all",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to be"
      },
      {
       "t": "c",
@@ -17137,39 +17657,82 @@
      },
      {
       "t": "c",
-      "ch": "六",
-      "py": "liù",
-      "mn": "six"
-     },
-     {
-      "t": "c",
-      "ch": "十",
-      "py": "shí",
-      "mn": "ten"
-     },
-     {
-      "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
+      "ch": "六十一",
+      "py": "liù shí yī",
+      "mn": "sixty-one",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "c",
-      "ch": "皇",
-      "py": "huáng",
-      "mn": "emperor"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
-      "ch": "帝",
-      "py": "dì",
-      "mn": "emperor"
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
+     },
+     {
+      "t": "n",
+      "tx": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
+     },
+     {
+      "t": "c",
+      "ch": "做",
+      "py": "zuò",
+      "mn": "to be"
+     },
+     {
+      "t": "c",
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "时间",
+      "py": "shí jiān",
+      "mn": "time"
+     },
+     {
+      "t": "c",
+      "ch": "最",
+      "py": "zuì",
+      "mn": "most"
+     },
+     {
+      "t": "c",
+      "ch": "长",
+      "py": "cháng",
+      "mn": "long"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "person"
      },
      {
       "t": "p",
@@ -17181,13 +17744,14 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "每天",
       "py": "měi tiān",
-      "mn": "every day"
+      "mn": "every day",
+      "bonus": true
      },
      {
       "t": "c",
@@ -17199,31 +17763,78 @@
       "t": "c",
       "ch": "早",
       "py": "zǎo",
-      "mn": "early; morning"
+      "mn": "early"
      },
      {
       "t": "c",
       "ch": "就",
       "py": "jiù",
-      "mn": "then"
+      "mn": "already"
      },
      {
       "t": "c",
       "ch": "起来",
       "py": "qǐ lai",
-      "mn": "to stand up"
+      "mn": "to get up"
      },
      {
       "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
+      "ch": "处理",
+      "py": "chǔ lǐ",
+      "mn": "to handle"
      },
      {
       "t": "c",
-      "ch": "事",
-      "py": "shì",
-      "mn": "matter; thing"
+      "ch": "公务",
+      "py": "gōng wù",
+      "mn": "official business",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "晚上",
+      "py": "wǎn shang",
+      "mn": "evening"
+     },
+     {
+      "t": "c",
+      "ch": "还",
+      "py": "hái",
+      "mn": "still"
+     },
+     {
+      "t": "c",
+      "ch": "要",
+      "py": "yào",
+      "mn": "must"
+     },
+     {
+      "t": "c",
+      "ch": "看",
+      "py": "kàn",
+      "mn": "to read"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "书",
+      "py": "shū",
+      "mn": "books"
      },
      {
       "t": "p",
@@ -17235,31 +17846,25 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
-     },
-     {
-      "t": "c",
-      "ch": "也",
-      "py": "yě",
-      "mn": "also; too"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "非常",
       "py": "fēi cháng",
-      "mn": "very; really"
+      "mn": "extremely"
      },
      {
       "t": "c",
       "ch": "喜欢",
       "py": "xǐ huan",
-      "mn": "to like; to be fond of"
+      "mn": "to like"
      },
      {
       "t": "c",
       "ch": "学",
       "py": "xué",
-      "mn": "to study"
+      "mn": "to learn"
      },
      {
       "t": "c",
@@ -17271,13 +17876,13 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
       "ch": "东西",
       "py": "dōng xi",
-      "mn": "thing; things"
+      "mn": "things"
      },
      {
       "t": "p",
@@ -17301,7 +17906,7 @@
       "t": "c",
       "ch": "过",
       "py": "guò",
-      "mn": "(have done)"
+      "mn": "(have done before)"
      },
      {
       "t": "c",
@@ -17330,19 +17935,14 @@
       "t": "c",
       "ch": "过",
       "py": "guò",
-      "mn": "(have done)"
+      "mn": "(have done before)"
      },
      {
       "t": "c",
-      "ch": "西边",
-      "py": "xī biān",
-      "mn": "the west"
-     },
-     {
-      "t": "c",
-      "ch": "来",
-      "py": "lái",
-      "mn": "to come"
+      "ch": "西方",
+      "py": "xī fāng",
+      "mn": "the West",
+      "bonus": true
      },
      {
       "t": "c",
@@ -17352,15 +17952,10 @@
      },
      {
       "t": "c",
-      "ch": "学",
-      "py": "xué",
-      "mn": "learning"
-     },
-     {
-      "t": "c",
-      "ch": "问",
-      "py": "wèn",
-      "mn": "to ask"
+      "ch": "科学",
+      "py": "kē xué",
+      "mn": "science",
+      "bonus": true
      },
      {
       "t": "p",
@@ -17370,9 +17965,16 @@
     [
      {
       "t": "c",
-      "ch": "西边",
-      "py": "xī biān",
-      "mn": "the west"
+      "ch": "从",
+      "py": "cóng",
+      "mn": "from"
+     },
+     {
+      "t": "c",
+      "ch": "西方",
+      "py": "xī fāng",
+      "mn": "the West",
+      "bonus": true
      },
      {
       "t": "c",
@@ -17390,43 +17992,84 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "给",
       "py": "gěi",
-      "mn": "prepared"
+      "mn": "to; for"
      },
      {
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "him"
      },
      {
       "t": "c",
       "ch": "讲",
       "py": "jiǎng",
-      "mn": "tell"
+      "mn": "to explain"
      },
      {
       "t": "c",
-      "ch": "天上",
-      "py": "tiān shàng",
-      "mn": "in the sky"
+      "ch": "天文",
+      "py": "tiān wén",
+      "mn": "astronomy",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
+      "ch": "他",
+      "py": "tā",
+      "mn": "he"
      },
      {
       "t": "c",
-      "ch": "事情",
-      "py": "shì qing",
-      "mn": "affair; matter; thing; business"
+      "ch": "就",
+      "py": "jiù",
+      "mn": "then"
+     },
+     {
+      "t": "c",
+      "ch": "自己",
+      "py": "zì jǐ",
+      "mn": "himself"
+     },
+     {
+      "t": "c",
+      "ch": "看",
+      "py": "kàn",
+      "mn": "to look"
+     },
+     {
+      "t": "c",
+      "ch": "星星",
+      "py": "xīng xing",
+      "mn": "stars",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "看",
+      "py": "kàn",
+      "mn": "to look"
+     },
+     {
+      "t": "c",
+      "ch": "月亮",
+      "py": "yuè liang",
+      "mn": "moon",
+      "bonus": true
      },
      {
       "t": "p",
@@ -17438,115 +18081,38 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
-     },
-     {
-      "t": "c",
-      "ch": "还",
-      "py": "hái",
-      "mn": "still"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "让",
       "py": "ràng",
-      "mn": "made"
+      "mn": "to have (someone do)"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
-     },
-     {
-      "t": "c",
-      "ch": "给",
-      "py": "gěi",
-      "mn": "prepared"
-     },
-     {
-      "t": "c",
-      "ch": "他",
-      "py": "tā",
-      "mn": "he; him"
-     },
-     {
-      "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
-     },
-     {
-      "t": "c",
-      "ch": "了",
-      "py": "le",
-      "mn": "(shows it is finished)"
-     },
-     {
-      "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "多",
-      "py": "duō",
-      "mn": "many"
-     },
-     {
-      "t": "c",
-      "ch": "书",
-      "py": "shū",
-      "mn": "book"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他",
-      "py": "tā",
-      "mn": "he; him"
-     },
-     {
-      "t": "c",
-      "ch": "让",
-      "py": "ràng",
-      "mn": "made"
-     },
-     {
-      "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "走",
       "py": "zǒu",
-      "mn": "moved"
+      "mn": "to travel"
      },
      {
       "t": "c",
       "ch": "过",
       "py": "guò",
-      "mn": "pass"
+      "mn": "(have done before)"
      },
      {
       "t": "c",
-      "ch": "全",
-      "py": "quán",
-      "mn": "whole; all"
-     },
-     {
-      "t": "c",
-      "ch": "国",
-      "py": "guó",
-      "mn": "kingdoms"
+      "ch": "全国",
+      "py": "quán guó",
+      "mn": "the whole country",
+      "bonus": true
      },
      {
       "t": "p",
@@ -17574,7 +18140,7 @@
       "t": "c",
       "ch": "张",
       "py": "zhāng",
-      "mn": "(measure word for flat things); to open"
+      "mn": "(counting word, flat things)"
      },
      {
       "t": "c",
@@ -17586,25 +18152,20 @@
       "t": "c",
       "ch": "大",
       "py": "dà",
-      "mn": "great"
+      "mn": "big"
      },
      {
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
-      "ch": "地",
-      "py": "de",
-      "mn": "(before how it is done)"
-     },
-     {
-      "t": "c",
-      "ch": "图",
-      "py": "tú",
-      "mn": "picture; map"
+      "ch": "地图",
+      "py": "dì tú",
+      "mn": "map",
+      "bonus": true
      },
      {
       "t": "p",
@@ -17614,49 +18175,106 @@
     [
      {
       "t": "c",
-      "ch": "那时候",
-      "py": "nà shí hou",
-      "mn": "at that time"
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "to have"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows a change)"
+     },
+     {
+      "t": "c",
+      "ch": "地图",
+      "py": "dì tú",
+      "mn": "map",
+      "bonus": true
      },
      {
       "t": "p",
       "tx": "，"
      },
      {
-      "t": "n",
-      "tx": "中国",
-      "py": "Zhōngguó",
-      "mn": "China"
+      "t": "c",
+      "ch": "他",
+      "py": "tā",
+      "mn": "he"
      },
      {
       "t": "c",
-      "ch": "比",
-      "py": "bǐ",
-      "mn": "to compare"
+      "ch": "知道",
+      "py": "zhī dào",
+      "mn": "to know"
      },
      {
       "t": "c",
-      "ch": "以前",
-      "py": "yǐ qián",
-      "mn": "before"
+      "ch": "哪里",
+      "py": "nǎ lǐ",
+      "mn": "where"
      },
      {
       "t": "c",
-      "ch": "大",
-      "py": "dà",
-      "mn": "great"
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "there are"
      },
      {
       "t": "c",
-      "ch": "了",
-      "py": "le",
-      "mn": "(shows it is finished)"
+      "ch": "山",
+      "py": "shān",
+      "mn": "mountains"
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
+      "ch": "哪里",
+      "py": "nǎ lǐ",
+      "mn": "where"
+     },
+     {
+      "t": "c",
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "there are"
+     },
+     {
+      "t": "c",
+      "ch": "河",
+      "py": "hé",
+      "mn": "rivers"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "哪里",
+      "py": "nǎ lǐ",
+      "mn": "where"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "最",
+      "py": "zuì",
+      "mn": "most"
      },
      {
       "t": "c",
@@ -17674,13 +18292,13 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also"
      },
      {
       "t": "c",
@@ -17690,15 +18308,10 @@
      },
      {
       "t": "c",
-      "ch": "种",
-      "py": "zhòng",
-      "mn": "kind; type; (measure word)"
-     },
-     {
-      "t": "c",
-      "ch": "田",
-      "py": "tián",
-      "mn": "fields"
+      "ch": "种田",
+      "py": "zhòng tián",
+      "mn": "to farm",
+      "bonus": true
      },
      {
       "t": "c",
@@ -17710,11 +18323,18 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "p",
       "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "常常",
+      "py": "cháng cháng",
+      "mn": "often",
+      "bonus": true
      },
      {
       "t": "c",
@@ -17724,27 +18344,15 @@
      },
      {
       "t": "c",
-      "ch": "过",
-      "py": "guò",
-      "mn": "pass"
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "them"
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "多",
-      "py": "duō",
-      "mn": "many"
-     },
-     {
-      "t": "c",
-      "ch": "地方",
-      "py": "dì fāng",
-      "mn": "place"
+      "ch": "今年",
+      "py": "jīn nián",
+      "mn": "this year"
      },
      {
       "t": "c",
@@ -17754,9 +18362,104 @@
      },
      {
       "t": "c",
-      "ch": "事",
-      "py": "shì",
-      "mn": "matter; thing"
+      "ch": "米",
+      "py": "mǐ",
+      "mn": "rice"
+     },
+     {
+      "t": "c",
+      "ch": "够不够",
+      "py": "gòu bu gòu",
+      "mn": "enough or not",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "吃",
+      "py": "chī",
+      "mn": "to eat"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "如果",
+      "py": "rú guǒ",
+      "mn": "if"
+     },
+     {
+      "t": "c",
+      "ch": "哪里",
+      "py": "nǎ lǐ",
+      "mn": "somewhere"
+     },
+     {
+      "t": "c",
+      "ch": "没有",
+      "py": "méi yǒu",
+      "mn": "no longer there"
+     },
+     {
+      "t": "c",
+      "ch": "米",
+      "py": "mǐ",
+      "mn": "rice"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows a change)"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "他",
+      "py": "tā",
+      "mn": "he"
+     },
+     {
+      "t": "c",
+      "ch": "就",
+      "py": "jiù",
+      "mn": "then"
+     },
+     {
+      "t": "c",
+      "ch": "让",
+      "py": "ràng",
+      "mn": "to have (someone do)"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "送",
+      "py": "sòng",
+      "mn": "to send"
+     },
+     {
+      "t": "c",
+      "ch": "米",
+      "py": "mǐ",
+      "mn": "rice"
+     },
+     {
+      "t": "c",
+      "ch": "过去",
+      "py": "guò qù",
+      "mn": "over there"
      },
      {
       "t": "p",
@@ -17768,25 +18471,20 @@
       "t": "c",
       "ch": "虽然",
       "py": "suī rán",
-      "mn": "although; even though (often used correlatively with 是 or 是 etc)"
+      "mn": "although"
      },
      {
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to be"
      },
      {
       "t": "c",
-      "ch": "皇",
-      "py": "huáng",
-      "mn": "emperor"
-     },
-     {
-      "t": "c",
-      "ch": "帝",
-      "py": "dì",
-      "mn": "emperor"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
      },
      {
       "t": "c",
@@ -17808,31 +18506,31 @@
       "t": "c",
       "ch": "但是",
       "py": "dàn shì",
-      "mn": "but; however"
+      "mn": "but"
      },
      {
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "一直",
       "py": "yī zhí",
-      "mn": "always"
+      "mn": "all along"
      },
      {
       "t": "c",
       "ch": "没有",
       "py": "méi yǒu",
-      "mn": "not; did not have"
+      "mn": "did not"
      },
      {
       "t": "c",
       "ch": "停",
       "py": "tíng",
-      "mn": "stop"
+      "mn": "to stop"
      },
      {
       "t": "p",
@@ -17862,13 +18560,13 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "说",
       "py": "shuō",
-      "mn": "said"
+      "mn": "to say"
      },
      {
       "t": "p",
@@ -17878,7 +18576,7 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
@@ -17896,7 +18594,7 @@
       "t": "c",
       "ch": "最",
       "py": "zuì",
-      "mn": "most; -est"
+      "mn": "most"
      },
      {
       "t": "c",
@@ -17912,21 +18610,17 @@
      },
      {
       "t": "c",
-      "ch": "皇",
-      "py": "huáng",
-      "mn": "emperor"
-     },
-     {
-      "t": "c",
-      "ch": "帝",
-      "py": "dì",
-      "mn": "emperor"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperors",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "之一",
       "py": "zhī yī",
-      "mn": "one of (sth)"
+      "mn": "one of",
+      "bonus": true
      },
      {
       "t": "p",
@@ -17937,19 +18631,19 @@
    "trans": [
     "The Qing dynasty had a famous emperor called Kangxi.",
     "He became emperor at the age of eight.",
-    "Because he was so young, others helped him at first.",
-    "Only in his teens did he begin to rule himself.",
-    "He was emperor for sixty-one years in all.",
-    "He rose very early every day to work.",
+    "Because he was still so young, at first his ministers governed on his behalf.",
+    "Only in his teens did he begin to govern the country himself.",
+    "He was emperor for sixty-one years in all, longer than any other in China.",
+    "He rose very early every day to attend to state business, and still read a great deal at night.",
     "He loved learning new things.",
-    "He studied mathematics, and learning that came from the west.",
-    "People from the west told him about the heavens.",
-    "He also had many books made for him.",
-    "He sent men across the whole country to make a great map.",
-    "At that time China was far larger than before.",
-    "He cared about the farmers, and asked about many places.",
+    "He studied mathematics, and western science.",
+    "People from the West taught him astronomy, and he watched the stars and the moon himself.",
+    "He sent men across the whole country to draw a great map.",
+    "With the map he knew where the mountains and rivers were, and where the most people lived.",
+    "He cared about the farmers too, and often asked whether the year's rice was enough.",
+    "Wherever rice ran short, he had rice sent there.",
     "Although being emperor was exhausting, he never stopped.",
-    "So many say he was one of China’s finest emperors."
+    "So many say he was one of China's finest emperors."
    ]
   },
   "qing2-h2": {
@@ -17971,7 +18665,7 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there is"
      },
      {
       "t": "c",
@@ -17983,25 +18677,25 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
+      "ch": "又",
+      "py": "yòu",
+      "mn": "both"
      },
      {
       "t": "c",
       "ch": "大",
       "py": "dà",
-      "mn": "great"
+      "mn": "big"
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
+      "ch": "又",
+      "py": "yòu",
+      "mn": "and"
      },
      {
       "t": "c",
@@ -18013,7 +18707,7 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
@@ -18029,7 +18723,7 @@
       "t": "c",
       "ch": "叫",
       "py": "jiào",
-      "mn": "called"
+      "mn": "to be called"
      },
      {
       "t": "n",
@@ -18044,10 +18738,10 @@
     ],
     [
      {
-      "t": "c",
-      "ch": "它",
-      "py": "tā",
-      "mn": "it"
+      "t": "n",
+      "tx": "故宫",
+      "py": "Gùgōng",
+      "mn": "the Forbidden City"
      },
      {
       "t": "c",
@@ -18057,33 +18751,28 @@
      },
      {
       "t": "c",
-      "ch": "六",
-      "py": "liù",
-      "mn": "six"
-     },
-     {
-      "t": "c",
-      "ch": "百",
-      "py": "bǎi",
-      "mn": "hundred"
+      "ch": "六百",
+      "py": "liù bǎi",
+      "mn": "six hundred",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "more than"
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "c",
       "ch": "以前",
       "py": "yǐ qián",
-      "mn": "before"
+      "mn": "ago"
      },
      {
       "t": "n",
@@ -18099,33 +18788,29 @@
      },
      {
       "t": "c",
-      "ch": "皇",
-      "py": "huáng",
-      "mn": "emperor"
-     },
-     {
-      "t": "c",
-      "ch": "帝",
-      "py": "dì",
-      "mn": "emperor"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "让",
       "py": "ràng",
-      "mn": "made"
+      "mn": "to have (someone do)"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "建",
       "py": "jiàn",
-      "mn": "build"
+      "mn": "to build",
+      "bonus": true
      },
      {
       "t": "c",
@@ -18141,33 +18826,77 @@
     [
      {
       "t": "c",
+      "ch": "后来",
+      "py": "hòu lái",
+      "mn": "later"
+     },
+     {
+      "t": "n",
+      "tx": "清朝",
+      "py": "Qīng Cháo",
+      "mn": "the Qing dynasty"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperors",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "也",
+      "py": "yě",
+      "mn": "also"
+     },
+     {
+      "t": "c",
+      "ch": "住",
+      "py": "zhù",
+      "mn": "to live"
+     },
+     {
+      "t": "c",
+      "ch": "在",
+      "py": "zài",
+      "mn": "in"
+     },
+     {
+      "t": "c",
+      "ch": "这里",
+      "py": "zhè lǐ",
+      "mn": "here"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
       "ch": "建",
       "py": "jiàn",
-      "mn": "build"
+      "mn": "to build",
+      "bonus": true
      },
      {
-      "t": "c",
-      "ch": "这",
-      "py": "zhè",
-      "mn": "this"
-     },
-     {
-      "t": "c",
-      "ch": "个",
-      "py": "gè",
-      "mn": "(measure word for people and things)"
-     },
-     {
-      "t": "c",
-      "ch": "地方",
-      "py": "dì fāng",
-      "mn": "place"
+      "t": "n",
+      "tx": "故宫",
+      "py": "Gùgōng",
+      "mn": "the Forbidden City"
      },
      {
       "t": "c",
       "ch": "用",
       "py": "yòng",
-      "mn": "using"
+      "mn": "to take"
      },
      {
       "t": "c",
@@ -18177,28 +18906,21 @@
      },
      {
       "t": "c",
-      "ch": "十",
-      "py": "shí",
-      "mn": "ten"
-     },
-     {
-      "t": "c",
-      "ch": "几",
-      "py": "jī",
-      "mn": "small table"
+      "ch": "十几",
+      "py": "shí jǐ",
+      "mn": "ten-something",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
       "ch": "里面",
@@ -18209,37 +18931,32 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there are"
      },
      {
       "t": "c",
-      "ch": "九",
-      "py": "jiǔ",
-      "mn": "nine"
-     },
-     {
-      "t": "c",
-      "ch": "千",
-      "py": "qiān",
-      "mn": "thousand"
+      "ch": "九千",
+      "py": "jiǔ qiān",
+      "mn": "nine thousand",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "more than"
      },
      {
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
       "ch": "房间",
       "py": "fáng jiān",
-      "mn": "room"
+      "mn": "rooms"
      },
      {
       "t": "p",
@@ -18257,13 +18974,14 @@
       "t": "c",
       "ch": "每天",
       "py": "měi tiān",
-      "mn": "every day"
+      "mn": "every day",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "住",
       "py": "zhù",
-      "mn": "to live"
+      "mn": "to stay"
      },
      {
       "t": "c",
@@ -18275,7 +18993,7 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
@@ -18291,37 +19009,32 @@
       "t": "c",
       "ch": "要",
       "py": "yào",
-      "mn": "wanted to"
+      "mn": "would need"
      },
      {
       "t": "c",
       "ch": "住",
       "py": "zhù",
-      "mn": "to live"
+      "mn": "to stay"
      },
      {
       "t": "c",
-      "ch": "二",
-      "py": "èr",
-      "mn": "two"
-     },
-     {
-      "t": "c",
-      "ch": "十",
-      "py": "shí",
-      "mn": "ten"
+      "ch": "二十",
+      "py": "èr shí",
+      "mn": "twenty",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "more than"
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "p",
@@ -18330,10 +19043,10 @@
     ],
     [
      {
-      "t": "c",
-      "ch": "外面",
-      "py": "wài miàn",
-      "mn": "outside (also pr. [wài mian] for this sense)"
+      "t": "n",
+      "tx": "故宫",
+      "py": "Gùgōng",
+      "mn": "the Forbidden City"
      },
      {
       "t": "c",
@@ -18345,49 +19058,48 @@
       "t": "c",
       "ch": "门",
       "py": "mén",
-      "mn": "door; gate"
+      "mn": "gates"
      },
      {
       "t": "c",
       "ch": "又",
       "py": "yòu",
-      "mn": "again; both ... and"
+      "mn": "both"
      },
      {
       "t": "c",
       "ch": "高",
       "py": "gāo",
-      "mn": "tall; high"
+      "mn": "high"
      },
      {
       "t": "c",
       "ch": "又",
       "py": "yòu",
-      "mn": "again; both ... and"
+      "mn": "and"
      },
      {
       "t": "c",
       "ch": "大",
       "py": "dà",
-      "mn": "great"
+      "mn": "big"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
-      "ch": "房子",
-      "py": "fáng zi",
-      "mn": "house"
+      "ch": "宫殿",
+      "py": "gōng diàn",
+      "mn": "palace halls",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "是",
       "py": "shì",
-      "mn": "is"
+      "mn": "are"
      },
      {
       "t": "c",
@@ -18415,7 +19127,7 @@
       "t": "c",
       "ch": "好看",
       "py": "hǎo kàn",
-      "mn": "good-looking"
+      "mn": "beautiful"
      },
      {
       "t": "p",
@@ -18425,33 +19137,28 @@
     [
      {
       "t": "c",
-      "ch": "皇",
-      "py": "huáng",
-      "mn": "emperor"
-     },
-     {
-      "t": "c",
-      "ch": "帝",
-      "py": "dì",
-      "mn": "emperor"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "在",
       "py": "zài",
-      "mn": "at; in"
+      "mn": "in"
      },
      {
       "t": "c",
       "ch": "最",
       "py": "zuì",
-      "mn": "most; -est"
+      "mn": "most"
      },
      {
       "t": "c",
       "ch": "大",
       "py": "dà",
-      "mn": "great"
+      "mn": "big"
      },
      {
       "t": "c",
@@ -18469,31 +19176,33 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
-      "ch": "房间",
-      "py": "fáng jiān",
-      "mn": "room"
+      "ch": "宫殿",
+      "py": "gōng diàn",
+      "mn": "palace hall",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "里",
       "py": "lǐ",
-      "mn": "inside; in"
+      "mn": "in"
      },
      {
       "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
+      "ch": "处理",
+      "py": "chǔ lǐ",
+      "mn": "to handle"
      },
      {
       "t": "c",
-      "ch": "事",
-      "py": "shì",
-      "mn": "matter; thing"
+      "ch": "公务",
+      "py": "gōng wù",
+      "mn": "official business",
+      "bonus": true
      },
      {
       "t": "p",
@@ -18505,7 +19214,8 @@
       "t": "c",
       "ch": "每天",
       "py": "měi tiān",
-      "mn": "every day"
+      "mn": "every day",
+      "bonus": true
      },
      {
       "t": "c",
@@ -18533,7 +19243,8 @@
       "t": "c",
       "ch": "官",
       "py": "guān",
-      "mn": "official"
+      "mn": "officials",
+      "bonus": true
      },
      {
       "t": "c",
@@ -18545,13 +19256,42 @@
       "t": "c",
       "ch": "见",
       "py": "jiàn",
-      "mn": "meet"
+      "mn": "to see"
      },
      {
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "him"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "说",
+      "py": "shuō",
+      "mn": "to tell"
+     },
+     {
+      "t": "c",
+      "ch": "全国",
+      "py": "quán guó",
+      "mn": "the whole country",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "事情",
+      "py": "shì qing",
+      "mn": "affairs"
      },
      {
       "t": "p",
@@ -18567,15 +19307,10 @@
      },
      {
       "t": "c",
-      "ch": "进",
-      "py": "jìn",
-      "mn": "to go into"
-     },
-     {
-      "t": "c",
-      "ch": "来",
-      "py": "lái",
-      "mn": "to come"
+      "ch": "进来",
+      "py": "jìn lái",
+      "mn": "to come in",
+      "bonus": true
      },
      {
       "t": "c",
@@ -18587,7 +19322,7 @@
       "t": "c",
       "ch": "时候",
       "py": "shíhou",
-      "mn": "time; moment"
+      "mn": "time"
      },
      {
       "t": "p",
@@ -18603,7 +19338,7 @@
       "t": "c",
       "ch": "句",
       "py": "jù",
-      "mn": "sentence"
+      "mn": "(counting word, sentences)"
      },
      {
       "t": "c",
@@ -18615,7 +19350,7 @@
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also; even"
      },
      {
       "t": "c",
@@ -18627,26 +19362,25 @@
       "t": "c",
       "ch": "敢",
       "py": "gǎn",
-      "mn": "to dare"
+      "mn": "to dare",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "more"
      },
      {
       "t": "c",
       "ch": "说",
       "py": "shuō",
-      "mn": "said"
+      "mn": "to say"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
       "ch": "因为",
@@ -18655,21 +19389,10 @@
      },
      {
       "t": "c",
-      "ch": "这里",
-      "py": "zhè lǐ",
-      "mn": "here"
-     },
-     {
-      "t": "c",
-      "ch": "要",
-      "py": "yào",
-      "mn": "wanted to"
-     },
-     {
-      "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
      },
      {
       "t": "c",
@@ -18679,21 +19402,113 @@
      },
      {
       "t": "c",
-      "ch": "事情",
-      "py": "shì qing",
-      "mn": "affair; matter; thing; business"
+      "ch": "话",
+      "py": "huà",
+      "mn": "words"
      },
      {
       "t": "c",
-      "ch": "非常",
-      "py": "fēi cháng",
-      "mn": "very; really"
+      "ch": "就",
+      "py": "jiù",
+      "mn": "just"
      },
      {
       "t": "c",
-      "ch": "多",
-      "py": "duō",
-      "mn": "many"
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
+     },
+     {
+      "t": "c",
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "country"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "法律",
+      "py": "fǎ lǜ",
+      "mn": "law",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "家人",
+      "py": "jiā rén",
+      "mn": "family"
+     },
+     {
+      "t": "c",
+      "ch": "住",
+      "py": "zhù",
+      "mn": "to live"
+     },
+     {
+      "t": "c",
+      "ch": "在",
+      "py": "zài",
+      "mn": "in"
+     },
+     {
+      "t": "c",
+      "ch": "后面",
+      "py": "hòu mian",
+      "mn": "behind",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "一般",
+      "py": "yī bān",
+      "mn": "ordinary"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "看不到",
+      "py": "kàn bu dào",
+      "mn": "cannot see",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "them"
      },
      {
       "t": "p",
@@ -18711,19 +19526,19 @@
       "t": "c",
       "ch": "还",
       "py": "hái",
-      "mn": "still"
+      "mn": "also"
      },
      {
       "t": "c",
       "ch": "放",
       "py": "fàng",
-      "mn": "give"
+      "mn": "to put"
      },
      {
       "t": "c",
       "ch": "着",
       "py": "zhe",
-      "mn": "(-ing, an action going on)"
+      "mn": "(-ing, still going on)"
      },
      {
       "t": "c",
@@ -18739,39 +19554,10 @@
      },
      {
       "t": "c",
-      "ch": "好看",
-      "py": "hǎo kàn",
-      "mn": "good-looking"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "thing; things"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "有",
-      "py": "yǒu",
-      "mn": "to have"
-     },
-     {
-      "t": "c",
-      "ch": "字",
-      "py": "zì",
-      "mn": "character; writing"
+      "ch": "宝物",
+      "py": "bǎo wù",
+      "mn": "treasures",
+      "bonus": true
      },
      {
       "t": "p",
@@ -18781,13 +19567,30 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there are"
+     },
+     {
+      "t": "c",
+      "ch": "字画",
+      "py": "zì huà",
+      "mn": "calligraphy and paintings",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "there are"
      },
      {
       "t": "c",
       "ch": "书",
       "py": "shū",
-      "mn": "book"
+      "mn": "books"
      },
      {
       "t": "p",
@@ -18797,25 +19600,20 @@
       "t": "c",
       "ch": "还有",
       "py": "hái yǒu",
-      "mn": "furthermore"
+      "mn": "and also"
      },
      {
       "t": "c",
-      "ch": "金",
-      "py": "jīn",
-      "mn": "gold"
-     },
-     {
-      "t": "c",
-      "ch": "子",
-      "py": "zi",
-      "mn": "(word ending, as in 孩子)"
+      "ch": "金子",
+      "py": "jīn zi",
+      "mn": "gold",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to make"
      },
      {
       "t": "c",
@@ -18827,7 +19625,72 @@
       "t": "c",
       "ch": "东西",
       "py": "dōng xi",
-      "mn": "thing; things"
+      "mn": "things"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "这些",
+      "py": "zhè xiē",
+      "mn": "these"
+     },
+     {
+      "t": "c",
+      "ch": "东西",
+      "py": "dōng xi",
+      "mn": "things"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "are"
+     },
+     {
+      "t": "c",
+      "ch": "全国",
+      "py": "quán guó",
+      "mn": "the whole country",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "最",
+      "py": "zuì",
+      "mn": "most"
+     },
+     {
+      "t": "c",
+      "ch": "好",
+      "py": "hǎo",
+      "mn": "good"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
      },
      {
       "t": "p",
@@ -18849,13 +19712,13 @@
       "t": "c",
       "ch": "一般",
       "py": "yī bān",
-      "mn": "same"
+      "mn": "ordinary"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
@@ -18867,13 +19730,55 @@
       "t": "c",
       "ch": "可以",
       "py": "kě yǐ",
-      "mn": "can"
+      "mn": "may"
+     },
+     {
+      "t": "c",
+      "ch": "进",
+      "py": "jìn",
+      "mn": "to enter"
+     },
+     {
+      "t": "n",
+      "tx": "故宫",
+      "py": "Gùgōng",
+      "mn": "the Forbidden City"
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
       "ch": "进去",
       "py": "jìn qù",
-      "mn": "to go in"
+      "mn": "to go in",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "c",
+      "ch": "会",
+      "py": "huì",
+      "mn": "would"
+     },
+     {
+      "t": "c",
+      "ch": "被",
+      "py": "bèi",
+      "mn": "(is done to)"
+     },
+     {
+      "t": "c",
+      "ch": "抓起来",
+      "py": "zhuā qǐ lái",
+      "mn": "to be arrested",
+      "bonus": true
      },
      {
       "t": "p",
@@ -18885,7 +19790,7 @@
       "t": "c",
       "ch": "可是",
       "py": "kě shì",
-      "mn": "but; however"
+      "mn": "but"
      },
      {
       "t": "c",
@@ -18907,7 +19812,7 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
@@ -18925,31 +19830,86 @@
       "t": "c",
       "ch": "可以",
       "py": "kě yǐ",
-      "mn": "can"
+      "mn": "may"
      },
      {
       "t": "c",
       "ch": "进去",
       "py": "jìn qù",
-      "mn": "to go in"
+      "mn": "to go in",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "看",
-      "py": "kàn",
-      "mn": "to look; to watch; to read"
+      "ch": "看一看",
+      "py": "kàn yi kàn",
+      "mn": "to have a look",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "以前",
+      "py": "yǐ qián",
+      "mn": "before"
      },
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "看",
-      "py": "kàn",
-      "mn": "to look; to watch; to read"
+      "ch": "住",
+      "py": "zhù",
+      "mn": "to live"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "地方",
+      "py": "dì fāng",
+      "mn": "place"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "现在",
+      "py": "xiàn zài",
+      "mn": "now"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
+     },
+     {
+      "t": "c",
+      "ch": "大家",
+      "py": "dà jiā",
+      "mn": "everyone"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
      },
      {
       "t": "p",
@@ -18958,21 +19918,21 @@
     ]
    ],
    "trans": [
-    "In Beijing there is a very large, very old place called the Forbidden City.",
+    "In Beijing there is a huge old place called the Forbidden City.",
     "It was built for a Ming emperor more than six hundred years ago.",
-    "Building it took more than ten years.",
-    "Inside are more than nine thousand rooms.",
-    "If you slept in one room a night, it would take over twenty years.",
-    "The outer gates are high and great.",
-    "The buildings are red, and very beautiful.",
-    "The emperor worked in the largest hall.",
-    "Every morning many officials came to see him.",
-    "As they came in they dared not say a word more than needed.",
-    "Because there was so much here that had to be done just so.",
-    "Many beautiful things were kept inside.",
-    "There is writing, there are books, and things made of gold.",
-    "In the past ordinary people could not go in.",
-    "But today anyone may go in and look."
+    "Later the Qing emperors lived here too.",
+    "Building it took more than ten years, and inside are over nine thousand rooms.",
+    "If you slept in a different room every night, it would take over twenty years.",
+    "The gates are high and great, and the palace halls are red and beautiful.",
+    "The emperor attended to state business in the largest hall.",
+    "Every morning many officials came to see him and report on the whole country.",
+    "As they came in they dared not say a word too many, for the emperor's word was the law of the land.",
+    "The emperor's family lived at the back, where ordinary people never saw them.",
+    "Many treasures were kept inside: calligraphy and paintings, books, and things made of gold.",
+    "Many of them were the finest in the whole country.",
+    "In the past ordinary people could not enter; anyone who did was arrested.",
+    "But today anyone may go in and have a look.",
+    "The place where emperors once lived now belongs to everyone."
    ]
   },
   "reform-h2": {
@@ -18992,49 +19952,43 @@
      },
      {
       "t": "c",
-      "ch": "快",
-      "py": "kuài",
-      "mn": "fast; happy"
+      "ch": "到",
+      "py": "dào",
+      "mn": "to reach"
      },
      {
       "t": "c",
-      "ch": "要",
-      "py": "yào",
-      "mn": "wanted to"
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
      },
      {
       "t": "c",
-      "ch": "过去",
-      "py": "guò qù",
-      "mn": "(in the) past"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "时候",
-      "py": "shíhou",
-      "mn": "time; moment"
+      "ch": "后来",
+      "py": "hòu lái",
+      "mn": "later on"
      },
      {
       "t": "p",
       "tx": "，"
      },
      {
-      "t": "n",
-      "tx": "中国",
-      "py": "Zhōngguó",
-      "mn": "China"
+      "t": "c",
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "country"
      },
      {
       "t": "c",
-      "ch": "有",
-      "py": "yǒu",
-      "mn": "to have"
+      "ch": "出",
+      "py": "chū",
+      "mn": "to develop"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
      },
      {
       "t": "c",
@@ -19050,15 +20004,9 @@
      },
      {
       "t": "c",
-      "ch": "难",
-      "py": "nán",
-      "mn": "hard; difficult"
-     },
-     {
-      "t": "c",
-      "ch": "事",
-      "py": "shì",
-      "mn": "matter; thing"
+      "ch": "问题",
+      "py": "wèn tí",
+      "mn": "problems"
      },
      {
       "t": "p",
@@ -19066,280 +20014,6 @@
      }
     ],
     [
-     {
-      "t": "c",
-      "ch": "那时候",
-      "py": "nà shí hou",
-      "mn": "at that time"
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "西边",
-      "py": "xī biān",
-      "mn": "the west"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "国家",
-      "py": "guó jiā",
-      "mn": "country"
-     },
-     {
-      "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
-     },
-     {
-      "t": "c",
-      "ch": "出",
-      "py": "chū",
-      "mn": "go"
-     },
-     {
-      "t": "c",
-      "ch": "了",
-      "py": "le",
-      "mn": "(shows it is finished)"
-     },
-     {
-      "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "船",
-      "py": "chuán",
-      "mn": "boats"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "船",
-      "py": "chuán",
-      "mn": "boats"
-     },
-     {
-      "t": "c",
-      "ch": "又",
-      "py": "yòu",
-      "mn": "again; both ... and"
-     },
-     {
-      "t": "c",
-      "ch": "大",
-      "py": "dà",
-      "mn": "great"
-     },
-     {
-      "t": "c",
-      "ch": "又",
-      "py": "yòu",
-      "mn": "again; both ... and"
-     },
-     {
-      "t": "c",
-      "ch": "快",
-      "py": "kuài",
-      "mn": "fast; happy"
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "不用",
-      "py": "bù yòng",
-      "mn": "need not"
-     },
-     {
-      "t": "c",
-      "ch": "风",
-      "py": "fēng",
-      "mn": "wind"
-     },
-     {
-      "t": "c",
-      "ch": "也",
-      "py": "yě",
-      "mn": "also; too"
-     },
-     {
-      "t": "c",
-      "ch": "可以",
-      "py": "kě yǐ",
-      "mn": "can"
-     },
-     {
-      "t": "c",
-      "ch": "走",
-      "py": "zǒu",
-      "mn": "moved"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
-     },
-     {
-      "t": "c",
-      "ch": "也",
-      "py": "yě",
-      "mn": "also; too"
-     },
-     {
-      "t": "c",
-      "ch": "有",
-      "py": "yǒu",
-      "mn": "to have"
-     },
-     {
-      "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "thing; things"
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "是",
-      "py": "shì",
-      "mn": "is"
-     },
-     {
-      "t": "n",
-      "tx": "中国",
-      "py": "Zhōngguó",
-      "mn": "China"
-     },
-     {
-      "t": "c",
-      "ch": "没有",
-      "py": "méi yǒu",
-      "mn": "not; did not have"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "因为",
-      "py": "yīn wèi",
-      "mn": "because"
-     },
-     {
-      "t": "c",
-      "ch": "这样",
-      "py": "zhè yàng",
-      "mn": "this kind of"
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "n",
-      "tx": "中国",
-      "py": "Zhōngguó",
-      "mn": "China"
-     },
-     {
-      "t": "c",
-      "ch": "过",
-      "py": "guò",
-      "mn": "pass"
-     },
-     {
-      "t": "c",
-      "ch": "了",
-      "py": "le",
-      "mn": "(shows it is finished)"
-     },
-     {
-      "t": "c",
-      "ch": "几",
-      "py": "jī",
-      "mn": "small table"
-     },
-     {
-      "t": "c",
-      "ch": "十",
-      "py": "shí",
-      "mn": "ten"
-     },
-     {
-      "t": "c",
-      "ch": "年",
-      "py": "nián",
-      "mn": "year"
-     },
      {
       "t": "c",
       "ch": "很",
@@ -19348,9 +20022,82 @@
      },
      {
       "t": "c",
-      "ch": "难",
-      "py": "nán",
-      "mn": "hard; difficult"
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "官",
+      "py": "guān",
+      "mn": "officials",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "好好",
+      "py": "hǎo hǎo",
+      "mn": "properly",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "做事",
+      "py": "zuò shì",
+      "mn": "to work",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "只",
+      "py": "zhī",
+      "mn": "only"
+     },
+     {
+      "t": "c",
+      "ch": "想",
+      "py": "xiǎng",
+      "mn": "to want"
+     },
+     {
+      "t": "c",
+      "ch": "自己",
+      "py": "zì jǐ",
+      "mn": "themselves"
+     },
+     {
+      "t": "c",
+      "ch": "拿",
+      "py": "ná",
+      "mn": "to take"
+     },
+     {
+      "t": "c",
+      "ch": "钱",
+      "py": "qián",
+      "mn": "money"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "人们",
+      "py": "rén men",
+      "mn": "people"
      },
      {
       "t": "c",
@@ -19362,7 +20109,523 @@
       "t": "c",
       "ch": "日子",
       "py": "rì zi",
-      "mn": "day"
+      "mn": "life"
+     },
+     {
+      "t": "c",
+      "ch": "越来越",
+      "py": "yuè lái yuè",
+      "mn": "more and more"
+     },
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "好过",
+      "py": "hǎo guò",
+      "mn": "easy to bear",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "吃不饱",
+      "py": "chī bu bǎo",
+      "mn": "cannot eat one's fill",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "饭",
+      "py": "fàn",
+      "mn": "food"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "有的",
+      "py": "yǒu de",
+      "mn": "some"
+     },
+     {
+      "t": "c",
+      "ch": "地方",
+      "py": "dì fāng",
+      "mn": "places"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "人们",
+      "py": "rén men",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "站起来",
+      "py": "zhàn qǐ lái",
+      "mn": "to stand up",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "with"
+     },
+     {
+      "t": "c",
+      "ch": "官",
+      "py": "guān",
+      "mn": "officials",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "打仗",
+      "py": "dǎ zhàng",
+      "mn": "to fight",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "这时候",
+      "py": "zhè shí hou",
+      "mn": "at this time",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "西方",
+      "py": "xī fāng",
+      "mn": "the West",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "countries"
+     },
+     {
+      "t": "c",
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "to have"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows a change)"
+     },
+     {
+      "t": "c",
+      "ch": "轮船",
+      "py": "lún chuán",
+      "mn": "steamships",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
+     },
+     {
+      "t": "c",
+      "ch": "大炮",
+      "py": "dà pào",
+      "mn": "cannon",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "比",
+      "py": "bǐ",
+      "mn": "than"
+     },
+     {
+      "t": "n",
+      "tx": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "强",
+      "py": "qiáng",
+      "mn": "strong"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "多",
+      "py": "duō",
+      "mn": "much"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "they"
+     },
+     {
+      "t": "c",
+      "ch": "来到",
+      "py": "lái dào",
+      "mn": "to come to"
+     },
+     {
+      "t": "n",
+      "tx": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "打",
+      "py": "dǎ",
+      "mn": "to fight"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "c",
+      "ch": "几",
+      "py": "jī",
+      "mn": "several"
+     },
+     {
+      "t": "c",
+      "ch": "次",
+      "py": "cì",
+      "mn": "times"
+     },
+     {
+      "t": "c",
+      "ch": "仗",
+      "py": "zhàng",
+      "mn": "battles",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "n",
+      "tx": "清朝",
+      "py": "Qīng Cháo",
+      "mn": "the Qing dynasty"
+     },
+     {
+      "t": "c",
+      "ch": "都",
+      "py": "dōu",
+      "mn": "all"
+     },
+     {
+      "t": "c",
+      "ch": "输",
+      "py": "shū",
+      "mn": "to lose",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "输",
+      "py": "shū",
+      "mn": "to lose",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "c",
+      "ch": "以后",
+      "py": "yǐ hòu",
+      "mn": "after"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "n",
+      "tx": "清朝",
+      "py": "Qīng Cháo",
+      "mn": "the Qing dynasty"
+     },
+     {
+      "t": "c",
+      "ch": "要",
+      "py": "yào",
+      "mn": "must"
+     },
+     {
+      "t": "c",
+      "ch": "给",
+      "py": "gěi",
+      "mn": "to give"
+     },
+     {
+      "t": "c",
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "them"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "多",
+      "py": "duō",
+      "mn": "much"
+     },
+     {
+      "t": "c",
+      "ch": "钱",
+      "py": "qián",
+      "mn": "money"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "还",
+      "py": "hái",
+      "mn": "also"
+     },
+     {
+      "t": "c",
+      "ch": "要",
+      "py": "yào",
+      "mn": "must"
+     },
+     {
+      "t": "c",
+      "ch": "把",
+      "py": "bǎ",
+      "mn": "(puts the object first)"
+     },
+     {
+      "t": "c",
+      "ch": "一些",
+      "py": "yī xiē",
+      "mn": "some"
+     },
+     {
+      "t": "c",
+      "ch": "地方",
+      "py": "dì fāng",
+      "mn": "places"
+     },
+     {
+      "t": "c",
+      "ch": "给",
+      "py": "gěi",
+      "mn": "to give"
+     },
+     {
+      "t": "c",
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "them"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "n",
+      "tx": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
+     },
+     {
+      "t": "c",
+      "ch": "里面",
+      "py": "lǐ miàn",
+      "mn": "inside"
+     },
+     {
+      "t": "c",
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "there are"
+     },
+     {
+      "t": "c",
+      "ch": "问题",
+      "py": "wèn tí",
+      "mn": "problems"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "外面",
+      "py": "wài miàn",
+      "mn": "outside",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "又",
+      "py": "yòu",
+      "mn": "also"
+     },
+     {
+      "t": "c",
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "there are"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "来",
+      "py": "lái",
+      "mn": "to come"
+     },
+     {
+      "t": "c",
+      "ch": "打",
+      "py": "dǎ",
+      "mn": "to attack"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "这",
+      "py": "zhè",
+      "mn": "this"
+     },
+     {
+      "t": "c",
+      "ch": "叫",
+      "py": "jiào",
+      "mn": "is called"
+     },
+     {
+      "t": "c",
+      "ch": "内忧外患",
+      "py": "nèi yōu wài huàn",
+      "mn": "trouble within and attack from without",
+      "bonus": true
      },
      {
       "t": "p",
@@ -19386,19 +20649,19 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "开始",
       "py": "kāishǐ",
-      "mn": "started"
+      "mn": "to begin"
      },
      {
       "t": "c",
       "ch": "想",
       "py": "xiǎng",
-      "mn": "wanted"
+      "mn": "to think"
      },
      {
       "t": "p",
@@ -19414,13 +20677,13 @@
       "t": "c",
       "ch": "应该",
       "py": "yīng gāi",
-      "mn": "ought to"
+      "mn": "should"
      },
      {
       "t": "c",
       "ch": "怎么办",
       "py": "zěn me bàn",
-      "mn": "what should we do"
+      "mn": "what to do"
      },
      {
       "t": "p",
@@ -19432,19 +20695,19 @@
       "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "说",
       "py": "shuō",
-      "mn": "said"
+      "mn": "to say"
      },
      {
       "t": "p",
@@ -19460,19 +20723,20 @@
       "t": "c",
       "ch": "要",
       "py": "yào",
-      "mn": "wanted to"
+      "mn": "must"
      },
      {
       "t": "c",
       "ch": "学",
       "py": "xué",
-      "mn": "to study"
+      "mn": "to learn"
      },
      {
       "t": "c",
-      "ch": "西边",
-      "py": "xī biān",
-      "mn": "the west"
+      "ch": "西方",
+      "py": "xī fāng",
+      "mn": "the West",
+      "bonus": true
      },
      {
       "t": "c",
@@ -19482,15 +20746,58 @@
      },
      {
       "t": "c",
-      "ch": "学",
-      "py": "xué",
-      "mn": "to study"
+      "ch": "科学",
+      "py": "kē xué",
+      "mn": "science",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
-      "ch": "问",
-      "py": "wèn",
-      "mn": "to ask"
+      "ch": "要",
+      "py": "yào",
+      "mn": "must"
+     },
+     {
+      "t": "c",
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "to have"
+     },
+     {
+      "t": "c",
+      "ch": "自己",
+      "py": "zì jǐ",
+      "mn": "own"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "轮船",
+      "py": "lún chuán",
+      "mn": "steamships",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
+     },
+     {
+      "t": "c",
+      "ch": "大炮",
+      "py": "dà pào",
+      "mn": "cannon",
+      "bonus": true
      },
      {
       "t": "p",
@@ -19514,25 +20821,28 @@
       "t": "c",
       "ch": "官",
       "py": "guān",
-      "mn": "official"
-     },
-     {
-      "t": "c",
-      "ch": "开始",
-      "py": "kāishǐ",
-      "mn": "started"
+      "mn": "officials",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "建",
       "py": "jiàn",
-      "mn": "build"
+      "mn": "to found",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "c",
+      "ch": "新式",
+      "py": "xīn shì",
+      "mn": "new-style",
+      "bonus": true
      },
      {
       "t": "c",
@@ -19544,25 +20854,11 @@
       "t": "c",
       "ch": "学校",
       "py": "xué xiào",
-      "mn": "school"
+      "mn": "schools"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "学校",
-      "py": "xué xiào",
-      "mn": "school"
-     },
-     {
-      "t": "c",
-      "ch": "里",
-      "py": "lǐ",
-      "mn": "in"
+      "tx": "，"
      },
      {
       "t": "c",
@@ -19595,21 +20891,10 @@
      },
      {
       "t": "c",
-      "ch": "别",
-      "py": "bié",
-      "mn": "other"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "国家",
-      "py": "guó jiā",
-      "mn": "country"
+      "ch": "外国",
+      "py": "wài guó",
+      "mn": "foreign countries",
+      "bonus": true
      },
      {
       "t": "c",
@@ -19621,7 +20906,7 @@
       "t": "c",
       "ch": "话",
       "py": "huà",
-      "mn": "language"
+      "mn": "languages"
      },
      {
       "t": "p",
@@ -19637,39 +20922,41 @@
      },
      {
       "t": "c",
-      "ch": "也",
-      "py": "yě",
-      "mn": "also; too"
+      "ch": "还",
+      "py": "hái",
+      "mn": "also"
      },
      {
       "t": "c",
       "ch": "送",
       "py": "sòng",
-      "mn": "to send; to see off"
+      "mn": "to send"
      },
      {
       "t": "c",
-      "ch": "年轻",
-      "py": "nián qīng",
-      "mn": "young"
+      "ch": "年轻人",
+      "py": "nián qīng rén",
+      "mn": "young people",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
+      "ch": "去",
+      "py": "qù",
+      "mn": "to go"
      },
      {
       "t": "c",
-      "ch": "出去",
-      "py": "chū qù",
-      "mn": "to go out"
+      "ch": "外国",
+      "py": "wài guó",
+      "mn": "foreign countries",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "读书",
       "py": "dú shū",
-      "mn": "to read; to study"
+      "mn": "to study"
      },
      {
       "t": "p",
@@ -19679,27 +20966,16 @@
     [
      {
       "t": "c",
-      "ch": "那些",
-      "py": "nà xiē",
-      "mn": "those"
-     },
-     {
-      "t": "c",
-      "ch": "年轻",
-      "py": "nián qīng",
-      "mn": "young"
-     },
-     {
-      "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
+      "ch": "年轻人",
+      "py": "nián qīng rén",
+      "mn": "young people",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "回来",
       "py": "huí lai",
-      "mn": "to return; to come back"
+      "mn": "to come back"
      },
      {
       "t": "c",
@@ -19713,63 +20989,29 @@
      },
      {
       "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
-     },
-     {
-      "t": "c",
-      "ch": "了",
-      "py": "le",
-      "mn": "(shows it is finished)"
-     },
-     {
-      "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "多",
-      "py": "duō",
-      "mn": "many"
-     },
-     {
-      "t": "c",
-      "ch": "事情",
-      "py": "shì qing",
-      "mn": "affair; matter; thing; business"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "造",
       "py": "zào",
-      "mn": "to make"
+      "mn": "to build",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "船",
-      "py": "chuán",
-      "mn": "boats"
+      "ch": "轮船",
+      "py": "lún chuán",
+      "mn": "steamships",
+      "bonus": true
      },
      {
       "t": "p",
@@ -19779,25 +21021,27 @@
       "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "修",
       "py": "xiū",
-      "mn": "to repair; to fix"
+      "mn": "to build",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "路",
-      "py": "lù",
-      "mn": "road; way"
+      "ch": "铁路",
+      "py": "tiě lù",
+      "mn": "railways",
+      "bonus": true
      },
      {
       "t": "p",
@@ -19809,7 +21053,7 @@
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to do"
      },
      {
       "t": "c",
@@ -19819,15 +21063,15 @@
      },
      {
       "t": "c",
-      "ch": "事情",
-      "py": "shì qing",
-      "mn": "affair; matter; thing; business"
+      "ch": "事",
+      "py": "shì",
+      "mn": "things"
      },
      {
       "t": "c",
-      "ch": "非常",
-      "py": "fēi cháng",
-      "mn": "very; really"
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
      },
      {
       "t": "c",
@@ -19839,19 +21083,11 @@
       "t": "c",
       "ch": "容易",
       "py": "róng yì",
-      "mn": "easy; straightforward"
+      "mn": "easy"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "虽然",
-      "py": "suī rán",
-      "mn": "although; even though (often used correlatively with 是 or 是 etc)"
+      "tx": "，"
      },
      {
       "t": "c",
@@ -19881,13 +21117,13 @@
       "t": "c",
       "ch": "没有",
       "py": "méi yǒu",
-      "mn": "not; did not have"
+      "mn": "did not"
      },
      {
       "t": "c",
       "ch": "成功",
       "py": "chéng gōng",
-      "mn": "to succeed; success"
+      "mn": "to succeed"
      },
      {
       "t": "p",
@@ -19895,9 +21131,9 @@
      },
      {
       "t": "c",
-      "ch": "但是",
-      "py": "dàn shì",
-      "mn": "but; however"
+      "ch": "可是",
+      "py": "kě shì",
+      "mn": "but"
      },
      {
       "t": "c",
@@ -19909,13 +21145,14 @@
       "t": "c",
       "ch": "没有",
       "py": "méi yǒu",
-      "mn": "not; did not have"
+      "mn": "did not"
      },
      {
       "t": "c",
       "ch": "放弃",
       "py": "fàng qì",
-      "mn": "to give up"
+      "mn": "to give up",
+      "bonus": true
      },
      {
       "t": "p",
@@ -19927,7 +21164,7 @@
       "t": "c",
       "ch": "他们",
       "py": "tā men",
-      "mn": "they"
+      "mn": "they; their"
      },
      {
       "t": "c",
@@ -19937,21 +21174,16 @@
      },
      {
       "t": "c",
-      "ch": "想",
-      "py": "xiǎng",
-      "mn": "wanted"
+      "ch": "想法",
+      "py": "xiǎng fǎ",
+      "mn": "ideas",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "法",
-      "py": "fǎ",
-      "mn": "law; method"
-     },
-     {
-      "t": "c",
-      "ch": "影响",
-      "py": "yǐng xiǎng",
-      "mn": "influence"
+      "ch": "改变",
+      "py": "gǎi biàn",
+      "mn": "to change"
      },
      {
       "t": "c",
@@ -19984,21 +21216,21 @@
     ]
    ],
    "trans": [
-    "As the Qing dynasty neared its end, China faced many difficulties.",
-    "By then countries in the west had built new ships.",
-    "Their ships were large and fast, and could move without wind.",
-    "They had new things that China did not.",
-    "Because of this, China went through several very hard decades.",
+    "Late in the Qing dynasty, the country ran into many problems.",
+    "Many officials did not do their jobs properly, and thought only of lining their pockets.",
+    "Life grew harder and harder, and many people could not get enough to eat.",
+    "In some places people rose up and fought the officials.",
+    "At that moment the western countries had steamships and cannon, far stronger than China's.",
+    "They came to China and fought several wars, and the Qing lost every one.",
+    "After each defeat the Qing had to pay them large sums, and hand over some territory.",
+    "Trouble within and attack from without: this is called 内忧外患.",
     "Many began to ask: what should we do?",
-    "Some said we must learn the west’s knowledge.",
-    "So some officials began founding new schools.",
-    "Those schools taught mathematics, and other countries' languages.",
+    "Some said we must learn western science and have steamships and cannon of our own.",
+    "So some officials founded new-style schools that taught mathematics and foreign languages.",
     "They also sent young people abroad to study.",
-    "Those young people did a great deal after they returned.",
-    "Some built ships, some built roads.",
-    "Doing all this was far from easy.",
-    "Although they failed many times, they did not give up.",
-    "Their thinking shaped the China that came after."
+    "When the young people came back, some built steamships and some built railways.",
+    "None of it was easy, and it failed many times, but they did not give up.",
+    "Their ideas changed the China that came after."
    ]
   },
   "reform2-h2": {
@@ -20012,33 +21244,28 @@
     [
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "百",
-      "py": "bǎi",
-      "mn": "hundred"
+      "ch": "一百",
+      "py": "yì bǎi",
+      "mn": "one hundred",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "more than"
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "c",
       "ch": "以前",
       "py": "yǐ qián",
-      "mn": "before"
+      "mn": "ago"
      },
      {
       "t": "p",
@@ -20060,7 +21287,7 @@
       "t": "c",
       "ch": "只是",
       "py": "zhǐ shì",
-      "mn": "merely; only; just; nothing but"
+      "mn": "only"
      },
      {
       "t": "c",
@@ -20072,13 +21299,13 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
       "ch": "小",
       "py": "xiǎo",
-      "mn": "little"
+      "mn": "small"
      },
      {
       "t": "c",
@@ -20088,37 +21315,13 @@
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "那时候",
-      "py": "nà shí hou",
-      "mn": "at that time"
-     },
-     {
-      "t": "p",
       "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "那里",
-      "py": "nà li",
-      "mn": "there; that place"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
@@ -20154,19 +21357,14 @@
       "t": "c",
       "ch": "在",
       "py": "zài",
-      "mn": "at; in"
+      "mn": "at"
      },
      {
       "t": "c",
-      "ch": "海",
-      "py": "hǎi",
-      "mn": "sea"
-     },
-     {
-      "t": "c",
-      "ch": "边",
-      "py": "biān",
-      "mn": "side; edge"
+      "ch": "海边",
+      "py": "hǎi biān",
+      "mn": "seaside",
+      "bonus": true
      },
      {
       "t": "p",
@@ -20174,9 +21372,56 @@
      },
      {
       "t": "c",
-      "ch": "所以",
-      "py": "suǒ yǐ",
-      "mn": "so"
+      "ch": "也",
+      "py": "yě",
+      "mn": "also"
+     },
+     {
+      "t": "c",
+      "ch": "在",
+      "py": "zài",
+      "mn": "at"
+     },
+     {
+      "t": "c",
+      "ch": "一",
+      "py": "yī",
+      "mn": "one"
+     },
+     {
+      "t": "c",
+      "ch": "条",
+      "py": "tiáo",
+      "mn": "(counting word, rivers)"
+     },
+     {
+      "t": "c",
+      "ch": "大",
+      "py": "dà",
+      "mn": "big"
+     },
+     {
+      "t": "c",
+      "ch": "河",
+      "py": "hé",
+      "mn": "river"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "边上",
+      "py": "biān shàng",
+      "mn": "beside",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
@@ -20200,7 +21445,7 @@
       "t": "c",
       "ch": "船",
       "py": "chuán",
-      "mn": "boats"
+      "mn": "ships"
      },
      {
       "t": "c",
@@ -20213,6 +21458,108 @@
       "ch": "了",
       "py": "le",
       "mn": "(shows it is finished)"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "船",
+      "py": "chuán",
+      "mn": "ships"
+     },
+     {
+      "t": "c",
+      "ch": "带来",
+      "py": "dài lái",
+      "mn": "to bring"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "c",
+      "ch": "别的",
+      "py": "bié de",
+      "mn": "other"
+     },
+     {
+      "t": "c",
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "countries"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "东西",
+      "py": "dōng xi",
+      "mn": "things; goods"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "也",
+      "py": "yě",
+      "mn": "also"
+     },
+     {
+      "t": "c",
+      "ch": "带走",
+      "py": "dài zǒu",
+      "mn": "to carry away",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "n",
+      "tx": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "茶",
+      "py": "chá",
+      "mn": "tea"
+     },
+     {
+      "t": "c",
+      "ch": "和",
+      "py": "hé",
+      "mn": "and"
+     },
+     {
+      "t": "c",
+      "ch": "丝绸",
+      "py": "sī chóu",
+      "mn": "silk",
+      "bonus": true
      },
      {
       "t": "p",
@@ -20236,7 +21583,7 @@
       "t": "c",
       "ch": "国家",
       "py": "guó jiā",
-      "mn": "country"
+      "mn": "countries"
      },
      {
       "t": "c",
@@ -20248,13 +21595,13 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "在",
       "py": "zài",
-      "mn": "at; in"
+      "mn": "at"
      },
      {
       "t": "c",
@@ -20278,19 +21625,11 @@
       "t": "c",
       "ch": "下来",
       "py": "xià lai",
-      "mn": "to come down"
+      "mn": "(to settle)"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
+      "tx": "，"
      },
      {
       "t": "c",
@@ -20314,19 +21653,19 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
       "ch": "东西",
       "py": "dōng xi",
-      "mn": "thing; things"
+      "mn": "things"
      },
      {
       "t": "c",
       "ch": "和",
       "py": "hé",
-      "mn": "and; with"
+      "mn": "and"
      },
      {
       "t": "c",
@@ -20338,19 +21677,14 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
-      "ch": "想",
-      "py": "xiǎng",
-      "mn": "wanted"
-     },
-     {
-      "t": "c",
-      "ch": "法",
-      "py": "fǎ",
-      "mn": "law; method"
+      "ch": "想法",
+      "py": "xiǎng fǎ",
+      "mn": "ideas",
+      "bonus": true
      },
      {
       "t": "p",
@@ -20362,13 +21696,14 @@
       "t": "c",
       "ch": "城",
       "py": "chéng",
-      "mn": "city; wall"
+      "mn": "city",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "里",
       "py": "lǐ",
-      "mn": "inside; in"
+      "mn": "in"
      },
      {
       "t": "c",
@@ -20380,13 +21715,14 @@
       "t": "c",
       "ch": "了",
       "py": "le",
-      "mn": "(shows it is finished)"
+      "mn": "(shows a change)"
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "新式",
+      "py": "xīn shì",
+      "mn": "new-style",
+      "bonus": true
      },
      {
       "t": "c",
@@ -20398,19 +21734,17 @@
       "t": "c",
       "ch": "学校",
       "py": "xué xiào",
-      "mn": "school"
+      "mn": "schools"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also"
      },
      {
       "t": "c",
@@ -20422,19 +21756,20 @@
       "t": "c",
       "ch": "了",
       "py": "le",
-      "mn": "(shows it is finished)"
+      "mn": "(shows a change)"
      },
      {
       "t": "c",
       "ch": "每天",
       "py": "měi tiān",
-      "mn": "every day"
+      "mn": "every day",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "出",
       "py": "chū",
-      "mn": "go"
+      "mn": "to come out"
      },
      {
       "t": "c",
@@ -20444,9 +21779,10 @@
      },
      {
       "t": "c",
-      "ch": "报",
-      "py": "bào",
-      "mn": "to report; newspaper"
+      "ch": "报纸",
+      "py": "bào zhǐ",
+      "mn": "newspapers",
+      "bonus": true
      },
      {
       "t": "p",
@@ -20458,19 +21794,19 @@
       "t": "c",
       "ch": "路",
       "py": "lù",
-      "mn": "road; way"
+      "mn": "road"
      },
      {
       "t": "c",
       "ch": "上",
       "py": "shàng",
-      "mn": "up; on; above"
+      "mn": "on"
      },
      {
       "t": "c",
       "ch": "开始",
       "py": "kāishǐ",
-      "mn": "started"
+      "mn": "to begin"
      },
      {
       "t": "c",
@@ -20480,9 +21816,9 @@
      },
      {
       "t": "c",
-      "ch": "车",
-      "py": "chē",
-      "mn": "car; vehicle"
+      "ch": "汽车",
+      "py": "qì chē",
+      "mn": "cars"
      },
      {
       "t": "p",
@@ -20492,7 +21828,7 @@
       "t": "c",
       "ch": "还有",
       "py": "hái yǒu",
-      "mn": "furthermore"
+      "mn": "and also"
      },
      {
       "t": "c",
@@ -20508,9 +21844,9 @@
      },
      {
       "t": "c",
-      "ch": "店",
-      "py": "diàn",
-      "mn": "inn; old-style hotel"
+      "ch": "商店",
+      "py": "shāng diàn",
+      "mn": "shops"
      },
      {
       "t": "p",
@@ -20526,27 +21862,29 @@
      },
      {
       "t": "c",
-      "ch": "路",
-      "py": "lù",
-      "mn": "road; way"
+      "ch": "路边",
+      "py": "lù biān",
+      "mn": "roadside",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "上",
-      "py": "shàng",
-      "mn": "up; on; above"
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "to have"
      },
      {
       "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows a change)"
      },
      {
       "t": "c",
-      "ch": "亮",
-      "py": "liàng",
-      "mn": "bright"
+      "ch": "电灯",
+      "py": "diàn dēng",
+      "mn": "electric lights",
+      "bonus": true
      },
      {
       "t": "p",
@@ -20556,13 +21894,13 @@
       "t": "c",
       "ch": "一直",
       "py": "yī zhí",
-      "mn": "always"
+      "mn": "all the way"
      },
      {
       "t": "c",
       "ch": "到",
       "py": "dào",
-      "mn": "to arrive"
+      "mn": "until"
      },
      {
       "t": "c",
@@ -20574,19 +21912,31 @@
       "t": "c",
       "ch": "晚",
       "py": "wǎn",
-      "mn": "evening"
+      "mn": "late"
      },
      {
       "t": "c",
       "ch": "都",
       "py": "dōu",
-      "mn": "all"
+      "mn": "all; still"
      },
      {
       "t": "c",
-      "ch": "有人",
-      "py": "yǒu rén",
-      "mn": "some people"
+      "ch": "可以",
+      "py": "kě yǐ",
+      "mn": "can"
+     },
+     {
+      "t": "c",
+      "ch": "看到",
+      "py": "kàn dào",
+      "mn": "to see"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
      },
      {
       "t": "p",
@@ -20595,10 +21945,17 @@
     ],
     [
      {
+      "t": "n",
+      "tx": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
+     },
+     {
       "t": "c",
-      "ch": "老",
-      "py": "lǎo",
-      "mn": "old"
+      "ch": "传统",
+      "py": "chuán tǒng",
+      "mn": "traditional",
+      "bonus": true
      },
      {
       "t": "c",
@@ -20607,16 +21964,50 @@
       "mn": "of; belonging to"
      },
      {
-      "t": "n",
-      "tx": "中国",
-      "py": "Zhōngguó",
-      "mn": "China"
+      "t": "c",
+      "ch": "旧",
+      "py": "jiù",
+      "mn": "old",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "东西",
+      "py": "dōng xi",
+      "mn": "things"
      },
      {
       "t": "c",
       "ch": "和",
       "py": "hé",
-      "mn": "and; with"
+      "mn": "and"
+     },
+     {
+      "t": "c",
+      "ch": "西方",
+      "py": "xī fāng",
+      "mn": "the West",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "传",
+      "py": "chuán",
+      "mn": "to spread",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "进来",
+      "py": "jìn lái",
+      "mn": "in",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
      },
      {
       "t": "c",
@@ -20626,27 +22017,25 @@
      },
      {
       "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
       "ch": "东西",
       "py": "dōng xi",
-      "mn": "thing; things"
+      "mn": "things"
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
       "ch": "都",
       "py": "dōu",
-      "mn": "all"
+      "mn": "all; both"
      },
      {
       "t": "c",
       "ch": "在",
       "py": "zài",
-      "mn": "at; in"
+      "mn": "in"
      },
      {
       "t": "c",
@@ -20658,19 +22047,20 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
       "ch": "城",
       "py": "chéng",
-      "mn": "city; wall"
+      "mn": "city",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "里",
       "py": "lǐ",
-      "mn": "inside; in"
+      "mn": "in"
      },
      {
       "t": "p",
@@ -20682,89 +22072,19 @@
       "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
-     },
-     {
-      "t": "c",
-      "ch": "觉得",
-      "py": "jué de",
-      "mn": "to think that ...; to feel that ..."
-     },
-     {
-      "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "好",
-      "py": "hǎo",
-      "mn": "good"
-     },
-     {
-      "t": "p",
-      "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "有的",
-      "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
-     },
-     {
-      "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
-     },
-     {
-      "t": "c",
-      "ch": "觉得",
-      "py": "jué de",
-      "mn": "to think that ...; to feel that ..."
-     },
-     {
-      "t": "c",
-      "ch": "不",
-      "py": "bù",
-      "mn": "not"
-     },
-     {
-      "t": "c",
-      "ch": "好",
-      "py": "hǎo",
-      "mn": "good"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "有的",
-      "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
-     },
-     {
-      "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "在",
       "py": "zài",
-      "mn": "at; in"
+      "mn": "at"
      },
      {
       "t": "c",
@@ -20774,21 +22094,10 @@
      },
      {
       "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
-     },
-     {
-      "t": "c",
-      "ch": "买",
-      "py": "mǎi",
-      "mn": "to buy"
-     },
-     {
-      "t": "c",
-      "ch": "卖",
-      "py": "mài",
-      "mn": "to sell"
+      "ch": "做买卖",
+      "py": "zuò mǎi mài",
+      "mn": "to trade",
+      "bonus": true
      },
      {
       "t": "p",
@@ -20796,9 +22105,10 @@
      },
      {
       "t": "c",
-      "ch": "得到",
-      "py": "dé dào",
-      "mn": "to get"
+      "ch": "赚",
+      "py": "zhuàn",
+      "mn": "to earn",
+      "bonus": true
      },
      {
       "t": "c",
@@ -20816,13 +22126,47 @@
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "much"
      },
      {
       "t": "c",
       "ch": "钱",
       "py": "qián",
       "mn": "money"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "住",
+      "py": "zhù",
+      "mn": "to live"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "大",
+      "py": "dà",
+      "mn": "big"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "(makes a describing word)"
+     },
+     {
+      "t": "c",
+      "ch": "房子",
+      "py": "fáng zi",
+      "mn": "houses"
      },
      {
       "t": "p",
@@ -20834,13 +22178,13 @@
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also"
      },
      {
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there were"
      },
      {
       "t": "c",
@@ -20858,31 +22202,101 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "过",
       "py": "guò",
-      "mn": "pass"
+      "mn": "to live"
      },
      {
       "t": "c",
       "ch": "得",
       "py": "de",
-      "mn": "(joins a verb to how it is done)"
+      "mn": "(how it is done)"
      },
      {
       "t": "c",
-      "ch": "非常",
-      "py": "fēi cháng",
-      "mn": "very; really"
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
      },
      {
       "t": "c",
       "ch": "难",
       "py": "nán",
-      "mn": "hard; difficult"
+      "mn": "hard"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "每天",
+      "py": "měi tiān",
+      "mn": "every day",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "工作",
+      "py": "gōng zuò",
+      "mn": "to work"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "长",
+      "py": "cháng",
+      "mn": "long"
+     },
+     {
+      "t": "c",
+      "ch": "时间",
+      "py": "shí jiān",
+      "mn": "time"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "钱",
+      "py": "qián",
+      "mn": "money"
+     },
+     {
+      "t": "c",
+      "ch": "还是",
+      "py": "hái shi",
+      "mn": "still"
+     },
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "够",
+      "py": "gòu",
+      "mn": "enough",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "用",
+      "py": "yòng",
+      "mn": "to use"
      },
      {
       "t": "p",
@@ -20892,9 +22306,21 @@
     [
      {
       "t": "c",
-      "ch": "所以",
-      "py": "suǒ yǐ",
-      "mn": "so"
+      "ch": "有的",
+      "py": "yǒu de",
+      "mn": "some"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "觉得",
+      "py": "jué de",
+      "mn": "to think"
      },
      {
       "t": "n",
@@ -20904,57 +22330,49 @@
      },
      {
       "t": "c",
-      "ch": "是",
-      "py": "shì",
-      "mn": "is"
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
      },
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
+      "ch": "好",
+      "py": "hǎo",
+      "mn": "good"
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
-      "ch": "个",
-      "py": "gè",
-      "mn": "(measure word for people and things)"
+      "ch": "因为",
+      "py": "yīn wèi",
+      "mn": "because"
      },
      {
       "t": "c",
-      "ch": "又",
-      "py": "yòu",
-      "mn": "again; both ... and"
+      "ch": "这里",
+      "py": "zhè lǐ",
+      "mn": "here"
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "什么",
+      "py": "shén me",
+      "mn": "anything"
      },
      {
       "t": "c",
-      "ch": "又",
-      "py": "yòu",
-      "mn": "again; both ... and"
+      "ch": "都",
+      "py": "dōu",
+      "mn": "all"
      },
      {
       "t": "c",
-      "ch": "难",
-      "py": "nán",
-      "mn": "hard; difficult"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "地方",
-      "py": "dì fāng",
-      "mn": "place"
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "to have"
      },
      {
       "t": "p",
@@ -20964,9 +22382,211 @@
     [
      {
       "t": "c",
-      "ch": "它",
-      "py": "tā",
-      "mn": "it"
+      "ch": "有的",
+      "py": "yǒu de",
+      "mn": "some"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "觉得",
+      "py": "jué de",
+      "mn": "to think"
+     },
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "好",
+      "py": "hǎo",
+      "mn": "good"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "因为",
+      "py": "yīn wèi",
+      "mn": "because"
+     },
+     {
+      "t": "c",
+      "ch": "老",
+      "py": "lǎo",
+      "mn": "old"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "东西",
+      "py": "dōng xi",
+      "mn": "things"
+     },
+     {
+      "t": "c",
+      "ch": "越来越",
+      "py": "yuè lái yuè",
+      "mn": "more and more"
+     },
+     {
+      "t": "c",
+      "ch": "少",
+      "py": "shǎo",
+      "mn": "few"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows a change)"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "可是",
+      "py": "kě shì",
+      "mn": "but"
+     },
+     {
+      "t": "c",
+      "ch": "不管",
+      "py": "bù guǎn",
+      "mn": "no matter",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "好不好",
+      "py": "hǎo bu hǎo",
+      "mn": "good or not",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "变化",
+      "py": "biàn huà",
+      "mn": "change",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "已经",
+      "py": "yǐ jīng",
+      "mn": "already"
+     },
+     {
+      "t": "c",
+      "ch": "开始",
+      "py": "kāishǐ",
+      "mn": "to begin"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "后来",
+      "py": "hòu lái",
+      "mn": "later"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "n",
+      "tx": "上海",
+      "py": "Shànghǎi",
+      "mn": "Shanghai"
+     },
+     {
+      "t": "c",
+      "ch": "成",
+      "py": "chéng",
+      "mn": "to become"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "n",
+      "tx": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
+     },
+     {
+      "t": "c",
+      "ch": "最",
+      "py": "zuì",
+      "mn": "most"
+     },
+     {
+      "t": "c",
+      "ch": "大",
+      "py": "dà",
+      "mn": "big"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "城",
+      "py": "chéng",
+      "mn": "city",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "n",
+      "tx": "上海",
+      "py": "Shànghǎi",
+      "mn": "Shanghai"
      },
      {
       "t": "c",
@@ -20978,7 +22598,8 @@
       "t": "c",
       "ch": "变化",
       "py": "biàn huà",
-      "mn": "(intransitive) to change; to vary"
+      "mn": "change",
+      "bonus": true
      },
      {
       "t": "p",
@@ -20986,15 +22607,22 @@
      },
      {
       "t": "c",
-      "ch": "就是",
-      "py": "jiù shì",
-      "mn": "exactly; precisely"
+      "ch": "就",
+      "py": "jiù",
+      "mn": "just"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
      },
      {
       "t": "c",
       "ch": "那时候",
       "py": "nà shí hou",
-      "mn": "at that time"
+      "mn": "at that time",
+      "bonus": true
      },
      {
       "t": "n",
@@ -21012,7 +22640,8 @@
       "t": "c",
       "ch": "变化",
       "py": "biàn huà",
-      "mn": "(intransitive) to change; to vary"
+      "mn": "change",
+      "bonus": true
      },
      {
       "t": "p",
@@ -21021,21 +22650,21 @@
     ]
    ],
    "trans": [
-    "A hundred years ago and more, Shanghai was still only a small place.",
-    "Few people lived there then.",
-    "Because it lies by the sea, many ships later came.",
-    "People from many countries settled there.",
-    "They brought new things and new ideas.",
-    "The city gained new schools.",
-    "And newspapers that came out every day.",
-    "Cars appeared in the streets, and many shops.",
-    "At night the streets were bright, with people out until late.",
-    "The old China and the new things were both in this city.",
-    "Some thought it good, some did not.",
-    "Some traded here and made a great deal of money.",
-    "And many others lived very hard lives.",
-    "So Shanghai was a place both new and hard.",
-    "Its change was China’s change in those years."
+    "A hundred-odd years ago, Shanghai was still only a small place with few people.",
+    "Because it lies by the sea, and by the mouth of a great river, many ships later came.",
+    "The ships brought goods from other countries, and carried away Chinese tea and silk.",
+    "People from many countries settled here, bringing new things and new ideas.",
+    "The city gained new-style schools, and newspapers that came out every day.",
+    "Cars appeared in the streets, along with many shops.",
+    "Electric lamps lit the streets at night, and people were out until very late.",
+    "China's own old traditions and the new things arriving from the West were both in this one city.",
+    "Some traded here, made a great deal of money, and lived in big houses.",
+    "Many others lived hard lives, working long hours and still not earning enough.",
+    "Some thought Shanghai was wonderful, because it had everything.",
+    "Others thought it was not, because the old ways were disappearing.",
+    "But good or bad, the change had already begun.",
+    "Later, Shanghai became China's largest city.",
+    "Shanghai's change was China's change in those years."
    ]
   },
   "republic-h2": {
@@ -21049,33 +22678,28 @@
     [
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "百",
-      "py": "bǎi",
-      "mn": "hundred"
+      "ch": "一百",
+      "py": "yì bǎi",
+      "mn": "one hundred",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "more than"
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "c",
       "ch": "以前",
       "py": "yǐ qián",
-      "mn": "before"
+      "mn": "ago"
      },
      {
       "t": "p",
@@ -21089,21 +22713,22 @@
      },
      {
       "t": "c",
-      "ch": "还有",
-      "py": "hái yǒu",
-      "mn": "furthermore"
+      "ch": "还",
+      "py": "hái",
+      "mn": "still"
      },
      {
       "t": "c",
-      "ch": "皇",
-      "py": "huáng",
-      "mn": "emperor"
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "to have"
      },
      {
       "t": "c",
-      "ch": "帝",
-      "py": "dì",
-      "mn": "emperor"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
      },
      {
       "t": "p",
@@ -21115,13 +22740,14 @@
       "t": "c",
       "ch": "可是",
       "py": "kě shì",
-      "mn": "but; however"
+      "mn": "but"
      },
      {
       "t": "c",
       "ch": "那时候",
       "py": "nà shí hou",
-      "mn": "at that time"
+      "mn": "at that time",
+      "bonus": true
      },
      {
       "t": "c",
@@ -21133,7 +22759,7 @@
       "t": "c",
       "ch": "日子",
       "py": "rì zi",
-      "mn": "day"
+      "mn": "life"
      },
      {
       "t": "c",
@@ -21149,15 +22775,67 @@
      },
      {
       "t": "c",
-      "ch": "好",
-      "py": "hǎo",
-      "mn": "good"
+      "ch": "好过",
+      "py": "hǎo guò",
+      "mn": "easy to bear",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
      },
      {
       "t": "c",
-      "ch": "过",
-      "py": "guò",
-      "mn": "pass"
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "country"
+     },
+     {
+      "t": "c",
+      "ch": "里面",
+      "py": "lǐ miàn",
+      "mn": "inside"
+     },
+     {
+      "t": "c",
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "there were"
+     },
+     {
+      "t": "c",
+      "ch": "问题",
+      "py": "wèn tí",
+      "mn": "problems"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "外面",
+      "py": "wài miàn",
+      "mn": "outside",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "也",
+      "py": "yě",
+      "mn": "also"
+     },
+     {
+      "t": "c",
+      "ch": "有",
+      "py": "yǒu",
+      "mn": "there were"
+     },
+     {
+      "t": "c",
+      "ch": "问题",
+      "py": "wèn tí",
+      "mn": "problems"
      },
      {
       "t": "p",
@@ -21181,13 +22859,13 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "想",
       "py": "xiǎng",
-      "mn": "wanted"
+      "mn": "to think"
      },
      {
       "t": "p",
@@ -21203,19 +22881,14 @@
       "t": "c",
       "ch": "要",
       "py": "yào",
-      "mn": "wanted to"
+      "mn": "must"
      },
      {
       "t": "c",
-      "ch": "不",
-      "py": "bù",
-      "mn": "not"
-     },
-     {
-      "t": "c",
-      "ch": "一样",
-      "py": "yī yàng",
-      "mn": "same"
+      "ch": "不一样",
+      "py": "bù yí yàng",
+      "mn": "different",
+      "bonus": true
      },
      {
       "t": "p",
@@ -21227,7 +22900,7 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there was"
      },
      {
       "t": "c",
@@ -21239,7 +22912,7 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
@@ -21251,7 +22924,7 @@
       "t": "c",
       "ch": "叫",
       "py": "jiào",
-      "mn": "called"
+      "mn": "to be called"
      },
      {
       "t": "n",
@@ -21261,15 +22934,13 @@
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
@@ -21287,7 +22958,7 @@
       "t": "c",
       "ch": "时候",
       "py": "shíhou",
-      "mn": "time; moment"
+      "mn": "time"
      },
      {
       "t": "c",
@@ -21299,25 +22970,42 @@
       "t": "c",
       "ch": "过",
       "py": "guò",
-      "mn": "pass"
+      "mn": "(have done before)"
+     },
+     {
+      "t": "c",
+      "ch": "医",
+      "py": "yī",
+      "mn": "medicine",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "会",
+      "py": "huì",
+      "mn": "to know how"
      },
      {
       "t": "c",
       "ch": "给",
       "py": "gěi",
-      "mn": "prepared"
+      "mn": "for"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "看病",
       "py": "kàn bìng",
-      "mn": "to see a doctor"
+      "mn": "to treat illness"
      },
      {
       "t": "p",
@@ -21329,25 +23017,19 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
-     },
-     {
-      "t": "c",
-      "ch": "也",
-      "py": "yě",
-      "mn": "also; too"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "去",
       "py": "qù",
-      "mn": "go"
+      "mn": "to go"
      },
      {
       "t": "c",
       "ch": "过",
       "py": "guò",
-      "mn": "pass"
+      "mn": "(have done before)"
      },
      {
       "t": "c",
@@ -21365,7 +23047,7 @@
       "t": "c",
       "ch": "国家",
       "py": "guó jiā",
-      "mn": "country"
+      "mn": "countries"
      },
      {
       "t": "p",
@@ -21373,55 +23055,9 @@
      },
      {
       "t": "c",
-      "ch": "看",
-      "py": "kàn",
-      "mn": "to look; to watch; to read"
-     },
-     {
-      "t": "c",
-      "ch": "过",
-      "py": "guò",
-      "mn": "pass"
-     },
-     {
-      "t": "c",
-      "ch": "很",
-      "py": "hěn",
-      "mn": "very"
-     },
-     {
-      "t": "c",
-      "ch": "多",
-      "py": "duō",
-      "mn": "many"
-     },
-     {
-      "t": "c",
-      "ch": "东西",
-      "py": "dōng xi",
-      "mn": "thing; things"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他",
-      "py": "tā",
-      "mn": "he; him"
-     },
-     {
-      "t": "c",
-      "ch": "发现",
-      "py": "fāxiàn",
-      "mn": "discovered"
-     },
-     {
-      "t": "p",
-      "tx": "，"
+      "ch": "看到",
+      "py": "kàn dào",
+      "mn": "to see"
      },
      {
       "t": "c",
@@ -21433,31 +23069,26 @@
       "t": "c",
       "ch": "国家",
       "py": "guó jiā",
-      "mn": "country"
+      "mn": "countries"
      },
      {
       "t": "c",
       "ch": "没有",
       "py": "méi yǒu",
-      "mn": "not; did not have"
+      "mn": "not to have"
      },
      {
       "t": "c",
-      "ch": "皇",
-      "py": "huáng",
-      "mn": "emperor"
-     },
-     {
-      "t": "c",
-      "ch": "帝",
-      "py": "dì",
-      "mn": "emperor"
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also; still"
      },
      {
       "t": "c",
@@ -21479,6 +23110,77 @@
     [
      {
       "t": "c",
+      "ch": "他",
+      "py": "tā",
+      "mn": "he"
+     },
+     {
+      "t": "c",
+      "ch": "想",
+      "py": "xiǎng",
+      "mn": "to think"
+     },
+     {
+      "t": "p",
+      "tx": "："
+     },
+     {
+      "t": "c",
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "country"
+     },
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
+     },
+     {
+      "t": "c",
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "一",
+      "py": "yī",
+      "mn": "one"
+     },
+     {
+      "t": "c",
+      "ch": "个",
+      "py": "gè",
+      "mn": "(counting word)"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "person"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
       "ch": "所以",
       "py": "suǒ yǐ",
       "mn": "so"
@@ -21487,13 +23189,13 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "说",
       "py": "shuō",
-      "mn": "said"
+      "mn": "to say"
      },
      {
       "t": "p",
@@ -21533,7 +23235,7 @@
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
@@ -21542,22 +23244,17 @@
       "mn": "to believe"
      },
      {
-      "t": "n",
-      "tx": "中国",
-      "py": "Zhōngguó",
-      "mn": "China"
-     },
-     {
       "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
+      "ch": "中国人",
+      "py": "Zhōngguó rén",
+      "mn": "Chinese people",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "自己",
       "py": "zì jǐ",
-      "mn": "oneself"
+      "mn": "themselves"
      },
      {
       "t": "c",
@@ -21569,7 +23266,7 @@
       "t": "c",
       "ch": "做到",
       "py": "zuò dào",
-      "mn": "to accomplish"
+      "mn": "to achieve"
      },
      {
       "t": "p",
@@ -21591,33 +23288,23 @@
      },
      {
       "t": "c",
-      "ch": "年轻",
-      "py": "nián qīng",
-      "mn": "young"
+      "ch": "年轻人",
+      "py": "nián qīng rén",
+      "mn": "young people",
+      "bonus": true
      },
      {
       "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
-     },
-     {
-      "t": "c",
-      "ch": "跟",
-      "py": "gēn",
-      "mn": "heel"
-     },
-     {
-      "t": "c",
-      "ch": "着",
-      "py": "zhe",
-      "mn": "(-ing, an action going on)"
+      "ch": "跟着",
+      "py": "gēn zhe",
+      "mn": "to follow",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "him"
      },
      {
       "t": "c",
@@ -21629,13 +23316,25 @@
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to do"
+     },
+     {
+      "t": "c",
+      "ch": "这",
+      "py": "zhè",
+      "mn": "this"
+     },
+     {
+      "t": "c",
+      "ch": "件",
+      "py": "jiàn",
+      "mn": "(counting word, matters)"
      },
      {
       "t": "c",
       "ch": "事",
       "py": "shì",
-      "mn": "matter; thing"
+      "mn": "matter"
      },
      {
       "t": "p",
@@ -21653,7 +23352,7 @@
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to do"
      },
      {
       "t": "c",
@@ -21693,13 +23392,71 @@
       "t": "c",
       "ch": "没有",
       "py": "méi yǒu",
-      "mn": "not; did not have"
+      "mn": "did not"
      },
      {
       "t": "c",
       "ch": "成功",
       "py": "chéng gōng",
-      "mn": "to succeed; success"
+      "mn": "to succeed"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "有的",
+      "py": "yǒu de",
+      "mn": "some"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "还",
+      "py": "hái",
+      "mn": "even"
+     },
+     {
+      "t": "c",
+      "ch": "因为",
+      "py": "yīn wèi",
+      "mn": "because of"
+     },
+     {
+      "t": "c",
+      "ch": "这",
+      "py": "zhè",
+      "mn": "this"
+     },
+     {
+      "t": "c",
+      "ch": "件",
+      "py": "jiàn",
+      "mn": "(counting word, matters)"
+     },
+     {
+      "t": "c",
+      "ch": "事",
+      "py": "shì",
+      "mn": "matter"
+     },
+     {
+      "t": "c",
+      "ch": "死",
+      "py": "sǐ",
+      "mn": "to die"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
      },
      {
       "t": "p",
@@ -21709,33 +23466,34 @@
     [
      {
       "t": "c",
-      "ch": "不过",
-      "py": "bù guò",
-      "mn": "only"
+      "ch": "可是",
+      "py": "kě shì",
+      "mn": "but"
      },
      {
       "t": "c",
       "ch": "他",
       "py": "tā",
-      "mn": "he; him"
+      "mn": "he"
      },
      {
       "t": "c",
       "ch": "一直",
       "py": "yī zhí",
-      "mn": "always"
+      "mn": "all along"
      },
      {
       "t": "c",
       "ch": "没有",
       "py": "méi yǒu",
-      "mn": "not; did not have"
+      "mn": "did not"
      },
      {
       "t": "c",
       "ch": "放弃",
       "py": "fàng qì",
-      "mn": "to give up"
+      "mn": "to give up",
+      "bonus": true
      },
      {
       "t": "p",
@@ -21745,33 +23503,10 @@
     [
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "九",
-      "py": "jiǔ",
-      "mn": "nine"
-     },
-     {
-      "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "二",
-      "py": "èr",
-      "mn": "two"
-     },
-     {
-      "t": "c",
-      "ch": "年",
-      "py": "nián",
-      "mn": "year"
+      "ch": "一九一二年",
+      "py": "yī jiǔ yī èr nián",
+      "mn": "the year 1912",
+      "bonus": true
      },
      {
       "t": "p",
@@ -21787,25 +23522,115 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
       "ch": "国家",
       "py": "guó jiā",
-      "mn": "country"
+      "mn": "state"
      },
      {
       "t": "c",
       "ch": "开始",
       "py": "kāishǐ",
-      "mn": "started"
+      "mn": "to begin"
      },
      {
       "t": "c",
       "ch": "了",
       "py": "le",
       "mn": "(shows it is finished)"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "叫",
+      "py": "jiào",
+      "mn": "to be called"
+     },
+     {
+      "t": "n",
+      "tx": "中华民国",
+      "py": "Zhōnghuá Mínguó",
+      "mn": "the Republic of China"
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "n",
+      "tx": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
+     },
+     {
+      "t": "c",
+      "ch": "没有",
+      "py": "méi yǒu",
+      "mn": "no longer there"
+     },
+     {
+      "t": "c",
+      "ch": "皇帝",
+      "py": "huáng dì",
+      "mn": "emperor",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows a change)"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "n",
+      "tx": "孙中山",
+      "py": "Sūn Zhōngshān",
+      "mn": "Sun Yat-sen"
+     },
+     {
+      "t": "c",
+      "ch": "做",
+      "py": "zuò",
+      "mn": "to become"
+     },
+     {
+      "t": "c",
+      "ch": "了",
+      "py": "le",
+      "mn": "(shows it is finished)"
+     },
+     {
+      "t": "c",
+      "ch": "第一",
+      "py": "dì yī",
+      "mn": "first",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "任",
+      "py": "rèn",
+      "mn": "(counting word, terms of office)",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "大总统",
+      "py": "dà zǒng tǒng",
+      "mn": "president",
+      "bonus": true
      },
      {
       "t": "p",
@@ -21823,19 +23648,21 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
       "ch": "政府",
       "py": "zhèng fǔ",
-      "mn": "government"
+      "mn": "government",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "建",
       "py": "jiàn",
-      "mn": "build"
+      "mn": "to build",
+      "bonus": true
      },
      {
       "t": "c",
@@ -21845,9 +23672,10 @@
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "新式",
+      "py": "xīn shì",
+      "mn": "new-style",
+      "bonus": true
      },
      {
       "t": "c",
@@ -21859,7 +23687,7 @@
       "t": "c",
       "ch": "学校",
       "py": "xué xiào",
-      "mn": "school"
+      "mn": "schools"
      },
      {
       "t": "p",
@@ -21869,13 +23697,14 @@
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also"
      },
      {
       "t": "c",
       "ch": "修",
       "py": "xiū",
-      "mn": "to repair; to fix"
+      "mn": "to build",
+      "bonus": true
      },
      {
       "t": "c",
@@ -21893,13 +23722,13 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
       "ch": "路",
       "py": "lù",
-      "mn": "road; way"
+      "mn": "roads"
      },
      {
       "t": "p",
@@ -21909,15 +23738,10 @@
     [
      {
       "t": "c",
-      "ch": "虽然",
-      "py": "suī rán",
-      "mn": "although; even though (often used correlatively with 是 or 是 etc)"
-     },
-     {
-      "t": "c",
       "ch": "前面",
       "py": "qián miàn",
-      "mn": "ahead"
+      "mn": "ahead",
+      "bonus": true
      },
      {
       "t": "c",
@@ -21929,7 +23753,7 @@
       "t": "c",
       "ch": "路",
       "py": "lù",
-      "mn": "road; way"
+      "mn": "road"
      },
      {
       "t": "c",
@@ -21947,7 +23771,7 @@
       "t": "c",
       "ch": "难",
       "py": "nán",
-      "mn": "hard; difficult"
+      "mn": "hard"
      },
      {
       "t": "p",
@@ -21955,9 +23779,9 @@
      },
      {
       "t": "c",
-      "ch": "但是",
-      "py": "dàn shì",
-      "mn": "but; however"
+      "ch": "可是",
+      "py": "kě shì",
+      "mn": "but"
      },
      {
       "t": "c",
@@ -21967,15 +23791,10 @@
      },
      {
       "t": "c",
-      "ch": "心",
-      "py": "xīn",
-      "mn": "heart"
-     },
-     {
-      "t": "c",
-      "ch": "里",
-      "py": "lǐ",
-      "mn": "inside; in"
+      "ch": "心里",
+      "py": "xīn lǐ",
+      "mn": "in the heart",
+      "bonus": true
      },
      {
       "t": "c",
@@ -21987,7 +23806,7 @@
       "t": "c",
       "ch": "希望",
       "py": "xī wàng",
-      "mn": "to hope"
+      "mn": "hope"
      },
      {
       "t": "p",
@@ -21996,21 +23815,21 @@
     ]
    ],
    "trans": [
-    "A little over a hundred years ago China still had an emperor.",
-    "But life in those days was very hard.",
+    "A little over a hundred years ago, China still had an emperor.",
+    "But life in those days was very hard, with trouble inside the country and outside it.",
     "Many thought: China must be different.",
-    "There was a man called Sun Yat-sen.",
-    "When he was young he studied how to treat the sick.",
-    "He had been to many countries and seen a great deal.",
-    "He found that other countries did well without an emperor.",
+    "There was a man called Sun Yat-sen, who had studied medicine when young and could treat the sick.",
+    "He had been to many countries, and saw that they did well without an emperor.",
+    "He thought: the country does not belong to the emperor alone.",
     "So he said: the country belongs to everyone.",
     "He believed the Chinese people could do it themselves.",
-    "Many young people worked with him.",
-    "They tried many times without success.",
+    "Many young people worked with him on it.",
+    "They tried many times without success, and some even died for it.",
     "But he never gave up.",
-    "In 1912 the new state began.",
-    "The new government built new schools and new roads.",
-    "Although the road ahead was still hard, people had hope."
+    "In 1912 the new state began, called the Republic of China.",
+    "China no longer had an emperor, and Sun Yat-sen became the first president.",
+    "The new government built new-style schools and new roads.",
+    "The road ahead was still hard, but people had hope in their hearts."
    ]
   },
   "republic2-h2": {
@@ -22024,27 +23843,22 @@
     [
      {
       "t": "c",
-      "ch": "一",
-      "py": "yī",
-      "mn": "one"
-     },
-     {
-      "t": "c",
-      "ch": "百",
-      "py": "bǎi",
-      "mn": "hundred"
+      "ch": "一百",
+      "py": "yì bǎi",
+      "mn": "one hundred",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "c",
       "ch": "以前",
       "py": "yǐ qián",
-      "mn": "before"
+      "mn": "ago"
      },
      {
       "t": "p",
@@ -22060,7 +23874,7 @@
       "t": "c",
       "ch": "有",
       "py": "yǒu",
-      "mn": "to have"
+      "mn": "there were"
      },
      {
       "t": "c",
@@ -22076,22 +23890,15 @@
      },
      {
       "t": "c",
-      "ch": "年轻",
-      "py": "nián qīng",
-      "mn": "young"
-     },
-     {
-      "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
+      "ch": "年轻人",
+      "py": "nián qīng rén",
+      "mn": "young people",
+      "bonus": true
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
       "ch": "他们",
@@ -22102,7 +23909,7 @@
       "t": "c",
       "ch": "和",
       "py": "hé",
-      "mn": "and; with"
+      "mn": "and"
      },
      {
       "t": "c",
@@ -22118,15 +23925,10 @@
      },
      {
       "t": "c",
-      "ch": "年轻",
-      "py": "nián qīng",
-      "mn": "young"
-     },
-     {
-      "t": "c",
-      "ch": "人",
-      "py": "rén",
-      "mn": "person"
+      "ch": "年轻人",
+      "py": "nián qīng rén",
+      "mn": "young people",
+      "bonus": true
      },
      {
       "t": "c",
@@ -22136,15 +23938,100 @@
      },
      {
       "t": "c",
-      "ch": "不",
-      "py": "bù",
-      "mn": "not"
+      "ch": "不一样",
+      "py": "bù yí yàng",
+      "mn": "different",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "以前",
+      "py": "yǐ qián",
+      "mn": "before"
      },
      {
       "t": "c",
-      "ch": "一样",
-      "py": "yī yàng",
-      "mn": "same"
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "年轻人",
+      "py": "nián qīng rén",
+      "mn": "young people",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "只",
+      "py": "zhī",
+      "mn": "only"
+     },
+     {
+      "t": "c",
+      "ch": "读",
+      "py": "dú",
+      "mn": "to read"
+     },
+     {
+      "t": "c",
+      "ch": "老",
+      "py": "lǎo",
+      "mn": "old"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "书",
+      "py": "shū",
+      "mn": "books"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "学",
+      "py": "xué",
+      "mn": "to learn"
+     },
+     {
+      "t": "c",
+      "ch": "写",
+      "py": "xiě",
+      "mn": "to write"
+     },
+     {
+      "t": "c",
+      "ch": "老",
+      "py": "lǎo",
+      "mn": "old"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "文章",
+      "py": "wén zhāng",
+      "mn": "essays",
+      "bonus": true
      },
      {
       "t": "p",
@@ -22162,7 +24049,7 @@
       "t": "c",
       "ch": "上",
       "py": "shàng",
-      "mn": "up; on; above"
+      "mn": "to attend"
      },
      {
       "t": "c",
@@ -22178,9 +24065,10 @@
      },
      {
       "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
+      "ch": "新式",
+      "py": "xīn shì",
+      "mn": "new-style",
+      "bonus": true
      },
      {
       "t": "c",
@@ -22192,14 +24080,12 @@
       "t": "c",
       "ch": "学校",
       "py": "xué xiào",
-      "mn": "school"
+      "mn": "schools"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
+      "tx": "，"
+     },
      {
       "t": "c",
       "ch": "学校",
@@ -22243,9 +24129,10 @@
      },
      {
       "t": "c",
-      "ch": "西边",
-      "py": "xī biān",
-      "mn": "the west"
+      "ch": "西方",
+      "py": "xī fāng",
+      "mn": "the West",
+      "bonus": true
      },
      {
       "t": "c",
@@ -22255,15 +24142,10 @@
      },
      {
       "t": "c",
-      "ch": "学",
-      "py": "xué",
-      "mn": "learning"
-     },
-     {
-      "t": "c",
-      "ch": "问",
-      "py": "wèn",
-      "mn": "to ask"
+      "ch": "科学",
+      "py": "kē xué",
+      "mn": "science",
+      "bonus": true
      },
      {
       "t": "p",
@@ -22275,67 +24157,55 @@
       "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "还",
       "py": "hái",
-      "mn": "still"
+      "mn": "also"
      },
      {
       "t": "c",
       "ch": "去",
       "py": "qù",
-      "mn": "go"
+      "mn": "to go"
      },
      {
       "t": "c",
-      "ch": "别的",
-      "py": "bié de",
-      "mn": "other"
-     },
-     {
-      "t": "c",
-      "ch": "国家",
-      "py": "guó jiā",
-      "mn": "country"
+      "ch": "外国",
+      "py": "wài guó",
+      "mn": "foreign countries",
+      "bonus": true
      },
      {
       "t": "c",
       "ch": "读书",
       "py": "dú shū",
-      "mn": "to read; to study"
+      "mn": "to study"
      },
      {
       "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
+      "tx": "，"
      },
      {
       "t": "c",
       "ch": "在",
       "py": "zài",
-      "mn": "at; in"
+      "mn": "in"
      },
      {
       "t": "c",
-      "ch": "外面",
-      "py": "wài miàn",
-      "mn": "outside (also pr. [wài mian] for this sense)"
+      "ch": "外国",
+      "py": "wài guó",
+      "mn": "foreign countries",
+      "bonus": true
      },
      {
       "t": "c",
@@ -22353,13 +24223,13 @@
       "t": "c",
       "ch": "几",
       "py": "jī",
-      "mn": "small table"
+      "mn": "several"
      },
      {
       "t": "c",
       "ch": "年",
       "py": "nián",
-      "mn": "year"
+      "mn": "years"
      },
      {
       "t": "p",
@@ -22407,17 +24277,11 @@
       "t": "c",
       "ch": "东西",
       "py": "dōng xi",
-      "mn": "thing; things"
+      "mn": "things"
      },
      {
       "t": "p",
       "tx": "，"
-     },
-     {
-      "t": "c",
-      "ch": "所以",
-      "py": "suǒ yǐ",
-      "mn": "so"
      },
      {
       "t": "c",
@@ -22429,35 +24293,103 @@
       "t": "c",
       "ch": "想",
       "py": "xiǎng",
-      "mn": "wanted"
+      "mn": "to think"
      },
      {
       "t": "c",
       "ch": "得",
       "py": "de",
-      "mn": "(joins a verb to how it is done)"
+      "mn": "(how it is done)"
      },
      {
       "t": "c",
       "ch": "更",
       "py": "gèng",
-      "mn": "more; even more"
+      "mn": "even more"
      },
      {
       "t": "c",
       "ch": "多",
       "py": "duō",
-      "mn": "many"
+      "mn": "much"
      },
      {
       "t": "c",
       "ch": "了",
       "py": "le",
-      "mn": "(shows it is finished)"
+      "mn": "(shows a change)"
      },
      {
       "t": "p",
       "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "they"
+     },
+     {
+      "t": "c",
+      "ch": "问",
+      "py": "wèn",
+      "mn": "to ask"
+     },
+     {
+      "t": "p",
+      "tx": "："
+     },
+     {
+      "t": "c",
+      "ch": "为什么",
+      "py": "wèi shén me",
+      "mn": "why"
+     },
+     {
+      "t": "c",
+      "ch": "别的",
+      "py": "bié de",
+      "mn": "other"
+     },
+     {
+      "t": "c",
+      "ch": "国家",
+      "py": "guó jiā",
+      "mn": "countries"
+     },
+     {
+      "t": "c",
+      "ch": "可以",
+      "py": "kě yǐ",
+      "mn": "can"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "n",
+      "tx": "中国",
+      "py": "Zhōngguó",
+      "mn": "China"
+     },
+     {
+      "t": "c",
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "可以",
+      "py": "kě yǐ",
+      "mn": "can"
+     },
+     {
+      "t": "p",
+      "tx": "？"
      }
     ],
     [
@@ -22471,7 +24403,7 @@
       "t": "c",
       "ch": "好",
       "py": "hǎo",
-      "mn": "good"
+      "mn": "well; done"
      },
      {
       "t": "c",
@@ -22505,13 +24437,13 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "回来",
       "py": "huí lai",
-      "mn": "to return; to come back"
+      "mn": "to come back"
      },
      {
       "t": "c",
@@ -22529,25 +24461,25 @@
       "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to become"
      },
      {
       "t": "c",
       "ch": "老师",
       "py": "lǎoshī",
-      "mn": "teacher"
+      "mn": "teachers"
      },
      {
       "t": "p",
@@ -22557,25 +24489,54 @@
       "t": "c",
       "ch": "有的",
       "py": "yǒu de",
-      "mn": "(there are) some (who are...)"
+      "mn": "some"
      },
      {
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to become"
      },
      {
       "t": "c",
       "ch": "医生",
       "py": "yī shēng",
-      "mn": "doctor"
+      "mn": "doctors"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "有的",
+      "py": "yǒu de",
+      "mn": "some"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "办",
+      "py": "bàn",
+      "mn": "to run"
+     },
+     {
+      "t": "c",
+      "ch": "报纸",
+      "py": "bào zhǐ",
+      "mn": "newspapers",
+      "bonus": true
      },
      {
       "t": "p",
@@ -22583,83 +24544,11 @@
      }
     ],
     [
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
-     },
-     {
-      "t": "c",
-      "ch": "做",
-      "py": "zuò",
-      "mn": "do"
-     },
-     {
-      "t": "c",
-      "ch": "事情",
-      "py": "shì qing",
-      "mn": "affair; matter; thing; business"
-     },
-     {
-      "t": "c",
-      "ch": "的",
-      "py": "de",
-      "mn": "of; belonging to"
-     },
-     {
-      "t": "c",
-      "ch": "方法",
-      "py": "fāng fǎ",
-      "mn": "method"
-     },
-     {
-      "t": "c",
-      "ch": "和",
-      "py": "hé",
-      "mn": "and; with"
-     },
      {
       "t": "c",
       "ch": "以前",
       "py": "yǐ qián",
       "mn": "before"
-     },
-     {
-      "t": "c",
-      "ch": "不",
-      "py": "bù",
-      "mn": "not"
-     },
-     {
-      "t": "c",
-      "ch": "一样",
-      "py": "yī yàng",
-      "mn": "same"
-     },
-     {
-      "t": "p",
-      "tx": "。"
-     }
-    ],
-    [
-     {
-      "t": "c",
-      "ch": "他们",
-      "py": "tā men",
-      "mn": "they"
-     },
-     {
-      "t": "c",
-      "ch": "写",
-      "py": "xiě",
-      "mn": "wrote"
-     },
-     {
-      "t": "c",
-      "ch": "新",
-      "py": "xīn",
-      "mn": "new"
      },
      {
       "t": "c",
@@ -22671,7 +24560,49 @@
       "t": "c",
       "ch": "书",
       "py": "shū",
-      "mn": "book"
+      "mn": "books"
+     },
+     {
+      "t": "c",
+      "ch": "用",
+      "py": "yòng",
+      "mn": "to use"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "老",
+      "py": "lǎo",
+      "mn": "old"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "话",
+      "py": "huà",
+      "mn": "language"
      },
      {
       "t": "p",
@@ -22679,9 +24610,40 @@
      },
      {
       "t": "c",
+      "ch": "一般",
+      "py": "yī bān",
+      "mn": "ordinary"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "people"
+     },
+     {
+      "t": "c",
+      "ch": "看不懂",
+      "py": "kàn bu dǒng",
+      "mn": "cannot understand (by reading)",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "他们",
+      "py": "tā men",
+      "mn": "they"
+     },
+     {
+      "t": "c",
       "ch": "用",
       "py": "yòng",
-      "mn": "using"
+      "mn": "to use"
      },
      {
       "t": "c",
@@ -22697,9 +24659,10 @@
      },
      {
       "t": "c",
-      "ch": "懂",
-      "py": "dǒng",
-      "mn": "to understand"
+      "ch": "看得懂",
+      "py": "kàn de dǒng",
+      "mn": "can understand (by reading)",
+      "bonus": true
      },
      {
       "t": "c",
@@ -22709,9 +24672,21 @@
      },
      {
       "t": "c",
-      "ch": "话",
-      "py": "huà",
-      "mn": "words"
+      "ch": "语言",
+      "py": "yǔ yán",
+      "mn": "language"
+     },
+     {
+      "t": "c",
+      "ch": "写",
+      "py": "xiě",
+      "mn": "to write"
+     },
+     {
+      "t": "c",
+      "ch": "书",
+      "py": "shū",
+      "mn": "books"
      },
      {
       "t": "p",
@@ -22729,7 +24704,7 @@
       "t": "c",
       "ch": "这样",
       "py": "zhè yàng",
-      "mn": "this kind of"
+      "mn": "this way"
      },
      {
       "t": "p",
@@ -22737,9 +24712,16 @@
      },
      {
       "t": "c",
-      "ch": "读书",
-      "py": "dú shū",
-      "mn": "to read; to study"
+      "ch": "看懂",
+      "py": "kàn dǒng",
+      "mn": "to understand (by reading)",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "书",
+      "py": "shū",
+      "mn": "books"
      },
      {
       "t": "c",
@@ -22751,7 +24733,7 @@
       "t": "c",
       "ch": "人",
       "py": "rén",
-      "mn": "person"
+      "mn": "people"
      },
      {
       "t": "c",
@@ -22764,6 +24746,42 @@
       "ch": "多",
       "py": "duō",
       "mn": "many"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "知识",
+      "py": "zhī shi",
+      "mn": "knowledge"
+     },
+     {
+      "t": "c",
+      "ch": "传",
+      "py": "chuán",
+      "mn": "to spread",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "得",
+      "py": "de",
+      "mn": "(how it is done)"
+     },
+     {
+      "t": "c",
+      "ch": "越来越",
+      "py": "yuè lái yuè",
+      "mn": "more and more"
+     },
+     {
+      "t": "c",
+      "ch": "广",
+      "py": "guǎng",
+      "mn": "wide",
+      "bonus": true
      },
      {
       "t": "p",
@@ -22781,13 +24799,13 @@
       "t": "c",
       "ch": "也",
       "py": "yě",
-      "mn": "also; too"
+      "mn": "also"
      },
      {
       "t": "c",
       "ch": "做",
       "py": "zuò",
-      "mn": "do"
+      "mn": "to make"
      },
      {
       "t": "c",
@@ -22799,13 +24817,13 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
       "ch": "东西",
       "py": "dōng xi",
-      "mn": "thing; things"
+      "mn": "things"
      },
      {
       "t": "p",
@@ -22827,13 +24845,13 @@
       "t": "c",
       "ch": "的",
       "py": "de",
-      "mn": "of; belonging to"
+      "mn": "(makes a describing word)"
      },
      {
       "t": "c",
       "ch": "问题",
       "py": "wèn tí",
-      "mn": "question"
+      "mn": "questions"
      },
      {
       "t": "p",
@@ -22851,19 +24869,19 @@
       "t": "c",
       "ch": "想",
       "py": "xiǎng",
-      "mn": "wanted"
+      "mn": "to want"
      },
      {
       "t": "c",
       "ch": "让",
       "py": "ràng",
-      "mn": "made"
+      "mn": "to make"
      },
      {
       "t": "c",
       "ch": "自己",
       "py": "zì jǐ",
-      "mn": "oneself"
+      "mn": "own"
      },
      {
       "t": "c",
@@ -22879,15 +24897,129 @@
      },
      {
       "t": "c",
-      "ch": "好",
-      "py": "hǎo",
-      "mn": "good"
+      "ch": "好起来",
+      "py": "hǎo qǐ lái",
+      "mn": "to get better",
+      "bonus": true
+     },
+     {
+      "t": "p",
+      "tx": "。"
+     }
+    ],
+    [
+     {
+      "t": "c",
+      "ch": "这",
+      "py": "zhè",
+      "mn": "this"
      },
      {
       "t": "c",
-      "ch": "起来",
-      "py": "qǐ lai",
-      "mn": "to stand up"
+      "ch": "不",
+      "py": "bù",
+      "mn": "not"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
+     },
+     {
+      "t": "c",
+      "ch": "一",
+      "py": "yī",
+      "mn": "one"
+     },
+     {
+      "t": "c",
+      "ch": "个",
+      "py": "gè",
+      "mn": "(counting word)"
+     },
+     {
+      "t": "c",
+      "ch": "人",
+      "py": "rén",
+      "mn": "person"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "事",
+      "py": "shì",
+      "mn": "matter"
+     },
+     {
+      "t": "p",
+      "tx": "，"
+     },
+     {
+      "t": "c",
+      "ch": "是",
+      "py": "shì",
+      "mn": "is"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "很",
+      "py": "hěn",
+      "mn": "very"
+     },
+     {
+      "t": "c",
+      "ch": "多",
+      "py": "duō",
+      "mn": "many"
+     },
+     {
+      "t": "c",
+      "ch": "年轻人",
+      "py": "nián qīng rén",
+      "mn": "young people",
+      "bonus": true
+     },
+     {
+      "t": "c",
+      "ch": "一起",
+      "py": "yì qǐ",
+      "mn": "together"
+     },
+     {
+      "t": "c",
+      "ch": "做",
+      "py": "zuò",
+      "mn": "to do"
+     },
+     {
+      "t": "c",
+      "ch": "的",
+      "py": "de",
+      "mn": "of; belonging to"
+     },
+     {
+      "t": "c",
+      "ch": "事",
+      "py": "shì",
+      "mn": "matter"
      },
      {
       "t": "p",
@@ -22905,7 +25037,7 @@
       "t": "c",
       "ch": "说",
       "py": "shuō",
-      "mn": "said"
+      "mn": "to say"
      },
      {
       "t": "p",
@@ -22915,7 +25047,7 @@
       "t": "c",
       "ch": "读书",
       "py": "dú shū",
-      "mn": "to read; to study"
+      "mn": "to study"
      },
      {
       "t": "c",
@@ -22939,7 +25071,7 @@
       "t": "c",
       "ch": "个",
       "py": "gè",
-      "mn": "(measure word for people and things)"
+      "mn": "(counting word)"
      },
      {
       "t": "c",
@@ -22954,20 +25086,20 @@
     ]
    ],
    "trans": [
-    "A hundred years ago China had many young people.",
-    "They were very different from those before them.",
-    "They attended the new schools.",
-    "The schools taught mathematics, and western learning.",
-    "Some even went abroad to study.",
-    "They lived overseas for some years.",
+    "A hundred years ago China had many young people, very different from those before them.",
+    "Young people before them read only the old books and learned to write the old essays.",
+    "These attended new-style schools that taught mathematics and western science.",
+    "Some went abroad to study, and lived there for several years.",
     "Because they saw so much that was new, they thought more deeply.",
-    "After finishing, many came back.",
-    "Some became teachers, some doctors.",
-    "Their way of doing things was not the old way.",
-    "They wrote new books, in language everyone could understand.",
-    "Because of this, more and more people could read.",
+    "They asked: why can other countries do it, and not China?",
+    "After finishing their studies, many came back.",
+    "Some became teachers, some doctors, and some ran newspapers.",
+    "The old books were written in an ancient language that ordinary people could not read.",
+    "They wrote books in a language everyone could read.",
+    "Because of this, more and more people could read books, and knowledge spread wider and wider.",
     "They made new things and asked new questions.",
     "They wanted to make their country better.",
+    "This was not the work of one person, but of many, many young people together.",
     "They said: study can change a country."
    ]
   },

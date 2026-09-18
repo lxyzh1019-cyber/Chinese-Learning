@@ -5,33 +5,23 @@
   "title": "HSK2 Gate 19 · Ming Dynasty",
   "explanationEn": "Gate 19: Ming Dynasty. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第19关：明朝。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "六百多年以前，明朝有一个很大的船队。带着船队的人叫郑和。他的船非常大，比很多房子还大。一条船上可以住几百个人。",
-  "passageEn": "More than six hundred years ago the Ming had a great fleet. The man who led it was called Zheng He. His ships were enormous, bigger than many houses. One ship could hold several hundred people.",
+  "passage": "六百多年以前，明朝有一个很大的船队。带船队的人叫郑和。他的船非常大，比很多房子还大。一条船上可以住几百个人。",
+  "passageEn": "More than six hundred years ago, the Ming had a great fleet. The man who led the fleet was called Zheng He. His ships were enormous, bigger than many houses. One ship could hold several hundred people.",
   "keyVocab": [
-    {
-      "zh": "六",
-      "pinyin": "liù",
-      "en": "six"
-    },
-    {
-      "zh": "百",
-      "pinyin": "bǎi",
-      "en": "hundred"
-    },
     {
       "zh": "多",
       "pinyin": "duō",
-      "en": "many"
+      "en": "more than"
     },
     {
       "zh": "年",
       "pinyin": "nián",
-      "en": "year"
+      "en": "years"
     },
     {
       "zh": "以前",
       "pinyin": "yǐ qián",
-      "en": "before"
+      "en": "ago"
     },
     {
       "zh": "一",
@@ -41,19 +31,29 @@
     {
       "zh": "大",
       "pinyin": "dà",
-      "en": "great"
+      "en": "big"
     },
     {
-      "zh": "船",
-      "pinyin": "chuán",
-      "en": "boats"
+      "zh": "带",
+      "pinyin": "dài",
+      "en": "to lead"
+    },
+    {
+      "zh": "人",
+      "pinyin": "rén",
+      "en": "man"
+    },
+    {
+      "zh": "叫",
+      "pinyin": "jiào",
+      "en": "to be called"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "More than six hundred years ago the Ming had a great fleet.",
+      "answerEn": "More than six hundred years ago, the Ming had a great fleet.",
       "answer": "六百多年以前，明朝有一个很大的船队。"
     },
     {
@@ -74,10 +74,10 @@
       "id": "hsk2_gate_19_w1",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "六",
-      "pinyin": "liù",
-      "promptEn": "In the story, what does 六 mean?",
-      "prompt": "短文里的“六”是什么意思？",
+      "zh": "多",
+      "pinyin": "duō",
+      "promptEn": "In the story, what does 多 mean?",
+      "prompt": "短文里的“多”是什么意思？",
       "options": [
         {
           "id": "o1",
@@ -85,7 +85,7 @@
         },
         {
           "id": "o2",
-          "text": "six"
+          "text": "more than"
         },
         {
           "id": "o3",
@@ -97,21 +97,21 @@
         }
       ],
       "answerId": "o2",
-      "explanationEn": "六 (liù) means \"six\" — you can find it in the passage above.",
-      "explanation": "“六”（liù）的意思是“six”，就在上面的短文里。"
+      "explanationEn": "多 (duō) means \"more than\" — you can find it in the passage above.",
+      "explanation": "“多”（duō）的意思是“more than”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_19_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "百",
-      "pinyin": "bǎi",
-      "promptEn": "In the story, what does 百 mean?",
-      "prompt": "短文里的“百”是什么意思？",
+      "zh": "年",
+      "pinyin": "nián",
+      "promptEn": "In the story, what does 年 mean?",
+      "prompt": "短文里的“年”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "hundred"
+          "text": "years"
         },
         {
           "id": "o2",
@@ -127,16 +127,16 @@
         }
       ],
       "answerId": "o1",
-      "explanationEn": "百 (bǎi) means \"hundred\" — you can find it in the passage above.",
-      "explanation": "“百”（bǎi）的意思是“hundred”，就在上面的短文里。"
+      "explanationEn": "年 (nián) means \"years\" — you can find it in the passage above.",
+      "explanation": "“年”（nián）的意思是“years”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_19_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
       "zh": "六百多年以前，明朝有一个很大的船队。",
-      "targetZh": "六",
-      "targetPinyin": "liù",
+      "targetZh": "多",
+      "targetPinyin": "duō",
       "promptEn": "What does this sentence say?",
       "prompt": "这句话说了什么？",
       "options": [
@@ -154,12 +154,12 @@
         },
         {
           "id": "o4",
-          "text": "More than six hundred years ago the Ming had a great fleet."
+          "text": "More than six hundred years ago, the Ming had a great fleet."
         }
       ],
       "answerId": "o4",
-      "explanationEn": "\"六百多年以前，明朝有一个很大的船队。\" means \"More than six hundred years ago the Ming had a great fleet.\".",
-      "explanation": "“六百多年以前，明朝有一个很大的船队。”的意思是“More than six hundred years ago the Ming had a great fleet.”。"
+      "explanationEn": "\"六百多年以前，明朝有一个很大的船队。\" means \"More than six hundred years ago, the Ming had a great fleet.\".",
+      "explanation": "“六百多年以前，明朝有一个很大的船队。”的意思是“More than six hundred years ago, the Ming had a great fleet.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Ming Dynasty in two or three short Chinese sentences. Use words from the list above.",

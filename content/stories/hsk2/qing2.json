@@ -16,68 +16,1164 @@
     "明朝": {
       "py": "Míng Cháo",
       "en": "the Ming dynasty"
+    },
+    "清朝": {
+      "py": "Qīng Cháo",
+      "en": "the Qing dynasty"
     }
   },
   "sents": [
     {
-      "zh": "北京有一个很大很老的地方，叫故宫。",
-      "en": "In Beijing there is a very large, very old place called the Forbidden City."
+      "zh": "北京有一个又大又老的地方，叫故宫。",
+      "en": "In Beijing there is a huge old place called the Forbidden City.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "北京",
+          "py": "Běijīng",
+          "mn": "Beijing"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there is"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "老",
+          "py": "lǎo",
+          "mn": "old"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "place"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "to be called"
+        },
+        {
+          "t": "n",
+          "zh": "故宫",
+          "py": "Gùgōng",
+          "mn": "the Forbidden City"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "它是六百多年以前明朝的皇帝让人建的。",
-      "en": "It was built for a Ming emperor more than six hundred years ago."
+      "zh": "故宫是六百多年以前明朝的皇帝让人建的。",
+      "en": "It was built for a Ming emperor more than six hundred years ago.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "故宫",
+          "py": "Gùgōng",
+          "mn": "the Forbidden City"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "六百",
+          "py": "liù bǎi",
+          "mn": "six hundred",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "ago"
+        },
+        {
+          "t": "n",
+          "zh": "明朝",
+          "py": "Míng Cháo",
+          "mn": "the Ming dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to have (someone do)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "to build",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "建这个地方用了十几年。",
-      "en": "Building it took more than ten years."
+      "zh": "后来清朝的皇帝也住在这里。",
+      "en": "Later the Qing emperors lived here too.",
+      "seg": [
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "t": "n",
+          "zh": "清朝",
+          "py": "Qīng Cháo",
+          "mn": "the Qing dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperors",
+          "bonus": true
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "这里",
+          "py": "zhè lǐ",
+          "mn": "here"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "里面有九千多个房间。",
-      "en": "Inside are more than nine thousand rooms."
+      "zh": "建故宫用了十几年，里面有九千多个房间。",
+      "en": "Building it took more than ten years, and inside are over nine thousand rooms.",
+      "seg": [
+        {
+          "zh": "建",
+          "py": "jiàn",
+          "mn": "to build",
+          "bonus": true
+        },
+        {
+          "t": "n",
+          "zh": "故宫",
+          "py": "Gùgōng",
+          "mn": "the Forbidden City"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to take"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "十几",
+          "py": "shí jǐ",
+          "mn": "ten-something",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "里面",
+          "py": "lǐ miàn",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "九千",
+          "py": "jiǔ qiān",
+          "mn": "nine thousand",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "房间",
+          "py": "fáng jiān",
+          "mn": "rooms"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "如果每天住一个房间，要住二十多年。",
-      "en": "If you slept in one room a night, it would take over twenty years."
+      "en": "If you slept in a different room every night, it would take over twenty years.",
+      "seg": [
+        {
+          "zh": "如果",
+          "py": "rú guǒ",
+          "mn": "if"
+        },
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to stay"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "房间",
+          "py": "fáng jiān",
+          "mn": "room"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "would need"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to stay"
+        },
+        {
+          "zh": "二十",
+          "py": "èr shí",
+          "mn": "twenty",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more than"
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "外面的门又高又大。",
-      "en": "The outer gates are high and great."
+      "zh": "故宫的门又高又大，宫殿是红色的，很好看。",
+      "en": "The gates are high and great, and the palace halls are red and beautiful.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "故宫",
+          "py": "Gùgōng",
+          "mn": "the Forbidden City"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "门",
+          "py": "mén",
+          "mn": "gates"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "高",
+          "py": "gāo",
+          "mn": "high"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "宫殿",
+          "py": "gōng diàn",
+          "mn": "palace halls",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "are"
+        },
+        {
+          "zh": "红色",
+          "py": "hóng sè",
+          "mn": "red"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好看",
+          "py": "hǎo kàn",
+          "mn": "beautiful"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "房子是红色的，很好看。",
-      "en": "The buildings are red, and very beautiful."
+      "zh": "皇帝在最大的那个宫殿里处理公务。",
+      "en": "The emperor attended to state business in the largest hall.",
+      "seg": [
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "那",
+          "py": "nà",
+          "mn": "that"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "宫殿",
+          "py": "gōng diàn",
+          "mn": "palace hall",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "in"
+        },
+        {
+          "zh": "处理",
+          "py": "chǔ lǐ",
+          "mn": "to handle"
+        },
+        {
+          "zh": "公务",
+          "py": "gōng wù",
+          "mn": "official business",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "皇帝在最大的那个房间里做事。",
-      "en": "The emperor worked in the largest hall."
+      "zh": "每天早上，很多官来见他，说全国的事情。",
+      "en": "Every morning many officials came to see him and report on the whole country.",
+      "seg": [
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "早上",
+          "py": "zǎo shang",
+          "mn": "morning"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "官",
+          "py": "guān",
+          "mn": "officials",
+          "bonus": true
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "见",
+          "py": "jiàn",
+          "mn": "to see"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to tell"
+        },
+        {
+          "zh": "全国",
+          "py": "quán guó",
+          "mn": "the whole country",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "事情",
+          "py": "shì qing",
+          "mn": "affairs"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "每天早上，很多官来见他。",
-      "en": "Every morning many officials came to see him."
+      "zh": "他们进来的时候，一句话也不敢多说，因为皇帝的话就是国家的法律。",
+      "en": "As they came in they dared not say a word too many, for the emperor's word was the law of the land.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "进来",
+          "py": "jìn lái",
+          "mn": "to come in",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "句",
+          "py": "jù",
+          "mn": "(counting word, sentences)"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also; even"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "敢",
+          "py": "gǎn",
+          "mn": "to dare",
+          "bonus": true
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "more"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "因为",
+          "py": "yīn wèi",
+          "mn": "because"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "just"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "法律",
+          "py": "fǎ lǜ",
+          "mn": "law",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们进来的时候，一句话也不敢多说。",
-      "en": "As they came in they dared not say a word more than needed."
+      "zh": "皇帝的家人住在后面，一般人看不到他们。",
+      "en": "The emperor's family lived at the back, where ordinary people never saw them.",
+      "seg": [
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "家人",
+          "py": "jiā rén",
+          "mn": "family"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "后面",
+          "py": "hòu mian",
+          "mn": "behind",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一般",
+          "py": "yī bān",
+          "mn": "ordinary"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "看不到",
+          "py": "kàn bu dào",
+          "mn": "cannot see",
+          "bonus": true
+        },
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "them"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为这里要做的事情非常多。",
-      "en": "Because there was so much here that had to be done just so."
+      "zh": "里面还放着很多宝物，有字画，有书，还有金子做的东西。",
+      "en": "Many treasures were kept inside: calligraphy and paintings, books, and things made of gold.",
+      "seg": [
+        {
+          "zh": "里面",
+          "py": "lǐ miàn",
+          "mn": "inside"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "also"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "宝物",
+          "py": "bǎo wù",
+          "mn": "treasures",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "字画",
+          "py": "zì huà",
+          "mn": "calligraphy and paintings",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "书",
+          "py": "shū",
+          "mn": "books"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还有",
+          "py": "hái yǒu",
+          "mn": "and also"
+        },
+        {
+          "zh": "金子",
+          "py": "jīn zi",
+          "mn": "gold",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to make"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "里面还放着很多好看的东西。",
-      "en": "Many beautiful things were kept inside."
+      "zh": "这些东西，很多是全国最好的。",
+      "en": "Many of them were the finest in the whole country.",
+      "seg": [
+        {
+          "zh": "这些",
+          "py": "zhè xiē",
+          "mn": "these"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "are"
+        },
+        {
+          "zh": "全国",
+          "py": "quán guó",
+          "mn": "the whole country",
+          "bonus": true
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有字，有书，还有金子做的东西。",
-      "en": "There is writing, there are books, and things made of gold."
-    },
-    {
-      "zh": "以前，一般人不可以进去。",
-      "en": "In the past ordinary people could not go in."
+      "zh": "以前，一般人不可以进故宫，进去了会被抓起来。",
+      "en": "In the past ordinary people could not enter; anyone who did was arrested.",
+      "seg": [
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一般",
+          "py": "yī bān",
+          "mn": "ordinary"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "may"
+        },
+        {
+          "zh": "进",
+          "py": "jìn",
+          "mn": "to enter"
+        },
+        {
+          "t": "n",
+          "zh": "故宫",
+          "py": "Gùgōng",
+          "mn": "the Forbidden City"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "进去",
+          "py": "jìn qù",
+          "mn": "to go in",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "would"
+        },
+        {
+          "zh": "被",
+          "py": "bèi",
+          "mn": "(is done to)"
+        },
+        {
+          "zh": "抓起来",
+          "py": "zhuā qǐ lái",
+          "mn": "to be arrested",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "可是今天，每个人都可以进去看一看。",
-      "en": "But today anyone may go in and look."
+      "en": "But today anyone may go in and have a look.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "may"
+        },
+        {
+          "zh": "进去",
+          "py": "jìn qù",
+          "mn": "to go in",
+          "bonus": true
+        },
+        {
+          "zh": "看一看",
+          "py": "kàn yi kàn",
+          "mn": "to have a look",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "以前皇帝住的地方，现在是大家的。",
+      "en": "The place where emperors once lived now belongs to everyone.",
+      "seg": [
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "zh": "皇帝",
+          "py": "huáng dì",
+          "mn": "emperor",
+          "bonus": true
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "place"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "现在",
+          "py": "xiàn zài",
+          "mn": "now"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

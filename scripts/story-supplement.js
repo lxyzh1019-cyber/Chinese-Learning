@@ -271,4 +271,10 @@ module.exports = {
   "商铺":   { py: "shāng pù",    en: "shop" },
   "纸质":   { py: "zhǐ zhì",     en: "made of paper" },
   "凭证":   { py: "píng zhèng",  en: "receipt; voucher" },
+  // ── HSK2 gates 19–22 ──
+  "京城":   { py: "jīng chéng",  en: "the capital" },
+  "奇妙":   { py: "qí miào",     en: "wonderful" },
+  "浪":     { py: "làng",        en: "waves" },
+  "亲眼":   { py: "qīn yǎn",     en: "with one's own eyes" },
+  "大总统": { py: "dà zǒng tǒng", en: "president" },
 };
