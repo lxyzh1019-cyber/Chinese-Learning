@@ -53,21 +53,32 @@
             "familyRewardType": null
           },
           "readerParagraphs": [
-            "立春是二十四节气里的第一个。",
-            "这时候天还很冷，可是白天一天比一天长了。",
-            "有的地方在这一天吃春饼，这叫“咬春”。"
+            "立春是二十四节气里的第一个，一般在二月四日前后。",
+            "这时候天还很冷，可是白天一天比一天长，太阳也一天比一天暖。",
+            "老人说：“立春了，春天就在路上了。”",
+            "有的地方在这一天吃春饼，把菜卷在薄薄的饼里，一口咬下去，这叫“咬春”。",
+            "春饼里的菜是刚长出来的新菜，吃了它，就像把春天吃到了肚子里。",
+            "你家立春的时候吃什么？"
           ],
           "readerComprehension": [
             {
-              "question": "立春是第几个节气？",
-              "answer": "第一个。"
+              "question": "立春的时候天还很冷，为什么人们说春天来了？",
+              "answer": "因为白天一天比一天长，太阳也一天比一天暖。"
             },
             {
-              "question": "有的地方在立春这一天吃什么？",
-              "answer": "春饼。"
+              "question": "吃春饼为什么叫“咬春”？",
+              "answer": "春饼里卷的是刚长出来的新菜，一口咬下去，就像把春天吃到了肚子里。"
             }
           ],
-          "titleEn": "Start of Spring"
+          "titleEn": "Start of Spring",
+          "readerParagraphsEn": [
+            "Lichun, the Start of Spring, is the first of the twenty-four solar terms, usually around the fourth of February.",
+            "It is still cold, but each day is a little longer than the last, and the sun a little warmer.",
+            "Old people say: \"Lichun has come, so spring is on its way.\"",
+            "In some places people eat spring pancakes on this day, rolling vegetables in a thin pancake and biting in: this is called \"biting the spring\".",
+            "The vegetables in the pancake are the first new ones of the year, so eating it is like eating spring itself.",
+            "What does your family eat at Lichun?"
+          ]
         },
         {
           "id": "term_02_yu_shui",
@@ -107,21 +118,32 @@
             "familyRewardType": null
           },
           "readerParagraphs": [
-            "雨水的时候，天上下的雪慢慢变成了雨。",
-            "雨多了以后，田里的土也软了。",
-            "种田的人开始准备种东西。"
+            "雨水是春天的第二个节气。",
+            "这时候天气暖了一点，天上下的雪慢慢变成了雨。",
+            "雨多了以后，田里的土就软了，也湿了。",
+            "土软了，种子才能放进去，所以种田的人开始准备种东西。",
+            "他们把去年留下的种子拿出来，看一看，晒一晒。",
+            "一场春雨下过，地上的草就绿了一片。"
           ],
           "readerComprehension": [
             {
-              "question": "雨水的时候，雪变成了什么？",
-              "answer": "雨。"
+              "question": "雨水的时候，为什么下的是雨，不是雪？",
+              "answer": "因为天气暖了一点。"
             },
             {
-              "question": "种田的人开始做什么？",
-              "answer": "准备种东西。"
+              "question": "种田的人为什么要等土软了才种东西？",
+              "answer": "土软了，种子才能放进去。"
             }
           ],
-          "titleEn": "Rain Water"
+          "titleEn": "Rain Water",
+          "readerParagraphsEn": [
+            "Yushui, Rain Water, is the second solar term of spring.",
+            "The weather is a little warmer now, and the snow slowly turns into rain.",
+            "After the rains, the soil in the fields turns soft and wet.",
+            "Only soft soil will take a seed, so farmers begin getting ready to sow.",
+            "They bring out the seeds kept from last year, look them over and dry them in the sun.",
+            "After one spring rain, the ground turns green with grass."
+          ]
         },
         {
           "id": "term_03_jing_zhe",
@@ -161,21 +183,32 @@
             "familyRewardType": null
           },
           "readerParagraphs": [
-            "惊蛰的时候，天上开始打雷。",
-            "睡了一个冬天的虫子听到雷声，就醒过来了。",
-            "“惊”是吓一跳的意思，所以这个节气叫惊蛰。"
+            "惊蛰的时候，天上开始打雷了。",
+            "很多虫子在土里睡了一个冬天，什么都听不到。",
+            "春天的第一声雷很响，虫子听到雷声，吓了一跳，就醒过来了。",
+            "“惊”是吓一跳的意思，“蛰”是虫子在土里睡觉，所以这个节气叫惊蛰。",
+            "虫子醒了，鸟也回来了，田里一下子热闹起来。",
+            "种田的人说：“惊蛰一到，地里就不能闲着了。”"
           ],
           "readerComprehension": [
             {
-              "question": "什么声音把虫子叫醒了？",
-              "answer": "雷声。"
+              "question": "虫子为什么在惊蛰的时候醒过来？",
+              "answer": "春天的第一声雷很响，虫子听到雷声，吓了一跳。"
             },
             {
-              "question": "虫子睡了多久？",
-              "answer": "一个冬天。"
+              "question": "“惊蛰”这两个字是什么意思？",
+              "answer": "“惊”是吓一跳，“蛰”是虫子在土里睡觉。"
             }
           ],
-          "titleEn": "Awakening of Insects"
+          "titleEn": "Awakening of Insects",
+          "readerParagraphsEn": [
+            "At Jingzhe, the Awakening of Insects, the first thunder of the year is heard.",
+            "Many insects have slept in the soil all winter and heard nothing.",
+            "The first spring thunder is loud; the insects hear it, get a fright, and wake up.",
+            "\"Jing\" means to be startled and \"zhe\" means insects sleeping in the ground, so that is the name of this term.",
+            "The insects wake, the birds come back, and the fields are suddenly full of life.",
+            "Farmers say: \"Once Jingzhe comes, the land cannot lie idle.\""
+          ]
         },
         {
           "id": "term_04_chun_fen",
@@ -216,20 +249,31 @@
           },
           "readerParagraphs": [
             "春分这一天，白天和晚上一样长。",
-            "春分以后，白天一天比一天长。",
-            "天气也慢慢暖和起来，草和花都开始长了。"
+            "春天从立春开始，到春分正好过了一半，所以叫“分”。",
+            "春分以后，白天一天比一天长，晚上一天比一天短。",
+            "白天长了，太阳晒的时间就多了，天气也慢慢暖和起来。",
+            "草绿了，花开了，燕子从南边飞回来了。",
+            "有的地方在这一天玩一个游戏：把鸡蛋立在桌子上，看谁能立起来。"
           ],
           "readerComprehension": [
             {
-              "question": "春分这一天，白天和晚上有什么关系？",
-              "answer": "一样长。"
+              "question": "为什么这个节气叫春分？",
+              "answer": "因为春天到这一天正好过了一半。"
             },
             {
-              "question": "春分以后，白天怎么样？",
-              "answer": "一天比一天长。"
+              "question": "春分以后，为什么天气慢慢暖和起来？",
+              "answer": "白天长了，太阳晒的时间就多了。"
             }
           ],
-          "titleEn": "Spring Equinox"
+          "titleEn": "Spring Equinox",
+          "readerParagraphsEn": [
+            "On Chunfen, the Spring Equinox, day and night are the same length.",
+            "Spring starts at Lichun, and by Chunfen it is exactly half over, which is why the name says \"divide\".",
+            "After Chunfen the days grow longer and the nights shorter.",
+            "Longer days mean more sunshine, so the weather slowly warms up.",
+            "The grass turns green, the flowers open, and the swallows fly back from the south.",
+            "In some places people play a game on this day: standing an egg on end on the table, to see who can do it."
+          ]
         },
         {
           "id": "term_05_qing_ming_term",
@@ -269,21 +313,32 @@
             "familyRewardType": "ask_parents_help"
           },
           "readerParagraphs": [
-            "到了清明，天气变得又清又明，所以叫清明。",
-            "这时候雨水多，草和树长得特别快。",
-            "很多人在这几天去种树，也去看过去的家人。"
+            "到了清明，冬天的冷已经走远了，天变得又清又明，所以叫清明。",
+            "这时候雨水多，太阳也暖，草和树长得特别快。",
+            "树好种，很多人在这几天去种树。",
+            "清明也是想念过去的家人的日子。",
+            "人们去看家人住过的地方，把那里打扫干净，放上花。",
+            "一边走在春天里，一边想着家里的老人，这就是清明。"
           ],
           "readerComprehension": [
             {
               "question": "为什么这个节气叫清明？",
-              "answer": "因为天气变得又清又明。"
+              "answer": "因为冬天的冷走远了，天变得又清又明。"
             },
             {
-              "question": "人们在清明这几天做什么？",
-              "answer": "去种树，也去看过去的家人。"
+              "question": "人们为什么在清明这几天去种树？",
+              "answer": "这时候雨水多，太阳暖，树长得特别快。"
             }
           ],
-          "titleEn": "Clear and Bright"
+          "titleEn": "Clear and Bright",
+          "readerParagraphsEn": [
+            "By Qingming, the cold of winter is far behind and the sky is clear and bright, which is what the name means.",
+            "There is plenty of rain and warm sun now, so grass and trees grow especially fast.",
+            "Trees take root easily, so many people plant trees in these few days.",
+            "Qingming is also a day for remembering family members who have died.",
+            "People go to the place where they rest, sweep it clean, and lay flowers there.",
+            "Walking in the spring and thinking of the old people of the family: that is Qingming."
+          ]
         },
         {
           "id": "term_06_gu_yu",
@@ -323,21 +378,32 @@
             "familyRewardType": null
           },
           "readerParagraphs": [
-            "谷雨是春天的最后一个节气。",
-            "这时候雨下得多，田里的谷子长得很快。",
-            "种田的人有一句话：“雨生百谷。”"
+            "谷雨是春天的最后一个节气，过了它，夏天就要来了。",
+            "这时候雨下得多，天气也暖了，田里的谷子长得很快。",
+            "谷子要长，最要紧的就是水，所以春天的雨对种田的人很宝贵。",
+            "种田的人有一句话：“雨生百谷。”意思是，一场春雨，一百种谷子都长起来了。",
+            "谷雨前后，南方的人开始摘茶，这时候的茶叫“雨前茶”，最好喝。",
+            "春天快过完了，人们要抓紧时间，把该种的都种下去。"
           ],
           "readerComprehension": [
             {
-              "question": "谷雨是春天的第几个节气？",
-              "answer": "最后一个。"
+              "question": "为什么这个节气叫谷雨？",
+              "answer": "因为这时候雨多，谷子长得很快。"
             },
             {
-              "question": "为什么这个节气叫谷雨？",
-              "answer": "因为雨多，谷子长得快。"
+              "question": "“雨生百谷”是什么意思？",
+              "answer": "一场春雨，一百种谷子都长起来了。"
             }
           ],
-          "titleEn": "Grain Rain"
+          "titleEn": "Grain Rain",
+          "readerParagraphsEn": [
+            "Guyu, Grain Rain, is the last solar term of spring; after it, summer is on its way.",
+            "It rains a great deal now and the weather is warm, so the grain in the fields grows fast.",
+            "What grain needs most is water, so spring rain is precious to farmers.",
+            "Farmers have a saying: \"Rain gives life to a hundred grains.\" One spring rain, and every kind of grain shoots up.",
+            "Around Guyu, people in the south begin picking tea; tea from these days is called \"pre-rain tea\" and is the best of all.",
+            "Spring is nearly over, so people hurry to get everything sown that needs sowing."
+          ]
         },
         {
           "id": "term_07_li_xia",
@@ -378,20 +444,31 @@
           },
           "readerParagraphs": [
             "立夏是夏天的第一个节气。",
-            "天气开始热起来，田里的东西长得很快。",
-            "有的地方在这一天吃鸡蛋，希望夏天身体好。"
+            "从这一天起，天气开始热起来，白天也越来越长。",
+            "太阳多了，雨也多了，田里的东西长得很快，一天一个样。",
+            "夏天热，人容易没有力气，也容易生病。",
+            "所以有的地方在这一天吃鸡蛋，说吃了鸡蛋，夏天身体好，不怕热。",
+            "孩子们还把鸡蛋放在小网里，挂在脖子上，和朋友比谁的蛋硬。"
           ],
           "readerComprehension": [
             {
-              "question": "立夏是哪个季节的第一个节气？",
-              "answer": "夏天。"
+              "question": "立夏以后，田里的东西为什么长得很快？",
+              "answer": "因为太阳多了，雨也多了。"
             },
             {
-              "question": "有的地方在立夏这一天吃什么？",
-              "answer": "鸡蛋。"
+              "question": "有的地方在立夏吃鸡蛋，是希望什么？",
+              "answer": "夏天身体好，不怕热。"
             }
           ],
-          "titleEn": "Start of Summer"
+          "titleEn": "Start of Summer",
+          "readerParagraphsEn": [
+            "Lixia, the Start of Summer, is the first solar term of summer.",
+            "From this day the weather begins to get hot, and the days keep growing longer.",
+            "With more sun and more rain, everything in the fields grows fast, different every day.",
+            "In the summer heat people easily lose their strength and easily fall ill.",
+            "So in some places people eat an egg on this day, saying it keeps the body strong all summer and unafraid of the heat.",
+            "Children also carry an egg in a little net around their neck, and see whose egg is the hardest."
+          ]
         },
         {
           "id": "term_08_xiao_man",
@@ -431,21 +508,32 @@
             "familyRewardType": null
           },
           "readerParagraphs": [
-            "小满的时候，田里的麦子已经开始长了，可是还不满。",
-            "因为还没有满，所以这个节气叫小满。",
-            "种田的人知道，再过一些日子就可以收了。"
+            "小满的时候，田里的麦子已经长高了，麦粒也开始长了。",
+            "可是麦粒里还没有装满，只是小小的一点。",
+            "因为满了一点，还没有全满，所以这个节气叫小满。",
+            "种田的人天天去田里看，等麦粒一天一天变大。",
+            "他们知道，再过一些日子，麦子黄了，就可以收了。",
+            "老人说：“小满小满，麦粒渐满。”"
           ],
           "readerComprehension": [
             {
-              "question": "小满的时候，麦子长满了没有？",
-              "answer": "还没有满。"
+              "question": "为什么这个节气叫小满？",
+              "answer": "因为麦粒满了一点，还没有全满。"
             },
             {
-              "question": "为什么这个节气叫小满？",
-              "answer": "因为麦子开始长了，可是还不满。"
+              "question": "种田的人天天去田里看，是在等什么？",
+              "answer": "等麦粒一天一天变大，麦子黄了就可以收。"
             }
           ],
-          "titleEn": "Grain Buds"
+          "titleEn": "Grain Buds",
+          "readerParagraphsEn": [
+            "At Xiaoman, Grain Buds, the wheat in the fields has grown tall and the grains have begun to form.",
+            "But the grains are not yet full; there is only a little inside each one.",
+            "A little full, but not yet all full: that is why this term is called Xiaoman, \"small fullness\".",
+            "Farmers go to the fields every day to watch the grains swell day by day.",
+            "They know that in a few more days the wheat will turn yellow and be ready to harvest.",
+            "Old people say: \"Xiaoman, Xiaoman, the grains slowly fill.\""
+          ]
         },
         {
           "id": "term_09_mang_zhong",
@@ -486,20 +574,31 @@
           },
           "readerParagraphs": [
             "芒种是一年里最忙的时候。",
-            "种田的人一边收麦子，一边种稻子。",
-            "有一句话说：“芒种忙，两头忙。”"
+            "这时候麦子黄了，要马上收，晚了麦粒就掉在地里了。",
+            "麦子收完，又要马上种稻子，晚了稻子就长不好了。",
+            "所以种田的人一边收麦子，一边种稻子，一天到晚都在田里。",
+            "有一句话说：“芒种忙，两头忙。”两头就是收和种。",
+            "这几天，全家人都要去田里帮忙，小孩也不例外。"
           ],
           "readerComprehension": [
             {
-              "question": "为什么芒种很忙？",
-              "answer": "因为一边收麦子，一边种稻子。"
+              "question": "芒种为什么是一年里最忙的时候？",
+              "answer": "因为要一边收麦子，一边种稻子，晚了都不行。"
             },
             {
-              "question": "“两头忙”说的是哪两件事？",
-              "answer": "收麦子和种稻子。"
+              "question": "为什么麦子黄了要马上收？",
+              "answer": "晚了麦粒就掉在地里了。"
             }
           ],
-          "titleEn": "Grain in Ear"
+          "titleEn": "Grain in Ear",
+          "readerParagraphsEn": [
+            "Mangzhong, Grain in Ear, is the busiest time of the year.",
+            "The wheat is yellow and must be harvested at once; leave it, and the grains drop in the field.",
+            "As soon as the wheat is in, the rice must be planted; leave it, and the rice will not grow well.",
+            "So farmers harvest wheat and plant rice at the same time, in the fields from morning to night.",
+            "A saying goes: \"Mangzhong is busy, busy at both ends.\" The two ends are harvesting and planting.",
+            "In these days the whole family goes out to help in the fields, children included."
+          ]
         },
         {
           "id": "term_10_xia_zhi",
@@ -540,20 +639,31 @@
           },
           "readerParagraphs": [
             "夏至这一天，白天最长，晚上最短。",
+            "太阳在天上走得最高，中午的时候，人的影子最短。",
             "夏至以后，白天就一天比一天短了。",
-            "有的地方在这一天吃面，说吃了面夏天就好过。"
+            "可是天气不是马上变凉，最热的日子还在后面。",
+            "有的地方在这一天吃面，说：“冬至饺子夏至面。”",
+            "新收的麦子做成面，吃一碗凉凉的面，夏天就好过一点。"
           ],
           "readerComprehension": [
             {
-              "question": "夏至这一天，白天怎么样？",
-              "answer": "最长。"
+              "question": "夏至这一天，为什么中午人的影子最短？",
+              "answer": "因为太阳在天上走得最高。"
             },
             {
-              "question": "夏至以后，白天怎么样？",
-              "answer": "一天比一天短。"
+              "question": "夏至以后白天短了，天气马上变凉吗？",
+              "answer": "不是，最热的日子还在后面。"
             }
           ],
-          "titleEn": "Summer Solstice"
+          "titleEn": "Summer Solstice",
+          "readerParagraphsEn": [
+            "On Xiazhi, the Summer Solstice, the day is longest and the night shortest.",
+            "The sun climbs highest in the sky, and at noon a person's shadow is shortest.",
+            "After Xiazhi, the days grow shorter one by one.",
+            "But the weather does not cool at once; the hottest days are still to come.",
+            "In some places people eat noodles on this day, saying: \"Dumplings at Dongzhi, noodles at Xiazhi.\"",
+            "The new wheat is made into noodles, and a bowl of cold noodles makes the summer a little easier to bear."
+          ]
         },
         {
           "id": "term_11_xiao_shu",
@@ -594,20 +704,31 @@
           },
           "readerParagraphs": [
             "小暑的时候，天气已经很热了，但是还不是一年里最热的时候。",
-            "这几天常常下大雨，雨停了以后反而更闷。",
-            "人们一般早上或者晚上出门，中午在家里休息。"
+            "“暑”就是热，“小暑”是热了，还没有热到头。",
+            "这几天常常下大雨，雨停了以后，太阳一出来，地上的水变成了热气，反而更闷。",
+            "中午太热，人们一般早上或者晚上出门，中午在家里休息。",
+            "老人们坐在树下，一边摇扇子，一边聊天。",
+            "小孩最喜欢的，是吃一块凉凉的西瓜。"
           ],
           "readerComprehension": [
             {
-              "question": "小暑是一年里最热的时候吗？",
-              "answer": "不是，还不是最热的时候。"
+              "question": "小暑的雨停了以后，为什么反而更闷？",
+              "answer": "太阳一出来，地上的水变成了热气。"
             },
             {
-              "question": "人们为什么中午在家里休息？",
+              "question": "人们为什么早上或者晚上出门？",
               "answer": "因为中午太热。"
             }
           ],
-          "titleEn": "Minor Heat"
+          "titleEn": "Minor Heat",
+          "readerParagraphsEn": [
+            "At Xiaoshu, Minor Heat, the weather is already very hot, but not yet the hottest of the year.",
+            "\"Shu\" means heat, and \"Xiaoshu\" means the heat has come but not yet reached its peak.",
+            "Heavy rain falls often in these days; when it stops and the sun comes out, the water on the ground turns to steam and it feels even more stifling.",
+            "Midday is too hot, so people go out in the morning or evening and rest at home at noon.",
+            "Old people sit under the trees, waving fans and chatting.",
+            "What children like best is a slice of cold watermelon."
+          ]
         },
         {
           "id": "term_12_da_shu",
@@ -648,20 +769,31 @@
           },
           "readerParagraphs": [
             "大暑是一年里最热的时候。",
-            "太阳很大，地上的水很快就干了。",
-            "老人常说，这些日子要多喝水，少在外面走。"
+            "太阳很大，地上的水很快就干了，田里的土也裂开了。",
+            "所以种田的人要早早起来给田里浇水，太阳出来了就回家。",
+            "老人常说，这些日子要多喝水，少在外面走。",
+            "因为人出很多汗，身体里的水少了，就容易头晕。",
+            "大暑过了，就是立秋，最热的日子终于要过去了。"
           ],
           "readerComprehension": [
             {
-              "question": "大暑是什么时候？",
-              "answer": "一年里最热的时候。"
+              "question": "大暑的时候，种田的人为什么早早起来浇水？",
+              "answer": "因为太阳很大，地上的水很快就干了。"
             },
             {
-              "question": "老人说这些日子要注意什么？",
-              "answer": "多喝水，少在外面走。"
+              "question": "为什么这些日子要多喝水？",
+              "answer": "人出很多汗，身体里的水少了，容易头晕。"
             }
           ],
-          "titleEn": "Major Heat"
+          "titleEn": "Major Heat",
+          "readerParagraphsEn": [
+            "Dashu, Major Heat, is the hottest time of the year.",
+            "The sun is fierce; water on the ground dries in no time, and the soil in the fields cracks open.",
+            "So farmers get up very early to water the fields, and go home once the sun is up.",
+            "Old people often say that in these days you should drink plenty of water and not walk about outside too much.",
+            "Because you sweat so much, the body loses water and you easily feel dizzy.",
+            "After Dashu comes Liqiu, the Start of Autumn, and the hottest days are finally over."
+          ]
         },
         {
           "id": "term_13_li_qiu",
@@ -702,20 +834,31 @@
           },
           "readerParagraphs": [
             "立秋是秋天的第一个节气。",
-            "虽然叫立秋，可是天气还很热，人们把这时候的热叫“秋老虎”。",
-            "早上和晚上开始凉一点，树上的叶子也慢慢变黄了。"
+            "虽然叫立秋，可是天气还很热，中午的太阳和夏天一样。",
+            "人们把这时候的热叫“秋老虎”，意思是秋天来了，热还像老虎一样凶。",
+            "可是早上和晚上已经开始凉一点了，风里有了一点秋天的味道。",
+            "树上的叶子也慢慢变黄，一片一片落下来。",
+            "老人说：“一叶落，知天下秋。”看到第一片黄叶，就知道秋天到了。"
           ],
           "readerComprehension": [
             {
-              "question": "立秋以后天气马上就凉了吗？",
-              "answer": "没有，还很热，人们叫它“秋老虎”。"
+              "question": "为什么人们把立秋以后的热叫“秋老虎”？",
+              "answer": "秋天来了，可是热还像老虎一样凶。"
             },
             {
-              "question": "什么慢慢变黄了？",
-              "answer": "树上的叶子。"
+              "question": "立秋以后，人们从哪里知道秋天到了？",
+              "answer": "早上和晚上凉了，树上的叶子黄了、落了。"
             }
           ],
-          "titleEn": "Start of Autumn"
+          "titleEn": "Start of Autumn",
+          "readerParagraphsEn": [
+            "Liqiu, the Start of Autumn, is the first solar term of autumn.",
+            "Although it is called the start of autumn, the weather is still hot, and the midday sun is the same as in summer.",
+            "People call this heat the \"autumn tiger\": autumn has come, but the heat is still as fierce as a tiger.",
+            "Yet mornings and evenings have begun to cool, and there is a hint of autumn in the wind.",
+            "The leaves on the trees slowly turn yellow and fall one by one.",
+            "Old people say: \"One leaf falls, and you know autumn has come to the world.\" The first yellow leaf tells you autumn is here."
+          ]
         },
         {
           "id": "term_14_chu_shu",
@@ -755,21 +898,32 @@
             "familyRewardType": null
           },
           "readerParagraphs": [
-            "处暑的“处”是停下来的意思。",
-            "到了处暑，最热的日子就要过去了。",
-            "天气一天比一天凉，晚上睡觉要多盖一点。"
+            "处暑的“处”是停下来的意思，“暑”是热。",
+            "到了处暑，热就停下来了，最热的日子终于过去了。",
+            "白天还有一点热，可是晚上凉了，睡觉要多盖一点。",
+            "天上的云变高了，也变少了，天看起来特别蓝。",
+            "田里的稻子开始黄了，风一吹，像一片黄色的水。",
+            "海边的人这时候开船出海，因为秋天的鱼又多又肥。"
           ],
           "readerComprehension": [
             {
-              "question": "处暑的“处”是什么意思？",
-              "answer": "停下来。"
+              "question": "处暑这两个字是什么意思？",
+              "answer": "“处”是停下来，“暑”是热，热停下来了。"
             },
             {
-              "question": "处暑以后天气怎么样？",
-              "answer": "一天比一天凉。"
+              "question": "海边的人为什么在处暑的时候出海？",
+              "answer": "因为秋天的鱼又多又肥。"
             }
           ],
-          "titleEn": "End of Heat"
+          "titleEn": "End of Heat",
+          "readerParagraphsEn": [
+            "In Chushu, the End of Heat, \"chu\" means to stop and \"shu\" means heat.",
+            "At Chushu the heat stops, and the hottest days are finally over.",
+            "The days are still a little warm, but the nights are cool, and you need more cover to sleep.",
+            "The clouds climb higher and grow fewer, and the sky looks especially blue.",
+            "The rice in the fields begins to turn yellow, and when the wind blows it looks like a sheet of yellow water.",
+            "People by the sea take their boats out now, because the autumn fish are plentiful and fat."
+          ]
         },
         {
           "id": "term_15_bai_lu",
@@ -809,21 +963,32 @@
             "familyRewardType": null
           },
           "readerParagraphs": [
-            "白露的时候，早上的草上有很多小水点，看起来是白的。",
-            "这些水叫露水，是晚上天冷的时候出来的。",
-            "有一句话说：“白露秋分夜，一夜凉一夜。”"
+            "白露的时候，早上起来，草上有很多小水点。",
+            "这些水叫露水，太阳一照，白白的，亮亮的，所以这个节气叫白露。",
+            "露水是晚上出来的：晚上天冷，空气里的水变成了小水点，落在草上。",
+            "所以有露水，就是晚上已经冷了。",
+            "有一句话说：“白露秋分夜，一夜凉一夜。”",
+            "从这时候起，人们早上出门要加一件衣服了。"
           ],
           "readerComprehension": [
             {
-              "question": "白露的时候，早上的草上有什么？",
-              "answer": "露水。"
+              "question": "露水是怎么来的？",
+              "answer": "晚上天冷，空气里的水变成了小水点，落在草上。"
             },
             {
-              "question": "露水是什么时候出来的？",
-              "answer": "晚上天冷的时候。"
+              "question": "为什么这个节气叫白露？",
+              "answer": "露水被太阳一照，白白的，亮亮的。"
             }
           ],
-          "titleEn": "White Dew"
+          "titleEn": "White Dew",
+          "readerParagraphsEn": [
+            "At Bailu, White Dew, you get up in the morning and find the grass covered in tiny drops of water.",
+            "These drops are dew; in the sun they look white and shining, and that is why the term is called White Dew.",
+            "Dew forms at night: the night is cold, so the water in the air turns into tiny drops and settles on the grass.",
+            "So if there is dew, the nights have already turned cold.",
+            "A saying goes: \"From White Dew to the Autumn Equinox, each night is cooler than the last.\"",
+            "From now on people put on an extra layer when they go out in the morning."
+          ]
         },
         {
           "id": "term_16_qiu_fen",
@@ -864,20 +1029,31 @@
           },
           "readerParagraphs": [
             "秋分这一天，白天和晚上一样长。",
-            "秋分以后，晚上就比白天长了。",
-            "田里的东西这时候差不多都收好了。"
+            "秋天从立秋开始，到秋分正好过了一半，所以叫“分”。",
+            "秋分以后，晚上就比白天长了，天也一天比一天冷。",
+            "田里的稻子、玉米这时候差不多都收好了。",
+            "收完的东西放在院子里晒，院子里一片黄，一片红。",
+            "所以秋分也是种田的人最高兴的日子：一年的活，有了结果。"
           ],
           "readerComprehension": [
             {
-              "question": "秋分这一天，白天和晚上有什么关系？",
-              "answer": "一样长。"
+              "question": "为什么这个节气叫秋分？",
+              "answer": "因为秋天到这一天正好过了一半。"
             },
             {
-              "question": "秋分以后，白天和晚上哪个长？",
-              "answer": "晚上。"
+              "question": "秋分为什么是种田的人最高兴的日子？",
+              "answer": "田里的东西都收好了，一年的活有了结果。"
             }
           ],
-          "titleEn": "Autumn Equinox"
+          "titleEn": "Autumn Equinox",
+          "readerParagraphsEn": [
+            "On Qiufen, the Autumn Equinox, day and night are the same length.",
+            "Autumn starts at Liqiu, and by Qiufen it is exactly half over, which is why the name says \"divide\".",
+            "After Qiufen the nights are longer than the days, and each day is colder than the last.",
+            "By now the rice and maize in the fields are nearly all harvested.",
+            "The harvest is spread in the courtyard to dry, a patch of yellow here and a patch of red there.",
+            "So Qiufen is also the happiest day for farmers: a year's work has borne fruit."
+          ]
         },
         {
           "id": "term_17_han_lu",
@@ -917,21 +1093,32 @@
             "familyRewardType": null
           },
           "readerParagraphs": [
-            "寒露的时候，早上的露水已经很凉了。",
-            "天气比白露的时候更冷，很多地方要开始穿厚一点的衣服。",
-            "南方田里的稻子这时候差不多可以收了。"
+            "寒露的时候，早上的草上还有露水，可是露水已经很凉了，快要变成冰了。",
+            "“寒”就是冷，所以这个节气叫寒露。",
+            "天气比白露的时候冷多了，很多地方的人开始穿厚一点的衣服。",
+            "北方的大雁排成一行，一起飞到南方去过冬。",
+            "南方田里的稻子这时候可以收了，山上的菊花也开了。",
+            "很多人在这几天爬山，看红叶，看菊花。"
           ],
           "readerComprehension": [
             {
-              "question": "寒露的露水和白露的比，怎么样？",
-              "answer": "更凉、更冷。"
+              "question": "寒露和白露的露水有什么不一样？",
+              "answer": "寒露的露水已经很凉了，快要变成冰了。"
             },
             {
-              "question": "这时候人们要开始做什么？",
-              "answer": "穿厚一点的衣服。"
+              "question": "大雁为什么飞到南方去？",
+              "answer": "因为北方冷了，它们要去南方过冬。"
             }
           ],
-          "titleEn": "Cold Dew"
+          "titleEn": "Cold Dew",
+          "readerParagraphsEn": [
+            "At Hanlu, Cold Dew, there is still dew on the grass in the morning, but it is very cold now, almost ice.",
+            "\"Han\" means cold, so this term is called Cold Dew.",
+            "The weather is much colder than at White Dew, and in many places people begin wearing thicker clothes.",
+            "In the north the wild geese line up and fly together to the south for the winter.",
+            "In the south the rice can be harvested now, and the chrysanthemums on the hills are in bloom.",
+            "Many people climb the hills in these days to see the red leaves and the chrysanthemums."
+          ]
         },
         {
           "id": "term_18_shuang_jiang",
@@ -972,20 +1159,31 @@
           },
           "readerParagraphs": [
             "霜降是秋天的最后一个节气。",
-            "天气冷了以后，早上地上会有一层白白的霜。",
-            "有的水果，比如柿子，霜降以后反而更甜。"
+            "晚上比寒露的时候更冷，露水冻住了，变成了霜。",
+            "早上起来，地上、草上、房顶上都是一层白白的霜，像下了一场小雪。",
+            "很多菜怕霜，一夜就冻坏了，所以种田的人要在霜降以前把菜收回家。",
+            "可是有的水果，比如柿子，霜降以后反而更甜。",
+            "老人说：“霜打的柿子最好吃。”"
           ],
           "readerComprehension": [
             {
-              "question": "霜降是秋天的第几个节气？",
-              "answer": "最后一个。"
+              "question": "霜是怎么来的？",
+              "answer": "晚上更冷了，露水冻住了，就变成了霜。"
             },
             {
-              "question": "霜降以后，什么水果更甜？",
-              "answer": "柿子。"
+              "question": "种田的人为什么要在霜降以前把菜收回家？",
+              "answer": "很多菜怕霜，一夜就冻坏了。"
             }
           ],
-          "titleEn": "Frost's Descent"
+          "titleEn": "Frost's Descent",
+          "readerParagraphsEn": [
+            "Shuangjiang, Frost's Descent, is the last solar term of autumn.",
+            "The nights are colder than at Cold Dew; the dew freezes and turns into frost.",
+            "In the morning the ground, the grass and the rooftops are covered in a layer of white frost, as if a light snow had fallen.",
+            "Many vegetables cannot stand frost and are ruined in one night, so farmers bring them in before Shuangjiang.",
+            "But some fruit, such as persimmons, become sweeter after the frost.",
+            "Old people say: \"A frost-bitten persimmon is the best of all.\""
+          ]
         },
         {
           "id": "term_19_li_dong",
@@ -1026,20 +1224,31 @@
           },
           "readerParagraphs": [
             "立冬是冬天的第一个节气。",
-            "天气冷了，田里的活也做完了，人们开始休息。",
-            "北方有的地方在立冬这一天吃饺子。"
+            "田里的东西都收完了，地也冻了，种不了东西，所以种田的人开始休息。",
+            "他们把粮食放好，把柴放好，准备过一个长长的冬天。",
+            "天气冷了，人要吃得好一点，身体才有力气。",
+            "所以北方有的地方在立冬这一天吃饺子，饺子里有肉，也有菜，热热的。",
+            "老人说：“立冬不吃饺子，冬天要冻耳朵。”因为饺子的样子像耳朵。"
           ],
           "readerComprehension": [
             {
-              "question": "立冬是哪个季节的第一个节气？",
-              "answer": "冬天。"
+              "question": "立冬以后，种田的人为什么开始休息？",
+              "answer": "田里的东西收完了，地也冻了，种不了东西。"
             },
             {
-              "question": "北方有的地方在立冬这一天吃什么？",
-              "answer": "饺子。"
+              "question": "为什么老人说立冬不吃饺子会冻耳朵？",
+              "answer": "因为饺子的样子像耳朵。"
             }
           ],
-          "titleEn": "Start of Winter"
+          "titleEn": "Start of Winter",
+          "readerParagraphsEn": [
+            "Lidong, the Start of Winter, is the first solar term of winter.",
+            "Everything in the fields has been harvested and the ground is frozen, so nothing can be planted and farmers begin to rest.",
+            "They store away the grain and the firewood, ready for a long winter.",
+            "In the cold, people need to eat well to keep up their strength.",
+            "So in some places in the north people eat dumplings on this day, filled with meat and vegetables, steaming hot.",
+            "Old people say: \"Skip the dumplings at Lidong and your ears will freeze this winter,\" because a dumpling is shaped like an ear."
+          ]
         },
         {
           "id": "term_20_xiao_xue",
@@ -1079,21 +1288,32 @@
             "familyRewardType": null
           },
           "readerParagraphs": [
-            "小雪的时候，北方开始下雪，可是雪不大。",
-            "雪下了一会儿就化了，地上还不会一直是白的。",
-            "路上有一点滑，出门的时候要小心。"
+            "小雪的时候，北方开始下雪了，可是雪不大。",
+            "因为地还不够冷，雪落在地上，一会儿就化了。",
+            "所以地上还不会一直是白的，只有房顶上和树上留一点白。",
+            "路上又湿又滑，出门的时候要小心。",
+            "人们开始做过冬的菜：把白菜、萝卜晒一晒，放在缸里。",
+            "冬天菜少，这些菜要吃到春天。"
           ],
           "readerComprehension": [
             {
-              "question": "小雪的时候，雪大不大？",
-              "answer": "不大。"
+              "question": "小雪的时候，雪为什么一会儿就化了？",
+              "answer": "因为地还不够冷。"
             },
             {
-              "question": "出门的时候要注意什么？",
-              "answer": "路上有一点滑，要小心。"
+              "question": "人们为什么在小雪的时候把白菜、萝卜放在缸里？",
+              "answer": "冬天菜少，这些菜要吃到春天。"
             }
           ],
-          "titleEn": "Minor Snow"
+          "titleEn": "Minor Snow",
+          "readerParagraphsEn": [
+            "At Xiaoxue, Minor Snow, it begins to snow in the north, but not much.",
+            "The ground is not yet cold enough, so the snow melts soon after it lands.",
+            "So the ground does not stay white; only the rooftops and the trees keep a little white.",
+            "The roads are wet and slippery, so take care when you go out.",
+            "People begin preparing food for the winter, drying cabbages and radishes in the sun and packing them in big jars.",
+            "There are few vegetables in winter, so these have to last until spring."
+          ]
         },
         {
           "id": "term_21_da_xue",
@@ -1134,20 +1354,31 @@
           },
           "readerParagraphs": [
             "大雪的时候，雪下得比小雪多多了。",
-            "有的地方一早起来，外面已经全白了。",
-            "孩子们喜欢在雪里玩，大人说这些雪对田里的东西也好。"
+            "地已经很冷了，雪落下来不化，一层一层越堆越厚。",
+            "有的地方一早起来，外面已经全白了，路和田都看不见了。",
+            "孩子们最高兴，跑到雪里堆雪人，打雪仗。",
+            "大人也高兴，他们说：“瑞雪兆丰年。”",
+            "意思是，雪盖在田上，像一床被子，麦子在下面不会冻坏，明年会长得很好。"
           ],
           "readerComprehension": [
             {
-              "question": "大雪和小雪比，雪下得怎么样？",
-              "answer": "下得更多。"
+              "question": "大雪的时候，雪为什么越堆越厚？",
+              "answer": "地已经很冷了，雪落下来不化。"
             },
             {
-              "question": "大人说这些雪对什么好？",
-              "answer": "对田里的东西好。"
+              "question": "大人为什么说雪对田里的麦子好？",
+              "answer": "雪盖在田上像一床被子，麦子在下面不会冻坏。"
             }
           ],
-          "titleEn": "Major Snow"
+          "titleEn": "Major Snow",
+          "readerParagraphsEn": [
+            "At Daxue, Major Snow, far more snow falls than at Minor Snow.",
+            "The ground is very cold now, so the snow does not melt but piles up layer on layer.",
+            "In some places you wake to find everything white outside, the roads and fields gone from sight.",
+            "The children are happiest of all, running out to build snowmen and have snowball fights.",
+            "The grown-ups are happy too. They say: \"A timely snow promises a good year.\"",
+            "The snow lies over the fields like a quilt, so the wheat beneath it does not freeze and will grow well next year."
+          ]
         },
         {
           "id": "term_22_dong_zhi",
@@ -1188,20 +1419,31 @@
           },
           "readerParagraphs": [
             "冬至这一天，白天最短，晚上最长。",
-            "冬至以后，白天就一天比一天长了。",
-            "这一天家里的人常常一起吃饭：北方吃饺子，南方吃汤圆。"
+            "太阳在天上走得最低，中午的时候，人的影子最长。",
+            "冬至以后，白天就一天比一天长了，所以老人说：“冬至一到，太阳就回来了。”",
+            "从冬至起，最冷的日子开始了，人们叫它“数九”：每九天是一个“九”，数完九个“九”，春天就来了。",
+            "这一天家里的人常常一起吃饭：北方吃饺子，南方吃汤圆。",
+            "汤圆是圆的，一家人围在一起也是圆的，所以叫“团圆”。"
           ],
           "readerComprehension": [
             {
-              "question": "冬至这一天，白天怎么样？",
-              "answer": "最短。"
+              "question": "为什么老人说“冬至一到，太阳就回来了”？",
+              "answer": "因为冬至以后，白天一天比一天长了。"
             },
             {
-              "question": "南方的人在冬至吃什么？",
-              "answer": "汤圆。"
+              "question": "“数九”是怎么数的？",
+              "answer": "每九天是一个“九”，数完九个“九”，春天就来了。"
             }
           ],
-          "titleEn": "Winter Solstice"
+          "titleEn": "Winter Solstice",
+          "readerParagraphsEn": [
+            "On Dongzhi, the Winter Solstice, the day is shortest and the night longest.",
+            "The sun travels lowest in the sky, and at noon a person's shadow is longest.",
+            "After Dongzhi the days grow longer one by one, so old people say: \"Once Dongzhi comes, the sun comes back.\"",
+            "From Dongzhi the coldest days begin, and people \"count the nines\": every nine days is one \"nine\", and when nine nines are counted, spring has come.",
+            "On this day families often eat together: dumplings in the north, sweet rice balls in the south.",
+            "The rice balls are round, and a family gathered in a circle is round too, which is why it is called \"reunion\"."
+          ]
         },
         {
           "id": "term_23_xiao_han",
@@ -1242,20 +1484,31 @@
           },
           "readerParagraphs": [
             "小寒的时候，天气已经很冷了。",
-            "河上开始有冰，出门的人都穿得很厚。",
-            "虽然叫小寒，可是有的地方比大寒还冷。"
+            "河上开始有冰，早上的风像刀子一样，出门的人都穿得很厚。",
+            "虽然叫小寒，可是很多地方小寒比大寒还冷，因为这时候正是“三九”。",
+            "北方的孩子在冰上玩，南方的人在家里吃热热的腊八粥。",
+            "腊八粥里有米、有豆、有红枣，喝一碗，全身都暖了。",
+            "老人说：“小寒大寒，冷成一团。”过了这两个节气，冬天就完了。"
           ],
           "readerComprehension": [
             {
-              "question": "小寒的时候，河上有什么？",
-              "answer": "冰。"
+              "question": "为什么很多地方小寒比大寒还冷？",
+              "answer": "因为小寒的时候正是“三九”，一年里最冷的日子。"
             },
             {
-              "question": "小寒一定比大寒暖和吗？",
-              "answer": "不一定，有的地方比大寒还冷。"
+              "question": "南方的人在小寒的时候吃什么，为什么？",
+              "answer": "吃热热的腊八粥，喝一碗，全身都暖了。"
             }
           ],
-          "titleEn": "Minor Cold"
+          "titleEn": "Minor Cold",
+          "readerParagraphsEn": [
+            "At Xiaohan, Minor Cold, the weather is already very cold.",
+            "Ice forms on the rivers, the morning wind cuts like a knife, and everyone goes out wrapped up thick.",
+            "Although it is called Minor Cold, in many places Xiaohan is colder than Major Cold, because this is the \"third nine\", the coldest stretch of winter.",
+            "Children in the north play on the ice; people in the south stay in and eat hot Laba porridge.",
+            "Laba porridge has rice, beans and red dates in it, and one bowl warms you all over.",
+            "Old people say: \"Minor Cold, Major Cold, one huddle of cold.\" Once these two terms are over, winter is done."
+          ]
         },
         {
           "id": "term_24_da_han",
@@ -1296,20 +1549,31 @@
           },
           "readerParagraphs": [
             "大寒是二十四节气里的最后一个。",
-            "这时候常常是一年里最冷的日子。",
-            "大寒过去以后，就又到立春了，一年又重新开始。"
+            "这时候常常是一年里最冷的日子，河全冻住了，地也硬得像石头。",
+            "可是人们不怕，因为大寒一过，就又到立春了。",
+            "所以大寒的时候，家家都在忙着过年：打扫房子，写春联，准备好吃的。",
+            "在外面工作的人也都往家里赶，要和家人一起过年。",
+            "一年从立春开始，到大寒结束，然后又重新开始，一年一年，就像一个圆。"
           ],
           "readerComprehension": [
             {
-              "question": "大寒是第几个节气？",
-              "answer": "最后一个。"
+              "question": "大寒这么冷，人们为什么不怕？",
+              "answer": "因为大寒一过，就又到立春了。"
             },
             {
-              "question": "大寒过去以后是哪个节气？",
-              "answer": "立春。"
+              "question": "大寒的时候，家家都在忙什么？",
+              "answer": "忙着过年：打扫房子，写春联，准备好吃的。"
             }
           ],
-          "titleEn": "Major Cold"
+          "titleEn": "Major Cold",
+          "readerParagraphsEn": [
+            "Dahan, Major Cold, is the last of the twenty-four solar terms.",
+            "These are often the coldest days of the year: the rivers are frozen solid and the ground is as hard as stone.",
+            "But people are not afraid, because once Dahan is over, Lichun comes round again.",
+            "So at Dahan every family is busy getting ready for the New Year: cleaning the house, writing spring couplets, preparing good things to eat.",
+            "People working far away all hurry home to spend the New Year with their families.",
+            "A year starts at Lichun and ends at Dahan, then starts again, year after year, like a circle."
+          ]
         }
       ]
     },
@@ -1356,21 +1620,32 @@
             "familyRewardType": "ask_parents_help"
           },
           "readerParagraphs": [
-            "春节是中国最重要的节日。",
-            "这几天，家里的人都回家一起吃饭。",
-            "大人给小孩红包，大家见面都说：“新年好！”"
+            "春节是中国最重要的节日，也是一年的第一天。",
+            "春节以前，家家都要把房子打扫干净，门上贴红色的春联，因为新的一年要有新的样子。",
+            "这几天，在外面工作、读书的人都回家，一家人坐在一起吃一顿丰盛的年夜饭。",
+            "年夜饭里一定有鱼，因为“鱼”和“余”的声音一样，“年年有余”就是每年都有多的。",
+            "吃完饭，大人给小孩红包，红包里有钱，意思是新的一年平平安安。",
+            "第二天早上，大家见面都说：“新年好！”"
           ],
           "readerComprehension": [
             {
-              "question": "春节的时候，家里的人做什么？",
-              "answer": "都回家一起吃饭。"
+              "question": "春节以前，为什么家家都要打扫房子、贴春联？",
+              "answer": "因为新的一年要有新的样子。"
             },
             {
-              "question": "大人给小孩什么？",
-              "answer": "红包。"
+              "question": "年夜饭里为什么一定有鱼？",
+              "answer": "因为“鱼”和“余”的声音一样，“年年有余”就是每年都有多的。"
             }
           ],
-          "titleEn": "Spring Festival (Chinese New Year)"
+          "titleEn": "Spring Festival (Chinese New Year)",
+          "readerParagraphsEn": [
+            "The Spring Festival, Chinese New Year, is China's most important festival, and the first day of the year.",
+            "Before it, every family cleans the house and pastes red couplets on the door, because a new year should have a new look.",
+            "In these days everyone working or studying away from home comes back, and the family sits down together to a lavish New Year's Eve dinner.",
+            "There is always a fish on the table, because \"fish\" and \"plenty\" sound the same in Chinese: \"fish every year\" means \"plenty every year\".",
+            "After dinner the grown-ups give the children red envelopes with money inside, a wish for a safe and peaceful new year.",
+            "The next morning, everyone who meets says: \"Happy New Year!\""
+          ]
         },
         {
           "id": "festival_lantern",
@@ -1411,21 +1686,32 @@
             "familyRewardType": "movie_night"
           },
           "readerParagraphs": [
-            "元宵节在春节以后的第十五天。",
-            "这一天晚上，人们出门看灯，街上很热闹。",
-            "大家还吃元宵。元宵是圆的，白白的，里面很甜。"
+            "元宵节在春节以后的第十五天，是过年的最后一天。",
+            "这一天晚上的月亮是新年的第一个圆月。",
+            "很久以前，人们在这一天晚上点灯，是为了让天上的神看到，今年家里平平安安。",
+            "后来灯越做越好看：有鱼灯，有兔子灯，有龙灯，人们出门看灯，街上很热闹。",
+            "有的灯上写着一句话，让你猜一个字，猜对了有小礼物，这叫“猜灯谜”。",
+            "大家还吃元宵。元宵是圆的，白白的，里面很甜，一家人吃了，就像月亮一样团团圆圆。"
           ],
           "readerComprehension": [
             {
-              "question": "元宵节是春节以后的第几天？",
-              "answer": "第十五天。"
+              "question": "很久以前，人们为什么在元宵节晚上点灯？",
+              "answer": "为了让天上的神看到，今年家里平平安安。"
             },
             {
-              "question": "元宵是什么样子的？",
-              "answer": "圆的，白白的，里面很甜。"
+              "question": "为什么元宵节要吃圆圆的元宵？",
+              "answer": "一家人吃了，就像月亮一样团团圆圆。"
             }
           ],
-          "titleEn": "Lantern Festival"
+          "titleEn": "Lantern Festival",
+          "readerParagraphsEn": [
+            "The Lantern Festival falls on the fifteenth day after Chinese New Year, the last day of the holiday.",
+            "The moon that night is the first full moon of the new year.",
+            "Long ago people lit lamps on this night so that the gods in heaven could see that the family was safe and well.",
+            "Later the lanterns grew ever more beautiful, shaped like fish, rabbits and dragons, and people went out to see them, filling the streets.",
+            "Some lanterns carry a riddle whose answer is one character; guess right and you win a small prize. This is called \"guessing lantern riddles\".",
+            "Everyone also eats yuanxiao, round white sweet rice balls; a family that eats them together is whole and round, like the moon."
+          ]
         },
         {
           "id": "festival_qingming",
@@ -1465,21 +1751,32 @@
             "familyRewardType": "ask_parents_help"
           },
           "readerParagraphs": [
-            "清明节在春天，那时候天气很好。",
-            "这一天，人们去看过去的家人，给他们送花。",
-            "有的人也在这一天出去走一走，看看春天的草和树。"
+            "清明节在春天，天气很好，草绿了，花开了。",
+            "这一天，人们去看过去的家人。",
+            "家人不在了，可是人们没有忘记他们，所以每年这一天都要去看一看。",
+            "人们把那里的草拔干净，给他们送花，还说一说家里这一年的事。",
+            "这叫“扫墓”，意思是把家人住的地方打扫干净。",
+            "看完家人，很多人在春天里走一走，放风筝，看看草和树，这叫“踏青”。"
           ],
           "readerComprehension": [
             {
-              "question": "人们在清明节做什么？",
-              "answer": "去看过去的家人，给他们送花。"
+              "question": "人们为什么每年清明节都去看过去的家人？",
+              "answer": "家人不在了，可是人们没有忘记他们。"
             },
             {
-              "question": "清明节在哪个季节？",
-              "answer": "春天。"
+              "question": "“扫墓”是什么意思？",
+              "answer": "把家人住的地方打扫干净。"
             }
           ],
-          "titleEn": "Qingming Festival (Tomb-Sweeping Day)"
+          "titleEn": "Qingming Festival (Tomb-Sweeping Day)",
+          "readerParagraphsEn": [
+            "The Qingming Festival comes in spring, when the weather is fine, the grass is green and the flowers are out.",
+            "On this day people visit the family members who have died.",
+            "They are gone, but they are not forgotten, so every year on this day the family goes to see them.",
+            "People clear the weeds from the grave, bring flowers, and tell them what has happened in the family this year.",
+            "This is called \"sweeping the tombs\": cleaning the place where the family rests.",
+            "Afterwards many people walk in the spring, fly kites and look at the grass and trees; this is called \"treading the green\"."
+          ]
         },
         {
           "id": "festival_dragon_boat",
@@ -1520,22 +1817,32 @@
             "familyRewardType": "game_night"
           },
           "readerParagraphs": [
-            "端午节是为了记住一位古时候的诗人，他叫屈原。",
-            "屈原很爱自己的国家，后来跳进了河里。",
-            "人们坐船去找他，还把米放进水里，希望鱼不要吃他。",
-            "所以今天我们在端午节赛龙舟，也吃粽子。"
+            "端午节在夏天，是为了记住一位古时候的诗人，他叫屈原。",
+            "屈原很爱自己的国家，可是楚国国王不听从他的建议，后来国家被别人打败了。",
+            "屈原非常难过，跳进了河里。",
+            "人们很爱屈原，坐船到河上去找他，可是没有找到。",
+            "他们把米包进粽子里，扔到水里，希望鱼吃米，不要吃他。",
+            "所以今天我们在端午节赛龙舟，也吃粽子：龙舟就是那时候找他的船，粽子就是那时候扔到水里的米。"
           ],
           "readerComprehension": [
             {
-              "question": "端午节是为了记住谁？",
-              "answer": "古时候的诗人屈原。"
+              "question": "屈原为什么跳进了河里？",
+              "answer": "楚国国王不听从他的建议，国家被别人打败了，他非常难过。"
             },
             {
-              "question": "今天人们在端午节做什么？",
-              "answer": "赛龙舟，也吃粽子。"
+              "question": "为什么今天我们在端午节赛龙舟、吃粽子？",
+              "answer": "龙舟就是那时候找他的船，粽子就是那时候扔到水里的米。"
             }
           ],
-          "titleEn": "Dragon Boat Festival"
+          "titleEn": "Dragon Boat Festival",
+          "readerParagraphsEn": [
+            "The Dragon Boat Festival, in summer, remembers a poet of ancient times called Qu Yuan.",
+            "Qu Yuan loved his country, but the King of Chu would not take his advice, and later the country was defeated.",
+            "Qu Yuan was heartbroken, and threw himself into the river.",
+            "The people loved him and rowed out onto the river to look for him, but could not find him.",
+            "They wrapped rice into zongzi and threw them into the water, hoping the fish would eat the rice and not him.",
+            "So today we race dragon boats and eat zongzi at the festival: the boats are the boats that searched for him, and the zongzi are the rice they threw into the water."
+          ]
         },
         {
           "id": "festival_mid_autumn",
@@ -1576,22 +1883,32 @@
             "familyRewardType": "choose_dinner"
           },
           "readerParagraphs": [
-            "中秋节在秋天，这一天晚上的月亮又大又圆。",
-            "家里的人一起看月亮，吃月饼。",
-            "老人常常说嫦娥的故事：她一个人住在月亮上面。",
-            "所以看到月亮的时候，不在家的人也会想起家里。"
+            "中秋节在秋天的中间，这一天晚上的月亮是一年里最大最圆的。",
+            "秋天田里的东西都收好了，人们有时间，也有好吃的，所以一家人晚上坐在一起看月亮。",
+            "他们吃月饼。月饼是圆的，和月亮一样，一个月饼切开，一家人一人一块。",
+            "老人常常说嫦娥的故事：她吃了一粒仙丹，飞到了月亮上，从此一个人住在那里，只有一只兔子和她做伴。",
+            "所以有人说，月亮上那些黑黑的地方，就是嫦娥和她的兔子。",
+            "月亮是圆的，家也应该是圆的，所以看到月亮的时候，不在家的人也会想起家里。"
           ],
           "readerComprehension": [
             {
-              "question": "中秋节的月亮是什么样子的？",
-              "answer": "又大又圆。"
+              "question": "为什么中秋节一家人晚上坐在一起看月亮？",
+              "answer": "田里的东西收好了，人们有时间，也有好吃的，这一天的月亮又最大最圆。"
             },
             {
-              "question": "老人说的故事里，谁住在月亮上面？",
-              "answer": "嫦娥。"
+              "question": "看到月亮的时候，不在家的人为什么会想起家里？",
+              "answer": "月亮是圆的，家也应该是圆的。"
             }
           ],
-          "titleEn": "Mid-Autumn Festival (Moon Festival)"
+          "titleEn": "Mid-Autumn Festival (Moon Festival)",
+          "readerParagraphsEn": [
+            "The Mid-Autumn Festival falls in the middle of autumn, when the moon that night is the biggest and roundest of the year.",
+            "The harvest is in, so people have time and good things to eat, and the family sits together in the evening to watch the moon.",
+            "They eat mooncakes. A mooncake is round like the moon, and one cake is cut so that everyone in the family has a piece.",
+            "Old people often tell the story of Chang'e: she swallowed a pill of immortality, flew up to the moon, and has lived there alone ever since with only a rabbit for company.",
+            "So some say the dark patches on the moon are Chang'e and her rabbit.",
+            "The moon is round and a family should be whole too, so anyone away from home who sees the moon thinks of home."
+          ]
         }
       ]
     }

@@ -761,9 +761,19 @@ GATE_SENTENCES = { 1: [ ['我','爱','学习','中文','。'], … ], … }
 ### 15.6 Culture stories
 
 Independent of the dynasty progression. Loaded from
-`data/culture_stories.json`. Tracks are themed collections (e.g. festivals,
-food, arts). Reading a culture story adds to `cultureSeen` and optionally
-rewards stars via `cultureRewarded`.
+`data/culture_stories.json`. Two tracks: the 24 solar terms and 5 festivals.
+Reading a culture story adds to `cultureSeen` and optionally rewards stars via
+`cultureRewarded`.
+
+The text is authored in `scripts/culture-content.js` and built by
+`npm run build:culture`. Since the 2026-09-18 rewrite each reading is five or
+six sentences with a line of cause — what nature does, what people do about it
+and why, one concrete custom, a line the child can relate to — and its two
+questions ask about the cause. `paragraphsEn` carries **one English line per
+paragraph**, rendered under it by `openCultureReader`; the builder refuses a
+length mismatch so a translation can never sit under the wrong paragraph, and
+`validate_culture.js` requires the lines on every reading, in English, and
+shared with no other reading (a shared line is a template, the defect C3 was).
 
 ### 15.7 Lesson cards (per-gate curriculum)
 

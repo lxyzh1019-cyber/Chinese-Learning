@@ -31,6 +31,13 @@ function main() {
       const c = CONTENT[story.id];
       if (!c) { missing.push(story.id); return; }
       story.readerParagraphs = c.paragraphs.slice();
+      // One English line per paragraph, shown under it. A mismatch would put
+      // the wrong translation under a paragraph, so it fails here, not later.
+      if (!Array.isArray(c.paragraphsEn) || c.paragraphsEn.length !== c.paragraphs.length) {
+        console.error(`  FAIL  ${story.id}: ${c.paragraphs.length} paragraphs but ${Array.isArray(c.paragraphsEn) ? c.paragraphsEn.length : 0} English lines`);
+        process.exit(1);
+      }
+      story.readerParagraphsEn = c.paragraphsEn.slice();
       story.targetWords = c.words.map((w) => ({ zh: w.zh, py: w.py, en: w.en }));
       story.readerComprehension = c.questions.map((q) => ({ question: q.question, answer: q.answer }));
       written++;
