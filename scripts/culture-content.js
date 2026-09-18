@@ -701,7 +701,7 @@ module.exports = {
     paragraphs: [
       "春节是中国最重要的节日，也是一年的第一天。",
       "春节以前，家家都要把房子打扫干净，门上贴红色的春联，因为新的一年要有新的样子。",
-      "这几天，在外面工作、读书的人都回家，一家人坐在一起吃一顿大大的年夜饭。",
+      "这几天，在外面工作、读书的人都回家，一家人坐在一起吃一顿丰盛的年夜饭。",
       "年夜饭里一定有鱼，因为“鱼”和“余”的声音一样，“年年有余”就是每年都有多的。",
       "吃完饭，大人给小孩红包，红包里有钱，意思是新的一年平平安安。",
       "第二天早上，大家见面都说：“新年好！”",
@@ -709,7 +709,7 @@ module.exports = {
     paragraphsEn: [
       "The Spring Festival, Chinese New Year, is China's most important festival, and the first day of the year.",
       "Before it, every family cleans the house and pastes red couplets on the door, because a new year should have a new look.",
-      "In these days everyone working or studying away from home comes back, and the family sits down together to a big New Year's Eve dinner.",
+      "In these days everyone working or studying away from home comes back, and the family sits down together to a lavish New Year's Eve dinner.",
       "There is always a fish on the table, because \"fish\" and \"plenty\" sound the same in Chinese: \"fish every year\" means \"plenty every year\".",
       "After dinner the grown-ups give the children red envelopes with money inside, a wish for a safe and peaceful new year.",
       "The next morning, everyone who meets says: \"Happy New Year!\"",
@@ -784,19 +784,19 @@ module.exports = {
   festival_dragon_boat: {
     paragraphs: [
       "端午节在夏天，是为了记住一位古时候的诗人，他叫屈原。",
-      "屈原很爱自己的国家，可是国王不听他的话，后来国家被别人打败了。",
+      "屈原很爱自己的国家，可是楚国国王不听从他的建议，后来国家被别人打败了。",
       "屈原非常难过，跳进了河里。",
       "人们很爱屈原，坐船到河上去找他，可是没有找到。",
-      "他们把米放进水里，希望鱼吃米，不要吃他。",
-      "所以今天我们在端午节赛龙舟，也吃粽子：龙舟就是那时候找他的船，粽子就是那时候放进水里的米。",
+      "他们把米包进粽子里，扔到水里，希望鱼吃米，不要吃他。",
+      "所以今天我们在端午节赛龙舟，也吃粽子：龙舟就是那时候找他的船，粽子就是那时候扔到水里的米。",
     ],
     paragraphsEn: [
       "The Dragon Boat Festival, in summer, remembers a poet of ancient times called Qu Yuan.",
-      "Qu Yuan loved his country, but the king would not listen to him, and later the country was defeated.",
+      "Qu Yuan loved his country, but the King of Chu would not take his advice, and later the country was defeated.",
       "Qu Yuan was heartbroken, and threw himself into the river.",
       "The people loved him and rowed out onto the river to look for him, but could not find him.",
-      "They threw rice into the water, hoping the fish would eat the rice and not him.",
-      "So today we race dragon boats and eat zongzi at the festival: the boats are the boats that searched for him, and the zongzi are the rice thrown into the water.",
+      "They wrapped rice into zongzi and threw them into the water, hoping the fish would eat the rice and not him.",
+      "So today we race dragon boats and eat zongzi at the festival: the boats are the boats that searched for him, and the zongzi are the rice they threw into the water.",
     ],
     words: [
       { zh: "端午节", py: "duān wǔ jié", en: "Dragon Boat Festival" },
@@ -805,8 +805,8 @@ module.exports = {
       { zh: "粽子", py: "zòng zi", en: "sticky-rice dumpling" },
     ],
     questions: [
-      { question: "屈原为什么跳进了河里？", answer: "国王不听他的话，国家被别人打败了，他非常难过。" },
-      { question: "为什么今天我们在端午节赛龙舟、吃粽子？", answer: "龙舟就是那时候找他的船，粽子就是那时候放进水里的米。" },
+      { question: "屈原为什么跳进了河里？", answer: "楚国国王不听从他的建议，国家被别人打败了，他非常难过。" },
+      { question: "为什么今天我们在端午节赛龙舟、吃粽子？", answer: "龙舟就是那时候找他的船，粽子就是那时候扔到水里的米。" },
     ],
   },
   festival_mid_autumn: {
@@ -814,7 +814,7 @@ module.exports = {
       "中秋节在秋天的中间，这一天晚上的月亮是一年里最大最圆的。",
       "秋天田里的东西都收好了，人们有时间，也有好吃的，所以一家人晚上坐在一起看月亮。",
       "他们吃月饼。月饼是圆的，和月亮一样，一个月饼切开，一家人一人一块。",
-      "老人常常说嫦娥的故事：她吃了一种药，飞到了月亮上，从此一个人住在那里，只有一只兔子和她做伴。",
+      "老人常常说嫦娥的故事：她吃了一粒仙丹，飞到了月亮上，从此一个人住在那里，只有一只兔子和她做伴。",
       "所以有人说，月亮上那些黑黑的地方，就是嫦娥和她的兔子。",
       "月亮是圆的，家也应该是圆的，所以看到月亮的时候，不在家的人也会想起家里。",
     ],
@@ -822,7 +822,7 @@ module.exports = {
       "The Mid-Autumn Festival falls in the middle of autumn, when the moon that night is the biggest and roundest of the year.",
       "The harvest is in, so people have time and good things to eat, and the family sits together in the evening to watch the moon.",
       "They eat mooncakes. A mooncake is round like the moon, and one cake is cut so that everyone in the family has a piece.",
-      "Old people often tell the story of Chang'e: she took a magic medicine, flew up to the moon, and has lived there alone ever since with only a rabbit for company.",
+      "Old people often tell the story of Chang'e: she swallowed a pill of immortality, flew up to the moon, and has lived there alone ever since with only a rabbit for company.",
       "So some say the dark patches on the moon are Chang'e and her rabbit.",
       "The moon is round and a family should be whole too, so anyone away from home who sees the moon thinks of home.",
     ],
