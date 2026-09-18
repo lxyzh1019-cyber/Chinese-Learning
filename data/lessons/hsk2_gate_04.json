@@ -5,8 +5,8 @@
   "title": "HSK2 Gate 4 · Eastern Zhou",
   "explanationEn": "Gate 4: Eastern Zhou. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第4关：东周。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
-  "passage": "两千五百多年以前，中国有一位老师。他的名字叫孔子。那时候，只有很有钱的人才可以读书。但是孔子说，谁想学，他就教谁。",
-  "passageEn": "More than two thousand five hundred years ago, there was a teacher in China. His name was Confucius. In those days, only the wealthy could study. But Confucius said he would teach anyone who wanted to learn.",
+  "passage": "两千五百多年以前，中国有一位老师，他的名字叫孔子。那时候，只有有钱人家的孩子才可以读书。孔子说：“谁想学，我就教谁。”所以他的学生越来越多，有大人，也有年轻人。",
+  "passageEn": "More than two thousand five hundred years ago, there was a teacher in China whose name was Confucius. In those days, only the children of wealthy families could go to school. Confucius said: \"Whoever wants to learn, I will teach.\" So his students grew more and more numerous, grown-ups and young people alike.",
   "keyVocab": [
     {
       "zh": "两",
@@ -19,24 +19,14 @@
       "en": "thousand"
     },
     {
-      "zh": "五",
-      "pinyin": "wǔ",
-      "en": "five"
-    },
-    {
-      "zh": "百",
-      "pinyin": "bǎi",
-      "en": "hundred"
-    },
-    {
       "zh": "多",
       "pinyin": "duō",
-      "en": "many"
+      "en": "more than"
     },
     {
       "zh": "年",
       "pinyin": "nián",
-      "en": "year"
+      "en": "years"
     },
     {
       "zh": "以前",
@@ -44,23 +34,33 @@
       "en": "before"
     },
     {
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
+    },
+    {
       "zh": "一",
       "pinyin": "yī",
       "en": "one"
+    },
+    {
+      "zh": "位",
+      "pinyin": "wèi",
+      "en": "(counting word for people, polite)"
     }
   ],
   "comprehension": [
     {
       "questionEn": "Read the first sentence again. What does it tell you?",
       "question": "再读第一句。它说了什么？",
-      "answerEn": "More than two thousand five hundred years ago, there was a teacher in China.",
-      "answer": "两千五百多年以前，中国有一位老师。"
+      "answerEn": "More than two thousand five hundred years ago, there was a teacher in China whose name was Confucius.",
+      "answer": "两千五百多年以前，中国有一位老师，他的名字叫孔子。"
     },
     {
       "questionEn": "Read the third sentence again. Who or what is it about?",
       "question": "再读第三句。它说的是谁，或者是什么？",
-      "answerEn": "In those days, only the wealthy could study.",
-      "answer": "那时候，只有很有钱的人才可以读书。"
+      "answerEn": "Confucius said: \"Whoever wants to learn, I will teach.\"",
+      "answer": "孔子说：“谁想学，我就教谁。”"
     },
     {
       "questionEn": "Read the whole passage out loud, then say one sentence from memory.",
@@ -89,11 +89,11 @@
         },
         {
           "id": "o3",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o4",
-          "text": "before"
+          "text": "China"
         }
       ],
       "answerId": "o1",
@@ -115,11 +115,11 @@
         },
         {
           "id": "o2",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o3",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o4",
@@ -134,7 +134,7 @@
       "id": "hsk2_gate_04_s1",
       "kind": "sentenceMeaning",
       "skill": "contextComprehension",
-      "zh": "两千五百多年以前，中国有一位老师。",
+      "zh": "两千五百多年以前，中国有一位老师，他的名字叫孔子。",
       "targetZh": "两",
       "targetPinyin": "liǎng",
       "promptEn": "What does this sentence say?",
@@ -142,24 +142,24 @@
       "options": [
         {
           "id": "o1",
-          "text": "Because there was so much rain, the water rose higher and higher."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o2",
-          "text": "The water came into the fields, and into many people’s homes."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o3",
-          "text": "More than two thousand five hundred years ago, there was a teacher in China."
+          "text": "More than two thousand five hundred years ago, there was a teacher in China whose name was Confucius."
         },
         {
           "id": "o4",
-          "text": "Very long ago, it rained in China for many days."
+          "text": "Long, long ago, it rained in China for many days, and a great flood came."
         }
       ],
       "answerId": "o3",
-      "explanationEn": "\"两千五百多年以前，中国有一位老师。\" means \"More than two thousand five hundred years ago, there was a teacher in China.\".",
-      "explanation": "“两千五百多年以前，中国有一位老师。”的意思是“More than two thousand five hundred years ago, there was a teacher in China.”。"
+      "explanationEn": "\"两千五百多年以前，中国有一位老师，他的名字叫孔子。\" means \"More than two thousand five hundred years ago, there was a teacher in China whose name was Confucius.\".",
+      "explanation": "“两千五百多年以前，中国有一位老师，他的名字叫孔子。”的意思是“More than two thousand five hundred years ago, there was a teacher in China whose name was Confucius.”。"
     }
   ],
   "speakingPromptEn": "Tell a grown-up about Eastern Zhou in two or three short Chinese sentences. Use words from the list above.",

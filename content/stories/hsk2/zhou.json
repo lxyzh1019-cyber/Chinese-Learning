@@ -5,79 +5,1110 @@
   "title": "天命的故事",
   "en": "The Mandate of Heaven",
   "names": {
+    "商朝": {
+      "py": "Shāngcháo",
+      "en": "Shang Dynasty"
+    },
     "西周": {
       "py": "Xī Zhōu",
-      "en": "the Western Zhou"
-    },
-    "商朝": {
-      "py": "Shāng Cháo",
-      "en": "the Shang dynasty"
-    },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+      "en": "Western Zhou"
     }
   },
   "sents": [
     {
       "zh": "商朝以后，中国有了一个新的朝代，叫西周。",
-      "en": "After the Shang, China had a new dynasty called the Western Zhou."
+      "en": "After the Shang, China had a new dynasty called the Western Zhou.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "商朝",
+          "py": "Shāngcháo",
+          "mn": "Shang Dynasty"
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "had"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "朝代",
+          "py": "cháo dài",
+          "mn": "dynasty",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "叫",
+          "py": "jiào",
+          "mn": "called"
+        },
+        {
+          "t": "n",
+          "zh": "西周",
+          "py": "Xī Zhōu",
+          "mn": "Western Zhou"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "西周的王想让大家都听他的话。",
-      "en": "The Western Zhou king wanted everyone to listen to him."
+      "en": "The Western Zhou king wanted everyone to obey him.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "西周",
+          "py": "Xī Zhōu",
+          "mn": "Western Zhou"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king",
+          "bonus": true
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to want"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to make"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "听",
+          "py": "tīng",
+          "mn": "to listen to"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "所以他说了一句很有名的话。",
-      "en": "So he said something that became very famous."
+      "en": "So he said something that became very famous.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "句",
+          "py": "jù",
+          "mn": "(counting word, sentences)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "有名",
+          "py": "yǒu míng",
+          "mn": "famous"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "话",
+          "py": "huà",
+          "mn": "words"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "他说：“是天让我做王的。”",
-      "en": "He said: \"It is Heaven that made me king.\""
+      "en": "He said: \"It is Heaven that made me king.\"",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "Heaven"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to let; to make"
+        },
+        {
+          "zh": "我",
+          "py": "wǒ",
+          "mn": "I; me"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to be"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(ends the sentence)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
       "zh": "他还说，天一直在看着每一个王。",
-      "en": "He also said that Heaven is always watching every king."
+      "en": "He also said that Heaven is always watching every king.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "also"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "Heaven"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "always"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to watch"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "每",
+          "py": "měi",
+          "mn": "every"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "如果王做得好，天就让他一直做下去。",
-      "en": "If a king does well, Heaven lets him go on."
+      "en": "If a king does well, Heaven lets him go on.",
+      "seg": [
+        {
+          "zh": "如果",
+          "py": "rú guǒ",
+          "mn": "if"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "Heaven"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to let"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "always"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "下去",
+          "py": "xià qù",
+          "mn": "to go on",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "如果王做得不好，天就会把这个位子给别人。",
-      "en": "If a king does badly, Heaven gives the place to someone else."
+      "zh": "如果王做得不好，天就会把王位给别人。",
+      "en": "If a king does badly, Heaven gives the throne to someone else.",
+      "seg": [
+        {
+          "zh": "如果",
+          "py": "rú guǒ",
+          "mn": "if"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "Heaven"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "will"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "王位",
+          "py": "wáng wèi",
+          "mn": "throne",
+          "bonus": true
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "to give"
+        },
+        {
+          "zh": "别人",
+          "py": "bié ren",
+          "mn": "other people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "所以做王的人不能只想自己。",
-      "en": "So a king cannot think only of himself."
+      "en": "So a king cannot think only of himself.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to be"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "不能",
+          "py": "bù néng",
+          "mn": "cannot",
+          "bonus": true
+        },
+        {
+          "zh": "只",
+          "py": "zhī",
+          "mn": "only"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think of"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "oneself"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他必须关心种田的人，也关心当兵的人。",
-      "en": "He must care about the farmers, and about the soldiers."
+      "zh": "他必须爱护百姓，关心种地的人，也关心当兵的人。",
+      "en": "He must care for the people, for the farmers and for the soldiers.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "必须",
+          "py": "bì xū",
+          "mn": "must"
+        },
+        {
+          "zh": "爱护",
+          "py": "ài hù",
+          "mn": "to care for",
+          "bonus": true
+        },
+        {
+          "zh": "百姓",
+          "py": "bǎi xìng",
+          "mn": "the common people",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "关心",
+          "py": "guān xīn",
+          "mn": "to care about"
+        },
+        {
+          "zh": "种地",
+          "py": "zhòng dì",
+          "mn": "to farm the land",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "关心",
+          "py": "guān xīn",
+          "mn": "to care about"
+        },
+        {
+          "zh": "当兵",
+          "py": "dāng bīng",
+          "mn": "to be a soldier",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "那时候，很多人在田里工作。",
-      "en": "In those days many people worked in the fields."
+      "zh": "那时候，很多人在田里种地。",
+      "en": "In those days, many people farmed the fields.",
+      "seg": [
+        {
+          "zh": "那时候",
+          "py": "nà shí hou",
+          "mn": "at that time",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "田",
+          "py": "tián",
+          "mn": "field",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "种地",
+          "py": "zhòng dì",
+          "mn": "to farm the land",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为天气好，所以东西种得很多。",
-      "en": "Because the weather was good, a great deal was grown."
+      "zh": "天气好，田里的庄稼长得很好。",
+      "en": "The weather was good, and the crops in the fields grew well.",
+      "seg": [
+        {
+          "zh": "天气",
+          "py": "tiān qì",
+          "mn": "weather"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "田",
+          "py": "tián",
+          "mn": "field",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "庄稼",
+          "py": "zhuāng jia",
+          "mn": "crops",
+          "bonus": true
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "to grow"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "well"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "家里有米，也有肉，日子过得不错。",
-      "en": "There was rice and meat at home, and life was not bad."
+      "en": "There was rice at home, and meat too, and life was not bad.",
+      "seg": [
+        {
+          "zh": "家里",
+          "py": "jiā lǐ",
+          "mn": "at home"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "米",
+          "py": "mǐ",
+          "mn": "rice"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there was"
+        },
+        {
+          "zh": "肉",
+          "py": "ròu",
+          "mn": "meat"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "日子",
+          "py": "rì zi",
+          "mn": "life; days"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "to live; to pass"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "不错",
+          "py": "bù cuò",
+          "mn": "not bad"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "王定了很多新的办法，大家都要照着做。",
-      "en": "The king made many new rules, and everyone had to follow them."
+      "zh": "王定了很多新的规矩，大家都要照着做。",
+      "en": "The king made many new rules, and everyone had to follow them.",
+      "seg": [
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king",
+          "bonus": true
+        },
+        {
+          "zh": "定",
+          "py": "dìng",
+          "mn": "to set",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "规矩",
+          "py": "guī ju",
+          "mn": "rules",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "照",
+          "py": "zhào",
+          "mn": "according to",
+          "bonus": true
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to do"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "虽然后来西周没有了，但是这个想法留了下来。",
-      "en": "Although the Western Zhou later ended, this idea remained."
+      "en": "Although the Western Zhou later ended, this idea remained.",
+      "seg": [
+        {
+          "zh": "虽然",
+          "py": "suī rán",
+          "mn": "although"
+        },
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "t": "n",
+          "zh": "西周",
+          "py": "Xī Zhōu",
+          "mn": "Western Zhou"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "no longer there"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "但是",
+          "py": "dàn shì",
+          "mn": "but"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "想法",
+          "py": "xiǎng fǎ",
+          "mn": "idea",
+          "bonus": true
+        },
+        {
+          "zh": "留",
+          "py": "liú",
+          "mn": "to remain"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "(to stay)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "一直到今天，中国人还在说“天命”这两个字。",
-      "en": "To this day Chinese people still speak of the \"Mandate of Heaven\"."
+      "en": "To this day, Chinese people still speak of the \"Mandate of Heaven\".",
+      "seg": [
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all the way"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "until"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "天命",
+          "py": "tiān mìng",
+          "mn": "Mandate of Heaven",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "these"
+        },
+        {
+          "zh": "两",
+          "py": "liǎng",
+          "mn": "two"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "字",
+          "py": "zì",
+          "mn": "characters"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

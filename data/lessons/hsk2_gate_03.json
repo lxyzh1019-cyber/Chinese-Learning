@@ -6,12 +6,17 @@
   "explanationEn": "Gate 3: Western Zhou. Read the words below, then read the story out loud. The story is the same one you read on the map — this is the start of it.",
   "explanation": "第3关：西周。先读下面的词，再大声读短文。这段短文就是地图上那个故事的开头。",
   "passage": "商朝以后，中国有了一个新的朝代，叫西周。西周的王想让大家都听他的话。所以他说了一句很有名的话。他说：“是天让我做王的。”",
-  "passageEn": "After the Shang, China had a new dynasty called the Western Zhou. The Western Zhou king wanted everyone to listen to him. So he said something that became very famous. He said: \"It is Heaven that made me king.\"",
+  "passageEn": "After the Shang, China had a new dynasty called the Western Zhou. The Western Zhou king wanted everyone to obey him. So he said something that became very famous. He said: \"It is Heaven that made me king.\"",
   "keyVocab": [
     {
       "zh": "以后",
       "pinyin": "yǐ hòu",
       "en": "after"
+    },
+    {
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "en": "China"
     },
     {
       "zh": "一",
@@ -24,29 +29,24 @@
       "en": "new"
     },
     {
-      "zh": "朝代",
-      "pinyin": "cháo dài",
-      "en": "dynasty"
-    },
-    {
       "zh": "叫",
       "pinyin": "jiào",
       "en": "called"
     },
     {
-      "zh": "王",
-      "pinyin": "wáng",
-      "en": "king"
-    },
-    {
       "zh": "想",
       "pinyin": "xiǎng",
-      "en": "wanted"
+      "en": "to want"
     },
     {
       "zh": "让",
       "pinyin": "ràng",
-      "en": "made"
+      "en": "to make"
+    },
+    {
+      "zh": "大家",
+      "pinyin": "dà jiā",
+      "en": "everyone"
     }
   ],
   "comprehension": [
@@ -81,7 +81,7 @@
       "options": [
         {
           "id": "o1",
-          "text": "before"
+          "text": "China"
         },
         {
           "id": "o2",
@@ -93,7 +93,7 @@
         },
         {
           "id": "o4",
-          "text": "long time"
+          "text": "before"
         }
       ],
       "answerId": "o2",
@@ -104,14 +104,14 @@
       "id": "hsk2_gate_03_w2",
       "kind": "wordMeaning",
       "skill": "meaning",
-      "zh": "一",
-      "pinyin": "yī",
-      "promptEn": "In the story, what does 一 mean?",
-      "prompt": "短文里的“一”是什么意思？",
+      "zh": "中国",
+      "pinyin": "Zhōngguó",
+      "promptEn": "In the story, what does 中国 mean?",
+      "prompt": "短文里的“中国”是什么意思？",
       "options": [
         {
           "id": "o1",
-          "text": "one"
+          "text": "China"
         },
         {
           "id": "o2",
@@ -119,16 +119,16 @@
         },
         {
           "id": "o3",
-          "text": "long time"
+          "text": "before"
         },
         {
           "id": "o4",
-          "text": "before"
+          "text": "to fall"
         }
       ],
       "answerId": "o1",
-      "explanationEn": "一 (yī) means \"one\" — you can find it in the passage above.",
-      "explanation": "“一”（yī）的意思是“one”，就在上面的短文里。"
+      "explanationEn": "中国 (Zhōngguó) means \"China\" — you can find it in the passage above.",
+      "explanation": "“中国”（Zhōngguó）的意思是“China”，就在上面的短文里。"
     },
     {
       "id": "hsk2_gate_03_s1",
@@ -142,15 +142,15 @@
       "options": [
         {
           "id": "o1",
-          "text": "Very long ago, it rained in China for many days."
+          "text": "Long, long ago, it rained in China for many days, and a great flood came."
         },
         {
           "id": "o2",
-          "text": "Because there was so much rain, the water rose higher and higher."
+          "text": "The flood went into the fields, and into many people's homes."
         },
         {
           "id": "o3",
-          "text": "The water came into the fields, and into many people’s homes."
+          "text": "People had nowhere to live, and could only go up the mountains to live."
         },
         {
           "id": "o4",

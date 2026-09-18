@@ -7,73 +7,1274 @@
   "names": {
     "大禹": {
       "py": "Dà Yǔ",
-      "en": "Dayu, a legendary hero"
-    },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
+      "en": "Dayu"
     }
   },
   "sents": [
     {
-      "zh": "很久很久以前，中国下了很多天的雨。",
-      "en": "Very long ago, it rained in China for many days."
+      "zh": "很久很久以前，中国下了很多天的雨，发了大水。",
+      "en": "Long, long ago, it rained in China for many days, and a great flood came.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time",
+          "bonus": true
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "to fall"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "days"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "雨",
+          "py": "yǔ",
+          "mn": "rain"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "发",
+          "py": "fā",
+          "mn": "to break out; to happen"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "大水",
+          "py": "dà shuǐ",
+          "mn": "great flood",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为雨太多，所以水越来越大。",
-      "en": "Because there was so much rain, the water rose higher and higher."
+      "zh": "大水进了田里，也进了很多人的家。",
+      "en": "The flood went into the fields, and into many people's homes.",
+      "seg": [
+        {
+          "zh": "大水",
+          "py": "dà shuǐ",
+          "mn": "great flood",
+          "bonus": true
+        },
+        {
+          "zh": "进",
+          "py": "jìn",
+          "mn": "to go into"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "田",
+          "py": "tián",
+          "mn": "field",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "进",
+          "py": "jìn",
+          "mn": "to go into"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "水进了田里，也进了很多人的家。",
-      "en": "The water came into the fields, and into many people’s homes."
+      "zh": "人们没有地方住，只能住到山上去。",
+      "en": "People had nowhere to live, and could only go up the mountains to live.",
+      "seg": [
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "did not have"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "place"
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "只能",
+          "py": "zhǐ néng",
+          "mn": "could only",
+          "bonus": true
+        },
+        {
+          "zh": "住",
+          "py": "zhù",
+          "mn": "to live"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "山",
+          "py": "shān",
+          "mn": "mountain"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "up"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "大家没有地方住，只能住到山上去。",
-      "en": "People had nowhere to live, and could only move up the mountains."
+      "zh": "那时候的王很着急，问大家：“谁能治水？”",
+      "en": "The king of that time was anxious, and asked everyone: \"Who can control the flood?\"",
+      "seg": [
+        {
+          "zh": "那时候",
+          "py": "nà shí hou",
+          "mn": "at that time",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "着急",
+          "py": "zháo jí",
+          "mn": "anxious",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "问",
+          "py": "wèn",
+          "mn": "to ask"
+        },
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "zh": "谁",
+          "py": "shéi",
+          "mn": "who"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
+        },
+        {
+          "zh": "治水",
+          "py": "zhì shuǐ",
+          "mn": "to control the flood",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "？"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "那时候的王很不放心，问大家应该怎么办。",
-      "en": "The king of that time was uneasy, and asked everyone what should be done."
+      "zh": "有人说：“大禹是个好人，也很会想办法，让他来吧。”",
+      "en": "Someone said: \"Dayu is a good man, and good at finding a way. Let him come.\"",
+      "seg": [
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "someone"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "said"
+        },
+        {
+          "t": "p",
+          "tx": "："
+        },
+        {
+          "t": "p",
+          "tx": "“"
+        },
+        {
+          "t": "n",
+          "zh": "大禹",
+          "py": "Dà Yǔ",
+          "mn": "Dayu"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "to be good at"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think of"
+        },
+        {
+          "zh": "办法",
+          "py": "bàn fǎ",
+          "mn": "a way"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to let"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "吧",
+          "py": "ba",
+          "mn": "(makes a suggestion)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        },
+        {
+          "t": "p",
+          "tx": "”"
+        }
+      ]
     },
     {
-      "zh": "有人说：“大禹是个好人，让他来吧。”",
-      "en": "Someone said: \"Dayu is a good man — let him come.\""
+      "zh": "大禹来了以后，没有马上动手，他先去看水从哪里来，往哪里去。",
+      "en": "After Dayu came, he did not start work at once; he first went to see where the water came from and where it went.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "大禹",
+          "py": "Dà Yǔ",
+          "mn": "Dayu"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "马上",
+          "py": "mǎ shàng",
+          "mn": "at once"
+        },
+        {
+          "zh": "动手",
+          "py": "dòng shǒu",
+          "mn": "to start work",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "先",
+          "py": "xiān",
+          "mn": "first"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look at"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "哪里",
+          "py": "nǎ lǐ",
+          "mn": "where"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "往",
+          "py": "wǎng",
+          "mn": "towards"
+        },
+        {
+          "zh": "哪里",
+          "py": "nǎ lǐ",
+          "mn": "where"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "to go"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "大禹来了以后，先去看水，然后才开始工作。",
-      "en": "After Dayu came, he first went to look at the water, and only then began work."
-    },
-    {
-      "zh": "他发现，如果只用土把水关起来，水还会回来。",
-      "en": "He found that if you only shut the water in with earth, it would come back."
+      "zh": "他发现，如果只用土把水挡住，水还会回来。",
+      "en": "He found that if you only blocked the water with earth, it would come back.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "发现",
+          "py": "fāxiàn",
+          "mn": "to find; to discover"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "如果",
+          "py": "rú guǒ",
+          "mn": "if"
+        },
+        {
+          "zh": "只",
+          "py": "zhī",
+          "mn": "only"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "土",
+          "py": "tǔ",
+          "mn": "earth",
+          "bonus": true
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "挡住",
+          "py": "dǎng zhù",
+          "mn": "to block",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "会",
+          "py": "huì",
+          "mn": "will"
+        },
+        {
+          "zh": "回来",
+          "py": "huí lai",
+          "mn": "to come back"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "所以他决定给水开一条路，让水流到海里去。",
-      "en": "So he decided to open a road for the water, letting it flow out to the sea."
+      "en": "So he decided to open a road for the water, and let it flow out to the sea.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "决定",
+          "py": "jué dìng",
+          "mn": "to decide"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "for"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "开",
+          "py": "kāi",
+          "mn": "to open"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "条",
+          "py": "tiáo",
+          "mn": "(counting word, long things)"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "让",
+          "py": "ràng",
+          "mn": "to let"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "流",
+          "py": "liú",
+          "mn": "to flow",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "海",
+          "py": "hǎi",
+          "mn": "sea",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "去",
+          "py": "qù",
+          "mn": "away"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他和很多人一起做这件事，一做就是十三年。",
-      "en": "He did this together with many others, and it went on for thirteen years."
+      "zh": "他带着很多人一起挖河，一挖就是十三年。",
+      "en": "He led many people in digging channels, and the digging went on for thirteen years.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "to lead"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "一起",
+          "py": "yì qǐ",
+          "mn": "together"
+        },
+        {
+          "zh": "挖",
+          "py": "wā",
+          "mn": "to dig",
+          "bonus": true
+        },
+        {
+          "zh": "河",
+          "py": "hé",
+          "mn": "channel; river"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "once"
+        },
+        {
+          "zh": "挖",
+          "py": "wā",
+          "mn": "to dig",
+          "bonus": true
+        },
+        {
+          "zh": "就是",
+          "py": "jiù shì",
+          "mn": "(went on for)"
+        },
+        {
+          "zh": "十三",
+          "py": "shí sān",
+          "mn": "thirteen",
+          "bonus": true
+        },
+        {
+          "zh": "年",
+          "py": "nián",
+          "mn": "years"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "虽然他很想家，但是他一直没有回去。",
-      "en": "Although he missed home, he never went back."
+      "en": "Although he missed home very much, he never went back.",
+      "seg": [
+        {
+          "zh": "虽然",
+          "py": "suī rán",
+          "mn": "although"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "想家",
+          "py": "xiǎng jiā",
+          "mn": "to miss home",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "但是",
+          "py": "dàn shì",
+          "mn": "but"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all along"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "回去",
+          "py": "huí qu",
+          "mn": "to go back"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "有三次他走到自己家门口，都没有进去。",
-      "en": "Three times he came to his own door, and did not go in."
+      "en": "Three times he walked to his own door, and did not go in.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there were"
+        },
+        {
+          "zh": "三",
+          "py": "sān",
+          "mn": "three"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "times"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to walk"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "own"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "home"
+        },
+        {
+          "zh": "门口",
+          "py": "mén kǒu",
+          "mn": "doorway"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "not"
+        },
+        {
+          "zh": "进去",
+          "py": "jìn qù",
+          "mn": "to go in",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "后来水小了，大家又回到田里种东西。",
-      "en": "Later the water went down, and everyone returned to plant in the fields."
+      "zh": "后来水小了，人们回到田里种地。",
+      "en": "Later the water went down, and people returned to farm the fields.",
+      "seg": [
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small; to go down"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "回到",
+          "py": "huí dào",
+          "mn": "to return to"
+        },
+        {
+          "zh": "田",
+          "py": "tián",
+          "mn": "field",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "种地",
+          "py": "zhòng dì",
+          "mn": "to farm the land",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为他做了这件事，所以王把位子给了他。",
-      "en": "Because he had done this, the king gave his place to him."
+      "zh": "大家都很感谢大禹，王也把王位传给了他。",
+      "en": "Everyone was grateful to Dayu, and the king passed the throne to him.",
+      "seg": [
+        {
+          "zh": "大家",
+          "py": "dà jiā",
+          "mn": "everyone"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "感谢",
+          "py": "gǎn xiè",
+          "mn": "to be grateful to"
+        },
+        {
+          "t": "n",
+          "zh": "大禹",
+          "py": "Dà Yǔ",
+          "mn": "Dayu"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "王",
+          "py": "wáng",
+          "mn": "king",
+          "bonus": true
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "王位",
+          "py": "wáng wèi",
+          "mn": "throne",
+          "bonus": true
+        },
+        {
+          "zh": "传",
+          "py": "chuán",
+          "mn": "to pass on",
+          "bonus": true
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "to"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "一直到今天，中国人还在说大禹的故事。",
-      "en": "To this day, Chinese people still tell the story of Dayu."
+      "zh": "一直到今天，中国人还在讲大禹治水的故事。",
+      "en": "To this day, Chinese people still tell the story of Dayu controlling the flood.",
+      "seg": [
+        {
+          "zh": "一直",
+          "py": "yī zhí",
+          "mn": "all the way"
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "until"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "(is doing)"
+        },
+        {
+          "zh": "讲",
+          "py": "jiǎng",
+          "mn": "to tell"
+        },
+        {
+          "t": "n",
+          "zh": "大禹",
+          "py": "Dà Yǔ",
+          "mn": "Dayu"
+        },
+        {
+          "zh": "治水",
+          "py": "zhì shuǐ",
+          "mn": "to control the flood",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "故事",
+          "py": "gù shi",
+          "mn": "story"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "人们说，遇到问题，要像大禹一样先想办法，再动手。",
+      "en": "People say that when you meet a problem, you should do as Dayu did: think of a way first, then start work.",
+      "seg": [
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "遇到",
+          "py": "yù dào",
+          "mn": "to meet with",
+          "bonus": true
+        },
+        {
+          "zh": "问题",
+          "py": "wèn tí",
+          "mn": "problem"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "should"
+        },
+        {
+          "zh": "像",
+          "py": "xiàng",
+          "mn": "like"
+        },
+        {
+          "t": "n",
+          "zh": "大禹",
+          "py": "Dà Yǔ",
+          "mn": "Dayu"
+        },
+        {
+          "zh": "一样",
+          "py": "yī yàng",
+          "mn": "the same"
+        },
+        {
+          "zh": "先",
+          "py": "xiān",
+          "mn": "first"
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think of"
+        },
+        {
+          "zh": "办法",
+          "py": "bàn fǎ",
+          "mn": "a way"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "再",
+          "py": "zài",
+          "mn": "then"
+        },
+        {
+          "zh": "动手",
+          "py": "dòng shǒu",
+          "mn": "to start work",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }
