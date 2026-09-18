@@ -6483,8 +6483,7 @@
         [
           "它",
           "还",
-          "不",
-          "会",
+          "不会",
           "游泳",
           "。"
         ],
@@ -6500,8 +6499,7 @@
           "住",
           "到",
           "山",
-          "上",
-          "去",
+          "上去",
           "。"
         ],
         [
@@ -8653,15 +8651,17 @@
           "。"
         ],
         [
+          "他们",
+          "跟着",
+          "孔子",
           "一起",
-          "出门",
-          "游学",
+          "读书",
           "。"
         ],
         [
-          "老鼠",
-          "一",
-          "出来",
+          "一起",
+          "出门",
+          "游学",
           "。"
         ]
       ],
@@ -8702,8 +8702,8 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "一起出门游学。": {
-          "py": "yì qǐ chū mén yóu xué",
+        "他们跟着孔子一起读书。": {
+          "py": "tā men gēn zhe Kǒngzǐ yì qǐ dú shū",
           "en": null,
           "enContext": "They read with Confucius, discussed with him, and travelled with him to learn.",
           "storyId": "konfucius",
@@ -8711,12 +8711,12 @@
           "whole": false,
           "borrowedFrom": null
         },
-        "老鼠一出来。": {
-          "py": "lǎo shǔ yī chū lái",
+        "一起出门游学。": {
+          "py": "yì qǐ chū mén yóu xué",
           "en": null,
-          "enContext": "The moment the mouse came out, the cat sprang.",
-          "storyId": "dongzhou2",
-          "sentIndex": 5,
+          "enContext": "They read with Confucius, discussed with him, and travelled with him to learn.",
+          "storyId": "konfucius",
+          "sentIndex": 4,
           "whole": false,
           "borrowedFrom": null
         }
@@ -13266,8 +13266,7 @@
         [
           "做官",
           "可以",
-          "有",
-          "钱",
+          "有钱",
           "。"
         ],
         [

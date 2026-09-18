@@ -39,6 +39,9 @@ const READING_EXCEPTIONS = {
   // Both readings are ordinary and the row's own pos backs the served one.
   "干": "gàn (to do) is verb-first, as this row's pos says",
   "只": "zhǐ (only) is adverb-first, as this row's pos says",
+  // A real polyphone: the curriculum teaches the greeting, the story 汉朝的老农
+  // feeds an ox (喂牛). The child sees the story's reading only in that story.
+  "喂": "wéi (hello) is the taught word; wèi (to feed) is what 喂牛 says",
   "头": "tóu (head) is noun-first, as this row's pos says",
   "种": "zhǒng (kind/type) is the measure-word reading this row is tagged for",
   "子": "zi as a word ending; the story gloss and the curriculum agree in sense",

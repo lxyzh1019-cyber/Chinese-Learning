@@ -688,15 +688,19 @@ the same background story, told at the level's difficulty.
 tokenizes them against the curated dictionary in `scripts/story-dictionary.js`
 (assembled only from already-validated sources) and **fails on any span it
 cannot vouch for**, naming the character rather than inventing a reading. A
-source sentence may carry its own `seg` with explicit glosses. Every HSK1
-sentence does, word-level and glossed for that sentence, since the 2026-09-17
-rewrite (`scripts/seg_story.js` is how they are authored; `docs/chinese-style.md`
-§3–§4 are the rules); a rebuild reproduces them token for token. Until every
-HSK2 sentence does too, the dictionary layer the un-reviewed sentences are cut
-with is pinned in `scripts/story-dictionary-frozen.json`, so a rewrite changes
-only the story it rewrites. A reviewed token must be a name, a curriculum word,
-a compound of curriculum characters, or an entry in `scripts/story-supplement.js`,
-and an above-level word must be `bonus`; `build_stories.js` refuses anything else.
+source sentence carries its own `seg` with explicit glosses — **every** HSK1 and
+HSK2 sentence does, word-level and glossed for that sentence, since the
+2026-09-17/18 rewrite (`scripts/seg_story.js` is how they are authored;
+`docs/chinese-style.md` §3–§4 are the rules); a rebuild reproduces them token
+for token, and `build_stories.js` refuses a finished level with a sentence
+that has none, because a sentence cut by longest match takes its glosses from
+whatever the dictionary holds that day. (During the rewrite that layer was
+pinned in a frozen JSON so a rewrite changed only the story it rewrote; with
+no sentence left to cut, the pin is gone and only `seg_story.js draft` and the
+HSK3 seeds read the dictionary.) A reviewed token must be a name, a curriculum
+word, a compound of curriculum characters, or an entry in
+`scripts/story-supplement.js`, and an above-level word must be `bonus`;
+`build_stories.js` refuses anything else.
 
 A gloss is what the child reads when they tap a character, so
 `validate_stories.js` rejects a fragment of a longer word's English (`-tice`),

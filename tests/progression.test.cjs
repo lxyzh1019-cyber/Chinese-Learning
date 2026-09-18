@@ -1316,6 +1316,35 @@ test("S-T06: every HSK2 story is on its own ladder", () => {
   assert.notDeepEqual(one.sents[0], two.sents[0], "the HSK2 telling is its own text");
 });
 
+test("S-T07: every finished HSK1 and HSK2 source sentence carries a reviewed seg", () => {
+  // The build refuses a sentence without one; this pins the contract on the
+  // sources themselves, so a sentence pasted in without seg_story.js is
+  // caught before anyone runs the build. Computed here, not by the builder.
+  const fs = require("fs");
+  const path = require("path");
+  const missing = [];
+  for (const lv of [1, 2]) {
+    const dir = path.join(__dirname, "..", "content", "stories", `hsk${lv}`);
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
+    assert.equal(files.length, 44, `HSK${lv}: 22 dynasties, two sources each`);
+    for (const f of files) {
+      const src = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+      assert.ok(!src.draft, `${f}: a finished level has no drafts`);
+      src.sents.forEach((sent, i) => {
+        const seg = Array.isArray(sent.seg) ? sent.seg : [];
+        if (!seg.length) { missing.push(`hsk${lv}/${f} sentence ${i + 1}`); return; }
+        // The seg must spell the sentence, token for token.
+        assert.equal(seg.map((t) => (t.t === "p" ? t.tx : t.zh)).join(""), sent.zh, `hsk${lv}/${f} sentence ${i + 1}: seg spells the sentence`);
+        seg.forEach((t) => {
+          if (t.t === "p") return;
+          assert.ok(t.py && t.mn, `hsk${lv}/${f} sentence ${i + 1}: "${t.zh}" has a reading and a gloss`);
+        });
+      });
+    }
+  }
+  assert.deepEqual(missing, [], `${missing.length} sentence(s) without a reviewed seg`);
+});
+
 test("M-T20: the migration decides for itself whether a save needs work", () => {
   const a = app();
   const G = a.GateIdentity;

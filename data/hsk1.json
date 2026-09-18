@@ -7086,8 +7086,7 @@
         ],
         [
           "它",
-          "不",
-          "会",
+          "不会",
           "游泳",
           "。"
         ],
@@ -7111,8 +7110,7 @@
           "住",
           "到",
           "山",
-          "上",
-          "去",
+          "上去",
           "。"
         ],
         [
@@ -14147,12 +14145,6 @@
           "。"
         ],
         [
-          "做官",
-          "有",
-          "钱",
-          "。"
-        ],
-        [
           "我",
           "不能",
           "出去",
@@ -14181,6 +14173,13 @@
           "跑",
           "过去",
           "。"
+        ],
+        [
+          "身上",
+          "都",
+          "湿",
+          "了",
+          "。"
         ]
       ],
       "sentenceTargetsMeta": {
@@ -14190,15 +14189,6 @@
           "enContext": "In the Jin dynasty there was a poet called Tao Yuanming.",
           "storyId": "tao",
           "sentIndex": 0,
-          "whole": false,
-          "borrowedFrom": null
-        },
-        "做官有钱。": {
-          "py": "zuò guān yǒu qián",
-          "en": null,
-          "enContext": "An official has money, and a name.",
-          "storyId": "tao",
-          "sentIndex": 2,
           "whole": false,
           "borrowedFrom": null
         },
@@ -14231,6 +14221,15 @@
         },
         "一个小孩跑过去。": {
           "py": "yī gè xiǎo hái pǎo guò qù",
+          "en": null,
+          "enContext": "People in the street were walking fast; a child ran past, soaked through.",
+          "storyId": "tao2",
+          "sentIndex": 5,
+          "whole": false,
+          "borrowedFrom": null
+        },
+        "身上都湿了。": {
+          "py": "shēn shang dōu shī le",
           "en": null,
           "enContext": "People in the street were walking fast; a child ran past, soaked through.",
           "storyId": "tao2",
@@ -20660,7 +20659,7 @@
           "borrowedFrom": null
         },
         "肉的味道就不一样了。": {
-          "py": "ròu de wèi dào jiù bù yí yàng le",
+          "py": "ròu de wèi dao jiù bù yí yàng le",
           "en": null,
           "enContext": "Once the spices were added, the meat tasted quite different.",
           "storyId": "yuan2",

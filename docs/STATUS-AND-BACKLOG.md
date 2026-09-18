@@ -133,7 +133,7 @@ two-device run has been exercised against live Firestore.
 |---|---|---|
 | Engineering requirements (`implementation-status.md`) | 26 of 28 rows verified | **93%** |
 | Story texts | 88 of 176 authored (HSK1 44 · HSK2 44 · HSK3 0 · HSK4 0) | **50%** |
-| Story texts rewritten to the narrative standard, reviewed seg on every sentence | HSK1 44 of 44 · HSK2 0 of 44 | **50%** |
+| Story texts rewritten to the narrative standard, reviewed seg on every sentence | HSK1 44 of 44 · HSK2 44 of 44 | **100%** |
 | Lessons rewritten from their gate's story | 44 of 88 | **50%** |
 | Lessons with marked questions (options + explanation) | 44 of 88 · 132 questions | **50%** |
 | Curriculum vocabulary | 1,599 words across 4 levels, ordinary-word gap closed | **done** |
@@ -186,11 +186,14 @@ longer opens anything, and the parent panel says so rather than a tab silently
 disappearing.
 
 ### Content
-- **All 44 HSK1 stories rewritten as stories** (2026-09-17, owner-reviewed round
-  by round): cause and consequence, the word a Chinese adult would use even
-  above level (blue bonus tokens on an allow-list), a reviewed word-level seg
-  on every sentence. Authored with `scripts/seg_story.js`; rules in
-  `docs/chinese-style.md` §3–§4. HSK2 and the culture readings are next.
+- **All 88 HSK1 and HSK2 stories rewritten as stories** (2026-09-17/18,
+  owner-reviewed round by round): cause and consequence, the word a Chinese
+  adult would use even above level (blue bonus tokens on an allow-list), a
+  reviewed word-level seg on every sentence. HSK2 tells the same background
+  story as HSK1 with the same names and numbers and one more causal step.
+  Authored with `scripts/seg_story.js`; rules in `docs/chinese-style.md`
+  §3–§4; a sentence without seg now fails the build. The culture readings
+  are next.
 - **88 stories on the ladder** — HSK1 at 10 sentences, HSK2 at 15, the same
   background story per dynasty told at each level's difficulty. Gates 12–22 were
   rewritten rather than extended, because their texts used HSK3/HSK4 vocabulary.

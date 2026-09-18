@@ -170,45 +170,12 @@ function applyGlossOverrides(dict, glossOnly) {
  */
 const NEVER_WORDS = ["个人", "写下"];
 
-/**
- * The story layer, frozen at its state before the 2026-09-17 rewrite.
- *
- * While that rewrite is in progress the corpus is mixed: rewritten stories
- * carry a reviewed `seg` on every sentence, and the rest are still cut by
- * longest match against this dictionary. Because the story layer is built
- * from reviewed segs, first file wins, every gloss written for one sentence
- * of a rewritten story (有 "there was", 谁 "whoever") became the gloss for
- * that word in every un-rewritten sentence at both levels — the first round
- * re-glossed 76 words across 117 HSK2 sentences nobody had touched, and a new
- * compound (做事) re-cut 做事情 into 做事 + 情 and broke the build.
- *
- * So the layer the un-rewritten sentences are cut with is pinned to what it
- * was, and live segs contribute nothing to it. A rewrite changes exactly the
- * story it rewrites. Delete this file once every HSK1 and HSK2 sentence
- * carries `seg` (the end of the rewrite): the layer is then read live again,
- * and only `seg_story.js draft` and the HSK3 seeds depend on it.
- */
-const FROZEN = path.join(__dirname, "story-dictionary-frozen.json");
-
-function fromFrozen(dict) {
-  if (!fs.existsSync(FROZEN)) return null;
-  let n = 0;
-  Object.entries(JSON.parse(fs.readFileSync(FROZEN, "utf8"))).forEach(([zh, v]) => {
-    const before = Object.keys(dict).length;
-    addEntry(dict, zh, v.py, v.en, "story");
-    if (Object.keys(dict).length > before) n++;
-  });
-  return n;
-}
-
 function build() {
   const dict = {};
   const stats = {};
   const { full, glossOnly } = readOverrides();
   stats.overrides = fromOverrides(dict, full);
-  const frozen = fromFrozen(dict);
-  stats.frozen = frozen !== null;
-  stats.stories = frozen !== null ? frozen : fromStories(dict);
+  stats.stories = fromStories(dict);
   stats.curriculum = fromCurriculum(dict);
   stats.glossOverrides = Object.keys(glossOnly).length;
   stats.unusedGlossOverrides = applyGlossOverrides(dict, glossOnly);
@@ -326,7 +293,7 @@ if (require.main === module) {
     (stats.unusedGlossOverrides.length
       ? `, ${stats.unusedGlossOverrides.length} matched nothing (${stats.unusedGlossOverrides.join(" ")})`
       : ""));
-  console.log(`  from authored stories  : ${stats.stories}${stats.frozen ? " (frozen layer, story-dictionary-frozen.json)" : ""}`);
+  console.log(`  from authored stories  : ${stats.stories}`);
   console.log(`  from gate word lists   : ${stats.curriculum}`);
   console.log(`  total entries          : ${stats.total} (${stats.singleChar} single characters)`);
 }
