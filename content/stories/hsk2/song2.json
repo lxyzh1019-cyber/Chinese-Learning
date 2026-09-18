@@ -12,64 +12,1077 @@
   },
   "sents": [
     {
-      "zh": "很久以前，人们买东西用的是金子做的钱。",
-      "en": "Long ago people bought things with money made of gold."
+      "zh": "很久以前，人们买东西用的是金子和铜做的钱。",
+      "en": "Long ago, people bought things with money made of gold and copper.",
+      "seg": [
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "久",
+          "py": "jiǔ",
+          "mn": "long time",
+          "bonus": true
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "买",
+          "py": "mǎi",
+          "mn": "to buy"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "金子",
+          "py": "jīn zi",
+          "mn": "gold",
+          "bonus": true
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "铜",
+          "py": "tóng",
+          "mn": "copper",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to make"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "这样的钱很小，可是很重。",
-      "en": "That money was small, but heavy."
+      "en": "This money was small, but heavy.",
+      "seg": [
+        {
+          "zh": "这样",
+          "py": "zhè yàng",
+          "mn": "this kind"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "重",
+          "py": "zhòng",
+          "mn": "heavy"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "如果只买一点东西，那还可以。",
-      "en": "If you were buying only a little, it was fine."
+      "en": "If you were buying only a little, it was fine.",
+      "seg": [
+        {
+          "zh": "如果",
+          "py": "rú guǒ",
+          "mn": "if"
+        },
+        {
+          "zh": "只",
+          "py": "zhī",
+          "mn": "only"
+        },
+        {
+          "zh": "买",
+          "py": "mǎi",
+          "mn": "to buy"
+        },
+        {
+          "zh": "一点",
+          "py": "yì diǎn",
+          "mn": "a little",
+          "bonus": true
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "那",
+          "py": "nà",
+          "mn": "that"
+        },
+        {
+          "zh": "还",
+          "py": "hái",
+          "mn": "still"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "all right"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "可是商人一次要买很多。",
-      "en": "But a merchant bought a great deal at once."
+      "zh": "可是商人一次要买很多，所以要带很多很多钱。",
+      "en": "But a merchant bought a great deal at once, so he had to carry a great deal of money.",
+      "seg": [
+        {
+          "zh": "可是",
+          "py": "kě shì",
+          "mn": "but"
+        },
+        {
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchant",
+          "bonus": true
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "time (occasion)"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "to need"
+        },
+        {
+          "zh": "买",
+          "py": "mǎi",
+          "mn": "to buy"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "带",
+          "py": "dài",
+          "mn": "to carry"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所以他们要带很多很多钱。",
-      "en": "So they had to carry a great deal of money."
+      "zh": "钱太重了，一个人拿不动，要用车拉。",
+      "en": "The money was too heavy for one person to carry; it had to be pulled in a cart.",
+      "seg": [
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
+        },
+        {
+          "zh": "重",
+          "py": "zhòng",
+          "mn": "heavy"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "person"
+        },
+        {
+          "zh": "拿不动",
+          "py": "ná bu dòng",
+          "mn": "cannot lift",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "车",
+          "py": "chē",
+          "mn": "cart"
+        },
+        {
+          "zh": "拉",
+          "py": "lā",
+          "mn": "to pull"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "钱太重了，一个人拿不动。",
-      "en": "It was too heavy for one person to carry."
-    },
-    {
-      "zh": "有的人还觉得路上不安全。",
-      "en": "Some also felt the road was not safe."
+      "zh": "而且路上不安全，有人专门抢商人的钱。",
+      "en": "And the road was not safe: there were people who made a living robbing merchants.",
+      "seg": [
+        {
+          "zh": "而且",
+          "py": "ér qiě",
+          "mn": "moreover"
+        },
+        {
+          "zh": "路",
+          "py": "lù",
+          "mn": "road"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "安全",
+          "py": "ān quán",
+          "mn": "safe"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有人",
+          "py": "yǒu rén",
+          "mn": "some people"
+        },
+        {
+          "zh": "专门",
+          "py": "zhuān mén",
+          "mn": "specially",
+          "bonus": true
+        },
+        {
+          "zh": "抢",
+          "py": "qiǎng",
+          "mn": "to rob",
+          "bonus": true
+        },
+        {
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchant",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "宋朝的人想到了一个办法。",
-      "en": "Song people thought of a way."
+      "en": "Song people thought of a way.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "宋朝",
+          "py": "Sòng Cháo",
+          "mn": "the Song dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "想到",
+          "py": "xiǎng dào",
+          "mn": "to think of"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "办法",
+          "py": "bàn fǎ",
+          "mn": "way"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们把钱放在一个地方，然后拿一张纸。",
-      "en": "They left the money in one place and took a piece of paper."
+      "zh": "商人把钱放在一家店里，店里给他一张纸。",
+      "en": "A merchant left his money at a shop, and the shop gave him a piece of paper.",
+      "seg": [
+        {
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchant",
+          "bonus": true
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "at"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "家",
+          "py": "jiā",
+          "mn": "(counting word, shops)"
+        },
+        {
+          "zh": "店",
+          "py": "diàn",
+          "mn": "shop"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "店",
+          "py": "diàn",
+          "mn": "shop"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "给",
+          "py": "gěi",
+          "mn": "to give"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "him"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "张",
+          "py": "zhāng",
+          "mn": "(counting word, flat things)"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "纸上写着这是多少钱。",
-      "en": "On the paper was written how much it stood for."
+      "zh": "纸上写着它值多少钱，还有店的名字。",
+      "en": "On the paper was written how much it was worth, and the shop's name.",
+      "seg": [
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "on"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "着",
+          "py": "zhe",
+          "mn": "(-ing, still going on)"
+        },
+        {
+          "zh": "它",
+          "py": "tā",
+          "mn": "it"
+        },
+        {
+          "zh": "值",
+          "py": "zhí",
+          "mn": "to be worth",
+          "bonus": true
+        },
+        {
+          "zh": "多少",
+          "py": "duō shǎo",
+          "mn": "how much"
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "还有",
+          "py": "hái yǒu",
+          "mn": "and also"
+        },
+        {
+          "zh": "店",
+          "py": "diàn",
+          "mn": "shop"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "名字",
+          "py": "míng zi",
+          "mn": "name"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为纸又轻又小，所以带着很方便。",
-      "en": "Because paper is light and small, it was easy to carry."
+      "zh": "纸又轻又小，放在身上很方便。",
+      "en": "Paper is light and small, easy to carry on you.",
+      "seg": [
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "轻",
+          "py": "qīng",
+          "mn": "light",
+          "bonus": true
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "小",
+          "py": "xiǎo",
+          "mn": "small"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "on"
+        },
+        {
+          "zh": "身上",
+          "py": "shēn shang",
+          "mn": "on the body"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "方便",
+          "py": "fāng biàn",
+          "mn": "convenient"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "到了别的城，用这张纸就可以拿到钱。",
-      "en": "In another city, that paper could be exchanged for the money."
+      "en": "In another city, that paper could be exchanged for the money.",
+      "seg": [
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to arrive"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "张",
+          "py": "zhāng",
+          "mn": "(counting word, flat things)"
+        },
+        {
+          "zh": "纸",
+          "py": "zhǐ",
+          "mn": "paper"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "拿到",
+          "py": "ná dào",
+          "mn": "to get",
+          "bonus": true
+        },
+        {
+          "zh": "钱",
+          "py": "qián",
+          "mn": "money"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "这样，商人可以走得更远。",
-      "en": "This let merchants travel further."
+      "zh": "这就是世界上最早的纸币。",
+      "en": "This was the earliest paper money in the world.",
+      "seg": [
+        {
+          "zh": "这",
+          "py": "zhè",
+          "mn": "this"
+        },
+        {
+          "zh": "就是",
+          "py": "jiù shì",
+          "mn": "that is"
+        },
+        {
+          "zh": "世界",
+          "py": "shì jiè",
+          "mn": "world"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "in"
+        },
+        {
+          "zh": "最",
+          "py": "zuì",
+          "mn": "most"
+        },
+        {
+          "zh": "早",
+          "py": "zǎo",
+          "mn": "early"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "纸币",
+          "py": "zhǐ bì",
+          "mn": "paper money",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "城里的买卖也越来越多了。",
-      "en": "Trade in the cities grew and grew."
+      "zh": "有了纸币，商人可以走得更远，城里的买卖也越来越多。",
+      "en": "With paper money, merchants could travel further, and trade in the cities grew and grew.",
+      "seg": [
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "to have"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "纸币",
+          "py": "zhǐ bì",
+          "mn": "paper money",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchant",
+          "bonus": true
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "走",
+          "py": "zǒu",
+          "mn": "to travel"
+        },
+        {
+          "zh": "得",
+          "py": "de",
+          "mn": "(how it is done)"
+        },
+        {
+          "zh": "更",
+          "py": "gèng",
+          "mn": "even"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "买卖",
+          "py": "mǎi mai",
+          "mn": "trade",
+          "bonus": true
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "越来越",
+          "py": "yuè lái yuè",
+          "mn": "more and more"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "今天世界上很多国家用的还是纸做的钱。",
-      "en": "Today many countries still use money made of paper."
+      "zh": "后来，别的国家也开始用纸币。",
+      "en": "Later, other countries began to use paper money too.",
+      "seg": [
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "别的",
+          "py": "bié de",
+          "mn": "other"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "纸币",
+          "py": "zhǐ bì",
+          "mn": "paper money",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
+    },
+    {
+      "zh": "今天世界上很多国家用的还是纸币。",
+      "en": "Today many countries still use paper money.",
+      "seg": [
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "zh": "世界",
+          "py": "shì jiè",
+          "mn": "world"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "in"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(the thing that)"
+        },
+        {
+          "zh": "还是",
+          "py": "hái shi",
+          "mn": "still"
+        },
+        {
+          "zh": "纸币",
+          "py": "zhǐ bì",
+          "mn": "paper money",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

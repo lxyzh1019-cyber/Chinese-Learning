@@ -9,10 +9,6 @@
       "py": "Yuán Cháo",
       "en": "the Yuan dynasty"
     },
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
-    },
     "马可·波罗": {
       "py": "Mǎkě Bōluó",
       "en": "Marco Polo"
@@ -20,64 +16,1073 @@
   },
   "sents": [
     {
-      "zh": "元朝的时候，中国的吃的东西多了很多。",
-      "en": "In the Yuan dynasty the food in China grew much more varied."
+      "zh": "元朝的时候，很多地方的人都来到了中国。",
+      "en": "In the Yuan dynasty, people came to China from many places.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "元朝",
+          "py": "Yuán Cháo",
+          "mn": "the Yuan dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "都",
+          "py": "dōu",
+          "mn": "all"
+        },
+        {
+          "zh": "来到",
+          "py": "lái dào",
+          "mn": "to come to"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "因为很多地方的人都来了。",
-      "en": "Because people came from many places."
+      "zh": "所以中国的食物多了很多种。",
+      "en": "So there were many more kinds of food in China.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "kinds"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "北边的人从小就吃羊肉。",
-      "en": "People from the north ate lamb from childhood."
+      "en": "People from the north ate lamb from childhood.",
+      "seg": [
+        {
+          "zh": "北边",
+          "py": "běi biān",
+          "mn": "the north"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "从小",
+          "py": "cóng xiǎo",
+          "mn": "from childhood",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "to eat"
+        },
+        {
+          "zh": "羊肉",
+          "py": "yáng ròu",
+          "mn": "lamb; mutton",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们也喝一种白色的茶。",
-      "en": "They also drank a kind of white tea."
+      "zh": "他们也喝奶茶，奶茶是用牛奶煮的茶，又白又热。",
+      "en": "They also drank milk tea, which is tea boiled with milk, white and hot.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "to drink"
+        },
+        {
+          "zh": "奶茶",
+          "py": "nǎi chá",
+          "mn": "milk tea",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "奶茶",
+          "py": "nǎi chá",
+          "mn": "milk tea",
+          "bonus": true
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "牛奶",
+          "py": "niú nǎi",
+          "mn": "milk"
+        },
+        {
+          "zh": "煮",
+          "py": "zhǔ",
+          "mn": "to boil; to cook",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "both"
+        },
+        {
+          "zh": "白",
+          "py": "bái",
+          "mn": "white"
+        },
+        {
+          "zh": "又",
+          "py": "yòu",
+          "mn": "and"
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "mn": "hot"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "那种茶里放了牛奶，又白又热。",
-      "en": "That tea had milk in it, and was white and hot."
+      "zh": "天冷的时候喝一杯，人一下子就不冷了。",
+      "en": "A cup of it in cold weather warmed a person up at once.",
+      "seg": [
+        {
+          "zh": "天",
+          "py": "tiān",
+          "mn": "weather"
+        },
+        {
+          "zh": "冷",
+          "py": "lěng",
+          "mn": "cold"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "to drink"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "杯",
+          "py": "bēi",
+          "mn": "cup"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "a person"
+        },
+        {
+          "zh": "一下子",
+          "py": "yí xià zi",
+          "mn": "at once",
+          "bonus": true
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "冷",
+          "py": "lěng",
+          "mn": "cold"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "天冷的时候喝一杯，人一下子就好了。",
-      "en": "A cup of it in cold weather made a person feel better at once."
+      "zh": "从西边来的商人带来了新的香料。",
+      "en": "Merchants from the west brought new spices.",
+      "seg": [
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "商人",
+          "py": "shāng rén",
+          "mn": "merchants",
+          "bonus": true
+        },
+        {
+          "zh": "带来",
+          "py": "dài lái",
+          "mn": "to bring"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "香料",
+          "py": "xiāng liào",
+          "mn": "spices",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "从西边来的商人也带来了新东西。",
-      "en": "Merchants from the west brought new things too."
+      "zh": "有的香料放在肉里，有的放在汤里，很香。",
+      "en": "Some spices went into meat, some into soup, and they smelled wonderful.",
+      "seg": [
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "香料",
+          "py": "xiāng liào",
+          "mn": "spices",
+          "bonus": true
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "肉",
+          "py": "ròu",
+          "mn": "meat"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有的",
+          "py": "yǒu de",
+          "mn": "some"
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "汤",
+          "py": "tāng",
+          "mn": "soup",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "香",
+          "py": "xiāng",
+          "mn": "fragrant",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "有的东西很香，可以放在肉里面。",
-      "en": "Some were fragrant and could be put into meat."
+      "zh": "放了香料以后，肉的味道就不一样了。",
+      "en": "Once the spices were added, the meat tasted quite different.",
+      "seg": [
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "香料",
+          "py": "xiāng liào",
+          "mn": "spices",
+          "bonus": true
+        },
+        {
+          "zh": "以后",
+          "py": "yǐ hòu",
+          "mn": "after"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "肉",
+          "py": "ròu",
+          "mn": "meat"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "味道",
+          "py": "wèi dào",
+          "mn": "taste; flavour"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "then"
+        },
+        {
+          "zh": "不一样",
+          "py": "bù yí yàng",
+          "mn": "different",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows a change)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "放了以后，肉就不一样了。",
-      "en": "Once added, the meat was quite different."
+      "zh": "南边的人还是喜欢吃米饭和鱼。",
+      "en": "People in the south still preferred rice and fish.",
+      "seg": [
+        {
+          "zh": "南边",
+          "py": "nán bian",
+          "mn": "the south"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "还是",
+          "py": "hái shi",
+          "mn": "still"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "to eat"
+        },
+        {
+          "zh": "米饭",
+          "py": "mǐ fàn",
+          "mn": "rice"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "and"
+        },
+        {
+          "zh": "鱼",
+          "py": "yú",
+          "mn": "fish"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "南边的人还是喜欢吃米和鱼。",
-      "en": "People in the south still preferred rice and fish."
+      "zh": "西边来的人喜欢吃面包，也喜欢吃葡萄。",
+      "en": "People from the west liked bread, and liked grapes.",
+      "seg": [
+        {
+          "zh": "西边",
+          "py": "xī biān",
+          "mn": "the west"
+        },
+        {
+          "zh": "来",
+          "py": "lái",
+          "mn": "to come"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "to eat"
+        },
+        {
+          "zh": "面包",
+          "py": "miàn bāo",
+          "mn": "bread"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "to eat"
+        },
+        {
+          "zh": "葡萄",
+          "py": "pú tao",
+          "mn": "grapes",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所以一个国家里有很多种好吃的东西。",
-      "en": "So one country had many kinds of good food."
+      "zh": "所以一个国家里有很多种好吃的食物。",
+      "en": "So one country had many kinds of good food.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "个",
+          "py": "gè",
+          "mn": "(counting word)"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "kinds"
+        },
+        {
+          "zh": "好吃",
+          "py": "hǎo chī",
+          "mn": "delicious"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "在大城里，你可以吃到很远地方的东西。",
-      "en": "In the big cities you could eat food from very far away."
+      "zh": "在大城里，你可以吃到很远地方的食物。",
+      "en": "In a big city you could eat food from far away.",
+      "seg": [
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "大",
+          "py": "dà",
+          "mn": "big"
+        },
+        {
+          "zh": "城",
+          "py": "chéng",
+          "mn": "city",
+          "bonus": true
+        },
+        {
+          "zh": "里",
+          "py": "lǐ",
+          "mn": "inside"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "你",
+          "py": "nǐ",
+          "mn": "you"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "吃到",
+          "py": "chī dào",
+          "mn": "to get to eat",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "远",
+          "py": "yuǎn",
+          "mn": "far"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "马可·波罗把他吃过的东西也写了下来。",
-      "en": "Marco Polo wrote down what he had eaten too."
+      "zh": "马可·波罗把他吃过的食物也写了下来。",
+      "en": "Marco Polo wrote down the food he had eaten too.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "马可·波罗",
+          "py": "Mǎkě Bōluó",
+          "mn": "Marco Polo"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "to eat"
+        },
+        {
+          "zh": "过",
+          "py": "guò",
+          "mn": "(has done)"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "写",
+          "py": "xiě",
+          "mn": "to write"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "down"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他说，有的东西他自己国家一点也没有。",
-      "en": "He said his own country had nothing like some of it."
+      "zh": "他说，有的食物他自己的国家一点也没有。",
+      "en": "He said his own country had nothing like some of it.",
+      "seg": [
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he"
+        },
+        {
+          "zh": "说",
+          "py": "shuō",
+          "mn": "to say"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "有",
+          "py": "yǒu",
+          "mn": "there are"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(some)"
+        },
+        {
+          "zh": "食物",
+          "py": "shí wù",
+          "mn": "food"
+        },
+        {
+          "zh": "他",
+          "py": "tā",
+          "mn": "he; his"
+        },
+        {
+          "zh": "自己",
+          "py": "zì jǐ",
+          "mn": "own"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "country"
+        },
+        {
+          "zh": "一点也",
+          "py": "yì diǎn yě",
+          "mn": "not even a little",
+          "bonus": true
+        },
+        {
+          "zh": "没有",
+          "py": "méi yǒu",
+          "mn": "to have no"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所以吃的东西也可以说是一种来往。",
-      "en": "So food, too, is a kind of coming and going between peoples."
+      "zh": "所以吃的东西，也是不同地方的人认识对方的一种方法。",
+      "en": "So food, too, is one way people of different places come to know one another.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "吃",
+          "py": "chī",
+          "mn": "to eat"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "东西",
+          "py": "dōng xi",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "不同",
+          "py": "bù tóng",
+          "mn": "different"
+        },
+        {
+          "zh": "地方",
+          "py": "dì fāng",
+          "mn": "places"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "认识",
+          "py": "rèn shi",
+          "mn": "to get to know"
+        },
+        {
+          "zh": "对方",
+          "py": "duì fāng",
+          "mn": "each other",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "一",
+          "py": "yī",
+          "mn": "one"
+        },
+        {
+          "zh": "种",
+          "py": "zhòng",
+          "mn": "kind"
+        },
+        {
+          "zh": "方法",
+          "py": "fāng fǎ",
+          "mn": "way; method"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }

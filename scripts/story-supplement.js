@@ -248,4 +248,18 @@ module.exports = {
   "跳舞":   { py: "tiào wǔ",     en: "to dance" },
   "霜":     { py: "shuāng",      en: "frost" },
   "干活":   { py: "gàn huó",     en: "to work (with one's hands)" },
+  // ── HSK2 gates 14–18 ──
+  "专门":   { py: "zhuān mén",   en: "specially" },
+  "出海":   { py: "chū hǎi",     en: "to go to sea" },
+  "取暖":   { py: "qǔ nuǎn",     en: "to keep warm" },
+  "抢":     { py: "qiǎng",       en: "to rob" },
+  "摘":     { py: "zhāi",        en: "to pick" },
+  "歌声":   { py: "gē shēng",    en: "singing" },
+  "活字印刷": { py: "huó zì yìn shuā", en: "movable-type printing" },
+  "炒":     { py: "chǎo",        en: "to roast; to stir-fry" },
+  "耳朵":   { py: "ěr duo",      en: "ears" },
+  "要紧":   { py: "yào jǐn",     en: "crucial" },
+  "过节":   { py: "guò jié",     en: "to celebrate a festival" },
+  "道理":   { py: "dào lǐ",      en: "reason; principle" },
+  "铜":     { py: "tóng",        en: "copper; bronze" },
 };

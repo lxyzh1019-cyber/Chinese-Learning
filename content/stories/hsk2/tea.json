@@ -5,10 +5,6 @@
   "title": "一杯好茶",
   "en": "A Good Cup of Tea",
   "names": {
-    "中国": {
-      "py": "Zhōngguó",
-      "en": "China"
-    },
     "宋朝": {
       "py": "Sòng Cháo",
       "en": "the Song dynasty"
@@ -17,63 +13,966 @@
   "sents": [
     {
       "zh": "中国人很早就开始喝茶了。",
-      "en": "Chinese people began drinking tea very early."
+      "en": "Chinese people began drinking tea very early.",
+      "seg": [
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "早",
+          "py": "zǎo",
+          "mn": "early"
+        },
+        {
+          "zh": "就",
+          "py": "jiù",
+          "mn": "already"
+        },
+        {
+          "zh": "开始",
+          "py": "kāishǐ",
+          "mn": "to begin"
+        },
+        {
+          "zh": "喝茶",
+          "py": "hē chá",
+          "mn": "to drink tea",
+          "bonus": true
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "到了宋朝，喝茶已经是每天的事。",
-      "en": "By the Song, tea was an everyday thing."
+      "en": "By the Song dynasty, tea was already an everyday thing.",
+      "seg": [
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to reach"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "t": "n",
+          "zh": "宋朝",
+          "py": "Sòng Cháo",
+          "mn": "the Song dynasty"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "喝茶",
+          "py": "hē chá",
+          "mn": "drinking tea",
+          "bonus": true
+        },
+        {
+          "zh": "已经",
+          "py": "yǐ jīng",
+          "mn": "already"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "每天",
+          "py": "měi tiān",
+          "mn": "every day",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "事",
+          "py": "shì",
+          "mn": "matter; thing"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "茶是用山上一种树上的东西做的。",
-      "en": "Tea is made from something that grows on a plant in the hills."
+      "zh": "茶是用茶树的叶子做的。",
+      "en": "Tea is made from the leaves of the tea tree.",
+      "seg": [
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
+        },
+        {
+          "zh": "是",
+          "py": "shì",
+          "mn": "is"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "茶树",
+          "py": "chá shù",
+          "mn": "tea tree",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "叶子",
+          "py": "yè zi",
+          "mn": "leaves",
+          "bonus": true
+        },
+        {
+          "zh": "做",
+          "py": "zuò",
+          "mn": "to make"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(ends the description)"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "要先把它放到外面的光下面。",
-      "en": "It must first be laid out in the light outside."
+      "zh": "春天，人们把新长出来的叶子摘下来。",
+      "en": "In spring, people pick the newly grown leaves.",
+      "seg": [
+        {
+          "zh": "春天",
+          "py": "chūn tiān",
+          "mn": "spring"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人们",
+          "py": "rén men",
+          "mn": "people"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "新",
+          "py": "xīn",
+          "mn": "new"
+        },
+        {
+          "zh": "长",
+          "py": "cháng",
+          "mn": "to grow"
+        },
+        {
+          "zh": "出来",
+          "py": "chū lái",
+          "mn": "out"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "叶子",
+          "py": "yè zi",
+          "mn": "leaves",
+          "bonus": true
+        },
+        {
+          "zh": "摘",
+          "py": "zhāi",
+          "mn": "to pick",
+          "bonus": true
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "down"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "然后用手做很多次，才可以喝。",
-      "en": "Then it is worked by hand many times before it can be drunk."
+      "zh": "然后把叶子放在太阳下晒，再用手炒很多次，才能喝。",
+      "en": "Then the leaves are dried in the sun and worked by hand many times before they can be drunk.",
+      "seg": [
+        {
+          "zh": "然后",
+          "py": "rán hòu",
+          "mn": "then"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "叶子",
+          "py": "yè zi",
+          "mn": "leaves",
+          "bonus": true
+        },
+        {
+          "zh": "放",
+          "py": "fàng",
+          "mn": "to put"
+        },
+        {
+          "zh": "在",
+          "py": "zài",
+          "mn": "in"
+        },
+        {
+          "zh": "太阳",
+          "py": "tài yang",
+          "mn": "sun"
+        },
+        {
+          "zh": "下",
+          "py": "xià",
+          "mn": "under"
+        },
+        {
+          "zh": "晒",
+          "py": "shài",
+          "mn": "to dry in the sun",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "再",
+          "py": "zài",
+          "mn": "then"
+        },
+        {
+          "zh": "用",
+          "py": "yòng",
+          "mn": "to use"
+        },
+        {
+          "zh": "手",
+          "py": "shǒu",
+          "mn": "hand"
+        },
+        {
+          "zh": "炒",
+          "py": "chǎo",
+          "mn": "to roast; to stir-fry",
+          "bonus": true
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "次",
+          "py": "cì",
+          "mn": "times"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then"
+        },
+        {
+          "zh": "能",
+          "py": "néng",
+          "mn": "can"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "to drink"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "喝茶以前，要先把水烧开。",
-      "en": "Before drinking, the water must be brought to the boil."
+      "en": "Before drinking tea, the water must first be boiled.",
+      "seg": [
+        {
+          "zh": "喝茶",
+          "py": "hē chá",
+          "mn": "to drink tea",
+          "bonus": true
+        },
+        {
+          "zh": "以前",
+          "py": "yǐ qián",
+          "mn": "before"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "要",
+          "py": "yào",
+          "mn": "must"
+        },
+        {
+          "zh": "先",
+          "py": "xiān",
+          "mn": "first"
+        },
+        {
+          "zh": "把",
+          "py": "bǎ",
+          "mn": "(puts the object first)"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "烧开",
+          "py": "shāo kāi",
+          "mn": "to boil",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "水不能太热，也不能太冷。",
-      "en": "The water must be neither too hot nor too cold."
+      "en": "The water must be neither too hot nor too cold.",
+      "seg": [
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "不能",
+          "py": "bù néng",
+          "mn": "must not",
+          "bonus": true
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
+        },
+        {
+          "zh": "热",
+          "py": "rè",
+          "mn": "hot"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also"
+        },
+        {
+          "zh": "不能",
+          "py": "bù néng",
+          "mn": "must not",
+          "bonus": true
+        },
+        {
+          "zh": "太",
+          "py": "tài",
+          "mn": "too"
+        },
+        {
+          "zh": "冷",
+          "py": "lěng",
+          "mn": "cold"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "如果水不对，好茶也不好喝。",
-      "en": "If the water is wrong, even good tea tastes poor."
+      "zh": "如果水不对，好的茶叶也不好喝。",
+      "en": "With the wrong water, even good tea leaves make a poor cup.",
+      "seg": [
+        {
+          "zh": "如果",
+          "py": "rú guǒ",
+          "mn": "if"
+        },
+        {
+          "zh": "水",
+          "py": "shuǐ",
+          "mn": "water"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "对",
+          "py": "duì",
+          "mn": "right"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "好",
+          "py": "hǎo",
+          "mn": "good"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "(makes a describing word)"
+        },
+        {
+          "zh": "茶叶",
+          "py": "chá yè",
+          "mn": "tea leaves",
+          "bonus": true
+        },
+        {
+          "zh": "也",
+          "py": "yě",
+          "mn": "also; even"
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "好喝",
+          "py": "hǎo hē",
+          "mn": "tasty (to drink)",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "宋朝的人喝茶的时候很认真。",
-      "en": "Song people took tea seriously."
+      "en": "Song people took their tea seriously.",
+      "seg": [
+        {
+          "t": "n",
+          "zh": "宋朝",
+          "py": "Sòng Cháo",
+          "mn": "the Song dynasty"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "喝茶",
+          "py": "hē chá",
+          "mn": "to drink tea",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "认真",
+          "py": "rèn zhēn",
+          "mn": "serious; careful"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们先看茶的样子，再闻一闻。",
-      "en": "They looked at it first, then smelled it."
+      "zh": "他们先看茶的颜色，再闻一闻，最后才慢慢地喝。",
+      "en": "They looked at the tea's colour first, then smelled it, and only then drank slowly.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "先",
+          "py": "xiān",
+          "mn": "first"
+        },
+        {
+          "zh": "看",
+          "py": "kàn",
+          "mn": "to look at"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "颜色",
+          "py": "yán sè",
+          "mn": "colour"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "再",
+          "py": "zài",
+          "mn": "then"
+        },
+        {
+          "zh": "闻一闻",
+          "py": "wén yi wén",
+          "mn": "to have a smell",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "最后",
+          "py": "zuì hòu",
+          "mn": "finally"
+        },
+        {
+          "zh": "才",
+          "py": "cái",
+          "mn": "only then"
+        },
+        {
+          "zh": "慢慢",
+          "py": "màn màn",
+          "mn": "slowly",
+          "bonus": true
+        },
+        {
+          "zh": "地",
+          "py": "de",
+          "mn": "(before how it is done)"
+        },
+        {
+          "zh": "喝",
+          "py": "hē",
+          "mn": "to drink"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "最后才慢慢地喝。",
-      "en": "Only then did they slowly drink."
+      "zh": "他们觉得，喝茶不只是解渴。",
+      "en": "They felt that drinking tea was not only about quenching thirst.",
+      "seg": [
+        {
+          "zh": "他们",
+          "py": "tā men",
+          "mn": "they"
+        },
+        {
+          "zh": "觉得",
+          "py": "jué de",
+          "mn": "to feel"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "喝茶",
+          "py": "hē chá",
+          "mn": "drinking tea",
+          "bonus": true
+        },
+        {
+          "zh": "不",
+          "py": "bù",
+          "mn": "not"
+        },
+        {
+          "zh": "只是",
+          "py": "zhǐ shì",
+          "mn": "only"
+        },
+        {
+          "zh": "解渴",
+          "py": "jiě kě",
+          "mn": "to quench thirst",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "他们觉得这不只是喝东西。",
-      "en": "They felt this was not only drinking."
+      "zh": "喝茶的时候，人可以安静下来，慢慢想事情。",
+      "en": "Over tea, a person can grow quiet and think things over slowly.",
+      "seg": [
+        {
+          "zh": "喝茶",
+          "py": "hē chá",
+          "mn": "to drink tea",
+          "bonus": true
+        },
+        {
+          "zh": "的",
+          "py": "de",
+          "mn": "of; belonging to"
+        },
+        {
+          "zh": "时候",
+          "py": "shíhou",
+          "mn": "time"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "a person"
+        },
+        {
+          "zh": "可以",
+          "py": "kě yǐ",
+          "mn": "can"
+        },
+        {
+          "zh": "安静",
+          "py": "ān jìng",
+          "mn": "quiet"
+        },
+        {
+          "zh": "下来",
+          "py": "xià lai",
+          "mn": "(to settle)"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "慢慢",
+          "py": "màn màn",
+          "mn": "slowly",
+          "bonus": true
+        },
+        {
+          "zh": "想",
+          "py": "xiǎng",
+          "mn": "to think"
+        },
+        {
+          "zh": "事情",
+          "py": "shì qing",
+          "mn": "things"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "喝茶的时候，人可以安下心来。",
-      "en": "Over tea, a person could settle their mind."
+      "zh": "所以很多人一边喝茶，一边和朋友说话。",
+      "en": "So many people talked with friends over tea.",
+      "seg": [
+        {
+          "zh": "所以",
+          "py": "suǒ yǐ",
+          "mn": "so"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "一边",
+          "py": "yī biān",
+          "mn": "while"
+        },
+        {
+          "zh": "喝茶",
+          "py": "hē chá",
+          "mn": "to drink tea",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "一边",
+          "py": "yī biān",
+          "mn": "while"
+        },
+        {
+          "zh": "和",
+          "py": "hé",
+          "mn": "with"
+        },
+        {
+          "zh": "朋友",
+          "py": "péng you",
+          "mn": "friends"
+        },
+        {
+          "zh": "说话",
+          "py": "shuō huà",
+          "mn": "to talk"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
-      "zh": "所以很多人一边喝茶一边说话。",
-      "en": "So many people talked over tea."
+      "zh": "后来，茶从中国传到了世界上很多国家。",
+      "en": "Later, tea spread from China to many countries around the world.",
+      "seg": [
+        {
+          "zh": "后来",
+          "py": "hòu lái",
+          "mn": "later"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "茶",
+          "py": "chá",
+          "mn": "tea"
+        },
+        {
+          "zh": "从",
+          "py": "cóng",
+          "mn": "from"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "传",
+          "py": "chuán",
+          "mn": "to spread",
+          "bonus": true
+        },
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "to"
+        },
+        {
+          "zh": "了",
+          "py": "le",
+          "mn": "(shows it is finished)"
+        },
+        {
+          "zh": "世界",
+          "py": "shì jiè",
+          "mn": "world"
+        },
+        {
+          "zh": "上",
+          "py": "shàng",
+          "mn": "in"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "多",
+          "py": "duō",
+          "mn": "many"
+        },
+        {
+          "zh": "国家",
+          "py": "guó jiā",
+          "mn": "countries"
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     },
     {
       "zh": "到今天，中国人还是很喜欢喝茶。",
-      "en": "To this day Chinese people still love tea."
+      "en": "To this day, Chinese people still love drinking tea.",
+      "seg": [
+        {
+          "zh": "到",
+          "py": "dào",
+          "mn": "until"
+        },
+        {
+          "zh": "今天",
+          "py": "jīn tiān",
+          "mn": "today"
+        },
+        {
+          "t": "p",
+          "tx": "，"
+        },
+        {
+          "zh": "中国",
+          "py": "Zhōngguó",
+          "mn": "China"
+        },
+        {
+          "zh": "人",
+          "py": "rén",
+          "mn": "people"
+        },
+        {
+          "zh": "还是",
+          "py": "hái shi",
+          "mn": "still"
+        },
+        {
+          "zh": "很",
+          "py": "hěn",
+          "mn": "very"
+        },
+        {
+          "zh": "喜欢",
+          "py": "xǐ huan",
+          "mn": "to like"
+        },
+        {
+          "zh": "喝茶",
+          "py": "hē chá",
+          "mn": "to drink tea",
+          "bonus": true
+        },
+        {
+          "t": "p",
+          "tx": "。"
+        }
+      ]
     }
   ]
 }
