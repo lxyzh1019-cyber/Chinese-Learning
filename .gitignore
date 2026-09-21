@@ -4,3 +4,9 @@ backups/
 
 node_modules/
 .DS_Store
+
+# Claude Code working rules — tracked on purpose; only local hook state is ignored.
+!.claude/
+.claude/state/
+__pycache__/
+*.pyc
