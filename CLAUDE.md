@@ -11,6 +11,19 @@ Apply these rules across projects. Skills, subagents, and project instructions c
 
 At session start, report the rules version loaded from this file (the header above) and the active branch. In Cloud there is no user-level `~/.claude/`; every governing file must be committed on the session branch: this file at the repository root, `.claude/settings.json`, `.claude/agents/opus-worker.md`, `.claude/hooks/`, `FEATURES.md`, `WORKING_RECORD.md`. Report any that are missing before dependent work.
 
+## Repository Architecture
+
+This repo carries its architecture in `ARCHITECT.md` at the root — the Chinese
+Adventure blueprint (Part A: design and engineering rules; Part B: §11–§29, the
+full architecture: gate identity, player state, curriculum, games, quiz, review
+and retention, persistence and sync, tooling). These working rules say *how* to
+work; `ARCHITECT.md` says *what the app is*.
+
+Read the sections covering the area you are about to touch before proposing a
+plan for this app's code, state schema, curriculum or sync, and update it in the
+same change whenever a change makes it wrong. It is a governance document: the
+main session may edit it directly.
+
 ## Enforcement Layers
 
 Every rule in this file has one of three enforcement grades. Know which applies; do not describe a prose rule as guaranteed.
