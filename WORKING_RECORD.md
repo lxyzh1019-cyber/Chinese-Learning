@@ -20,6 +20,7 @@ Single working record for this repository. Updated by the main session at the en
 | 6 | R1 2026-09-21 | Commit and push to `rules-v2` | done | caa8da7; PR #55 was already open for the branch |
 | 7 | R2 2026-09-22 | Keep the repo's 1497-line blueprint as `ARCHITECT.md` | done | restored byte-identical from `0b32aa4:CLAUDE.md`; header and a pointer in `CLAUDE.md` added |
 | 8 | R1 2026-09-21 | Merge `rules-v2` into `main` (bundle README step 3) | open | user action on github.com; rules and hooks govern sessions only once on `main` |
+| 9 | R3 2026-09-27 | Run the `hz-claude-config` stub installer; commit, push and open a PR if it ends `INSTALL OK` | done | `INSTALL OK`, smoke test `Rules v3.1.4 loaded`. v2 hooks, skill copy, `tests/replay-hooks.sh`, `tests/test-routing-hook.md`, `docs/HZ-skill-trigger-tuning.md` removed; `README.md` (the bundle install guide, no earlier version) removed; "Repository Architecture" section kept in `CLAUDE.md` after the pointer. |
 
 ## Hotspot counter
 | Area / feature | Fix rounds | Recurrences | Last symptom | Rewrite-vs-repair reviewed? |
@@ -43,5 +44,5 @@ Rule: 3 fix rounds, or 2 recurrences, or a fix causing a nearby regression → n
 - Untested: hook behaviour in a live session (plan tiers, validation line, record guard, routing guard). Only replayable synthetic inputs have run; the real path needs a session started after the merge to `main`.
 
 ## Open questions / blockers
-- `routing_guard_mode` is still `observe`. `tests/test-routing-hook.md` has to pass in a cloud session before switching it to `enforce`.
+- Superseded 2026-09-27: `routing_guard_mode` and `tests/test-routing-hook.md` were removed by the stub install; routing-guard mode is now set in `hz-claude-config`.
 - `FEATURES.md` empty: the regression table below is checked against `ARCHITECT.md` and the bundle README, not against a manifest.
