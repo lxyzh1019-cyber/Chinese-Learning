@@ -23,9 +23,9 @@ Single working record for this repository. Updated by the main session at the en
 | 9 | R3 2026-09-27 | Run the `hz-claude-config` stub installer; commit, push and open a PR if it ends `INSTALL OK` | done | `INSTALL OK`, smoke test `Rules v3.1.4 loaded`. v2 hooks, skill copy, `tests/replay-hooks.sh`, `tests/test-routing-hook.md`, `docs/HZ-skill-trigger-tuning.md` removed; `README.md` (the bundle install guide, no earlier version) removed; "Repository Architecture" section kept in `CLAUDE.md` after the pointer. |
 
 ## Hotspot counter
-| Area / feature | Fix rounds | Recurrences | Last symptom | Rewrite-vs-repair reviewed? |
-|---|---|---|---|---|
-| Root `CLAUDE.md` / governing docs | 1 | 0 | R1 replaced the repo blueprint wholesale; R2 restored it as `ARCHITECT.md` | no |
+| Area / feature | Fix rounds | Recurrences | Regressions caused | Workarounds/exceptions | Last symptom | Rewrite-vs-repair reviewed? |
+|---|---|---|---|---|---|---|
+| Root `CLAUDE.md` / governing docs | 1 | 0 | 0 | 0 | R1 replaced the repo blueprint wholesale; R2 restored it as `ARCHITECT.md` | no |
 Rule: 3 fix rounds, or 2 recurrences, or a fix causing a nearby regression → no further patch until the comparison is presented.
 
 ## Deliverable ledger
