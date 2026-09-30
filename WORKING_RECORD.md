@@ -51,8 +51,8 @@ Rule: 3 fix rounds, or 2 recurrences, or a fix causing a nearby regression → n
 | R4 stage 8b: pinyin 吗 ma / 底 dǐ / 刺 cì; apply held 回 兵 overrides; rebuild stories | COMPLETE | pinyin 吗 ma / 底 dǐ / 刺 cì in every copy (typing "di" accepted, checked with the app's stripTones); 回 "to return; to go back", 兵 "soldier" (incl. lesson hsk4_gate_20); build:stories changed exactly 10 values, build:sentences 1, lessons none; 32 values changed in data/, nothing else; ledger lists all 7 words; tests 344/344 |
 | R4 stage 9: checks and screenshots | COMPLETE | colour grep clean in CSS block; gloss check 51 fields, only the 7 words; browser audit on a local Firebase-free copy, 1194×834 and 834×1194: nothing under 52 px after the fix (parent button 41→52, Hear again 42→52, practice chips 27→52, mascot row 13→52), Dynasty Road in first portrait viewport, no label overlap, no CSS text <12 px; 31 screenshots in `docs/screenshots/design-2026-09/` (800 px wide, pane-scaled) |
 | R4 stage 10: review, records, PR | COMPLETE | review of screenshots and diff; `ARCHITECT.md` §1, §3, §11, §16, §17, §18, §20 updated; plan copied to `plans/`; commit 07126e0 pushed; PR #59 open, ready for review |
-| R4 stage 11: user merges the PR | NOT STARTED | user action |
-| R4 stage 12: confirm merge, close plan | NOT STARTED | |
+| R4 stage 11: user merges the PR | BLOCKED — waiting for the user to merge PR #59 on GitHub (user action, not delegable) | PR #59 open, ready for review |
+| R4 stage 12: confirm merge, close plan | BLOCKED — depends on stage 11 (the merge) | |
 
 ## Checks and evidence
 - 2026-09-21 `bash tests/replay-hooks.sh` → passed=14 failed=0
