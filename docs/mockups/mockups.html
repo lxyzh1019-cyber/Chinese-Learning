@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chinese Adventure Mockups</title>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Chinese Adventure tokens — generated from the design system (v3). Paste over the :root block (index.html lines 9-19)
+   and the two body.season-* lines (576-577). Values in px assume html{font-size:120%}: use the rem noted. */
+:root{
+  --bg:#1a0505;
+  --deep:#0f0303;
+  --surface:#380c0c;
+  --surface2:#4a1212;
+  --panel:#5c1818;
+  --hover:#6e1e1e;
+  --gold:#d4a017;
+  --gold-dim:rgba(212,160,23,.22);
+  --gold-bright:#f0c040;
+  --red:#c0392b;
+  --red-glow:rgba(160,30,30,.55);
+  --ink:#f0e4cf;
+  --muted:#a07860;
+  --jade:#27ae60;
+  --jade-dim:rgba(39,174,96,.15);
+  --jenn:#ff6b9d;
+  --jess:#60a5fa;
+  --warn:#ff6b35;
+  --wrong-text:#ff7070;
+  --wrong-dim:rgba(192,57,43,.14);
+  --py-cream:#f8e6a8;
+  --py-mint:#9ff5d1;
+  --gold-a10:rgba(212,160,23,.10);
+  --gold-a20:rgba(212,160,23,.20);
+  --gold-a35:rgba(212,160,23,.35);
+  --red-deep:#7a1010;
+  --fzh:'Noto Serif SC',serif;
+  --fui:'Quicksand',sans-serif;
+  --fdec:'Ma Shan Zheng',cursive;
+  --space-1:.2rem;
+  --space-2:.4rem;
+  --space-3:.6rem;
+  --space-4:.8rem;
+  --space-5:1rem;
+  --space-6:1.4rem;
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:20px;
+  --radius-pill:999px;
+  --t-xs:.65rem;
+  --t-sm:.72rem;
+  --t-md:.82rem;
+  --t-lg:1.05rem;
+  --t-xl:1.75rem;
+  --t-xxl:3rem;
+  --tap-min:52px;
+}
+body.season-spring{
+  --bg:#102214;
+  --deep:#0a160d;
+  --surface:#1a3522;
+  --surface2:#21462d;
+  --panel:#285836;
+  --hover:#2e6942;
+  --gold:#d6b84b;
+  --gold-dim:rgba(214,184,75,.22);
+  --ink:#e9f2de;
+  --muted:#8fad91;
+  --jade:#6ee7a0;
+  --jenn:#f9a8d4;
+  --jess:#93c5fd;
+  --warn:#ffb080;
+  --wrong-text:#ffadad;
+  --gold-a10:rgba(214,184,75,.10);
+  --gold-a20:rgba(214,184,75,.20);
+  --gold-a35:rgba(214,184,75,.35);
+}
+body.season-autumn{
+  --bg:#241307;
+  --deep:#170b04;
+  --surface:#3a1e0a;
+  --surface2:#4a2a10;
+  --panel:#5b3415;
+  --hover:#6d431d;
+  --gold:#e0a93a;
+  --gold-dim:rgba(224,169,58,.24);
+  --ink:#f5e6ce;
+  --muted:#be9367;
+  --jade:#4ade80;
+  --jenn:#ff8fb8;
+  --jess:#7fb6ff;
+  --warn:#ff8a5b;
+  --wrong-text:#ff8d8d;
+  --gold-a10:rgba(224,169,58,.10);
+  --gold-a20:rgba(224,169,58,.20);
+  --gold-a35:rgba(224,169,58,.35);
+}
+
+html{font-size:120%;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#111;color:var(--ink);font-family:var(--fui);}
+/* review toolbar (not part of the app) */
+.tb{position:sticky;top:0;z-index:9;display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 12px;background:#222;color:#eee;font:600 13px system-ui,sans-serif;}
+.tb button,.tb select{font:600 13px system-ui,sans-serif;padding:6px 10px;border-radius:6px;border:1px solid #555;background:#333;color:#eee;cursor:pointer;}
+.tb button.on{background:#eee;color:#111;}
+.tb .sep{width:1px;height:22px;background:#555;margin:0 4px;}
+.tb .note{margin-left:auto;opacity:.75;font-weight:500;}
+.stage{display:flex;justify-content:center;padding:16px;}
+.frame{position:relative;background:var(--bg);overflow:auto;border:1px solid #444;transform-origin:top center;}
+.sample{position:absolute;top:8px;left:8px;z-index:5;font:700 11px system-ui;background:#fff;color:#111;padding:2px 6px;border-radius:4px;opacity:.85;}
+.scr{display:none;min-height:100%;padding:var(--space-6);}
+.scr.show{display:block;}
+/* app pieces (proposed) */
+.btn-g,.btn-s,.btn-danger{min-height:var(--tap-min);padding:0 1.1rem;border-radius:var(--radius-md);font:700 var(--t-md) var(--fui);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;}
+.btn-g{background:linear-gradient(135deg,var(--gold-bright),var(--gold));color:var(--bg);border:none;}
+.btn-s{background:var(--surface2);color:var(--ink);border:1px solid var(--gold-a20);}
+.btn-s.dim{opacity:.5;}
+.btn-danger{background:linear-gradient(135deg,var(--red-deep),var(--red));color:#fff;border:none;}
+.btn-take{background:var(--wrong-dim);border-color:var(--red);}
+.btn-give{background:var(--jade-dim);border-color:var(--jade);}
+.x{position:absolute;top:var(--space-4);right:var(--space-4);width:52px;height:52px;border-radius:var(--radius-md);background:var(--gold-a10);border:1px solid var(--gold-a20);color:var(--ink);font-size:1rem;}
+.card{position:relative;background:var(--surface);border:1px solid var(--gold-a20);border-radius:var(--radius-lg);padding:var(--space-6);}
+.center{max-width:720px;margin:0 auto;}
+.qhead{display:flex;align-items:center;gap:var(--space-4);margin-bottom:var(--space-4);}
+.qhead h2{font:400 var(--t-lg) var(--fdec);color:var(--gold);flex:1;font-size:1.3rem;}
+.dots{display:flex;gap:6px;justify-content:center;margin-bottom:var(--space-5);}
+.dots i{width:28px;height:6px;border-radius:3px;background:var(--gold-a20);}
+.dots i.on{background:var(--gold);}.dots i.done{background:var(--jade);}
+.lbl{font:700 var(--t-sm) var(--fui);color:var(--muted);letter-spacing:.04em;margin-bottom:var(--space-3);}
+.big{font:400 var(--t-xxl) var(--fzh);text-align:center;color:var(--ink);line-height:1.2;}
+.spk{width:52px;height:52px;border-radius:50%;background:var(--gold-a10);border:1px solid var(--gold-a35);color:var(--gold);font-size:1rem;vertical-align:middle;margin-left:.4rem;}
+.hint{display:flex;justify-content:center;margin:var(--space-3) 0 var(--space-4);}
+.ask{font:700 var(--t-md) var(--fui);text-align:center;margin-bottom:var(--space-4);}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);}
+.opt{min-height:64px;border-radius:var(--radius-md);background:var(--surface2);border:1.5px solid var(--gold-a20);color:var(--ink);font:700 var(--t-md) var(--fui);}
+.opt.ok{background:var(--jade-dim);border-color:var(--jade);color:var(--jade);}
+.opt.bad{background:var(--wrong-dim);border-color:var(--wrong-text);color:var(--wrong-text);}
+.fb{margin-top:var(--space-4);text-align:center;font:700 var(--t-lg) var(--fui);color:var(--ink);}
+.fb b{color:var(--jade);}
+.row{display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;margin-top:var(--space-5);}
+.stars{font-size:2.4rem;color:var(--gold-bright);text-align:center;letter-spacing:.2rem;}
+.rtitle{font:400 2rem var(--fdec);color:var(--gold);text-align:center;margin:var(--space-2) 0;}
+.rsub{text-align:center;font:700 var(--t-lg) var(--fui);}
+.rsub small{display:block;font:500 var(--t-md) var(--fui);color:var(--muted);margin-top:var(--space-2);}
+.next{margin-top:var(--space-5);background:var(--gold-a10);border:1px solid var(--gold-a35);border-radius:var(--radius-md);padding:var(--space-4);}
+.next h4{font:700 var(--t-md) var(--fui);color:var(--gold);margin-bottom:var(--space-2);}
+.next li{list-style:none;font:500 var(--t-md) var(--fui);margin:var(--space-2) 0;display:flex;gap:.5rem;}
+.pop{max-width:720px;margin:0 auto;background:linear-gradient(152deg,var(--surface2),var(--deep));}
+.pop h2{font:400 1.4rem var(--fdec);color:var(--gold);text-align:center;}
+.sub{text-align:center;color:var(--muted);font:500 var(--t-md) var(--fui);margin:var(--space-2) 0 var(--space-4);}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);}
+.game{background:var(--surface);border:1px solid var(--gold-a20);border-radius:var(--radius-md);padding:var(--space-4);text-align:center;}
+.game h3{font:700 var(--t-lg) var(--fui);}
+.game .st{color:var(--gold);margin:var(--space-1) 0 var(--space-3);}
+.game .btns{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-2);}
+.game .btns .btn-s{padding:0 .5rem;font-size:var(--t-sm);}
+.game .btns .full{grid-column:1/3;}
+.game p{font:500 var(--t-sm) var(--fui);color:var(--muted);margin-top:var(--space-2);}
+.legend{font:500 var(--t-sm) var(--fui);color:var(--muted);text-align:center;margin-top:var(--space-4);}
+/* home */
+.home{display:flex;min-height:100%;}
+.side{width:270px;background:var(--deep);border-right:1px solid var(--gold-a20);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4);}
+.main{flex:1;padding:var(--space-6);}
+.chip{background:var(--surface);border:1px solid var(--gold-a20);border-radius:var(--radius-md);padding:var(--space-3);display:flex;align-items:center;gap:var(--space-3);justify-content:center;min-height:var(--tap-min);}
+.chip .av{font-size:2rem;}.chip .nm{font:400 1.3rem var(--fdec);color:var(--jenn);}
+.chip small{font:700 var(--t-xs) var(--fui);color:var(--muted);}
+.box{background:var(--surface);border:1px solid var(--gold-a20);border-radius:var(--radius-md);padding:var(--space-4);font:500 var(--t-sm) var(--fui);}
+.box b{display:block;color:var(--gold);font-size:var(--t-sm);margin-bottom:var(--space-2);}
+.clock{font:400 1.75rem var(--fdec);color:var(--gold-bright);text-align:center;}
+.htitle{font:400 1.75rem var(--fdec);color:var(--gold);margin-bottom:var(--space-4);}
+.tabs{display:flex;gap:var(--space-2);margin-bottom:var(--space-5);flex-wrap:wrap;}
+.tab{min-height:var(--tap-min);padding:0 1.1rem;border-radius:var(--radius-pill);border:1.5px solid var(--gold-a20);background:none;color:var(--muted);font:700 var(--t-md) var(--fui);}
+.tab.on{background:var(--gold-a20);border-color:var(--gold);color:var(--gold);}
+.road{display:flex;gap:var(--space-3);overflow-x:auto;padding-bottom:var(--space-3);margin-bottom:var(--space-5);}
+.node{flex:0 0 84px;text-align:center;}
+.node .c{width:64px;height:64px;border-radius:50%;margin:0 auto;border:2px solid var(--gold-a35);display:flex;align-items:center;justify-content:center;font-size:1.6rem;background:var(--surface);}
+.node.on .c{border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-a20);}
+.node .zh{font:700 var(--t-sm) var(--fzh);color:var(--gold);margin-top:var(--space-2);}
+.node .en{font:500 var(--t-xs) var(--fui);color:var(--muted);}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-5);}
+body.pt .home{flex-direction:column;}
+body.pt .side{width:auto;border-right:none;border-top:1px solid var(--gold-a20);order:2;}
+body.pt .main{order:1;}
+body.pt .side .chip{display:none;}
+.ptchip{display:none;margin:var(--space-4) var(--space-5) 0;}
+body.pt .ptchip{display:flex;}
+/* parent */
+.ptitle{font:400 1.5rem var(--fdec);color:var(--gold);margin-bottom:var(--space-4);}
+.sec{margin-top:var(--space-5);padding-top:var(--space-4);border-top:1px solid var(--gold-a20);}
+.sec h3{font:700 var(--t-md) var(--fui);color:var(--gold);margin-bottom:var(--space-3);}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);}
+.kid{background:var(--surface);border:1px solid var(--gold-a20);border-radius:var(--radius-md);padding:var(--space-4);}
+.kid h4{font:700 var(--t-lg) var(--fui);margin-bottom:var(--space-2);}
+.kid h4 .j1{color:var(--jenn);}.kid h4 .j2{color:var(--jess);}
+.kv{display:flex;justify-content:space-between;font:500 var(--t-sm) var(--fui);padding:var(--space-1) 0;border-bottom:1px solid var(--gold-a10);}
+.kv span:last-child{font-weight:700;}
+.set{display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;margin:var(--space-2) 0;font:500 var(--t-sm) var(--fui);}
+.set input,.set select{min-height:44px;background:var(--deep);border:1px solid var(--gold-a20);color:var(--ink);border-radius:var(--radius-sm);padding:0 .5rem;font:500 var(--t-sm) var(--fui);}
+.help{font:500 var(--t-xs) var(--fui);color:var(--muted);margin-top:var(--space-1);}
+.danger{margin-top:var(--space-6);padding-top:var(--space-5);border-top:1px dashed var(--gold-a35);text-align:center;}
+/* time's up */
+.tl{max-width:440px;margin:10vh auto 0;text-align:center;}
+.tl .e{font-size:2.8rem;}
+.tl h2{font:400 1.7rem var(--fdec);color:var(--gold);white-space:nowrap;margin:var(--space-2) 0;}
+.tl p{color:var(--muted);font:500 var(--t-md) var(--fui);}
+.tl input{width:100%;min-height:var(--tap-min);margin:var(--space-4) 0 0;text-align:center;letter-spacing:.3em;background:var(--deep);border:1px solid var(--gold-a35);color:var(--ink);border-radius:var(--radius-md);font:700 var(--t-lg) var(--fui);}
+.frame{container-type:size;}
+@container (max-width:600px){.opts,.games,.two,.quick{grid-template-columns:1fr;}}
+</style></head><body class="season-autumn">
+<div class="tb" role="toolbar" aria-label="Review toolbar">
+  <span>Device</span>
+  <button data-dev="land" class="on">iPad landscape</button><button data-dev="port">iPad portrait</button><button data-dev="phone">Phone</button>
+  <span class="sep"></span><span>Season</span>
+  <button data-sea="crimson">Crimson</button><button data-sea="spring">Spring</button><button data-sea="autumn" class="on">Autumn</button>
+  <span class="sep"></span>
+  <select id="pick" aria-label="Screen">
+    <option value="s1">1 · Quiz question (K3)</option>
+    <option value="s2">2 · Wrong answer (K1)</option>
+    <option value="s3">3 · Result: quiz passed (R1)</option>
+    <option value="s4">4 · Result: practice round (R1)</option>
+    <option value="s5">5 · Games box 720px (G1, G2, R2)</option>
+    <option value="s6">6 · Home (K4 portrait)</option>
+    <option value="s7">7 · Parent screen (P5, P2)</option>
+    <option value="s8">8 · Time's up (P4, P2)</option>
+  </select>
+  <span class="note">Proposed design · sample data · not the live app</span>
+</div>
+<div class="stage"><div class="frame" id="frame"><div class="sample">SAMPLE DATA</div>
+
+<section class="scr show" id="s1"><div class="center">
+  <div class="qhead"><button class="btn-s">← Exit</button><h2>Gate 1: 夏朝 Boss · 关卡挑战</h2></div>
+  <div class="dots"><i class="on"></i><i></i><i></i></div>
+  <div class="card">
+    <div class="lbl">Pick the meaning · 汉字认读 — Question 2 of 7</div>
+    <div class="big">家<button class="spk" aria-label="Hear it">🔊</button></div>
+    <div class="hint"><button class="btn-s">👆 Show pinyin</button></div>
+    <div class="ask">What does this character mean?</div>
+    <div class="opts"><button class="opt">to rain</button><button class="opt">home / family</button><button class="opt">grandpa</button><button class="opt">to be</button></div>
+  </div>
+</div></section>
+
+<section class="scr" id="s2"><div class="center">
+  <div class="qhead"><button class="btn-s">← Exit</button><h2>Gate 1: 夏朝 Boss · 关卡挑战</h2></div>
+  <div class="dots"><i class="on"></i><i></i><i></i></div>
+  <div class="card">
+    <div class="lbl">Pick the meaning · 汉字认读 — Question 2 of 7</div>
+    <div class="big">家<button class="spk" aria-label="Hear it">🔊</button></div>
+    <div class="ask" style="margin-top:var(--space-4)">What does this character mean?</div>
+    <div class="opts"><button class="opt bad">✗ grandpa</button><button class="opt ok">✓ home / family</button><button class="opt">to rain</button><button class="opt">to be</button></div>
+    <div class="fb">Not quite — it is <b>home / family</b></div>
+    <div class="row"><button class="btn-g">Next →</button></div>
+  </div>
+</div></section>
+
+<section class="scr" id="s3"><div class="center"><div class="card">
+  <div class="stars">★★★</div>
+  <div class="rtitle">Quiz passed!</div>
+  <div class="rsub">夏朝 · Xia Dynasty<small>19 of 20 right · best ever: 19 of 20</small></div>
+  <div class="next"><h4>Next: open Gate 2</h4>
+    <li>✓ Quiz: 3 stars</li><li>○ Get 3★ in each game: Listen ✓ · Trace · Match · Rain</li></div>
+  <div class="row"><button class="btn-g">← Go Back</button><button class="btn-s">↺ Retry</button></div>
+</div></div></section>
+
+<section class="scr" id="s4"><div class="center"><div class="card">
+  <div class="stars" style="color:var(--jade)">🌱</div>
+  <div class="rtitle">Practice round</div>
+  <div class="rsub">夏朝 · Xia Dynasty<small>9 of 20 right — every try teaches you new words</small></div>
+  <div class="next"><h4>Next time</h4>
+    <li>○ Quiz: 18 of 20 right for 3 stars (best so far: 12)</li><li>💡 The words you missed are in your Practice list</li></div>
+  <div class="row"><button class="btn-g">↺ Try again</button><button class="btn-s">← Go Back</button></div>
+</div></div></section>
+
+<section class="scr" id="s5"><div class="card pop"><button class="x" aria-label="Close">✕</button>
+  <h2>🎮 Games · 游戏</h2><div class="sub">Pick a game and word pool · 🌊 Xia Dynasty</div>
+  <div class="games">
+    <div class="game"><h3>👂 Listen</h3><div class="st">★☆☆</div><div class="btns"><button class="btn-s dim">Dynasty · 朝代 🔒</button><button class="btn-s">HSK · 等级词</button><button class="btn-s full">Practice list · 复习本</button></div><p>Read the story once first 📖</p></div>
+    <div class="game"><h3>✍️ Trace</h3><div class="st">☆☆☆</div><div class="btns"><button class="btn-s dim">Dynasty · 朝代 🔒</button><button class="btn-s">HSK · 等级词</button><button class="btn-s full">Practice list · 复习本</button></div><p>Read the story + finish flash cards 🎴</p></div>
+    <div class="game"><h3>🧠 Match</h3><div class="st">☆☆☆</div><div class="btns"><button class="btn-s dim">Dynasty · 朝代 🔒</button><button class="btn-s">HSK · 等级词</button><button class="btn-s full">Practice list · 复习本</button></div><p>Read the story twice 📖📖</p></div>
+    <div class="game"><h3>🌧️ Rain</h3><div class="st">☆☆☆</div><div class="btns"><button class="btn-s dim">Dynasty · 朝代 🔒</button><button class="btn-s">HSK · 等级词</button><button class="btn-s full">Practice list · 复习本</button></div><p>Play Listen first 👂</p></div>
+  </div>
+  <div class="legend">Dynasty = words from your gate · HSK = words from your level · Practice list = words you missed before</div>
+</div></section>
+
+<section class="scr" id="s6" style="padding:0"><div class="chip ptchip"><span class="av">🐥</span><span class="nm">Jenn</span><small>⇄ Switch profile · 换人</small></div>
+<div class="home">
+  <aside class="side">
+    <div class="chip" style="flex-direction:column"><span class="av">🐥</span><span class="nm">Jenn</span><small>⇄ Switch profile · 换人</small></div>
+    <div class="clock">14:26</div>
+    <div class="box"><b>TIME LEFT TODAY</b><span class="clock" style="display:block">19:58</span></div>
+    <div class="box"><b>Daily Challenge · 每日一字</b>Learn one new character<div class="row" style="justify-content:flex-start;margin-top:var(--space-3)"><button class="btn-g">Let's Start</button></div></div>
+    <div class="box"><b>🌱 Review today · 今日复习</b>Nothing due today ✓</div>
+  </aside>
+  <main class="main">
+    <div class="htitle">Jenn's Adventure</div>
+    <div class="tabs"><button class="tab on">HSK 1</button><button class="tab">HSK 2 🔒</button><button class="tab">HSK 3 🔒</button><button class="tab">HSK 4 🔒</button></div>
+    <div class="road">
+      <div class="node on"><div class="c">🌊</div><div class="zh">夏朝</div><div class="en">Gate 1</div></div>
+      <div class="node"><div class="c">🦴</div><div class="zh">商朝</div><div class="en">Gate 2</div></div>
+      <div class="node"><div class="c">📜</div><div class="zh">西周</div><div class="en">Gate 3</div></div>
+      <div class="node"><div class="c">⚔️</div><div class="zh">东周</div><div class="en">Gate 4</div></div>
+      <div class="node"><div class="c">🏯</div><div class="zh">秦朝</div><div class="en">Gate 5</div></div>
+      <div class="node"><div class="c">👑</div><div class="zh">Champion</div><div class="en">Group 1</div></div>
+      <div class="node"><div class="c">🐉</div><div class="zh">西汉</div><div class="en">Gate 6</div></div>
+    </div>
+    <div class="quick"><button class="btn-s">🌟 My Day · 今日进度</button><button class="btn-s">📖 Pinyin Chart · 拼音表</button><button class="btn-s">🎴 Flash Cards · 词卡</button><button class="btn-s">🏮 Culture Stories · 文化小故事</button></div>
+  </main>
+</div></section>
+
+<section class="scr" id="s7"><div class="card pop" style="max-width:960px"><button class="x" aria-label="Close">✕</button>
+  <div class="ptitle">📋 Parent Summary · 家长报告</div>
+  <div class="tabs"><button class="tab on">📅 Weekly · 每周</button><button class="tab">📅 Daily · 每日</button></div>
+  <div class="two">
+    <div class="kid"><h4>🐥 <span class="j1">Jenn</span></h4><div class="kv"><span>⭐ This week's stars</span><span>24</span></div><div class="kv"><span>✅ Correct (week)</span><span>86</span></div><div class="kv"><span>🏯 Gates cleared</span><span>3 / 22</span></div><div class="kv"><span>⏱ Time today</span><span>18 min</span></div><div class="kv"><span>🎯 Quiz points (Gate 3)</span><span>250 / 285</span></div></div>
+    <div class="kid"><h4>🦊 <span class="j2">Jess</span></h4><div class="kv"><span>⭐ This week's stars</span><span>17</span></div><div class="kv"><span>✅ Correct (week)</span><span>61</span></div><div class="kv"><span>🏯 Gates cleared</span><span>2 / 22</span></div><div class="kv"><span>⏱ Time today</span><span>12 min</span></div><div class="kv"><span>🎯 Quiz points (Gate 2)</span><span>198 / 285</span></div></div>
+  </div>
+  <div class="sec"><h3>⭐ Stars &amp; 🎁 Mystery Box</h3><div class="two">
+    <div class="kid"><h4>🐥 Jenn · 24⭐</h4><div class="set"><input value="5" style="width:4rem" aria-label="Amount"><button class="btn-s btn-give">＋ Give</button><button class="btn-s btn-take">－ Take</button></div><div class="help">Give or take stars by hand, e.g. for chores done offline.</div></div>
+    <div class="kid"><h4>🦊 Jess · 17⭐</h4><div class="set"><input value="5" style="width:4rem" aria-label="Amount"><button class="btn-s btn-give">＋ Give</button><button class="btn-s btn-take">－ Take</button></div><div class="help">Give or take stars by hand, e.g. for chores done offline.</div></div></div></div>
+  <div class="sec"><h3>⚙️ Settings · 设置</h3>
+    <div class="set"><label><input type="checkbox" style="min-height:24px;width:24px"> Hide mascot bubble for kids</label></div>
+    <div class="set">Family co-op week stars goal <input value="120" style="width:5rem"><button class="btn-s">Save</button></div>
+    <div class="set">Audio mode <select><option>Normal</option></select></div>
+    <div class="set">Parent webhook URL (optional) <input placeholder="https://example.com/webhook" style="flex:1;min-width:12rem"><button class="btn-s">Save</button></div>
+  </div>
+  <div class="danger"><button class="btn-danger">🗑 Clear All Progress · 清除所有进度</button><div class="help">Asks for the password, then wipes both girls' progress. Cannot be undone.</div></div>
+</div></section>
+
+<section class="scr" id="s8"><div class="card tl"><div class="e">⏰</div><h2>Time's Up! 时间到！</h2>
+  <p>You've used your 20 minutes today.<br>Ask a parent to unlock more time!</p>
+  <input type="password" placeholder="Parent PIN" aria-label="Parent PIN">
+  <div class="row"><button class="btn-g">Unlock 🔓</button><button class="btn-s">End Session</button></div>
+</div></section>
+
+</div></div>
+<script>
+const DEV={land:[1194,834],port:[834,1194],phone:[390,844]};
+let dev='land';
+const fr=document.getElementById('frame');
+function fit(){const [w,h]=DEV[dev];fr.style.width=w+'px';fr.style.height=h+'px';
+  const s=Math.min(1,(innerWidth-32)/w,(innerHeight-90)/h);fr.style.transform='scale('+s+')';
+  fr.parentElement.style.height=(h*s+32)+'px';
+  document.body.classList.toggle('pt',dev!=='land');}
+document.querySelectorAll('[data-dev]').forEach(b=>b.onclick=()=>{dev=b.dataset.dev;document.querySelectorAll('[data-dev]').forEach(x=>x.classList.toggle('on',x===b));fit();});
+document.querySelectorAll('[data-sea]').forEach(b=>b.onclick=()=>{document.body.classList.remove('season-spring','season-autumn');if(b.dataset.sea!=='crimson')document.body.classList.add('season-'+b.dataset.sea);document.querySelectorAll('[data-sea]').forEach(x=>x.classList.toggle('on',x===b));});
+document.getElementById('pick').onchange=e=>{document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('show',s.id===e.target.value));fr.scrollTop=0;};
+addEventListener('resize',fit);fit();
+</script>
+</body></html>
