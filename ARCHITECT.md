@@ -38,6 +38,11 @@ correct-answer reveal card keeps the moment fresh and positive:
 
 Pick at random; do not show the same line twice in a row.
 
+The inline feedback under a multiple-choice question reads **"Not quite — it is
+…"** with the right answer; the chosen option is marked ✗ and the right one ✓
+(CSS `::before` on `.mcq-opt.wrong` / `.correct`). No ❌ appears next to a right
+answer (2026-09-30 design fix).
+
 ---
 
 ## 2. Scoring rule — full round or zero stars
@@ -91,7 +96,7 @@ Games are a reward for engaging with content, not a substitute for it.
 Show locked options as disabled with a one-line "what to do to unlock" hint
 rather than hiding them entirely — kids should see the path forward.
 
-**Apply gating only to the dynasty scope.** HSK and Work-in-Progress scopes
+**Apply gating only to the dynasty scope.** HSK and Practice-list (formerly Work-in-Progress) scopes
 stay open so kids always have somewhere to land.
 
 ---
@@ -363,7 +368,13 @@ beside it — no build step, no bundler, no ES modules — each ending with a
 Two traps in `index.html`: several functions are **defined twice** and the later
 definition silently wins, so a new global must be defined once; and colours must
 come from the `:root` custom properties, because `applySeasonTheme()` redeclares
-them and literal hex breaks under the seasonal themes.
+them and literal hex breaks under the seasonal themes. The token set, sizes and
+rules are in `docs/DESIGN.md` (gold alphas `--gold-a10/a20/a35`, `--wrong-text`,
+`--wrong-dim`, `--red-deep`, `--py-cream/mint`, type scale `--t-*`, `--tap-min`
+52 px). Main buttons (`.btn-p`, `.btn-g`) are gold; red is kept for Clear all and
+the parent Take / Remove pick buttons. Controls are at least 52 px tall and no CSS
+text is under .65rem. The profile-select screen carries a hand-updated version
+stamp.
 
 **External dependencies (CDN):**
 - Google Fonts: Ma Shan Zheng (decorative), Noto Serif SC (Chinese text),
@@ -783,7 +794,8 @@ speaking prompt — displayed in the dynasty detail panel below the story button
 All four games have three **word scopes**:
 - **Dynasty** — words from the current/selected gate's stories (gated by §3)
 - **HSK** — current HSK level vocabulary from `HSK_VOCAB`
-- **Work in Progress** — words from `failedWords` (always open)
+- **Practice list** (internal key `scopeWip`; called "Work in Progress" before
+  2026-09-30) — words from `failedWords` (always open)
 
 ### 16.1 Listen (👂)
 
@@ -798,7 +810,10 @@ at natural end (all 10 answered).
 
 **Save/resume:** `pendingSessions.listen` persisted after every answer.
 
-### 16.2 Memory Match (🧠)
+### 16.2 Match (🧠)
+
+Shown to the child as **"Match"** everywhere (it was "Memory match" / "Memory"
+before 2026-09-30); function names (`startMemoryMatch`, `tapMatch`) are unchanged.
 
 Concentration-style flip-and-match. Pair count: `min(pool size, 6 for gates
 1–14 / 8 for gates 15–22)`. Deriving it from the gate id alone dealt an
@@ -888,6 +903,14 @@ become true while checking game stars (`updateGateGameBest`), the gate auto-clea
 Three sequential phases. Stars and score are computed only at the result screen
 (Phase 3 → `renderQuizResult`).
 
+**What the child sees** (2026-09-30): no phase numbers, points or score lines.
+Labels read "Pick the character · 选汉字 — Question n of N", "Pinyin Typing ·
+拼音练习 — Question n of N", "Sentence Builder · 句子排列 — Sentence n of N"; a
+right answer says "✅ Correct!" (plus "🔕🙈 bonus!" / "🎯 bonus!"). The result
+title is Cleared! / Quiz passed! / Almost there! / Practice round, the summary is
+"n of N right · best ever: x%", and the lock card is titled "Next: open this
+gate". The scoring below is unchanged.
+
 ### Phase 0 — MCQ (Multiple Choice)
 8–10 questions (varies by `lastBossQuizThemeIdx` cycling 0/1/2). Each
 question: show Chinese character → pick English meaning from 4 options, OR
@@ -951,7 +974,7 @@ All 16 badges defined in `BADGE_DEFS`:
 | `daily_regular` | ☀️ | 7 daily challenges | `dailyWordTotal >= 7` |
 | `pinyin_master` | 📘 | Finished pinyin intro | `opts.pinyinDone` passed to `checkBadges` |
 | `one_day_gate` | 🏅 | Cleared a gate in one day | Gate started and cleared on the same day |
-| `cross_trainer` | 🧩 | 20 HSK/WIP rounds | `altRoundProgress.total >= 20` |
+| `cross_trainer` | 🧩 | 20 HSK / Practice list rounds | `altRoundProgress.total >= 20` |
 | `week_star_lead` | 🥇 | Led week stars (12+) | Checked during rivalry co-op render |
 | `tries_100` | 🌱 | 100 brave tries | `totalWrongAnswers >= 100` |
 | `tries_500` | 🌳 | 500 brave tries — mighty learner! | `totalWrongAnswers >= 500` |
@@ -997,7 +1020,10 @@ correct. Word comes from `failedWords` if library has entries, else from
 
 ## 20. Parent dashboard
 
-Accessible from select screen via "Parent" button. Opening it asks the parent
+Accessible from select screen via "Parent" button. Order on screen (2026-09-30):
+Weekly / Daily report first, then the Star manager, then **Settings · 设置**
+(mascot, co-op goals, audio mode, webhook), then Clear all progress, with short
+help lines under the star controls, the webhook and Clear all. Opening it asks the parent
 PIN (`PARENT_PWD`, `'1234'` in dev — change for production), as do the star
 edits and clear-all. The PIN is a household control, not a data boundary: it
 sits in this file, and the Firestore rules are what keep the records private.

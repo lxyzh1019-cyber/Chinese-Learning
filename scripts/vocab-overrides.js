@@ -231,4 +231,13 @@ module.exports = {
   "子":   { py: "zi",     en: "(word ending, as in 孩子)" },
   "妈":   { py: "mā",     en: "mum; mother" },
   "时候": { py: "shíhou", en: "time; moment" },
+  // Plan v4 stage 8 (2026-09-30): the imported first sense was an onomatopoeia,
+  // a colloquial or literary use, or a cross-reference — not the word taught.
+  // Three readings matched the imported sense, not the taught one: 吗 má,
+  // 底 de and 刺 cī (stage 8b).
+  "吗":   { py: "ma",   en: "question word at the end: yes or no?" },
+  "当":   { py: "dāng", en: "when; to act as" },
+  "刺":   { py: "cì",   en: "thorn; to prick" },
+  "底":   { py: "dǐ",   en: "bottom; end (of a month or year)" },
+  "获":   { py: "huò",  en: "to win; to get; (literary) to catch; to capture" },
 };
