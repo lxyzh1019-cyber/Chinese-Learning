@@ -8,7 +8,7 @@ Single working record for this repository. Updated by the main session at the en
 - Round 4 approved 2026-09-30: Plan v4 — design fix, all five handoff parts in one PR on branch `claude/design-fix-one-pr` (tokens/colours/sizes/docs, layout, kids' wording, parent screen order, five corrected glosses 吗 当 刺 底 获). Plan copy: `plans/2026-09-30-plan-v5-design-fix-one-pr.md`.
 
 ## Pending
-- Round 4 stages 2–12 (see the plan copy).
+- None for round 4. Follow-ups are listed under Open questions.
 
 ## Request ledger
 | # | Round/date | Requirement (user's words, short) | Status | Note |
@@ -21,7 +21,7 @@ Single working record for this repository. Updated by the main session at the en
 | 6 | R1 2026-09-21 | Commit and push to `rules-v2` | done | caa8da7; PR #55 was already open for the branch |
 | 7 | R2 2026-09-22 | Keep the repo's 1497-line blueprint as `ARCHITECT.md` | done | restored byte-identical from `0b32aa4:CLAUDE.md`; header and a pointer in `CLAUDE.md` added |
 | 8 | R1 2026-09-21 | Merge `rules-v2` into `main` (bundle README step 3) | open | user action on github.com; rules and hooks govern sessions only once on `main` |
-| 9 | R3 2026-09-27 | Run the `hz-claude-config` stub installer; commit, push and open a PR if it ends `INSTALL OK` | done | `INSTALL OK`, smoke test `Rules v3.1.4 loaded`. v2 hooks, skill copy, `tests/replay-hooks.sh`, `tests/test-routing-hook.md`, `docs/HZ-skill-trigger-tuning.md` removed; `README.md` (the bundle install guide, no earlier version) removed; "Repository Architecture" section kept in `CLAUDE.md` after the pointer. || 10 | R4 2026-09-30 | Design fix from the handoff, all five parts in one PR | open | PR #59 awaiting the user's merge |
+| 9 | R3 2026-09-27 | Run the `hz-claude-config` stub installer; commit, push and open a PR if it ends `INSTALL OK` | done | `INSTALL OK`, smoke test `Rules v3.1.4 loaded`. v2 hooks, skill copy, `tests/replay-hooks.sh`, `tests/test-routing-hook.md`, `docs/HZ-skill-trigger-tuning.md` removed; `README.md` (the bundle install guide, no earlier version) removed; "Repository Architecture" section kept in `CLAUDE.md` after the pointer. || 10 | R4 2026-09-30 | Design fix from the handoff, all five parts in one PR | done | PR #59 merged (faa6a2e) |
 | 11 | R4 2026-09-30 | Only the wrong glosses change; keep the old wording otherwise | done | 吗 当 刺 底 获 in 19 places |
 | 12 | R4 2026-09-30 | Fix the pinyin of 吗 底 刺 too; apply 回 and 兵 now; rebuild stories now | done | answered in chat after stage 8 |
 
@@ -51,8 +51,8 @@ Rule: 3 fix rounds, or 2 recurrences, or a fix causing a nearby regression → n
 | R4 stage 8b: pinyin 吗 ma / 底 dǐ / 刺 cì; apply held 回 兵 overrides; rebuild stories | COMPLETE | pinyin 吗 ma / 底 dǐ / 刺 cì in every copy (typing "di" accepted, checked with the app's stripTones); 回 "to return; to go back", 兵 "soldier" (incl. lesson hsk4_gate_20); build:stories changed exactly 10 values, build:sentences 1, lessons none; 32 values changed in data/, nothing else; ledger lists all 7 words; tests 344/344 |
 | R4 stage 9: checks and screenshots | COMPLETE | colour grep clean in CSS block; gloss check 51 fields, only the 7 words; browser audit on a local Firebase-free copy, 1194×834 and 834×1194: nothing under 52 px after the fix (parent button 41→52, Hear again 42→52, practice chips 27→52, mascot row 13→52), Dynasty Road in first portrait viewport, no label overlap, no CSS text <12 px; 31 screenshots in `docs/screenshots/design-2026-09/` (800 px wide, pane-scaled) |
 | R4 stage 10: review, records, PR | COMPLETE | review of screenshots and diff; `ARCHITECT.md` §1, §3, §11, §16, §17, §18, §20 updated; plan copied to `plans/`; commit 07126e0 pushed; PR #59 open, ready for review |
-| R4 stage 11: user merges the PR | BLOCKED — waiting for the user to merge PR #59 on GitHub (user action, not delegable) | PR #59 open, ready for review |
-| R4 stage 12: confirm merge, close plan | BLOCKED — depends on stage 11 (the merge) | |
+| R4 stage 11: user merges the PR | COMPLETE | PR #59 merged 2026-10-01 00:02 UTC, merge commit faa6a2e on `main` |
+| R4 stage 12: confirm merge, close plan | COMPLETE | branch tip 6b3ef34 is an ancestor of `origin/main`; plan v5 closed |
 
 ## Checks and evidence
 - 2026-09-21 `bash tests/replay-hooks.sh` → passed=14 failed=0
