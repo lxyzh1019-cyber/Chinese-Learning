@@ -5,10 +5,11 @@ Single working record for this repository. Updated by the main session at the en
 ## Approved baseline
 - Round 1 approved 2026-09-21: install working-rules bundle v2.1 into the repo root on branch `rules-v2` (`.claude/`, `CLAUDE.md`, `FEATURES.md`, `WORKING_RECORD.md`, `tests/`, `docs/`), delete the install zip and the review-only doc, track `.claude/` and ignore `.claude/state/`, verify with `tests/replay-hooks.sh`, commit and push.
 - Round 2 approved 2026-09-22: keep the pre-bundle repo blueprint as `ARCHITECT.md` at the root instead of letting the bundle's `CLAUDE.md` retire it.
+- Round 5 approved 2026-10-10: Plan v6 — review fixes (hz-reviewer full audit + student play test), one PR on branch `claude/review-fixes-v6`, built and checked in claude.ai chat, delivered as a full package. Plan copy: `plans/2026-10-10-plan-v6-review-fixes.md`.
 - Round 4 approved 2026-09-30: Plan v4 — design fix, all five handoff parts in one PR on branch `claude/design-fix-one-pr` (tokens/colours/sizes/docs, layout, kids' wording, parent screen order, five corrected glosses 吗 当 刺 底 获). Plan copy: `plans/2026-09-30-plan-v5-design-fix-one-pr.md`.
 
 ## Pending
-- None for round 4. Follow-ups are listed under Open questions.
+- Round 5: user merges the PR, then opens the live site and walks one gate (hub stars after a game, sync icon).
 
 ## Request ledger
 | # | Round/date | Requirement (user's words, short) | Status | Note |
@@ -23,6 +24,11 @@ Single working record for this repository. Updated by the main session at the en
 | 8 | R1 2026-09-21 | Merge `rules-v2` into `main` (bundle README step 3) | open | user action on github.com; rules and hooks govern sessions only once on `main` |
 | 9 | R3 2026-09-27 | Run the `hz-claude-config` stub installer; commit, push and open a PR if it ends `INSTALL OK` | done | `INSTALL OK`, smoke test `Rules v3.1.4 loaded`. v2 hooks, skill copy, `tests/replay-hooks.sh`, `tests/test-routing-hook.md`, `docs/HZ-skill-trigger-tuning.md` removed; `README.md` (the bundle install guide, no earlier version) removed; "Repository Architecture" section kept in `CLAUDE.md` after the pointer. || 10 | R4 2026-09-30 | Design fix from the handoff, all five parts in one PR | done | PR #59 merged (faa6a2e) |
 | 11 | R4 2026-09-30 | Only the wrong glosses change; keep the old wording otherwise | done | 吗 当 刺 底 获 in 19 places |
+| 13 | R5 2026-10-10 | Apply all review fixes as suggested (S1–S12, L1–L5, F1–F7, B1, D1) | done | PR from `claude/review-fixes-v6` |
+| 14 | R5 2026-10-10 | The two screens showing game progress disagree (pop-up four 3★, hub two) | done | B2: hub redraws when the games/flash pop-up closes; checked over 3 gates |
+| 17 | R5 2026-10-10 | The story quiz after reading is required before the games open | done | L7: the read counts and pays only when the story quiz is finished |
+| 16 | R5 2026-10-10 | F8 B: Trace opens after the first read; L6 Rain hint | done | same PR |
+| 15 | R5 2026-10-10 | Act as a student through a few gates and find bugs | done | gates 1–3 played in the sandbox; findings B2, L5, F8 |
 | 12 | R4 2026-09-30 | Fix the pinyin of 吗 底 刺 too; apply 回 and 兵 now; rebuild stories now | done | answered in chat after stage 8 |
 
 ## Hotspot counter
@@ -30,6 +36,7 @@ Single working record for this repository. Updated by the main session at the en
 |---|---|---|---|---|---|---|
 | Root `CLAUDE.md` / governing docs | 1 | 0 | 0 | 0 | R1 replaced the repo blueprint wholesale; R2 restored it as `ARCHITECT.md` | no |
 | UI design / kid wording / glosses | 1 | 0 | 0 | 0 | R4 handoff: crimson tints in other seasons, small tap targets and text, grown-up quiz wording, four wrong-sense glosses | no |
+| Hub refresh / sync status | 1 | 0 | 0 | 0 | R5: hub kept stale stars and locks after games; first save of a session refused | no |
 Rule: 3 fix rounds, or 2 recurrences, or a fix causing a nearby regression → no further patch until the comparison is presented.
 
 ## Deliverable ledger
@@ -55,6 +62,7 @@ Rule: 3 fix rounds, or 2 recurrences, or a fix causing a nearby regression → n
 | R4 stage 12: confirm merge, close plan | COMPLETE | branch tip 6b3ef34 is an ancestor of `origin/main`; plan v5 closed |
 
 ## Checks and evidence
+- 2026-10-10 Plan v6 tree (fresh clone of `main` f57bd11 + `apply_v6.py`): `npm run verify` 344/344; layout check 20 screens × 4 sizes, 0 CLIP/TAP/EDGE/PAGE; student play gates 1–3: hub = pop-up after all 12 games, 0 script errors; fake-Firestore run: first save of session 2 lands, status synced. Trace pen simulated (tracing library blocked in the sandbox).
 - 2026-09-21 `bash tests/replay-hooks.sh` → passed=14 failed=0
 - 2026-09-22 `bash tests/replay-hooks.sh` after the `ARCHITECT.md` round → passed=14 failed=0
 - 2026-09-22 `git show 0b32aa4:CLAUDE.md | diff -` against the restored body → identical
@@ -63,6 +71,9 @@ Rule: 3 fix rounds, or 2 recurrences, or a fix causing a nearby regression → n
 - Untested: hook behaviour in a live session (plan tiers, validation line, record guard, routing guard). Only replayable synthetic inputs have run; the real path needs a session started after the merge to `main`.
 
 ## Open questions / blockers
+- R5 decided: F8 option B — Dynasty Trace opens after the first read; the 66-card flash pass no longer locks it.
+- R5 open: G1 — check the Firebase console rules hold the `chinese-adventure` block; F6 — parent settings are per device (waiting on whether the girls use more than one device).
+- R5 kept: the assessment band note in `data/assessment/manifest.json` stays (banks are frozen by hash).
 - Follow-ups found in stage 9, outside this plan: Listen and Rain still show "score N"; 12 inline gold/red literals outside the CSS block; the daily word for 大 offered two right-looking options; "1 days" on My Day and parent screen.
 - Local-only: `validate:assessment` fails 4 hash checks on this Windows clone (CRLF checkout); passes on LF checkouts.
 - Found in stage 8b, out of scope: HSK1 sentence pack reads 地上 as "de shàng" (should be "dì shàng"). Pre-existing; follow-up.

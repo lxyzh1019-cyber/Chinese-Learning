@@ -271,8 +271,7 @@
             ${bands.slice(1).map((b) => `<button class="btn-s" style="font-size:.68rem;" onclick="assessmentStart('baseline',null,null,'${esc(b)}')">${esc(bandName(b))}</button>`).join("")}
           </div>
           <div style="font-size:.66rem;color:var(--muted);margin-top:.35rem;line-height:1.5;">
-            Every set is scored on its own questions, so starting higher does not
-            borrow credit — it only skips the easier evidence.
+            Start anywhere. Each set counts on its own.
           </div>
         </div>`}
       ${[...conflicts.keys()].map((id) => `<div class="practice-box" style="text-align:left;margin-top:.7rem;font-size:.72rem;line-height:1.5;">

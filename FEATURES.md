@@ -1,4 +1,4 @@
-# FEATURES — Chinese Adventure — manifest v1 — confirmed 2026-09-30
+# FEATURES — Chinese Adventure — manifest v2 — 2026-10-10 (Plan v6)
 
 Locked features of the current version. Every edit is checked against this list and ends with a regression table. Update this file in the same change that alters a feature. Over-list rather than under-list. Source: `ARCHITECT.md` §1–§29 and `index.html` at `main` 91d2601.
 
@@ -11,10 +11,10 @@ Locked features of the current version. Every edit is checked against this list 
 - Legacy saves migrate through `GateIdentity.needsMigration` (gate ids and story ids), idempotently, with no invented completions.
 
 ## Reading and learning gates
-- Dynasty-scope unlock chain: read story ≥45 s → Listen; flashcards done → Trace; second read ≥45 s → Match; Listen played once → Rain.
-- Locked options show as disabled with a one-line hint; HSK and practice-list scopes are always open.
+- Dynasty-scope unlock chain: a read counts only when its story quiz is finished (stars for the read are paid then too). Read story ≥45 s → Listen and Trace; second read ≥45 s → Match; second read and Listen played once → Rain. Flash cards are always available and lock nothing.
+- Locked options show as disabled with a one-line hint; HSK and practice-list scopes are always open; an empty practice list shows "Practice list: wrong answers land here" under its button.
 - Story reader: tap a character to show pinyin + meaning, add it to the library and play audio; pinyin/English toggles; progress bar over study characters.
-- A read pays 5 per new character + 20, capped at 100; a story mini-quiz follows the read (progress shows "n / N", no score line).
+- A read pays 5 per new character + 20, capped at 100, when its story quiz is finished; a story mini-quiz follows the read (progress shows "n / N", no score line); its end says "Perfect! 全对！" only when nothing was missed, else "Story quiz done! 完成！".
 - Stories per level (ladder 10/15/20/25 sentences); a level without its own text says it's showing the HSK1 telling.
 - Lesson cards in the dynasty detail panel: key vocabulary, `check` questions with explanations shown either way, self-check fallback, speaking prompt.
 - Culture stories are independent of gates and may reward stars once.
@@ -30,14 +30,14 @@ Locked features of the current version. Every edit is checked against this list 
 - "Resume last activity" restores any saved session.
 
 ## Gate quiz
-- Three phases: character/meaning multiple choice, pinyin typing (tones not required, chart peek removes the bonus), sentence builder (3 sentences; alternates accepted).
+- Three phases: character/meaning multiple choice, pinyin typing (tones not required, chart peek removes the bonus), sentence builder (3 sentences; alternates accepted). Hard Boss adds 2 multiple-choice and 2 pinyin questions and can earn the "no hints" badge.
 - Scoring: +10 / +8 / +20 per correct, with no-assistance bonuses; stars from accuracy (>85% 3★, >70% 2★, >55% 1★).
 - A gate clears when the best quiz is ≥90% with 3★ **and** all four games are at 3★ for that gate, before its timer runs out.
 - Completion pays once (`evaluateGateCompletion`); a replay pays nothing.
 - A round that outlives a gate reset is shown as practice and pays nothing.
 - Recent-question deduplication (last 80 MCQ and 80 pinyin keys per gate).
 - Result screen shows cleared / quiz passed / almost / practice state, the stars for this try, "n of N right · best ever: x%", and a "Next: open this gate" card with what's still needed.
-- Quiz labels read "Question n of N" / "Sentence n of N"; right answers say "✅ Correct!"; no points, phases or score lines on kid screens.
+- Quiz labels read "Question n of N" / "Sentence n of N"; right answers say "✅ Correct!"; no points, phases or score lines on kid screens; one "← Exit" button in the quiz header.
 - Wrong answers show "Not quite — it is …"; chosen options are marked ✓ / ✗.
 
 ## Gate timer
@@ -57,7 +57,7 @@ Locked features of the current version. Every edit is checked against this list 
 ## Rewards and engagement
 - 16 badges (effort-framed, never shaming); badges are never removed.
 - Mascot (parent can hide it; unlocks after the 5th gate).
-- Mystery box picks, rivalry/co-op strip with a family goal, daily mission, stickers, micro-reward toasts, pinyin intro, character-origin carousel.
+- Mystery box picks, rivalry/co-op strip with a family goal, daily mission, stickers, micro-reward toasts, pinyin intro (opened from the Pinyin Chart: "📘 Pinyin intro · 拼音入门"), character-origin carousel.
 - Wrong answers are never shamed; the reveal card rotates encouragement lines.
 
 ## Session and time
@@ -70,7 +70,7 @@ Locked features of the current version. Every edit is checked against this list 
 - Weekly / Daily report tabs, "played before 2 reads" flag, failed-words grid.
 - Star manager: give/take stars, give/remove mystery picks, per player.
 - Order: report first, then Star manager, then Settings · 设置, then Clear all; help lines under star controls, webhook and Clear all.
-- Settings: hide mascot, co-op stars goal, co-op minutes goal, audio mode, webhook URL with export and send.
+- Settings: hide mascot, co-op stars goal, co-op minutes goal, audio mode, webhook URL with export and send; the two goals save on change (no Save buttons).
 - Clear all progress: password first, wipes both players to fresh state, stamps `progressClearedAt`, keeps parent settings, device id and assessment attempts, and reports whether the wipe reached the cloud.
 
 ## Assessment
@@ -80,7 +80,7 @@ Locked features of the current version. Every edit is checked against this list 
 
 ## Data, sync and safety
 - Local save under `zh_adv_v1`; Firestore `chinese-adventure/jenn` and `/jess`.
-- Owner-scoped saves; compare-and-set writes; divergence merged (star ledger, unions, max counters, both sessions kept).
+- Owner-scoped saves; compare-and-set writes (a refused save is merged and retried once); one sync icon on the hub profile chip (💾 saved on this device · ☁️ synced · ⚠️ needs attention); divergence merged (star ledger, unions, max counters, both sessions kept).
 - Gate resets and Clear all win merges as designed; null session slots don't erase a live round.
 - Deferred callbacks run through scopes and are drained on exit and profile switch.
 - Tests never reach the live collection (`firebase` undefined in the test loader).
@@ -88,11 +88,11 @@ Locked features of the current version. Every edit is checked against this list 
 ## Looks and themes
 - Three themes: Crimson (default), Spring, Autumn, applied at start-up by season class; colours come from `:root` tokens.
 - Fonts: Ma Shan Zheng (decorative), Noto Serif SC (Chinese), Quicksand (UI).
-- Hub: sidebar + Dynasty Road (at 900 px or narrower: profile chip, Dynasty Road, then sidebar cards, full width); pop-ups up to 720 px; games picker; overlays for flash cards, drill, revenge, My Day, pinyin chart and lesson, culture, daily word, mystery box, timers, assessment, timelock.
+- Hub: sidebar + Dynasty Road (at 900 px or narrower: profile chip, Dynasty Road, then sidebar cards, full width); pop-ups up to 720 px; games picker; overlays for flash cards, drill, revenge, My Day, pinyin chart and lesson, culture, daily word, mystery box, timers, assessment, timelock. The active gate's panel shows when the hub opens; the hub redraws when the games or flash-card pop-up closes; the star rules sit in the closed "How stars, tips & boxes work" section.
 - Chinese text (characters, pinyin) is never altered by UI or wording changes.
 - Main buttons (`.btn-p`, `.btn-g`) are gold in every theme; only Clear all, Take and Remove pick stay red.
 - Buttons and choices are at least 52 px tall; parent inputs at least 44 px; no CSS text under .65rem; heaviest weight 700.
-- Profile-select screen shows a hand-updated version stamp (`v2026-09-30`).
+- Profile-select screen shows a hand-updated version stamp (`v2026-10-10`).
 - Story sentence stripes are gold (no per-sentence rainbow colours).
 
 ## Content tooling

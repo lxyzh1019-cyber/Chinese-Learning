@@ -65,11 +65,11 @@ test("gateTimerDays follows 5 + 2*floor((n-1)/5) per level", () => {
 
 // ── PINNED: the legitimate unlock chain (T03) ─────────────────────────────
 
-test("one qualifying read unlocks Listen only", () => {
+test("one qualifying read unlocks Listen and Trace", () => {
   const a = app();
   F.installState(a, { jenn: F.oneQualifyingRead(a) });
   assert.deepEqual(a.gameUnlockForDid(1), {
-    listen: true, trace: false, match: false, rain: false,
+    listen: true, trace: true, match: false, rain: false,
   });
 });
 
@@ -676,7 +676,7 @@ test("S02: a write lands and reports Synced when nobody else has written", async
   assert.equal(a.syncStatus.jenn, "synced");
 });
 
-test("S02: a stale write is refused instead of clobbering a newer device", async () => {
+test("S02: a stale write is refused, merged, then retried once — the other device's data is kept", async () => {
   const a = app();
   F.installState(a);
   // Another device has already pushed revision 7.
@@ -688,9 +688,12 @@ test("S02: a stale write is refused instead of clobbering a newer device", async
   a.savePlayer("jenn");
   await tick();
 
-  assert.equal(db.box.writes, 0, "the stale write did not overwrite the newer document");
-  assert.equal(db.box.doc.totalStars, 900, "the other device's data is intact");
-  assert.equal(a.syncStatus.jenn, "attention", "and it is surfaced, not swallowed");
+  assert.equal(a.state.jenn.syncConflicts.length, 1, "the stale write was refused and the divergence recorded");
+  assert.equal(db.box.writes, 1, "one retry wrote the merged document");
+  assert.ok(db.box.doc.revision > 7, "the retry moved past the other device's revision");
+  assert.equal(db.box.doc.totalStars, 900, "the other device's stars are intact");
+  assert.equal((db.box.doc.gatesCompleted || []).length, 3, "the other device's gates are intact");
+  assert.equal(a.syncStatus.jenn, "synced");
 });
 
 test("S02: the divergence is recorded with both sides' shape", async () => {
@@ -713,7 +716,7 @@ test("S02: the divergence is recorded with both sides' shape", async () => {
   assert.ok(c[0].mergedTotalStars >= 10, "and the reconciled result is recorded too");
 });
 
-test("S02: after a conflict the next save is decisive rather than looping", async () => {
+test("S02: after a conflict the retry lands once and later saves do not loop", async () => {
   const a = app();
   F.installState(a);
   const db = txDb({ revision: 7, lastSaved: 999, totalStars: 900, gatesCompleted: [] });
@@ -722,13 +725,13 @@ test("S02: after a conflict the next save is decisive rather than looping", asyn
 
   a.savePlayer("jenn");
   await tick();
-  assert.equal(db.box.writes, 0, "first attempt refused");
+  assert.equal(db.box.writes, 1, "the refused attempt is retried once and lands");
+  assert.ok(db.box.doc.revision > 7, "having moved past the other device's revision");
+  assert.equal(a.syncStatus.jenn, "synced");
 
   a.savePlayer("jenn");
   await tick();
-  assert.equal(db.box.writes, 1, "the retry succeeds");
-  assert.ok(db.box.doc.revision > 7, "having moved past the other device's revision");
-  assert.equal(a.syncStatus.jenn, "synced");
+  assert.equal(db.box.writes, 2, "the next save is one ordinary write, not a loop");
 });
 
 // ── W03: clearing all progress, in the app ───────────────────────────────
@@ -2286,11 +2289,11 @@ test("A26: a lesson still on the old template says so instead of asking it", asy
 // bare numeric key made GateIdentity.needsMigration treat an already-modern
 // save as legacy, whose remap then filtered every `h1-g01` key to NaN.
 
-test("F1: finishing a flashcard pass unlocks Trace for that gate", () => {
+test("F1: Trace opens after the first read; a flashcard pass is still filed under the gate key", () => {
   const a = app();
   const p = F.oneQualifyingRead(a);
   F.installState(a, { jenn: p });
-  assert.equal(a.gameUnlockForDid(1).trace, false, "not unlocked before the pass");
+  assert.equal(a.gameUnlockForDid(1).trace, true, "one read opens Trace without a flashcard pass (Plan v6 F8)");
 
   a.flashSt = { did: 1, level: 1, mode: "zh2en", sub: "review",
                 deck: [{ zh: "水", py: "shuǐ", en: "water" }], i: 1, flipped: false };
@@ -2299,7 +2302,7 @@ test("F1: finishing a flashcard pass unlocks Trace for that gate", () => {
   // Computed here, not read back from the app: the key the reader must see.
   assert.deepEqual(Object.keys(a.state.jenn.flashPassDone), ["h1-g01"],
     "the pass is filed under the canonical gate key");
-  assert.equal(a.gameUnlockForDid(1).trace, true, "Trace unlocks");
+  assert.equal(a.gameUnlockForDid(1).trace, true, "Trace stays open after the pass");
 });
 
 test("F1: the pass is filed against the level it was earned in", () => {
@@ -3043,7 +3046,46 @@ test("A09: a story pays at most 100 stars a read", () => {
   a.newChars = new Set("一二三四五六七八九十百千万上下大小人口日月山水火木".split(""));
   assert.equal(a.newChars.size, 25);
   a.completeStory();
+  assert.equal(s.totalStars - before, 0, "nothing is paid until the story quiz is finished (Plan v6 L7)");
+  a.miniQ.score = 0;
+  a.showMiniQuizResult();
   assert.equal(s.totalStars - before, 100, "25 new characters used to pay 145");
+});
+
+test("L7: a read counts only when its story quiz is finished", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  a.curDynasty = a.DYNASTIES[0];
+  a.curStory = { id: "xia-h1", sents: [] };
+  a.launchConfetti = () => {};
+  a.storyOpenTime = Date.now() - 50000;   // a 50-second read
+  a.newChars = new Set(["水"]);
+  a.completeStory();
+  assert.equal((s.storyReadCount || {})["xia-h1"] || 0, 0, "closing the quiz here would count nothing");
+  assert.equal(a.gameUnlockForDid(1).listen, false, "and open nothing");
+  a.miniQ.score = 0;
+  a.showMiniQuizResult();
+  assert.equal(s.storyReadCount["xia-h1"], 1, "the finished quiz counts the read");
+  assert.equal(a.gameUnlockForDid(1).listen, true);
+  assert.equal(a.gameUnlockForDid(1).trace, true);
+});
+
+test("L7: a read under 45 seconds pays at quiz end but does not count", () => {
+  const a = app();
+  F.installState(a);
+  const s = a.state.jenn;
+  a.curDynasty = a.DYNASTIES[0];
+  a.curStory = { id: "xia-h1", sents: [] };
+  a.launchConfetti = () => {};
+  a.storyOpenTime = Date.now();
+  a.newChars = new Set(["水"]);
+  const before = s.totalStars;
+  a.completeStory();
+  a.miniQ.score = 0;
+  a.showMiniQuizResult();
+  assert.equal(s.totalStars - before, 25, "5 per new character + 20");
+  assert.equal((s.storyReadCount || {})["xia-h1"] || 0, 0, "too short to count");
 });
 
 test("A09: a meaning option shows a plain sense, never a bare parenthetical", () => {

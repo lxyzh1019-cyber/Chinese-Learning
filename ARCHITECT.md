@@ -88,8 +88,16 @@ Games are a reward for engaging with content, not a substitute for it.
 
 **Ordered unlock chain per dynasty scope:**
 
-1. Read the story ≥45 s → **Listen** unlocks.
-2. Finish flashcard pass → **Trace** unlocks.
+A read counts only when its story quiz is finished (2026-10-10, Plan v6 L7):
+`completeStory` stores `nextReadCredit` (stars + whether the read lasted 45 s),
+the quiz session carries it as `miniQ.readCredit` (saved with a paused quiz),
+and `showMiniQuizResult` → `applyReadCredit()` pays it. Closing the quiz pays
+nothing and opens nothing.
+
+1. Read the story ≥45 s and finish its story quiz → **Listen** and **Trace** unlock.
+2. Flash cards are always available; a finished pass is recorded but locks
+   nothing (changed 2026-10-10, Plan v6 F8 — a 66-card pass stood between the
+   child and Trace).
 3. Read the story a second time ≥45 s → **Match** unlocks.
 4. Play Listen (dynasty scope) at least once → **Rain** unlocks.
 
@@ -198,7 +206,9 @@ outside creates an orphan brace that produces a silent SyntaxError.
 
 ### 9.3 Star-rule enforcement lives at the call site, not inside the helper
 
-`starsFromAccuracy(correct, total)` is a pure function. Enforce the
+`starsFromAccuracy(correct, total)` is a pure function. It compares whole
+numbers (`correct*100 > 85*total`), so 85.4% is 3★ and there is no rounding or
+float drift (2026-10-10). Enforce the
 "round-must-complete" rule at the call site — only invoke it from the
 natural-end branch of the activity. Keep the helper pure.
 
@@ -295,7 +305,7 @@ function gameUnlockForDid(did){
   const listenPlayed = ((s.gateGameStars && s.gateGameStars[String(did)]) || {}).listen > 0;
   return {
     listen: maxReads >= 1,
-    trace:  maxReads >= 1 && flashDone,
+    trace:  maxReads >= 1,
     match:  maxReads >= 2,
     rain:   maxReads >= 2 && !!listenPlayed,
   };
@@ -746,7 +756,9 @@ the **story mini-quiz**. A read pays 5 per new character plus 20, **capped at
 After completing a story, a quick MCQ quiz on the vocabulary just encountered
 launches automatically. Stars from the story quiz are separate from gate stars
 and are awarded immediately (no "full round" gate because the story was already
-fully read).
+fully read). The end card says "Perfect! 全对！" only when the quiz stayed in
+its main pass (nothing missed); after a retry pass it says "Story quiz done! 完成！"
+(2026-10-10).
 
 ### 15.3 HSK vocabulary arrays
 
@@ -909,7 +921,10 @@ Labels read "Pick the character · 选汉字 — Question n of N", "Pinyin Typin
 right answer says "✅ Correct!" (plus "🔕🙈 bonus!" / "🎯 bonus!"). The result
 title is Cleared! / Quiz passed! / Almost there! / Practice round, the summary is
 "n of N right · best ever: x%", and the lock card is titled "Next: open this
-gate". The scoring below is unchanged.
+gate". The scoring below is unchanged. The header has one "← Exit" button
+(the ✕ was removed 2026-10-10). Hard Boss (`hardMode`) adds 2 MCQ and 2 pinyin
+questions and starts with `noMcqAssistance:true`, so the no-hints badge can be
+earned in it; using 🔊 or the pinyin hint still clears it.
 
 ### Phase 0 — MCQ (Multiple Choice)
 8–10 questions (varies by `lastBossQuizThemeIdx` cycling 0/1/2). Each
@@ -1111,7 +1126,10 @@ Rate-limited by `microRewardLastAt`.
 
 ### 22.7 Pinyin intro
 
-A multi-step lesson overlay explaining the pinyin system. Completion sets
+A multi-step lesson overlay explaining the pinyin system. Opened from the
+Pinyin Chart ("📘 Pinyin intro · 拼音入门" → `startPinyinLesson(true)`); its
+markup is `#overlay-pinyin-lesson` (added 2026-10-10 — before that the overlay
+did not exist, so the lesson and its badge could not be reached). Completion sets
 `pinyinIntroDone = true` and awards the `pinyin_master` badge.
 
 ### 22.8 Char origin card
@@ -1141,7 +1159,7 @@ All other UI is **overlays** (CSS class `show`/`hide`):
 | `revenge-overlay` | `startRevengeRound()` |
 | `myday-overlay` | `showMyDay()` |
 | `pinyin-overlay` | `showPinyinChart()` |
-| `pinyin-lesson-overlay` | `showPinyinLesson()` |
+| `overlay-pinyin-lesson` | `startPinyinLesson(true)` from the Pinyin Chart |
 | `culture-overlay` | `openCultureStories()` |
 | `daily-word-overlay` | `openDailyWordChallenge()` |
 | `mystery-box-overlay` | `openMysteryBox()` |
@@ -1151,6 +1169,12 @@ All other UI is **overlays** (CSS class `show`/`hide`):
 | `comp-overlay` | Legacy story completion (now replaced by mini-quiz) |
 
 `showScreen(id)` hides all `.screen` divs and shows the one with id `scr-{id}`.
+
+The hub opens with the active gate's panel shown (`renderHubContent` falls back
+to the next open gate for display; `selectedGateId` stays null). Closing the
+games or flash-card overlay calls `refreshHubIfShown()`, which re-runs
+`renderHub()` — before 2026-10-10 the hub kept the stars and unlocks it had
+drawn before the round, so it disagreed with the overlay.
 
 ---
 
@@ -1355,7 +1379,11 @@ timestamp, which is exactly the mechanism that let one device's stale copy of th
 alone is the repair: their old timestamp correctly loses.
 
 **Writes are compare-and-set.** `pushPlayer(pid)` runs a Firestore transaction
-against `revision`; a stale write is refused rather than landing.
+against `revision`; a stale write is refused rather than landing. The refusal
+merges the remote copy (`noteSyncConflict`) and `savePlayer` retries once
+(`{retries:1}`), so the first save of a session lands even when this device
+loaded up to date with a base revision of 0 (2026-10-10). The hub profile chip
+shows one icon: 💾 saved on this device · ☁️ synced · ⚠️ needs attention.
 
 **Divergence is merged, not resolved by picking a winner** (`js/merge-state.js`).
 Stars are an event ledger with stable ids, so the merge is commutative and

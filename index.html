@@ -125,6 +125,7 @@ input{font-family:var(--fui);}
   padding:.5rem .6rem .45rem;cursor:pointer;transition:all .18s;}
 .sidebar-profile-chip:hover{background:var(--surface2);border-color:var(--gold);}
 .sidebar-profile-chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.sidebar-sync{font-size:.8rem;line-height:1;}
 .sidebar-chip-switch{font-size:.65rem;font-weight:700;color:var(--muted);letter-spacing:.02em;}
 .sidebar-profile-chip:hover .sidebar-chip-switch{color:var(--gold);}
 /* Assessment: its own screen, deliberately plain. No road, no stars, no gold
@@ -359,7 +360,7 @@ body.nopy-mode .cu:hover{border-color:var(--gold-a35)!important;}
 .dr-node.dr-selected .dr-circle{border-color:var(--gold-bright);box-shadow:0 0 0 3px rgba(240,192,64,.3);}
 .dr-lbl{font-size:.65rem;color:var(--muted);text-align:center;margin-top:.32rem;max-width:78px;
   line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;}
-.dr-en{font-size:.65rem;color:var(--muted);text-align:center;max-width:78px;
+.dr-en{font-size:.65rem;color:var(--muted);text-align:center;max-width:96px;
   line-height:1.2;margin-top:.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .dr-node.dr-completed .dr-lbl{color:var(--jade);}
 .dr-node.dr-active .dr-lbl{color:var(--gold);}
@@ -749,11 +750,12 @@ body.season-autumn{
 .pinyin-chart-card,.pinyin-lesson-card{background:linear-gradient(152deg,#1a1228,var(--deep));
   border:1px solid var(--gold-a35);border-radius:22px;padding:1.6rem 1.4rem;max-width:580px;width:100%;max-height:90vh;overflow-y:auto;position:relative;}
 .pinyin-lesson-card{max-width:520px;}
+@media(min-width:820px){.pinyin-chart-card{max-width:760px;}}
 .py-chart-section{margin-bottom:1.2rem;}
 .py-chart-title{font-size:.88rem;font-weight:700;color:var(--gold);margin-bottom:.55rem;letter-spacing:.02em;}
 .py-hint-label{font-weight:400;font-size:.72rem;color:var(--muted);margin-left:.3rem;}
 .py-chart-tabs{display:flex;gap:.45rem;flex-wrap:wrap;margin:-.2rem 0 .8rem;}
-.py-tab{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:var(--muted);padding:.32rem .72rem;
+.py-tab{min-height:52px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:var(--muted);padding:.32rem .72rem;
   border-radius:999px;font-size:.72rem;font-weight:700;cursor:pointer;}
 .py-tab.active{border-color:var(--gold);color:var(--gold);background:var(--gold-a20);}
 .py-grid{display:flex;flex-wrap:wrap;gap:.4rem;}
@@ -838,12 +840,13 @@ body.season-autumn{
 .pw-row .pw-zh{min-width:52px;min-height:52px;display:inline-flex;align-items:center;justify-content:center;}
 .parent-check{min-height:52px;}
 .parent-check input[type=checkbox]{width:22px;height:22px;flex:none;}
+#parent-mascot-off{width:44px;height:44px;}
 #parent-coop-goal,#parent-coop-min-goal,#parent-audio-mode,#parent-webhook-url,#parent-jenn-star-amt,#parent-jess-star-amt{min-height:44px;}
 .app-version{font-size:var(--t-xs);color:var(--muted);text-align:center;margin-top:1rem;}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3/dist/hanzi-writer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7.3/dist/hanzi-writer.min.js"></script>
 <script src="js/gate-identity.js"></script>
 <script src="js/merge-state.js"></script>
 <script src="js/review-core.js"></script>
@@ -854,7 +857,7 @@ body.season-autumn{
 <!-- ═══ SELECT SCREEN ═══ -->
 <div class="screen show" id="scr-select">
   <div class="sel-header">
-    <div class="app-title">学中文 大冒险</div>
+    <div class="app-title">学中文 <span style="white-space:nowrap;">大冒险</span></div>
     <div class="app-sub">Chinese Adventure · Sisters' Journey Through History</div>
     <div class="sel-hdiv"></div>
   </div>
@@ -897,7 +900,7 @@ body.season-autumn{
     </div>
   </div>
   <button class="parent-btn" onclick="showParentSummary()" data-ui-label="parentSummary"></button>
-  <div class="app-version">v2026-09-30</div>
+  <div class="app-version">v2026-10-10</div>
 </div>
 
 <!-- ═══ HUB SCREEN ═══ -->
@@ -908,6 +911,7 @@ body.season-autumn{
       <span class="sidebar-avatar" id="hub-avatar">🐥</span>
       <span class="sidebar-name" id="hub-name">Jenn</span>
       <span class="sidebar-chip-switch" data-ui-label="switchProfile"></span>
+      <span class="sidebar-sync" id="hub-sync" title="Saved on this device" aria-label="Saved on this device">💾</span>
     </button>
     <div class="sidebar-hsk-badge" id="hub-hsk">HSK 1</div>
     <div class="mascot-wrap" id="mascot-wrap" style="display:none;">
@@ -983,7 +987,6 @@ body.season-autumn{
   <div class="quiz-hdr">
     <button class="back-btn" onclick="exitQuiz()">← Exit</button>
     <div class="quiz-title" id="quiz-title">Gate Boss · 关卡挑战</div>
-    <button type="button" class="quiz-xclose" onclick="exitQuiz()" title="Close" aria-label="Close">✕</button>
   </div>
   <div class="phase-row" id="phase-row">
     <div class="phdot active"></div>
@@ -1051,8 +1054,7 @@ body.season-autumn{
       </label>
       <div style="margin-top:.45rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;">
         <span style="color:var(--muted);">Family co-op week stars goal:</span>
-        <input id="parent-coop-goal" type="number" min="40" max="500" step="10" style="width:4.2rem;padding:.25rem .4rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);">
-        <button type="button" class="btn-s" style="padding:.28rem .55rem;font-size:.68rem;" onclick="saveCoopGoalFromParent()">Save</button>
+        <input id="parent-coop-goal" type="number" onchange="saveCoopGoalFromParent()" min="40" max="500" step="10" style="width:4.2rem;padding:.25rem .4rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);">
       </div>
       <div style="margin-top:.45rem;display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;">
         <span style="color:var(--muted);">Audio mode:</span>
@@ -1063,8 +1065,7 @@ body.season-autumn{
       </div>
       <div style="margin-top:.45rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;">
         <span style="color:var(--muted);">Family co-op week minutes goal:</span>
-        <input id="parent-coop-min-goal" type="number" min="30" max="600" step="15" style="width:4.6rem;padding:.25rem .4rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);">
-        <button type="button" class="btn-s" style="padding:.28rem .55rem;font-size:.68rem;" onclick="saveCoopMinutesGoalFromParent()">Save</button>
+        <input id="parent-coop-min-goal" type="number" onchange="saveCoopMinutesGoalFromParent()" min="30" max="600" step="15" style="width:4.6rem;padding:.25rem .4rem;border-radius:6px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.2);color:var(--ink);">
       </div>
       <div style="margin-top:.45rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;">
         <span style="color:var(--muted);">Parent webhook URL (optional):</span>
@@ -1245,8 +1246,12 @@ body.season-autumn{
   <div class="pinyin-chart-card" onclick="event.stopPropagation()">
     <button class="ov-close" onclick="closePinyinChart()">✕</button>
     <div class="ov-title" data-ui-label="pinyinChart"></div>
+    <div style="text-align:center;margin:.2rem 0 .6rem;"><button type="button" class="btn-s" onclick="closePinyinChart();startPinyinLesson(true)">📘 Pinyin intro · 拼音入门</button></div>
     <div id="pinyin-chart-body"></div>
   </div>
+</div>
+<div class="pinyin-lesson-overlay" id="overlay-pinyin-lesson" onclick="if(event.target===this)closePinyinLesson(false)">
+  <div class="pinyin-lesson-card" id="pinyin-lesson-card-inner" onclick="event.stopPropagation()"></div>
 </div>
 <div class="correct-reveal-overlay" id="correct-reveal-overlay"></div>
 
@@ -1328,7 +1333,6 @@ function applyUiLabels(root){
 // ══════════════════════════════════════════════════════
 function C(ch,py,mn){return{t:'c',ch,py,mn};}
 function B(ch,py,mn){return{t:'c',ch,py,mn,bonus:true};}
-function P(tx){return{t:'p',tx};}
 function N(tx,py,mn){return{t:'n',tx,py,mn};}
 
 // Years each dynasty lasted (used for road connector widths)
@@ -2351,10 +2355,6 @@ function cycleMascotCosmetic(){
   renderMascotHubVisual();
   showToast('New look saved!');
 }
-function cultureSeenCount(){
-  if(!curP)return 0;
-  return Object.keys((state[curP]&&state[curP].cultureSeen)||{}).length;
-}
 function markCultureSeen(storyId){
   if(!curP||!storyId)return;
   ensureState(curP);
@@ -2490,27 +2490,6 @@ function renderDailyMissionPanel(p){
     <div class="prog-track" style="height:6px;margin:.25rem 0;"><div class="prog-fill" style="width:${pct}%;height:6px;"></div></div>
     <div style="font-size:.68rem;color:var(--ink);">${m.progress||0} / ${m.target||1}${m.done?' · Done':''}</div>`;
 }
-function renderRivalryCoopStrip(){
-  const el=document.getElementById('rivalry-coop-strip');if(!el)return;
-  ensureState('jenn');ensureState('jess');
-  const jw=(state.jess&&state.jess.weekStars)||0;
-  const jn=(state.jenn&&state.jenn.weekStars)||0;
-  const coop=(jw+jn);
-  const goal=engagementSettings.familyCoopGoalStars||120;
-  const pct=Math.min(100,Math.round(coop/Math.max(1,goal)*100));
-  const wk=weekStart();
-  if(coop>=goal&&engagementSettings.coopToastWeek!==wk){
-    engagementSettings.coopToastWeek=wk;
-    saveEngagementSettings();
-    showToast('Family co-op goal reached! Great teamwork!');
-    maybeMascotToast('coop');
-  }
-  el.innerHTML=`<div class="dwb-title">This week · 本周</div>
-    <div style="font-size:.72rem;color:var(--muted);">Jenn ${jn}⭐ vs Jess ${jw}⭐</div>
-    <div style="font-size:.68rem;color:var(--gold);margin-top:.35rem;">Family co-op: ${coop} / ${goal} week stars</div>
-    <div class="prog-track" style="height:6px;margin:.3rem 0;"><div class="prog-fill" style="width:${pct}%;height:6px;"></div></div>`;
-  checkWeeklyRivalryBadge(jn,jw);
-}
 function checkWeeklyRivalryBadge(jn,jw){
   if(!curP)return;
   const wk=weekStart();
@@ -2542,6 +2521,14 @@ function renderHubRulesBody(){
     <p><strong>This week</strong> · 本周: Jenn vs Jess week stars + family teamwork bar (<strong>${goal}</strong> week stars). Hit the goal for a family cheer toast.</p>
     <p>${friendLine}</p>
     <p><strong>Mystery box</strong> · 神秘盒: sometimes when you clear a gate you earn an extra open. Culture stories can give box tokens. Tap <strong>Open</strong> below when you have picks. Prizes can be bonus stars or a family coupon—show coupons to a grown-up.</p>
+    <p><strong>How stars work</strong></p>
+    <ul class="hub-rules-stars">
+      <li><b>Quiz &amp; most games</b> (after you finish the round): more than 85% correct = 3★, more than 70% = 2★, more than 55% = 1★.</li>
+      <li><b>Match</b>: stars from time — under 2 min = 3★, under 3 min = 2★, under 4 min = 1★. Wrong flips do <b>not</b> add words to your practice list.</li>
+      <li><b>Unlock a gate</b>: best quiz 90% or above + 3 quiz stars, <b>and</b> best 3★ on Listen, Trace, Match and Rain for that gate. Timer starts at first game 3★ and lasts 5 days, longer for later gates.</li>
+      <li><b>Practice list + HSK rounds</b>: these build a separate overall progress track (badge at 20 rounds), but they do <b>not</b> unlock gates.</li>
+      <li><b>Forgiveness tokens (Dynasty games only)</b>: every two 2★ rounds in HSK/Practice list earns +1 forgiveness in the same game type.</li>
+    </ul>
     <p><strong>Cheer box</strong> · 加油：tap a button for a quick cheer (no stars).</p>
     <div class="soundboard-grid">
       <button type="button" class="btn-s" onclick="playSoundboard('go')">Go!</button>
@@ -2636,16 +2623,6 @@ function revealMysteryPick(){
     <div class="mystery-prize-title">+${stars} stars</div>
     <div class="mystery-prize-sub">${sub}</div>
     <button type="button" class="btn-g" style="margin-top:.8rem;" onclick="closeMysteryBoxOverlay()">Done</button></div>`;
-  saveState();
-}
-function maybeGrantMysteryFromGate(did){
-  if(!curP)return;
-  const g=getGateCurriculum(did,curHSK);
-  const ch=g&&g.rewards&&typeof g.rewards.mysteryBoxChance==='number'?g.rewards.mysteryBoxChance:0;
-  if(!(ch>0)||Math.random()>=ch)return;
-  ensureState(curP);
-  state[curP].mysteryPicksPending=(state[curP].mysteryPicksPending||0)+1;
-  showToast('Mystery box! Open 🎁 in the hub.',2000);
   saveState();
 }
 function syncParentMascotFromUi(){
@@ -3064,8 +3041,9 @@ const syncStatus={jenn:'local',jess:'local'};   // 'local' | 'synced' | 'attenti
 function setSyncStatus(pid,status){
   if(!pid)return;
   syncStatus[pid]=status;
-  const el=document.getElementById('sync-status-'+pid);
-  if(el)el.textContent=status==='synced'?'Synced':(status==='attention'?'Needs attention':'Saved on this device');
+  const text=status==='synced'?'Synced':(status==='attention'?'Needs attention':'Saved on this device');
+  const el=document.getElementById('hub-sync');
+  if(el&&pid===curP){el.textContent=status==='synced'?'☁️':(status==='attention'?'⚠️':'💾');el.title=text;el.setAttribute('aria-label',text);}
 }
 
 /**
@@ -3178,7 +3156,7 @@ function savePlayer(pid,opts){
     dbgLog('savePlayer',{pid,revision:s.revision,curP:curP||null});
     localStorage.setItem(SK,JSON.stringify(state));
     setSyncStatus(pid,'local');
-    if(db)pushPlayer(pid,opts);
+    if(db)pushPlayer(pid,opts||{retries:1});
     refreshOpenSummaries();
   }catch(e){}
 }
@@ -3314,8 +3292,9 @@ function effectiveGameTargetDid(){
 function starsFromAccuracy(correct,total,minSamples){
   const t=total||0;if(!t)return 0;
   if(minSamples&&t<minSamples)return 0;
-  const pct=Math.round((correct||0)/t*100);
-  if(pct>85)return 3;if(pct>70)return 2;if(pct>55)return 1;return 0;
+  // Whole-number compare: no rounding (85.4% is more than 85%) and no float drift.
+  const c100=(correct||0)*100;
+  if(c100>85*t)return 3;if(c100>70*t)return 2;if(c100>55*t)return 1;return 0;
 }
 
 function traceTargetLimitForGate(did){
@@ -3519,7 +3498,6 @@ function timerModalViewTasks(){
   focusGateTasks(did);
 }
 
-function timerModalViewGate(){timerModalViewTasks();}
 
 function maybeShowGateTimerReminder(s,did,level){
   if(!s||!did||!s.gateTimers)return;
@@ -3551,7 +3529,7 @@ function maybeShowGateTimerReminder(s,did,level){
     kind:'checkin',
     title:'Gate Challenge Check-In',
     msg:'You are doing great! Finish your quiz and all four games at 3★ to clear this gate.',
-    status:`${left} days left (due ${t.deadlineKey})`,
+    status:`${left} day${left===1?'':'s'} left (due ${t.deadlineKey})`,
     onAction:()=>focusGateTasks(did)
   });
 }
@@ -3705,7 +3683,7 @@ function startGateTimerIfNeeded(s,did,stars,level){
     kind:'start',
     title:'Challenge Started',
     msg:`Awesome unlock! Complete all gate tasks in ${days} days to clear this gate.`,
-    status:`Deadline: ${deadline} (${days} days left)`,
+    status:`Deadline: ${deadline} (${days} day${days===1?'':'s'} left)`,
     onAction:()=>focusGateTasks(did)
   });
   if(!s.timerLastSeenAt)s.timerLastSeenAt={};
@@ -3766,7 +3744,7 @@ function gateTimerStatusLine(s,did,level){
   if(!t||!t.active)return 'Timer starts after your first 3★ game for this gate.';
   const left=gateTimerDaysLeft(t);
   if(left<=1)return 'Final day for this Gate Challenge: due today.';
-  return `Gate Challenge active: ${left} days left (due ${t.deadlineKey}).`;
+  return `Gate Challenge active: ${left} day${left===1?'':'s'} left (due ${t.deadlineKey}).`;
 }
 
 function bestQuizForAttempt(s,isChampion,did,group,level){
@@ -3991,21 +3969,13 @@ function renderMyDay(){
       <div class="ts-row"><span>⏱ Time played today</span><span>${formatMs(rawMs)}</span></div>
       <div class="ts-row"><span>💪 Practice words left</span><span>${Object.keys(s.failedWords||{}).length}</span></div>
       <div class="ts-row"><span>🧩 HSK / Practice list rounds</span><span>${alt.total||0}</span></div>
-      <div class="ts-row"><span>🔥 Day streak</span><span>${getConsecutivePlayDays(curP)} days</span></div>
+      <div class="ts-row"><span>🔥 Day streak</span><span>${getConsecutivePlayDays(curP)} day${getConsecutivePlayDays(curP)===1?'':'s'}</span></div>
     </div>
     ${gateProg}
     <div style="text-align:center;"><button class="btn-g" onclick="closeMyDay()">Keep going →</button></div>`;
 }
 
 
-function weekStartForDateKey(dk){
-  const parts=(dk||'').split('-');
-  if(parts.length!==3)return weekStart();
-  const y=parseInt(parts[0],10),m=parseInt(parts[1],10)-1,d=parseInt(parts[2],10);
-  const dt=new Date(y,m,d);dt.setHours(0,0,0,0);
-  dt.setDate(dt.getDate()-((dt.getDay()+6)%7));
-  return dt.getFullYear()+'-'+pad(dt.getMonth()+1)+'-'+pad(dt.getDate());
-}
 
 
 function shuffleArr(a){const arr=[...a];for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
@@ -4052,6 +4022,7 @@ function clearFlashSession(){clearPendingSession('flash');}
 function closeFlashOverlay(){
   document.getElementById('flash-overlay').classList.remove('show');
   persistFlashSession();saveState();
+  refreshHubIfShown();
 }
 
 function openFlashPicker(){
@@ -4107,7 +4078,7 @@ function renderFlashCurrent(){
   if(!flashSt.mode){renderFlashModePicker();return;}
   if(flashSt.i>=flashSt.deck.length){
     clearFlashSession();
-    // Mark flashcard pass done for this dynasty — unlocks Trace game
+    // Mark flashcard pass done for this dynasty (recorded; it no longer locks Trace — Plan v6 F8)
     if(curP&&flashSt.did){
       const s=state[curP];
       if(!s.flashPassDone)s.flashPassDone={};
@@ -4117,7 +4088,7 @@ function renderFlashCurrent(){
       const fk=gateKeyOf(flashSt.did,flashSt.level);
       if(fk&&!s.flashPassDone[fk]){
         s.flashPassDone[fk]=true;
-        showToast('Flashcard pass done! ✍️ Trace game is now unlocked for Dynasty.',2800);
+        showToast('Flashcard pass done! 🎉',2800);
       }
     }
     saveState();
@@ -4223,6 +4194,12 @@ function closeGamesOverlay(){
   clearRainTimers();
   drainScope('games');
   drainScope('review');
+  refreshHubIfShown();
+}
+/** Redraw the hub under a closing overlay, so stars and unlocks match what was just played. */
+function refreshHubIfShown(){
+  const hub=document.getElementById('scr-hub');
+  if(curP&&hub&&hub.classList.contains('show'))renderHub();
 }
 function setGamesFailedFocus(active){
   const ov=document.getElementById('games-overlay');
@@ -4248,11 +4225,10 @@ function gameUnlockForDid(did){
   // games instantly.
   if(storyIds.some(sid=>(s.legacyStoriesCompleted||[]).includes(sid)))return{listen:true,trace:true,match:true,rain:true};
   const maxReads=Math.max(0,...storyIds.map(sid=>(s.storyReadCount||{})[sid]||0));
-  const flashDone=!!(s.flashPassDone&&s.flashPassDone[gateKeyOf(did)]);
   const listenPlayed=!!((s.listenPlayed||{})[gateKeyOf(did)])||((s.gateGameStars&&s.gateGameStars[gateKeyOf(did)])||{}).listen>0;
   return{
     listen:maxReads>=1,
-    trace:maxReads>=1&&flashDone,
+    trace:maxReads>=1,
     match:maxReads>=2,
     rain:maxReads>=2&&!!listenPlayed
   };
@@ -4273,6 +4249,7 @@ function gameRow(game,label,dynastyLocked,lockMsg,stars){
         <button class="btn-s game-picker-btn" style="padding:.25rem .5rem;font-size:.66rem;" onclick="startGame('${game}','failed')">${L('scopeWip',{icon:false})}</button>
       </div>
       ${dynastyLocked?`<div style="font-size:.68rem;color:var(--muted);text-align:center;margin-top:.3rem;">${lockMsg}</div>`:''}
+      ${(curP&&!Object.keys(state[curP].failedWords||{}).length)?`<div style="font-size:.68rem;color:var(--muted);text-align:center;margin-top:.3rem;">Practice list: wrong answers land here</div>`:''}
     </div>`;
 }
 
@@ -4285,11 +4262,11 @@ function gamePickerHtml(){
   const scopeLbl=dynasty?`${dynasty.icon||''} ${dynasty.en} — your best stars on this gate`:'Your best stars on this gate';
   return `<div style="font-size:.78rem;color:var(--muted);margin-bottom:.25rem;text-align:center;">Pick a game and word pool</div>
     <div style="font-size:.7rem;color:var(--muted);margin-bottom:.45rem;text-align:center;">${scopeLbl}</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.45rem;">
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;">
       ${gameRow('listen','👂 Listen',!ul.listen,'Read the story once first 📖',gs.listen||0)}
-      ${gameRow('trace','✍️ Trace',!ul.trace,'Read story + finish flashcards 🃏',gs.trace||0)}
+      ${gameRow('trace','✍️ Trace',!ul.trace,'Read the story once first 📖',gs.trace||0)}
       ${gameRow('match','🧠 Match',!ul.match,'Read the story twice 📖📖',gs.match||0)}
-      ${gameRow('rain','🌧️ Rain',!ul.rain,'Play Listen first 👂',gs.rain||0)}
+      ${gameRow('rain','🌧️ Rain',!ul.rain,'Read twice + play Listen 👂',gs.rain||0)}
       ${reviewPickerRow()}
     </div>
     <div style="margin-top:.55rem;font-size:.7rem;line-height:1.5;color:var(--muted);text-align:center;">
@@ -4885,7 +4862,6 @@ function exitTrace(){
   openGamesHub();
 }
 
-function traceAnimate(){traceWatchAgain();}
 function traceNext(){traceSt.i++;if(curP)state[curP].pendingSessions.trace={chars:traceSt.chars.map(c=>({...c})),i:traceSt.i,traceGood:traceSt.traceGood||0,gameTargetDid:traceSt.gameTargetDid,gameTargetLevel:traceSt.gameTargetLevel||null,gateAttempt:traceSt.gateAttempt||null};touchSession('trace');saveState();renderTrace();}
 
 function restoreTrace(){
@@ -5030,15 +5006,6 @@ function isStoryUnlockedForDynasty(did,s){
 }
 
 // ── TTS ── opts: { sentence: true } = slower for full sentences
-function speak(text,opts){
-  opts=opts||{};
-  if(!window.speechSynthesis)return;
-  window.speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';
-  u.rate=opts.sentence?0.58:0.72;u.pitch=1;
-  const vs=speechSynthesis.getVoices();const zh=vs.find(v=>v.lang.startsWith('zh'));
-  if(zh)u.voice=zh;speechSynthesis.speak(u);
-}
 if(window.speechSynthesis){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
 const DIGMANDARIN_AUDIO_BASE='https://raw.githubusercontent.com/zispace/hanyu-pinyin-audio/data/digmandarin.com/audio/';
 const TONE_MARK_MAP={
@@ -5115,9 +5082,6 @@ function playPinyinClip(clipKey,fallbackText){
   pinyinAudioEl.play().catch(()=>{
     if(fallbackText)speak(fallbackText);
   });
-}
-function playPinyinFromMarked(marked,fallbackText){
-  playPinyinClip(markedPinyinToClipKey(marked),fallbackText);
 }
 let zhCharClipMap=null;
 /**
@@ -5203,11 +5167,6 @@ function playMandarinTone(toneNum){
 
 // ── Toast ──
 let toastTimer=null;
-function showToast(msg,dur=2000){
-  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
-  if(toastTimer)clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),dur);
-}
 
 // ── Confetti ──
 function launchConfetti(){
@@ -5521,6 +5480,7 @@ function renderHub(){
   if(nextDid)maybeShowGateTimerReminder(s,nextDid);
   document.getElementById('hub-avatar').textContent=curP==='jenn'?'🐥':'🦊';
   document.getElementById('hub-name').textContent=playerName(curP);
+  setSyncStatus(curP,syncStatus[curP]||'local');
   const hsk=getCurrentHSK(s);
   document.getElementById('hub-hsk').textContent='HSK '+hsk;
   document.getElementById('hub-title').textContent=playerName(curP)+'\'s Adventure';
@@ -5632,16 +5592,6 @@ function renderHubContent(){
         <div style="margin-top:.6rem;">
           ${gamePickerHtml()}
         </div>
-        <div class="hub-star-rules">
-          <strong style="color:var(--ink);">How stars work</strong>
-          <ul>
-            <li><b>Quiz &amp; most games</b> (after you finish the round): more than 85% correct = 3★, more than 70% = 2★, more than 55% = 1★.</li>
-            <li><b>Match</b>: stars from time — under 2 min = 3★, under 3 min = 2★, under 4 min = 1★. Wrong flips do <b>not</b> add words to your practice list.</li>
-            <li><b>Unlock a gate</b>: best quiz 90% or above + 3 quiz stars, <b>and</b> best 3★ on Listen, Trace, Match and Rain for that gate. Timer starts at first game 3★ and lasts 5 days.</li>
-            <li><b>Practice list + HSK rounds</b>: these build a separate overall progress track (badge at 20 rounds), but they do <b>not</b> unlock gates.</li>
-            <li><b>Forgiveness tokens (Dynasty games only)</b>: every two 2★ rounds in HSK/Practice list earns +1 forgiveness in the same game type.</li>
-          </ul>
-        </div>
       </div>
     </div>`);
 
@@ -5728,8 +5678,9 @@ function renderHubContent(){
   });
 
   // ── Dynasty detail panel ──
-  if(selectedGateId){
-    const d=DYNASTIES.find(x=>x.id===selectedGateId);
+  const shownGateId=selectedGateId||(DYNASTIES.find((d,i)=>!gateCleared(s,d.id)&&(i===0||gateCleared(s,DYNASTIES[i-1].id)))||{}).id;
+  if(shownGateId){
+    const d=DYNASTIES.find(x=>x.id===shownGateId);
     if(d)renderDynastyDetail(d,s);
   }
 }
@@ -5775,7 +5726,7 @@ function renderDynastyDetail(d,s){
   function storyBtn(st,isDone){
     if(!st)return '';
     if(storyUnlocked)
-      return `<button class="btn-s" onclick="openStory(storyById('${st.id}'),DYNASTIES.find(x=>x.id==${d.id}))">${isDone?'📖 Re-read':'📖 Read'}: ${st.title}${st.shared?' <span style="opacity:.6;font-size:.9em;">· shared text</span>':''}</button>`;
+      return `<button class="${isDone?'btn-s':'btn-g'}" onclick="openStory(storyById('${st.id}'),DYNASTIES.find(x=>x.id==${d.id}))">${isDone?'📖 Re-read':'📖 Read'}: ${st.title}${st.shared?' <span style="opacity:.6;font-size:.9em;">· shared text</span>':''}</button>`;
     return `<button class="btn-s" disabled style="opacity:.45;cursor:not-allowed">🔒 ${st.title}</button>`;
   }
 
@@ -5795,7 +5746,7 @@ function renderDynastyDetail(d,s){
       ${storyBtn(story,storyDone)}
       ${storyBtn(story2,story2Done)}
       <button class="btn-s" onclick="openFlashCards(${d.id})">${L('flashCards')}</button>
-      <button class="btn-g" onclick="startGateQuiz(${d.id})">${done?'⚔️ Try Boss Again':'⚔️ Boss Challenge'}</button>
+      <button class="${storyDone?'btn-g':'btn-s'}" onclick="startGateQuiz(${d.id})">${done?'⚔️ Try Boss Again':'⚔️ Boss Challenge'}</button>
       <button class="btn-s" onclick="startGateQuiz(${d.id},{hardMode:true})">${L('hardBoss')}</button>
     </div>
     <div id="gate-lesson-box" style="margin-top:.8rem;"></div>
@@ -6041,24 +5992,6 @@ function findCultureStoryById(storyId){
   }
   return null;
 }
-function applyCultureReward(story){
-  if(!curP||!story||!story.rewards)return;
-  const s=state[curP];
-  const r=story.rewards;
-  const stars=Math.max(0,parseInt(r.stars,10)||0);
-  if(stars>0){addEarnedStars(stars);}
-  const tok=Math.max(0,parseInt(r.mysteryBoxToken,10)||0);
-  if(tok>0){
-    s.mysteryPicksPending=(s.mysteryPicksPending||0)+tok;
-    showToast('+'+tok+' mystery box pick'+(tok>1?'s':'')+'! Open 🎁 in the hub.',2000);
-  }
-  if(r.familyRewardType){
-    const fam=String(r.familyRewardType).replace(/_/g,' ');
-    showToast('Family reward unlocked: '+fam);
-  }else showToast('Culture story reward collected!');
-  saveState();
-  renderHub();
-}
 // cultureRewardBtn used to live here: a Collect-stars button with no
 // read-before-collect check. Its only caller was the dead copy of
 // openCultureStories, so it granted nothing — but an ungated star button
@@ -6236,16 +6169,12 @@ function completeStory(){
   // more than clearing a whole gate (220) — and on a blank profile fired the
   // family co-op goal and the weekly star-lead badge from a single story.
   const pts=Math.min(newChars.size*5,80)+20;
-  addEarnedStars(pts);
-  // Track read count only if the kid spent at least 45s in the story
+  // The read counts, and pays, only when its story quiz is finished (Plan v6
+  // L7, owner rule 2026-10-10). Closing the quiz used to keep both the read and
+  // the stars, so a child could open games without the quiz. The 45 s check is
+  // decided here and travels with the quiz session.
   const sid=curStory&&curStory.id;
-  if(sid&&(Date.now()-storyOpenTime)>=45000){
-    if(!s.storyReadCount)s.storyReadCount={};
-    s.storyReadCount[sid]=(s.storyReadCount[sid]||0)+1;
-    const reads=s.storyReadCount[sid];
-    if(reads===1)showToast('First read done! 🌱 Listen game unlocked for Dynasty.',2800);
-    else if(reads===2)showToast('Second read done! 🌳 Match + Rain are now unlocked.',2800);
-  }
+  nextReadCredit={sid:sid||null,pts,qualified:!!(sid&&(Date.now()-storyOpenTime)>=45000)};
   saveState();
   checkBadges(curP);saveState();
   launchConfetti();
@@ -6271,7 +6200,8 @@ function persistMiniQuizState(){
     dynastyId:miniQ.attemptedDynastyId||(curDynasty&&curDynasty.id)||null,
     questions:miniQ.questions.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),
     qi:miniQ.qi,score:miniQ.score,phase:miniQ.phase,
-    wrongQueue:miniQ.wrongQueue.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]}))
+    wrongQueue:miniQ.wrongQueue.map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),
+    readCredit:miniQ.readCredit?{...miniQ.readCredit}:null
   };
   touchSession('story');
 }
@@ -6317,7 +6247,8 @@ function restoreStoryMiniQuiz(){
     wrongQueue:(ps.wrongQueue||[]).map(q=>({zh:q.zh,py:q.py,correct:q.correct,opts:[...q.opts]})),
     phase:ps.phase||'main',
     attemptedStoryId:ps.storyId,attemptedDynastyId:ps.dynastyId||(dyn&&dyn.id)||null,
-    storyCompletedNow:false
+    storyCompletedNow:false,
+    readCredit:ps.readCredit?{...ps.readCredit}:null
   };
   if(!miniQ.questions.length)return false;
   document.getElementById('mini-quiz-overlay').classList.add('show');
@@ -6340,13 +6271,31 @@ function buildMiniQuizQuestions(){
   return qs;
 }
 
+let nextReadCredit=null;
+/** Pay a finished story quiz's read: its stars, and the read count when the read lasted 45 s. */
+function applyReadCredit(){
+  const rc=miniQ.readCredit;if(!rc||!curP)return 0;
+  miniQ.readCredit=null;
+  const s=state[curP];
+  addEarnedStars(rc.pts);
+  if(rc.qualified&&rc.sid){
+    if(!s.storyReadCount)s.storyReadCount={};
+    s.storyReadCount[rc.sid]=(s.storyReadCount[rc.sid]||0)+1;
+    const reads=s.storyReadCount[rc.sid];
+    if(reads===1)showToast('First read done! 🌱 Listen and Trace unlocked for Dynasty.',2800);
+    else if(reads===2)showToast('Second read done! 🌳 Match is unlocked; Rain opens after Listen.',2800);
+  }
+  return rc.pts;
+}
 function startMiniQuiz(){
   sessionQuizCorrect=0;quizCelebrate={c3:false,c6:false};
   document.getElementById('mini-quiz-overlay').classList.add('show');
   miniQ={
     questions:buildMiniQuizQuestions(),qi:0,score:0,wrongQueue:[],phase:'main',
-    attemptedStoryId:curStory&&curStory.id||null,attemptedDynastyId:curDynasty&&curDynasty.id||null,storyCompletedNow:false
+    attemptedStoryId:curStory&&curStory.id||null,attemptedDynastyId:curDynasty&&curDynasty.id||null,storyCompletedNow:false,
+    readCredit:nextReadCredit
   };
+  nextReadCredit=null;
   persistMiniQuizState();
   if(!miniQ.questions.length){showMiniQuizResult();return;}
   renderMiniQuestion();
@@ -6444,6 +6393,7 @@ function showMiniQuizResult(){
     bumpMission('stories',1);
     miniQ.storyCompletedNow=true;
   }
+  const readPts=applyReadCredit();
   addEarnedStars(bonus);saveState();
   checkBadges(curP);saveState();
   clearStoryPending();saveState();
@@ -6451,8 +6401,8 @@ function showMiniQuizResult(){
   document.getElementById('mini-quiz-body').innerHTML=`
     <div style="text-align:center;padding:1rem 0;">
       <div style="font-size:2.8rem;margin-bottom:.5rem;">🌟</div>
-      <div style="font-family:var(--fdec);font-size:1.55rem;color:var(--gold);margin-bottom:.4rem;">Perfect! 全对！</div>
-      <div style="font-size:.88rem;color:var(--muted);margin-bottom:.6rem;">Quiz bonus +${bonus} ⭐</div>
+      <div style="font-family:var(--fdec);font-size:1.55rem;color:var(--gold);margin-bottom:.4rem;">${miniQ.phase==='main'?'Perfect! 全对！':'Story quiz done! 完成！'}</div>
+      <div style="font-size:.88rem;color:var(--muted);margin-bottom:.6rem;">${readPts?`Reading +${readPts} ⭐ · `:''}Quiz bonus +${bonus} ⭐</div>
       ${miniQ.storyCompletedNow?'<div style="font-size:.8rem;color:var(--jade);margin-bottom:1rem;">📖 Story complete</div>':'<div style="margin-bottom:1rem;"></div>'}
       <button class="btn-g" onclick="closeMiniQuiz()">Keep going →</button>
     </div>`;
@@ -6738,7 +6688,7 @@ function startGateQuiz(did,opts){
   const maxScore=mcqN*14+pyN*11+sbN*20;// 14 = base 10 + up to 4 bonus per MCQ
   quizSt={did,phase:0,score:0,phaseScores:[0,0,0],vocab,
     questions,pyQ,sbPack,
-    sbRound:0,isDaddy:false,isChampion:false,hardMode:hard,mcqN,pyN,sbN,maxScore,noMcqAssistance:!hard,
+    sbRound:0,isDaddy:false,isChampion:false,hardMode:hard,mcqN,pyN,sbN,maxScore,noMcqAssistance:true,
     quizCorrect:0,quizAttempts:0,
     gateAttempt:curP?gateAttemptBinding(state[curP],did,curHSK||1):null};
   mcqAnswered=0;pyAnswered=0;sbBuilt=[];releaseAnswerLock();
@@ -7267,6 +7217,12 @@ function showPinyinChart(){
 }
 function closePinyinChart(){document.getElementById('overlay-pinyin').classList.remove('show');}
 let lessonStep=0;
+function startPinyinLesson(force){
+  if(!force&&curP&&state[curP].pinyinIntroDone)return;
+  lessonStep=0;
+  document.getElementById('overlay-pinyin-lesson').classList.add('show');
+  renderPinyinLessonStep();
+}
 function closePinyinLesson(markDone){
   document.getElementById('overlay-pinyin-lesson').classList.remove('show');
   if(markDone&&curP){
@@ -8087,17 +8043,6 @@ function showParentStarMsg(msg,color){
   el.textContent=msg;
   clearTimeout(el._t);el._t=setTimeout(()=>{el.textContent='';},3000);
 }
-function showParentSummary(){
-  sumMode='weekly';sumOffset=0;
-  document.getElementById('tab-wk').classList.add('active');
-  document.getElementById('tab-dy').classList.remove('active');
-  loadEngagementSettings();
-  const mc=document.getElementById('parent-mascot-off');if(mc)mc.checked=!!engagementSettings.mascotDisabled;
-  const cg=document.getElementById('parent-coop-goal');if(cg)cg.value=String(engagementSettings.familyCoopGoalStars||120);
-  renderParentSummary();
-  refreshParentStarControls();
-  document.getElementById('overlay-parent').classList.add('show');
-}
 
 function closeParentSummary(){document.getElementById('overlay-parent').classList.remove('show');}
 function clearAllProgressWithParentPwd(){
@@ -8227,7 +8172,7 @@ function renderParentSummary(){
       <div class="psr"><span class="psr-lbl">📖 Stories Read</span><span class="psr-val">${s.storiesCompleted.length}</span></div>
       <div class="psr"><span class="psr-lbl">📝 Characters Known</span><span class="psr-val">${Object.keys(s.library).length}</span></div>
       ${isNow?`<div class="psr"><span class="psr-lbl">⏱ Today's Time</span><span class="psr-val">${mins}m</span></div>`:''}
-      <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} days</span></div>
+      <div class="psr"><span class="psr-lbl">🔥 Streak</span><span class="psr-val">${getConsecutivePlayDays(p)} day${getConsecutivePlayDays(p)===1?'':'s'}</span></div>
       <div class="psr"><span class="psr-lbl">💪 Practice Queue</span><span class="psr-val">${Object.keys(s.failedWords||{}).length} words</span></div>
       ${championTrophyCount(s)?`<div class="psr"><span class="psr-lbl">🏆 Champion Badges</span><span class="psr-val" style="color:var(--gold)">${'🏆'.repeat(championTrophyCount(s))}</span></div>`:''}
       ${playedBeforeReadingHtml(s)}
